@@ -1,41 +1,29 @@
 {
 	"compilerOptions": {
-		"allowJs": true,
-		"checkJs": true,
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"resolveJsonModule": true,
-		"skipLibCheck": true,
-		"sourceMap": true,
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "node",
 		"strict": true,
-		"moduleResolution": "NodeNext",
-		"importsNotUsedAsValues": "error",
-		"isolatedModules": true,
-		"preserveValueImports": true,
-		"lib": ["esnext", "DOM", "DOM.Iterable"],
-		"module": "esnext",
-		"target": "esnext",
-		"ignoreDeprecations": "5.0",
-		"include": [
-			"play/.svelte-kit/ambient.d.ts",
-			"play/.svelte-kit/types/**/$types.d.ts",
-			"play/.svelte-kit/vite.config.ts",
-			"play/src/**/*.js",
-			"play/src/**/*.ts",
-			"play/src/**/*.svelte",
-			"play/tests/**/*.js",
-			"play/tests/**/*.ts",
-			"play/tests/**/*.svelte",
-			"src/**/*.ts",
-			"src/**/*.svelte"
-		],
-		"exclude": [
-			"**/node_modules/**",
-			"play/.svelte-kit/[!ambient.d.ts]**",
-			"play/src/service-worker.js",
-			"play/src/service-worker.ts",
-			"play/src/service-worker.d.ts"
-		],
-		"references": [{ "path": "./tsconfig.node.json" }]
-	}
+		"jsx": "preserve",
+		"sourceMap": true,
+		"noImplicitThis": false,
+		"noImplicitAny": false,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"noLib": false,
+		"skipLibCheck": true,
+		"preserveSymlinks": true,
+		"lib": ["ESNext", "DOM"],
+		"types": [
+			"node",
+		]
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/*.svelte"
+	],
+	// ts 排除的文件
+	"exclude": ["node_modules"],
+	"references": [{ "path": "./tsconfig.node.json" }]
 }
