@@ -1,15 +1,22 @@
 import Notification from './Notification.svelte';
-import type { SvelteComponent } from 'svelte';
+import type { ComponentConstructorOptions, SvelteComponent } from 'svelte';
 
 type NotifyPlacement = 'right-top' | 'left-top' | 'right-bottom' | 'left-bottom' | 'center';
 type NotifyType = 'info' | 'warning' | 'error' | 'success';
+type Extend = {
+	__notify_index: number;
+	__notify_placement: NotifyPlacement;
+	index: number;
+	show: boolean;
+};
+type NotifyComponent = SvelteComponent<NotifyOptions & Extend>;
 export interface NotifyOptions {
 	customClass?: string;
 	close?: boolean;
 	title?: string;
 	type?: NotifyType;
 	placement?: NotifyPlacement;
-	target?: HTMLElement;
+	target?: Element;
 	onClose?: () => void;
 	slotTitle?: string | SvelteComponent; // svelte sfc or html sting
 	slot?: string | SvelteComponent; // svelte sfc or html sting
@@ -28,11 +35,11 @@ const defaultNotifyOptions: NotifyOptions = {
 };
 
 const notifyMap = {
-	'right-top': [],
-	center: [],
-	'left-bottom': [],
-	'right-bottom': [],
-	'left-top': []
+	'right-top': [] as NotifyComponent[],
+	center: [] as NotifyComponent[],
+	'left-bottom': [] as NotifyComponent[],
+	'right-bottom': [] as NotifyComponent[],
+	'left-top': [] as NotifyComponent[]
 };
 
 const resolveNotifyOptions = (options: NotifyOptions) => {
@@ -65,7 +72,7 @@ function mountNotify(
 	evt: Record<string, any>,
 	context: Map<string, string | SvelteComponent>
 ) {
-	const notifyArray = notifyMap[options.placement];
+	const notifyArray = notifyMap[options.placement || 'right-top'];
 	let index = 0;
 	if (!notifyArray) {
 		console.error(
@@ -77,13 +84,17 @@ function mountNotify(
 
 	index = notifyArray.length;
 	const NotificationInst = new Notification({
-		target: options.target,
+		target: options.target!,
 		props: {
 			...options,
 			show: false,
 			index,
 			onClose: async () => {
-				await unmountNotify(options.placement, NotificationInst, 0);
+				await unmountNotify(
+					options.placement || 'right-top',
+					NotificationInst as unknown as NotifyComponent,
+					0
+				);
 				evt.onClose && evt.onClose();
 			}
 		},
@@ -94,26 +105,30 @@ function mountNotify(
 
 	NotificationInst.$set({ show: true });
 	// auto close
-	autoUnmountNotify(options, NotificationInst);
+	autoUnmountNotify(options, NotificationInst as unknown as NotifyComponent);
 	// cache  NotificationInst
-	notifyArray.push(NotificationInst);
+	notifyArray.push(NotificationInst as unknown as NotifyComponent);
 
 	return NotificationInst;
 }
 
-async function autoUnmountNotify(options: NotifyOptions, inst) {
+async function autoUnmountNotify(options: NotifyOptions, inst: NotifyComponent) {
 	if (options.autoClose) {
-		await durationUnmountNotify(options.placement, inst, options.duration);
+		await durationUnmountNotify(options.placement || 'right-top', inst, options.duration || 0);
 	}
 }
 
-async function durationUnmountNotify(placement: NotifyPlacement, inst, duration: number) {
+async function durationUnmountNotify(
+	placement: NotifyPlacement,
+	inst: NotifyComponent,
+	duration: number
+) {
 	setTimeout(() => {
 		unmountNotify(placement, inst, 300);
 	}, duration);
 }
 
-async function unmountNotify(placement: NotifyPlacement, inst, duration: number) {
+async function unmountNotify(placement: NotifyPlacement, inst: NotifyComponent, duration: number) {
 	inst.$set({ show: false });
 	setTimeout(() => {
 		notifyMap[placement].splice(inst.__notify_index, 1);
@@ -123,7 +138,7 @@ async function unmountNotify(placement: NotifyPlacement, inst, duration: number)
 }
 
 function updatedNotifyByIndex(placement: NotifyPlacement) {
-	notifyMap[placement].forEach((inst, index) => {
+	notifyMap[placement].forEach((inst: NotifyComponent, index) => {
 		inst.$set({ index });
 		inst.__notify_index = index;
 	});
@@ -158,19 +173,19 @@ NotifyFn.success = (options: NotifyOptions = {}) => {
 	return mountNotify(finalOptions, evt, context);
 };
 
-NotifyFn.clear = async (inst) => {
+NotifyFn.clear = async (inst: NotifyComponent) => {
 	await unmountNotify(inst.__notify_placment, inst, 300);
 };
 
 NotifyFn.clearAll = () => {
 	Object.keys(notifyMap).forEach((instArr) => {
-		notifyMap[instArr].forEach((inst) => {
+		notifyMap[instArr as NotifyPlacement].forEach((inst: NotifyComponent) => {
 			unmountNotify(inst.__notify_placment, inst, 0);
 		});
 	});
 };
 
-NotifyFn.update = async (inst, options: NotifyOptions = {}) => {
+NotifyFn.update = async (inst: NotifyComponent, options: NotifyOptions = {}) => {
 	inst.$set({ ...options });
 };
 
