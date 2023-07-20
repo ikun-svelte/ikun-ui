@@ -10,5 +10,9 @@ const commitRE =
 
 if (!commitRE.test(msg)) {
 	log('error', 'commit format error');
+	log(
+		'error',
+		'update|optimizate|feat|fix|docs|dx|style|refactor|perf|test|workflow|build|ci|chore|types|wip|release'
+	);
 	process.exit(1);
 }

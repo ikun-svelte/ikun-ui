@@ -1,5 +1,5 @@
 import Notification from './Notification.svelte';
-import type { ComponentConstructorOptions, SvelteComponent } from 'svelte';
+import type { SvelteComponent } from 'svelte';
 
 type NotifyPlacement = 'right-top' | 'left-top' | 'right-bottom' | 'left-bottom' | 'center';
 type NotifyType = 'info' | 'warning' | 'error' | 'success';

@@ -31,6 +31,7 @@ module.exports = {
 		'@typescript-eslint/no-explicit-any': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',
 		'svelte/no-at-html-tags': 'off',
-		'svelte/valid-compile': 'off'
+		'svelte/valid-compile': 'off',
+		'@typescript-eslint/no-non-null-assertion': 'off'
 	}
 };
