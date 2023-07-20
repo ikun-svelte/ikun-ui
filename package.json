@@ -1,95 +1,97 @@
 {
-  "name": "ikun-ui",
-  "description": "",
-  "type": "module",
-  "version": "0.0.0",
-  "keywords": [
-    "web component",
-    "component",
-    "react",
-    "vue",
-    "svelte",
-    "svelte-kit",
-    "dx"
-  ],
-  "license": "MIT",
-  "author": "baiwusanyu-c",
-  "homepage": "https://github.com/baiwusanyu-c/ikun-ui#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/baiwusanyu-c/ikun-ui.git"
-  },
-  "bugs": {
-    "url": "https://github.com/baiwusanyu-c/ikun-ui/issues"
-  },
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
-    },
-    "./*": "./*"
-  },
-  "files": [
-    "dist",
-    "*.d.ts"
-  ],
-  "engines": {
-    "node": ">=14"
-  },
-  "scripts": {
-    "init": "pnpm i",
-    "dev": "",
-    "play": "pnpm run --filter @ikun-ui/play dev",
-    "dev:playground": "",
-    "build:playground": "",
-    "dev:docs": "",
-    "build:docs": "",
-    "build": "",
-    "stub": "unbuild --stub",
-    "test": "npm run test:integration && npm run test:unit",
-    "test:integration": "playwright test",
-    "test:unit": "vitest",
-    "lint": "prettier --plugin-search-dir @ikun-ui/playground --check . && eslint .",
-    "format": "prettier --plugin-search-dir @ikun-ui/playground --write .",
-    "release": "bumpp package.json --commit --push --tag",
-    "clean": "rimraf dist",
-    "prepare": "npx simple-git-hooks",
-    "update:deps": "npx taze -w -r major && pnpm run init"
-  },
-  "peerDependencies": {
-    "svelte": "^4.0.0"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.28.1",
-    "@sveltejs/adapter-auto": "^2.0.0",
-    "@sveltejs/kit": "^1.20.4",
-    "@sveltejs/package": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.45.0",
-    "eslint": "^8.28.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-svelte": "^2.30.0",
-    "prettier": "^2.8.0",
-    "prettier-plugin-svelte": "^2.10.1",
-    "publint": "^0.1.9",
-    "svelte": "^4.0.5",
-    "svelte-check": "^3.4.3",
-    "tslib": "^2.4.1",
-    "typescript": "^5.0.0",
-    "vite": "^4.4.2",
-    "vitest": "^0.32.2"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged",
-    "commit-msg": "node vertify-commit.js"
-  },
-  "lint-staged": {
-    "*.{js,ts,jsx,tsx,json, svelte}": [
-      "eslint ./src --fix"
-    ]
-  }
+	"name": "ikun-ui",
+	"description": "",
+	"type": "module",
+	"version": "0.0.0",
+	"keywords": [
+		"web component",
+		"component",
+		"react",
+		"vue",
+		"svelte",
+		"svelte-kit",
+		"dx"
+	],
+	"license": "MIT",
+	"author": "baiwusanyu-c",
+	"homepage": "https://github.com/baiwusanyu-c/ikun-ui#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/baiwusanyu-c/ikun-ui.git"
+	},
+	"bugs": {
+		"url": "https://github.com/baiwusanyu-c/ikun-ui/issues"
+	},
+	"main": "dist/index.cjs",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"require": "./dist/index.cjs",
+			"import": "./dist/index.mjs"
+		},
+		"./*": "./*"
+	},
+	"files": [
+		"dist",
+		"*.d.ts"
+	],
+	"engines": {
+		"node": ">=14"
+	},
+	"scripts": {
+		"init": "pnpm i",
+		"dev": "",
+		"play": "pnpm run --filter @ikun-ui/play dev",
+		"dev:playground": "",
+		"build:playground": "",
+		"dev:docs": "",
+		"build:docs": "",
+		"build": "",
+		"stub": "unbuild --stub",
+		"test": "npm run test:integration && npm run test:unit",
+		"test:integration": "playwright test",
+		"test:unit": "vitest",
+		"lint": "prettier --plugin-search-dir --check . && eslint .",
+		"format": "prettier --plugin-search-dir --write .",
+		"release": "bumpp package.json --commit --push --tag",
+		"clean": "rimraf dist",
+		"prepare": "npx simple-git-hooks",
+		"update:deps": "npx taze -w -r major && pnpm run init"
+	},
+	"peerDependencies": {
+		"svelte": "^4.0.0"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.28.1",
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/kit": "^1.20.4",
+		"@sveltejs/package": "^2.0.0",
+		"@typescript-eslint/eslint-plugin": "^5.45.0",
+		"@typescript-eslint/parser": "^5.45.0",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte": "^2.30.0",
+		"prettier": "^2.8.0",
+		"prettier-plugin-svelte": "^2.10.1",
+		"publint": "^0.1.9",
+		"svelte": "^4.0.5",
+		"svelte-check": "^3.4.3",
+		"tslib": "^2.4.1",
+		"typescript": "^5.0.0",
+		"vite": "^4.4.2",
+		"vitest": "^0.32.2",
+		"baiwusanyu-utils": "^1.0.14",
+		"simple-git-hooks": "^2.8.1"
+	},
+	"simple-git-hooks": {
+		"pre-commit": "pnpm lint-staged",
+		"commit-msg": "node vertify-commit.js"
+	},
+	"lint-staged": {
+		"*.{js,ts,jsx,tsx,json, svelte}": [
+			"eslint ./src --fix"
+		]
+	}
 }

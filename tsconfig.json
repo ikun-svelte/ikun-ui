@@ -12,11 +12,7 @@
 		"importsNotUsedAsValues": "error",
 		"isolatedModules": true,
 		"preserveValueImports": true,
-		"lib": [
-			"esnext",
-			"DOM",
-			"DOM.Iterable"
-		],
+		"lib": ["esnext", "DOM", "DOM.Iterable"],
 		"module": "esnext",
 		"target": "esnext",
 		"ignoreDeprecations": "5.0",
