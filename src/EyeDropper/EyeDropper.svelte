@@ -5,19 +5,9 @@
 		signal?: AbortSignal;
 	}
 
-	interface EyeDropper {
-		new (): EyeDropper;
-		open: (options?: EyeDropperOpenOptions) => Promise<{ sRGBHex: string }>;
-		[Symbol.toStringTag]: 'EyeDropper';
-	}
-
 	interface UseEyeDropperOptions {
 		initialValue?: string;
 	}
-
-	export let options: UseEyeDropperOptions = {
-		initialValue: ''
-	};
 
 	let sRGBHex = '';
 	let isSupported = true;
@@ -29,7 +19,7 @@
 
 	async function open(openOptions?: EyeDropperOpenOptions) {
 		if (!isSupported) return;
-		const eyeDropper: EyeDropper = new (window as any).EyeDropper();
+		const eyeDropper = new (window as any).EyeDropper();
 		const result = await eyeDropper.open(openOptions);
 		sRGBHex = result.sRGBHex;
 		return result;

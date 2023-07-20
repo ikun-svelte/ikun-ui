@@ -10,7 +10,7 @@
 	export let title = '';
 	// info warning error success
 	export let type = '';
-	export let onClose = () => {};
+	export let onClose = null;
 	export let offset = 0;
 	export let show = false;
 	export let index = 0;
@@ -110,7 +110,7 @@
 		resolvePosition();
 	}
 	const handleClose = () => {
-		onClose();
+		onClose && onClose();
 	};
 	const slotTitle = getContext('slotTitle');
 	const slot = getContext('slot');

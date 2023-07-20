@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 
 	export let icon: string;
-	export let isButton: boolean = false;
+	export let isButton = false;
 	export let width = '24px';
 	export let height = '24px';
 	export let customClass = '';

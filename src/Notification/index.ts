@@ -62,7 +62,7 @@ const resolveNotifyOptions = (options: NotifyOptions) => {
 
 function mountNotify(
 	options: NotifyOptions,
-	evt: Record<string, Function>,
+	evt: Record<string, any>,
 	context: Map<string, string | SvelteComponent>
 ) {
 	const notifyArray = notifyMap[options.placement];
