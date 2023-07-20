@@ -1,0 +1,45 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"moduleResolution": "NodeNext",
+		"importsNotUsedAsValues": "error",
+		"isolatedModules": true,
+		"preserveValueImports": true,
+		"lib": [
+			"esnext",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"module": "esnext",
+		"target": "esnext",
+		"ignoreDeprecations": "5.0",
+		"include": [
+			"play/.svelte-kit/ambient.d.ts",
+			"play/.svelte-kit/types/**/$types.d.ts",
+			"play/.svelte-kit/vite.config.ts",
+			"play/src/**/*.js",
+			"play/src/**/*.ts",
+			"play/src/**/*.svelte",
+			"play/tests/**/*.js",
+			"play/tests/**/*.ts",
+			"play/tests/**/*.svelte",
+			"src/**/*.ts",
+			"src/**/*.svelte"
+		],
+		"exclude": [
+			"**/node_modules/**",
+			"play/.svelte-kit/[!ambient.d.ts]**",
+			"play/src/service-worker.js",
+			"play/src/service-worker.ts",
+			"play/src/service-worker.d.ts"
+		],
+		"references": [{ "path": "./tsconfig.node.json" }]
+	}
+}
