@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import Icon from '../Icon/Icon.svelte';
+	import Icon from '../Icon/index.svelte';
 
 	const dispatch = createEventDispatcher();
 
 	export let to = false;
 	export let icon = '';
 	export let customClass = '';
-	export let attr;
+	export let attrs = {};
 	export let type = 'primary';
 	export let disabled = false;
 	// small medium large
@@ -62,7 +62,7 @@
 <svelte:element
 	this={tag}
 	on:click={handleClick}
-	{...attr}
+	{...attrs}
 	class="
         flex-c
         px-2

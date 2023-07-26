@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Popover from '../Popover/Popover.svelte';
+	import Popover from '../Popover/index.svelte';
 	export let placement = 'top';
 	// hover click manual
 	export let trigger: 'manual' | 'click' | 'hover' = 'hover';

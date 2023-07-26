@@ -15,14 +15,9 @@
 		"skipLibCheck": true,
 		"preserveSymlinks": true,
 		"lib": ["ESNext", "DOM"],
-		"types": [
-			"node",
-		]
+		"types": ["node"]
 	},
-	"include": [
-		"src/**/*.ts",
-		"src/*.svelte"
-	],
+	"include": ["components/**/*.ts", "components/*.svelte"],
 	// ts 排除的文件
 	"exclude": ["node_modules"],
 	"references": [{ "path": "./tsconfig.node.json" }]

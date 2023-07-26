@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Mask from '../Mask/Mask.svelte';
-	import Icon from '../Icon/Icon.svelte';
+	import Mask from '../Mask/index.svelte';
+	import Icon from '../Icon/index.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import Button from '../Button/Button.svelte';
+	import Button from '../Button/index.svelte';
 	import { fly } from 'svelte/transition';
 	export let show = false;
 	export let customClass = '';

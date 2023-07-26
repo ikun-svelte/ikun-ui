@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { isBool, isNumber, isString } from 'baiwusanyu-utils';
-	import Icon from '../Icon/Icon.svelte';
+	import Icon from '../Icon/index.svelte';
 	import { createEventDispatcher, onMount } from 'svelte';
 	export let modelValue = false;
 	export let disabled = false;

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
-	import Icon from '../Icon/Icon.svelte';
-	import Mask from '../Mask/Mask.svelte';
+	import Icon from '../Icon/index.svelte';
+	import Mask from '../Mask/index.svelte';
 	export let placement: 'right' | 'left' = 'right';
 	export let modelValue = false;
 	export let target = null;
