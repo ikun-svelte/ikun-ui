@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import Icon from '../Icon/index.svelte';
+	import { KIcon } from '@ikun-ui/icon';
 
 	const dispatch = createEventDispatcher();
 
@@ -79,7 +79,7 @@
         {customClass}"
 >
 	{#if icon}
-		<!--<Icon {icon} colorCls={iconClass[type]} customClass="mr-2" />-->
+		<KIcon {icon} colorCls={iconClass[type]} customClass="mr-2" />
 	{/if}
 	<slot />
 </svelte:element>

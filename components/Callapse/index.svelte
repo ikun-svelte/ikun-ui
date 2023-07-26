@@ -1,6 +1,6 @@
 <script>
 	import { fly } from 'svelte/transition';
-	import Icon from '../Icon/index.svelte';
+	import Icon from '../Icon/src/index.svelte';
 	import { createEventDispatcher } from 'svelte';
 	export let title = 'title';
 	export let content = 'content';

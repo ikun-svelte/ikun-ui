@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from '../Icon/index.svelte';
+	import Icon from '../Icon/src/index.svelte';
 	import { createEventDispatcher } from 'svelte';
 
 	export let icon = '';

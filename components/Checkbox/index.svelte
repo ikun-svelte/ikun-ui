@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { fade } from 'svelte/transition';
-	import Icon from '../Icon/index.svelte';
+	import Icon from '../Icon/src/index.svelte';
 	export let disabled = false;
 	export let modelValue = false;
 	export let customClass = '';

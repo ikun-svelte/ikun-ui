@@ -1,9 +1,0 @@
-{
-	"compilerOptions": {
-		"composite": true,
-		"module": "ESNext",
-		"esModuleInterop": true,
-		"moduleResolution": "node",
-		"jsx": "preserve"
-	}
-}

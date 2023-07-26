@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Mask from '../Mask/index.svelte';
-	import Icon from '../Icon/index.svelte';
+	import Icon from '../Icon/src/index.svelte';
 	import { createEventDispatcher } from 'svelte';
 	import Button from '../Button/src/index.svelte';
 	import { fly } from 'svelte/transition';

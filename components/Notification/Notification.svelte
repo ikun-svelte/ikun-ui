@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from '../Icon/index.svelte';
+	import Icon from '../Icon/src/index.svelte';
 	import { fly, FlyParams, fade } from 'svelte/transition';
 	import { tick, getContext } from 'svelte';
 	import { isFunction, isString } from 'baiwusanyu-utils';
