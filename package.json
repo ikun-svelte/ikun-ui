@@ -48,6 +48,7 @@
 		"build:playground": "",
 		"dev:docs": "",
 		"build:docs": "",
+		"build:preset": "pnpm run --filter @ikun-ui/preset build",
 		"build": "rollup -c rollup.config.js",
 		"stub": "unbuild --stub",
 		"test": "npm run test:integration && npm run test:unit",
@@ -92,7 +93,11 @@
 		"vite": "^4.4.5",
 		"vitest": "^0.33.0",
 		"@sveltejs/vite-plugin-svelte": "latest",
-		"svelte-preprocess": "latest"
+		"svelte-preprocess": "latest",
+		"tsup": "^6.3.0",
+		"unocss": "^0.53.6",
+		"@unocss/preset-uno": "^0.53.6",
+		"@unocss/preset-mini": "^0.53.6"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm run lint",

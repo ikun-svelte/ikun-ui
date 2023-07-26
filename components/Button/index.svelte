@@ -24,7 +24,7 @@
 		success: 'hover:border-success-c',
 		error: 'hover:border-error-c',
 		warning: 'hover:border-warning-c',
-		info: 'hover:border-info-c',
+		info: 'hover:border-infk-c',
 		primary: 'hover:border-primary-c'
 	};
 
@@ -32,7 +32,7 @@
 		success: 'active:border-success-c active:ui-button-shadow--success',
 		error: 'active:border-error-c active:ui-button-shadow--error',
 		warning: 'active:border-warning-c active:ui-button-shadow--warning',
-		info: 'active:border-info-c active:ui-button-shadow--info',
+		info: 'active:border-infk-c active:ui-button-shadow--info',
 		primary: 'active:border-primary-c active:ui-button-shadow--primary'
 	};
 
@@ -40,7 +40,7 @@
 		success: 'focus-visible:border-success-c focus-visible:ui-button-shadow--success',
 		error: 'focus-visible:border-error-c focus-visible:ui-button-shadow--error',
 		warning: 'focus-visible:border-warning-c focus-visible:ui-button-shadow--warning',
-		info: 'focus-visible:border-info-c focus-visible:ui-button-shadow--info',
+		info: 'focus-visible:border-infk-c focus-visible:ui-button-shadow--info',
 		primary: 'focus-visible:border-primary-c focus-visible:ui-button-shadow--primary'
 	};
 

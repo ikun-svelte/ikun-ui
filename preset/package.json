@@ -1,4 +1,25 @@
 {
 	"name": "@ikun-ui/preset",
-	"version": "0.0.0"
+	"version": "0.0.0",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"require": "./dist/index.js",
+			"import": "./dist/index.mjs"
+		}
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsup --config tsup.config.ts",
+		"stub": "tsup --watch --onSuccess \"pnpm run --filter '../' stub\""
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }
