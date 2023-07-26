@@ -28,7 +28,6 @@ export interface NotifyOptions {
 const defaultNotifyOptions: NotifyOptions = {
 	placement: 'right-top',
 	close: true,
-	target: document.body,
 	duration: 3000,
 	autoClose: true,
 	offset: 0
@@ -84,7 +83,7 @@ function mountNotify(
 
 	index = notifyArray.length;
 	const NotificationInst = new Notification({
-		target: options.target!,
+		target: options.target || document.body,
 		props: {
 			...options,
 			show: false,
@@ -98,7 +97,8 @@ function mountNotify(
 				evt.onClose && evt.onClose();
 			}
 		},
-		context
+		context,
+		hydrate: true
 	});
 	NotificationInst.__notify_index = index;
 	NotificationInst.__notify_placment = options.placement;

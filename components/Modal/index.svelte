@@ -2,7 +2,7 @@
 	import Mask from '../Mask/index.svelte';
 	import Icon from '../Icon/index.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import Button from '../Button/index.svelte';
+	import Button from '../Button/src/index.svelte';
 	import { fly } from 'svelte/transition';
 	export let show = false;
 	export let customClass = '';

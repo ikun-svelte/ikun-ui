@@ -79,7 +79,7 @@
         {customClass}"
 >
 	{#if icon}
-		<Icon {icon} colorCls={iconClass[type]} customClass="mr-2" />
+		<!--<Icon {icon} colorCls={iconClass[type]} customClass="mr-2" />-->
 	{/if}
 	<slot />
 </svelte:element>

@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -72,7 +72,7 @@ importers:
         specifier: ^3.26.3
         version: 3.26.3
       rollup-plugin-svelte:
-        specifier: ^7.1.6
+        specifier: latest
         version: 7.1.6(rollup@3.26.3)(svelte@4.1.0)
       rollup-plugin-typescript2:
         specifier: ^0.35.0
@@ -2038,6 +2038,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       tk-regex-range: 5.0.1
+      to-regex-range: 5.0.1
     dev: true
 
   /find-cache-dir@3.3.2:
@@ -2631,6 +2632,13 @@ packages:
       tslib: 2.6.0
     dev: true
 
+  /no-case@3.0.4:
+    resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
+    dependencies:
+      lower-case: 2.0.2
+      tslib: 2.6.0
+    dev: true
+
   /node-fetch-native@1.2.0:
     resolution: {integrity: sha512-5IAMBTl9p6PaAjYCnMv5FmqIF6GcZnawAVnzaCG0rX2aYZJ4CxEkZNtVPuTRug7fL7wyM5BQYTlAzcyMPi6oTQ==}
     dev: true
@@ -2720,6 +2728,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yoctk-queue: 0.1.0
+      yocto-queue: 0.1.0
     dev: true
 
   /p-limit@4.0.0:
@@ -2727,6 +2736,7 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       yoctk-queue: 1.0.0
+      yocto-queue: 1.0.0
     dev: true
 
   /p-locate@4.1.0:
@@ -2759,6 +2769,7 @@ packages:
     resolution: {integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==}
     dependencies:
       nk-case: 3.0.4
+      no-case: 3.0.4
       tslib: 2.6.0
     dev: true
 
@@ -3418,6 +3429,13 @@ packages:
       is-number: 7.0.0
     dev: true
 
+  /to-regex-range@5.0.1:
+    resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
+    engines: {node: '>=8.0'}
+    dependencies:
+      is-number: 7.0.0
+    dev: true
+
   /totalist@3.0.1:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
     engines: {node: '>=6'}
@@ -3781,6 +3799,16 @@ packages:
     dev: true
 
   /yoctk-queue@1.0.0:
+    resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
+    engines: {node: '>=12.20'}
+    dev: true
+
+  /yocto-queue@0.1.0:
+    resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
+    engines: {node: '>=10'}
+    dev: true
+
+  /yocto-queue@1.0.0:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
     dev: true
