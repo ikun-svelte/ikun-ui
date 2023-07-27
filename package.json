@@ -83,7 +83,9 @@
 		"@ikun-ui/select": "workspace:*",
 		"@ikun-ui/switch": "workspace:*",
 		"@ikun-ui/tag": "workspace:*",
-		"@ikun-ui/tooltip": "workspace:*"
+		"@ikun-ui/tooltip": "workspace:*",
+		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/preset": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.36.2",

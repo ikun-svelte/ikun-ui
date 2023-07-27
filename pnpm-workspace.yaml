@@ -3,4 +3,5 @@ packages:
   - docs
   - play
   - preset
+  - utils
   - components/*

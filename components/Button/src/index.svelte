@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
-
+	import type { IKunTypePro } from '@ikun-ui/utils';
 	const dispatch = createEventDispatcher();
 
 	export let to = false;
 	export let icon = '';
-	export let customClass = '';
+	export let cls = '';
 	export let attrs = {};
-	export let type:'success' | 'error' | 'warning' | 'info' | 'primary' = 'primary';
+	export let type:IKunTypePro = 'primary';
 	export let disabled = false;
 	// small medium large
 	// export let size = 'medium'
@@ -57,27 +57,23 @@
 	};
 
 	$: tag = to ? 'a' : 'button';
+
+	// {typeClass[type]}
+	// {typeClassHover[type]}
+	// {typeClassActive[type]}
+	// {typeClassFocusVisible[type]}
 </script>
 
 <svelte:element
 	this={tag}
+	aria-hidden="true"
 	on:click={handleClick}
 	{...attrs}
 	class="
-        flex-c
-        px-2
-        py-1
-        rounded
-        border-solid
-        border
-        cursor-pointer
-        {typeClass[type]}
-        {typeClassHover[type]}
-        {typeClassActive[type]}
-        {typeClassFocusVisible[type]}
+        k-button-base
+        k-button-primary
         {disabled ? 'ui-disabled-cursor' : ''}
-        {customClass}"
->
+        {cls}">
 	{#if icon}
 		<KIcon {icon} colorCls={iconClass[type]} customClass="mr-2" />
 	{/if}

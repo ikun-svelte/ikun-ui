@@ -27,7 +27,8 @@
 	"dependencies": {
 		"@ikun-ui/button": "workspace:*",
 		"@ikun-ui/icon": "workspace:*",
-		"@ikun-ui/mask": "workspace:*"
+		"@ikun-ui/mask": "workspace:*",
+		"@ikun-ui/utils": "workspace:*"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^4.0.1",

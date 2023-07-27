@@ -4,7 +4,10 @@
 	"compilerOptions": {
 		"noImplicitAny": true,
 		"strict": true,
-		"declaration": true
+		"declaration": true,
+		"paths": {
+			"@ikun-ui/utils": ["../../utils/index.ts"]
+		}
 	},
 	"include": ["src/**/*.ts", "src/**/*.svelte"],
 	"exclude": ["node_modules/*", "**/*.spec.ts"]

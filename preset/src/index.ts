@@ -4,7 +4,7 @@ import theme from './theme';
 import rules from './rules';
 import variants from './variants';
 
-export function presetOnu(): Preset {
+export function presetIkun(): Preset {
 	return {
 		name: '@ikun-ui/preset',
 		theme, // 主題（主題顔色 + 靜態主題規則）
@@ -14,4 +14,4 @@ export function presetOnu(): Preset {
 	};
 }
 // 所以整個預設架構是 rules + variants + shortcuts
-export * from './colors';
+export * from './colors'

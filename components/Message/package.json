@@ -24,7 +24,8 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@ikun-ui/notify": "workspace:*"
+		"@ikun-ui/notify": "workspace:*",
+		"@ikun-ui/utils": "workspace:*"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^4.0.1",

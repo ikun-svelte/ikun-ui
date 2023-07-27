@@ -3,11 +3,13 @@ import type { UserShortcuts } from 'unocss';
 import { baseShortcuts } from './base';
 import { commonShortcuts } from './common';
 import { iconShortcuts } from './icon';
-
+import { ButtonShortcuts } from './button';
 // 原子樣式的別名簡寫
 export default [
 	baseShortcuts,
 	commonShortcuts,
 	// icon
-	iconShortcuts
+	iconShortcuts,
+	// button
+	ButtonShortcuts
 ] as UserShortcuts<Theme>;
