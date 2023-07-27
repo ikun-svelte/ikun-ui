@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/play",
-	"version": "0.0.0",
+	"version": "0.0.2",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",

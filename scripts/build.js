@@ -3,16 +3,13 @@ import { runCommand } from './utils.js';
 import fs from 'fs';
 import path from 'path';
 import fg from 'fast-glob';
-import process from "process";
-import { defineConfig } from 'tsup'
 
-
- async function doBuildComponents() {
+async function doBuildComponents() {
 	// set log prefix
 	setGlobalPrefix('[ikun-ui]: ');
 	const rootDir = path.resolve('components');
-	const targetFile =  ['**/package.json'];
-    const buildCommand = 'pnpm run build'
+	const targetFile = ['**/package.json'];
+	const buildCommand = 'pnpm run build';
 
 	function getPkgPath(includeCompile, dir) {
 		return fg.sync(includeCompile, {
@@ -22,25 +19,25 @@ import { defineConfig } from 'tsup'
 	}
 	const pkgList = getPkgPath(targetFile, rootDir);
 	for (let i = 0; i < pkgList.length; i++) {
-        const packageJsonPath = `${rootDir.replaceAll('\\', '/')}/${pkgList[i]}`;
+		const packageJsonPath = `${rootDir.replaceAll('\\', '/')}/${pkgList[i]}`;
 		try {
 			const packageJsonData = fs.readFileSync(packageJsonPath, 'utf8');
 			const packageJson = JSON.parse(packageJsonData);
 			if (packageJson.scripts && packageJson.scripts.build) {
-                try {
+				try {
 					log('info', `build ${packageJson.name}`);
-                    await runCommand(buildCommand, packageJsonPath.replaceAll('package.json', ''));
+					await runCommand(buildCommand, packageJsonPath.replaceAll('package.json', ''));
 					log('success', `build ${packageJson.name} complete`);
-                } catch (error) {
-                    log('error', `build error at ${packageJson.name}`, error);
-					log('error',  error);
-                }
+				} catch (error) {
+					log('error', `build error at ${packageJson.name}`, error);
+					log('error', error);
+				}
 			}
 		} catch (error) {
 			log('error', `Error reading or parsing package.json at ${packageJsonPath}`);
-			log('error',  error);
+			log('error', error);
 		}
 	}
 }
 
-doBuildComponents()
+doBuildComponents();

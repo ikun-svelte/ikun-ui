@@ -2,7 +2,7 @@
 	"name": "ikun-ui",
 	"description": "",
 	"type": "module",
-	"version": "0.0.0",
+	"version": "0.0.2",
 	"keywords": [
 		"web component",
 		"component",
@@ -120,7 +120,7 @@
 		"fast-glob": "^3.2.12"
 	},
 	"simple-git-hooks": {
-		"pre-commit": "pnpm run lint",
+		"pre-commit": "pnpm run format && pnpm run lint",
 		"commit-msg": "node vertify-commit.js"
 	}
 }
