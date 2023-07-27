@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Mask from '../Mask/index.svelte';
-	import Icon from '../Icon/src/index.svelte';
+	import {KMask} from '@ikun-ui/mask';
+	import {KIcon} from '@ikun-ui/icon';
+	import {KButton} from '@ikun-ui/button';
 	import { createEventDispatcher } from 'svelte';
-	import Button from '../Button/src/index.svelte';
 	import { fly } from 'svelte/transition';
 	export let show = false;
 	export let customClass = '';
@@ -28,7 +28,7 @@
 	};
 </script>
 
-<Mask modelValue={showInner}>
+<KMask modelValue={showInner}>
 	<div
 		class="ui-dialog
             bg-white
@@ -46,7 +46,7 @@
 					{title}
 					{showInner}
 				</h1>
-				<Icon icon="i-carbon-close" on:click={close} isButton colorCls="hover:text-main" />
+				<KIcon icon="i-carbon-close" on:click={close} isButton colorCls="hover:text-main" />
 			</div>
 		</slot>
 		<div class="ui-dialog--body p2">
@@ -59,10 +59,10 @@
 						? 'justify-center'
 						: 'justify-end'}"
 				>
-					<Button customClass="mx-2" on:click={cancel} type="info">Cancel</Button>
-					<Button customClass="mx-2" on:click={confirm} type="primary">Confirm</Button>
+					<KButton customClass="mx-2" on:click={cancel} type="info">Cancel</KButton>
+					<KButton customClass="mx-2" on:click={confirm} type="primary">Confirm</KButton>
 				</div>
 			</slot>
 		{/if}
 	</div>
-</Mask>
+</KMask>

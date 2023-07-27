@@ -8,7 +8,7 @@
 	export let icon = '';
 	export let customClass = '';
 	export let attrs = {};
-	export let type = 'primary';
+	export let type:'success' | 'error' | 'warning' | 'info' | 'primary' = 'primary';
 	export let disabled = false;
 	// small medium large
 	// export let size = 'medium'
@@ -52,7 +52,7 @@
 		primary: 'color-teal-400'
 	};
 
-	const handleClick = (e) => {
+	const handleClick = (e: Event) => {
 		if (!to) dispatch('click', e);
 	};
 

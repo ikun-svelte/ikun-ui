@@ -1,4 +1,4 @@
-/// <reference types="./button" />
+/// <reference types="./types" />
 import Button from './index.svelte';
 
 export default Button;

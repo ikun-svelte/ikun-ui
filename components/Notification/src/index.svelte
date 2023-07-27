@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from '../Icon/src/index.svelte';
+	import { KIcon } from '@ikun-ui/icon';
 	import { fly, FlyParams, fade } from 'svelte/transition';
 	import { tick, getContext } from 'svelte';
 	import { isFunction, isString } from 'baiwusanyu-utils';
@@ -132,14 +132,14 @@
 			{:else}
 				<h1 class="flex-c">
 					{#if type}
-						<Icon icon={curType().icon} on:click={handleClose} colorCls="{curType().color} mr-2" />
+						<KIcon icon={curType().icon} on:click={handleClose} colorCls="{curType().color} mr-2" />
 					{/if}
 					{title}
 				</h1>
 			{/if}
 
 			{#if close}
-				<Icon icon="i-carbon-close" isButton on:click={handleClose} colorCls="hover:text-main" />
+				<KIcon icon="i-carbon-close" isButton on:click={handleClose} colorCls="hover:text-main" />
 			{/if}
 		</div>
 		{#if slot}

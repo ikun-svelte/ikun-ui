@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Popover from '../Popover/index.svelte';
+	import {KPopover} from '@ikun-ui/popover';
 	export let placement = 'top';
 	// hover click manual
 	export let trigger: 'manual' | 'click' | 'hover' = 'hover';
@@ -7,7 +7,7 @@
 	export let content = '';
 </script>
 
-<Popover {customClass} {trigger} {placement}>
+<KPopover {customClass} {trigger} {placement}>
 	<span slot="contentEl">{content}</span>
 	<slot name="triggerEl" slot="triggerEl" />
-</Popover>
+</KPopover>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { isBool, isNumber, isString } from 'baiwusanyu-utils';
-	import Icon from '../Icon/src/index.svelte';
+	import {KIcon} from '@ikun-ui/icon';
 	import { createEventDispatcher, onMount } from 'svelte';
 	export let modelValue = false;
 	export let disabled = false;
@@ -147,7 +147,7 @@
 		bind:this={switchCircleRef}
 	>
 		{#if loading}
-			<Icon icon="i-carbon-circle-dash" customClass="animate-spin h-4 w-4" />
+			<KIcon icon="i-carbon-circle-dash" customClass="animate-spin h-4 w-4" />
 		{/if}
 	</div>
 	{#if innerState}

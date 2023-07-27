@@ -1,0 +1,33 @@
+{
+  "name": "@ikun-ui/eyeDropper",
+  "version": "0.0.2",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "svelte": "dist/index.js",
+  "types": "src/index.ts",
+  "keywords": [
+    "svelte",
+    "svelte3",
+    "material-ui",
+    "material-design",
+    "material",
+    "svelte-components",
+    "sveltejs"
+  ],
+  "scripts": {
+    "build": "npm run build:js && npm run build:svelte",
+    "build:js": "tsc -p . --outDir dist/ --rootDir src/",
+    "build:svelte": "svelte-strip strip src/ dist",
+    "publish:npm": "pnpm publish --no-git-checks --access public"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@tsconfig/svelte": "^4.0.1",
+    "svelte-strip": "^2.0.0",
+    "tslib": "^2.5.3",
+    "typescript": "^5.1.3"
+  }
+}

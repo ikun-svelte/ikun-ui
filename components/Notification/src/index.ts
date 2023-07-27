@@ -1,4 +1,4 @@
-import Notification from './Notification.svelte';
+import Notification from './index.svelte';
 import type { SvelteComponent } from 'svelte';
 
 type NotifyPlacement = 'right-top' | 'left-top' | 'right-bottom' | 'left-bottom' | 'center';

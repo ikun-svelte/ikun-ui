@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { fade } from 'svelte/transition';
-	import Icon from '../Icon/src/index.svelte';
+	import { KIcon } from '@ikun-ui/icon';
 	export let disabled = false;
 	export let modelValue = false;
 	export let customClass = '';
@@ -44,7 +44,7 @@
 	>
 		{#if valueInner}
 			<div out:fade={{ duration: 200 }} in:fade={{ duration: 200 }}>
-				<Icon icon="i-carbon-checkmark" colorCls="!text-white" width="16px" height="16px" />
+				<KIcon icon="i-carbon-checkmark" colorCls="!text-white" width="16px" height="16px" />
 			</div>
 		{/if}
 	</div>

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
-	import Icon from '../Icon/src/index.svelte';
-	import Mask from '../Mask/index.svelte';
+	import { KIcon } from '@ikun-ui/icon';
+	import { KMask } from '@ikun-ui/mask';
 	export let placement: 'right' | 'left' = 'right';
 	export let modelValue = false;
 	export let target = null;
@@ -13,7 +13,7 @@
 	};
 </script>
 
-<Mask {target} {modelValue}>
+<KMask {target} {modelValue}>
 	<div
 		class="ui-drawer dark:bg-dark bg-white absolute z-1000 top-0 min-w-1/3 h-full p2 {placement ===
 		'right'
@@ -23,7 +23,7 @@
 		in:fly={{ duration: 250, x: placement === 'right' ? 200 : -200 }}
 	>
 		<div class="w-24px h-24px">
-			<Icon
+			<KIcon
 				icon={placement === 'right' ? 'i-carbon-chevron-right' : 'i-carbon-chevron-left'}
 				colorCls="hover:text-main"
 				customClass={placement === 'right' ? 'justify-start' : 'justify-end'}
@@ -38,4 +38,4 @@
 			<slot />
 		</div>
 	</div>
-</Mask>
+</KMask>

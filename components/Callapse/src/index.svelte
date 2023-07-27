@@ -1,6 +1,6 @@
 <script>
 	import { fly } from 'svelte/transition';
-	import Icon from '../Icon/src/index.svelte';
+	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher } from 'svelte';
 	export let title = 'title';
 	export let content = 'content';
@@ -22,7 +22,7 @@
 		<slot name="title">
 			{title}
 		</slot>
-		<Icon icon="i-carbon-chevron-right collapse--icon__transition {showInner ? 'rotate-90' : ''}" />
+		<KIcon icon="i-carbon-chevron-right collapse--icon__transition {showInner ? 'rotate-90' : ''}" />
 	</div>
 	{#if showInner}
 		<div class="pl4 pb4 pr4" out:fly={{ y: 0, duration: 300 }} in:fly={{ y: -60, duration: 300 }}>

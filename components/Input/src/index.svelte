@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import Icon from '../Icon/src/index.svelte';
+	import { KIcon } from '@ikun-ui/icon';
 	export let icon = '';
 	export let value = '';
 	export let customClass = '';
@@ -24,22 +24,21 @@
 
 <div
 	class="
-flex
-items-center
-border
-rounded
-py-1
-pl-1
-pr-2
-hover:border-main
-focus-within:border-main
-focus-within:ui-input-shadow
-{disabled ? 'ui-disabled' : ''}
-{customClass}"
->
+		flex
+		items-center
+		border
+		rounded
+		py-1
+		pl-1
+		pr-2
+		hover:border-main
+		focus-within:border-main
+		focus-within:ui-input-shadow
+		{disabled ? 'ui-disabled' : ''}
+		{customClass}">
 	<slot name="icon">
 		{#if icon}
-			<Icon class="ml-0.3em mr-0.1em text-1.1em op50" {icon} />
+			<KIcon class="ml-0.3em mr-0.1em text-1.1em op50" {icon} />
 		{/if}
 	</slot>
 	<input

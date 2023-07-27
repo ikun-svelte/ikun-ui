@@ -1,4 +1,4 @@
-import { Notify, NotifyOptions } from '../Notification';
+import { Notify, NotifyOptions } from '@ikun-ui/notify';
 import { SvelteComponent } from 'svelte';
 
 type MessageType = 'info' | 'warning' | 'error' | 'success';
