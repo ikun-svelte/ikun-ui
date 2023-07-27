@@ -1,14 +1,15 @@
-import { Notify, NotifyOptions } from '@ikun-ui/notify';
+import { Notify, type NotifyOptions, type NotifyComponent } from '@ikun-ui/notify';
 import { SvelteComponent } from 'svelte';
 
 type MessageType = 'info' | 'warning' | 'error' | 'success';
+type UncertainFunction<T = any> = () => T | void;
 export interface MessageOptions {
 	customClass?: string;
 	close?: boolean;
 	content?: string;
 	type?: MessageType;
 	target?: HTMLElement;
-	onClose?: () => void;
+	onClose?: UncertainFunction;
 	slotContent?: string | SvelteComponent; // svelte sfc or html sting
 	autoClose?: boolean;
 	duration?: number; // just only autoClose = true
@@ -52,7 +53,7 @@ MsgFn.clear = Notify.clear;
 
 MsgFn.clearAll = Notify.clearAll;
 
-MsgFn.update = async (inst, options: MessageOptions = {}) => {
+MsgFn.update = async (inst: NotifyComponent, options: MessageOptions = {}) => {
 	Notify.update(inst, resolveMessageOptions(options));
 };
 

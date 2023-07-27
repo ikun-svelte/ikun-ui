@@ -1,16 +1,17 @@
 <script lang="ts">
 	import { KIcon } from '@ikun-ui/icon';
-	import { fly, FlyParams, fade } from 'svelte/transition';
+	import { fly, type FlyParams, fade } from 'svelte/transition';
 	import { tick, getContext } from 'svelte';
 	import { isFunction, isString } from 'baiwusanyu-utils';
+	type UncertainFunction<T = any> = () => T | void;
 	// right-top left-top right-bottom left-bottom center
 	export let placement = 'right-top';
 	export let customClass = '';
 	export let close = false;
 	export let title = '';
 	// info warning error success
-	export let type = '';
-	export let onClose = null;
+	export let type:'info' | 'warning'| 'error' | 'success' | null = null;
+	export let onClose:null | UncertainFunction= null;
 	export let offset = 0;
 	export let show = false;
 	export let index = 0;
@@ -34,10 +35,14 @@
 				color: 'text-success'
 			}
 		};
-		return typeDict[type];
+		if(type){
+			return typeDict[type];
+		}else {
+			typeDict['info']
+		}
 	};
 
-	let notificationRef = null;
+	let notificationRef:null | HTMLElement = null;
 	let x = '0';
 	const resolveX = () => {
 		if (placement.startsWith('left')) {
@@ -45,17 +50,17 @@
 		}
 
 		if (placement.startsWith('right')) {
-			x = `calc(100% - ${notificationRef.getBoundingClientRect().width + 20}px)`;
+			x = `calc(100% - ${notificationRef!.getBoundingClientRect().width + 20}px)`;
 		}
 
 		if (placement === 'center') {
-			x = `calc(50% - ${notificationRef.getBoundingClientRect().width / 2}px)`;
+			x = `calc(50% - ${notificationRef!.getBoundingClientRect().width / 2}px)`;
 		}
 	};
 
 	let y = '0';
 	const resolveY = () => {
-		const domHeight = notificationRef.getBoundingClientRect().height;
+		const domHeight = notificationRef!.getBoundingClientRect().height;
 		if (placement.endsWith('top') || placement === 'center') {
 			y = `${20 * (index + 1) + domHeight * index + offset}px`;
 		}
@@ -112,8 +117,8 @@
 	const handleClose = () => {
 		onClose && onClose();
 	};
-	const slotTitle = getContext('slotTitle');
-	const slot = getContext('slot');
+	const slotTitle: any = getContext('slotTitle');
+	const slot:string | any = getContext('slot');
 </script>
 
 {#if show}
@@ -132,7 +137,7 @@
 			{:else}
 				<h1 class="flex-c">
 					{#if type}
-						<KIcon icon={curType().icon} on:click={handleClose} colorCls="{curType().color} mr-2" />
+						<KIcon icon={curType()?.icon || ''} on:click={handleClose} colorCls="{curType()?.color} mr-2" />
 					{/if}
 					{title}
 				</h1>

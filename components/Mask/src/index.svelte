@@ -2,17 +2,24 @@
 	import { onDestroy, tick } from 'svelte';
 	import { fade } from 'svelte/transition';
 	export let modelValue = false;
-	export let target = null;
-	let drawerRef = null;
+	export let target: null | HTMLElement = null;
+	let drawerRef: null | HTMLElement = null;
 	let drawerWidth = '100%';
 	let drawerHeight = '100%';
 	let drawerTop = 0;
 	let drawerLeft = 0;
 
+	const getParentEle = () => {
+		if(drawerRef && drawerRef.parentElement){
+			return drawerRef.parentElement
+		}
+		return document.body
+	}
 	const updatedPosition = () => {
+		const parentEl = getParentEle()
 		const containerDomRect = target
 			? target.getBoundingClientRect()
-			: drawerRef.parentElement.getBoundingClientRect();
+			: parentEl.getBoundingClientRect();
 		if (containerDomRect) {
 			drawerWidth = containerDomRect.width ? `${containerDomRect.width}px` : '100%';
 			drawerHeight = containerDomRect.height ? `${containerDomRect.height}px` : '100%';
@@ -24,8 +31,9 @@
 	async function setParent() {
 		if (!target && modelValue) {
 			await tick();
-			drawerRef && (drawerRef.parentElement.style.overflow = 'hidden');
-			drawerRef && (drawerRef.parentElement.style.position = 'relative');
+			const parentEl = getParentEle()
+			parentEl.style.overflow = 'hidden'
+			parentEl.style.position = 'relative'
 			updatedPosition();
 			window.addEventListener('resize', updatedPosition);
 		}
@@ -40,8 +48,9 @@
 	}
 
 	const reset = () => {
-		drawerRef && (drawerRef.parentElement.style.overflow = '');
-		drawerRef && (drawerRef.parentElement.style.position = '');
+		const parentEl = getParentEle()
+		parentEl.style.overflow = ''
+		parentEl.style.position = ''
 		window.removeEventListener('resize', updatedPosition);
 	};
 	onDestroy(reset);
@@ -59,8 +68,7 @@
 		out:fade={{ duration: 300 }}
 		in:fade={{ duration: 300 }}
 		style="top:{drawerTop}px;left:{drawerLeft}px;width:{drawerWidth};height:{drawerHeight}"
-		class="ui-mask bg-black:50 absolute z-999 fixed"
-	>
+		class="ui-mask bg-black:50 absolute z-999 fixed">
 		<slot />
 	</div>
 {/if}

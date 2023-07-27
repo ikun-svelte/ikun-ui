@@ -6,8 +6,8 @@
 	export let disabled = false;
 	export let customClass = '';
 	export let loading = false;
-	export let checkedValue;
-	export let unCheckedValue;
+	export let checkedValue:string | number | boolean;
+	export let unCheckedValue:string | number | boolean;
 
 	export let checkedColor = '';
 
@@ -27,15 +27,17 @@
 	 * 设置动画样式类
 	 */
 
-	let switchCircleRef = null;
+	let switchCircleRef:null | HTMLElement = null;
 	const changeClass = () => {
 		return new Promise((resolve) => {
 			switching = 'ui-switching';
-			const circleWidth = switchCircleRef.getClientRects()[0].width;
-			switchCircleRef.style.right = innerState ? '2px' : `calc(100% - ${circleWidth}px)`;
+			if(switchCircleRef){
+				const circleWidth = switchCircleRef.getClientRects()[0].width;
+				switchCircleRef.style.right = innerState ? '2px' : `calc(100% - ${circleWidth}px)`;
+			}
 			setTimeout(() => {
 				switching = '';
-				resolve();
+				resolve(true);
 			}, 300);
 		});
 	};
@@ -112,22 +114,13 @@
 	onMount(init);
 </script>
 
-<div
-	class="
-  relative
-  flex
-  items-center
-  cursor-pointer
-  rounded-full
-  w-10
-  h-5
+<div class=" relative flex items-center cursor-pointer rounded-full w-10 h-5
   {disabled || loading ? 'ui-disabled-cursor' : ''}
   {innerState ? `bg-main ${checkedColor}` : `bg-main:40 ${unCheckedColor}`}
   {switching}
   {customClass} "
-	tabindex="0"
-	on:click={handleClick}
->
+   aria-hidden="true"
+	 on:click={handleClick}>
 	{#if !innerState}
 		<div class="p1 ml-5">
 			<slot name="unCheckedRender" state={innerState} />

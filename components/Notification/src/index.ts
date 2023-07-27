@@ -1,6 +1,6 @@
 import Notification from './index.svelte';
 import type { SvelteComponent } from 'svelte';
-
+type UncertainFunction<T = any> = () => T | void;
 type NotifyPlacement = 'right-top' | 'left-top' | 'right-bottom' | 'left-bottom' | 'center';
 type NotifyType = 'info' | 'warning' | 'error' | 'success';
 type Extend = {
@@ -9,7 +9,7 @@ type Extend = {
 	index: number;
 	show: boolean;
 };
-type NotifyComponent = SvelteComponent<NotifyOptions & Extend>;
+export type NotifyComponent = SvelteComponent<NotifyOptions & Extend>;
 export interface NotifyOptions {
 	customClass?: string;
 	close?: boolean;
@@ -17,7 +17,7 @@ export interface NotifyOptions {
 	type?: NotifyType;
 	placement?: NotifyPlacement;
 	target?: Element;
-	onClose?: () => void;
+	onClose?: UncertainFunction;
 	slotTitle?: string | SvelteComponent; // svelte sfc or html sting
 	slot?: string | SvelteComponent; // svelte sfc or html sting
 	autoClose?: boolean;

@@ -5,7 +5,7 @@
 	import { KMask } from '@ikun-ui/mask';
 	export let placement: 'right' | 'left' = 'right';
 	export let modelValue = false;
-	export let target = null;
+	export let target: null | HTMLElement = null;
 	export let customClass = '';
 	const dispatch = createEventDispatcher();
 	const toggleClose = () => {

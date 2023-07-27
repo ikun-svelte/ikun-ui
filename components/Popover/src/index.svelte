@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createPopperActions, PopperOptions } from 'svelte-popperjs';
+	import { createPopperActions, type PopperOptions } from 'svelte-popperjs';
 	import { fade } from 'svelte/transition';
 	import { tick } from 'svelte';
 	// top left right bottom
@@ -7,7 +7,7 @@
 	// hover click manual
 	export let trigger: 'manual' | 'click' | 'hover' = 'hover';
 	export let customClass = '';
-	let arrowRef = null;
+	let arrowRef:null | HTMLElement = null;
 	const [popperRef, popperContent, getPopperInst] = createPopperActions({
 		placement,
 		modifiers: [
@@ -52,7 +52,7 @@
 		}
 	};
 
-	function updateShow(show) {
+	function updateShow(show: boolean) {
 		setTimeout(
 			async () => {
 				if (isEnter) {
@@ -75,18 +75,18 @@
 	}
 	function updateArrow() {
 		const popper = getPopperInst();
-		curPlacement = popper.state.placement;
-		arrowRef.removeAttribute(`data-popper-arrow-top`);
-		arrowRef.removeAttribute(`data-popper-arrow-bottom`);
-		arrowRef.removeAttribute(`data-popper-arrow-left`);
-		arrowRef.removeAttribute(`data-popper-arrow-right`);
-		arrowRef.setAttribute(`data-popper-arrow-${curPlacement}`, '');
+		popper && (curPlacement = popper.state.placement);
+		arrowRef && arrowRef.removeAttribute(`data-popper-arrow-top`);
+		arrowRef && arrowRef.removeAttribute(`data-popper-arrow-bottom`);
+		arrowRef && arrowRef.removeAttribute(`data-popper-arrow-left`);
+		arrowRef && arrowRef.removeAttribute(`data-popper-arrow-right`);
+		arrowRef && arrowRef.setAttribute(`data-popper-arrow-${curPlacement}`, '');
 	}
-	function clickOutside(node) {
-		function handleClickOutside(event) {
-			const target = event.target;
+	function clickOutside(node: HTMLElement) {
+		function handleClickOutside(e: MouseEvent) {
+			const target = e.target as HTMLElement;
 			const container = node;
-			if (container && !container.contains(target)) {
+			if (target && container && !container.contains(target)) {
 				updateShow(false);
 			}
 		}
@@ -101,6 +101,7 @@
 
 <div class="ui-popover">
 	<div
+		aria-hidden="true"
 		use:popperRef
 		class={customClass}
 		on:click={handleClick}
@@ -116,6 +117,7 @@
 			out:fade={{ duration: 200 }}
 			in:fade={{ duration: 200 }}
 			data-popper-placement
+			aria-hidden="true"
 			on:mouseenter={handleMouseenter}
 			on:mouseleave={handleMouseleave}
 			use:clickOutside
@@ -123,7 +125,7 @@
 		>
 			<slot name="contentEl" />
 			<div
-				ui-popover-arrow
+				{...{'ui-popover-arrow': true}}
 				data-popper-arrow-bottom
 				data-popper-arrow-top
 				data-popper-arrow-right

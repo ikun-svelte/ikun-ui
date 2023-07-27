@@ -9,15 +9,17 @@
 	export let attrs = {};
 
 	const dispatch = createEventDispatcher();
-	const onUpdated = (e) => {
-		value = e.target.value;
+	const onUpdated = (e: Event) => {
+		if(e.target){
+			value = (e.target as HTMLInputElement).value;
+		}
 		dispatch('input', e);
 	};
-	const onEnter = (e) => {
+	const onEnter = (e: KeyboardEvent) => {
 		if (e.key === 'Enter') dispatch('enter', e);
 		else dispatch('keydown', e);
 	};
-	const onChange = (e) => {
+	const onChange = (e: Event) => {
 		dispatch('change', e);
 	};
 </script>
@@ -38,7 +40,7 @@
 		{customClass}">
 	<slot name="icon">
 		{#if icon}
-			<KIcon class="ml-0.3em mr-0.1em text-1.1em op50" {icon} />
+			<KIcon customClass="ml-0.3em mr-0.1em text-1.1em op50" {icon} />
 		{/if}
 	</slot>
 	<input

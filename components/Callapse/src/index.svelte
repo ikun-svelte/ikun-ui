@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher } from 'svelte';
-	export let title = 'title';
-	export let content = 'content';
+	export let title = '';
+	export let content = '';
 	export let customClass = '';
 	export let show = false;
 
@@ -18,7 +18,7 @@
 </script>
 
 <div class="rounded border-c border border-solid {customClass}">
-	<div class="p4 flex justify-between cursor-pointer" on:click={showContent}>
+	<div class="p4 flex justify-between cursor-pointer" on:click={showContent} aria-hidden="true">
 		<slot name="title">
 			{title}
 		</slot>

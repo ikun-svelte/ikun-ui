@@ -15,7 +15,7 @@ const config = [
 				globals: {
 					svelte: 'svelte'
 				}
-			},
+			}
 			/*{
 				file: 'dist/index.cjs',
 				format: 'cjs',
@@ -28,11 +28,11 @@ const config = [
 		plugins: [
 			svelte({
 				typescript: true,
-				html:true,
+				html: true,
 				compilerOptions: {
-					generate: 'dom',
+					generate: 'dom'
 				}
-			}),
+			})
 			/*resolve({
 				browser: true,
 				exportConditions: ['svelte'],

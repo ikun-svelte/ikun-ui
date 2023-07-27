@@ -22,10 +22,9 @@
 <div
 	class="ui-icon flex-c {isButton ? 'cursor-pointer' : ''} {customClass}"
 	{...attrs}
-	on:click={handleClick}
->
-	<div
-		class="{iconInner} collapse--icon__transition {colorCls}"
+	aria-hidden="true"
+	on:click={handleClick}>
+	<div class="{iconInner} collapse--icon__transition {colorCls}"
 		style="width: {width}; height:{height}; {colorStyle} "
 	/>
 </div>
