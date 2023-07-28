@@ -14,6 +14,6 @@ export default [
 	ButtonShortcuts
 ] as UserShortcuts<Theme>;
 
-export function getSafeList(){
-	return Object.keys(iconShortcuts).concat(Object.keys(ButtonShortcuts))
+export function getSafeList() {
+	return Object.keys(iconShortcuts).concat(Object.keys(ButtonShortcuts));
 }

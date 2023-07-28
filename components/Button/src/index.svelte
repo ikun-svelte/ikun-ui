@@ -34,7 +34,7 @@
         {cls}">
 	{#if icon}
 		<KIcon {icon}
-			   colorCls={`k-button--${type}__icon`}
+			   color={`k-button--${type}__icon`}
 			   cls="mr-2" />
 	{/if}
 	<slot />

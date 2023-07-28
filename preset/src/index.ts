@@ -14,5 +14,5 @@ export function presetIkun(): Preset {
 	};
 }
 // 所以整個預設架構是 rules + variants + shortcuts
-export * from './colors'
-export { getSafeList} from './shortcuts/index'
+export * from './colors';
+export { getSafeList } from './shortcuts/index';

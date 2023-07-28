@@ -1,36 +1,29 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
-	export let icon: string;
+	export let icon: string = ''
 	export let btn = false;
 	export let width = '24px';
 	export let height = '24px';
 	export let cls = '';
 	export let color = '';
-	export let colorCls = 'text-muted dark:text-white';
 	export let attrs = {};
 
-	$: colorStyle = color ? `color: ${color}` : '';
 	$: iconInner = icon;
-
+	$: tag = btn ? '' : 'button';
 	const dispatch = createEventDispatcher();
-	const handleClick = (e) => {
+	const handleClick = (e:Event) => {
 		dispatch('click', e);
 	};
 </script>
 
 <div
-	class="ui-icon flex-c {btn ? 'cursor-pointer' : ''} {cls}"
-	{...attrs}
+	role={tag}
 	aria-hidden="true"
+	{...attrs}
+	class="k-icon--base {btn ? 'cursor-pointer' : ''} {cls}"
 	on:click={handleClick}>
-	<div class="{iconInner} collapse--icon__transition {colorCls}"
-		style="width: {width}; height:{height}; {colorStyle} "
+	<div class="{iconInner} k-icon-transition {color}"
+		 style="width: {width}; height:{height};"
 	/>
 </div>
-
-<style>
-	.collapse--icon__transition {
-		transition: all 0.3s linear;
-	}
-</style>

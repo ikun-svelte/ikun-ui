@@ -1,55 +1,52 @@
 import {
-  defineConfig,
-  presetAttributify,
-  presetIcons,
-  presetTypography,
-  presetWind,
-  transformerDirectives,
-  transformerVariantGroup,
-} from 'unocss'
-import { presetIkun, getCSSPreflights, getSafeList } from '@ikun-ui/preset'
+	defineConfig,
+	presetAttributify,
+	presetIcons,
+	presetTypography,
+	presetWind,
+	transformerDirectives,
+	transformerVariantGroup
+} from 'unocss';
+import { presetIkun, getCSSPreflights, getSafeList } from '@ikun-ui/preset';
 export default defineConfig({
-  presets: [
-    presetWind(),
-    presetAttributify(),
-    presetIcons({
-      scale: 1.2,
-      warn: true,
-      extraProperties: {
-        display: 'inline-block',
-        'vertical-align': 'middle',
-      },
-    }),
-    presetTypography(),
-    presetIkun(),
-  ],
-  transformers: [
-    transformerDirectives(),
-    transformerVariantGroup(),
-  ],
-  safelist: [
-    'i-carbon-information',
-    'i-carbon-tree-view-alt',
-    'i-carbon-assembly-cluster',
-    'i-carbon-image-copy',
-    'i-carbon-select-window',
-    'i-carbon-document-preliminary',
-    'i-carbon-network-4',
-    'i-carbon-ibm-watson-discovery',
-    'i-carbon-document',
-    'i-carbon-z-lpar',
-    'i-carbon-cube',
-    'i-carbon-center-circle',
-    'i-carbon-ibm-process-mining',
-    'i-carbon-logo-npm',
-     // kun
-     ...getSafeList()
-  ],
-  preflights: [
-    // kun
-    {
-    layer: 'base',
-    getCSS: () => `
+	presets: [
+		presetWind(),
+		presetAttributify(),
+		presetIcons({
+			scale: 1.2,
+			warn: true,
+			extraProperties: {
+				display: 'inline-block',
+				'vertical-align': 'middle'
+			}
+		}),
+		presetTypography(),
+		presetIkun()
+	],
+	transformers: [transformerDirectives(), transformerVariantGroup()],
+	safelist: [
+		'i-carbon-information',
+		'i-carbon-tree-view-alt',
+		'i-carbon-assembly-cluster',
+		'i-carbon-image-copy',
+		'i-carbon-select-window',
+		'i-carbon-document-preliminary',
+		'i-carbon-network-4',
+		'i-carbon-ibm-watson-discovery',
+		'i-carbon-document',
+		'i-carbon-z-lpar',
+		'i-carbon-cube',
+		'i-carbon-center-circle',
+		'i-carbon-ibm-process-mining',
+		'i-carbon-logo-npm',
+		// kun
+		...getSafeList()
+	],
+	preflights: [
+		// kun
+		{
+			layer: 'base',
+			getCSS: () => `
     :root {
       ${getCSSPreflights()}
     }
@@ -60,9 +57,10 @@ export default defineConfig({
       outline: none;
       -webkit-appearance: none
     }
-    `,
-  }],
-  /*theme: {
+    `
+		}
+	]
+	/*theme: {
     animation: {
       keyframes: {
         LianYi: `{
@@ -123,4 +121,4 @@ export default defineConfig({
     { 'border-info-c': 'border-slate-400' },
     { 'border-primary-c': 'border-teal-400' },
   ],*/
-})
+});
