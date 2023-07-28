@@ -3,7 +3,7 @@
 	import { fade } from 'svelte/transition';
 	import { tick } from 'svelte';
 	// top left right bottom
-	export let placement = 'top';
+	export let placement:'top' | 'left' | 'right' | 'bottom' = 'top';
 	// hover click manual
 	export let trigger: 'manual' | 'click' | 'hover' = 'hover';
 	export let attrs = {};
@@ -76,7 +76,7 @@
 	}
 	function updateArrow() {
 		const popper = getPopperInst();
-		popper && (curPlacement = popper.state.placement);
+		popper && (curPlacement = popper.state.placement as typeof curPlacement);
 		arrowRef && arrowRef.removeAttribute(`data-popper-arrow-top`);
 		arrowRef && arrowRef.removeAttribute(`data-popper-arrow-bottom`);
 		arrowRef && arrowRef.removeAttribute(`data-popper-arrow-left`);

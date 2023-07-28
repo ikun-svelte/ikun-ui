@@ -10,7 +10,7 @@ import { drawerShortcuts } from './drawer';
 import { maskShortcuts } from './mask';
 import { eyeDropperShortcuts } from './eye-dropper';
 import { inputShortcuts } from './input';
-import {popoverShortcuts} from "./popover";
+import { popoverShortcuts } from './popover';
 // 原子樣式的別名簡寫
 export default [
 	baseShortcuts,
