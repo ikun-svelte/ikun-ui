@@ -9,6 +9,7 @@ import { checkboxShortcuts } from './checkbox';
 import { drawerShortcuts } from './drawer';
 import { maskShortcuts } from './mask';
 import { eyeDropperShortcuts } from './eye-dropper';
+import {inputShortcuts} from "./input";
 // 原子樣式的別名簡寫
 export default [
 	baseShortcuts,
@@ -26,7 +27,9 @@ export default [
 	// mask
 	maskShortcuts,
 	// eyeDropper
-	eyeDropperShortcuts
+	eyeDropperShortcuts,
+	// input
+	inputShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -35,10 +38,12 @@ export function getSafeList() {
 	const callapseList = Object.keys(callapseShortcuts);
 	const checkboxList = Object.keys(checkboxShortcuts);
 	const drawerList = Object.keys(drawerShortcuts);
+	const inputList = Object.keys(inputShortcuts);
 	const maskList = Object.keys(maskShortcuts);
 	const eyeDropperList = Object.keys(eyeDropperShortcuts);
 	return iconList
 		.concat(drawerList)
+		.concat(inputList)
 		.concat(maskList)
 		.concat(eyeDropperList)
 		.concat(buttonList)

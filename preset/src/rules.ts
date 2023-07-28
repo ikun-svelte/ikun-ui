@@ -26,5 +26,6 @@ export default [
 	['k-btn-shadow--warning', { 'box-shadow': '0 0 0 2px rgba(251,191,36,0.5)' }],
 	['k-btn-shadow--info', { 'box-shadow': '0 0 0 2px rgba(148,163,184,0.5)' }],
 	['k-btn-shadow--primary', { 'box-shadow': '0 0 0 2px rgba(45,212,191,0.5)' }],
+	['k-input-shadow', { 'box-shadow': '0 0 0 2px #ff787542' }],
 	['k-icon-transition', { transition: 'all 0.3s linear' }]
 ] as Rule<Theme>[];

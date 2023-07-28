@@ -7,8 +7,8 @@
 # EyeDropper ✅
 
 # Icon ✅
-
-# Input 🍺
+# checkbox ✅
+# Input ✅
 
 # Mask ✅
 
@@ -25,8 +25,6 @@
 # notification 🍺
 
 # modal 🍺
-
-# checkbox 🍺
 
 # clientOnly 🚧
 

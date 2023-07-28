@@ -5,10 +5,12 @@ import { KCallapse } from '@ikun-ui/callapse'
 import { KCheckbox } from '@ikun-ui/checkbox'
 import { KDrawer } from '@ikun-ui/drawer'
 import { KEyeDropper } from '@ikun-ui/eyeDropper'
+import { KInput } from '@ikun-ui/input'
 import 'virtual:uno.css'
 
 let checked = true
 let openDrawer = false
+let inputValue = ''
 </script>
 <KButton icon="i-carbon-settings"
          type="info"
@@ -35,3 +37,7 @@ let openDrawer = false
     </KButton>
 </KEyeDropper>
 
+<KInput value={inputValue}
+        placeholder="inputValue"
+        icon="i-carbon-settings">
+</KInput>

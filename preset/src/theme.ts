@@ -4,6 +4,7 @@ import type { Theme } from '@unocss/preset-uno';
 // TODO: 根據主題色設置漣漪
 // TODO: 根據主題色設置dark模式下的陰影
 // TODO: 根據主題色設置滾動條
+// TODO: 根據主題色設置input focus 颜色
 export default {
 	colors: {
 		main: '#ea580c',
