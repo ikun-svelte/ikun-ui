@@ -68,7 +68,7 @@
 		out:fade={{ duration: 300 }}
 		in:fade={{ duration: 300 }}
 		style="top:{drawerTop}px;left:{drawerLeft}px;width:{drawerWidth};height:{drawerHeight}"
-		class="ui-mask bg-black:50 absolute z-999 fixed">
+		class="k-mask--base">
 		<slot />
 	</div>
 {/if}
