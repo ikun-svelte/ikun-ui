@@ -16,6 +16,8 @@
 
 # Popover ✅
 
+# clientOnly ✅
+
 # Switch 🍺
 
 # Tag 🍺
@@ -27,8 +29,6 @@
 # notification 🍺
 
 # modal 🍺
-
-# clientOnly 🚧
 
 # message box 🚧
 
