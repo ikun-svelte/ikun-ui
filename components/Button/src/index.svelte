@@ -13,7 +13,10 @@
 
 	const dispatch = createEventDispatcher();
 	const handleClick = (e: Event) => {
-		if (!to) dispatch('click', e);
+		if(disabled){
+			e.preventDefault()
+		}
+		if (!to && !disabled) dispatch('click', e);
 	};
 
 	$: tag = to ? 'a' : 'button';
