@@ -6,7 +6,8 @@
 	export let placement = 'top';
 	// hover click manual
 	export let trigger: 'manual' | 'click' | 'hover' = 'hover';
-	export let customClass = '';
+	export let attrs = {};
+	export let cls = '';
 	let arrowRef:null | HTMLElement = null;
 	const [popperRef, popperContent, getPopperInst] = createPopperActions({
 		placement,
@@ -99,11 +100,10 @@
 	}
 </script>
 
-<div class="ui-popover">
+<div style="width: fit-content">
 	<div
 		aria-hidden="true"
 		use:popperRef
-		class={customClass}
 		on:click={handleClick}
 		on:mouseenter={handleMouseenter}
 		on:mouseleave={handleMouseleave}
@@ -113,11 +113,12 @@
 
 	{#if isShow}
 		<div
-			class="rounded p2 bg-white shadow-lg z-999 box-border dark:bg-dark-500 dark:shadow-main dark:shadow"
+			class="k-popover--base {cls}"
 			out:fade={{ duration: 200 }}
 			in:fade={{ duration: 200 }}
 			data-popper-placement
 			aria-hidden="true"
+			{...attrs}
 			on:mouseenter={handleMouseenter}
 			on:mouseleave={handleMouseleave}
 			use:clickOutside
@@ -174,9 +175,5 @@
 		top: calc(50% - 4px);
 		position: absolute;
 		right: 4px;
-	}
-
-	.ui-popover {
-		width: fit-content;
 	}
 </style>

@@ -10,6 +10,7 @@ import { drawerShortcuts } from './drawer';
 import { maskShortcuts } from './mask';
 import { eyeDropperShortcuts } from './eye-dropper';
 import { inputShortcuts } from './input';
+import {popoverShortcuts} from "./popover";
 // 原子樣式的別名簡寫
 export default [
 	baseShortcuts,
@@ -29,7 +30,9 @@ export default [
 	// eyeDropper
 	eyeDropperShortcuts,
 	// input
-	inputShortcuts
+	inputShortcuts,
+	// popover
+	popoverShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -41,7 +44,9 @@ export function getSafeList() {
 	const inputList = Object.keys(inputShortcuts);
 	const maskList = Object.keys(maskShortcuts);
 	const eyeDropperList = Object.keys(eyeDropperShortcuts);
+	const popoverList = Object.keys(popoverShortcuts);
 	return iconList
+		.concat(popoverList)
 		.concat(drawerList)
 		.concat(inputList)
 		.concat(maskList)
