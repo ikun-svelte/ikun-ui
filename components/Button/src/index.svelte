@@ -30,7 +30,7 @@
         k-button--{type}
         k-button--{type}__active
         k-button--{type}__focus
-        {disabled ? 'ui-disabled-cursor' : ''}
+        {disabled ? 'k-cur-disabled' : ''}
         {cls}">
 	{#if icon}
 		<KIcon {icon}

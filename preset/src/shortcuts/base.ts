@@ -1,6 +1,6 @@
 export const baseShortcuts: Record<string, string> = {
-	// general
-	// 'k-bg-base': 'bg-white dark:bg-[#222]',
-	'k-solid': 'border-context',
-	'k-bg': 'bg-context'
+	'k-cur-disabled': 'cursor-not-allowed',
+	'k-cur-loading': 'cursor-not-progress ',
+	'k-border': 'border border-solid',
+	'k-bg-disabled': 'bg-disabled',
 };
