@@ -4,37 +4,35 @@
 	import { KIcon } from '@ikun-ui/icon';
 	import { KMask } from '@ikun-ui/mask';
 	export let placement: 'right' | 'left' = 'right';
-	export let modelValue = false;
+	export let value = false;
 	export let target: null | HTMLElement = null;
-	export let customClass = '';
+	export let cls = '';
 	const dispatch = createEventDispatcher();
 	const toggleClose = () => {
 		dispatch('close');
 	};
+
+	$: isRight = (placement === 'right')
 </script>
 
-<KMask {target} {modelValue}>
+<KMask {target} {value}>
 	<div
-		class="ui-drawer dark:bg-dark bg-white absolute z-1000 top-0 min-w-1/3 h-full p2 {placement ===
-		'right'
-			? 'right-0'
-			: 'left-0'} {customClass}"
-		out:fly={{ duration: 250, x: placement === 'right' ? 200 : -200 }}
-		in:fly={{ duration: 250, x: placement === 'right' ? 200 : -200 }}
+		class="k-drawer--base {isRight ? 'right-0' : 'left-0'} {cls}"
+		out:fly={{ duration: 250, x: isRight ? 200 : -200 }}
+		in:fly={{ duration: 250, x: isRight ? 200 : -200 }}
 	>
-		<div class="w-24px h-24px">
+		<div class="k-drawer--op">
 			<KIcon
-				icon={placement === 'right' ? 'i-carbon-chevron-right' : 'i-carbon-chevron-left'}
-				colorCls="hover:text-main"
-				customClass={placement === 'right' ? 'justify-start' : 'justify-end'}
+				icon={isRight ? 'i-carbon-chevron-right' : 'i-carbon-chevron-left'}
+				color="hover:text-main"
+				cls={isRight ? 'justify-start' : 'justify-end'}
 				on:click={toggleClose}
-				isButton
+				btn
 			/>
 		</div>
 		<div
-			class="ui-drawer--content overflow-y-auto scroll-bar mt-2"
-			style="height: calc(100% - 24px)"
-		>
+			class="k-drawer--content"
+			style="height: calc(100% - 24px)">
 			<slot />
 		</div>
 	</div>

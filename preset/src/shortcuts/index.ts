@@ -5,7 +5,8 @@ import { commonShortcuts } from './common';
 import { iconShortcuts } from './icon';
 import { ButtonShortcuts } from './button';
 import { callapseShortcuts } from './callapse';
-import {checkboxShortcuts} from "./checkbox";
+import { checkboxShortcuts } from './checkbox';
+import {drawerShortcuts} from "./drawer";
 // 原子樣式的別名簡寫
 export default [
 	baseShortcuts,
@@ -17,7 +18,9 @@ export default [
 	// callapse
 	callapseShortcuts,
 	// checkbox
-	checkboxShortcuts
+	checkboxShortcuts,
+	// drawer
+	drawerShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -25,5 +28,10 @@ export function getSafeList() {
 	const buttonList = Object.keys(ButtonShortcuts);
 	const callapseList = Object.keys(callapseShortcuts);
 	const checkboxList = Object.keys(checkboxShortcuts);
-	return iconList.concat(buttonList).concat(callapseList).concat(checkboxList)
+	const drawerboxList = Object.keys(drawerShortcuts);
+	return iconList
+		.concat(drawerboxList)
+		.concat(buttonList)
+		.concat(callapseList)
+		.concat(checkboxList);
 }

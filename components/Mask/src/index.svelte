@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, tick } from 'svelte';
 	import { fade } from 'svelte/transition';
-	export let modelValue = false;
+	export let value = false;
 	export let target: null | HTMLElement = null;
 	let drawerRef: null | HTMLElement = null;
 	let drawerWidth = '100%';
@@ -29,7 +29,7 @@
 	};
 
 	async function setParent() {
-		if (!target && modelValue) {
+		if (!target && value) {
 			await tick();
 			const parentEl = getParentEle()
 			parentEl.style.overflow = 'hidden'
@@ -38,7 +38,7 @@
 			window.addEventListener('resize', updatedPosition);
 		}
 
-		if (target && modelValue) {
+		if (target && value) {
 			await tick();
 			drawerRef && (target.style.overflow = 'hidden');
 			drawerRef && (target.style.position = 'relative');
@@ -55,14 +55,14 @@
 	};
 	onDestroy(reset);
 
-	$: if (modelValue) {
+	$: if (value) {
 		setParent();
 	} else {
 		reset();
 	}
 </script>
 
-{#if modelValue}
+{#if value}
 	<div
 		bind:this={drawerRef}
 		out:fade={{ duration: 300 }}

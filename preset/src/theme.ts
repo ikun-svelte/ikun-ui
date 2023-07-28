@@ -2,11 +2,12 @@ import type { Theme } from '@unocss/preset-uno';
 
 // 獲得主題顔色，根據主題前綴匹配主題color
 // TODO: 根據主題色設置漣漪
-// TODO: 根據主題色設置陰影
+// TODO: 根據主題色設置dark模式下的陰影
+// TODO: 根據主題色設置滾動條
 export default {
 	colors: {
-		 main: '#ea580c',
-		'disabled': 'var(--ikun-zinc-200)',
+		main: '#ea580c',
+		disabled: 'var(--ikun-zinc-200)',
 
 		primary: 'var(--ikun-teal-400)',
 		'primary-100': 'var(--ikun-teal-100)',
@@ -59,7 +60,7 @@ export default {
 			'ikun-checking': 'linear'
 		},
 		counts: {
-			LianYi: 'infinite',
+			LianYi: 'infinite'
 		}
 	}
 } as Theme;
