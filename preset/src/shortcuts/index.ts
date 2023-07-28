@@ -9,7 +9,7 @@ import { checkboxShortcuts } from './checkbox';
 import { drawerShortcuts } from './drawer';
 import { maskShortcuts } from './mask';
 import { eyeDropperShortcuts } from './eye-dropper';
-import {inputShortcuts} from "./input";
+import { inputShortcuts } from './input';
 // 原子樣式的別名簡寫
 export default [
 	baseShortcuts,
