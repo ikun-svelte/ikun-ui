@@ -2,4 +2,4 @@
 import { KButton } from '@ikun-ui/button'
 import 'virtual:uno.css'
 </script>
-<KButton>123</KButton>
+<KButton icon="i-carbon-settings" type="success">123</KButton>

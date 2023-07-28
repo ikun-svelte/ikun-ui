@@ -6,6 +6,18 @@ export default {
 	colors: {
 		'primary': 'var(--ikun-teal-400)',
 		'primary-100': 'var(--ikun-teal-100)',
+
+		'error': 'var(--ikun-rose-400)',
+		'error-100': 'var(--ikun-rose-100)',
+
+		'warning': 'var(--ikun-amber-400)',
+		'warning-100': 'var(--ikun-amber-100)',
+
+		'info': 'var(--ikun-slate-400)',
+		'info-100': 'var(--ikun-slate-100)',
+
+		'success': 'var(--ikun-green-400)',
+		'success-100': 'var(--ikun-green-100)',
 	},
 	fontFamily: {
 		sans: 'Avenir, Helvetica, Arial, sans-serif'

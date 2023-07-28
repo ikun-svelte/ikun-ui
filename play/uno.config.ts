@@ -7,7 +7,7 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-import { presetIkun, getCSSPreflights } from '@ikun-ui/preset'
+import { presetIkun, getCSSPreflights, getSafeList } from '@ikun-ui/preset'
 export default defineConfig({
   presets: [
     presetWind(),
@@ -41,9 +41,13 @@ export default defineConfig({
     'i-carbon-cube',
     'i-carbon-center-circle',
     'i-carbon-ibm-process-mining',
-    'i-carbon-logo-npm'
+    'i-carbon-logo-npm',
+     // kun
+     ...getSafeList()
   ],
-  preflights: [{
+  preflights: [
+    // kun
+    {
     layer: 'base',
     getCSS: () => `
     :root {

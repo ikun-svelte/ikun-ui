@@ -2,10 +2,10 @@
 	import { createEventDispatcher } from 'svelte';
 
 	export let icon: string;
-	export let isButton = false;
+	export let btn = false;
 	export let width = '24px';
 	export let height = '24px';
-	export let customClass = '';
+	export let cls = '';
 	export let color = '';
 	export let colorCls = 'text-muted dark:text-white';
 	export let attrs = {};
@@ -20,7 +20,7 @@
 </script>
 
 <div
-	class="ui-icon flex-c {isButton ? 'cursor-pointer' : ''} {customClass}"
+	class="ui-icon flex-c {btn ? 'cursor-pointer' : ''} {cls}"
 	{...attrs}
 	aria-hidden="true"
 	on:click={handleClick}>
