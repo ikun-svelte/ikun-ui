@@ -4,29 +4,33 @@
 	import { createEventDispatcher } from 'svelte';
 	export let title = '';
 	export let content = '';
-	export let customClass = '';
+	export let cls = '';
 	export let show = false;
 
 	const dispatch = createEventDispatcher();
 	let showInner = show;
 	const showContent = () => {
 		showInner = !showInner;
-		dispatch('updateModelValue', showInner);
+		dispatch('change', showInner);
 	};
 	$: if (show) showInner = true;
 	else showInner = false;
 </script>
 
-<div class="rounded border-c border border-solid {customClass}">
-	<div class="p4 flex justify-between cursor-pointer" on:click={showContent} aria-hidden="true">
+<div class="k-callapse--base {cls}">
+	<div class="k-callapse--title"
+		 on:click={showContent}
+		 aria-hidden="true">
 		<slot name="title">
-			{title}
+			{ title }
 		</slot>
-		<KIcon icon="i-carbon-chevron-right collapse--icon__transition {showInner ? 'rotate-90' : ''}" />
+		<KIcon icon="i-carbon-chevron-right {showInner ? 'rotate-90' : ''}" />
 	</div>
 	{#if showInner}
-		<div class="pl4 pb4 pr4" out:fly={{ y: 0, duration: 300 }} in:fly={{ y: -60, duration: 300 }}>
-			<div style="border-top-width: 1px" class="border-c border-solid mb-4" />
+		<div class="k-callapse--content"
+			 out:fly={{ y: 0, duration: 300 }}
+			 in:fly={{ y: -60, duration: 300 }}>
+			<div class="k-callapse--line" />
 			<slot name="content">{content}</slot>
 		</div>
 	{/if}

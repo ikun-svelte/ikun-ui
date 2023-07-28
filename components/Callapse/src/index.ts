@@ -1,6 +1,6 @@
 /// <reference types="./types" />
-import Callapase from './index.svelte';
+import Callapse from './index.svelte';
 
-export default Callapase;
+export default Callapse;
 
-export { Callapase as KCallapase };
+export { Callapse as KCallapse };

@@ -20,7 +20,9 @@ export default {
 		'success-100': 'var(--ikun-green-100)',
 
 		'tx-base': 'var(--ikun-slate-900)',
-		'tx-gr': 'var(--ikun-slate-400)'
+		'tx-gr': 'var(--ikun-slate-400)',
+
+		'bd-base': 'var(--ikun-slate-200)'
 	},
 	fontFamily: {
 		sans: 'Avenir, Helvetica, Arial, sans-serif'
