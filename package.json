@@ -78,6 +78,7 @@
 		"@ikun-ui/mask": "workspace:*",
 		"@ikun-ui/message": "workspace:*",
 		"@ikun-ui/modal": "workspace:*",
+		"@ikun-ui/clientOnly": "workspace:*",
 		"@ikun-ui/notify": "workspace:*",
 		"@ikun-ui/popover": "workspace:*",
 		"@ikun-ui/select": "workspace:*",

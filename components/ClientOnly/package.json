@@ -1,5 +1,5 @@
 {
-	"name": "@ikun-ui/drawer",
+	"name": "@ikun-ui/clientOnly",
 	"version": "0.0.2",
 	"type": "module",
 	"main": "dist/index.js",
@@ -26,9 +26,7 @@
 	},
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
-		"@ikun-ui/mask": "workspace:*",
-		"@ikun-ui/utils": "workspace:*",
-		"@ikun-ui/clientOnly": "workspace:*"
+		"@ikun-ui/utils": "workspace:*"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^4.0.1",
