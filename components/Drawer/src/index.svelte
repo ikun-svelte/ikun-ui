@@ -8,6 +8,7 @@
 	export let value = false;
 	export let target: null | HTMLElement = null;
 	export let cls = '';
+	export let attrs = {}
 	const dispatch = createEventDispatcher();
 	const toggleClose = () => {
 		dispatch('close');
@@ -17,11 +18,10 @@
 </script>
 <KClientOnly>
 	<KMask {target} {value}>
-		<div
-				class="k-drawer--base {isRight ? 'right-0' : 'left-0'} {cls}"
-				out:fly={{ duration: 250, x: isRight ? 200 : -200 }}
-				in:fly={{ duration: 250, x: isRight ? 200 : -200 }}
-		>
+		<div class="k-drawer--base {isRight ? 'right-0' : 'left-0'} {cls}"
+			 {...attrs}
+			 out:fly={{ duration: 250, x: isRight ? 200 : -200 }}
+			 in:fly={{ duration: 250, x: isRight ? 200 : -200 }}>
 			<div class="k-drawer--op">
 				<KIcon
 						icon={isRight ? 'i-carbon-chevron-right' : 'i-carbon-chevron-left'}

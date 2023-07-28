@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-
+	export let cls = '';
+	export let attrs = {}
 	interface EyeDropperOpenOptions {
 		signal?: AbortSignal;
 	}
@@ -28,13 +29,6 @@
 	onMount(initEyeDropper);
 </script>
 
-<div class="ui-eye-dropper">
+<div class="k-eyedropper--base {cls}" {...attrs}>
 	<slot {sRGBHex} {open} {isSupported} />
 </div>
-
-<style>
-	.ui-eye-dropper {
-		width: 100%;
-		height: 100%;
-	}
-</style>

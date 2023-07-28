@@ -3,11 +3,12 @@ import type { UserShortcuts } from 'unocss';
 import { baseShortcuts } from './base';
 import { commonShortcuts } from './common';
 import { iconShortcuts } from './icon';
-import { ButtonShortcuts } from './button';
+import { buttonShortcuts } from './button';
 import { callapseShortcuts } from './callapse';
 import { checkboxShortcuts } from './checkbox';
 import { drawerShortcuts } from './drawer';
 import { maskShortcuts } from './mask';
+import { eyeDropperShortcuts } from './eye-dropper';
 // 原子樣式的別名簡寫
 export default [
 	baseShortcuts,
@@ -15,7 +16,7 @@ export default [
 	// icon
 	iconShortcuts,
 	// button
-	ButtonShortcuts,
+	buttonShortcuts,
 	// callapse
 	callapseShortcuts,
 	// checkbox
@@ -23,19 +24,23 @@ export default [
 	// drawer
 	drawerShortcuts,
 	// mask
-	maskShortcuts
+	maskShortcuts,
+	// eyeDropper
+	eyeDropperShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
 	const iconList = Object.keys(iconShortcuts);
-	const buttonList = Object.keys(ButtonShortcuts);
+	const buttonList = Object.keys(buttonShortcuts);
 	const callapseList = Object.keys(callapseShortcuts);
 	const checkboxList = Object.keys(checkboxShortcuts);
-	const drawerboxList = Object.keys(drawerShortcuts);
-	const maskboxList = Object.keys(maskShortcuts);
+	const drawerList = Object.keys(drawerShortcuts);
+	const maskList = Object.keys(maskShortcuts);
+	const eyeDropperList = Object.keys(eyeDropperShortcuts);
 	return iconList
-		.concat(drawerboxList)
-		.concat(maskboxList)
+		.concat(drawerList)
+		.concat(maskList)
+		.concat(eyeDropperList)
 		.concat(buttonList)
 		.concat(callapseList)
 		.concat(checkboxList);

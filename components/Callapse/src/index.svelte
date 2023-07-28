@@ -4,6 +4,7 @@
 	import { createEventDispatcher } from 'svelte';
 	export let title = '';
 	export let content = '';
+	export let attrs = {};
 	export let cls = '';
 	export let show = false;
 
@@ -17,7 +18,7 @@
 	else showInner = false;
 </script>
 
-<div class="k-callapse--base {cls}">
+<div class="k-callapse--base {cls}" {...attrs}>
 	<div class="k-callapse--title"
 		 on:click={showContent}
 		 aria-hidden="true">

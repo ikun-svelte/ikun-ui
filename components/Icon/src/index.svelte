@@ -5,9 +5,9 @@
 	export let btn = false;
 	export let width = '24px';
 	export let height = '24px';
-	export let cls = '';
 	export let color = '';
 	export let attrs = {};
+	export let cls = '';
 
 	$: iconInner = icon;
 	$: tag = btn ? '' : 'button';

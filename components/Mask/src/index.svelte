@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onDestroy, tick } from 'svelte';
 	import { fade } from 'svelte/transition';
+	export let attrs = {};
+	export let cls = '';
 	export let value = false;
 	export let target: null | HTMLElement = null;
 	let drawerRef: null | HTMLElement = null;
@@ -65,10 +67,11 @@
 {#if value}
 	<div
 		bind:this={drawerRef}
+		{...attrs}
 		out:fade={{ duration: 300 }}
 		in:fade={{ duration: 300 }}
 		style="top:{drawerTop}px;left:{drawerLeft}px;width:{drawerWidth};height:{drawerHeight}"
-		class="k-mask--base">
+		class="k-mask--base {cls}">
 		<slot />
 	</div>
 {/if}

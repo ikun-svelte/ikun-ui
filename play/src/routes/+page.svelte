@@ -4,6 +4,7 @@ import { KIcon } from '@ikun-ui/icon'
 import { KCallapse } from '@ikun-ui/callapse'
 import { KCheckbox } from '@ikun-ui/checkbox'
 import { KDrawer } from '@ikun-ui/drawer'
+import { KEyeDropper } from '@ikun-ui/eyeDropper'
 import 'virtual:uno.css'
 
 let checked = true
@@ -27,4 +28,10 @@ let openDrawer = false
          on:close={() => openDrawer = false}>
     KDrawer
 </KDrawer>
+<KEyeDropper let:open>
+    <KButton type="primary"
+             on:click={() => open()}>
+        KEyeDropper
+    </KButton>
+</KEyeDropper>
 
