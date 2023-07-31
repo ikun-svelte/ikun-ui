@@ -20,7 +20,7 @@
 
 # Switch 🍺
 
-# Tag 🍺
+# Tag ✅
 
 # Tooltip ✅
 
@@ -28,7 +28,7 @@
 
 # notification 🍺
 
-# modal 🍺
+# modal ✅
 
 # message box 🚧
 

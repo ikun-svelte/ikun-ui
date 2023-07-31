@@ -9,6 +9,7 @@ import { KInput } from '@ikun-ui/input'
 import { KPopover } from '@ikun-ui/popover'
 import { KTooltip } from '@ikun-ui/tooltip'
 import { KModal } from '@ikun-ui/modal'
+import { KTag } from '@ikun-ui/tag'
 import 'virtual:uno.css'
 
 let checked = true
@@ -70,3 +71,19 @@ let inputValue = ''
 <KModal show={openModal} title="KModal" on:close={(v) => openModal = v.detail}>
    <span>KModal</span>
 </KModal>
+
+<KTag type="success">
+    success KTag
+</KTag>
+<KTag type="info">
+    info KTag
+</KTag>
+<KTag type="primary">
+    primary KTag
+</KTag>
+<KTag type="error">
+    error KTag
+</KTag>
+<KTag type="warning">
+    warning KTag
+</KTag>
