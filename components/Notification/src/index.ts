@@ -98,7 +98,7 @@ function mountNotify(
 				evt.onClose && evt.onClose();
 			}
 		},
-		context,
+		context
 	});
 	NotificationInst.__notify_index = index;
 	NotificationInst.__notify_placment = options.placement;

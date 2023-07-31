@@ -13,7 +13,7 @@ import { inputShortcuts } from './input';
 import { popoverShortcuts } from './popover';
 import { modalShortcuts } from './modal';
 import { tagShortcuts } from './tag';
-import {notificationShortcuts} from "./notification";
+import { notificationShortcuts } from './notification';
 // 原子樣式的別名簡寫
 export default [
 	baseShortcuts,
@@ -41,7 +41,7 @@ export default [
 	// tag
 	tagShortcuts,
 	// notification
-	notificationShortcuts,
+	notificationShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
