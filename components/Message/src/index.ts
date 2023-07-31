@@ -4,7 +4,8 @@ import { SvelteComponent } from 'svelte';
 type MessageType = 'info' | 'warning' | 'error' | 'success';
 type UncertainFunction<T = any> = () => T | void;
 export interface MessageOptions {
-	customClass?: string;
+	cls?: string;
+	attrs?: any;
 	close?: boolean;
 	content?: string;
 	type?: MessageType;
