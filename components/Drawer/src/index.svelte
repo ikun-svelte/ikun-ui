@@ -3,7 +3,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import { KMask } from '@ikun-ui/mask';
-	import { KClientOnly } from '@ikun-ui/clientOnly';
+	import { KClientOnly } from '@ikun-ui/client-only';
 	export let placement: 'right' | 'left' = 'right';
 	export let value = false;
 	export let target: null | HTMLElement = null;

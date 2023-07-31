@@ -4,7 +4,7 @@
 	import {KButton} from '@ikun-ui/button';
 	import { createEventDispatcher } from 'svelte';
 	import { fly } from 'svelte/transition';
-	import {KClientOnly} from "@ikun-ui/clientOnly";
+	import {KClientOnly} from "@ikun-ui/client-only";
 	export let show = false;
 	export let attrs = {};
 	export let cls = '';

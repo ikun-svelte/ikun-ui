@@ -1,5 +1,5 @@
 {
-	"name": "@ikun-ui/clientOnly",
+	"name": "@ikun-ui/client-only",
 	"version": "0.0.3",
 	"type": "module",
 	"main": "dist/index.js",
