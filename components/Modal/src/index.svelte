@@ -33,12 +33,12 @@
 <KClientOnly>
 	<KMask value={showInner}>
 		<div {...attrs}
-			  class="k-modal--base dark:bg-dark-500 dark:shadow dark:shadow-main {cls}"
+			  class="k-modal--base k-modal--base__dark {cls}"
 			  out:fly={{ y: -30, duration: 300 }}
 			  in:fly={{ y: -30, duration: 300 }}>
 			<slot name="header">
 				<div class="k-modal--header">
-					<h1 class="k-modal--header--title dark:text-white">
+					<h1 class="k-modal--header--title k-modal--header--title__dark">
 						{title}
 					</h1>
 					<KIcon icon="i-carbon-close"

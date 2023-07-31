@@ -32,7 +32,7 @@
 		{/if}
 	</slot>
 	<input
-		class="k-input--inner {disabled ? 'k-input--bas__disabled' : ''}"
+		class="k-input--inner k-input--inner__dark {disabled ? 'k-input--bas__disabled' : ''}"
 		{...attrs}
 		bind:value
 		{disabled}

@@ -24,7 +24,7 @@
 </script>
 
 <label
-	class="k-checkbox--base {cls} { disabled ? 'k-cur-disabled' : ''}"
+	class="k-checkbox--base k-checkbox--base__dark {cls} { disabled ? 'k-cur-disabled' : ''}"
 	{...attrs}>
 	<input
 		value={valueInner}

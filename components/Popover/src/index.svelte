@@ -113,7 +113,7 @@
 
 	{#if isShow}
 		<div
-			class="k-popover--base {cls}"
+			class="k-popover--base k-popover--base__dark {cls}"
 			out:fade={{ duration: 200 }}
 			in:fade={{ duration: 200 }}
 			data-popper-placement

@@ -4,5 +4,7 @@ export const selectShortcuts: Record<string, string> = {
 	'k-select__hover': 'hover:border-main',
 	'k-select__focus': 'focus-within:border-main focus-within:k-input-shadow',
 	'k-select--prefix': 'mr-0.4em text-1.1em op50',
-	'k-select--inner': 'w-full flex-auto !outline-none border-transparent text-base'
+	'k-select--inner': 'w-full flex-auto !outline-none border-transparent text-base',
+	// dark
+	'k-select--inner__dark': 'dark:bg-dark-500',
 };

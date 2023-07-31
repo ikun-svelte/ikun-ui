@@ -98,7 +98,7 @@
 
 {#if show}
 	<div
-		class="k-notification--base dark:bg-dark-500 dark:shadow-main {cls}"
+		class="k-notification--base k-notification--base__dark {cls}"
 		bind:this={notificationRef}
 		out:fade={{ duration: 200 }}
 		in:fly={flyAnimate.in}

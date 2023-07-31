@@ -7,5 +7,8 @@ export const modalShortcuts: Record<string, string> = {
 	'k-modal--header--title': 'text-tx-base font-bold text-lg',
 	'k-modal--body': 'p2',
 	'k-modal--footer': 'w-full p2 fi',
-	'k-modal--footer--btn': 'mx-2'
+	'k-modal--footer--btn': 'mx-2',
+	// dark
+	'k-modal--base__dark': 'dark:bg-dark-500 dark:shadow dark:shadow-main',
+	'k-modal--header--title__dark': 'dark:text-white',
 };

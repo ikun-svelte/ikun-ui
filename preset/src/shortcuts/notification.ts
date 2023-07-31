@@ -13,5 +13,7 @@ export const notificationShortcuts: Record<string, string> = {
 	'k-notification--icon--info': 'i-carbon-information-filled',
 	'k-notification--icon--warning': 'i-carbon-warning-filled',
 	'k-notification--icon--error': 'i-carbon-error-filled',
-	'k-notification--icon--success': 'i-carbon-checkmark-filled'
+	'k-notification--icon--success': 'i-carbon-checkmark-filled',
+	// dark
+	'k-notification--base__dark': 'dark:bg-dark-500 dark:shadow-main',
 };

@@ -33,9 +33,6 @@ export default {
 	fontFamily: {
 		sans: 'Avenir, Helvetica, Arial, sans-serif'
 	},
-	boxShadow: {
-		xs: 'var(--un-shadow-inset) 0 1px 1px 0 var(--un-shadow-color, rgba(0,0,0,0.03))'
-	},
 	animation: {
 		keyframes: {
 			'ikun-checking': `{
@@ -61,8 +58,3 @@ export default {
 		}
 	}
 } as Theme;
-
-// TODO
-export const lightTheme = {} as Theme;
-// TODO
-export const darkTheme = {} as Theme;

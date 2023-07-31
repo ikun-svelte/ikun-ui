@@ -18,7 +18,7 @@
 </script>
 <KClientOnly>
 	<KMask {target} {value}>
-		<div class="k-drawer--base {isRight ? 'right-0' : 'left-0'} {cls}"
+		<div class="k-drawer--base k-drawer--base__dark {isRight ? 'right-0' : 'left-0'} {cls}"
 			 {...attrs}
 			 out:fly={{ duration: 250, x: isRight ? 200 : -200 }}
 			 in:fly={{ duration: 250, x: isRight ? 200 : -200 }}>

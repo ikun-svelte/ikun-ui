@@ -28,7 +28,7 @@
 		bind:value={value}
 		{disabled}
 		on:change={handleSelect}
-		class="k-select--inner dark:bg-dark-500"
+		class="k-select--inner k-select--inner__dark"
 	>
 		{#if placeholder}
 			<option value="" disabled hidden>
