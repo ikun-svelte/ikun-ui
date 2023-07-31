@@ -6,7 +6,8 @@
 	export let disabled = false;
 	export let placeholder = '';
 	export let value:string | undefined = undefined;
-	export let customClass = '';
+	export let cls = '';
+	export let attrs = {};
 	// updateValue
 	const dispatch = createEventDispatcher();
 	const handleSelect = (e: Event) => {
@@ -15,19 +16,19 @@
 	}
 </script>
 
-<div
-	class="flex items-center border border-solid border-main rounded px-2 py-1 hover:border-main focus-within:border-main focus-within:ui-input-shadow {customClass}"
+<div {...attrs}
+	class="k-select--base k-select__hover k-select__focus {cls}"
 >
 	<slot name="icon">
 		{#if icon}
-			<KIcon {icon} cls="mr-0.4em text-1.1em op50" />
+			<KIcon {icon} cls="k-select--prefix" />
 		{/if}
 	</slot>
 	<select
 		bind:value={value}
 		{disabled}
 		on:change={handleSelect}
-		class="w-full flex-auto !outline-none dark:bg-dark-500"
+		class="k-select--inner dark:bg-dark-500"
 	>
 		{#if placeholder}
 			<option value="" disabled hidden>

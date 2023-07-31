@@ -15,6 +15,7 @@ import { modalShortcuts } from './modal';
 import { tagShortcuts } from './tag';
 import { notificationShortcuts } from './notification';
 import { switchShortcuts } from './swtich';
+import {selectShortcuts} from "./select";
 // 原子樣式的別名簡寫
 export default [
 	baseShortcuts,
@@ -44,7 +45,9 @@ export default [
 	// notification
 	notificationShortcuts,
 	// switch
-	switchShortcuts
+	switchShortcuts,
+	// select
+	selectShortcuts,
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -61,7 +64,9 @@ export function getSafeList() {
 	const tagList = Object.keys(tagShortcuts);
 	const notificationList = Object.keys(notificationShortcuts);
 	const switchList = Object.keys(switchShortcuts);
+	const selectList = Object.keys(selectShortcuts);
 	return iconList
+		.concat(selectList)
 		.concat(switchList)
 		.concat(notificationList)
 		.concat(tagList)

@@ -12,6 +12,7 @@ import { KModal } from '@ikun-ui/modal'
 import { KTag } from '@ikun-ui/tag'
 import { Notify } from '@ikun-ui/notify'
 import { KSwitch } from '@ikun-ui/switch'
+import { KSelect } from '@ikun-ui/select'
 import 'virtual:uno.css'
 
 let checked = true
@@ -29,6 +30,7 @@ const handleNotify = () => {
 }
 
 let switchVal = false
+let selectVal = ''
 </script>
 <KButton icon="i-carbon-settings"
          type="info"
@@ -106,3 +108,11 @@ let switchVal = false
 <KSwitch value={switchVal}
         on:updateValue={(v) =>switchVal= v.detail}>
 </KSwitch>
+
+<KSelect value="{selectVal}"
+         icon="i-carbon-settings"
+         placeholder="selectValue">
+    {#each ['Tiny', 'Small', 'Normal', 'Large', 'Huge'] as item (item)}
+        <option>{item}</option>
+    {/each}
+</KSelect>
