@@ -2,7 +2,7 @@
 	"name": "ikun-ui",
 	"description": "",
 	"type": "module",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"keywords": [
 		"web component",
 		"component",
@@ -120,7 +120,8 @@
 		"shelljs": "^0.8.5",
 		"esno": "^0.16.3",
 		"del": "^7.0.0",
-		"fast-glob": "^3.2.12"
+		"fast-glob": "^3.2.12",
+		"bumpp": "^9.1.1"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm run format && pnpm run lint",
