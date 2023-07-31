@@ -10,5 +10,5 @@ export const modalShortcuts: Record<string, string> = {
 	'k-modal--footer--btn': 'mx-2',
 	// dark
 	'k-modal--base__dark': 'dark:bg-dark-500 dark:shadow dark:shadow-main',
-	'k-modal--header--title__dark': 'dark:text-white',
+	'k-modal--header--title__dark': 'dark:text-white'
 };

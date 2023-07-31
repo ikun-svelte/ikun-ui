@@ -6,5 +6,5 @@ export const selectShortcuts: Record<string, string> = {
 	'k-select--prefix': 'mr-0.4em text-1.1em op50',
 	'k-select--inner': 'w-full flex-auto !outline-none border-transparent text-base',
 	// dark
-	'k-select--inner__dark': 'dark:bg-dark-500',
+	'k-select--inner__dark': 'dark:bg-dark-500'
 };

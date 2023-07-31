@@ -5,5 +5,5 @@ export const checkboxShortcuts: Record<string, string> = {
 	'k-checkbox--box__disabled': 'k-bg-disabled',
 	'k-checkbox--label': 'text-base',
 	// dark
-	'k-checkbox--base__dark': 'dark:text-white',
+	'k-checkbox--base__dark': 'dark:text-white'
 };

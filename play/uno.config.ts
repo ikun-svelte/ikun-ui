@@ -23,10 +23,7 @@ export default defineConfig({
 		presetTypography(),
 		presetIkun()
 	],
-	transformers: [
-		transformerDirectives(),
-		transformerVariantGroup()
-	],
+	transformers: [transformerDirectives(), transformerVariantGroup()],
 	safelist: [
 		// kun
 		...getSafeList()
@@ -46,6 +43,7 @@ export default defineConfig({
       outline: none;
       -webkit-appearance: none
     }
-    `}
+    `
+		}
 	]
 });
