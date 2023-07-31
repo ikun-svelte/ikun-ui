@@ -103,6 +103,6 @@ let switchVal = false
 
 <KButton on:click={handleNotify}>handleNotify</KButton>
 
-<KSwitch modelValue={switchVal}
-        on:updateModelValue={(v) =>switchVal= v.detail}>
+<KSwitch value={switchVal}
+        on:updateValue={(v) =>switchVal= v.detail}>
 </KSwitch>

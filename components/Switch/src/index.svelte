@@ -2,7 +2,7 @@
 	import { isBool, isNumber, isString } from 'baiwusanyu-utils';
 	import {KIcon} from '@ikun-ui/icon';
 	import { createEventDispatcher, onMount } from 'svelte';
-	export let modelValue:boolean = false;
+	export let value:boolean = false;
 	export let disabled:boolean  = false;
 	export let cls:string = '';
 	export let attrs = {};
@@ -14,7 +14,7 @@
 
 	export let unCheckedColor = '';
 	const dispatch = createEventDispatcher();
-	let innerState = modelValue;
+	let innerState = value;
 	let switching = '';
 	/**
 	 * 切换状态方法
@@ -62,22 +62,22 @@
 	let isUpdateModel = false;
 	const switchState = async () => {
 		// 切换状态
-		const modelValue = setInnerState();
+		const value = setInnerState();
 		emitChangeEvt();
-		dispatch('updateModelValue', modelValue);
+		dispatch('updateValue', value);
 		isUpdateModel = true;
 		await changeClass();
 	};
 
-	let oldModelValue = modelValue;
-	$: if (modelValue !== oldModelValue) {
+	let oldValue = value;
+	$: if (value !== oldValue) {
 		if (isUpdateModel) {
 			isUpdateModel = false;
 		} else {
 			setInnerState();
 			emitChangeEvt();
 		}
-		oldModelValue = modelValue;
+		oldValue = value;
 	}
 	/**
 	 * 点击方法
@@ -97,7 +97,7 @@
 			unCheckedValue !== undefined &&
 			unCheckedValue !== '' &&
 			(isBool(unCheckedValue) || isString(unCheckedValue) || isNumber(unCheckedValue)) &&
-			modelValue === unCheckedValue
+			value === unCheckedValue
 		) {
 			innerState = false;
 			return;
@@ -106,7 +106,7 @@
 			checkedValue !== undefined &&
 			checkedValue !== '' &&
 			(isBool(checkedValue) || isString(checkedValue) || isNumber(checkedValue)) &&
-			modelValue === checkedValue
+			value === checkedValue
 		) {
 			innerState = true;
 			return;

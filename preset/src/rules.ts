@@ -29,5 +29,5 @@ export default [
 	['k-input-shadow', { 'box-shadow': '0 0 0 2px #ff787542' }],
 	['k-icon-transition', { transition: 'all 0.3s linear' }],
 	['k-notify-transition', { transition: 'top 0.3s linear' }],
-	['k-switch-transition', { transition: 'right .1s linear' }],
+	['k-switch-transition', { transition: 'right .1s linear' }]
 ] as Rule<Theme>[];

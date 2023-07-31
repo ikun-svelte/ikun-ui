@@ -56,21 +56,20 @@ export default {
           60% { box-shadow: 0 0 0 4px rgb(255 30 30 / 20%) }
           80% { box-shadow: 0 0 0 6px rgb(255 30 30 / 10%) }
           100% { box-shadow: 0 0 0 8px rgb(255 30 30 / 5%) }
-			}`,
+			}`
 		},
 		durations: {
 			LianYi: '2s',
 			'ikun-checking': '.3s',
-			'ikun-switching': '.3s',
+			'ikun-switching': '.3s'
 		},
 		timingFns: {
 			LianYi: 'linear',
 			'ikun-checking': 'linear',
-			'ikun-switching': 'linear',
+			'ikun-switching': 'linear'
 		},
 		counts: {
 			LianYi: 'infinite'
 		}
-	},
-
+	}
 } as Theme;

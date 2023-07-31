@@ -5,13 +5,13 @@
 	export let icon = '';
 	export let disabled = false;
 	export let placeholder = '';
-	export let modelValue:string | undefined = undefined;
+	export let value:string | undefined = undefined;
 	export let customClass = '';
-	// updateModelValue
+	// updateValue
 	const dispatch = createEventDispatcher();
 	const handleSelect = (e: Event) => {
 		const value = (e.target as HTMLSelectElement).value
-		dispatch('updateModelValue', value)
+		dispatch('updateValue', value)
 	}
 </script>
 
@@ -20,11 +20,11 @@
 >
 	<slot name="icon">
 		{#if icon}
-			<KIcon {icon} customClass="mr-0.4em text-1.1em op50" />
+			<KIcon {icon} cls="mr-0.4em text-1.1em op50" />
 		{/if}
 	</slot>
 	<select
-		bind:value={modelValue}
+		bind:value={value}
 		{disabled}
 		on:change={handleSelect}
 		class="w-full flex-auto !outline-none dark:bg-dark-500"

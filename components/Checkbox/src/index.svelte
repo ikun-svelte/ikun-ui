@@ -7,7 +7,7 @@
 	export let cls = '';
 	export let attrs = {};
 	export let label = '';
-	// updateModelValue
+	// updateValue
 	const dispatch = createEventDispatcher();
 
 	$: valueInner = value;

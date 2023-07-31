@@ -14,7 +14,7 @@ import { popoverShortcuts } from './popover';
 import { modalShortcuts } from './modal';
 import { tagShortcuts } from './tag';
 import { notificationShortcuts } from './notification';
-import {switchShortcuts} from "./swtich";
+import { switchShortcuts } from './swtich';
 // 原子樣式的別名簡寫
 export default [
 	baseShortcuts,
@@ -44,7 +44,7 @@ export default [
 	// notification
 	notificationShortcuts,
 	// switch
-	switchShortcuts,
+	switchShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
