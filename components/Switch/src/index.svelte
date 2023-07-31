@@ -2,12 +2,13 @@
 	import { isBool, isNumber, isString } from 'baiwusanyu-utils';
 	import {KIcon} from '@ikun-ui/icon';
 	import { createEventDispatcher, onMount } from 'svelte';
-	export let modelValue = false;
-	export let disabled = false;
-	export let customClass = '';
-	export let loading = false;
-	export let checkedValue:string | number | boolean;
-	export let unCheckedValue:string | number | boolean;
+	export let modelValue:boolean = false;
+	export let disabled:boolean  = false;
+	export let cls:string = '';
+	export let attrs = {};
+	export let loading:boolean  = false;
+	export let checkedValue:string | number | boolean | undefined = undefined;
+	export let unCheckedValue:string | number | boolean | undefined = undefined;
 
 	export let checkedColor = '';
 
@@ -30,7 +31,7 @@
 	let switchCircleRef:null | HTMLElement = null;
 	const changeClass = () => {
 		return new Promise((resolve) => {
-			switching = 'ui-switching';
+			switching = 'k-switch-tra';
 			if(switchCircleRef){
 				const circleWidth = switchCircleRef.getClientRects()[0].width;
 				switchCircleRef.style.right = innerState ? '2px' : `calc(100% - ${circleWidth}px)`;
@@ -114,63 +115,30 @@
 	onMount(init);
 </script>
 
-<div class=" relative flex items-center cursor-pointer rounded-full w-10 h-5
-  {disabled || loading ? 'ui-disabled-cursor' : ''}
-  {innerState ? `bg-main ${checkedColor}` : `bg-main:40 ${unCheckedColor}`}
+<div class="
+  k-switch--base
+  {disabled || loading ? 'k-switch__disabled' : ''}
+  {innerState ? `k-switch__checked ${checkedColor}`
+  : `k-switch__un_checked ${unCheckedColor}`}
   {switching}
-  {customClass} "
+  {cls} "
    aria-hidden="true"
-	 on:click={handleClick}>
+	 {...attrs}
+   on:click={handleClick}>
 	{#if !innerState}
-		<div class="p1 ml-5">
+		<div class="k-switch-tx__un_checked">
 			<slot name="unCheckedRender" state={innerState} />
 		</div>
 	{/if}
-	<div
-		class="
-    h-4.5
-    w-4.5
-    shadow
-    rounded-full
-    bg-white
-    flex-c
-    absolute
-    right-2px
-    ui-switch-trans"
-		bind:this={switchCircleRef}
-	>
+	<div class="k-switch-circle"
+		bind:this={switchCircleRef}>
 		{#if loading}
-			<KIcon icon="i-carbon-circle-dash" customClass="animate-spin h-4 w-4" />
+			<KIcon icon="i-carbon-circle-dash" cls="k-switch-loading" />
 		{/if}
 	</div>
 	{#if innerState}
-		<div class="p1 mr-5">
+		<div class="k-switch-tx__checked">
 			<slot name="checkedRender" state={innerState} />
 		</div>
 	{/if}
 </div>
-
-<style>
-	@keyframes switching {
-		0% {
-			box-shadow: 0 0 0 2px rgb(255 30 30 / 40%);
-		}
-
-		60% {
-			box-shadow: 0 0 0 4px rgb(255 30 30 / 20%);
-		}
-
-		80% {
-			box-shadow: 0 0 0 6px rgb(255 30 30 / 10%);
-		}
-
-		100% {
-			box-shadow: 0 0 0 8px rgb(255 30 30 / 5%);
-		}
-	}
-
-	.ui-switching {
-		-webkit-animation: switching 0.3s linear;
-		-moz-animation: switching 0.3s linear;
-	}
-</style>

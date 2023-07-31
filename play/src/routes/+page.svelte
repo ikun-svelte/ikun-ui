@@ -11,6 +11,7 @@ import { KTooltip } from '@ikun-ui/tooltip'
 import { KModal } from '@ikun-ui/modal'
 import { KTag } from '@ikun-ui/tag'
 import { Notify } from '@ikun-ui/notify'
+import { KSwitch } from '@ikun-ui/switch'
 import 'virtual:uno.css'
 
 let checked = true
@@ -26,6 +27,8 @@ const handleNotify = () => {
     slot: 'Notify Success'
   })
 }
+
+let switchVal = false
 </script>
 <KButton icon="i-carbon-settings"
          type="info"
@@ -99,3 +102,7 @@ const handleNotify = () => {
 </KTag>
 
 <KButton on:click={handleNotify}>handleNotify</KButton>
+
+<KSwitch modelValue={switchVal}
+        on:updateModelValue={(v) =>switchVal= v.detail}>
+</KSwitch>
