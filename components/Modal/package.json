@@ -28,7 +28,8 @@
 		"@ikun-ui/button": "workspace:*",
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/mask": "workspace:*",
-		"@ikun-ui/utils": "workspace:*"
+		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/clientOnly": "workspace:*"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^4.0.1",

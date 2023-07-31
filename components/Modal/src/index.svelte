@@ -4,8 +4,10 @@
 	import {KButton} from '@ikun-ui/button';
 	import { createEventDispatcher } from 'svelte';
 	import { fly } from 'svelte/transition';
+	import {KClientOnly} from "@ikun-ui/clientOnly";
 	export let show = false;
-	export let customClass = '';
+	export let attrs = {};
+	export let cls = '';
 	export let title = '';
 	export let footer = false;
 	// center、right
@@ -28,41 +30,41 @@
 	};
 </script>
 
-<KMask modelValue={showInner}>
-	<div
-		class="ui-dialog
-            bg-white
-            dark:bg-dark-500
-            dark:shadow
-            dark:shadow-main
-            p-2 origin-center transform -translate-x-1/2 -translate-y-1/2
-            rounded shadow absolute min-w-1/3 left-1/2 top-1/2 {customClass}"
-		out:fly={{ y: -30, duration: 300 }}
-		in:fly={{ y: -30, duration: 300 }}
-	>
-		<slot name="header">
-			<div class="ui-dialog--header flex justify-between items-center h-8 w-full">
-				<h1 class="text-tx dark:text-white font-bold">
-					{title}
-					{showInner}
-				</h1>
-				<KIcon icon="i-carbon-close" on:click={close} isButton colorCls="hover:text-main" />
-			</div>
-		</slot>
-		<div class="ui-dialog--body p2">
-			<slot />
-		</div>
-		{#if footer}
-			<slot name="footer">
-				<div
-					class="ui-dialog--footer w-full p2 flex items-center {layout === 'center'
-						? 'justify-center'
-						: 'justify-end'}"
-				>
-					<KButton customClass="mx-2" on:click={cancel} type="info">Cancel</KButton>
-					<KButton customClass="mx-2" on:click={confirm} type="primary">Confirm</KButton>
+<KClientOnly>
+	<KMask value={showInner}>
+		<div {...attrs}
+			  class="k-modal--base dark:bg-dark-500 dark:shadow dark:shadow-main {cls}"
+			  out:fly={{ y: -30, duration: 300 }}
+			  in:fly={{ y: -30, duration: 300 }}>
+			<slot name="header">
+				<div class="k-modal--header">
+					<h1 class="k-modal--header--title dark:text-white">
+						{title}
+					</h1>
+					<KIcon icon="i-carbon-close"
+						   on:click={close}
+						   btn
+						   color="k-modal--header--icon__hover" />
 				</div>
 			</slot>
-		{/if}
-	</div>
-</KMask>
+			<div class="k-modal--body">
+				<slot />
+			</div>
+			{#if footer}
+				<slot name="footer">
+					<div class="k-modal--footer {layout === 'center'
+						? 'justify-center'
+						: 'justify-end'}">
+						<KButton cls="k-modal--footer--btn"
+								 on:click={cancel}
+								 type="info">Cancel</KButton>
+						<KButton cls="k-modal--footer--btn"
+								 on:click={confirm}
+								 type="primary">Confirm</KButton>
+					</div>
+				</slot>
+			{/if}
+		</div>
+	</KMask>
+</KClientOnly>
+

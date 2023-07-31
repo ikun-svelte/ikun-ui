@@ -8,10 +8,12 @@ import { KEyeDropper } from '@ikun-ui/eyeDropper'
 import { KInput } from '@ikun-ui/input'
 import { KPopover } from '@ikun-ui/popover'
 import { KTooltip } from '@ikun-ui/tooltip'
+import { KModal } from '@ikun-ui/modal'
 import 'virtual:uno.css'
 
 let checked = true
 let openDrawer = false
+let openModal = false
 let inputValue = ''
 </script>
 <KButton icon="i-carbon-settings"
@@ -45,7 +47,7 @@ let inputValue = ''
 </KInput>
 
 <KTooltip content="KTooltip - content" placement="bottom">
-    <KButton type="primary"
+    <KButton type="warning"
              slot="triggerEl">
         KTooltip - trigger
     </KButton>
@@ -53,8 +55,18 @@ let inputValue = ''
 
 <KPopover placement="bottom">
     <span slot="contentEl">KPopover - content</span>
-    <KButton type="primary"
+    <KButton type="error"
              slot="triggerEl">
         KPopover - trigger
     </KButton>
 </KPopover>
+
+<KButton icon="i-carbon-settings"
+         type="success"
+         on:click={() => openModal = true}>
+    KModal
+</KButton>
+
+<KModal show={openModal} title="KModal" on:close={(v) => openModal = v.detail}>
+   <span>KModal</span>
+</KModal>

@@ -4,10 +4,11 @@
 	// hover click manual
 	export let trigger: 'manual' | 'click' | 'hover' = 'hover';
 	export let cls = '';
+	export let attrs = {};
 	export let content = '';
 </script>
 
-<KPopover {cls} {trigger} {placement}>
+<KPopover {cls} {trigger} {placement} {attrs}>
 	<span slot="contentEl">{content}</span>
 	<slot name="triggerEl" slot="triggerEl" />
 </KPopover>
