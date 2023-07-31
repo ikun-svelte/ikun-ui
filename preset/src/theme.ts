@@ -1,11 +1,9 @@
 import type { Theme } from '@unocss/preset-uno';
 
 // 獲得主題顔色，根據主題前綴匹配主題color
-// TODO: 根據主題色設置漣漪
 // TODO: 根據主題色設置dark模式下的陰影
 // TODO: 根據主題色設置滾動條
 // TODO: 根據主題色設置input focus 颜色
-// TODO: 抽离颜色到 light 主题
 export default {
 	colors: {
 		disabled: 'var(--ikun-zinc-200)',
