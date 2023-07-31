@@ -32,7 +32,7 @@ export default [
 	// input
 	inputShortcuts,
 	// popover
-	popoverShortcuts
+	popoverShortcuts,
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {

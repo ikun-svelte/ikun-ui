@@ -6,6 +6,8 @@ import { KCheckbox } from '@ikun-ui/checkbox'
 import { KDrawer } from '@ikun-ui/drawer'
 import { KEyeDropper } from '@ikun-ui/eyeDropper'
 import { KInput } from '@ikun-ui/input'
+import { KPopover } from '@ikun-ui/popover'
+import { KTooltip } from '@ikun-ui/tooltip'
 import 'virtual:uno.css'
 
 let checked = true
@@ -41,3 +43,18 @@ let inputValue = ''
         placeholder="inputValue"
         icon="i-carbon-settings">
 </KInput>
+
+<KTooltip content="KTooltip - content" placement="bottom">
+    <KButton type="primary"
+             slot="triggerEl">
+        KTooltip - trigger
+    </KButton>
+</KTooltip>
+
+<KPopover placement="bottom">
+    <span slot="contentEl">KPopover - content</span>
+    <KButton type="primary"
+             slot="triggerEl">
+        KPopover - trigger
+    </KButton>
+</KPopover>

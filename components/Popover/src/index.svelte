@@ -21,7 +21,7 @@
 			{
 				name: 'flip',
 				options: {
-					fallbackPlacements: ['top', 'right', 'bottom']
+					fallbackPlacements: ['top', 'right', 'bottom', 'left']
 				}
 			}
 		],

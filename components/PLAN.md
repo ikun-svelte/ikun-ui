@@ -14,7 +14,7 @@
 
 # Mask ✅
 
-# Popover ✅
+# Popover 🍺
 
 # clientOnly ✅
 
@@ -22,7 +22,7 @@
 
 # Tag 🍺
 
-# Tooltip 🍺
+# Tooltip ✅
 
 # message 🍺
 
