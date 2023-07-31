@@ -11,7 +11,7 @@ type Extend = {
 };
 export type NotifyComponent = SvelteComponent<NotifyOptions & Extend>;
 export interface NotifyOptions {
-	customClass?: string;
+	cls?: string;
 	close?: boolean;
 	title?: string;
 	type?: NotifyType;
@@ -23,6 +23,7 @@ export interface NotifyOptions {
 	autoClose?: boolean;
 	duration?: number; // just only autoClose = true
 	offset?: number;
+	attrs?: any;
 }
 
 const defaultNotifyOptions: NotifyOptions = {
@@ -98,7 +99,6 @@ function mountNotify(
 			}
 		},
 		context,
-		hydrate: true
 	});
 	NotificationInst.__notify_index = index;
 	NotificationInst.__notify_placment = options.placement;

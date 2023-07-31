@@ -5,8 +5,9 @@
 	import { isFunction, isString } from 'baiwusanyu-utils';
 	type UncertainFunction<T = any> = () => T | void;
 	// right-top left-top right-bottom left-bottom center
-	export let placement = 'right-top';
-	export let customClass = '';
+	export let placement:'right-top' | 'left-top' | 'right-bottom' | 'left-bottom' | 'center' = 'right-top';
+	export let attrs = {};
+	export let cls = '';
 	export let close = false;
 	export let title = '';
 	// info warning error success
@@ -15,32 +16,6 @@
 	export let offset = 0;
 	export let show = false;
 	export let index = 0;
-
-	$: curType = () => {
-		const typeDict = {
-			info: {
-				icon: 'i-carbon-information-filled',
-				color: 'text-info'
-			},
-			warning: {
-				icon: 'i-carbon-warning-filled',
-				color: 'text-warning'
-			},
-			error: {
-				icon: 'i-carbon-error-filled',
-				color: 'text-danger'
-			},
-			success: {
-				icon: 'i-carbon-checkmark-filled',
-				color: 'text-success'
-			}
-		};
-		if(type){
-			return typeDict[type];
-		}else {
-			typeDict['info']
-		}
-	};
 
 	let notificationRef:null | HTMLElement = null;
 	let x = '0';
@@ -123,32 +98,38 @@
 
 {#if show}
 	<div
-		class="ui-notify fixed z-1001 rounded shadow bg-white p2 min-w-240px dark:bg-dark-500 dark:shadow-main {customClass}"
+		class="k-notification--base dark:bg-dark-500 dark:shadow-main {cls}"
 		bind:this={notificationRef}
 		out:fade={{ duration: 200 }}
 		in:fly={flyAnimate.in}
-		style="top: {y}; left: {x}"
-	>
-		<div class="w-full flex items-center justify-between">
+		{...attrs}
+		style="top: {y}; left: {x}">
+		<div class="k-notification--body">
 			{#if slotTitle && isString(slotTitle)}
 				{@html slotTitle}
 			{:else if slotTitle && isFunction(slotTitle)}
 				<svelte:component this={slotTitle} />
 			{:else}
-				<h1 class="flex-c">
+				<h1 class="k-notification--title">
 					{#if type}
-						<KIcon icon={curType()?.icon || ''} on:click={handleClose} colorCls="{curType()?.color} mr-2" />
+						<KIcon icon='k-notification--icon--{type}'
+							   on:click={handleClose}
+							   cls="k-notification--type--icon"
+							   color="k-notification--{type}" />
 					{/if}
 					{title}
 				</h1>
 			{/if}
 
 			{#if close}
-				<KIcon icon="i-carbon-close" isButton on:click={handleClose} colorCls="hover:text-main" />
+				<KIcon icon="i-carbon-close"
+					   btn
+					   on:click={handleClose}
+					   color="k-notification--close--icon" />
 			{/if}
 		</div>
 		{#if slot}
-			<div class="p2 mt-2">
+			<div class="k-notification--content">
 				{#if isString(slot)}
 					{@html slot}
 				{:else if isFunction(slot)}
@@ -158,9 +139,3 @@
 		{/if}
 	</div>
 {/if}
-
-<style>
-	.ui-notify {
-		transition: top linear 0.3s;
-	}
-</style>

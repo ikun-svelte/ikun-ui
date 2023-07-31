@@ -26,7 +26,7 @@
 
 # message 🍺
 
-# notification 🍺
+# notification ✅
 
 # modal ✅
 

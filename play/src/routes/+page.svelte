@@ -10,12 +10,22 @@ import { KPopover } from '@ikun-ui/popover'
 import { KTooltip } from '@ikun-ui/tooltip'
 import { KModal } from '@ikun-ui/modal'
 import { KTag } from '@ikun-ui/tag'
+import { Notify } from '@ikun-ui/notify'
 import 'virtual:uno.css'
 
 let checked = true
 let openDrawer = false
 let openModal = false
 let inputValue = ''
+
+const handleNotify = () => {
+  Notify.success({
+    title: 'Notify Success',
+    duration: 99999,
+    autoClose: true,
+    slot: 'Notify Success'
+  })
+}
 </script>
 <KButton icon="i-carbon-settings"
          type="info"
@@ -87,3 +97,5 @@ let inputValue = ''
 <KTag type="warning">
     warning KTag
 </KTag>
+
+<KButton on:click={handleNotify}>handleNotify</KButton>
