@@ -5,9 +5,9 @@ import type { Theme } from '@unocss/preset-uno';
 // TODO: 根據主題色設置dark模式下的陰影
 // TODO: 根據主題色設置滾動條
 // TODO: 根據主題色設置input focus 颜色
+// TODO: 抽离颜色到 light 主题
 export default {
 	colors: {
-		main: '#ea580c',
 		disabled: 'var(--ikun-zinc-200)',
 
 		primary: 'var(--ikun-teal-400)',
@@ -38,13 +38,6 @@ export default {
 	},
 	animation: {
 		keyframes: {
-			LianYi: `{
-          0% { box-shadow: 0 0 0 2px rgb(255 30 30 / 40%) }
-          10% { box-shadow: 0 0 0 4px rgb(255 30 30 / 30%) }
-          20% { box-shadow: 0 0 0 6px rgb(255 30 30 / 20%) }
-          30% { box-shadow: 0 0 0 8px rgb(255 30 30 / 10%) }
-          50% { box-shadow: 0 0 0 10px rgb(255 30 30 / 0%) }
-          }`,
 			'ikun-checking': `{
 			 		0% { box-shadow: 0 0 0 2px rgb(255 30 30 / 40%) }
           60% { box-shadow: 0 0 0 4px rgb(255 30 30 / 20%) }
@@ -59,17 +52,17 @@ export default {
 			}`
 		},
 		durations: {
-			LianYi: '2s',
 			'ikun-checking': '.3s',
 			'ikun-switching': '.3s'
 		},
 		timingFns: {
-			LianYi: 'linear',
 			'ikun-checking': 'linear',
 			'ikun-switching': 'linear'
-		},
-		counts: {
-			LianYi: 'infinite'
 		}
 	}
 } as Theme;
+
+// TODO
+export const lightTheme = {} as Theme;
+// TODO
+export const darkTheme = {} as Theme;
