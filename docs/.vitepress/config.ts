@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress';
-import { applyPlugins } from './plugins/code'
+import { applyPlugins } from './plugins/code';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
 	title: 'ikun-ui',
@@ -11,11 +11,11 @@ export default defineConfig({
 			{ text: 'Guide', link: '/markdown-examples' },
 			{
 				text: 'Components',
-				items :[
+				items: [
 					{
 						text: 'KIcon',
 						link: 'components/KIcon'
-					},
+					}
 				]
 			},
 			{ text: 'Theme', link: '/markdown-examples' }
@@ -39,7 +39,7 @@ export default defineConfig({
 		},
 		theme: {
 			light: 'vitesse-light',
-			dark: 'vitesse-dark',
-		},
-	},
+			dark: 'vitesse-dark'
+		}
+	}
 });

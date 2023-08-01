@@ -1,2 +1,2 @@
-export const FenceDemoTag = 'vue:demo'
-export const DemoTag = 'demo'
+export const FenceDemoTag = 'vue:demo';
+export const DemoTag = 'demo';

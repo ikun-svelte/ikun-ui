@@ -1,3 +1,3 @@
-import DemoBlock from './src/index.vue'
+import DemoBlock from './src/index.vue';
 
-export default DemoBlock
+export default DemoBlock;

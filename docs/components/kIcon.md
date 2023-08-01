@@ -14,15 +14,19 @@ For more icon information view [@unocss/preset-icons](https://github.com/unocss/
 ## Install
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add @ikun-ui/icon
-  ```
-  ```bash [yarn]
-  yarn add @ikun-ui/icon
-  ```
-  ```bash [npm]
-  npm install @ikun-ui/icon
-  ```
+
+```bash [pnpm]
+pnpm add @ikun-ui/icon
+```
+
+```bash [yarn]
+yarn add @ikun-ui/icon
+```
+
+```bash [npm]
+npm install @ikun-ui/icon
+```
+
 :::
 
 ## Icon Collection
@@ -44,13 +48,12 @@ Use the `icon` attribute to define Icon. In addition,the `color` attribute can b
 
 ## Icon Props
 
-| Name   | Type      | Default | Description                                                |
-|--------|-----------|---------|------------------------------------------------------------|
-| icon   | `string`  | `-`     | The class name of the icon, following the unocss standard  |
-| btn    | `boolean` | `false  | icon as button                                             |
-| width  | `string`  | `24px`  | Icon's width.                                              |
-| height | `string`  | `24px`  | Icon's height.                                             |
-| color  | `string`  | `-`     | Icon's color.                                              |
-| cls    | `string`  | `-`     | Additional class for icons.                                |
-| attrs  | `any`     | `{}`    | Additional attributes for icons.                           |
-
+| Name   | Type      | Default | Description                                               |
+| ------ | --------- | ------- | --------------------------------------------------------- |
+| icon   | `string`  | `-`     | The class name of the icon, following the unocss standard |
+| btn    | `boolean` | `false  | icon as button                                            |
+| width  | `string`  | `24px`  | Icon's width.                                             |
+| height | `string`  | `24px`  | Icon's height.                                            |
+| color  | `string`  | `-`     | Icon's color.                                             |
+| cls    | `string`  | `-`     | Additional class for icons.                               |
+| attrs  | `any`     | `{}`    | Additional attributes for icons.                          |
