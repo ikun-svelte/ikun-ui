@@ -5,10 +5,9 @@ layout: home
 title: ikun-ui
 titleTemplate: fast UnoCSS component library
 
-
 hero:
-  name: "ikun-ui"
-  text: "fast UnoCSS component library"
+  name: 'ikun-ui'
+  text: 'fast UnoCSS component library'
   tagline: A Svelte.js based UnoCSS UI library that allows you to make beautiful websites
   image:
     src: /logo.svg
@@ -36,4 +35,3 @@ features:
     title: Theme Config
     details: Use attribute mode like unocss to design. Support theme config to customize theme.
 ---
-

@@ -1,16 +1,15 @@
-// https://vitepress.dev/guide/custom-theme
+import theme from 'vitepress/theme'
 import { h } from 'vue'
-import Theme from 'vitepress/theme'
+import DemoBlock from '../components/demo-block'
 import './style.css'
+import 'uno.css'
 
 export default {
-  extends: Theme,
-  Layout: () => {
-    return h(Theme.Layout, null, {
-      // https://vitepress.dev/guide/extending-default-theme#layout-slots
-    })
-  },
-  enhanceApp({ app, router, siteData }) {
-    // ...
-  }
+	...theme,
+	enhanceApp({ app }) {
+		app.component('Demo', DemoBlock)
+	},
+	Layout() {
+		return h(theme.Layout)
+	},
 }

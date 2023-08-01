@@ -1,13 +1,22 @@
 {
-  "name": "@ikun-ui/docs",
-  "version": "0.0.2",
-  "scripts": {
-    "init": "npx vitepress init",
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
-  },
-  "devDependencies": {
-    "vitepress": "1.0.0-beta.7"
-  }
+	"name": "@ikun-ui/docs",
+	"version": "0.0.2",
+	"type": "module",
+	"scripts": {
+		"init": "npx vitepress init",
+		"docs:dev": "vitepress dev",
+		"docs:build": "vitepress build",
+		"docs:preview": "vitepress preview"
+	},
+	"dependencies": {
+		"@vueuse/core": "latest"
+	},
+	"devDependencies": {
+		"@sveltejs/vite-plugin-svelte": "^2.4.3",
+		"vitepress": "1.0.0-beta.7",
+		"svelte": "^4.1.2",
+		"svelte-popperjs": "^1.3.2",
+		"fs-extra": "^11.1.1"
+
+	}
 }
