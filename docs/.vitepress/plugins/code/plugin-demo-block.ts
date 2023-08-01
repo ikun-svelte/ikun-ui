@@ -1,25 +1,17 @@
-import { dirname, resolve } from 'node:path';
-import fsExtra from 'fs-extra';
 import { baseParse } from '@vue/compiler-core';
-import type { AttributeNode, ElementNode } from '@vue/compiler-core';
+import type { ElementNode } from '@vue/compiler-core';
 import type { MarkdownRenderer } from 'vitepress';
-import { DemoTag } from './constants';
-import { getDemoComponent } from './utils';
-
-function getPropsMap(attrs: AttributeNode[]) {
-	const map: Record<string, string | undefined> = {};
-	for (const { name, value } of attrs) map[name] = value?.content;
-
-	return map;
-}
-
+import fsExtra from 'fs-extra'
+import { resolve } from 'path'
+const DemoTag = 'demo';
 export function parseProps(content: string) {
 	const ast = baseParse(content);
 	const demoElement = ast.children[0] as ElementNode;
-
-	const props = getPropsMap(demoElement.props as AttributeNode[]);
-
-	return props;
+	const res:Record<string, any> = {}
+	demoElement.props.forEach(v => {
+		res[v.name] = v.value.content
+	})
+	return res
 }
 
 export function demoBlockPlugin(md: MarkdownRenderer) {
@@ -34,26 +26,20 @@ export function demoBlockPlugin(md: MarkdownRenderer) {
 				return defaultRender!(tokens, idx, options, env, self);
 
 			const { path } = env;
+			// parse props
+			const props = parseProps(content)
+			if (!props.src)
+				return defaultRender!(tokens, idx, options, env, self);
 
-			const props = parseProps(content);
+			const filePath = resolve(resolve(path, '../../'), props.src.replaceAll('../', ''))
+			// get source code
+			const code = fsExtra.readFileSync(filePath, 'utf-8')
+			// inject source code
+			if(!content.includes(`<${DemoTag} source=`)){
+				tokens[idx].content = content.replace(`<${DemoTag}`, `<${DemoTag} source="${encodeURIComponent(code.trim())}" `)
+			}
 
-			if (!props.src) return defaultRender!(tokens, idx, options, env, self);
-
-			const frontmatter = env.frontmatter;
-
-			const mdDir = dirname(frontmatter.realPath ?? path);
-			const srcPath = resolve(mdDir, props.src);
-			const code = fsExtra.readFileSync(srcPath, 'utf-8');
-
-			const demoScripts = getDemoComponent(md, env, {
-				title: props.title,
-				desc: props.desc,
-				path: srcPath,
-				code,
-				...props
-			});
-
-			return demoScripts;
+			return defaultRender!(tokens, idx, options, env, self);
 		};
 	};
 

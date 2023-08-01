@@ -40,11 +40,8 @@ Get all icons, try on [icones](https://icones.js.org/)
 
 Use the `icon` attribute to define Icon. In addition,the `color` attribute can be used to set the color of the icon.
 
-```html
-<k-icon color="#646cff" icon="i-carbon-settings"></k-icon>
-```
+<demo src="../../../../example/icon/basic.svelte" github='https://www.github.com'></demo>
 
-<demo src="../../../../example/icon/basic.vue"></demo>
 
 ## Icon Props
 

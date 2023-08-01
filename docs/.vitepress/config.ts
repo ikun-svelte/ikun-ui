@@ -35,7 +35,7 @@ export default defineConfig({
 	},
 	markdown: {
 		config: (md) => {
-			// applyPlugins(md)
+			applyPlugins(md)
 		},
 		theme: {
 			light: 'vitesse-light',

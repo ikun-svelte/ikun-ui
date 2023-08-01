@@ -1,22 +1,67 @@
 <script setup>
-import { defineAsyncComponent, onMounted, ref } from 'vue';
+import {computed, onMounted, ref} from 'vue';
+import { useClipboard } from '@vueuse/core'
+import { Message } from '@ikun-ui/message'
 const props = defineProps({
 	src: {
 		type: String
-	}
+	},
+  github: {
+    type: String
+  },
+  source: {
+    type: String,
+    default: ''
+  }
 });
-let comp = ref({});
+
+let comp = null
+const el = ref();
 onMounted(async () => {
-	comp.value = defineAsyncComponent(() => import(/* @vite-ignore */ props.src));
+	comp = await import(/* @vite-ignore */ props.src)
+  new comp.default({
+    target: el.value
+  });
 });
+const showCode = ref(false)
+const code = computed(() => decodeURIComponent(props.source))
+const { copy } = useClipboard({ source: code.value })
+const handleCopy= () => {
+  copy()
+  Message.success({
+    content: 'Copy successfully! 😊'
+  })
+}
 </script>
 
 <template>
 	<ClientOnly>
-		<div class="mt-6">
-			<div class="k-demo_wrapper vp-raw bg">
-				<component :is="comp"></component>
+		<div class="mt-6 border border-solid p4 rounded border-slate-200">
+			<div>
+				<div ref="el">
+        </div>
 			</div>
+      <div v-if="showCode" class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4">
+        {{code}}
+      </div>
+      <div class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4">
+       <div title='show source code'
+            @click="showCode = !showCode"
+            class="i-carbon-code mx-2 cursor-pointer"
+            style="color: #737373">
+       </div>
+       <div title='copy source code'
+            @click="handleCopy()"
+            class="i-carbon-copy-file mx-2 cursor-pointer"
+            style="color: #737373">
+       </div>
+       <a :href="github" target="_blank" class="mx-2">
+         <div title='open in github'
+              class="i-carbon-logo-github"
+              style="color: #737373">
+         </div>
+       </a>
+      </div>
 		</div>
 	</ClientOnly>
 </template>
