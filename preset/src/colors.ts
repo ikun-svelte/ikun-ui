@@ -1,7 +1,7 @@
 // 主題顔色
 const prefix = '--ikun';
 
-const defaultColors = {
+export const defaultColors = {
 	inherit: 'inherit',
 	current: 'currentColor',
 	transparent: 'transparent',

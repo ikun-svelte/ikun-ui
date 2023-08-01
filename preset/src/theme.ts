@@ -1,10 +1,9 @@
 import type { Theme } from '@unocss/preset-uno';
-
-// 獲得主題顔色，根據主題前綴匹配主題color
+import {extend} from "baiwusanyu-utils";
 // TODO: 根據主題色設置dark模式下的陰影
-// TODO: 根據主題色設置滾動條
+// TODO: how to set scroll bar style ?
 // TODO: 根據主題色設置input focus 颜色
-export default {
+export const defaultTheme = {
 	colors: {
 		disabled: 'var(--ikun-zinc-200)',
 
@@ -31,19 +30,22 @@ export default {
 	fontFamily: {
 		sans: 'Avenir, Helvetica, Arial, sans-serif'
 	},
-	animation: {
+} as Theme;
+
+const setAnimation = (mainColor: string) => {
+	return {
 		keyframes: {
 			'ikun-checking': `{
-			 		0% { box-shadow: 0 0 0 2px rgb(255 30 30 / 40%) }
-          60% { box-shadow: 0 0 0 4px rgb(255 30 30 / 20%) }
-          80% { box-shadow: 0 0 0 6px rgb(255 30 30 / 10%) }
-          100% { box-shadow: 0 0 0 8px rgb(255 30 30 / 5%) }
+			 		0% { box-shadow: 0 0 0 2px rgba(${(mainColor)},0.4)}
+          60% { box-shadow: 0 0 0 4px rgba(${(mainColor)},0.2)}
+          80% { box-shadow: 0 0 0 6px rgba(${(mainColor)},0.1)}
+          100% { box-shadow: 0 0 0 8px rgba(${(mainColor)},0.05)}
 					}`,
 			'ikun-switching': `{
-			 		0% { box-shadow: 0 0 0 2px rgb(255 30 30 / 40%) }
-          60% { box-shadow: 0 0 0 4px rgb(255 30 30 / 20%) }
-          80% { box-shadow: 0 0 0 6px rgb(255 30 30 / 10%) }
-          100% { box-shadow: 0 0 0 8px rgb(255 30 30 / 5%) }
+			 	  0% { box-shadow: 0 0 0 2px rgba(${(mainColor)},0.4)}
+          60% { box-shadow: 0 0 0 4px rgba(${(mainColor)},0.2)}
+          80% { box-shadow: 0 0 0 6px rgba(${(mainColor)},0.1)}
+          100% { box-shadow: 0 0 0 8px rgba(${(mainColor)},0.05)}
 			}`
 		},
 		durations: {
@@ -55,4 +57,10 @@ export default {
 			'ikun-switching': 'linear'
 		}
 	}
-} as Theme;
+}
+
+export const setMainColorToTheme = (theme: Theme, mainColorRGB: string ) => {
+	theme.colors!.main = `rgb(${mainColorRGB})`;
+	theme.animation = extend(theme.animation || {}, setAnimation(mainColorRGB))
+	return theme
+}

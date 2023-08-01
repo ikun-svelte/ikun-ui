@@ -21,7 +21,7 @@ export default defineConfig({
 			}
 		}),
 		presetTypography(),
-		presetIkun(undefined, '#409EFF')
+		presetIkun()
 	],
 	transformers: [transformerDirectives(), transformerVariantGroup()],
 	safelist: [

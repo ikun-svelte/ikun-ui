@@ -1,26 +1,29 @@
 import shortcuts from './shortcuts/index';
-import defaultTheme from './theme';
-import defaultRules from './rules';
+import { setMainColorToTheme, defaultTheme } from './theme';
+import { defaultRules, setMainColorToRules } from './rules';
 import type { Theme } from '@unocss/preset-uno';
-import type { Rule, Preset } from 'unocss';
+import type { Preset } from 'unocss';
+import { hex2rgba } from "@unocss/preset-mini/utils";
 
+const DEFAULT_COLOR = '#f472b6'
 export function presetIkun(
 	name: string = '@ikun-ui/preset',
-	mainColor: string = '#ea580c', // 简单的主题色
+	mainColor: string = DEFAULT_COLOR,
 	theme: Theme = defaultTheme,
-	rules: Rule<Theme>[] = defaultRules
+	rules: Record<string, any> = defaultRules
 ) {
-	theme.colors!.main = mainColor;
+	const mainColorRGBArr = hex2rgba(mainColor) || hex2rgba(DEFAULT_COLOR)
+	const mainColorRGB = mainColorRGBArr!.join(',')
 	return {
 		name,
-		theme,
-		rules,
+		theme: setMainColorToTheme(theme, mainColorRGB),
+		rules: setMainColorToRules(rules, mainColorRGB),
 		shortcuts
 	} as Preset<Theme>;
 }
 
 export { getSafeList } from './shortcuts/index';
-// 导出颜色和主题对象、规则用于定制化主题
-export * from './colors';
-export * from './theme';
-export * from './rules';
+// custom theme: colors + theme + rules
+export { defaultColors as ikunColors, getCSSPreflights }  from './colors';
+export { defaultTheme as ikunTheme } from './theme';
+export { defaultRules as ikunRules } from './rules';
