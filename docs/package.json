@@ -1,4 +1,13 @@
 {
-	"name": "@ikun-ui/docs",
-	"version": "0.0.2"
+  "name": "@ikun-ui/docs",
+  "version": "0.0.2",
+  "scripts": {
+    "init": "npx vitepress init",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "1.0.0-beta.7"
+  }
 }

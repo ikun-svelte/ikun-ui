@@ -1,5 +1,5 @@
 import type { Theme } from '@unocss/preset-uno';
-import {extend} from "baiwusanyu-utils";
+import { extend } from 'baiwusanyu-utils';
 // TODO: 根據主題色設置dark模式下的陰影
 // TODO: how to set scroll bar style ?
 // TODO: 根據主題色設置input focus 颜色
@@ -29,23 +29,23 @@ export const defaultTheme = {
 	},
 	fontFamily: {
 		sans: 'Avenir, Helvetica, Arial, sans-serif'
-	},
+	}
 } as Theme;
 
 const setAnimation = (mainColor: string) => {
 	return {
 		keyframes: {
 			'ikun-checking': `{
-			 		0% { box-shadow: 0 0 0 2px rgba(${(mainColor)},0.4)}
-          60% { box-shadow: 0 0 0 4px rgba(${(mainColor)},0.2)}
-          80% { box-shadow: 0 0 0 6px rgba(${(mainColor)},0.1)}
-          100% { box-shadow: 0 0 0 8px rgba(${(mainColor)},0.05)}
+			 		0% { box-shadow: 0 0 0 2px rgba(${mainColor},0.4)}
+          60% { box-shadow: 0 0 0 4px rgba(${mainColor},0.2)}
+          80% { box-shadow: 0 0 0 6px rgba(${mainColor},0.1)}
+          100% { box-shadow: 0 0 0 8px rgba(${mainColor},0.05)}
 					}`,
 			'ikun-switching': `{
-			 	  0% { box-shadow: 0 0 0 2px rgba(${(mainColor)},0.4)}
-          60% { box-shadow: 0 0 0 4px rgba(${(mainColor)},0.2)}
-          80% { box-shadow: 0 0 0 6px rgba(${(mainColor)},0.1)}
-          100% { box-shadow: 0 0 0 8px rgba(${(mainColor)},0.05)}
+			 	  0% { box-shadow: 0 0 0 2px rgba(${mainColor},0.4)}
+          60% { box-shadow: 0 0 0 4px rgba(${mainColor},0.2)}
+          80% { box-shadow: 0 0 0 6px rgba(${mainColor},0.1)}
+          100% { box-shadow: 0 0 0 8px rgba(${mainColor},0.05)}
 			}`
 		},
 		durations: {
@@ -56,11 +56,11 @@ const setAnimation = (mainColor: string) => {
 			'ikun-checking': 'linear',
 			'ikun-switching': 'linear'
 		}
-	}
-}
+	};
+};
 
-export const setMainColorToTheme = (theme: Theme, mainColorRGB: string ) => {
+export const setMainColorToTheme = (theme: Theme, mainColorRGB: string) => {
 	theme.colors!.main = `rgb(${mainColorRGB})`;
-	theme.animation = extend(theme.animation || {}, setAnimation(mainColorRGB))
-	return theme
-}
+	theme.animation = extend(theme.animation || {}, setAnimation(mainColorRGB));
+	return theme;
+};
