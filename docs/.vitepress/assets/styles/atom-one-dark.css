@@ -1,0 +1,84 @@
+.dark pre code.hljs {
+	display: block;
+	overflow-x: auto;
+	padding: 1em;
+}
+
+.dark code.hljs {
+	padding: 3px 5px;
+}
+
+.dark .hljs {
+	color: #abb2bf;
+	background: #282c34;
+}
+
+.dark .hljs-comment,
+.dark .hljs-quote {
+	color: #5c6370;
+	font-style: italic;
+}
+
+.hljs-doctag,
+.dark .hljs-formula,
+.dark .hljs-keyword {
+	color: #c678dd;
+}
+
+.dark .hljs-deletion,
+.dark .hljs-name,
+.dark .hljs-section,
+.dark .hljs-selector-tag,
+.dark .hljs-subst {
+	color: #e06c75;
+}
+
+.dark .hljs-literal {
+	color: #56b6c2;
+}
+
+.dark .hljs-addition,
+.dark .hljs-attribute,
+.dark .hljs-meta .dark .hljs-string,
+.dark .hljs-regexp,
+.dark .hljs-string {
+	color: #98c379;
+}
+
+.dark .hljs-attr,
+.dark .hljs-number,
+.dark .hljs-selector-attr,
+.dark .hljs-selector-class,
+.dark .hljs-selector-pseudo,
+.dark .hljs-template-variable,
+.dark .hljs-type,
+.dark .hljs-variable {
+	color: #d19a66;
+}
+
+.dark .hljs-bullet,
+.dark .hljs-link,
+.dark .hljs-meta,
+.dark .hljs-selector-id,
+.dark .hljs-symbol,
+.dark .hljs-title {
+	color: #61aeee;
+}
+
+.dark .hljs-built_in,
+.dark .hljs-class .dark .hljs-title,
+.dark .hljs-title.class_ {
+	color: #e6c07b;
+}
+
+.dark .hljs-emphasis {
+	font-style: italic;
+}
+
+.dark .hljs-strong {
+	font-weight: 700;
+}
+
+.dark .hljs-link {
+	text-decoration: underline;
+}

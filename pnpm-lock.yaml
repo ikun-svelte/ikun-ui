@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -546,6 +546,9 @@ importers:
         specifier: latest
         version: 10.3.0(vue@3.3.4)
     devDependencies:
+      '@highlightjs/vue-plugin':
+        specifier: latest
+        version: 2.1.0(highlight.js@11.8.0)(vue@3.3.4)
       '@sveltejs/vite-plugin-svelte':
         specifier: ^2.4.3
         version: 2.4.3(svelte@4.1.2)(vite@4.4.7)
@@ -555,6 +558,9 @@ importers:
       fs-extra:
         specifier: ^11.1.1
         version: 11.1.1
+      highlight.js:
+        specifier: ^11.8.0
+        version: 11.8.0
       svelte:
         specifier: ^4.1.2
         version: 4.1.2
@@ -1363,6 +1369,16 @@ packages:
   /@eslint/js@8.46.0:
     resolution: {integrity: sha512-a8TLtmPi8xzPkCbp/OGFUo5yhRkHM2Ko9kOWP4znJr0WAhWyThaw3PnwX4vOTWOAMsV2uRt32PPDcEz63esSaA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@highlightjs/vue-plugin@2.1.0(highlight.js@11.8.0)(vue@3.3.4):
+    resolution: {integrity: sha512-E+bmk4ncca+hBEYRV2a+1aIzIV0VSY/e5ArjpuSN9IO7wBJrzUE2u4ESCwrbQD7sAy+jWQjkV5qCCWgc+pu7CQ==}
+    peerDependencies:
+      highlight.js: ^11.0.1
+      vue: ^3
+    dependencies:
+      highlight.js: 11.8.0
+      vue: 3.3.4
     dev: true
 
   /@humanwhocodes/config-array@0.11.10:
@@ -3204,6 +3220,11 @@ packages:
 
   /hash-sum@2.0.0:
     resolution: {integrity: sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==}
+    dev: true
+
+  /highlight.js@11.8.0:
+    resolution: {integrity: sha512-MedQhoqVdr0U6SSnWPzfiadUcDHfN/Wzq25AkXiQv9oiOO/sG0S7XkvpFIqWBl9Yq1UYyYOOVORs5UW2XlPyzg==}
+    engines: {node: '>=12.0.0'}
     dev: true
 
   /https-proxy-agent@5.0.1:

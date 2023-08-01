@@ -42,13 +42,12 @@ Use the `icon` attribute to define Icon. In addition,the `color` attribute can b
 
 <demo src="../../../../example/icon/basic.svelte" github='https://www.github.com'></demo>
 
-
 ## Icon Props
 
 | Name   | Type      | Default | Description                                               |
 | ------ | --------- | ------- | --------------------------------------------------------- |
 | icon   | `string`  | `-`     | The class name of the icon, following the unocss standard |
-| btn    | `boolean` | `false  | icon as button                                            |
+| btn    | `boolean` | `false` | icon as button                                            |
 | width  | `string`  | `24px`  | Icon's width.                                             |
 | height | `string`  | `24px`  | Icon's height.                                            |
 | color  | `string`  | `-`     | Icon's color.                                             |
