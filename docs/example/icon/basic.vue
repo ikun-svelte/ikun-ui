@@ -9,9 +9,10 @@ import { KIcon } from "@ikun-ui/icon";
 const el = ref()
 onMounted(async () => {
   new KIcon({
-    target: el,
+    target: el.value,
     props: {
-      icon: 'i-carbon-settings'
+      icon: 'i-carbon-settings',
+      color: 'text-main'
     }
   });
 })

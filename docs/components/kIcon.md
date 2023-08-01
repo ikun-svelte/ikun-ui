@@ -40,7 +40,7 @@ Use the `icon` attribute to define Icon. In addition,the `color` attribute can b
 <k-icon color="#646cff" icon="i-carbon-settings"></k-icon>
 ```
 
-<demo src="../example/icon/basic.vue"></demo>
+<demo src="../../../../example/icon/basic.vue"></demo>
 
 ## Icon Props
 

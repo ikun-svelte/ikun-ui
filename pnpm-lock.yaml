@@ -561,6 +561,9 @@ importers:
       vitepress:
         specifier: 1.0.0-beta.7
         version: 1.0.0-beta.7(@algolia/client-search@4.19.1)(@types/node@20.4.5)(search-insights@2.7.0)
+      vue:
+        specifier: ^3.3.4
+        version: 3.3.4
 
   play:
     devDependencies:
