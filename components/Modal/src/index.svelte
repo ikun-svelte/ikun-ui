@@ -11,7 +11,7 @@
 	export let title = '';
 	export let footer = false;
 	// center、right
-	export let layout = 'center';
+	export let layout:'center' | 'right' = 'center';
 	// close、cancel、confirm
 	const dispatch = createEventDispatcher();
 	$: showInner = show;
@@ -31,16 +31,17 @@
 </script>
 
 <KClientOnly>
-	<KMask value={showInner}>
+	<KMask value={showInner}
+		   target={document.body}>
 		<div {...attrs}
 			  class="k-modal--base k-modal--base__dark {cls}"
 			  out:fly={{ y: -30, duration: 300 }}
 			  in:fly={{ y: -30, duration: 300 }}>
 			<slot name="header">
 				<div class="k-modal--header">
-					<h1 class="k-modal--header--title k-modal--header--title__dark">
+					<span class="k-modal--header--title k-modal--header--title__dark">
 						{title}
-					</h1>
+					</span>
 					<KIcon icon="i-carbon-close"
 						   on:click={close}
 						   btn
