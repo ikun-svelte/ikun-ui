@@ -2,9 +2,7 @@
 import { computed, onMounted, ref } from 'vue';
 import { useClipboard } from '@vueuse/core';
 import { Message } from '@ikun-ui/message';
-import * as hljsVuePlugin from '@highlightjs/vue-plugin';
 import 'highlight.js/lib/common';
-const highlightjs = hljsVuePlugin.component;
 const props = defineProps({
 	src: {
 		type: String
@@ -47,7 +45,7 @@ const handleCopy = () => {
 				v-if="showCode"
 				class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4"
 			>
-				<highlightjs class="k-docs-code" language="html" :code="code" />
+				<highlight class="k-docs-code" language="html" :code="code" />
 			</div>
 			<div
 				class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4"
