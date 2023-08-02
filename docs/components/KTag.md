@@ -33,11 +33,11 @@ Use `type`, `round` and `circle` to define Tag's style.
 
 ## Tag Props
 
-| Name     | Type      | Default                                               | Description                                               |
-| -------- | --------- | ----------------------------------------------------- | --------------------------------------------------------- |
-| type     | `enum`    | `'success' / 'error' / 'warning' / 'info'/ 'primary'` | Tag type                                               |
-| cls      | `string`  | `-`                                                   | Additional class for                                      |
-| attrs    | `any`     | `{}`                                                  | Additional attributes                                     |
+| Name  | Type     | Default                                               | Description           |
+| ----- | -------- | ----------------------------------------------------- | --------------------- |
+| type  | `enum`   | `'success' / 'error' / 'warning' / 'info'/ 'primary'` | Tag type              |
+| cls   | `string` | `-`                                                   | Additional class for  |
+| attrs | `any`    | `{}`                                                  | Additional attributes |
 
 ## Tag Slots
 
