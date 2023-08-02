@@ -27,7 +27,6 @@ npm install @ikun-ui/switch
 
 ## Basic usage
 
-
 <demo src="../../../../example/switch/basic.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Switch"></demo>
 
 ## Disabled switch

@@ -17,7 +17,8 @@
 	],
 	"scripts": {
 		"build": "tsup --config tsup.config.ts",
-		"stub": "tsup --watch --onSuccess \"pnpm run --filter '../' stub\""
+		"stub": "tsup --watch --onSuccess \"pnpm run --filter '../' stub\"",
+		"publish:npm": "pnpm publish --no-git-checks --access public"
 	},
 	"publishConfig": {
 		"access": "public"
