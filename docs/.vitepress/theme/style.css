@@ -80,3 +80,16 @@
 .DocSearch {
 	--docsearch-primary-color: var(--vp-c-brand) !important;
 }
+
+html ::-webkit-scrollbar-track-piece {
+	background: rgba(255, 62, 0, 0.06);
+}
+
+html ::-webkit-scrollbar {
+	width: 8px;
+}
+
+html ::-webkit-scrollbar-thumb {
+	background: rgba(255, 62, 0, 0.38);
+	border-radius: 20px;
+}

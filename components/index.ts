@@ -1,5 +1,5 @@
 export * as KButton from './Button/src/index.svelte';
-//    export * as KCallapse from './Callapse/index.svelte';
+//    export * as KCollapse from './Collapse/index.svelte';
 //    export * as KDrawer from './Drawer/index.svelte';
 //    export * as KCheckbox from './Checkbox/index.svelte';
 //    export * as KEyeDropper from './EyeDropper/index.svelte';

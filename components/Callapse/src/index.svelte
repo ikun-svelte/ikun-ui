@@ -18,8 +18,8 @@
 	else showInner = false;
 </script>
 
-<div class="k-callapse--base {cls}" {...attrs}>
-	<div class="k-callapse--title"
+<div class="k-collapse--base {cls}" {...attrs}>
+	<div class="k-collapse--title"
 		 on:click={showContent}
 		 aria-hidden="true">
 		<slot name="title">
@@ -28,10 +28,10 @@
 		<KIcon icon="i-carbon-chevron-right {showInner ? 'rotate-90' : ''}" />
 	</div>
 	{#if showInner}
-		<div class="k-callapse--content"
+		<div class="k-collapse--content"
 			 out:fly={{ y: 0, duration: 300 }}
 			 in:fly={{ y: -60, duration: 300 }}>
-			<div class="k-callapse--line" />
+			<div class="k-collapse--line" />
 			<slot name="content">{content}</slot>
 		</div>
 	{/if}

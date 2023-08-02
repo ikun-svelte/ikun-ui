@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -11,15 +11,15 @@ importers:
       '@ikun-ui/button':
         specifier: workspace:*
         version: link:components/Button
-      '@ikun-ui/callapse':
-        specifier: workspace:*
-        version: link:components/Callapse
       '@ikun-ui/checkbox':
         specifier: workspace:*
         version: link:components/Checkbox
       '@ikun-ui/client-only':
         specifier: workspace:*
         version: link:components/ClientOnly
+      '@ikun-ui/collapse':
+        specifier: workspace:*
+        version: link:components/Callapse
       '@ikun-ui/drawer':
         specifier: workspace:*
         version: link:components/Drawer

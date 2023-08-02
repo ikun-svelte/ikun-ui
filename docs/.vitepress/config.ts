@@ -1,37 +1,177 @@
 import { defineConfig } from 'vitepress';
 import { applyPlugins } from './plugins/code';
-// https://vitepress.dev/reference/site-config
+
+const guides = [
+	{ text: 'Quick Start', link: '/guide/quick-start' },
+	{ text: 'Installation', link: '/guide/install' },
+	{ text: 'I18n', link: '/guide/i18n' }
+	// { text: 'Changelog', link: '/guide/changelog' },
+];
+
+const components = [
+	{
+		text: 'Basic',
+		collapsed: false,
+		items: [
+			{
+				text: 'Button',
+				link: '/components/KButton'
+			},
+			{
+				text: 'Icon',
+				link: '/components/KIcon'
+			},
+			{
+				text: 'Link',
+				link: '/components/link'
+			}
+		]
+	},
+	{
+		text: 'Form',
+		collapsed: false,
+		items: [
+			{
+				text: 'Checkbox',
+				link: '/components/KCheckbox'
+			},
+			{
+				text: 'Switch',
+				link: '/components/KSwitch'
+			},
+			{
+				text: 'Input',
+				link: '/components/KInput'
+			},
+			{
+				text: 'Select',
+				link: '/components/KSelect'
+			}
+		]
+	},
+	{
+		text: 'Data',
+		collapsed: false,
+		items: [
+			{
+				text: 'Tag',
+				link: '/components/KTag'
+			}
+		]
+	},
+	/*{
+		text: 'Navigation',
+		collapsed: false,
+		items: [
+
+		],
+	},*/
+	{
+		text: 'Feedback',
+		collapsed: false,
+		items: [
+			{
+				text: 'Message',
+				link: '/components/KMessage'
+			},
+			{
+				text: 'Popover',
+				link: '/components/KPopover'
+			},
+			{
+				text: 'ToolTip',
+				link: '/components/KToolTip'
+			},
+			{
+				text: 'Collapse',
+				link: '/components/KCollapse'
+			},
+			{
+				text: 'Drawer',
+				link: '/components/KDrawer'
+			},
+			{
+				text: 'Modal',
+				link: '/components/KModal'
+			}
+		]
+	},
+	{
+		text: 'Other',
+		collapsed: false,
+		items: [
+			{
+				text: 'Mask',
+				link: '/components/KMask'
+			},
+			{
+				text: 'EyeDropper',
+				link: '/components/KEyeDropper'
+			},
+			{
+				text: 'ClientOnly',
+				link: '/components/KClientOnly'
+			}
+		]
+	}
+];
+
+const sidebar = {
+	'/guide': [
+		{
+			text: 'Developer Guide',
+			items: guides
+		}
+	],
+	'/components': components
+};
+
+const head = [
+	['meta', { property: 'og:title', content: 'Onu UI' }],
+	[
+		'meta',
+		{
+			property: 'og:description',
+			content: 'Popular, beautiful and fast UnoCSS component library'
+		}
+	],
+	['meta', { property: 'og:url', content: 'https://github.com/ikun-svelte/ikun-ui' }],
+	['meta', { name: 'referrer', content: 'no-referrer' }],
+	['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
+	[
+		'link',
+		{
+			href: 'https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;400;600&display=swap',
+			rel: 'stylesheet'
+		}
+	],
+	[
+		'link',
+		{
+			href: 'https://gw.alipayobjects.com/os/k/font/lxgwwenkaiscreenr.css',
+			rel: 'stylesheet'
+		}
+	]
+];
+const nav = [
+	{ text: 'Home', link: '/' },
+	{ text: 'Guide', items: guides },
+	{ text: 'Components', items: components },
+	{ text: 'Theme', link: '/markdown-examples' }
+];
 export default defineConfig({
 	title: 'ikun-ui',
 	description: 'Documentation site for ikun-ui',
+	head,
 	themeConfig: {
-		// https://vitepress.dev/reference/default-theme-config
-		nav: [
-			{ text: 'Home', link: '/' },
-			{ text: 'Guide', link: '/markdown-examples' },
-			{
-				text: 'Components',
-				items: [
-					{
-						text: 'KIcon',
-						link: 'components/KIcon'
-					}
-				]
-			},
-			{ text: 'Theme', link: '/markdown-examples' }
-		],
-
-		sidebar: [
-			{
-				text: 'Examples',
-				items: [
-					{ text: 'Markdown Examples', link: '/markdown-examples' },
-					{ text: 'Runtime API Examples', link: '/api-examples' }
-				]
-			}
-		],
-
-		socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }]
+		logo: '/logo.svg',
+		socialLinks: [{ icon: 'github', link: 'https://github.com/ikun-svelte/ikun-ui' }],
+		footer: {
+			message: 'MIT Licensed',
+			copyright: 'Copyright © 2023-present baiwusanyu-c'
+		},
+		nav,
+		sidebar
 	},
 	markdown: {
 		config: (md) => {

@@ -69,7 +69,7 @@
 	},
 	"dependencies": {
 		"@ikun-ui/button": "workspace:*",
-		"@ikun-ui/callapse": "workspace:*",
+		"@ikun-ui/collapse": "workspace:*",
 		"@ikun-ui/checkbox": "workspace:*",
 		"@ikun-ui/client-only": "workspace:*",
 		"@ikun-ui/drawer": "workspace:*",

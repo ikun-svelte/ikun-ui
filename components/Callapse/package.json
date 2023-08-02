@@ -1,5 +1,5 @@
 {
-	"name": "@ikun-ui/callapse",
+	"name": "@ikun-ui/collapse",
 	"version": "0.0.3",
 	"type": "module",
 	"main": "dist/index.js",

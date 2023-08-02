@@ -1,6 +1,6 @@
 /// <reference types="./types" />
-import Callapse from './index.svelte';
+import Collapse from './index.svelte';
 
-export default Callapse;
+export default Collapse;
 
-export { Callapse as KCallapse };
+export { Collapse as KCollapse };

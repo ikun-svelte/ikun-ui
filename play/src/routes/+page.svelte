@@ -1,7 +1,7 @@
 <script lang="ts">
 import { KButton } from '@ikun-ui/button'
 import { KIcon } from '@ikun-ui/icon'
-import { KCallapse } from '@ikun-ui/callapse'
+import { KCollapse } from '@ikun-ui/collapse'
 import { KCheckbox } from '@ikun-ui/checkbox'
 import { KDrawer } from '@ikun-ui/drawer'
 import { KEyeDropper } from '@ikun-ui/eye-dropper'
@@ -38,10 +38,10 @@ let selectVal = ''
     drawer
 </KButton>
 <KIcon icon="i-carbon-settings" btn ></KIcon>
-<KCallapse>
+<KCollapse>
     <span slot="title">title</span>
     <span slot="content">content</span>
-</KCallapse>
+</KCollapse>
 <KCheckbox value={checked}
            on:updateValue={(e) => checked = e.detail}
            label={`${checked}`}>

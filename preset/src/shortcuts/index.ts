@@ -4,7 +4,7 @@ import { baseShortcuts } from './base';
 import { commonShortcuts } from './common';
 import { iconShortcuts } from './icon';
 import { buttonShortcuts } from './button';
-import { callapseShortcuts } from './callapse';
+import { collapseShortcuts } from './collapse';
 import { checkboxShortcuts } from './checkbox';
 import { drawerShortcuts } from './drawer';
 import { maskShortcuts } from './mask';
@@ -24,8 +24,8 @@ export default [
 	iconShortcuts,
 	// button
 	buttonShortcuts,
-	// callapse
-	callapseShortcuts,
+	// collapse
+	collapseShortcuts,
 	// checkbox
 	checkboxShortcuts,
 	// drawer
@@ -53,7 +53,7 @@ export default [
 export function getSafeList() {
 	const iconList = Object.keys(iconShortcuts);
 	const buttonList = Object.keys(buttonShortcuts);
-	const callapseList = Object.keys(callapseShortcuts);
+	const collapseList = Object.keys(collapseShortcuts);
 	const checkboxList = Object.keys(checkboxShortcuts);
 	const drawerList = Object.keys(drawerShortcuts);
 	const inputList = Object.keys(inputShortcuts);
@@ -77,6 +77,6 @@ export function getSafeList() {
 		.concat(maskList)
 		.concat(eyeDropperList)
 		.concat(buttonList)
-		.concat(callapseList)
+		.concat(collapseList)
 		.concat(checkboxList);
 }
