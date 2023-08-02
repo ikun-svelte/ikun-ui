@@ -3,8 +3,8 @@ import { applyPlugins } from './plugins/code';
 
 const guides = [
 	{ text: 'Quick Start', link: '/guide/quick-start' },
-	{ text: 'Installation', link: '/guide/install' },
-	{ text: 'I18n', link: '/guide/i18n' }
+	{ text: 'Installation', link: '/guide/install' }
+	// { text: 'I18n', link: '/guide/i18n' }
 	// { text: 'Changelog', link: '/guide/changelog' },
 ];
 
