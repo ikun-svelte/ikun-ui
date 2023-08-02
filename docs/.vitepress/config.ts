@@ -79,8 +79,8 @@ const components = [
 				link: '/components/KPopover'
 			},
 			{
-				text: 'ToolTip',
-				link: '/components/KToolTip'
+				text: 'Tooltip',
+				link: '/components/KTooltip'
 			},
 			{
 				text: 'Collapse',

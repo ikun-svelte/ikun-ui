@@ -29,27 +29,18 @@ npm install @ikun-ui/button
 ## Basic usage
 Use `type`, `round` and `circle` to define Button's style.
 
-<demo 
-src="../../../../example/button/basic.svelte" 
-github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'>
-</demo>
+<demo src="../../../../example/button/basic.svelte"  github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
 
 ## Disabled Button
 Use `disabled` attribute to determine whether a button is disabled.   
 It accepts a `Boolean` value.  
 
-<demo
-src="../../../../example/button/disabled.svelte"
-github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button' >
-</demo>
+<demo src="../../../../example/button/disabled.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
 
 ## Icon Button
 Use the icon attribute to add icon.
 
-<demo
-src="../../../../example/button/icon.svelte"
-github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button' >
-</demo>
+<demo src="../../../../example/button/icon.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
 
 ## Button Props
 

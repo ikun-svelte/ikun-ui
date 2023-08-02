@@ -5,7 +5,7 @@ import type { Theme } from '@unocss/preset-uno';
 import type { Preset } from 'unocss';
 import { hex2rgba } from '@unocss/preset-mini/utils';
 
-const DEFAULT_COLOR = '#a855f7';
+const DEFAULT_COLOR = '#f8a153';
 export function presetIkun(
 	name: string = '@ikun-ui/preset',
 	mainColor: string = DEFAULT_COLOR,

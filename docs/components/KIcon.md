@@ -40,10 +40,7 @@ Get all icons, try on [icones](https://icones.js.org/)
 
 Use the `icon` attribute to define Icon. In addition,the `color` attribute can be used to set the color of the icon.
 
-<demo 
-src="../../../../example/icon/basic.svelte" 
-github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Icon' >
-</demo>
+<demo src="../../../../example/icon/basic.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Icon'></demo>
 
 ## Icon Props
 
