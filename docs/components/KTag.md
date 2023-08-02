@@ -5,7 +5,7 @@ lang: en-US
 
 # KTag
 
-Commonly used button.
+Tag for categorizing or markup.
 
 ## Install
 
