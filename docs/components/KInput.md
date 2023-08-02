@@ -45,7 +45,7 @@ Disable the input through the disabled attribute
 
 | Name        | Type      | Default | Description                                                      |
 | ----------- | --------- | ------- | ---------------------------------------------------------------- |
-| value       | `string`  | `-`     | binding value                                                    |
+| value       | `string`  | `-`     | Binding value                                                    |
 | iconPrefix  | `string`  | `-`     | The class name of the prefix icon, following the unocss standard |
 | iconPrefix  | `string`  | `-`     | The class name of the suffix icon, following the unocss standard |
 | placeholder | `string`  | `false` | Input's placeholder                                              |

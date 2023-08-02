@@ -44,12 +44,12 @@ Disable the select through the disabled attribute
 ## Select Props
 
 | Name        | Type      | Default | Description                                                      |
-| ----------- | --------- | ------- |------------------------------------------------------------------|
-| value       | `string`  | `-`     | binding value                                                    |
+| ----------- | --------- | ------- | ---------------------------------------------------------------- |
+| value       | `string`  | `-`     | Binding value                                                    |
 | iconPrefix  | `string`  | `-`     | The class name of the prefix icon, following the unocss standard |
 | iconPrefix  | `string`  | `-`     | The class name of the suffix icon, following the unocss standard |
 | placeholder | `string`  | `false` | Select's placeholder                                             |
-| disabled    | `boolean` | `false` | Disable the Select                                                |
+| disabled    | `boolean` | `false` | Disable the Select                                               |
 | cls         | `string`  | `-`     | Additional class                                                 |
 | attrs       | `any`     | `{}`    | Additional attributes                                            |
 
@@ -61,8 +61,8 @@ Disable the select through the disabled attribute
 
 ## Select Slots
 
-| Name   | Description                    |
-| ------ | ------------------------------ |
+| Name   | Description                     |
+| ------ | ------------------------------- |
 | prefix | Customize select prefix content |
 | suffix | Customize select suffix content |
 
