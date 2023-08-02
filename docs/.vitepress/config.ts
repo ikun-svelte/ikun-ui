@@ -21,10 +21,6 @@ const components = [
 				text: 'Icon',
 				link: '/components/KIcon'
 			},
-			{
-				text: 'Link',
-				link: '/components/link'
-			}
 		]
 	},
 	{
@@ -70,6 +66,10 @@ const components = [
 		text: 'Feedback',
 		collapsed: false,
 		items: [
+			{
+				text: 'Notification',
+				link: '/components/KNotification'
+			},
 			{
 				text: 'Message',
 				link: '/components/KMessage'

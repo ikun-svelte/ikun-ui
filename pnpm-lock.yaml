@@ -19,7 +19,7 @@ importers:
         version: link:components/ClientOnly
       '@ikun-ui/collapse':
         specifier: workspace:*
-        version: link:components/Callapse
+        version: link:components/Collapse
       '@ikun-ui/drawer':
         specifier: workspace:*
         version: link:components/Drawer
@@ -185,28 +185,6 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
 
-  components/Callapse:
-    dependencies:
-      '@ikun-ui/icon':
-        specifier: workspace:*
-        version: link:../Icon
-      '@ikun-ui/utils':
-        specifier: workspace:*
-        version: link:../../utils
-    devDependencies:
-      '@tsconfig/svelte':
-        specifier: ^4.0.1
-        version: 4.0.1
-      svelte-strip:
-        specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.26)(svelte@4.0.0-next.3)
-      tslib:
-        specifier: ^2.6.1
-        version: 2.6.1
-      typescript:
-        specifier: ^5.1.6
-        version: 5.1.6
-
   components/Checkbox:
     dependencies:
       '@ikun-ui/icon':
@@ -230,6 +208,28 @@ importers:
         version: 5.1.6
 
   components/ClientOnly:
+    dependencies:
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@ikun-ui/utils':
+        specifier: workspace:*
+        version: link:../../utils
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: ^4.0.1
+        version: 4.0.1
+      svelte-strip:
+        specifier: ^2.0.0
+        version: 2.0.0(postcss@8.4.26)(svelte@4.0.0-next.3)
+      tslib:
+        specifier: ^2.6.1
+        version: 2.6.1
+      typescript:
+        specifier: ^5.1.6
+        version: 5.1.6
+
+  components/Collapse:
     dependencies:
       '@ikun-ui/icon':
         specifier: workspace:*
