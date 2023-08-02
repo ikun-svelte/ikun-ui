@@ -1,6 +1,8 @@
 export const buttonShortcuts: Record<string, string> = {
 	// button
 	'k-button--base': 'rounded k-border cursor-pointer f-c px-2 py-1 text-base',
+	'k-button--circle': '!rounded-full p-2',
+
 	'k-button--primary': 'bg-primary-100 text-primary border-primary-100 hover:border-primary',
 	'k-button--primary__active': 'active:border-primary active:k-btn-shadow--primary',
 	'k-button--primary__focus': 'focus-visible:border-primary focus-visible:k-btn-shadow--primary',

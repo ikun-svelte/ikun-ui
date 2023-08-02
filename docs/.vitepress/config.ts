@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress';
+import {defineConfig, HeadConfig} from 'vitepress';
 import { applyPlugins } from './plugins/code';
 
 const guides = [
@@ -152,7 +152,7 @@ const head = [
 			rel: 'stylesheet'
 		}
 	]
-];
+] as HeadConfig[];
 const nav = [
 	{ text: 'Home', link: '/' },
 	{ text: 'Guide', items: guides },

@@ -4,6 +4,8 @@
 	import type { IKunTypePro } from '@ikun-ui/utils';
 	export let to = false;
 	export let icon = '';
+	export let round = '';
+	export let circle = false;
 	export let cls = '';
 	export let attrs = {};
 	export let type:IKunTypePro = 'primary';
@@ -19,6 +21,7 @@
 		if (!to && !disabled) dispatch('click', e);
 	};
 
+	// TODO a tag document and impl
 	$: tag = to ? 'a' : 'button';
 
 </script>
@@ -27,6 +30,7 @@
 	this={tag}
 	aria-hidden="true"
 	on:click={handleClick}
+	style = "border-radius: { round ? `${round}` : '4'}px"
 	{...attrs}
 	class="
         k-button--base
@@ -34,11 +38,16 @@
         k-button--{type}__active
         k-button--{type}__focus
         {disabled ? 'k-cur-disabled' : ''}
+        {circle ? 'k-button--circle' : ''}
         {cls}">
 	{#if icon}
-		<KIcon {icon}
-			   color={`k-button--${type}__icon`}
-			   cls="mr-2" />
+		<KIcon {icon} color={`k-button--${type}__icon`}/>
 	{/if}
-	<slot />
+
+	{#if $$slots.default && icon}
+		<div class="ml-2"/>
+	{/if}
+
+	<slot/>
+
 </svelte:element>

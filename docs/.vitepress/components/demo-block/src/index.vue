@@ -39,7 +39,7 @@ const handleCopy = () => {
 
 <template>
 	<ClientOnly>
-		<div class="mt-6 border border-solid p4 rounded border-slate-200">
+		<div class="mt-6 border border-solid py-4 px-2 rounded border-slate-200">
 			<div>
 				<div ref="el"></div>
 			</div>

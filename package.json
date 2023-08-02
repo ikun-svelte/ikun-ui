@@ -49,6 +49,7 @@
 		"build": "pnpm run build:preset && pnpm run build:components",
 		"build:docs": "pnpm run --filter @ikun-ui/docs docs:build",
 		"build:preset": "pnpm run --filter @ikun-ui/preset build",
+		"build:utils": "pnpm run --filter @ikun-ui/utils build",
 		"build:components": "esno scripts/build.js",
 		"build:playground": "",
 		"test": "npm run test:integration && npm run test:unit",
