@@ -2,7 +2,7 @@
 import { computed, onMounted, ref } from 'vue';
 import { useClipboard } from '@vueuse/core';
 import { Message } from '@ikun-ui/message';
-import hljsVuePlugin from '@highlightjs/vue-plugin';
+import * as hljsVuePlugin from '@highlightjs/vue-plugin';
 import 'highlight.js/lib/common';
 const highlightjs = hljsVuePlugin.component;
 const props = defineProps({

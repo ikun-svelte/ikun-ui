@@ -66,14 +66,14 @@ const components = [
 		text: 'Feedback',
 		collapsed: false,
 		items: [
-			{
+			/*{
 				text: 'Notification',
 				link: '/components/KNotification'
 			},
 			{
 				text: 'Message',
 				link: '/components/KMessage'
-			},
+			},*/
 			{
 				text: 'Popover',
 				link: '/components/KPopover'
@@ -117,12 +117,12 @@ const components = [
 ];
 
 const sidebar = {
-	'/guide': [
+	/*'/guide': [
 		{
 			text: 'Developer Guide',
 			items: guides
 		}
-	],
+	],*/
 	'/components': components
 };
 
@@ -155,7 +155,7 @@ const head = [
 ] as HeadConfig[];
 const nav = [
 	{ text: 'Home', link: '/' },
-	{ text: 'Guide', items: guides },
+	// { text: 'Guide', items: guides },
 	{ text: 'Components', items: components },
 	{ text: 'Theme', link: '/markdown-examples' }
 ];
