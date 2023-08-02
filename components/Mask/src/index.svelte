@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onDestroy, tick } from 'svelte';
 	import { fade } from 'svelte/transition';
+	export let color = '';
 	export let attrs = {};
 	export let cls = '';
 	export let value = false;
@@ -76,7 +77,11 @@
 		{...attrs}
 		out:fade={{ duration: 300 }}
 		in:fade={{ duration: 300 }}
-		style="top:{drawerTop}px;left:{drawerLeft}px;width:{drawerWidth};height:{drawerHeight}"
+		style:top="{drawerTop}px"
+		style:left="{drawerLeft}px"
+		style:width="{drawerWidth}"
+		style:height="{drawerHeight}"
+		style={color ? `background-color: ${color}` : ''}
 		class="k-mask--base {cls}">
 		<slot />
 	</div>

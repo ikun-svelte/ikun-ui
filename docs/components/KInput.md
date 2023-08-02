@@ -55,7 +55,7 @@ Disable the input through the disabled attribute
 ## Input Events
 
 | Name    | Description                             | Type                                     |
-| ------- | --------------------------------------- |------------------------------------------|
+| ------- | --------------------------------------- | ---------------------------------------- |
 | input   | Event fired on input                    | `(value: HTMLInputElement.value)=> void` |
 | enter   | Event fired when `enter` is pressed     | `(value: Event)=> void`                  |
 | keydown | Event fired when `keyboard` is pressed  | `(value: Event)=> void`                  |
@@ -63,7 +63,7 @@ Disable the input through the disabled attribute
 
 ## Input Slots
 
-| Name   | Description                         |
-|--------|-------------------------------------|
+| Name   | Description                    |
+| ------ | ------------------------------ |
 | prefix | Customize input prefix content |
-| suffix | Customize input suffix content  |
+| suffix | Customize input suffix content |
