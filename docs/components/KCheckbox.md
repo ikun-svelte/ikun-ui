@@ -39,16 +39,16 @@ Set the `disabled` attribute.
 
 ## Checkbox Props
 
-| Name       | Type        | Default   | Description                       |
-|------------|-------------|-----------|-----------------------------------|
-| label      | `string`    | `-`       | Value of the Checkbox             |
-| disabled   | `boolean`   | `false`   | Whether the Checkbox is disabled  |
-| value      | `boolean`   | `false`   | binding value                     |
-| cls        | `string`    | `-`       | Additional class                  |
-| attrs      | `any`       | `{}`      | Additional attributes             |
+| Name     | Type      | Default | Description                      |
+| -------- | --------- | ------- | -------------------------------- |
+| label    | `string`  | `-`     | Value of the Checkbox            |
+| disabled | `boolean` | `false` | Whether the Checkbox is disabled |
+| value    | `boolean` | `false` | binding value                    |
+| cls      | `string`  | `-`     | Additional class                 |
+| attrs    | `any`     | `{}`    | Additional attributes            |
 
 ## Checkbox Events
 
-| Name         | Description                            | Type                   |
-|--------------|----------------------------------------|------------------------|
-| updateValue  | Event fired when the `value` is changes | `(value: Event)=> void` |
+| Name        | Description                             | Type                    |
+| ----------- | --------------------------------------- | ----------------------- |
+| updateValue | Event fired when the `value` is changes | `(value: Event)=> void` |

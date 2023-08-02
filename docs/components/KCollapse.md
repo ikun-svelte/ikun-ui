@@ -39,23 +39,23 @@ You can render content through slots
 
 ## Collapse Props
 
-| Name     | Type      | Default | Description                    |
-|----------|-----------|---------|--------------------------------|
-| title    | `string`  | `-`     | content of Collapse Item title |
-| content  | `string`  | `-`     | content of Collapse Item       |
-| show     | `boolean` | `false` | expand the Collapse            |
-| cls      | `string`  | `-`     | Additional class               |
-| attrs    | `any`     | `{}`    | Additional attributes          |
+| Name    | Type      | Default | Description                    |
+| ------- | --------- | ------- | ------------------------------ |
+| title   | `string`  | `-`     | content of Collapse Item title |
+| content | `string`  | `-`     | content of Collapse Item       |
+| show    | `boolean` | `false` | expand the Collapse            |
+| cls     | `string`  | `-`     | Additional class               |
+| attrs   | `any`     | `{}`    | Additional attributes          |
 
 ## Collapse Events
 
-| Name     | Description                            | Type                   |
-|----------|----------------------------------------|------------------------|
-| change    | Event fired when the `show` is changes | `(show: Event)=> void` |
+| Name   | Description                            | Type                   |
+| ------ | -------------------------------------- | ---------------------- |
+| change | Event fired when the `show` is changes | `(show: Event)=> void` |
 
 ## Collapse Slots
 
 | Name    | Description                           |
-|---------|---------------------------------------|
+| ------- | ------------------------------------- |
 | title   | Customize Collapse Item title content |
 | content | Customize Collapse Item content       |

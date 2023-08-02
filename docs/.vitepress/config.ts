@@ -1,4 +1,4 @@
-import {defineConfig, HeadConfig} from 'vitepress';
+import { defineConfig, HeadConfig } from 'vitepress';
 import { applyPlugins } from './plugins/code';
 
 const guides = [
@@ -20,7 +20,7 @@ const components = [
 			{
 				text: 'Icon',
 				link: '/components/KIcon'
-			},
+			}
 		]
 	},
 	{

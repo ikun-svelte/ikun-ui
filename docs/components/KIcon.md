@@ -44,12 +44,12 @@ Use the `icon` attribute to define Icon. In addition,the `color` attribute can b
 
 ## Icon Props
 
-| Name   | Type      | Default | Description                                              |
-| ------ | --------- | ------- |----------------------------------------------------------|
+| Name   | Type      | Default | Description                                               |
+| ------ | --------- | ------- | --------------------------------------------------------- |
 | icon   | `string`  | `-`     | The class name of the icon, following the unocss standard |
-| btn    | `boolean` | `false` | icon as button                                           |
-| width  | `string`  | `24px`  | Icon's width                                             |
-| height | `string`  | `24px`  | Icon's height                                            |
-| color  | `string`  | `-`     | Icon's color                                             |
-| cls    | `string`  | `-`     | Additional class                               |
-| attrs  | `any`     | `{}`    | Additional attributes                           |
+| btn    | `boolean` | `false` | icon as button                                            |
+| width  | `string`  | `24px`  | Icon's width                                              |
+| height | `string`  | `24px`  | Icon's height                                             |
+| color  | `string`  | `-`     | Icon's color                                              |
+| cls    | `string`  | `-`     | Additional class                                          |
+| attrs  | `any`     | `{}`    | Additional attributes                                     |
