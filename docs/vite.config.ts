@@ -10,12 +10,10 @@ export default defineConfig({
 			name: 'compatible:svelte:kit',
 			post: 'pre',
 			resolveId(id: string) {
-				if(id === '$app/environment')
-					return '\0$app/environment'
+				if (id === '$app/environment') return '\0$app/environment';
 			},
 			load(id: string) {
-				if(id === '\0$app/environment')
-					return 'export const browser = true'
+				if (id === '\0$app/environment') return 'export const browser = true';
 			}
 		} as Plugin
 	]

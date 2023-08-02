@@ -50,9 +50,15 @@
 	}
 
 	const reset = () => {
-		const parentEl = getParentEle()
-		parentEl.style.overflow = ''
-		parentEl.style.position = ''
+		if (!target){
+			const parentEl = getParentEle()
+			parentEl.style.overflow = ''
+			parentEl.style.position = ''
+		}else {
+			target.style.overflow = ''
+			target.style.position = ''
+		}
+
 		window.removeEventListener('resize', updatedPosition);
 	};
 	onDestroy(reset);
