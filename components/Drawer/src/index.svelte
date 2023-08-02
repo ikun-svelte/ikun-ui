@@ -22,11 +22,10 @@
 			 {...attrs}
 			 out:fly={{ duration: 250, x: isRight ? 200 : -200 }}
 			 in:fly={{ duration: 250, x: isRight ? 200 : -200 }}>
-			<div class="k-drawer--op">
+			<div class="k-drawer--op {isRight ? 'justify-start' : 'justify-end'}">
 				<KIcon
 						icon={isRight ? 'i-carbon-chevron-right' : 'i-carbon-chevron-left'}
 						color="hover:text-main"
-						cls={isRight ? 'justify-start' : 'justify-end'}
 						on:click={toggleClose}
 						btn
 				/>
