@@ -31,16 +31,15 @@ Call the `eyedropper` interface by using `scoped slots`
 
 <demo src="../../../../example/eye-dropper/basic.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/EyeDropper"></demo>
 
-
 ## EyeDropper Props
 
-| Name      | Type                 | Default | Description                                   |
-| --------- | -------------------- | ------- | --------------------------------------------- |
-| cls       | `string`             | `-`     | Additional class                              |
-| attrs     | `any`                | `{}`    | Additional attributes                         |
+| Name  | Type     | Default | Description           |
+| ----- | -------- | ------- | --------------------- |
+| cls   | `string` | `-`     | Additional class      |
+| attrs | `any`    | `{}`    | Additional attributes |
 
 ## EyeDropper Slots
 
-| Name    | Description                                                                         |
-| ------- |-------------------------------------------------------------------------------------|
+| Name    | Description                                                                                          |
+| ------- | ---------------------------------------------------------------------------------------------------- |
 | default | The element that triggers the eyedropper.The scope parameter is { `sRGBHex`, `open`, `isSupported` } |

@@ -46,7 +46,7 @@
 		"dev:docs": "pnpm run --filter @ikun-ui/docs docs:dev",
 		"dev:playground": "",
 		"play": "pnpm run --filter @ikun-ui/play dev",
-		"build": "pnpm run build:preset && pnpm run build:components",
+		"build": "pnpm run build:preset && pnpm run build:components && pnpm run build:utils",
 		"build:docs": "pnpm run --filter @ikun-ui/docs docs:build",
 		"build:preset": "pnpm run --filter @ikun-ui/preset build",
 		"build:utils": "pnpm run --filter @ikun-ui/utils build",

@@ -41,7 +41,7 @@ Set the `disabled` attribute.
 
 | Name     | Type      | Default | Description                      |
 | -------- | --------- | ------- | -------------------------------- |
-| label    | `string`  | `-`     | Value of the Checkbox            |
+| label    | `string`  | `-`     | Label of the Checkbox            |
 | disabled | `boolean` | `false` | Whether the Checkbox is disabled |
 | value    | `boolean` | `false` | binding value                    |
 | cls      | `string`  | `-`     | Additional class                 |
