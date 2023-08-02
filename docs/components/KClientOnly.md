@@ -33,19 +33,18 @@ npm install @ikun-ui/client-only
 
 ```html
 <script>
-    import { KClientOnly } from '@ikun-ui/client-only'
-    import { KTooltip } from '@ikun-ui/tooltip'
+	import { KClientOnly } from '@ikun-ui/client-only';
+	import { KTooltip } from '@ikun-ui/tooltip';
 </script>
 <KClientOnly>
-    <KTooltip content="KTooltip content">
-        <p>KTooltip trigger dom</p>
-    </KTooltip>
+	<KTooltip content="KTooltip content">
+		<p>KTooltip trigger dom</p>
+	</KTooltip>
 </KClientOnly>
-
 ```
 
 ## ClientOnly Slots
 
-| Name    | Description                           |
-|---------| ------------------------------------- |
+| Name    | Description                                 |
+| ------- | ------------------------------------------- |
 | default | Components that only run on the client side |
