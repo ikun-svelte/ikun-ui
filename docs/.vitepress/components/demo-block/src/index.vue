@@ -2,7 +2,6 @@
 import { computed, onMounted, ref } from 'vue';
 import { useClipboard } from '@vueuse/core';
 import { Message } from '@ikun-ui/message';
-import 'highlight.js/lib/common';
 const modules = import.meta.glob('../../../../example/**/*.svelte');
 const props = defineProps({
 	src: {
@@ -46,7 +45,7 @@ const handleCopy = () => {
 				v-if="showCode"
 				class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4"
 			>
-				<highlight class="k-docs-code" language="html" :code="code" />
+				<highlight-code class="k-docs-code" language="html" :code="code" />
 			</div>
 			<div
 				class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4"

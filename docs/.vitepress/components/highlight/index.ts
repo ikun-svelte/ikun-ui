@@ -1,6 +1,5 @@
 import { ref, h, computed, defineComponent, Plugin, watch } from 'vue';
-import hljs from 'highlight.js/lib/core';
-
+import hljs from 'highlight.js';
 export function escapeHtml(value: string): string {
 	return value
 		.replace(/&/g, '&amp;')

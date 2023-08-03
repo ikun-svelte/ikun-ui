@@ -9,7 +9,7 @@ export default {
 	...theme,
 	enhanceApp({ app }) {
 		app.component('Demo', DemoBlock);
-		app.component('highlight', highlight);
+		app.component('highlight-code', highlight);
 	},
 	Layout() {
 		return h(theme.Layout);
