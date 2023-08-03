@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -539,63 +539,6 @@ importers:
 
   docs:
     dependencies:
-      '@ikun-ui/button':
-        specifier: workspace:*
-        version: link:../components/Button
-      '@ikun-ui/checkbox':
-        specifier: workspace:*
-        version: link:../components/Checkbox
-      '@ikun-ui/client-only':
-        specifier: workspace:*
-        version: link:../components/ClientOnly
-      '@ikun-ui/collapse':
-        specifier: workspace:*
-        version: link:../components/Collapse
-      '@ikun-ui/drawer':
-        specifier: workspace:*
-        version: link:../components/Drawer
-      '@ikun-ui/eye-dropper':
-        specifier: workspace:*
-        version: link:../components/EyeDropper
-      '@ikun-ui/icon':
-        specifier: workspace:*
-        version: link:../components/Icon
-      '@ikun-ui/input':
-        specifier: workspace:*
-        version: link:../components/Input
-      '@ikun-ui/mask':
-        specifier: workspace:*
-        version: link:../components/Mask
-      '@ikun-ui/message':
-        specifier: workspace:*
-        version: link:../components/Message
-      '@ikun-ui/modal':
-        specifier: workspace:*
-        version: link:../components/Modal
-      '@ikun-ui/notify':
-        specifier: workspace:*
-        version: link:../components/Notification
-      '@ikun-ui/popover':
-        specifier: workspace:*
-        version: link:../components/Popover
-      '@ikun-ui/preset':
-        specifier: workspace:*
-        version: link:../preset
-      '@ikun-ui/select':
-        specifier: workspace:*
-        version: link:../components/Select
-      '@ikun-ui/switch':
-        specifier: workspace:*
-        version: link:../components/Switch
-      '@ikun-ui/tag':
-        specifier: workspace:*
-        version: link:../components/Tag
-      '@ikun-ui/tooltip':
-        specifier: workspace:*
-        version: link:../components/Tooltip
-      '@ikun-ui/utils':
-        specifier: workspace:*
-        version: link:../utils
       '@vueuse/core':
         specifier: ^10.3.0
         version: 10.3.0(vue@3.3.4)
