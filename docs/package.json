@@ -9,11 +9,10 @@
 		"docs:preview": "vitepress preview"
 	},
 	"dependencies": {
-		"@vueuse/core": "^10.3.0",
 		"@ikun-ui/button": "0.0.4",
-		"@ikun-ui/collapse": "0.0.4",
 		"@ikun-ui/checkbox": "0.0.4",
 		"@ikun-ui/client-only": "0.0.4",
+		"@ikun-ui/collapse": "0.0.4",
 		"@ikun-ui/drawer": "0.0.4",
 		"@ikun-ui/eye-dropper": "0.0.4",
 		"@ikun-ui/icon": "0.0.4",
@@ -28,17 +27,22 @@
 		"@ikun-ui/switch": "0.0.4",
 		"@ikun-ui/tag": "0.0.4",
 		"@ikun-ui/tooltip": "0.0.4",
-		"@ikun-ui/utils": "0.0.4"
+		"@ikun-ui/utils": "0.0.4",
+		"@vueuse/core": "^10.3.0"
 	},
 	"devDependencies": {
-		"baiwusanyu-utils": "^1.0.14",
+		"@iconify-json/carbon": "^1.1.18",
 		"@sveltejs/vite-plugin-svelte": "^2.4.3",
-		"vitepress": "1.0.0-beta.7",
-		"svelte": "^4.1.2",
-		"vue": "^3.3.4",
+		"@unocss/preset-mini": "^0.54.1",
+		"@unocss/preset-uno": "^0.54.1",
 		"@vue/compiler-core": "^3.3.4",
-		"svelte-popperjs": "^1.3.2",
+		"baiwusanyu-utils": "^1.0.14",
 		"fs-extra": "^11.1.1",
-		"highlight.js": "^11.8.0"
+		"highlight.js": "^11.8.0",
+		"svelte": "^4.1.2",
+		"svelte-popperjs": "^1.3.2",
+		"vite": "^4.4.8",
+		"vitepress": "1.0.0-beta.7",
+		"vue": "^3.3.4"
 	}
 }

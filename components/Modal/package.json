@@ -32,7 +32,7 @@
 		"@ikun-ui/utils": "workspace:*"
 	},
 	"devDependencies": {
-		"@tsconfig/svelte": "^4.0.1",
+		"@tsconfig/svelte": "^5.0.0",
 		"svelte-strip": "^2.0.0",
 		"tslib": "^2.6.1",
 		"typescript": "^5.1.6"
