@@ -540,61 +540,61 @@ importers:
   docs:
     dependencies:
       '@ikun-ui/button':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Button
       '@ikun-ui/checkbox':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Checkbox
       '@ikun-ui/client-only':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/ClientOnly
       '@ikun-ui/collapse':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Collapse
       '@ikun-ui/drawer':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Drawer
       '@ikun-ui/eye-dropper':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/EyeDropper
       '@ikun-ui/icon':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Icon
       '@ikun-ui/input':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Input
       '@ikun-ui/mask':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Mask
       '@ikun-ui/message':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Message
       '@ikun-ui/modal':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Modal
       '@ikun-ui/notify':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Notification
       '@ikun-ui/popover':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Popover
       '@ikun-ui/preset':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../preset
       '@ikun-ui/select':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Select
       '@ikun-ui/switch':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Switch
       '@ikun-ui/tag':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Tag
       '@ikun-ui/tooltip':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../components/Tooltip
       '@ikun-ui/utils':
-        specifier: 0.0.4
+        specifier: workspace:*
         version: link:../utils
       '@vueuse/core':
         specifier: ^10.3.0
