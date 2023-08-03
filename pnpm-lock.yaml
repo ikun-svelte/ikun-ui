@@ -141,9 +141,6 @@ importers:
       svelte-check:
         specifier: ^3.4.6
         version: 3.4.6(postcss@8.4.26)(svelte@4.1.2)
-      svelte-preprocess:
-        specifier: latest
-        version: 5.0.4(postcss@8.4.26)(svelte@4.1.2)(typescript@5.1.6)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -543,61 +540,61 @@ importers:
   docs:
     dependencies:
       '@ikun-ui/button':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Button
       '@ikun-ui/checkbox':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Checkbox
       '@ikun-ui/client-only':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/ClientOnly
       '@ikun-ui/collapse':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Collapse
       '@ikun-ui/drawer':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Drawer
       '@ikun-ui/eye-dropper':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/EyeDropper
       '@ikun-ui/icon':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Icon
       '@ikun-ui/input':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Input
       '@ikun-ui/mask':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Mask
       '@ikun-ui/message':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Message
       '@ikun-ui/modal':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Modal
       '@ikun-ui/notify':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Notification
       '@ikun-ui/popover':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Popover
       '@ikun-ui/preset':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../preset
       '@ikun-ui/select':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Select
       '@ikun-ui/switch':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Switch
       '@ikun-ui/tag':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Tag
       '@ikun-ui/tooltip':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../components/Tooltip
       '@ikun-ui/utils':
-        specifier: latest
+        specifier: 0.0.4
         version: link:../utils
       '@vueuse/core':
         specifier: ^10.3.0
@@ -609,6 +606,9 @@ importers:
       '@vue/compiler-core':
         specifier: ^3.3.4
         version: 3.3.4
+      baiwusanyu-utils:
+        specifier: ^1.0.14
+        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
       fs-extra:
         specifier: ^11.1.1
         version: 11.1.1
