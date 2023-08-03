@@ -1,5 +1,5 @@
 <script>
-    import { KModal } from '@ikun-ui/Modal'
+    import { KModal } from '@ikun-ui/modal'
     import {KButton} from "@ikun-ui/button";
     let show = false
 </script>
