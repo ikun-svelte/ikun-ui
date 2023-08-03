@@ -9,9 +9,29 @@
 		"docs:preview": "vitepress preview"
 	},
 	"dependencies": {
-		"@vueuse/core": "^10.3.0"
+		"@vueuse/core": "^10.3.0",
+		"@ikun-ui/button": "latest",
+		"@ikun-ui/collapse": "latest",
+		"@ikun-ui/checkbox": "latest",
+		"@ikun-ui/client-only": "latest",
+		"@ikun-ui/drawer": "latest",
+		"@ikun-ui/eye-dropper": "latest",
+		"@ikun-ui/icon": "latest",
+		"@ikun-ui/input": "latest",
+		"@ikun-ui/mask": "latest",
+		"@ikun-ui/message": "latest",
+		"@ikun-ui/modal": "latest",
+		"@ikun-ui/notify": "latest",
+		"@ikun-ui/popover": "latest",
+		"@ikun-ui/preset": "latest",
+		"@ikun-ui/select": "latest",
+		"@ikun-ui/switch": "latest",
+		"@ikun-ui/tag": "latest",
+		"@ikun-ui/tooltip": "latest",
+		"@ikun-ui/utils": "latest"
 	},
 	"devDependencies": {
+		"baiwusanyu-utils": "^1.0.14",
 		"@sveltejs/vite-plugin-svelte": "^2.4.3",
 		"vitepress": "1.0.0-beta.7",
 		"svelte": "^4.1.2",
