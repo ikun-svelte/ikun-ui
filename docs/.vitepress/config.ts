@@ -162,7 +162,7 @@ const nav = [
 export default defineConfig({
 	title: 'ikun-ui',
 	description: 'Documentation site for ikun-ui',
-	/*head,
+	head,
 	themeConfig: {
 		logo: '/logo.svg',
 		socialLinks: [{ icon: 'github', link: 'https://github.com/ikun-svelte/ikun-ui' }],
@@ -181,5 +181,5 @@ export default defineConfig({
 			light: 'vitesse-light',
 			dark: 'vitesse-dark'
 		}
-	}*/
+	}
 });

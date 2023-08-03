@@ -7,7 +7,7 @@ import {
 	transformerDirectives,
 	transformerVariantGroup
 } from 'unocss';
-// import { presetIkun, getCSSPreflights, getSafeList } from '@ikun-ui/preset';
+import { presetIkun, getCSSPreflights, getSafeList } from '@ikun-ui/preset';
 export default defineConfig({
 	presets: [
 		presetWind(),
@@ -22,12 +22,12 @@ export default defineConfig({
 		}),
 		presetTypography(),
 		// kun
-		// presetIkun()
+		presetIkun()
 	],
 	transformers: [transformerDirectives(), transformerVariantGroup()],
 	safelist: [
 		// kun
-		// ...getSafeList()
+		...getSafeList()
 	],
 	preflights: [
 		// kun
@@ -35,10 +35,10 @@ export default defineConfig({
 			layer: 'base',
 			getCSS: () => `
     :root {
-     
+      ${getCSSPreflights()}
     }
     :root.dark {
-     
+      ${getCSSPreflights()}
     }
     button,select,input,option {
       outline: none;
