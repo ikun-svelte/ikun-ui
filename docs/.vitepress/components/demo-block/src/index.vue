@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue';
 import { useClipboard } from '@vueuse/core';
 import { Message } from '@ikun-ui/message';
 import 'highlight.js/lib/common';
+const modules = import.meta.glob('../../../../example/**/*.svelte')
 const props = defineProps({
 	src: {
 		type: String
@@ -19,7 +20,7 @@ const props = defineProps({
 let comp = null;
 const el = ref();
 onMounted(async () => {
-	comp = await import(/* @vite-ignore */ props.src);
+	comp = await modules[props.src]();
 	new comp.default({
 		target: el.value
 	});
