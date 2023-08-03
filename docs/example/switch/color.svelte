@@ -5,7 +5,7 @@
         value = e.detail
     }
 </script>
-<div class="flex items-center">
+<div class="flex items-center flex-wrap">
     <KSwitch value={value}
              checkedColor="bg-sky-500"
              unCheckedColor="bg-green-500"

@@ -2,7 +2,7 @@
     import { KPopover } from '@ikun-ui/popover'
     import {KButton} from "@ikun-ui/button";
 </script>
-<div class="flex items-center">
+<div class="flex items-center flex-wrap">
     <KPopover trigger="click">
         <KButton slot="triggerEl" cls="mx-2"> click</KButton>
         <div slot="contentEl" class="flex flex-col">

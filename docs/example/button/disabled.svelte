@@ -2,7 +2,7 @@
     import { KButton } from '@ikun-ui/button'
 </script>
 
-<div class="flex items-center justify-between">
+<div class="flex items-center justify-between flex-wrap">
     <KButton icon="i-carbon-settings"
            type="info"
            disabled
@@ -35,7 +35,7 @@
     </KButton>
 </div>
 
-<div class="flex items-center mt-2">
+<div class="flex items-center mt-2 flex-wrap">
     <KButton icon="i-carbon-settings"
              type="info"
              disabled

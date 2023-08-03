@@ -5,7 +5,7 @@
         value = e.detail
     }
 </script>
-<div class="flex items-center">
+<div class="flex items-center flex-wrap">
     <KSwitch value={value} on:updateValue = {handleUpdate} />
     <span class="ml-2">{value}</span>
 </div>

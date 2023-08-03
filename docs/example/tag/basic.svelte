@@ -2,7 +2,7 @@
     import { KTag } from '@ikun-ui/tag'
 </script>
 
-<div class="flex items-center ">
+<div class="flex items-center flex-wrap">
     <KTag type="info" cls="mx-2">
         info
     </KTag>

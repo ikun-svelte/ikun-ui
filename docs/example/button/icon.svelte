@@ -2,7 +2,7 @@
     import { KButton } from '@ikun-ui/button'
 </script>
 
-<div class="flex items-center ">
+<div class="flex items-center flex-wrap">
     <KButton icon="i-carbon-settings"
            type="primary"
            cls="mx-2">

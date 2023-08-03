@@ -1,7 +1,7 @@
 <script>
     import { KIcon } from '@ikun-ui/icon'
 </script>
-<div class="flex justify-center items-center">
+<div class="flex justify-center items-center flex-wrap">
     <KIcon icon="i-carbon-settings"
            color="text-main"
            cls="mx-2">

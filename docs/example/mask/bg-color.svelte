@@ -3,7 +3,7 @@
     import { KButton } from '@ikun-ui/button'
     let show = false
 </script>
-<div class="flex justify-center items-center">
+<div class="flex justify-center items-center flex-wrap">
     <KButton on:click={() => show = true}>open mask</KButton>
     <KMask target={document.body}
            color="rgba(255, 119, 7, 0.4)"
