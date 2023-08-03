@@ -1,7 +1,11 @@
 import { log, setGlobalPrefix } from 'baiwusanyu-utils';
 import { deleteAsync } from 'del';
 
-const PKGS_NODE_MODULES = ['components/**/node_modules', 'play/**/node_modules', 'dos/**/node_modules'];
+const PKGS_NODE_MODULES = [
+	'components/**/node_modules',
+	'play/**/node_modules',
+	'dos/**/node_modules'
+];
 async function doCleanDeps() {
 	// set log prefix
 	setGlobalPrefix('[ikun-ui]: ');

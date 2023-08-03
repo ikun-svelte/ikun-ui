@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from 'vue';
 import { useClipboard } from '@vueuse/core';
 import { Message } from '@ikun-ui/message';
 import 'highlight.js/lib/common';
-const modules = import.meta.glob('../../../../example/**/*.svelte')
+const modules = import.meta.glob('../../../../example/**/*.svelte');
 const props = defineProps({
 	src: {
 		type: String
