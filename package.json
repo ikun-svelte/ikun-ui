@@ -1,26 +1,27 @@
 {
 	"name": "ikun-ui",
-	"description": "",
+	"description": "A Svelte.js based UnoCSS UI library that allows you to make beautiful websites",
 	"type": "module",
 	"version": "0.0.4",
 	"keywords": [
+		"svelte",
+		"svelte3",
 		"web component",
 		"component",
 		"react",
 		"vue",
-		"svelte",
 		"svelte-kit",
 		"dx"
 	],
 	"license": "MIT",
 	"author": "baiwusanyu-c",
-	"homepage": "https://github.com/baiwusanyu-c/ikun-ui#readme",
+	"homepage": "https://github.com/ikun-svelte/ikun-ui#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/baiwusanyu-c/ikun-ui.git"
+		"url": "git+https://github.com/ikun-svelte/ikun-ui.git"
 	},
 	"bugs": {
-		"url": "https://github.com/baiwusanyu-c/ikun-ui/issues"
+		"url": "https://github.com/ikun-svelte/ikun-ui/issues"
 	},
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",

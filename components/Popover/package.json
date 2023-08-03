@@ -9,11 +9,12 @@
 	"keywords": [
 		"svelte",
 		"svelte3",
-		"material-ui",
-		"material-design",
-		"material",
-		"svelte-components",
-		"sveltejs"
+		"web component",
+		"component",
+		"react",
+		"vue",
+		"svelte-kit",
+		"dx"
 	],
 	"scripts": {
 		"build": "npm run build:js && npm run build:svelte",
