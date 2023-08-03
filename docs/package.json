@@ -5,11 +5,30 @@
 	"scripts": {
 		"init": "npx vitepress init",
 		"docs:dev": "vitepress dev",
-		"docs:build": "vitepress build",
+		"docs:build": "cd ../ && pnpm run build && cd docs && vitepress build",
 		"docs:preview": "vitepress preview"
 	},
 	"dependencies": {
-		"@vueuse/core": "^10.3.0"
+		"@vueuse/core": "^10.3.0",
+		"@ikun-ui/button": "workspace:*",
+		"@ikun-ui/checkbox": "workspace:*",
+		"@ikun-ui/client-only": "workspace:*",
+		"@ikun-ui/collapse": "workspace:*",
+		"@ikun-ui/drawer": "workspace:*",
+		"@ikun-ui/eye-dropper": "workspace:*",
+		"@ikun-ui/icon": "workspace:*",
+		"@ikun-ui/input": "workspace:*",
+		"@ikun-ui/mask": "workspace:*",
+		"@ikun-ui/message": "workspace:*",
+		"@ikun-ui/modal": "workspace:*",
+		"@ikun-ui/notify": "workspace:*",
+		"@ikun-ui/popover": "workspace:*",
+		"@ikun-ui/preset": "workspace:*",
+		"@ikun-ui/select": "workspace:*",
+		"@ikun-ui/switch": "workspace:*",
+		"@ikun-ui/tag": "workspace:*",
+		"@ikun-ui/tooltip": "workspace:*",
+		"@ikun-ui/utils": "workspace:*"
 	},
 	"devDependencies": {
 		"@iconify-json/carbon": "^1.1.18",
