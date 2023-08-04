@@ -8,16 +8,16 @@ import { hex2rgba } from '@unocss/preset-mini/utils';
 const DEFAULT_COLOR = '#f8a153';
 export function presetIkun(
 	name: string = '@ikun-ui/preset',
-	mainColor: string = DEFAULT_COLOR,
+	themeColor: string = DEFAULT_COLOR,
 	theme: Theme = defaultTheme,
 	rules: Record<string, any> = defaultRules
 ) {
-	const mainColorRGBArr = hex2rgba(mainColor) || hex2rgba(DEFAULT_COLOR);
-	const mainColorRGB = mainColorRGBArr!.join(',');
+	const themeColorRGBArr = hex2rgba(themeColor) || hex2rgba(DEFAULT_COLOR);
+	const themeColorRGB = themeColorRGBArr!.join(',');
 	return {
 		name,
-		theme: setMainColorToTheme(theme, mainColorRGB),
-		rules: setMainColorToRules(rules, mainColorRGB),
+		theme: setMainColorToTheme(theme, themeColorRGB),
+		rules: setMainColorToRules(rules, themeColorRGB),
 		shortcuts
 	} as Preset<Theme>;
 }

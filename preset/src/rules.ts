@@ -1,6 +1,6 @@
-import type { Rule, RuleContext } from 'unocss'
+import type { Rule, RuleContext } from 'unocss';
 import type { Theme } from '@unocss/preset-uno';
-import { parseColor } from '@unocss/preset-mini/utils'
+import { parseColor } from '@unocss/preset-mini/utils';
 /* const SwitchSizeMap = {
 	sm: ['2rem', '1.125rem', '0.85rem'],
 	md: ['2.5rem', '1.375rem', '1.1rem'],
@@ -37,9 +37,9 @@ export const defaultRules = {
 	...switchRules
 } as Record<string, any>;
 
-export const setMainColorToRules = (rules: Record<string, any>, mainColorRGB: string) => {
+export const setMainColorToRules = (rules: Record<string, any>, themeColorRGB: string) => {
 	// set main color to input shadow
-	rules['k-input-shadow'] = { 'box-shadow': `0 0 0 2px rgb(${mainColorRGB}, 0.5)` };
+	rules['k-input-shadow'] = { 'box-shadow': `0 0 0 2px rgb(${themeColorRGB}, 0.5)` };
 	// transform rule
 	const finalRules: Array<Array<Record<string, any>>> = [];
 	Object.keys(rules).forEach((name) => {
@@ -47,19 +47,20 @@ export const setMainColorToRules = (rules: Record<string, any>, mainColorRGB: st
 		finalRules.push(rule);
 	});
 
-
-	finalRules.push([/:([0-9]|[1-9][0-9]|100)$/, ([, body]: string[], { theme }: RuleContext<Theme>)=>{
-		const color = parseColor(body, theme)
-		if (color?.cssColor?.type === 'rgb' && color.cssColor.components) {
-			return {
-				'--ikun-context': `${color.cssColor.components.join(',')}`,
+	/*finalRules.push([
+		/:([0-9]|[1-9][0-9]|100)$/,
+		([, body]: string[], { theme }: RuleContext<Theme>) => {
+			const color = parseColor(body, theme);
+			if (color?.cssColor?.type === 'rgb' && color.cssColor.components) {
+				return {
+					'--ikun-context': `${color.cssColor.components.join(',')}`
+				};
+			} else {
+				return {
+					'--ikun-context': color?.color
+				};
 			}
 		}
-		else {
-			return {
-				'--ikun-context': color?.color,
-			}
-		}
-	}])
+	]);*/
 	return finalRules as Rule<Theme>[];
 };

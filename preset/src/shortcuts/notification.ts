@@ -1,6 +1,7 @@
 export const notificationShortcuts: Record<string, string> = {
 	// notification
-	'k-notification--base': 'k-notify-transition fixed z-1001 rounded shadow bg-ikun-white p2 min-w-240px',
+	'k-notification--base':
+		'k-notify-transition fixed z-1001 rounded shadow bg-ikun-white p2 min-w-240px',
 	'k-notification--body': 'fbc w-full',
 	'k-notification--title': 'fcc text-lg text-ikun-tx-base my-0',
 	'k-notification--type--icon': 'mr-2',

@@ -7,7 +7,6 @@ const guides = [
 	// { text: 'I18n', link: '/guide/i18n' }
 	// { text: 'Changelog', link: '/guide/changelog' },
 ];
-
 const components = [
 	{
 		text: 'Basic',
@@ -108,6 +107,16 @@ const components = [
 		]
 	}
 ];
+const theme = [
+	{
+		text: 'Basic',
+		link: '/theme/Basic'
+	},
+	{
+		text: 'Advanced',
+		link: '/theme/Advanced'
+	}
+];
 
 const sidebar = {
 	'/guide': [
@@ -116,7 +125,8 @@ const sidebar = {
 			items: guides
 		}
 	],
-	'/components': components
+	'/components': components,
+	'/theme': theme
 };
 
 const head = [
@@ -150,7 +160,7 @@ const nav = [
 	{ text: 'Home', link: '/' },
 	{ text: 'Guide', items: guides },
 	{ text: 'Components', items: components },
-	{ text: 'Theme', link: '/markdown-examples' }
+	{ text: 'Theme', items: theme }
 ];
 export default defineConfig({
 	title: 'ikun-ui',
