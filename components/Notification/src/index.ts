@@ -87,30 +87,22 @@ const resolveNotifyOptions = (options: NotifyOptions) => {
 		onClose: options.onClose
 	};
 
-	const context = new Map();
-	context.set('title', options.title);
-	context.set('content', options.content);
-
 	const finalOptions = {
 		...defaultNotifyOptions,
 		...options
 	};
 
 	Reflect.deleteProperty(finalOptions, 'onClose');
-	Reflect.deleteProperty(finalOptions, 'content');
-	Reflect.deleteProperty(finalOptions, 'title');
 
 	return {
 		finalOptions,
-		evt,
-		context
+		evt
 	};
 };
 
 function mountNotify(
 	options: NotifyOptions,
 	evt: Record<string, any>,
-	context: Map<string, string | SvelteComponent>
 ) {
 	const notifyArray = notifyMap[options.placement || 'right-top'];
 	let index = 0;
@@ -137,8 +129,7 @@ function mountNotify(
 				);
 				evt.onClose && evt.onClose();
 			}
-		},
-		context
+		}
 	});
 	NotificationInst.__notify_index = index;
 	NotificationInst.__notify_placment = options.placement;
@@ -185,32 +176,32 @@ function updatedNotifyByIndex(placement: NotifyPlacement) {
 }
 
 function NotifyFn(options: NotifyOptions) {
-	const { finalOptions, evt, context } = resolveNotifyOptions(options);
-	return mountNotify(finalOptions, evt, context);
+	const { finalOptions, evt } = resolveNotifyOptions(options);
+	return mountNotify(finalOptions, evt);
 }
 
 NotifyFn.info = (options: NotifyOptions = {}) => {
 	options.type = 'info';
-	const { finalOptions, evt, context } = resolveNotifyOptions(options);
-	return mountNotify(finalOptions, evt, context);
+	const { finalOptions, evt } = resolveNotifyOptions(options);
+	return mountNotify(finalOptions, evt);
 };
 
 NotifyFn.warning = (options: NotifyOptions = {}) => {
 	options.type = 'warning';
-	const { finalOptions, evt, context } = resolveNotifyOptions(options);
-	return mountNotify(finalOptions, evt, context);
+	const { finalOptions, evt } = resolveNotifyOptions(options);
+	return mountNotify(finalOptions, evt);
 };
 
 NotifyFn.error = (options: NotifyOptions = {}) => {
 	options.type = 'error';
-	const { finalOptions, evt, context } = resolveNotifyOptions(options);
-	return mountNotify(finalOptions, evt, context);
+	const { finalOptions, evt } = resolveNotifyOptions(options);
+	return mountNotify(finalOptions, evt);
 };
 
 NotifyFn.success = (options: NotifyOptions = {}) => {
 	options.type = 'success';
-	const { finalOptions, evt, context } = resolveNotifyOptions(options);
-	return mountNotify(finalOptions, evt, context);
+	const { finalOptions, evt } = resolveNotifyOptions(options);
+	return mountNotify(finalOptions, evt);
 };
 
 NotifyFn.clear = async (inst: NotifyComponent) => {

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { KIcon } from '@ikun-ui/icon';
 	import { fly, type FlyParams, fade } from 'svelte/transition';
-	import { tick, getContext } from 'svelte';
+	import { tick } from 'svelte';
 	import { isFunction, isString } from 'baiwusanyu-utils';
 	type UncertainFunction<T = any> = () => T | void;
 	// right-top left-top right-bottom left-bottom center
@@ -15,6 +15,9 @@
 	export let offset = 0;
 	export let show = false;
 	export let index = 0;
+
+	export let title: any = ''
+	export let content: any = ''
 
 	let notificationRef:null | HTMLElement = null;
 	let x = '0';
@@ -91,8 +94,6 @@
 	const handleClose = () => {
 		onClose && onClose();
 	};
-	const title: any = getContext('title');
-	const content:string | any = getContext('content');
 </script>
 
 {#if show}
