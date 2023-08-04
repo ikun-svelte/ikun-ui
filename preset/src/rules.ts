@@ -1,6 +1,6 @@
-import type { Rule } from 'unocss';
+import type { Rule, RuleContext } from 'unocss'
 import type { Theme } from '@unocss/preset-uno';
-
+import { parseColor } from '@unocss/preset-mini/utils'
 /* const SwitchSizeMap = {
 	sm: ['2rem', '1.125rem', '0.85rem'],
 	md: ['2.5rem', '1.375rem', '1.1rem'],
@@ -46,5 +46,20 @@ export const setMainColorToRules = (rules: Record<string, any>, mainColorRGB: st
 		const rule = [name, rules[name]];
 		finalRules.push(rule);
 	});
+
+
+	finalRules.push([/:([0-9]|[1-9][0-9]|100)$/, ([, body]: string[], { theme }: RuleContext<Theme>)=>{
+		const color = parseColor(body, theme)
+		if (color?.cssColor?.type === 'rgb' && color.cssColor.components) {
+			return {
+				'--ikun-context': `${color.cssColor.components.join(',')}`,
+			}
+		}
+		else {
+			return {
+				'--ikun-context': color?.color,
+			}
+		}
+	}])
 	return finalRules as Rule<Theme>[];
 };

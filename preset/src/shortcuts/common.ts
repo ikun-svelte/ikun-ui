@@ -5,7 +5,6 @@ export const commonShortcuts: Record<string, string> = {
 	'p-c': 'pa top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
 	'f-c': 'flex justify-center items-center',
 	'f-c-c': 'f-c flex-col',
-
 	fc: 'flex justify-center',
 	fi: 'flex items-center',
 	fcc: 'flex justify-center items-center',
@@ -20,5 +19,6 @@ export const commonShortcuts: Record<string, string> = {
 	fac: 'flex justify-around items-center',
 	fw: 'flex justify-wrap',
 	fwr: 'flex justify-wrap-reverse',
-	infsc: 'inline-flex justify-start items-center'
+	infsc: 'inline-flex justify-start items-center',
+	'bdt-1':'border-t-1 border-l-0 border-b-0 border-r-0',
 };

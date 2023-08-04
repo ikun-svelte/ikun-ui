@@ -1,12 +1,12 @@
 export const selectShortcuts: Record<string, string> = {
 	// select
-	'k-select--base': 'fi k-border border-bd-base rounded px-2 py-1',
+	'k-select--base': 'fi k-border border-ikun-bd-base rounded px-2 py-1',
 	'k-select--base__disabled': 'k-bg-disabled k-cur-disabled',
-	'k-select__hover': 'hover:border-main',
-	'k-select__focus': 'focus-within:border-main focus-within:k-input-shadow',
+	'k-select__hover': 'hover:border-ikun-main',
+	'k-select__focus': 'focus-within:border-ikun-main focus-within:k-input-shadow',
 	'k-select--prefix': 'mr-0.4em text-1.1em op50',
 	'k-select--suffix': 'ml-0.4em text-1.1em op50',
 	'k-select--inner': 'w-full flex-auto !outline-none border-transparent text-base',
 	// dark
-	'k-select--inner__dark': 'dark:bg-dark-500'
+	'k-select--inner__dark': 'dark:bg-ikun-dark-500'
 };
