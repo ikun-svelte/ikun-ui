@@ -1,12 +1,7 @@
 import Notification from './index.svelte';
 import type { SvelteComponent } from 'svelte';
-import type {
-	NotifyOptions,
-	NotifyComponent,
-	NotifyPlacement
-} from './types'
-export * from './types'
-
+import type { NotifyOptions, NotifyComponent, NotifyPlacement } from './types';
+export * from './types';
 
 const defaultNotifyOptions: NotifyOptions<SvelteComponent> = {
 	placement: 'right-top',
@@ -84,7 +79,8 @@ function mountNotify(options: NotifyOptions<SvelteComponent>, evt: Record<string
 
 async function autoUnmountNotify(
 	options: NotifyOptions<SvelteComponent>,
-	inst: NotifyComponent<SvelteComponent>) {
+	inst: NotifyComponent<SvelteComponent>
+) {
 	if (options.autoClose) {
 		await durationUnmountNotify(options.placement || 'right-top', inst, options.duration || 0);
 	}
@@ -100,7 +96,11 @@ async function durationUnmountNotify(
 	}, duration);
 }
 
-async function unmountNotify(placement: NotifyPlacement, inst: NotifyComponent<SvelteComponent>, duration: number) {
+async function unmountNotify(
+	placement: NotifyPlacement,
+	inst: NotifyComponent<SvelteComponent>,
+	duration: number
+) {
 	inst.$set({ show: false });
 	setTimeout(() => {
 		notifyMap[placement].splice(inst.__notify_index, 1);
@@ -159,7 +159,8 @@ NotifyFn.clearAll = () => {
 
 NotifyFn.update = async (
 	inst: NotifyComponent<SvelteComponent>,
-	options: NotifyOptions<SvelteComponent> = {}) => {
+	options: NotifyOptions<SvelteComponent> = {}
+) => {
 	inst.$set({ ...options });
 };
 

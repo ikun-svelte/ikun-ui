@@ -72,7 +72,7 @@ You can render content through slots
 | close     | `boolean`                                                   | `false`     | Whether the message can be closed manually                                         |
 | autoClose | `boolean`                                                   | `false`     | Whether the message is automatically closed                                        |
 | duration  | `number`                                                    | `3000`      | Message's auto-close timing (only when `autoClose = true`) takes effect            |
-| onClose   | `UncertainFunction`                                         | `-`         | The callback method when the message is closed                                     |
+| onClose   | `IKunUncertainFunction`                                     | `-`         | The callback method when the message is closed                                     |
 | type      | `'info' / 'warning'  'error' / 'success'`                   | `-`         | The emotion category of the message                                                |
 | offset    | `number`                                                    | `0`         | Message is offset on the y-axis                                                    |
 | title     | `string / SvelteComponent`                                  | `-`         | The title content of the message, which can be a html string or a svelte component |

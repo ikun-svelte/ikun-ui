@@ -72,7 +72,7 @@ You can render content through slots
 | close     | `boolean`                                                   | `false`     | Whether the notification can be closed manually                                         |
 | autoClose | `boolean`                                                   | `false`     | Whether the notification is automatically closed                                        |
 | duration  | `number`                                                    | `3000`      | Notification's auto-close timing (only when `autoClose = true`) takes effect            |
-| onClose   | `UncertainFunction`                                         | `-`         | The callback method when the notification is closed                                     |
+| onClose   | `IKunUncertainFunction`                                     | `-`         | The callback method when the notification is closed                                     |
 | type      | `'info' / 'warning'  'error' / 'success'`                   | `-`         | The emotion category of the notification                                                |
 | offset    | `number`                                                    | `0`         | Notification is offset on the y-axis                                                    |
 | title     | `string / SvelteComponent`                                  | `-`         | The title content of the notification, which can be a html string or a svelte component |

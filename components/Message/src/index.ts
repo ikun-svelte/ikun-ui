@@ -1,11 +1,7 @@
-import {
-	KNotify,
-	type NotifyOptions,
-	type NotifyComponent
-} from '@ikun-ui/notify';
-import type { MessageOptions } from './types'
+import { KNotify, type NotifyOptions, type NotifyComponent } from '@ikun-ui/notify';
+import type { MessageOptions } from './types';
 import type { SvelteComponent } from 'svelte';
-export * from './types'
+export * from './types';
 
 const resolveMessageOptions = (options: MessageOptions<SvelteComponent>) => {
 	const OptionsRes = {
@@ -44,7 +40,8 @@ MsgFn.clearAll = KNotify.clearAll;
 
 MsgFn.update = async (
 	inst: NotifyComponent<SvelteComponent>,
-	options: MessageOptions<SvelteComponent> = {}) => {
+	options: MessageOptions<SvelteComponent> = {}
+) => {
 	KNotify.update(inst, resolveMessageOptions(options));
 };
 

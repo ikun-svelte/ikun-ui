@@ -1,8 +1,9 @@
 <script lang="ts">
 	import {KPopover} from '@ikun-ui/popover';
-	export let placement: 'top' | 'left' | 'right' | 'bottom' = 'top';
+	import type { IKunPlacement, IKunTrigger } from "@ikun-ui/utils";
+	export let placement: IKunPlacement = 'top';
 	// hover click manual
-	export let trigger: 'manual' | 'click' | 'hover' = 'hover';
+	export let trigger: IKunTrigger = 'hover';
 	export let cls = '';
 	export let attrs = {};
 	export let content = '';

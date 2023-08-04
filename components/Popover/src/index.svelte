@@ -2,10 +2,11 @@
 	import { createPopperActions, type PopperOptions } from 'svelte-popperjs';
 	import { fade } from 'svelte/transition';
 	import { tick } from 'svelte';
+	import type {IKunPlacement, IKunTrigger} from "@ikun-ui/utils";
 	// top left right bottom
-	export let placement:'top' | 'left' | 'right' | 'bottom' = 'top';
+	export let placement:IKunPlacement = 'top';
 	// hover click manual
-	export let trigger: 'manual' | 'click' | 'hover' = 'hover';
+	export let trigger: IKunTrigger = 'hover';
 	export let attrs = {};
 	export let cls = '';
 	let arrowRef:null | HTMLElement = null;
