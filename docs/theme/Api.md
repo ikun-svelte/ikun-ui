@@ -10,6 +10,7 @@ lang: en-US
 It will return an `unocss` preset
 
 **type**
+
 ```typescript jsx
 declare function presetIkun(
 	/**
@@ -36,6 +37,7 @@ declare function presetIkun(
 ```
 
 **e.g**
+
 ```typescript jsx
 import { presetIkun } from '@ikun-ui/preset';
 export default function defineConfig() {
@@ -51,6 +53,7 @@ It will return a list of `ikun-ui` Shortcuts,
 usually to avoid component styles being wrongly shaken by packaging tools.
 
 **e.g**
+
 ```typescript jsx
 import { getSafeList } from '@ikun-ui/preset';
 export default function defineConfig() {
@@ -67,6 +70,7 @@ return the color variable string,
 which is usually used in the `preflights` option of `unocss` configuration
 
 **type**
+
 ```typescript jsx
 declare function getCSSPreflights(
 	/**
@@ -78,6 +82,7 @@ declare function getCSSPreflights(
 ```
 
 **e.g**
+
 ```typescript jsx
 import { getCSSPreflights } from '@ikun-ui/preset';
 export default function defineConfig() {
@@ -101,6 +106,7 @@ The default color is exposed to users,
 and the content inside can be customized to override the default rules
 
 **e.g**
+
 ```typescript jsx
 import { ikunColors } from '@ikun-ui/preset';
 ikunTheme.colors['black'] = '#333333';
@@ -113,6 +119,7 @@ is exposed to the user,
 and the content inside can be customized to override the default rules
 
 **e.g**
+
 ```typescript jsx
 import { ikunRules } from '@ikun-ui/preset';
 ikunTheme.colors['ikun-black'] = '#333333';
@@ -125,6 +132,7 @@ are exposed to users,
 and the content can be customized to override the default rules
 
 **e.g**
+
 ```typescript jsx
 import { ikunRules } from '@ikun-ui/preset';
 ikunRules['k-input-shadow'] = { 'box-shadow': '0 0 0 2px #ff787542' };
