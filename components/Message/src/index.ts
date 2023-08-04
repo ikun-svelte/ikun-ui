@@ -1,4 +1,4 @@
-import { Notify, type NotifyOptions, type NotifyComponent } from '@ikun-ui/notify';
+import { KNotify, type NotifyOptions, type NotifyComponent } from '@ikun-ui/notify';
 import { SvelteComponent } from 'svelte';
 
 type MessageType = 'info' | 'warning' | 'error' | 'success';
@@ -7,11 +7,10 @@ export interface MessageOptions {
 	cls?: string;
 	attrs?: any;
 	close?: boolean;
-	content?: string;
+	content?: string | SvelteComponent;
 	type?: MessageType;
 	target?: HTMLElement;
 	onClose?: UncertainFunction;
-	slotContent?: string | SvelteComponent; // svelte sfc or html sting
 	autoClose?: boolean;
 	duration?: number; // just only autoClose = true
 	offset?: number;
@@ -22,40 +21,38 @@ const resolveMessageOptions = (options: MessageOptions) => {
 		...options
 	} as NotifyOptions;
 	OptionsRes.title = options.content;
-	OptionsRes.slotTitle = options.slotContent;
 	OptionsRes.placement = 'center';
 
 	Reflect.deleteProperty(OptionsRes, 'content');
-	Reflect.deleteProperty(OptionsRes, 'slotContent');
 	return OptionsRes as NotifyOptions;
 };
 
 function MsgFn(options: MessageOptions = {}) {
-	return Notify(resolveMessageOptions(options));
+	return KNotify(resolveMessageOptions(options));
 }
 
 MsgFn.info = (options: MessageOptions = {}) => {
-	return Notify.info(resolveMessageOptions(options));
+	return KNotify.info(resolveMessageOptions(options));
 };
 
 MsgFn.warning = (options: MessageOptions = {}) => {
-	return Notify.warning(resolveMessageOptions(options));
+	return KNotify.warning(resolveMessageOptions(options));
 };
 
 MsgFn.error = (options: MessageOptions = {}) => {
-	return Notify.error(resolveMessageOptions(options));
+	return KNotify.error(resolveMessageOptions(options));
 };
 
 MsgFn.success = (options: MessageOptions = {}) => {
-	return Notify.success(resolveMessageOptions(options));
+	return KNotify.success(resolveMessageOptions(options));
 };
 
-MsgFn.clear = Notify.clear;
+MsgFn.clear = KNotify.clear;
 
-MsgFn.clearAll = Notify.clearAll;
+MsgFn.clearAll = KNotify.clearAll;
 
 MsgFn.update = async (inst: NotifyComponent, options: MessageOptions = {}) => {
-	Notify.update(inst, resolveMessageOptions(options));
+	KNotify.update(inst, resolveMessageOptions(options));
 };
 
-export const Message = MsgFn;
+export const KMessage = MsgFn;

@@ -11,18 +11,58 @@ type Extend = {
 };
 export type NotifyComponent = SvelteComponent<NotifyOptions & Extend>;
 export interface NotifyOptions {
-	cls?: string;
+	/**
+	 * Whether the notification can be closed manually
+	 */
 	close?: boolean;
-	title?: string;
+	/**
+	 * Content of Notification title
+	 * which can be a html string or a svelte component
+	 */
+	title?: string | SvelteComponent;
+	/**
+	 * The emotion category of the notification
+	 */
 	type?: NotifyType;
+	/**
+	 * Where the notification appears
+	 */
 	placement?: NotifyPlacement;
+	/**
+	 * @internal
+	 * The notification is mounted
+	 * using this as the anchor point
+	 */
 	target?: Element;
+	/**
+	 * The callback method when the notification is closed
+	 */
 	onClose?: UncertainFunction;
-	slotTitle?: string | SvelteComponent; // svelte sfc or html sting
-	slot?: string | SvelteComponent; // svelte sfc or html sting
+	/**
+	 * The content of the notification,
+	 * which can be a html string or a svelte component
+	 */
+	content?: string | SvelteComponent;
+	/**
+	 * Whether the notification is automatically closed
+	 */
 	autoClose?: boolean;
-	duration?: number; // just only autoClose = true
+	/**
+	 * Notification's auto-close timing
+	 * (only when `autoClose = true`) takes effect
+	 */
+	duration?: number;
+	/**
+	 * Notification is offset on the y-axis
+	 */
 	offset?: number;
+	/**
+	 * Additional class
+	 */
+	cls?: string;
+	/**
+	 * Additional attributes
+	 */
 	attrs?: any;
 }
 
@@ -48,8 +88,8 @@ const resolveNotifyOptions = (options: NotifyOptions) => {
 	};
 
 	const context = new Map();
-	context.set('slotTitle', options.slotTitle);
-	context.set('slot', options.slot);
+	context.set('title', options.title);
+	context.set('content', options.content);
 
 	const finalOptions = {
 		...defaultNotifyOptions,
@@ -57,8 +97,8 @@ const resolveNotifyOptions = (options: NotifyOptions) => {
 	};
 
 	Reflect.deleteProperty(finalOptions, 'onClose');
-	Reflect.deleteProperty(finalOptions, 'slot');
-	Reflect.deleteProperty(finalOptions, 'slotTitle');
+	Reflect.deleteProperty(finalOptions, 'content');
+	Reflect.deleteProperty(finalOptions, 'title');
 
 	return {
 		finalOptions,
@@ -189,4 +229,4 @@ NotifyFn.update = async (inst: NotifyComponent, options: NotifyOptions = {}) => 
 	inst.$set({ ...options });
 };
 
-export const Notify = NotifyFn;
+export const KNotify = NotifyFn;

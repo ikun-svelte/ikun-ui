@@ -9,7 +9,6 @@
 	export let attrs = {};
 	export let cls = '';
 	export let close = false;
-	export let title = '';
 	// info warning error success
 	export let type:'info' | 'warning'| 'error' | 'success' | null = null;
 	export let onClose:null | UncertainFunction= null;
@@ -92,8 +91,8 @@
 	const handleClose = () => {
 		onClose && onClose();
 	};
-	const slotTitle: any = getContext('slotTitle');
-	const slot:string | any = getContext('slot');
+	const title: any = getContext('title');
+	const content:string | any = getContext('content');
 </script>
 
 {#if show}
@@ -105,11 +104,7 @@
 		{...attrs}
 		style="top: {y}; left: {x}">
 		<div class="k-notification--body">
-			{#if slotTitle && isString(slotTitle)}
-				{@html slotTitle}
-			{:else if slotTitle && isFunction(slotTitle)}
-				<svelte:component this={slotTitle} />
-			{:else}
+			{#if title && isString(title)}
 				<h1 class="k-notification--title">
 					{#if type}
 						<KIcon icon='k-notification--icon--{type}'
@@ -117,8 +112,10 @@
 							   cls="k-notification--type--icon"
 							   color="k-notification--{type}" />
 					{/if}
-					{title}
+					{@html title}
 				</h1>
+			{:else if title && isFunction(title)}
+				<svelte:component this={title} />
 			{/if}
 
 			{#if close}
@@ -128,12 +125,12 @@
 					   color="k-notification--close--icon" />
 			{/if}
 		</div>
-		{#if slot}
+		{#if content}
 			<div class="k-notification--content">
-				{#if isString(slot)}
-					{@html slot}
-				{:else if isFunction(slot)}
-					<svelte:component this={slot} />
+				{#if isString(content)}
+					{@html content}
+				{:else if isFunction(content)}
+					<svelte:component this={content} />
 				{/if}
 			</div>
 		{/if}
