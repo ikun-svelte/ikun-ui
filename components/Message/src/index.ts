@@ -1,83 +1,40 @@
-import { KNotify, type NotifyOptions, type NotifyComponent } from '@ikun-ui/notify';
-import { SvelteComponent } from 'svelte';
+import {
+	KNotify,
+	type NotifyOptions,
+	type NotifyComponent
+} from '@ikun-ui/notify';
+import type { MessageOptions } from './types'
+import type { SvelteComponent } from 'svelte';
+export * from './types'
 
-type MessageType = 'info' | 'warning' | 'error' | 'success';
-type UncertainFunction<T = any> = () => T | void;
-export interface MessageOptions {
-	/**
-	 * Whether the notification can be closed manually
-	 */
-	close?: boolean;
-	/**
-	 * The emotion category of the notification
-	 */
-	type?: MessageType;
-	/**
-	 * @internal
-	 * The message is mounted
-	 * using this as the anchor point
-	 */
-	target?: Element;
-	/**
-	 * The callback method when the message is closed
-	 */
-	onClose?: UncertainFunction;
-	/**
-	 * The content of the message,
-	 * which can be a html string or a svelte component
-	 */
-	content?: string | SvelteComponent;
-	/**
-	 * Whether the message is automatically closed
-	 */
-	autoClose?: boolean;
-	/**
-	 * Message's auto-close timing
-	 * (only when `autoClose = true`) takes effect
-	 */
-	duration?: number;
-	/**
-	 * Message is offset on the y-axis
-	 */
-	offset?: number;
-	/**
-	 * Additional class
-	 */
-	cls?: string;
-	/**
-	 * Additional attributes
-	 */
-	attrs?: any;
-}
-
-const resolveMessageOptions = (options: MessageOptions) => {
+const resolveMessageOptions = (options: MessageOptions<SvelteComponent>) => {
 	const OptionsRes = {
 		...options
-	} as NotifyOptions;
+	} as NotifyOptions<SvelteComponent>;
 	OptionsRes.title = options.content;
 	OptionsRes.placement = 'center';
 
 	Reflect.deleteProperty(OptionsRes, 'content');
-	return OptionsRes as NotifyOptions;
+	return OptionsRes as NotifyOptions<SvelteComponent>;
 };
 
-function MsgFn(options: MessageOptions = {}) {
+function MsgFn(options: MessageOptions<SvelteComponent> = {}) {
 	return KNotify(resolveMessageOptions(options));
 }
 
-MsgFn.info = (options: MessageOptions = {}) => {
+MsgFn.info = (options: MessageOptions<SvelteComponent> = {}) => {
 	return KNotify.info(resolveMessageOptions(options));
 };
 
-MsgFn.warning = (options: MessageOptions = {}) => {
+MsgFn.warning = (options: MessageOptions<SvelteComponent> = {}) => {
 	return KNotify.warning(resolveMessageOptions(options));
 };
 
-MsgFn.error = (options: MessageOptions = {}) => {
+MsgFn.error = (options: MessageOptions<SvelteComponent> = {}) => {
 	return KNotify.error(resolveMessageOptions(options));
 };
 
-MsgFn.success = (options: MessageOptions = {}) => {
+MsgFn.success = (options: MessageOptions<SvelteComponent> = {}) => {
 	return KNotify.success(resolveMessageOptions(options));
 };
 
@@ -85,7 +42,9 @@ MsgFn.clear = KNotify.clear;
 
 MsgFn.clearAll = KNotify.clearAll;
 
-MsgFn.update = async (inst: NotifyComponent, options: MessageOptions = {}) => {
+MsgFn.update = async (
+	inst: NotifyComponent<SvelteComponent>,
+	options: MessageOptions<SvelteComponent> = {}) => {
 	KNotify.update(inst, resolveMessageOptions(options));
 };
 
