@@ -113,6 +113,10 @@ const theme = [
 		link: '/theme/Basic'
 	},
 	{
+		text: 'Preset Api',
+		link: '/theme/Api'
+	},
+	{
 		text: 'Advanced',
 		link: '/theme/Advanced'
 	}
