@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue';
 import { useClipboard } from '@vueuse/core';
-import { Message } from '@ikun-ui/message';
+import { KMessage } from '@ikun-ui/message';
 const modules = import.meta.glob('../../../../example/**/*.svelte');
 const props = defineProps({
 	src: {
@@ -29,7 +29,7 @@ const code = computed(() => decodeURIComponent(props.source));
 const { copy } = useClipboard({ source: code.value });
 const handleCopy = () => {
 	copy();
-	Message.success({
+	KMessage.success({
 		content: 'Copy successfully! 😊'
 	});
 };

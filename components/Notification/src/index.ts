@@ -100,10 +100,7 @@ const resolveNotifyOptions = (options: NotifyOptions) => {
 	};
 };
 
-function mountNotify(
-	options: NotifyOptions,
-	evt: Record<string, any>,
-) {
+function mountNotify(options: NotifyOptions, evt: Record<string, any>) {
 	const notifyArray = notifyMap[options.placement || 'right-top'];
 	let index = 0;
 	if (!notifyArray) {
