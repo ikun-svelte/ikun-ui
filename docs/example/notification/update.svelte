@@ -24,7 +24,7 @@
              on:click={()=> renderNotify('right-top', 'To be or not to be, that is the question.')}>
         render
     </KButton>
-    <KButton type="info" cls="mx-2"
+    <KButton cls="mx-2"
              on:click={()=> updateNotify()}>
         update
     </KButton>

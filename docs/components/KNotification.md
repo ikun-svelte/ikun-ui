@@ -82,13 +82,13 @@ You can render content through slots
 
 ## Notification Api
 
-| Name            | Type                                                      | Description                                                                                                        |
-| --------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| Notify          | `(options: NotifyOptions)=>NotifyInst`                    | Render a `notification` according to the incoming options and return the `notification` instance                   |
-| Notify.info     | `(options: NotifyOptions)=>NotifyInst`                    | Render a `notification` of `info` type according to the incoming options and return the `notification` instance    |
-| Notify.warning  | `(options: NotifyOptions)=>NotifyInst`                    | Render a `notification` of `warning` type according to the incoming options and return the `notification` instance |
-| Notify.success  | `(options: NotifyOptions)=>NotifyInst`                    | Render a `notification` of `success` type according to the incoming options and return the `notification` instance |
-| Notify.error    | `(options: NotifyOptions)=>NotifyInst`                    | Render a `notification` of `error` type according to the incoming options and return the `notification` instance   |
-| Notify.update   | `(inst: typeof NotifyInst, options: NotifyOptions)=>void` | Update the specified notification                                                                                  |
-| Notify.clearAll | `() => void`                                              | Clear all notifications                                                                                            |
-| Notify.clear    | `(inst: typeof NotifyInst) => Promise<void>`              | Clear the specified notification                                                                                   |
+| Name             | Type                                                      | Description                                                                                                        |
+| ---------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| KNotify          | `(options: NotifyOptions)=>NotifyInst`                    | Render a `notification` according to the incoming options and return the `notification` instance                   |
+| KNotify.info     | `(options: NotifyOptions)=>NotifyInst`                    | Render a `notification` of `info` type according to the incoming options and return the `notification` instance    |
+| KNotify.warning  | `(options: NotifyOptions)=>NotifyInst`                    | Render a `notification` of `warning` type according to the incoming options and return the `notification` instance |
+| KNotify.success  | `(options: NotifyOptions)=>NotifyInst`                    | Render a `notification` of `success` type according to the incoming options and return the `notification` instance |
+| KNotify.error    | `(options: NotifyOptions)=>NotifyInst`                    | Render a `notification` of `error` type according to the incoming options and return the `notification` instance   |
+| KNotify.update   | `(inst: typeof NotifyInst, options: NotifyOptions)=>void` | Update the specified notification                                                                                  |
+| KNotify.clearAll | `() => void`                                              | Clear all notifications                                                                                            |
+| KNotify.clear    | `(inst: typeof NotifyInst) => Promise<void>`              | Clear the specified notification                                                                                   |

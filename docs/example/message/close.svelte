@@ -1,16 +1,16 @@
 <script>
     import { KButton } from '@ikun-ui/button'
-    import { KNotify } from '@ikun-ui/notify'
-    const renderNotifyClose = (title, content) => {
-        KNotify({
+    import { KMessage } from '@ikun-ui/message'
+    const renderMessageClose = (title, content) => {
+        KMessage({
             title,
             content,
             close: false
         })
     }
 
-    const renderNotifyAutoClose = (title, content) => {
-        KNotify({
+    const renderMessageAutoClose = (title, content) => {
+        KMessage({
             title,
             content,
             autoClose: true
@@ -18,9 +18,9 @@
     }
 
     let time = 5
-    const renderNotifyDuration = (title, content) => {
+    const renderMessageDuration = (title, content) => {
         time = 5
-        KNotify({
+        KMessage({
             title,
             autoClose: true,
             content,
@@ -35,8 +35,8 @@
         },1000)
     }
 
-    const renderNotifyCb = (title, content) => {
-        KNotify({
+    const renderMessageCb = (title, content) => {
+        KMessage({
             title,
             content,
             onClose: () => {
@@ -48,7 +48,7 @@
 
 <div class="flex items-center flex-wrap">
     <KButton cls="mx-2"
-             on:click={()=> renderNotifyClose(
+             on:click={()=> renderMessageClose(
                  'Hamlet',
                  'To be or not to be, that is the question.',
                  'info')
@@ -57,7 +57,7 @@
     </KButton>
 
     <KButton cls="mx-2"
-             on:click={()=> renderNotifyAutoClose(
+             on:click={()=> renderMessageAutoClose(
                  'Hamlet',
                  'To be or not to be, that is the question.',
                  'info')
@@ -66,7 +66,7 @@
     </KButton>
 
     <KButton cls="mx-2"
-             on:click={()=> renderNotifyDuration(
+             on:click={()=> renderMessageDuration(
                  'Hamlet',
                  'To be or not to be, that is the question.',
                  'info')
@@ -75,7 +75,7 @@
     </KButton>
 
     <KButton cls="mx-2"
-             on:click={()=> renderNotifyCb(
+             on:click={()=> renderMessageCb(
                  'close callback',
                  'click the close icon',
                  'info')

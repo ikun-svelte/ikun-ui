@@ -4,16 +4,50 @@ import { SvelteComponent } from 'svelte';
 type MessageType = 'info' | 'warning' | 'error' | 'success';
 type UncertainFunction<T = any> = () => T | void;
 export interface MessageOptions {
-	cls?: string;
-	attrs?: any;
+	/**
+	 * Whether the notification can be closed manually
+	 */
 	close?: boolean;
-	content?: string | SvelteComponent;
+	/**
+	 * The emotion category of the notification
+	 */
 	type?: MessageType;
-	target?: HTMLElement;
+	/**
+	 * @internal
+	 * The message is mounted
+	 * using this as the anchor point
+	 */
+	target?: Element;
+	/**
+	 * The callback method when the message is closed
+	 */
 	onClose?: UncertainFunction;
+	/**
+	 * The content of the message,
+	 * which can be a html string or a svelte component
+	 */
+	content?: string | SvelteComponent;
+	/**
+	 * Whether the message is automatically closed
+	 */
 	autoClose?: boolean;
-	duration?: number; // just only autoClose = true
+	/**
+	 * Message's auto-close timing
+	 * (only when `autoClose = true`) takes effect
+	 */
+	duration?: number;
+	/**
+	 * Message is offset on the y-axis
+	 */
 	offset?: number;
+	/**
+	 * Additional class
+	 */
+	cls?: string;
+	/**
+	 * Additional attributes
+	 */
+	attrs?: any;
 }
 
 const resolveMessageOptions = (options: MessageOptions) => {
