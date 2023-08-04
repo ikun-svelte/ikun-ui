@@ -1,6 +1,7 @@
 import shortcuts from './shortcuts/index';
 import { setMainColorToTheme, defaultTheme } from './theme';
 import { defaultRules, setMainColorToRules } from './rules';
+import { defaultColors } from "./colors";
 import type { Theme } from '@unocss/preset-uno';
 import type { Preset } from 'unocss';
 import { hex2rgba } from '@unocss/preset-mini/utils';
@@ -17,7 +18,7 @@ export function presetIkun(
 	return {
 		name,
 		theme: setMainColorToTheme(theme, themeColorRGB),
-		rules: setMainColorToRules(rules, themeColorRGB),
+		rules: setMainColorToRules(rules, themeColorRGB, defaultColors),
 		shortcuts
 	} as Preset<Theme>;
 }

@@ -3,7 +3,7 @@ export const switchShortcuts: Record<string, string> = {
 	'k-switch--base': 'rounded-full w-10 h-5 fi pr cursor-pointer',
 	'k-switch__disabled': 'k-cur-disabled',
 	'k-switch__checked': 'bg-ikun-main',
-	'k-switch__un_checked': 'bg-ikun-main:40',
+	'k-switch__un_checked': 'ikun:40:bg-ikun-main',
 	'k-switch-tx__un_checked': 'p1 ml-5',
 	'k-switch-tx__checked': 'p1 mr-5',
 	'k-switch-loading': 'animate-spin h-4 w-4',
