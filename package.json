@@ -46,7 +46,7 @@
 		"dev": "pnpm run build && pnpm run play",
 		"dev:docs": "pnpm run --filter @ikun-ui/docs docs:dev",
 		"play": "pnpm run --filter @ikun-ui/play dev",
-		"build": "pnpm run build:utils && pnpm run build:components && run-p build-*",
+		"build": "pnpm run build:utils && pnpm run build:components && run-s build-*",
 		"build-preset": "pnpm run --filter @ikun-ui/preset build",
 		"build-lib": "tsup --config tsup.config.ts",
 		"build:utils": "pnpm run --filter @ikun-ui/utils build",
