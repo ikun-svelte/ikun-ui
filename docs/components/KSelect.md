@@ -65,5 +65,3 @@ Disable the select through the disabled attribute
 | ------ | ------------------------------- |
 | prefix | Customize select prefix content |
 | suffix | Customize select suffix content |
-
-// TODO switch notification message

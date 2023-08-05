@@ -113,5 +113,5 @@ export default defineConfig({
 	// ...
 });
 ```
-![WX20230805-132525@2x.png](..%2Fpublic%2FWX20230805-132525%402x.png)
 
+![WX20230805-132525@2x.png](..%2Fpublic%2FWX20230805-132525%402x.png)

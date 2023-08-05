@@ -10,7 +10,7 @@ import {
 import {
 	presetIkun,
 	getCSSPreflights,
-	getSafeList,
+	getSafeList
 	// ikunColors,
 	// ikunRules,
 	// buttonShortcuts,
@@ -46,14 +46,13 @@ export default defineConfig({
 			}
 		}),
 		presetTypography(),
-		presetIkun(
+		presetIkun()
 		// '@ikun-ui/preset',
 		// undefined,
 		// customTheme,
 		// customColors,
 		// finalShortcuts,
 		// customRules
-		)
 	],
 	transformers: [transformerDirectives(), transformerVariantGroup()],
 	safelist: [
