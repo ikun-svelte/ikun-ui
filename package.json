@@ -2,7 +2,7 @@
 	"name": "ikun-ui",
 	"description": "A Svelte.js based UnoCSS UI library that allows you to make beautiful websites",
 	"type": "module",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -45,14 +45,12 @@
 		"init": "pnpm i",
 		"dev": "pnpm run build && pnpm run play",
 		"dev:docs": "pnpm run --filter @ikun-ui/docs docs:dev",
-		"dev:playground": "",
 		"play": "pnpm run --filter @ikun-ui/play dev",
-		"build": "pnpm run build:utils && pnpm run build:preset && pnpm run build:components",
-		"build:docs": "pnpm run --filter @ikun-ui/docs docs:build",
-		"build:preset": "pnpm run --filter @ikun-ui/preset build",
+		"build": "pnpm run build:utils && pnpm run build:components && run-p build-*",
+		"build-preset": "pnpm run --filter @ikun-ui/preset build",
+		"build-lib": "tsup --config tsup.config.ts",
 		"build:utils": "pnpm run --filter @ikun-ui/utils build",
 		"build:components": "esno scripts/build.js",
-		"build:playground": "",
 		"preview:docs": "pnpm run --filter @ikun-ui/docs docs:preview",
 		"test": "npm run test:integration && npm run test:unit",
 		"test:integration": "playwright test",
@@ -122,7 +120,8 @@
 		"typescript": "^5.1.6",
 		"unocss": "^0.54.1",
 		"vite": "^4.4.8",
-		"vitest": "^0.34.1"
+		"vitest": "^0.34.1",
+		"npm-run-all": "^4.1.5"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm run format && pnpm run lint",
