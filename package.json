@@ -1,5 +1,5 @@
 {
-	"name": "ikun-ui",
+	"name": "@ikun-ui/core",
 	"description": "A Svelte.js based UnoCSS UI library that allows you to make beautiful websites",
 	"type": "module",
 	"version": "0.0.5",
@@ -58,7 +58,7 @@
 		"lint": "prettier --plugin-search-dir --check . && eslint .",
 		"format": "prettier --plugin-search-dir --write .",
 		"release": "bumpp package.json components/*/package.json preset/package.json utils/package.json --commit --push --tag",
-		"publish:script": "esno scripts/publish.js",
+		"publish:script": "esno scripts/publish.js && pnpm run publish:npm",
 		"publish:npm": "pnpm publish --no-git-checks --access public",
 		"clean:dist": "rimraf dist && esno scripts/clean.js",
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
