@@ -4,7 +4,9 @@ import { deleteAsync } from 'del';
 const PKGS_NODE_MODULES = [
 	'components/**/node_modules',
 	'play/**/node_modules',
-	'docs/**/node_modules'
+	'docs/**/node_modules',
+	'preset/**/node_modules',
+	'utils/**/node_modules'
 ];
 async function doCleanDeps() {
 	// set log prefix
