@@ -2,7 +2,7 @@
 	"name": "@ikun-ui/core",
 	"description": "A Svelte.js based UnoCSS UI library that allows you to make beautiful websites",
 	"type": "module",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -24,13 +24,13 @@
 		"url": "https://github.com/ikun-svelte/ikun-ui/issues"
 	},
 	"main": "dist/index.cjs",
-	"module": "dist/index.mjs",
+	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
 			"require": "./dist/index.cjs",
-			"import": "./dist/index.mjs"
+			"import": "./dist/index.js"
 		},
 		"./*": "./*"
 	},
