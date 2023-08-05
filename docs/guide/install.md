@@ -21,6 +21,7 @@ npm install @ikun-ui/core && npm install unocss -D
 :::
 
 // TODO 全局导入
+// TODO utils ?
 Add `onu-ui` in your main entry file.
 
 ```ts

@@ -27,7 +27,8 @@
 	},
 	"dependencies": {
 		"@ikun-ui/popover": "workspace:*",
-		"@ikun-ui/utils": "workspace:*"
+		"@ikun-ui/utils": "workspace:*",
+		"baiwusanyu-utils": "^1.0.14"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.0",
