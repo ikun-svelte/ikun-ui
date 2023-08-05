@@ -12,6 +12,8 @@ so in this chapter, we can fully customize the component style based on these.
 
 If you just want to simply change the theme color, then ikun-preset can be easily implemented.
 
+## TODO screen snap
+
 **e.g**
 
 ```typescript jsx
@@ -39,7 +41,7 @@ export default defineConfig({
 			}
 		}),
 		presetTypography(),
-		presetIkun()
+		presetIkun('@ikun-ui/preset', '#5fbe5f')
 	],
 	transformers: [transformerDirectives(), transformerVariantGroup()],
 	safelist: [...getSafeList()],
@@ -60,3 +62,56 @@ export default defineConfig({
 ```
 
 ## Fully Custom Themes
+
+This summary takes modifying a button style as an example,
+modifying and customizing a style,
+these methods can be extended to all components
+
+### 1. Define a color variable
+
+```typescript jsx
+import { ikunColors } from '@ikun-ui/preset';
+const customColors = JSON.parse(JSON.stringify(ikunColors));
+customColors['custom-primary'] = '#5fbe5f';
+```
+
+### 2. Define a color in the theme
+
+```typescript jsx
+import { ikunTheme } from '@ikun-ui/preset';
+const customTheme = JSON.parse(JSON.stringify(ikunTheme));
+customTheme.colors['custom-color'] = 'var(--ikun-custom-primary)';
+```
+
+### 3. Shortcuts for overriding components
+
+```typescript jsx
+import { buttonShortcuts, ikunShortcuts } from '@ikun-ui/preset';
+const customBtnShortcuts = JSON.parse(JSON.stringify(buttonShortcuts));
+customBtnShortcuts['k-button--primary'] = 'bg-custom-color text-white';
+const finalShortcuts = ikunShortcuts;
+finalShortcuts.push(customBtnShortcuts);
+```
+
+### 4. Rules for overriding components
+
+```typescript jsx
+import { ikunRules } from '@ikun-ui/preset';
+const customRules = JSON.parse(JSON.stringify(ikunRules));
+customRules['k-btn-shadow--primary'] = { 'box-shadow': '0 0 0 2px red' };
+```
+
+### 5. Rules for overriding components
+
+```typescript jsx
+// unocss.config.ts
+export default defineConfig({
+	presets: [
+		// ...
+		presetIkun('@ikun-ui/preset', undefined, customTheme, customColors, finalShortcuts, customRules)
+	]
+	// ...
+});
+```
+
+## TODO screen snap

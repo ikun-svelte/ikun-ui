@@ -1,18 +1,18 @@
 <script lang="ts">
 import { KButton } from '@ikun-ui/button'
-import { KIcon } from '@ikun-ui/icon'
-import { KCollapse } from '@ikun-ui/collapse'
-import { KCheckbox } from '@ikun-ui/checkbox'
-import { KDrawer } from '@ikun-ui/drawer'
-import { KEyeDropper } from '@ikun-ui/eye-dropper'
-import { KInput } from '@ikun-ui/input'
-import { KPopover } from '@ikun-ui/popover'
-import { KTooltip } from '@ikun-ui/tooltip'
-import { KModal } from '@ikun-ui/modal'
-import { KTag } from '@ikun-ui/tag'
-import { Notify } from '@ikun-ui/notify'
-import { KSwitch } from '@ikun-ui/switch'
-import { KSelect } from '@ikun-ui/select'
+// import { KIcon } from '@ikun-ui/icon'
+// import { KCollapse } from '@ikun-ui/collapse'
+// import { KCheckbox } from '@ikun-ui/checkbox'
+// import { KDrawer } from '@ikun-ui/drawer'
+// import { KEyeDropper } from '@ikun-ui/eye-dropper'
+// import { KInput } from '@ikun-ui/input'
+// import { KPopover } from '@ikun-ui/popover'
+// import { KTooltip } from '@ikun-ui/tooltip'
+// import { KModal } from '@ikun-ui/modal'
+// import { KTag } from '@ikun-ui/tag'
+// import { Notify } from '@ikun-ui/notify'
+// import { KSwitch } from '@ikun-ui/switch'
+// import { KSelect } from '@ikun-ui/select'
 import 'virtual:uno.css'
 
 let checked = true
@@ -21,23 +21,23 @@ let openModal = false
 let inputValue = ''
 
 const handleNotify = () => {
-  Notify.success({
+  /*Notify.success({
     title: 'Notify Success',
     duration: 99999,
     autoClose: true,
     slot: 'Notify Success'
-  })
+  })*/
 }
 
 let switchVal = false
 let selectVal = ''
 </script>
 <KButton icon="i-carbon-settings"
-         type="info"
+         type="primary"
          on:click={() => openDrawer = true}>
     drawer
 </KButton>
-<KIcon icon="i-carbon-settings" btn ></KIcon>
+<!--<KIcon icon="i-carbon-settings" btn ></KIcon>
 <KCollapse>
     <span slot="title">title</span>
     <span slot="content">content</span>
@@ -115,4 +115,4 @@ let selectVal = ''
     {#each ['Tiny', 'Small', 'Normal', 'Large', 'Huge'] as item (item)}
         <option>{item}</option>
     {/each}
-</KSelect>
+</KSelect>-->

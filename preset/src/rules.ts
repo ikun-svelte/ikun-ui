@@ -40,7 +40,8 @@ export const defaultRules = {
 export const setMainColorToRules = <T>(
 	rules: Record<string, any>,
 	themeColorRGB: string,
-	colors: T) => {
+	colors: T
+) => {
 	// set main color to input shadow
 	rules['k-input-shadow'] = { 'box-shadow': `0 0 0 2px rgb(${themeColorRGB}, 0.5)` };
 	// transform rule
@@ -50,44 +51,40 @@ export const setMainColorToRules = <T>(
 		finalRules.push(rule);
 	});
 
-	function parseColor<T>(
-		content: string,
-		op: string,
-		color:T){
-		if(!content) return
-		const matchRes = content.match(/^var\(--ikun-(.+)\)$/)
-		if(!matchRes) {
-			let cssColor = parseCssColor(content)
-			if(cssColor) return `rgba(${cssColor.components.join(',')},${Number(op) /100})`
-		}else {
-			let cssColor = parseCssColor(color[matchRes[1]])
-			if(cssColor) return `rgba(${cssColor.components.join(',')},${Number(op) /100})`
+	function parseColor<T>(content: string, op: string, color: T) {
+		if (!content) return;
+		const matchRes = content.match(/^var\(--ikun-(.+)\)$/);
+		if (!matchRes) {
+			const cssColor = parseCssColor(content);
+			if (cssColor) return `rgba(${cssColor.components.join(',')},${Number(op) / 100})`;
+		} else {
+			const cssColor = parseCssColor(color[matchRes[1]]);
+			if (cssColor) return `rgba(${cssColor.components.join(',')},${Number(op) / 100})`;
 		}
-
 	}
 
 	finalRules.push([
 		/^ikun:/,
 		(inputData, { theme }: RuleContext<Theme>) => {
-			const { input } = inputData
-			if(!input) return
-			const [,op,inputCls] = input.split(':')
-			const variable = inputCls.match(/^(?:text|bg)-(.+)/)[1]
-			if(!variable) return
+			const { input } = inputData;
+			if (!input) return;
+			const [, op, inputCls] = input.split(':');
+			const variable = inputCls.match(/^(?:text|bg)-(.+)/)[1];
+			if (!variable) return;
 			const color = parseColor<typeof colors>(
 				(theme.colors as Record<string, string>)[variable],
 				op,
 				colors
 			);
 
-			let attr = inputCls.startsWith('bg-') ? 'background-color' : ''
-			attr = inputCls.startsWith('text-') ? 'color' : attr
+			let attr = inputCls.startsWith('bg-') ? 'background-color' : '';
+			attr = inputCls.startsWith('text-') ? 'color' : attr;
 
-			if(!attr) return
+			if (!attr) return;
 			return {
 				'--ikun-context': color,
 				[attr]: 'var(--ikun-context)'
-			}
+			};
 		}
 	]);
 	return finalRules as Rule<Theme>[];

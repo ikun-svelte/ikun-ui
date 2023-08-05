@@ -80,3 +80,20 @@ export function getSafeList() {
 		.concat(collapseList)
 		.concat(checkboxList);
 }
+
+export { baseShortcuts } from './base';
+export { commonShortcuts } from './common';
+export { iconShortcuts } from './icon';
+export { buttonShortcuts } from './button';
+export { collapseShortcuts } from './collapse';
+export { checkboxShortcuts } from './checkbox';
+export { drawerShortcuts } from './drawer';
+export { maskShortcuts } from './mask';
+export { eyeDropperShortcuts } from './eye-dropper';
+export { inputShortcuts } from './input';
+export { popoverShortcuts } from './popover';
+export { modalShortcuts } from './modal';
+export { tagShortcuts } from './tag';
+export { notificationShortcuts } from './notification';
+export { switchShortcuts } from './swtich';
+export { selectShortcuts } from './select';

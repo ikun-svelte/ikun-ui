@@ -3,7 +3,7 @@ title: Preset Api
 lang: en-US
 ---
 
-## Preset Api
+# Preset Api
 
 ## presetIkun
 
@@ -25,12 +25,23 @@ declare function presetIkun(
 	themeColor?: string,
 	/**
 	 * preset theme
-	 * @default defaultTheme
+	 * @default ikunTheme
 	 */
 	theme?: Theme,
 	/**
+	 * preset colors
+	 * @default ikunColors
+	 */
+	colors?: typeof ikunColors,
+	/**
+	 * preset shortcuts
+	 * @default ikunShortcuts
+	 */
+	shortcuts?: UserShortcuts<Theme>,
+
+	/**
 	 * preset rules
-	 * @default defaultRules
+	 * @default ikunRules
 	 */
 	rules?: Record<string, any>
 ): Preset<Theme>;
@@ -50,7 +61,7 @@ export default function defineConfig() {
 ## getSafeList
 
 It will return a list of `ikun-ui` Shortcuts,
-usually to avoid component styles being wrongly shaken by packaging tools.
+usually to avoid component styles being wrongly shaken by vite.
 
 **e.g**
 
@@ -102,26 +113,25 @@ export default function defineConfig() {
 
 ## ikunColors
 
-The default color is exposed to users,
-and the content inside can be customized to override the default rules
+Color variables exposed to users,
+can add variables or override default color variables
 
 **e.g**
 
 ```typescript jsx
 import { ikunColors } from '@ikun-ui/preset';
-ikunTheme.colors['black'] = '#333333';
+ikunColors['custom-black'] = '#333333';
 ```
 
 ## ikunTheme
 
-The default theme, the color information used by the package components,
-is exposed to the user,
-and the content inside can be customized to override the default rules
+The default theme, which defines color variables,
+users can override color variables or add new color variables
 
 **e.g**
 
 ```typescript jsx
-import { ikunRules } from '@ikun-ui/preset';
+import { ikunTheme } from '@ikun-ui/preset';
 ikunTheme.colors['ikun-black'] = '#333333';
 ```
 
@@ -136,4 +146,20 @@ and the content can be customized to override the default rules
 ```typescript jsx
 import { ikunRules } from '@ikun-ui/preset';
 ikunRules['k-input-shadow'] = { 'box-shadow': '0 0 0 2px #ff787542' };
+```
+
+## ikunShortcuts
+
+The default Shortcuts list,
+`ikun-ui/preset` exposes the shortcuts of all components,
+users can override the content to implement custom shortcuts
+
+**e.g**
+
+```typescript jsx
+import { ikunShortcuts, buttonShortcuts } from '@ikun-ui/preset';
+const customBtnShortcuts = JSON.parse(JSON.stringify(buttonShortcuts));
+customBtnShortcuts['k-button--primary'] = 'bg-custom-color text-white';
+const finalShortcuts = ikunShortcuts;
+finalShortcuts.push(customBtnShortcuts);
 ```
