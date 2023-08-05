@@ -5,7 +5,7 @@ const OUTPUT_NODE_MODULES = [
 	'dist',
 	'components/**/dist',
 	'preset/**/dist',
-	'docs/**/dist',
+	'docs/.vitepress/**/dist',
 	'play/**/dist',
 	'docs/**/dist',
 	'utils/**/dist'
