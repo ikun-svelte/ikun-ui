@@ -22,7 +22,7 @@ export default defineConfig({
 		}),
 		presetTypography(),
 		// kun
-		presetIkun()
+		presetIkun(undefined, '#5fbe5f')
 	],
 	transformers: [transformerDirectives(), transformerVariantGroup()],
 	safelist: [

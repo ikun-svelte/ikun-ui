@@ -12,7 +12,7 @@ so in this chapter, we can fully customize the component style based on these.
 
 If you just want to simply change the theme color, then ikun-preset can be easily implemented.
 
-## TODO screen snap
+![WX20230805-132646@2x.png](..%2Fpublic%2FWX20230805-132646%402x.png)
 
 **e.g**
 
@@ -113,5 +113,5 @@ export default defineConfig({
 	// ...
 });
 ```
+![WX20230805-132525@2x.png](..%2Fpublic%2FWX20230805-132525%402x.png)
 
-## TODO screen snap
