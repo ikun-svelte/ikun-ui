@@ -9,5 +9,7 @@ export const switchShortcuts: Record<string, string> = {
 	'k-switch-loading': 'animate-spin h-4 w-4',
 	'k-switch-circle':
 		'h-4.5 w-4.5 shadow rounded-full bg-ikun-white fcc pa right-2px k-switch-transition',
-	'k-switch-tra': 'animate-ikun-switching'
+	'k-switch-tra': 'animate-ikun-switching',
+	// dark
+	'k-switch-loading__dark': 'dark:text-ikun-tx-base'
 };

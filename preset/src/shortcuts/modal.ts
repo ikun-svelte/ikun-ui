@@ -9,6 +9,6 @@ export const modalShortcuts: Record<string, string> = {
 	'k-modal--footer': 'w-full p2 fi',
 	'k-modal--footer--btn': 'mx-2',
 	// dark
-	'k-modal--base__dark': 'dark:bg-ikun-dark-500 dark:shadow dark:shadow-ikun-main',
+	'k-modal--base__dark': 'dark:bg-ikun-dark-300 dark:shadow dark:shadow-ikun-main',
 	'k-modal--header--title__dark': 'dark:text-ikun-white'
 };

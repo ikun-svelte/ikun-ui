@@ -133,7 +133,7 @@
 	<div class="k-switch-circle"
 		bind:this={switchCircleRef}>
 		{#if loading}
-			<KIcon icon="i-carbon-circle-dash" cls="k-switch-loading" />
+			<KIcon icon="i-carbon-circle-dash" cls="k-switch-loading k-switch-loading__dark" />
 		{/if}
 	</div>
 	{#if innerState}

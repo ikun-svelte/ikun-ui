@@ -4,5 +4,5 @@ export const drawerShortcuts: Record<string, string> = {
 	'k-drawer--op': 'w-full fi',
 	'k-drawer--content': 'overflow-y-auto mt-2',
 	// dark
-	'k-drawer--base__dark': 'dark:bg-ikun-dark'
+	'k-drawer--base__dark': 'dark:bg-ikun-dark-300'
 };
