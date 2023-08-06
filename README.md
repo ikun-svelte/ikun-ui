@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/ikun-svelte/ikun-ui/blob/main/docs/public/logo.svg" />
+  <img src="https://github.com/ikun-svelte/ikun-ui/blob/main/docs/public/logo.svg" width="180" height="180"/>
 </p>
 <h1 align="center">
 ikun-ui
