@@ -11,7 +11,7 @@ hero:
   tagline: A Svelte.js based UnoCSS UI library that allows you to make websites
   image:
     src: /logo.svg
-    alt: Onu-UI
+    alt: ikun-ui
 
   actions:
     - theme: brand

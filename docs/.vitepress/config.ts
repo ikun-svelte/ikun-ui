@@ -134,7 +134,7 @@ const sidebar = {
 };
 
 const head = [
-	['meta', { property: 'og:title', content: 'Onu UI' }],
+	['meta', { property: 'og:title', content: 'ikun-ui' }],
 	[
 		'meta',
 		{
