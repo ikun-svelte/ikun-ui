@@ -1,10 +1,10 @@
 <script lang="ts">
-	import {KMask} from '@ikun-ui/mask';
-	import {KIcon} from '@ikun-ui/icon';
-	import {KButton} from '@ikun-ui/button';
+	import { KButton } from '@ikun-ui/button';
+	import { KClientOnly } from "@ikun-ui/client-only";
+	import { KMask } from '@ikun-ui/mask';
+	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher } from 'svelte';
 	import { fly } from 'svelte/transition';
-	import {KClientOnly} from "@ikun-ui/client-only";
 	export let show = false;
 	export let attrs = {};
 	export let cls = '';
