@@ -2,7 +2,7 @@
 	"name": "@ikun-ui/core",
 	"description": "A Svelte.js based UnoCSS UI library that allows you to make beautiful websites",
 	"type": "module",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"keywords": [
 		"svelte",
 		"svelte3",
