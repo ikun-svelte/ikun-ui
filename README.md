@@ -13,10 +13,10 @@ ikun-ui
 
 ## Features
 
-- 🪷 **Components Design** - Onu provides neat & beautiful crafted UI components.
-- 🥑 **[Iconify Icons](https://icones.js.org/)** - Use any icon from the library you love.
-- 🍬 **[CSS Preset](https://github.com/ikun-svelte/ikun-ui/tree/main/preset)** - Has UnoCSS preset package to use, rendered UI easily.
-- ⚙️ **Theme Config** - Use attribute mode like unocss to design. Support theme config to customize theme.
+- 🏀 **Components Design** - Onu provides neat & beautiful crafted UI components.
+- 🎤 **[Iconify Icons](https://icones.js.org/)** - Use any icon from the library you love.
+- 💃 **[CSS Preset](https://github.com/ikun-svelte/ikun-ui/tree/main/preset)** - Has UnoCSS preset package to use, rendered UI easily.
+- 🐣 **Theme Config** - Use attribute mode like unocss to design. Support theme config to customize theme.
 
 ## Thanks
 
