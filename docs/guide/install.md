@@ -18,19 +18,17 @@ npm install @ikun-ui/core && npm install unocss -D && pnpm add -D @ikun-ui/prese
 
 :::
 
-// TODO 全局导入
-Add `onu-ui` in your main entry file.
+## Use
 
-```ts
-// main.ts
-import OnuUI from 'onu-ui';
-import 'uno.css';
-import 'onu-ui/dist/style.css';
+```typescript jsx
+/*App.svelte*/
+<script lang="ts">
+    import { KButton } from "@ikun-ui/core";
+    import 'virtual:uno.css'
+</script>
+<KButton>KButton</KButton>
 
-createApp(App).use(OnuUI).mount('#app');
 ```
-
-// TODO 精简unocss配置
 
 ## Custom UnoCSS config
 
@@ -54,17 +52,18 @@ npm install @iconify-json/carbon
 Custom your UnoCSS config:
 
 ```ts
-// uno.config.ts
-import { defineConfig, presetAttributify, presetIcons, presetWind } from 'unocss';
+// unocss.config.ts
+import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss';
 import { presetIkun, getCSSPreflights, getSafeList } from '@ikun-ui/preset';
+
 export default defineConfig({
-	presets: [presetWind(), presetAttributify(), presetIcons(), presetIkun()],
-	safelist: [...getSafeList()],
-	preflights: [
-		{
-			layer: 'base',
-			getCSS: () => `:root {${getCSSPreflights()}}`
-		}
-	]
+    presets: [presetUno(), presetAttributify(), presetIcons(), presetIkun()],
+    safelist: [...getSafeList()],
+    preflights: [
+        {
+            layer: 'base',
+            getCSS: () => `:root {${getCSSPreflights()}}`
+        }
+    ]
 });
 ```
