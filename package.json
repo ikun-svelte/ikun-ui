@@ -67,7 +67,9 @@
 		"update:deps": "npx taze -w -r major && pnpm run init"
 	},
 	"peerDependencies": {
-		"svelte": "^4.0.0"
+		"svelte": "^4.0.0",
+		"unocss": "^0.54.1",
+		"baiwusanyu-utils": "^1.0.14"
 	},
 	"dependencies": {
 		"@ikun-ui/button": "workspace:*",
@@ -88,7 +90,8 @@
 		"@ikun-ui/switch": "workspace:*",
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
-		"@ikun-ui/utils": "workspace:*"
+		"@ikun-ui/utils": "workspace:*",
+		"baiwusanyu-utils": "^1.0.14"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.36.2",
@@ -100,7 +103,6 @@
 		"@typescript-eslint/parser": "^6.2.1",
 		"@unocss/preset-mini": "^0.54.1",
 		"@unocss/preset-uno": "^0.54.1",
-		"baiwusanyu-utils": "^1.0.14",
 		"bumpp": "^9.1.1",
 		"del": "^7.0.0",
 		"eslint": "^8.46.0",
