@@ -18,8 +18,8 @@
 	else showInner = false;
 </script>
 
-<div class="k-collapse--base {cls}" {...attrs}>
-	<div class="k-collapse--title"
+<div class="k-collapse--base k-collapse--base__dark {cls}" {...attrs}>
+	<div class="k-collapse--title k-collapse--title__dark"
 		 on:click={showContent}
 		 aria-hidden="true">
 		<slot name="title">

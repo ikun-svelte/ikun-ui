@@ -16,5 +16,6 @@ export const notificationShortcuts: Record<string, string> = {
 	'k-notification--icon--error': 'i-carbon-error-filled',
 	'k-notification--icon--success': 'i-carbon-checkmark-filled',
 	// dark
-	'k-notification--base__dark': 'dark:bg-ikun-dark-500 dark:shadow-ikun-main'
+	'k-notification--base__dark': 'dark:bg-ikun-dark-300 dark:shadow-ikun-main',
+	'k-notification--title__dark': 'dark:text-ikun-white'
 };

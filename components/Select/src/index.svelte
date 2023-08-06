@@ -15,7 +15,12 @@
 	}
 </script>
 
-<div {...attrs} class="k-select--base k-select__hover k-select__focus {cls} {disabled ? 'k-select--base__disabled' : ''}">
+<div {...attrs}
+	 class="
+	 k-select--base
+	 k-select--base__dark
+	 k-select__hover
+	 k-select__focus {cls} {disabled ? 'k-select--base__disabled k-select--base__disabled__dark' : ''}">
 	<slot name="prefix">
 		{#if iconPrefix}
 			<KIcon icon={iconPrefix} cls="k-select--prefix" />
@@ -25,7 +30,9 @@
 		bind:value={value}
 		{disabled}
 		on:change={handleSelect}
-		class="k-select--inner k-select--inner__dark {disabled ? 'k-select--base__disabled' : ''}"
+		class="
+		k-select--inner
+		k-select--inner__dark {disabled ? 'k-select--base__disabled k-select--base__disabled__dark' : ''}"
 	>
 		{#if placeholder}
 			<option value="" disabled hidden>

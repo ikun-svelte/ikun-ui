@@ -106,7 +106,7 @@
 		style="top: {y}; left: {x}">
 		<div class="k-notification--body">
 			{#if title && isString(title)}
-				<h1 class="k-notification--title">
+				<h1 class="k-notification--title k-notification--title__dark">
 					{#if type}
 						<KIcon icon='k-notification--icon--{type}'
 							   on:click={handleClose}

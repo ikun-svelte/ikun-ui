@@ -48,7 +48,7 @@
 	</div>
 	<slot>
 		{#if label}
-			<span class="k-checkbox--label {valueInner && !disabled ? 'text-main' : ''}">
+			<span class="k-checkbox--label {valueInner && !disabled ? 'text-ikun-main' : ''}">
 				{label}
 			</span>
 		{/if}

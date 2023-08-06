@@ -151,7 +151,7 @@
 	}
 
 	:global(.dark [ui-popover-arrow]::after) {
-		background-color: #1f1f1f;
+		--at-apply: bg-ikun-dark-300
 	}
 
 	[data-popper-arrow-top] {

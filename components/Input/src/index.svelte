@@ -24,14 +24,18 @@
 </script>
 
 <div
-	class=" k-input--base k-input--base__hover k-input--base__focus {disabled ? 'k-input--base__disabled' : ''} {cls}">
+	class="
+	k-input--base
+	k-input--base__dark
+	k-input--base__hover
+	k-input--base__focus {disabled ? 'k-input--base__disabled k-input--base__disabled__dark' : ''} {cls}">
 	<slot name="prefix">
 		{#if iconPrefix}
 			<KIcon cls="k-input--icon" icon={iconPrefix} />
 		{/if}
 	</slot>
 	<input
-		class="k-input--inner k-input--inner__dark {disabled ? 'k-input--base__disabled' : ''}"
+		class="k-input--inner k-input--inner__dark {disabled ? 'k-input--base__disabled k-input--base__disabled__dark' : ''}"
 		bind:value={valueInner}
 		{disabled}
 		on:input={onUpdated}
