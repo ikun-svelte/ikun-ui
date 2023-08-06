@@ -34,7 +34,7 @@
 		hidden
 	/>
 	<div class="k-checkbox--box
-				{valueInner && !disabled ? 'bg-main border-main' : ''}
+				{valueInner && !disabled ? 'bg-ikun-main border-ikun-main' : ''}
 				{classChecking} {disabled ? 'k-checkbox--box__disabled' : ''}">
 		{#if valueInner}
 			<div out:fade={{ duration: 200 }}
