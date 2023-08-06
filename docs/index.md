@@ -16,10 +16,10 @@ hero:
   actions:
     - theme: brand
       text: Get Start
-      link: /markdown-examples
+      link: /guide/quick-start
     - theme: alt
       text: Component Docs
-      link: /api-examples
+      link: /components/KButton
 
 features:
   - icon: 🌊
