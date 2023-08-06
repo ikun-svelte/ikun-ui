@@ -8,7 +8,7 @@ titleTemplate: fast UnoCSS component library
 hero:
   name: 'ikun-ui'
   text: 'fast UnoCSS component library'
-  tagline: A Svelte.js based UnoCSS UI library that allows you to make beautiful websites
+  tagline: A Svelte.js based UnoCSS UI library that allows you to make  websites
   image:
     src: /logo.svg
     alt: Onu-UI
