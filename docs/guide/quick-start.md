@@ -8,8 +8,7 @@ It includes a series of out-of-the-box desktop components,
 which can improve your development efficiency while enriching the surrounding ecology of svelte.
 
 IKun UI is designed based on [UnoCSS](https://github.com/unocss/unocss) and provides a set of concise presets **[@ikun-ui/preset](https://github.com/ikun-svelte/ikun-ui/tree/main/preset)**.
-In addition to inherently supporting dark mode, i
-t also supports theme color settings and custom themes in simple mode
+In addition to inherently supporting dark mode, it also supports theme color settings and custom themes in simple mode
 
 To install, please see [Installation](./install.md).
 
