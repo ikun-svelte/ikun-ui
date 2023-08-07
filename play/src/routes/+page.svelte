@@ -13,6 +13,7 @@
 	import { KNotify } from '@ikun-ui/notify';
 	import { KSwitch } from '@ikun-ui/switch';
 	import { KSelect } from '@ikun-ui/select';
+	import { KMsgBox} from '@ikun-ui/message-box';
 	import 'virtual:uno.css';
 
 	let checked = true;
@@ -27,6 +28,15 @@
 			autoClose: true,
 			content: 'Notify Success'
 		});
+	};
+
+	const handleMsgBox = () => {
+		KMsgBox({
+			title: 'message box title',
+			content: 'message box content',
+			layout: 'right',
+			emoType: "info"
+		})
 	};
 
 	let switchVal = false;
@@ -74,7 +84,7 @@
 <KTag type="warning">warning KTag</KTag>
 
 <KButton on:click={handleNotify}>handleNotify</KButton>
-
+<KButton on:click={handleMsgBox} type =info> handleMsgBox </KButton>
 <KSwitch value={switchVal} on:updateValue={(v) => (switchVal = v.detail)}></KSwitch>
 
 <KSelect value={selectVal} iconPrefix="i-carbon-settings" placeholder="selectValue">

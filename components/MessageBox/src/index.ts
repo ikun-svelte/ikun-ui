@@ -1,71 +1,53 @@
-import Msg from './index.svelte';
+import MsgBox from './index.svelte';
 import type { SvelteComponent } from 'svelte';
-import type { MsgBoxOptions } from "./types";
+import type { MsgBoxOptions, MsgBoxComponent } from "./types";
 
 export * from './types';
 
 const defaultMsgBoxOptions: MsgBoxOptions<SvelteComponent> = {
-  placement: 'right-top',
-  close: true,
-  duration: 3000,
-  autoClose: true,
-  offset: 0
+  confirmBtnText: 'confirm',
+  cancelBtnText: 'cancel'
 };
 
 
 const resolveMsgBoxOptions = (options: MsgBoxOptions<SvelteComponent>) => {
-  const evt = {
-    onClose: options.onClose
-  };
 
   const finalOptions = {
     ...defaultMsgBoxOptions,
     ...options
   };
 
-  Reflect.deleteProperty(finalOptions, 'onClose');
-
   return {
     finalOptions,
-    evt
   };
 };
 
-function mountMsgBox(options: MsgBoxOptions<SvelteComponent>, evt: Record<string, any>) {
-  const NotificationInst = new Notification({
+function mountMsgBox(options: MsgBoxOptions<SvelteComponent>) {
+  console.log(options)
+  const MsgBoxInst = new MsgBox({
     target: options.target || document.body,
     props: {
       ...options,
-      show: false,
-      onClose: async () => {
-        await unmountMsgBox(
-          options.placement || 'right-top',
-          NotificationInst as unknown as MsgBoxComponent<SvelteComponent>,
-          0
-        );
-        evt.onClose && evt.onClose();
-      }
+      show: false
     }
   });
 
-  NotificationInst.$set({ show: true });
+  MsgBoxInst.$set({ show: true });
 
-  return NotificationInst;
+  return MsgBoxInst;
 }
 
 
 async function durationUnmountMsgBox(
-  placement: MsgBoxPlacement,
   inst: MsgBoxComponent<SvelteComponent>,
   duration: number
 ) {
   setTimeout(() => {
-    unmountMsgBox(placement, inst, 300);
+    unmountMsgBox( inst, 300);
   }, duration);
 }
 
 async function unmountMsgBox(
-  placement: MsgBoxPlacement,
   inst: MsgBoxComponent<SvelteComponent>,
   duration: number
 ) {
@@ -78,32 +60,26 @@ async function unmountMsgBox(
 
 
 function MsgBoxFn(options: MsgBoxOptions<SvelteComponent>) {
-  const { finalOptions, evt } = resolveMsgBoxOptions(options);
-  return mountMsgBox(finalOptions, evt);
+  const { finalOptions } = resolveMsgBoxOptions(options);
+  return mountMsgBox(finalOptions);
 }
 
 MsgBoxFn.prompt = (options: MsgBoxOptions<SvelteComponent> = {}) => {
-  options.type = 'info';
-  const { finalOptions, evt } = resolveMsgBoxOptions(options);
-  return mountMsgBox(finalOptions, evt);
-};
-
-MsgBoxFn.warning = (options: MsgBoxOptions<SvelteComponent> = {}) => {
-  options.type = 'warning';
-  const { finalOptions, evt } = resolveMsgBoxOptions(options);
-  return mountMsgBox(finalOptions, evt);
+  options.type = 'prompt';
+  const { finalOptions } = resolveMsgBoxOptions(options);
+  return mountMsgBox(finalOptions);
 };
 
 MsgBoxFn.confirm = (options: MsgBoxOptions<SvelteComponent> = {}) => {
-  options.type = 'error';
-  const { finalOptions, evt } = resolveMsgBoxOptions(options);
-  return mountMsgBox(finalOptions, evt);
+  options.type = 'confirm';
+  const { finalOptions } = resolveMsgBoxOptions(options);
+  return mountMsgBox(finalOptions);
 };
 
 MsgBoxFn.alert = (options: MsgBoxOptions<SvelteComponent> = {}) => {
-  options.type = 'success';
-  const { finalOptions, evt } = resolveMsgBoxOptions(options);
-  return mountMsgBox(finalOptions, evt);
+  options.type = 'alert';
+  const { finalOptions } = resolveMsgBoxOptions(options);
+  return mountMsgBox(finalOptions);
 };
 
 export const KMsgBox = MsgBoxFn;

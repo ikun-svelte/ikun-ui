@@ -17,14 +17,16 @@
 		"dx"
 	],
 	"scripts": {
-		"build": "npm run build:js",
+		"build": "npm run build:js && npm run build:svelte",
 		"build:js": "tsc -p . --outDir dist/ --rootDir src/",
+		"build:svelte": "svelte-strip strip src/ dist",
 		"publish:npm": "pnpm publish --no-git-checks --access public"
 	},
 	"publishConfig": {
 		"access": "public"
 	},
 	"dependencies": {
+		"@ikun-ui/modal": "workspace:*",
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.14"
