@@ -16,5 +16,8 @@ export default defineConfig({
 				if (id === '\0$app/environment') return 'export const browser = true';
 			}
 		} as Plugin
-	]
+	],
+	build:{
+		chunkSizeWarningLimit: 999999
+	}
 });
