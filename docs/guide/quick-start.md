@@ -1,7 +1,5 @@
 # IKun UI
 
-<img src="../public/xhz.jpg" width="400" height="400">
-
 ## Introduction
 
 IKun UI is a Svelte.js based [UnoCSS](https://github.com/unocss/unocss) UI library that allows you to make beautiful websites.
