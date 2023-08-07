@@ -10,7 +10,7 @@ import { KPopover } from '@ikun-ui/popover'
 import { KTooltip } from '@ikun-ui/tooltip'
 import { KModal } from '@ikun-ui/modal'
 import { KTag } from '@ikun-ui/tag'
-import { Notify } from '@ikun-ui/notify'
+import { KNotify } from '@ikun-ui/notify'
 import { KSwitch } from '@ikun-ui/switch'
 import { KSelect } from '@ikun-ui/select'
 import 'virtual:uno.css'
@@ -21,11 +21,11 @@ let openModal = false
 let inputValue = ''
 
 const handleNotify = () => {
-  Notify.success({
+  KNotify.success({
     title: 'Notify Success',
     duration: 99999,
     autoClose: true,
-    slot: 'Notify Success'
+    content: 'Notify Success'
   })
 }
 
