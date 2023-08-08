@@ -17,7 +17,7 @@ export default defineConfig({
 			}
 		} as Plugin
 	],
-	build:{
+	build: {
 		chunkSizeWarningLimit: 999999
 	}
 });
