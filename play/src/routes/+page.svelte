@@ -36,11 +36,12 @@
 			content: 'message box content',
 			layout: 'center',
 			inputValidator: /[a-z]/,
+			inputErrorMessage: '只能输入英文',
 			onCancel: () => {
 				console.log('onCancel')
 			},
-			onConfirm: (v) => {
-				console.log('onCancel', v)
+			onConfirm: (r, v) => {
+				console.log('onConfirm', r, v)
 			}
 		})
 	};

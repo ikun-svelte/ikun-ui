@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	export let iconPrefix = '';
 	export let iconSuffix = '';
@@ -8,7 +9,14 @@
 	export let placeholder = '';
 	export let disabled = false;
 	export let attrs = {};
-
+	/**
+	 * @internal
+	 */
+	export let isError:boolean = false;
+	/**
+	 * @internal
+	 */
+	export let errorMsg:string = '';
 	const dispatch = createEventDispatcher();
 	const onUpdated = (e: Event) => {
 		dispatch('input', (e.target as HTMLInputElement).value);
@@ -27,8 +35,20 @@
 	class="
 	k-input--base
 	k-input--base__dark
-	k-input--base__hover
-	k-input--base__focus {disabled ? 'k-input--base__disabled k-input--base__disabled__dark' : ''} {cls}">
+	{
+		disabled ? 'k-input--base__disabled k-input--base__disabled__dark' : ''
+	}
+	{
+		isError ? 'k-input--base__error' : 'k-input--base__hover k-input--base__focus'
+	}
+	{cls}">
+	{#if isError}
+		<span out:fade={{ duration: 200 }}
+			  in:fade={{ duration: 200 }}
+			  class="k-input--base__msg__error">
+			{ errorMsg }
+		</span>
+	{/if}
 	<slot name="prefix">
 		{#if iconPrefix}
 			<KIcon cls="k-input--icon" icon={iconPrefix} />

@@ -1,11 +1,11 @@
 /// <reference types="svelte" />
-import {type IKunTypeBase, type IKunUncertainFunction} from "@ikun-ui/utils";
+import { type IKunTypeBase, type IKunUncertainFunction } from '@ikun-ui/utils';
 type Extend = { show: boolean };
 export type MsgBoxComponent<T> = T & (MsgBoxOptions<T> & Extend);
 export type MsgBoxEmoType = IKunTypeBase;
 export type MsgBoxType = 'confirm' | 'alert' | 'prompt';
 export type MsgBoxLayout = 'center' | 'right';
-export type ValidatorFn = (v: string) => boolean
+export type ValidatorFn = (v: string) => boolean;
 export declare type MsgBoxOptions<T> = {
 	/**
 	 * Content of message-box title
@@ -54,7 +54,7 @@ export declare type MsgBoxOptions<T> = {
 	 * @default right
 	 * confirm button and cancel button layout
 	 */
-	layout?: MsgBoxLayout
+	layout?: MsgBoxLayout;
 	/**
 	 * Additional class
 	 */
@@ -67,21 +67,21 @@ export declare type MsgBoxOptions<T> = {
 	 * validation function for the input.
 	 * @param value input value
 	 */
-	inputValidator?: RegExp | null | ValidatorFn
+	inputValidator?: RegExp | null | ValidatorFn;
 	/**
 	 * error message when validation fails
 	 */
-	inputErrorMessage?: string
+	inputErrorMessage?: string;
 	/**
 	 * input placeholder
 	 */
-	inputPlaceholder?: string
+	inputPlaceholder?: string;
 	/**
 	 * confirm callback
 	 */
-	onConfirm?: null | ((v?: boolean) => void)
+	onConfirm?: null | ((r?: boolean, v?: string) => void);
 	/**
 	 * cancel callback
 	 */
-	onCancel?: IKunUncertainFunction
-}
+	onCancel?: IKunUncertainFunction;
+};

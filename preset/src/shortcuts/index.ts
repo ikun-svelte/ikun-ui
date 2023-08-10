@@ -18,7 +18,6 @@ import { switchShortcuts } from './swtich';
 import { selectShortcuts } from './select';
 import { msgBoxShortcuts } from './message-box';
 
-
 export default [
 	baseShortcuts,
 	commonShortcuts,
@@ -69,7 +68,7 @@ export function getSafeList() {
 	const notificationList = Object.keys(notificationShortcuts);
 	const switchList = Object.keys(switchShortcuts);
 	const selectList = Object.keys(selectShortcuts);
-	const msgBoxList = Object.keys(msgBoxShortcuts)
+	const msgBoxList = Object.keys(msgBoxShortcuts);
 	return iconList
 		.concat(msgBoxList)
 		.concat(selectList)

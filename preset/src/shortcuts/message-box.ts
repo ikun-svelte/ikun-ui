@@ -11,7 +11,7 @@ export const msgBoxShortcuts: Record<string, string> = {
 	'k-msg-box--warning': 'text-ikun-warning',
 	'k-msg-box--error': 'text-ikun-error',
 	'k-msg-box--success': 'text-ikun-success',
-	'k-msg-box--icon': "mr-2",
+	'k-msg-box--icon': 'mr-2',
 	'k-msg-box--icon--info': 'i-carbon-information-filled',
 	'k-msg-box--icon--warning': 'i-carbon-warning-filled',
 	'k-msg-box--icon--error': 'i-carbon-error-filled',

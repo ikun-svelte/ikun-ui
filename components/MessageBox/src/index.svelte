@@ -13,7 +13,7 @@
     export let title: any = ''
     export let emoType: MsgBoxEmoType | null = null
     export let type: 'alert' | 'confirm' | 'prompt' | null = null
-    export let onConfirm:null | ((v?: boolean) => void) = null;
+    export let onConfirm:null | ((r?: boolean, v?: string) => void) = null;
     export let onCancel:null | IKunUncertainFunction = null;
     export let cancelBtnText: string = 'Cancel'
     export let confirmBtnText: string = 'Confirm'
@@ -36,9 +36,18 @@
     }
 
     const handleConfirm = () => {
-      !isError && (showInner = false)
-      onConfirm && type === 'prompt' && onConfirm(isError);
-      onConfirm && type !== 'prompt' && onConfirm();
+        if(type === 'prompt'){
+            if(!value){
+                isError = true
+            }
+            if(!isError){
+                showInner = false
+            }
+            onConfirm && onConfirm(!isError, value)
+        }else {
+            showInner = false
+            onConfirm && onConfirm()
+        }
     }
 
     const onInput = (e: Event) => {
