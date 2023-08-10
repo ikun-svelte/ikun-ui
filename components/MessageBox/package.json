@@ -28,6 +28,8 @@
 	"dependencies": {
 		"@ikun-ui/modal": "workspace:*",
 		"@ikun-ui/icon": "workspace:*",
+		"@ikun-ui/button": "workspace:*",
+		"@ikun-ui/input": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.14"
 	},

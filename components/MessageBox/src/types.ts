@@ -5,6 +5,7 @@ export type MsgBoxComponent<T> = T & (MsgBoxOptions<T> & Extend);
 export type MsgBoxEmoType = IKunTypeBase;
 export type MsgBoxType = 'confirm' | 'alert' | 'prompt';
 export type MsgBoxLayout = 'center' | 'right';
+export type ValidatorFn = (v: string) => boolean
 export declare type MsgBoxOptions<T> = {
 	/**
 	 * Content of message-box title
@@ -66,15 +67,19 @@ export declare type MsgBoxOptions<T> = {
 	 * validation function for the input.
 	 * @param value input value
 	 */
-	inputValidator?: (value: string) => boolean
+	inputValidator?: RegExp | null | ValidatorFn
 	/**
 	 * error message when validation fails
 	 */
 	inputErrorMessage?: string
 	/**
+	 * input placeholder
+	 */
+	inputPlaceholder?: string
+	/**
 	 * confirm callback
 	 */
-	onConfirm?: IKunUncertainFunction
+	onConfirm?: null | ((v?: boolean) => void)
 	/**
 	 * cancel callback
 	 */

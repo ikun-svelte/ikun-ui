@@ -31,11 +31,17 @@
 	};
 
 	const handleMsgBox = () => {
-		KMsgBox({
+		KMsgBox.prompt({
 			title: 'message box title',
 			content: 'message box content',
-			layout: 'right',
-			emoType: "info"
+			layout: 'center',
+			inputValidator: /[a-z]/,
+			onCancel: () => {
+				console.log('onCancel')
+			},
+			onConfirm: (v) => {
+				console.log('onCancel', v)
+			}
 		})
 	};
 

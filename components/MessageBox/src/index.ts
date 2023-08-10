@@ -23,7 +23,6 @@ const resolveMsgBoxOptions = (options: MsgBoxOptions<SvelteComponent>) => {
 };
 
 function mountMsgBox(options: MsgBoxOptions<SvelteComponent>) {
-  console.log(options)
   const MsgBoxInst = new MsgBox({
     target: options.target || document.body,
     props: {
