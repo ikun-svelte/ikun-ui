@@ -3,6 +3,7 @@ import { h } from 'vue';
 import DemoBlock from '../components/demo-block';
 import { highlight } from '../components/highlight';
 import ThemeColor from '../components/theme-color';
+import LogoAnimate from '../components/logo-animate';
 import './style.css';
 import 'uno.css';
 
@@ -14,6 +15,8 @@ export default {
 		app.component('theme-color', ThemeColor);
 	},
 	Layout() {
-		return h(theme.Layout);
+		return h(theme.Layout, null, {
+			'home-hero-image': () => h(LogoAnimate)
+		});
 	}
 };

@@ -5,10 +5,10 @@
 ikun-ui
 </h1>
 <p align="center">
-🫐 A Svelte.js based UnoCSS UI library that allows you to make websites
+🐔A Svelte.js based UnoCSS UI library that allows you to make websites
 </p>
 <p align="center">
-<a href="https://ikun-ui-docs.vercel.app/" target="_blank">document</a>
+<a href="https://ikun-ui.netlify.app" target="_blank">document</a>
 </p>
 
 ## Features

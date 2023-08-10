@@ -9,9 +9,6 @@ hero:
   name: 'ikun-ui'
   text: 'fast UnoCSS component library'
   tagline: A Svelte.js based UnoCSS UI library that allows you to make websites
-  image:
-    src: /logo.svg
-    alt: ikun-ui
 
   actions:
     - theme: brand
@@ -35,3 +32,5 @@ features:
     title: Theme Config
     details: Use attribute mode like unocss to design. Support theme config to customize theme.
 ---
+
+<logo-animate/>
