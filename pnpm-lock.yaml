@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -38,6 +38,9 @@ importers:
       '@ikun-ui/message':
         specifier: workspace:*
         version: link:components/Message
+      '@ikun-ui/message-box':
+        specifier: workspace:*
+        version: link:components/MessageBox
       '@ikun-ui/modal':
         specifier: workspace:*
         version: link:components/Modal
@@ -390,6 +393,40 @@ importers:
       '@ikun-ui/notify':
         specifier: workspace:*
         version: link:../Notification
+      '@ikun-ui/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      baiwusanyu-utils:
+        specifier: ^1.0.14
+        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: ^5.0.0
+        version: 5.0.0
+      svelte-strip:
+        specifier: ^2.0.0
+        version: 2.0.0(postcss@8.4.26)(svelte@4.0.0-next.3)
+      tslib:
+        specifier: ^2.6.1
+        version: 2.6.1
+      typescript:
+        specifier: ^5.1.6
+        version: 5.1.6
+
+  components/MessageBox:
+    dependencies:
+      '@ikun-ui/button':
+        specifier: workspace:*
+        version: link:../Button
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@ikun-ui/input':
+        specifier: workspace:*
+        version: link:../Input
+      '@ikun-ui/modal':
+        specifier: workspace:*
+        version: link:../Modal
       '@ikun-ui/utils':
         specifier: workspace:*
         version: link:../../utils

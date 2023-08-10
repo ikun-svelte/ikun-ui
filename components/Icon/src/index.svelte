@@ -24,6 +24,7 @@
 	class="k-icon--base k-icon--base__dark {btn ? 'cursor-pointer' : ''} {cls}"
 	on:click={handleClick}>
 	<div class="{iconInner} k-icon-transition {color}"
-		 style="width: {width}; height:{height};"
+		 style="
+		 width: {width}; height:{height};"
 	/>
 </div>

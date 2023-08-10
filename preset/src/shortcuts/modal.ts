@@ -6,7 +6,7 @@ export const modalShortcuts: Record<string, string> = {
 	'k-modal--header--icon__hover': 'hover:text-ikun-main',
 	'k-modal--header--title': 'text-ikun-tx-base font-bold text-lg',
 	'k-modal--body': 'p2',
-	'k-modal--footer': 'w-full p2 fi',
+	'k-modal--footer': 'p2 fi',
 	'k-modal--footer--btn': 'mx-2',
 	// dark
 	'k-modal--base__dark': 'dark:bg-ikun-dark-300 dark:shadow dark:shadow-ikun-main',
