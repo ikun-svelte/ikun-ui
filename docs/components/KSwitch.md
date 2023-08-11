@@ -27,31 +27,31 @@ npm install @ikun-ui/switch
 
 ## Basic usage
 
-<demo src="../../../../example/switch/basic.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Switch"></demo>
+<demo src="../../../../example/switch/basic.svelte" github="Switch"></demo>
 
 ## Disabled switch
 
 Use `disabled` attribute to determine whether a switch is disabled.
 
-<demo src="../../../../example/switch/disabled.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Switch"></demo>
+<demo src="../../../../example/switch/disabled.svelte" github="Switch"></demo>
 
 ## Loading switch
 
 Use `disabled` attribute to determine whether a switch is loading.
 
-<demo src="../../../../example/switch/loading.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Switch"></demo>
+<demo src="../../../../example/switch/loading.svelte" github="Switch"></demo>
 
 ## Custom color switch
 
-<demo src="../../../../example/switch/color.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Switch"></demo>
+<demo src="../../../../example/switch/color.svelte" github="Switch"></demo>
 
 ## Custom switch value
 
-<demo src="../../../../example/switch/value.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Switch"></demo>
+<demo src="../../../../example/switch/value.svelte" github="Switch"></demo>
 
 ## Custom switch render
 
-<demo src="../../../../example/switch/render.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Switch"></demo>
+<demo src="../../../../example/switch/render.svelte" github="Switch"></demo>
 
 ## Switch Props
 

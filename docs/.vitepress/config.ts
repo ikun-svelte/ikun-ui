@@ -67,6 +67,10 @@ const components = [
 				link: '/components/KMessage'
 			},
 			{
+				text: 'MessageBox',
+				link: '/components/KMessageBox'
+			},
+			{
 				text: 'Popover',
 				link: '/components/KPopover'
 			},

@@ -29,7 +29,7 @@ npm install @ikun-ui/eye-dropper
 
 Call the `eyedropper` interface by using `scoped slots`
 
-<demo src="../../../../example/eye-dropper/basic.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/EyeDropper"></demo>
+<demo src="../../../../example/eye-dropper/basic.svelte" github="EyeDropper"></demo>
 
 ## EyeDropper Props
 

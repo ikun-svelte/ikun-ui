@@ -52,6 +52,11 @@
 
     const onInput = (e: Event) => {
       const valueTemp = String((e as InputEvent).detail)
+      if(!inputValidator){
+        value = valueTemp
+        isError = false
+        return
+      }
       // Validator
       if(inputValidator &&
         Object.prototype.toString.call(inputValidator) === '[object RegExp]'){

@@ -28,7 +28,8 @@
 		"@ikun-ui/switch": "workspace:*",
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
-		"@ikun-ui/utils": "workspace:*"
+		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/message-box": "workspace:*"
 	},
 	"devDependencies": {
 		"@iconify-json/carbon": "^1.1.18",

@@ -29,13 +29,13 @@ npm install @ikun-ui/collapse
 
 You can expand multiple panels
 
-<demo src="../../../../example/collapse/basic.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Collapse"></demo>
+<demo src="../../../../example/collapse/basic.svelte" github="Collapse"></demo>
 
 ## Custom title and content
 
 You can render content through slots
 
-<demo src="../../../../example/collapse/custom.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Collapse"></demo>
+<demo src="../../../../example/collapse/custom.svelte" github="Collapse"></demo>
 
 ## Collapse Props
 
