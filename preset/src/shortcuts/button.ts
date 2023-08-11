@@ -1,6 +1,6 @@
 export const buttonShortcuts: Record<string, string> = {
 	// button
-	'k-button--base': 'rounded k-border cursor-pointer f-c px-2 py-1 text-base',
+	'k-button--base': 'rounded k-border cursor-pointer f-c px-2 py-1 text-base w-fit',
 	'k-button--circle': '!rounded-full p-2',
 
 	'k-button--primary':
