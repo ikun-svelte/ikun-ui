@@ -29,13 +29,13 @@ npm install @ikun-ui/checkbox
 
 Checkbox can be used alone to switch between two states.
 
-<demo src="../../../../example/checkbox/basic.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Checkbox"></demo>
+<demo src="../../../../example/checkbox/basic.svelte" github="Checkbox"></demo>
 
 ## Disabled checkbox
 
 Set the `disabled` attribute.
 
-<demo src="../../../../example/checkbox/disabled.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Checkbox"></demo>
+<demo src="../../../../example/checkbox/disabled.svelte" github="Checkbox"></demo>
 
 ## Checkbox Props
 

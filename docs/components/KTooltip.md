@@ -27,19 +27,19 @@ npm install @ikun-ui/tooltip
 
 ## Basic usage
 
-<demo src="../../../../example/tooltip/basic.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Tooltip"></demo>
+<demo src="../../../../example/tooltip/basic.svelte" github="Tooltip"></demo>
 
 ## Different placement
 
 Specify different display positions through the `placement` attribute
 
-<demo src="../../../../example/tooltip/placement.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Tooltip"></demo>
+<demo src="../../../../example/tooltip/placement.svelte" github="Tooltip"></demo>
 
 ## Different triggers
 
 Specify different trigger methods through the `trigger` attribute
 
-<demo src="../../../../example/tooltip/trigger.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Tooltip"></demo>
+<demo src="../../../../example/tooltip/trigger.svelte" github="Tooltip"></demo>
 
 ## Tooltip Props
 

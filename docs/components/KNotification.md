@@ -29,7 +29,7 @@ npm install @ikun-ui/notify
 
 Determine the display position by setting the `placement` option
 
-<demo src="../../../../example/notification/basic.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Notification"></demo>
+<demo src="../../../../example/notification/basic.svelte" github="Notification"></demo>
 
 ## Different emotion categories
 
@@ -39,30 +39,30 @@ Display different emotion category notifications by calling different methods
 The method of `NotifyInst.info/success/error/warning` takes precedence over `options.type`.
 :::
 
-<demo src="../../../../example/notification/type.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Notification"></demo>
+<demo src="../../../../example/notification/type.svelte" github="Notification"></demo>
 
 ## Closable notification
 
 Through the options, you can set whether the notification can be closed,
 the duration of existence, automatic close and close callback
 
-<demo src="../../../../example/notification/close.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Notification"></demo>
+<demo src="../../../../example/notification/close.svelte" github="Notification"></demo>
 
 ## notification with offset
 
 Sometimes you may need the notification to be slightly offset by a distance in the y-axis direction
 
-<demo src="../../../../example/notification/offset.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Notification"></demo>
+<demo src="../../../../example/notification/offset.svelte" github="Notification"></demo>
 
 ## Update the notification
 
-<demo src="../../../../example/notification/update.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Notification"></demo>
+<demo src="../../../../example/notification/update.svelte" github="Notification"></demo>
 
 ## Custom title and content
 
 You can render content through slots
 
-<demo src="../../../../example/notification/custom.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Notification"></demo>
+<demo src="../../../../example/notification/custom.svelte" github="Notification"></demo>
 
 ## Notification Options
 
@@ -76,7 +76,7 @@ You can render content through slots
 | type      | `'info' / 'warning'  'error' / 'success'`                   | `-`         | The emotion category of the notification                                                |
 | offset    | `number`                                                    | `0`         | Notification is offset on the y-axis                                                    |
 | title     | `string / SvelteComponent`                                  | `-`         | The title content of the notification, which can be a html string or a svelte component |
-| content   | `string / SvelteComponent`                                  | `{}`        | The content of the notification, which can be a html string or a svelte component       |
+| content   | `string / SvelteComponent`                                  | `-`         | The content of the notification, which can be a html string or a svelte component       |
 | cls       | `string`                                                    | `-`         | Additional class                                                                        |
 | attrs     | `any`                                                       | `{}`        | Additional attributes                                                                   |
 

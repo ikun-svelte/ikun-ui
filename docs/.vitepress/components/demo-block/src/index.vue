@@ -62,7 +62,7 @@ const handleCopy = () => {
 					class="i-carbon-copy-file mx-2 cursor-pointer"
 					style="color: #737373"
 				></div>
-				<a :href="github" target="_blank" class="mx-2">
+				<a :href="`https://github.com/ikun-svelte/ikun-ui/tree/main/components/${github}`" target="_blank" class="mx-2">
 					<div title="open in github" class="i-carbon-logo-github" style="color: #737373"></div>
 				</a>
 			</div>

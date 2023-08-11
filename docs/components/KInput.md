@@ -27,19 +27,19 @@ npm install @ikun-ui/input
 
 ## Basic usage
 
-<demo src="../../../../example/input/basic.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Input"></demo>
+<demo src="../../../../example/input/basic.svelte" github="Input"></demo>
 
 ## Prefix icon and suffix icon input
 
 Set the prefix through the icon attribute
 
-<demo src="../../../../example/input/prefix.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Input"></demo>
+<demo src="../../../../example/input/prefix.svelte" github="Input"></demo>
 
 ## Disabled input
 
 Disable the input through the disabled attribute
 
-<demo src="../../../../example/input/disabled.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Input"></demo>
+<demo src="../../../../example/input/disabled.svelte" github="Input"></demo>
 
 ## Input Props
 

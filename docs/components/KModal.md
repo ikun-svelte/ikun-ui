@@ -27,23 +27,23 @@ npm install @ikun-ui/modal
 
 ## Basic usage
 
-<demo src="../../../../example/modal/basic.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Modal"></demo>
+<demo src="../../../../example/modal/basic.svelte" github="Modal"></demo>
 
 ## Enable the built-in footer button
 
-<demo src="../../../../example/modal/footer.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Modal"></demo>
+<demo src="../../../../example/modal/footer.svelte" github="Modal"></demo>
 
 ## Different footer layouts
 
 Define the footer button layout through the layout attribute
 
-<demo src="../../../../example/modal/layout.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Modal"></demo>
+<demo src="../../../../example/modal/layout.svelte" github="Modal"></demo>
 
 ## Custom header and footer
 
 Implement custom header and footer through slots
 
-<demo src="../../../../example/modal/custom.svelte" github="https://github.com/ikun-svelte/ikun-ui/tree/main/components/Modal"></demo>
+<demo src="../../../../example/modal/custom.svelte" github="Modal"></demo>
 
 ## Modal Props
 
