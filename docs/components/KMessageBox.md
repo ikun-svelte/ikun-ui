@@ -66,7 +66,7 @@ The `cancelBtnText` and `confirmBtnText` attributes set the button text
 You can render `content` and `title` through slots
 
 ::: tip
-When customizing the `title` and `content`, 
+When customizing the `title` and `content`,
 if you want to perform form validation, then you can handle it yourself through the `onConfirm` event.
 :::
 
