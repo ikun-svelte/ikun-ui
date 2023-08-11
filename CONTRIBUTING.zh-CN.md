@@ -1,4 +1,3 @@
-
 > [English](./CONTRIBUTING.md) | 简体中文
 
 # 贡献指南
@@ -26,7 +25,7 @@
 1. Fork [此仓库](https://github.com/ikun-svelte/ikun-ui)，从 `main` 创建分支。新功能实现请发 pull request 到 `feature` 分支。其他更改发到 `main` 分支。
 2. 使用 `pnpm install` 安装依赖。
 3. 运行 `pnpm run build` 对所有组件、预设、utils进行构建
-4. 调试组件请运行 `pnpm run play` ，调试文档站点请运行  `pnpm run dev:docs`
+4. 调试组件请运行 `pnpm run play` ，调试文档站点请运行 `pnpm run dev:docs`
 5. 根据你的需求进行修改，无论是修改预设还是组件，修改后都需要手动的到对应目录下运行 `pnpm run build`
 6. 对代码库进行更改。如果适用的话，请确保写了相应的测试。
 7. 确认执行 `pnpm run test` 后所有的测试都是通过的。
@@ -72,7 +71,6 @@ Commit messages 请遵循[conventional-changelog 标准](https://www.conventiona
 5. `preset`: 组件库 `UnoCSS` 预设 `@ikun-ui/preset`
 6. `scripts`: 组件库使用的一些工具脚本
 7. `utils`: 组件库工具方法`@ikun-ui/utils`
-
 
 ## License
 
