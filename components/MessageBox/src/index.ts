@@ -21,18 +21,16 @@ const resolveMsgBoxOptions = (options: MsgBoxOptions<SvelteComponent>) => {
 };
 
 function mountMsgBox(options: MsgBoxOptions<SvelteComponent>) {
-	const cancelEvt = options.onCancel
+	const cancelEvt = options.onCancel;
 
 	const MsgBoxInst = new MsgBox({
 		target: options.target || document.body,
 		props: {
 			...options,
 			show: false,
-			onCancel(){
-				cancelEvt && cancelEvt()
-				durationUnmountMsgBox(
-					MsgBoxInst as unknown as MsgBoxComponent<SvelteComponent>,
-					0)
+			onCancel() {
+				cancelEvt && cancelEvt();
+				durationUnmountMsgBox(MsgBoxInst as unknown as MsgBoxComponent<SvelteComponent>, 0);
 			}
 		}
 	});

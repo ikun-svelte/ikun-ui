@@ -21,7 +21,7 @@
 	/*border-radius: 0 0 0 100%;*/
 }
 .logo-grey::before {
-  left:0;
+	left: 0;
 	transform-origin: 100% 0;
 	transform: rotate(8deg);
 	animation: mid-split-right var(--t) infinite cubic-bezier(0.68, -0.55, 0.265, 1.55)

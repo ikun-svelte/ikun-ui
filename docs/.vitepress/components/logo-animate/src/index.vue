@@ -27,9 +27,9 @@ const play = ref(false);
 	--play-status: running;
 }
 
-@media (max-width:960px) {
-  #home_logo{
-    top: 20%;
-  }
+@media (max-width: 960px) {
+	#home_logo {
+		top: 20%;
+	}
 }
 </style>

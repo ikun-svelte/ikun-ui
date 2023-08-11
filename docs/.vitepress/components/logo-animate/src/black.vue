@@ -25,7 +25,7 @@
 }
 .logo-black::before {
 	top: 25%;
-  left: 10%;
+	left: 10%;
 	transform: rotate(-45deg);
 }
 .logo-black::after {
