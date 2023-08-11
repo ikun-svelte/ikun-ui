@@ -26,4 +26,10 @@ const play = ref(false);
 #home_logo.play {
 	--play-status: running;
 }
+
+@media (max-width:960px) {
+  #home_logo{
+    top: 20%;
+  }
+}
 </style>
