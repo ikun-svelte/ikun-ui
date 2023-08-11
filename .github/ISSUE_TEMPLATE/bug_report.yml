@@ -55,7 +55,7 @@ body:
           required: true
         - label: Check that there isn't [already an issue](https://github.com/ikun-svelte/ikun-ui/issues) that reports the same bug to avoid creating a duplicate.
           required: true
-        - label: Make sure this is a ikun-ui issue and not a framework-specific issue. For example, if it's a Vue SFC related bug, it should likely be reported to https://github.com/vuejs/core instead.
+        - label: Make sure this is a ikun-ui issue and not a framework-specific issue. For example, if it's a Svelte SFC related bug, it should likely be reported to https://github.com/sveltejs/svelte instead.
           required: true
         - label: The provided reproduction is a [minimal reproducible example](https://stackoverflow.com/help/minimal-reproducible-example) of the bug.
           required: true
