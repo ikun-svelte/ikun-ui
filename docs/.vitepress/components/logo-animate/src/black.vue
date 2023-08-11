@@ -20,16 +20,17 @@
 	content: '';
 	position: absolute;
 	background-color: #fff;
-	width: 10px;
+	width: 6px;
 	height: 100%;
 }
 .logo-black::before {
 	top: 25%;
+  left: 10%;
 	transform: rotate(-45deg);
 }
 .logo-black::after {
 	top: -25%;
-	right: 0;
+	right: 10%;
 	transform: rotate(-45deg);
 }
 .logo-black span {
