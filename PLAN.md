@@ -60,7 +60,7 @@ TODO
 
 | Component     | Status |
 | ------------- | ------ |
-| KButton       | 🚧     |
+| KButton       | ✅     |
 | KCheckbox     | 🚧     |
 | KClientOnly   | 🚧     |
 | KCollapse     | 🚧     |

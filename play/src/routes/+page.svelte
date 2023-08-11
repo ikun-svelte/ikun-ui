@@ -76,7 +76,10 @@
 	<KButton type="error" slot="triggerEl">KPopover - trigger</KButton>
 </KPopover>
 
-<KButton icon="i-carbon-settings" type="success" on:click={() => (openModal = true)}>
+<KButton icon="i-carbon-settings"
+		 to
+		 type="success"
+		 on:click={() => (openModal = true)}>
 	KModal
 </KButton>
 
