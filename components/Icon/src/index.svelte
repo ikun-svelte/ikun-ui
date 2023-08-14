@@ -10,7 +10,7 @@
 	export let cls = '';
 
 	$: iconInner = icon;
-	$: tag = btn ? '' : 'button';
+	$: tag = btn ? 'button' : '';
 	const dispatch = createEventDispatcher();
 	const handleClick = (e:Event) => {
 		dispatch('click', e);
