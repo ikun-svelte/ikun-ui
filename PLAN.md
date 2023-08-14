@@ -75,7 +75,7 @@ TODO
 | KPopover      | 🚧     |
 | KSelect       | 🚧     |
 | KSwitch       | 🚧     |
-| KTag          | 🚧     |
+| KTag          | ✅     |
 | KTooltip      | 🚧     |
 
 # New Component

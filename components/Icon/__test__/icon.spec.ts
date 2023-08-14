@@ -78,7 +78,7 @@ describe('Test: KIcon', () => {
 		const instance = new KIcon({
 			target: host,
 			props: {
-				icon: 'i-carbon-settings',
+				icon: 'i-carbon-settings'
 			}
 		});
 		await tick();
