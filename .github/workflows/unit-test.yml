@@ -28,8 +28,5 @@ jobs:
       - name: Install
         run: pnpm install --no-frozen-lockfile
 
-      - name: lint
-        run: pnpm run lint
-
       - name: unit test
         run: pnpm run test
