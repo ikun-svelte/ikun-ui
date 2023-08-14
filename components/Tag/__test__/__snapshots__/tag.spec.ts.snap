@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KTag > props: type 1`] = `"<span class=\\"k-tag--base k-tag--primary \\"></span><span class=\\"k-tag--base k-tag--info \\"></span><span class=\\"k-tag--base k-tag--warning \\"></span><span class=\\"k-tag--base k-tag--error \\"></span><span class=\\"k-tag--base k-tag--success \\"></span>"`;
+
+exports[`Test: KTag > slot: default 1`] = `"<span class=\\"k-tag--base k-tag--primary \\"><span>KTag</span></span>"`;
