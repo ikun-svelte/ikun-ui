@@ -79,7 +79,7 @@ describe('Test: KButton', () => {
 		expect(success).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--success k-button--success__active k-button--success__focus'
+				'k-button--success k-button--success__active k-button--success__focus k-button--success__hover'
 			)
 		).toBeTruthy();
 
@@ -92,7 +92,7 @@ describe('Test: KButton', () => {
 		expect(error).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--error k-button--error__active k-button--error__focus'
+				'k-button--error k-button--error__active k-button--error__focus k-button--error__hover'
 			)
 		).toBeTruthy();
 
@@ -105,7 +105,7 @@ describe('Test: KButton', () => {
 		expect(warning).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--warning k-button--warning__active k-button--warning__focus'
+				'k-button--warning k-button--warning__active k-button--warning__focus k-button--warning__hover'
 			)
 		).toBeTruthy();
 
@@ -118,7 +118,7 @@ describe('Test: KButton', () => {
 		expect(info).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--info k-button--info__active k-button--info__focus'
+				'k-button--info k-button--info__active k-button--info__focus k-button--info__hover'
 			)
 		).toBeTruthy();
 
@@ -131,7 +131,7 @@ describe('Test: KButton', () => {
 		expect(primary).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--primary k-button--primary__active k-button--primary__focus'
+				'k-button--primary k-button--primary__active k-button--primary__focus k-button--primary__hover'
 			)
 		).toBeTruthy();
 
@@ -146,7 +146,7 @@ describe('Test: KButton', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-cur-disabled')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-cur-disabled k-button--disabled')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 

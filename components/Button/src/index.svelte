@@ -4,7 +4,7 @@
 	import type { IKunTypePro } from '@ikun-ui/utils';
 	export let to = false;
 	export let icon = '';
-	export let round = '';
+	export let round:string | number = '';
 	export let circle = false;
 	export let cls = '';
 	export let attrs = {};
@@ -35,9 +35,9 @@
 	class="
         k-button--base
         k-button--{type}
-        k-button--{type}__active
-        k-button--{type}__focus
-        {disabled ? 'k-cur-disabled' : ''}
+        {disabled 
+					? 'k-cur-disabled k-button--disabled' 
+					: `k-button--${type}__active k-button--${type}__focus k-button--${type}__hover`}
         {circle ? 'k-button--circle' : ''}
         {cls}">
 	{#if icon}
