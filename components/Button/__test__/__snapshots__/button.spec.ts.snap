@@ -4,7 +4,7 @@ exports[`Test: KButton > props: circle 1`] = `"<button aria-hidden=\\"true\\" st
 
 exports[`Test: KButton > props: disabled 1`] = `"<button aria-hidden=\\"true\\" style=\\"border-radius: 4px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus k-cur-disabled  \\">  </button>"`;
 
-exports[`Test: KButton > props: icon 1`] = `"<button aria-hidden=\\"true\\" style=\\"border-radius: 4px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus   \\"><div role=\\"button\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  \\"><div class=\\"icon-carbon-settings k-icon-transition k-button--primary__icon\\" style=\\"width: 24px; height: 24px;\\"></div></div>  </button>"`;
+exports[`Test: KButton > props: icon 1`] = `"<button aria-hidden=\\"true\\" style=\\"border-radius: 4px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus   \\"><div role=\\"\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  \\"><div class=\\"icon-carbon-settings k-icon-transition k-button--primary__icon\\" style=\\"width: 24px; height: 24px;\\"></div></div>  </button>"`;
 
 exports[`Test: KButton > props: round 1`] = `"<button aria-hidden=\\"true\\" style=\\"border-radius: 30px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus   \\">  </button>"`;
 

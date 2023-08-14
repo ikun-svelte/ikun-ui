@@ -4,9 +4,7 @@
 		"noImplicitAny": true,
 		"strict": true,
 		"declaration": true,
-		"lib": [
-			"dom"
-		]
+		"lib": ["dom"]
 	},
 	"include": ["src/**/*.ts", "src/**/*.svelte"],
 	"exclude": ["node_modules/*", "**/*.spec.ts"]
