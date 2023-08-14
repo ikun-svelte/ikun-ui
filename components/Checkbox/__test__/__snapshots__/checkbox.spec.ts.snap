@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KCheckBox > props: disabled 1`] = `"<label class=\\"k-checkbox--base k-checkbox--base__dark  k-cur-disabled\\"><input disabled=\\"\\" type=\\"checkbox\\" value=\\"false\\" hidden=\\"\\"> <div class=\\"k-checkbox--box   k-checkbox--box__disabled\\"></div> </label>"`;
+
+exports[`Test: KCheckBox > props: label 1`] = `"<label class=\\"k-checkbox--base k-checkbox--base__dark  \\"><input type=\\"checkbox\\" value=\\"false\\" hidden=\\"\\"> <div class=\\"k-checkbox--box   \\"></div> <span class=\\"k-checkbox--label \\">foo</span></label>"`;
