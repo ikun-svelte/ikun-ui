@@ -3,7 +3,10 @@
 	"compilerOptions": {
 		"noImplicitAny": true,
 		"strict": true,
-		"declaration": true
+		"declaration": true,
+		"lib": [
+			"dom"
+		]
 	},
 	"include": ["src/**/*.ts", "src/**/*.svelte"],
 	"exclude": ["node_modules/*", "**/*.spec.ts"]
