@@ -3,7 +3,7 @@ import { log, setGlobalPrefix } from 'baiwusanyu-utils';
 import fs from 'fs';
 import path from 'path';
 import fg from 'fast-glob';
-export async function runCommand(command, dir) {
+export async function runCommand(command, dir, userOptions) {
 	return new Promise((resolve, reject) => {
 		try {
 			shell.exec(
@@ -13,7 +13,7 @@ export async function runCommand(command, dir) {
 					shell: true,
 					encoding: 'GBK',
 					async: true,
-					silent: true
+					silent: userOptions?.silent === undefined ? true : userOptions?.silent
 				},
 				(code, output, err) => {
 					if (code === 0) {
@@ -34,7 +34,7 @@ export async function runCommand(command, dir) {
 	});
 }
 
-export async function runTask(buildCommand, root, action) {
+export async function runTask(buildCommand, root, action, userOptions) {
 	// set log prefix
 	setGlobalPrefix('[ikun-ui]: ');
 	const rootDir = path.resolve(root);
@@ -54,7 +54,11 @@ export async function runTask(buildCommand, root, action) {
 			const packageJson = JSON.parse(packageJsonData);
 			if (packageJson.scripts && packageJson.scripts.build) {
 				try {
-					await runCommand(buildCommand, packageJsonPath.replaceAll('package.json', ''));
+					await runCommand(
+						buildCommand,
+						packageJsonPath.replaceAll('package.json', ''),
+						userOptions
+					);
 					log('success', `${action} ${packageJson.name} complete`);
 				} catch (error) {
 					log('error', `${action} error at ${packageJson.name}`, error);

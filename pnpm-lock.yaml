@@ -111,6 +111,9 @@ importers:
       bumpp:
         specifier: ^9.1.1
         version: 9.1.1
+      chokidar:
+        specifier: ^3.5.3
+        version: 3.5.3
       del:
         specifier: ^7.0.0
         version: 7.0.0
