@@ -47,7 +47,7 @@ Disable the select through the disabled attribute
 | ----------- | --------- | ------- | ---------------------------------------------------------------- |
 | value       | `string`  | `-`     | Binding value                                                    |
 | iconPrefix  | `string`  | `-`     | The class name of the prefix icon, following the unocss standard |
-| iconPrefix  | `string`  | `-`     | The class name of the suffix icon, following the unocss standard |
+| iconSuffix  | `string`  | `-`     | The class name of the suffix icon, following the unocss standard |
 | placeholder | `string`  | `false` | Select's placeholder                                             |
 | disabled    | `boolean` | `false` | Disable the Select                                               |
 | cls         | `string`  | `-`     | Additional class                                                 |
