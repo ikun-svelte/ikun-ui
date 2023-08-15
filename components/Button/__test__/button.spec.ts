@@ -147,7 +147,9 @@ describe('Test: KButton', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-cur-disabled k-button--disabled')).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes('k-cur-disabled k-button--disabled')
+		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 

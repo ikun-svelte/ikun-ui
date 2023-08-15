@@ -1,25 +1,27 @@
 <script lang="ts">
-	import { KButton } from '@ikun-ui/button'
-	import { KIcon } from '@ikun-ui/icon'
-	import { KCollapse } from '@ikun-ui/collapse'
-	import { KCheckbox } from '@ikun-ui/checkbox'
-	import { KDrawer } from '@ikun-ui/drawer'
-	import { KEyeDropper } from '@ikun-ui/eye-dropper'
-	import { KInput } from '@ikun-ui/input'
-	import { KPopover } from '@ikun-ui/popover'
-	import { KTooltip } from '@ikun-ui/tooltip'
-	import { KModal } from '@ikun-ui/modal'
-	import { KTag } from '@ikun-ui/tag'
-	import { KNotify } from '@ikun-ui/notify'
-	import { KSwitch } from '@ikun-ui/switch'
-	import { KSelect } from '@ikun-ui/select'
-	import { KMsgBox } from '@ikun-ui/message-box'
-	import 'virtual:uno.css'
+	import { KButton } from '@ikun-ui/button';
+	import { KIcon } from '@ikun-ui/icon';
+	import { KCollapse } from '@ikun-ui/collapse';
+	import { KCheckbox } from '@ikun-ui/checkbox';
+	import { KDrawer } from '@ikun-ui/drawer';
+	import { KEyeDropper } from '@ikun-ui/eye-dropper';
+	import { KInput } from '@ikun-ui/input';
+	import { KPopover } from '@ikun-ui/popover';
+	import { KTooltip } from '@ikun-ui/tooltip';
+	import { KModal } from '@ikun-ui/modal';
+	import { KTag } from '@ikun-ui/tag';
+	import { KNotify } from '@ikun-ui/notify';
+	import { KSwitch } from '@ikun-ui/switch';
+	import { KSelect } from '@ikun-ui/select';
+	import { KMsgBox } from '@ikun-ui/message-box';
+	import { KRadio } from '@ikun-ui/radio';
+	import 'virtual:uno.css';
 
-	let checked = true
-	let openDrawer = false
-	let openModal = false
-	let inputValue = ''
+	let checked = true;
+	let radioChecked = false;
+	let openDrawer = false;
+	let openModal = false;
+	let inputValue = '';
 
 	const handleNotify = () => {
 		KNotify.success({
@@ -38,13 +40,13 @@
 			inputValidator: /[a-z]/,
 			inputErrorMessage: '只能输入英文',
 			onCancel: () => {
-				console.log('onCancel')
+				console.log('onCancel');
 			},
 			onConfirm: (r, v) => {
-				console.log('onConfirm', r, v)
+				console.log('onConfirm', r, v);
 			}
-		})
-	}
+		});
+	};
 
 	let switchVal = false
 	let selectVal = ''
@@ -65,6 +67,11 @@
 </KCollapse>
 <KCheckbox value={checked} on:updateValue={(e) => (checked = e.detail)} label={`${checked}`}
 ></KCheckbox>
+<KRadio
+	value={radioChecked}
+	on:updateValue={(e) => (radioChecked = e.detail)}
+	label={`${radioChecked}`}
+></KRadio>
 <KDrawer value={openDrawer} on:close={() => (openDrawer = false)}>KDrawer</KDrawer>
 <KEyeDropper let:open>
 	<KButton type="primary" on:click={() => open()}>KEyeDropper</KButton>
