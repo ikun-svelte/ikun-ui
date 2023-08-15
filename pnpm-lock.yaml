@@ -11,6 +11,9 @@ importers:
       '@ikun-ui/button':
         specifier: workspace:*
         version: link:components/Button
+      '@ikun-ui/button-group':
+        specifier: workspace:*
+        version: link:components/ButtonGroup
       '@ikun-ui/checkbox':
         specifier: workspace:*
         version: link:components/Checkbox
@@ -188,6 +191,31 @@ importers:
         version: 0.34.1(@vitest/ui@0.34.1)(jsdom@22.1.0)
 
   components/Button:
+    dependencies:
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@ikun-ui/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      baiwusanyu-utils:
+        specifier: ^1.0.14
+        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: ^5.0.0
+        version: 5.0.0
+      svelte-strip:
+        specifier: ^2.0.0
+        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+      tslib:
+        specifier: ^2.6.1
+        version: 2.6.1
+      typescript:
+        specifier: ^5.1.6
+        version: 5.1.6
+
+  components/ButtonGroup:
     dependencies:
       '@ikun-ui/icon':
         specifier: workspace:*
