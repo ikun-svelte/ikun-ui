@@ -11,6 +11,7 @@ export * from '@ikun-ui/message';
 export * from '@ikun-ui/modal';
 export * from '@ikun-ui/notify';
 export * from '@ikun-ui/popover';
+export * from '@ikun-ui/radio';
 export * from '@ikun-ui/select';
 export * from '@ikun-ui/tag';
 export * from '@ikun-ui/tooltip';

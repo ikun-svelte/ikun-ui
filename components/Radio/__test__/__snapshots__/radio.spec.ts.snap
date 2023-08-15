@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KRadio > props: disabled 1`] = `"<label class=\\"k-radio--base k-radio--base__dark  k-cur-disabled\\"><input disabled=\\"\\" type=\\"radio\\" value=\\"false\\" hidden=\\"\\"> <div class=\\"k-radio--box   k-radio--box__disabled\\"></div> </label>"`;
+
+exports[`Test: KRadio > props: label 1`] = `"<label class=\\"k-radio--base k-radio--base__dark  \\"><input type=\\"radio\\" value=\\"false\\" hidden=\\"\\"> <div class=\\"k-radio--box   \\"></div> <span class=\\"k-radio--label \\">foo</span></label>"`;
