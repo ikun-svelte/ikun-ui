@@ -44,17 +44,24 @@ Use the icon attribute to add icon.
 
 <demo src="../../../../example/button/icon.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
 
+## Link Button
+
+Use the `to` attribute to set a specific url that you can click to jump to.
+
+<demo src="../../../../example/button/link.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
+
 ## Button Props
 
-| Name     | Type      | Default                                               | Description                                               |
-| -------- | --------- | ----------------------------------------------------- | --------------------------------------------------------- |
-| icon     | `string`  | `-`                                                   | The class name of the icon, following the unocss standard |
-| circle   | `boolean` | `false`                                               | Determine whether it's a circle button                    |
-| round    | `string`  | `-`                                                   | Button's border radius                                    |
-| disabled | `boolean` | `false`                                               | Disable the button                                        |
-| type     | `enum`    | `'success' / 'error' / 'warning' / 'info'/ 'primary'` | Button type                                               |
-| cls      | `string`  | `-`                                                   | Additional class for                                      |
-| attrs    | `any`     | `{}`                                                  | Additional attributes                                     |
+| Name     | Type               | Default                                               | Description                                               |
+| -------- | ------------------ | ----------------------------------------------------- | --------------------------------------------------------- |
+| icon     | `string`           | `-`                                                   | The class name of the icon, following the unocss standard |
+| circle   | `boolean`          | `false`                                               | Determine whether it's a circle button                    |
+| to       | `string`           | `-`                                                   | Determine whether it's a link button                      |
+| round    | `string \| number` | `-`                                                   | Button's border radius                                    |
+| disabled | `boolean`          | `false`                                               | Disable the button                                        |
+| type     | `enum`             | `'success' / 'error' / 'warning' / 'info'/ 'primary'` | Button type                                               |
+| cls      | `string`           | `-`                                                   | Additional class for                                      |
+| attrs    | `any`              | `{}`                                                  | Additional attributes                                     |
 
 ## Button Events
 

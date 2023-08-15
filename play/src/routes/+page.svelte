@@ -1,25 +1,25 @@
 <script lang="ts">
-	import { KButton } from '@ikun-ui/button';
-	import { KIcon } from '@ikun-ui/icon';
-	import { KCollapse } from '@ikun-ui/collapse';
-	import { KCheckbox } from '@ikun-ui/checkbox';
-	import { KDrawer } from '@ikun-ui/drawer';
-	import { KEyeDropper } from '@ikun-ui/eye-dropper';
-	import { KInput } from '@ikun-ui/input';
-	import { KPopover } from '@ikun-ui/popover';
-	import { KTooltip } from '@ikun-ui/tooltip';
-	import { KModal } from '@ikun-ui/modal';
-	import { KTag } from '@ikun-ui/tag';
-	import { KNotify } from '@ikun-ui/notify';
-	import { KSwitch } from '@ikun-ui/switch';
-	import { KSelect } from '@ikun-ui/select';
-	import { KMsgBox} from '@ikun-ui/message-box';
-	import 'virtual:uno.css';
+	import { KButton } from '@ikun-ui/button'
+	import { KIcon } from '@ikun-ui/icon'
+	import { KCollapse } from '@ikun-ui/collapse'
+	import { KCheckbox } from '@ikun-ui/checkbox'
+	import { KDrawer } from '@ikun-ui/drawer'
+	import { KEyeDropper } from '@ikun-ui/eye-dropper'
+	import { KInput } from '@ikun-ui/input'
+	import { KPopover } from '@ikun-ui/popover'
+	import { KTooltip } from '@ikun-ui/tooltip'
+	import { KModal } from '@ikun-ui/modal'
+	import { KTag } from '@ikun-ui/tag'
+	import { KNotify } from '@ikun-ui/notify'
+	import { KSwitch } from '@ikun-ui/switch'
+	import { KSelect } from '@ikun-ui/select'
+	import { KMsgBox } from '@ikun-ui/message-box'
+	import 'virtual:uno.css'
 
-	let checked = true;
-	let openDrawer = false;
-	let openModal = false;
-	let inputValue = '';
+	let checked = true
+	let openDrawer = false
+	let openModal = false
+	let inputValue = ''
 
 	const handleNotify = () => {
 		KNotify.success({
@@ -27,8 +27,8 @@
 			duration: 99999,
 			autoClose: true,
 			content: 'Notify Success'
-		});
-	};
+		})
+	}
 
 	const handleMsgBox = () => {
 		KMsgBox.prompt({
@@ -44,12 +44,17 @@
 				console.log('onConfirm', r, v)
 			}
 		})
-	};
+	}
 
-	let switchVal = false;
-	let selectVal = '';
+	let switchVal = false
+	let selectVal = ''
 </script>
 
+<div class="flex fle-gap-2 p-2">
+	<KButton>Normal Button</KButton>
+	<KButton disabled>Disabled Button</KButton>
+	<KButton to="https://github.com/ikun-svelte/ikun-ui">Link</KButton>
+</div>
 <KButton icon="i-carbon-settings" type="primary" on:click={() => (openDrawer = true)}>
 	drawer
 </KButton>
@@ -76,10 +81,7 @@
 	<KButton type="error" slot="triggerEl">KPopover - trigger</KButton>
 </KPopover>
 
-<KButton icon="i-carbon-settings"
-		 to
-		 type="success"
-		 on:click={() => (openModal = true)}>
+<KButton icon="i-carbon-settings" to type="success" on:click={() => (openModal = true)}>
 	KModal
 </KButton>
 
@@ -94,7 +96,7 @@
 <KTag type="warning">warning KTag</KTag>
 
 <KButton on:click={handleNotify}>handleNotify</KButton>
-<KButton on:click={handleMsgBox} type =info> handleMsgBox </KButton>
+<KButton on:click={handleMsgBox} type="info">handleMsgBox</KButton>
 <KSwitch value={switchVal} on:updateValue={(v) => (switchVal = v.detail)}></KSwitch>
 
 <KSelect value={selectVal} iconPrefix="i-carbon-settings" placeholder="selectValue">

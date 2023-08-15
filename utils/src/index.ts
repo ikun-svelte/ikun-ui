@@ -1,1 +1,3 @@
-export * from './types';
+export * from './types'
+
+export { createCls } from './classnames'
