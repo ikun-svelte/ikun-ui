@@ -1,8 +1,9 @@
-import { isString, isNumber, isArray, isObject, isRewritten } from "./utils"
+import { isString, isNumber, isArray, isObject } from "baiwusanyu-utils"
+import { isRewritten } from "./utils"
 
 export function createCls(
   ...args:
-    (string | number | Record<string, any> | any[]
+    (string | number | Record<string, any> | string[]
     )[]
 ): string | undefined {
   const hasOwn = {}.hasOwnProperty
@@ -11,20 +12,19 @@ export function createCls(
     const arg = args[i]
     if (!arg) continue
     if (isString(arg) || isNumber(arg)) {
-      classnames.push(arg)
+      classnames.push(arg as string)
     } else if (isArray(arg)) {
-      if (!arg.length) return
-      // eslint-disable-next-line prefer-spread
-      const inner = createCls.apply(null, arg)
+      if (!(arg as string[]).length) return
+      const inner = createCls(arg)
       if (inner) {
         classnames.push(inner)
       }
     } else if (isObject(arg)) {
-      if (isRewritten(arg)) {
+      if (isRewritten(arg as Record<string, any>)) {
         classnames.push(arg.toString())
         continue
       }
-      for (const key in arg) {
+      for (const key in (arg as Record<string, any>)) {
         if (hasOwn.call(arg, key) && arg[key]) {
           classnames.push(key)
         }
