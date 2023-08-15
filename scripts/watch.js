@@ -13,7 +13,7 @@ chokidar
 	.on('change', (path) => {
 		const component = getComponentName(path);
 		console.log(`${component} change,noew rebuilding.....`);
-		runTask(`npm run build:js && npm run build:svelte`, `components/${component}`, 'watch', {
+		runTask(`npm run build`, `components/${component}`, 'watch', {
 			silent: false
 		});
 	});
