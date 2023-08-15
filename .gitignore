@@ -76,6 +76,7 @@ dist
 
 # IDE
 .idea
+.vscode
 
 .vite-inspect
 docs/.vitepress/cache

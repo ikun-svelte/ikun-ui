@@ -90,6 +90,7 @@
 		"@ikun-ui/modal": "workspace:*",
 		"@ikun-ui/notify": "workspace:*",
 		"@ikun-ui/popover": "workspace:*",
+		"@ikun-ui/radio": "workspace:*",
 		"@ikun-ui/preset": "workspace:*",
 		"@ikun-ui/select": "workspace:*",
 		"@ikun-ui/switch": "workspace:*",

@@ -13,10 +13,12 @@
 	import { KNotify } from '@ikun-ui/notify';
 	import { KSwitch } from '@ikun-ui/switch';
 	import { KSelect } from '@ikun-ui/select';
-	import { KMsgBox} from '@ikun-ui/message-box';
+	import { KMsgBox } from '@ikun-ui/message-box';
+	import { KRadio } from '@ikun-ui/radio';
 	import 'virtual:uno.css';
 
 	let checked = true;
+	let radioChecked = false;
 	let openDrawer = false;
 	let openModal = false;
 	let inputValue = '';
@@ -38,12 +40,12 @@
 			inputValidator: /[a-z]/,
 			inputErrorMessage: '只能输入英文',
 			onCancel: () => {
-				console.log('onCancel')
+				console.log('onCancel');
 			},
 			onConfirm: (r, v) => {
-				console.log('onConfirm', r, v)
+				console.log('onConfirm', r, v);
 			}
-		})
+		});
 	};
 
 	let switchVal = false;
@@ -60,6 +62,11 @@
 </KCollapse>
 <KCheckbox value={checked} on:updateValue={(e) => (checked = e.detail)} label={`${checked}`}
 ></KCheckbox>
+<KRadio
+	value={radioChecked}
+	on:updateValue={(e) => (radioChecked = e.detail)}
+	label={`${radioChecked}`}
+></KRadio>
 <KDrawer value={openDrawer} on:close={() => (openDrawer = false)}>KDrawer</KDrawer>
 <KEyeDropper let:open>
 	<KButton type="primary" on:click={() => open()}>KEyeDropper</KButton>
@@ -76,10 +83,7 @@
 	<KButton type="error" slot="triggerEl">KPopover - trigger</KButton>
 </KPopover>
 
-<KButton icon="i-carbon-settings"
-		 to
-		 type="success"
-		 on:click={() => (openModal = true)}>
+<KButton icon="i-carbon-settings" to type="success" on:click={() => (openModal = true)}>
 	KModal
 </KButton>
 
@@ -94,7 +98,7 @@
 <KTag type="warning">warning KTag</KTag>
 
 <KButton on:click={handleNotify}>handleNotify</KButton>
-<KButton on:click={handleMsgBox} type =info> handleMsgBox </KButton>
+<KButton on:click={handleMsgBox} type="info">handleMsgBox</KButton>
 <KSwitch value={switchVal} on:updateValue={(v) => (switchVal = v.detail)}></KSwitch>
 
 <KSelect value={selectVal} iconPrefix="i-carbon-settings" placeholder="selectValue">
