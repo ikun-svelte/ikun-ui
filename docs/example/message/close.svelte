@@ -50,7 +50,7 @@
     <KButton cls="mx-2"
              on:click={()=> renderMessageClose(
                  'Hamlet',
-                 'To be or not to be, that is the question.',
+                 '哇，真的是你啊~',
                  'info')
                  }>
         can't manually close
@@ -59,7 +59,7 @@
     <KButton cls="mx-2"
              on:click={()=> renderMessageAutoClose(
                  'Hamlet',
-                 'To be or not to be, that is the question.',
+                 '哇，真的是你啊~',
                  'info')
                  }>
         auto close
@@ -68,7 +68,7 @@
     <KButton cls="mx-2"
              on:click={()=> renderMessageDuration(
                  'Hamlet',
-                 'To be or not to be, that is the question.',
+                 '哇，真的是你啊~',
                  'info')
                  }>
         duration {time}s
@@ -77,7 +77,7 @@
     <KButton cls="mx-2"
              on:click={()=> renderMessageCb(
                  'close callback',
-                 'click the close icon',
+                 '鸡脚露出来了，快关掉这个鸡脚！',
                  'info')
                  }>
         close callback
