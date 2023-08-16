@@ -25,10 +25,12 @@ describe('Test: KButton', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.querySelector('a')?.getAttribute('href')).toBe('https://github.com/ikun-svelte/ikun-ui')
+		expect(host.querySelector('a')?.getAttribute('href')).toBe(
+			'https://github.com/ikun-svelte/ikun-ui'
+		);
 		expect(host.innerHTML.endsWith('</a>')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
-	})
+	});
 
 	test('props: round', async () => {
 		const instance = new KButton({
@@ -89,8 +91,8 @@ describe('Test: KButton', () => {
 			props: {
 				type: 'error'
 			}
-		})
-		expect(error).toBeTruthy()
+		});
+		expect(error).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
 				'k-button--error k-button--error__active k-button--error__focus k-button--error__hover'

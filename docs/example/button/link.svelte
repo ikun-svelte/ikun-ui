@@ -15,3 +15,8 @@
 		>Github</KButton
 	>
 </div>
+<style>
+	:global(.k-button--primary) {
+		color: #2dd4bf !important;
+	}
+</style>

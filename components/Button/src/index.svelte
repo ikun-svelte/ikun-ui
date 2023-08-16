@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte'
 	import { KIcon } from '@ikun-ui/icon'
+	import { extend } from 'baiwusanyu-utils'
 	import { createCls, type IKunTypePro } from '@ikun-ui/utils'
 	export let to: HTMLAnchorElement['href'] = ''
 	export let icon = ''
@@ -11,7 +12,6 @@
 	export let type: IKunTypePro = 'primary'
 	export let disabled = false
 	// todo: button size
-	Object.assign(attrs, to ? { href: to } : {})
 
 	const dispatch = createEventDispatcher()
 	const handleClick = (e: Event) => {
@@ -32,6 +32,7 @@
 		},
 		cls
 	)
+	$: attrsInner = extend(attrs, to ? { href: to } : {})
 </script>
 
 <svelte:element
@@ -40,9 +41,8 @@
 	class={cnames}
 	aria-hidden="true"
 	on:click={handleClick}
-	{...attrs}
-	{...$$restProps}
->
+	{...attrsInner}
+	{...$$restProps}>
 	{#if icon}
 		<KIcon {icon} color={`k-button--${type}__icon`} />
 	{/if}

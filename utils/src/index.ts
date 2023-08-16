@@ -1,3 +1,3 @@
-export * from './types'
+export * from './types';
 
-export { createCls } from './class-names'
+export { createCls } from './class-names';
