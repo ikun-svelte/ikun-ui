@@ -34,7 +34,38 @@ export async function runCommand(command, dir, userOptions) {
 	});
 }
 
+/**
+ * Avoid excessive execution of 'watch.js'.
+ */
+class TaskRunnerState {
+	/**@type {boolean}`*/
+	value
+	/**@type {TaskRunnerState | null} */
+	static instance = null
+	constructor() {
+		if (TaskRunnerState.instance) {
+			return TaskRunnerState.instance
+		}
+		this.value = false
+		TaskRunnerState.instance = this
+	}
+	get() {
+		return this.value
+	}
+	/**
+	 * @param {boolean} val 
+	 * @returns {void}
+	 */
+	set(val) {
+		this.value = val
+	}
+}
+
+
 export async function runTask(buildCommand, root, action, userOptions) {
+	const taskRunnerState = new TaskRunnerState()
+	if (taskRunnerState.value) return
+	// taskRunnerState.value = true
 	// set log prefix
 	setGlobalPrefix('[ikun-ui]: ');
 	const rootDir = path.resolve(root);
@@ -68,6 +99,10 @@ export async function runTask(buildCommand, root, action, userOptions) {
 		} catch (error) {
 			log('error', `Error reading or parsing package.json at ${packageJsonPath}`);
 			log('error', error);
+		} finally {
+			taskRunnerState.value = false
 		}
 	}
 }
+
+
