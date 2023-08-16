@@ -26,7 +26,6 @@ Thanks to everyone who has already contributed to ikun-ui !
 
 <a href="https://github.com/ikun-svelte/ikun-ui/graphs/contributors"><img src="https://contributors.nn.ci/api?repo=ikun-svelte/ikun-ui" /></a>
 
-
 ## Thanks
 
 - [svelte](https://github.com/sveltejs/svelte)
