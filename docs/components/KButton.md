@@ -44,6 +44,14 @@ Use the icon attribute to add icon.
 
 <demo src="../../../../example/button/icon.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
 
+## Button Group
+
+Displayed as a button group, can be used to group a series of similar operations.
+
+Use tag `<k-button-group>` to group your buttons.
+
+<demo src="../../../../example/button/group.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/ButtonGroup'></demo>
+
 ## Link Button
 
 Use the `to` attribute to set a specific url that you can click to jump to.
@@ -74,3 +82,9 @@ Use the `to` attribute to set a specific url that you can click to jump to.
 | Name    | Description               |
 | ------- | ------------------------- |
 | default | Customize default content |
+
+## Button Group Props
+
+| Name | Type     | Default | Description          |
+| ---- | -------- | ------- | -------------------- |
+| cls  | `string` | `-`     | Additional class for |
