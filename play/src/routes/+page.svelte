@@ -29,8 +29,8 @@
 			duration: 99999,
 			autoClose: true,
 			content: 'Notify Success'
-		});
-	};
+		})
+	}
 
 	const handleMsgBox = () => {
 		KMsgBox.prompt({
@@ -48,10 +48,15 @@
 		});
 	};
 
-	let switchVal = false;
-	let selectVal = '';
+	let switchVal = false
+	let selectVal = ''
 </script>
 
+<div class="flex fle-gap-2 p-2">
+	<KButton>Normal Button</KButton>
+	<KButton disabled>Disabled Button</KButton>
+	<KButton to="https://github.com/ikun-svelte/ikun-ui">Link</KButton>
+</div>
 <KButton icon="i-carbon-settings" type="primary" on:click={() => (openDrawer = true)}>
 	drawer
 </KButton>

@@ -1,6 +1,6 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
-import KButton from '../src/index.svelte';
+import KButton from '../src';
 
 let host: HTMLElement;
 
@@ -21,10 +21,13 @@ describe('Test: KButton', () => {
 		const instance = new KButton({
 			target: host,
 			props: {
-				to: true
+				to: 'https://github.com/ikun-svelte/ikun-ui'
 			}
 		});
 		expect(instance).toBeTruthy();
+		expect(host.querySelector('a')?.getAttribute('href')).toBe(
+			'https://github.com/ikun-svelte/ikun-ui'
+		);
 		expect(host.innerHTML.endsWith('</a>')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});

@@ -1,53 +1,55 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-	import { KIcon } from '@ikun-ui/icon';
-	import type { IKunTypePro } from '@ikun-ui/utils';
-	export let to = false;
-	export let icon = '';
-	export let round:string | number = '';
-	export let circle = false;
-	export let cls = '';
-	export let attrs = {};
-	export let type:IKunTypePro = 'primary';
-	export let disabled = false;
-	// small medium large
-	// export let size = 'medium'
+	import { createEventDispatcher } from 'svelte'
+	import { KIcon } from '@ikun-ui/icon'
+	import { extend } from 'baiwusanyu-utils'
+	import { createCls, type IKunTypePro } from '@ikun-ui/utils'
+	export let to: HTMLAnchorElement['href'] = ''
+	export let icon = ''
+	export let round: string | number = ''
+	export let circle = false
+	export let cls = ''
+	export let attrs = {}
+	export let type: IKunTypePro = 'primary'
+	export let disabled = false
+	// todo: button size
 
-	const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher()
 	const handleClick = (e: Event) => {
-		if(disabled){
+		if (disabled) {
 			e.preventDefault()
 		}
-		if (!to && !disabled) dispatch('click', e);
-	};
+		if (!to && !disabled) dispatch('click', e)
+	}
 
-	// TODO a tag document and impl
-	$: tag = to ? 'a' : 'button';
-
+	$: prefixCls = `k-button--${type}`
+	$: cnames = createCls(
+		'k-button--base',
+		prefixCls,
+		{
+			[`${prefixCls}__active ${prefixCls}__focus ${prefixCls}__hover`]: !disabled,
+			'k-cur-disabled k-button--disabled': disabled,
+			'k-button--circle': circle
+		},
+		cls
+	)
+	$: attrsInner = extend(attrs, to ? { href: to } : {})
 </script>
 
 <svelte:element
-	this={tag}
+	this={to ? 'a' : 'button'}
+	style="border-radius: {round ? `${round}` : '4'}px"
+	class={cnames}
 	aria-hidden="true"
 	on:click={handleClick}
-	style = "border-radius: { round ? `${round}` : '4'}px"
-	{...attrs}
-	class="
-        k-button--base
-        k-button--{type}
-        {disabled 
-					? 'k-cur-disabled k-button--disabled' 
-					: `k-button--${type}__active k-button--${type}__focus k-button--${type}__hover`}
-        {circle ? 'k-button--circle' : ''}
-        {cls}">
+	{...attrsInner}
+	{...$$restProps}>
 	{#if icon}
-		<KIcon {icon} color={`k-button--${type}__icon`}/>
+		<KIcon {icon} color={`k-button--${type}__icon`} />
 	{/if}
 
 	{#if $$slots.default && icon}
-		<div class="ml-2"/>
+		<div class="ml-2" />
 	{/if}
 
-	<slot/>
-
+	<slot />
 </svelte:element>
