@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { KButton } from '@ikun-ui/button';
+	import { KButtonGroup } from '@ikun-ui/button-group';
 	import { KIcon } from '@ikun-ui/icon';
 	import { KCollapse } from '@ikun-ui/collapse';
 	import { KCheckbox } from '@ikun-ui/checkbox';
@@ -60,6 +61,13 @@
 <KButton icon="i-carbon-settings" type="primary" on:click={() => (openDrawer = true)}>
 	drawer
 </KButton>
+
+<KButtonGroup cls="my-10px">
+	<KButton icon="i-carbon-settings" type="primary" round="10">drawer</KButton>
+	<KButton icon="i-carbon-settings" type="primary">drawer</KButton>
+	<KButton icon="i-carbon-settings" type="primary">drawer</KButton>
+</KButtonGroup>
+
 <KIcon icon="i-carbon-settings" btn></KIcon>
 <KCollapse>
 	<span slot="title">title</span>
