@@ -39,34 +39,34 @@ export async function runCommand(command, dir, userOptions) {
  */
 class TaskRunnerState {
 	/**@type {boolean}`*/
-	value;
+	_value;
 	/**@type {TaskRunnerState | null} */
 	static instance = null;
 	constructor() {
 		if (TaskRunnerState.instance) {
 			return TaskRunnerState.instance;
 		}
-		this.value = false;
+		this._value = false;
 		TaskRunnerState.instance = this;
 	}
-	get() {
-		return this.value;
+	get value() {
+		return this._value;
 	}
 	/**
 	 * @param {boolean} val
 	 * @returns {void}
 	 */
-	set(val) {
-		this.value = val;
+	set value(val) {
+		this._value = val;
 	}
 }
 
 export async function runTask(buildCommand, root, action, userOptions) {
-	const taskRunnerState = new TaskRunnerState()
-	if (taskRunnerState.value) return
-	taskRunnerState.value = true
+	const taskRunnerState = new TaskRunnerState();
+	if (taskRunnerState.value) return;
+	taskRunnerState.value = true;
 	// set log prefix
-	setGlobalPrefix('[ikun-ui]: ')
+	setGlobalPrefix('[ikun-ui]: ');
 	const rootDir = path.resolve(root);
 	const targetFile = ['**/package.json'];
 
