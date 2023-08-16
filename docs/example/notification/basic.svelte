@@ -12,19 +12,19 @@
 
 <div class="flex items-center flex-wrap">
     <KButton type="info" cls="mx-2"
-             on:click={()=> renderNotify('right-top', 'To be or not to be, that is the question.')}>
+             on:click={()=> renderNotify('right-top', '哇，真的是你啊~')}>
         right-top
     </KButton>
     <KButton type="info" cls="mx-2"
-             on:click={()=> renderNotify('left-top', 'The past is never dead. It\'s not even past.')}>
+             on:click={()=> renderNotify('left-top', '香精煎鱼')}>
         left-top
     </KButton>
     <KButton type="info" cls="mx-2"
-             on:click={()=> renderNotify('right-bottom', 'Time flowed in a circle in the family, never-ending.')}>
+             on:click={()=> renderNotify('right-bottom', '香翅捞饭')}>
         right-bottom
     </KButton>
     <KButton type="info" cls="mx-2"
-             on:click={()=> renderNotify('left-bottom', 'It was the best of times, it was the worst of times.')}>
+             on:click={()=> renderNotify('left-bottom', '食不食油饼')}>
         left-bottom
     </KButton>
 </div>

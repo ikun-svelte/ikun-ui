@@ -34,7 +34,7 @@
 			switching = 'k-switch-tra';
 			if(switchCircleRef){
 				const circleWidth = switchCircleRef.getClientRects()[0].width;
-				switchCircleRef.style.right = innerState ? '2px' : `calc(100% - ${circleWidth}px)`;
+				switchCircleRef.style.right = innerState ? '2px' : `calc(100% - ${circleWidth}px - 2px)`;
 			}
 			setTimeout(() => {
 				switching = '';

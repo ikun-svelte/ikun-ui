@@ -11,7 +11,7 @@
 
 <div class="flex items-center flex-wrap">
     <KButton type="info" cls="mx-2"
-             on:click={()=> renderMessage('right-top', 'To be or not to be, that is the question.')}>
+             on:click={()=> renderMessage('哇，真的是你啊~')}>
         render message
     </KButton>
 </div>
