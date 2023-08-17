@@ -27,9 +27,7 @@ describe('Test: KInput', () => {
 		expect(instance).toBeTruthy();
 		const inputElem = host.getElementsByTagName('input')[0];
 		expect(inputElem.value).toBe('ikun');
-		expect(host.innerHTML).toMatchInlineSnapshot(
-			'"<div class=\\"k-input--base k-input--base__dark  k-input--base__hover k-input--base__focus \\">  <input class=\\"k-input--inner k-input--inner__dark \\" placeholder=\\"\\"> </div>"'
-		);
+		expect(host.innerHTML).matchSnapshot();
 	});
 
 	test('props: iconPrefix', async () => {
@@ -42,9 +40,7 @@ describe('Test: KInput', () => {
 		expect(instance).toBeTruthy();
 		const icon = host.getElementsByClassName('k-input--icon')[0];
 		expect(icon).toBeTruthy();
-		expect(host.innerHTML).toMatchInlineSnapshot(
-			'"<div class=\\"k-input--base k-input--base__dark  k-input--base__hover k-input--base__focus \\"> <div role=\\"\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  k-input--icon\\"><div class=\\"i-carbon-logo-svelte k-icon-transition \\" style=\\"width: 24px; height: 24px;\\"></div></div> <input class=\\"k-input--inner k-input--inner__dark \\" placeholder=\\"\\"> </div>"'
-		);
+		expect(host.innerHTML).matchSnapshot();
 	});
 
 	test('props: iconSuffix', async () => {
