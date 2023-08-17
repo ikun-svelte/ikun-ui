@@ -29,7 +29,7 @@ npm install @ikun-ui/tag
 
 Use `type`, `round` and `circle` to define Tag's style.
 
-<demo src="../../../../example/tag/basic.svelte"  github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Tag'></demo>
+<demo src="../../../../example/tag/basic.svelte"  github='Tag'></demo>
 
 ## Tag Props
 
