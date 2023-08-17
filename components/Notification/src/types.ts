@@ -3,16 +3,15 @@ import type { IKunTypeBase, IKunUncertainFunction } from '@ikun-ui/utils';
 
 export type NotifyType = IKunTypeBase;
 export type NotifyPlacement = 'right-top' | 'left-top' | 'right-bottom' | 'left-bottom' | 'center';
-type Extend = {
+export type NotifyExtend = {
 	__notify_index: number;
 	__notify_placement: NotifyPlacement;
 	index: number;
 	show: boolean;
 };
 
-export type NotifyComponent<T> = T & (NotifyOptions<T> & Extend);
 
-export declare type NotifyOptions<T> = {
+export declare type NotifyOptions<T, C> = {
 	/**
 	 * Whether the notification can be closed manually
 	 */
@@ -44,7 +43,7 @@ export declare type NotifyOptions<T> = {
 	 * The content of the notification,
 	 * which can be a html string or a svelte component
 	 */
-	content?: string | T;
+	content?: string | C;
 	/**
 	 * Whether the notification is automatically closed
 	 */

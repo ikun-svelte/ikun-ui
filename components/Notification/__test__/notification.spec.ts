@@ -218,7 +218,7 @@ describe('Test: KNotify', () => {
 	test('options: title is svelte component', async () => {
 		KNotify({
 			target: host,
-			title: KNotifyTitle as any
+			title: KNotifyTitle
 		});
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
@@ -238,7 +238,7 @@ describe('Test: KNotify', () => {
 	test('options: content is svelte component', async () => {
 		KNotify({
 			target: host,
-			title: KNotifyContent as any
+			title: KNotifyContent
 		});
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
@@ -260,7 +260,7 @@ describe('Test: KNotify', () => {
 	test('api: info', async () => {
 		KNotify.info({
 			target: host,
-			title: KNotifyContent as any
+			title: 'KNotifyContent'
 		});
 		await tick();
 		expect(host.innerHTML.includes('k-notification--base')).toBeTruthy();
@@ -270,7 +270,7 @@ describe('Test: KNotify', () => {
 	test('api: warning', async () => {
 		KNotify.warning({
 			target: host,
-			title: KNotifyContent as any
+			title: 'KNotifyContent'
 		});
 		await tick();
 		expect(host.innerHTML.includes('k-notification--base')).toBeTruthy();
@@ -280,7 +280,7 @@ describe('Test: KNotify', () => {
 	test('api: success', async () => {
 		KNotify.success({
 			target: host,
-			title: KNotifyContent as any
+			title: 'KNotifyContent'
 		});
 		await tick();
 		expect(host.innerHTML.includes('k-notification--base')).toBeTruthy();
@@ -290,7 +290,7 @@ describe('Test: KNotify', () => {
 	test('api: error', async () => {
 		KNotify.error({
 			target: host,
-			title: KNotifyContent as any
+			title: 'KNotifyContent'
 		});
 		await tick();
 		expect(host.innerHTML.includes('k-notification--base')).toBeTruthy();
