@@ -1,5 +1,5 @@
 import { tick } from 'svelte';
-import { afterEach, beforeEach, describe, expect, test } from 'vitest';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import KSwitch from '../src';
 
 let host: HTMLElement;
@@ -32,6 +32,31 @@ describe('Test: KSwitch', () => {
 		});
 		await tick();
 		expect(host.innerHTML.includes('k-switch__un_checked')).toBe(true);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: unCheckedValue and checkedValue', async () => {
+		let value = '微笑';
+		const instance = new KSwitch({
+			target: host,
+			props: {
+				value,
+				unCheckedValue: '哭泣',
+				checkedValue: '微笑'
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		instance.$on('updateValue', (v) => {
+			value = v.detail;
+		});
+		const switchElm = host.getElementsByTagName('div')[0];
+		switchElm.click();
+		await tick();
+		expect(value).toBe('哭泣');
+		switchElm.click();
+		await tick();
+		expect(value).toBe('微笑');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -69,5 +94,105 @@ describe('Test: KSwitch', () => {
 		await tick();
 		expect(host.innerHTML.includes('k-switch-loading')).toBe(false);
 		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: unCheckedColor and checkedColor', async () => {
+		const instance = new KSwitch({
+			target: host,
+			props: {
+				value: false,
+				unCheckedColor: '#520',
+				checkedColor: '#1314'
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect(host.innerHTML.includes('#520')).toBe(true);
+		instance.$set({
+			value: true
+		});
+		await tick();
+		expect(host.innerHTML.includes('#1314')).toBe(true);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: cls', async () => {
+		const instance = new KSwitch({
+			target: host,
+			props: {
+				cls: '关关雎鸠,在河之洲'
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect(host.innerHTML.includes('关关雎鸠,在河之洲')).toBe(true);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: attrs', async () => {
+		const instance = new KSwitch({
+			target: host,
+			props: {
+				attrs: {
+					you: 'world'
+				}
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect(host.children[0].getAttribute('you')).toBe('world');
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	// TODO
+	/*test('event: should trigger click event', async () => {
+        const mockFn = vi.fn();
+        const instance = new KSwitch({
+            target: host,
+            props: {
+                value: true
+            }
+        });
+        expect(instance).toBeTruthy();
+        await tick();
+        instance.$on('click', () => {
+            mockFn()
+        });
+        const switchElm = host.getElementsByClassName('k-switch--base')[0] as HTMLDivElement;
+        switchElm.click()
+        await tick();
+        expect(mockFn).toBeCalled()
+    });*/
+
+	test('event: should updateValue click event', async () => {
+		const updateEvent = vi.fn();
+		const instance = new KSwitch({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		instance.$on('updateValue', () => {
+			updateEvent();
+		});
+		const switchElm = host.getElementsByTagName('div')[0];
+		switchElm.click();
+		await tick();
+		expect(updateEvent).toBeCalled();
+	});
+
+	test('event: should change click event', async () => {
+		const changeEvent = vi.fn();
+		const instance = new KSwitch({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		instance.$on('change', () => {
+			changeEvent();
+		});
+		const switchElm = host.getElementsByTagName('div')[0];
+		switchElm.click();
+		await tick();
+		expect(changeEvent).toBeCalled();
 	});
 });
