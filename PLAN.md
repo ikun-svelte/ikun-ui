@@ -19,7 +19,7 @@ TODO
 ## Button
 
 | Enhance                            | Status |
-|------------------------------------| ------ |
+| ---------------------------------- | ------ |
 | Three sizes of Button              | 🚧     |
 | ghost of Button                    | 🚧     |
 | click animation                    | 🚧     |
@@ -38,11 +38,11 @@ TODO
 
 ## Collapse
 
-| Enhance               | Status |
-| --------------------- | ------ |
-| ShowArrow             | 🚧     |
-| accordion             | 🚧     |
-| Indeterminate         | 🚧     |
+| Enhance       | Status |
+| ------------- | ------ |
+| ShowArrow     | 🚧     |
+| accordion     | 🚧     |
+| Indeterminate | 🚧     |
 
 ## Tag
 
@@ -62,11 +62,11 @@ TODO
 | ------------- | ------ |
 | KButton       | ✅     |
 | KCheckbox     | ✅     |
-| KCollapse     | 🚧     |
-| KDrawer       | 🚧     |
+| KCollapse     | ✅     |
+| KDrawer       | ✅     |
 | KEyeDropper   | 🚧     |
 | KIcon         | ✅     |
-| KInput        | 🚧     |
+| KInput        | ✅     |
 | KMask         | ✅     |
 | KMessage      | 🚧     |
 | KMessageBox   | 🚧     |
