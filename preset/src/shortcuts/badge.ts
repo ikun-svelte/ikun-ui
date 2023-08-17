@@ -1,6 +1,6 @@
 export const badgeShortcuts: Record<string, string> = {
 	// badge
-	'k-badge--base': 'relative v-mid inline-block w-fit',
+	'k-badge--base': 'pr v-mid inline-block w-fit',
 	'k-badge--content':
 		'infcc h-18px b-rd-10px text-12px p-y-0 p-x-6px whitespace-nowrap b-1px b-solid b-ikun-white color-ikun-white',
 	'k-badge--content-fixed': 'pa top-0 right-10px translate-y--50% translate-100% z-1',
