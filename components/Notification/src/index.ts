@@ -60,6 +60,8 @@ function mountNotify(options: NotifyOptions<SvelteComponent>, evt: Record<string
 		props: {
 			...finalProps,
 			attrs: options.attrs,
+			title: options.title,
+			content: options.content,
 			show: false,
 			index,
 			onClose: async () => {
@@ -81,7 +83,7 @@ function mountNotify(options: NotifyOptions<SvelteComponent>, evt: Record<string
 	// cache  NotificationInst
 	notifyArray.push(NotificationInst as unknown as NotifyComponent<SvelteComponent>);
 
-	return NotificationInst;
+	return NotificationInst as NotifyComponent<SvelteComponent>;
 }
 
 async function autoUnmountNotify(
