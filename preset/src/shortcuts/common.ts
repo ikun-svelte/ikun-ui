@@ -20,5 +20,6 @@ export const commonShortcuts: Record<string, string> = {
 	fw: 'flex justify-wrap',
 	fwr: 'flex justify-wrap-reverse',
 	infsc: 'inline-flex justify-start items-center',
+	infcc: 'inline-flex justify-center items-center',
 	'bdt-1': 'border-t-1 border-l-0 border-b-0 border-r-0'
 };

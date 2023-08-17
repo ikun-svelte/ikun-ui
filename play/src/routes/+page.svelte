@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { KBadge } from '@ikun-ui/badge';
 	import { KButton } from '@ikun-ui/button';
 	import { KButtonGroup } from '@ikun-ui/button-group';
 	import { KIcon } from '@ikun-ui/icon';
@@ -24,14 +25,16 @@
 	let openModal = false;
 	let inputValue = '';
 
+	let badgeNumber = 98;
+
 	const handleNotify = () => {
 		KNotify.success({
 			title: 'Notify Success',
 			duration: 99999,
 			autoClose: true,
 			content: 'Notify Success'
-		})
-	}
+		});
+	};
 
 	const handleMsgBox = () => {
 		KMsgBox.prompt({
@@ -49,8 +52,8 @@
 		});
 	};
 
-	let switchVal = false
-	let selectVal = ''
+	let switchVal = false;
+	let selectVal = '';
 </script>
 
 <div class="flex fle-gap-2 p-2">
@@ -99,6 +102,25 @@
 <KButton icon="i-carbon-settings" to type="success" on:click={() => (openModal = true)}>
 	KModal
 </KButton>
+
+<div class="my-10px">
+	<div class="mb-10px">KBadge</div>
+	<KBadge cls="mr-40px" value={badgeNumber}>
+		<KButton on:click={() => badgeNumber++}>Click Me</KButton>
+	</KBadge>
+
+	<KBadge cls="mr-40px" value="new" type="success">
+		<KButton>IKunUI</KButton>
+	</KBadge>
+
+	<KBadge cls="mr-40px" value="new" type="success" isDot>
+		<KButton>IKunUI</KButton>
+	</KBadge>
+
+	<KBadge cls="mr-40px" value="Can't See Me" show={false}>
+		<KButton>IKunUI</KButton>
+	</KBadge>
+</div>
 
 <KModal show={openModal} title="KModal" on:close={(v) => (openModal = v.detail)}>
 	<span>KModal</span>
