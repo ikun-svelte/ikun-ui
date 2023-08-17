@@ -1,6 +1,7 @@
 import Notification from './index.svelte';
 import type { SvelteComponent } from 'svelte';
 import type { NotifyOptions, NotifyComponent, NotifyPlacement } from './types';
+import { jsonClone } from 'baiwusanyu-utils';
 export * from './types';
 
 const defaultNotifyOptions: NotifyOptions<SvelteComponent> = {
@@ -48,11 +49,17 @@ function mountNotify(options: NotifyOptions<SvelteComponent>, evt: Record<string
 		return;
 	}
 
+	const finalProps = jsonClone(options);
+	Reflect.deleteProperty(finalProps, 'duration');
+	Reflect.deleteProperty(finalProps, 'autoClose');
+	Reflect.deleteProperty(finalProps, 'target');
+
 	index = notifyArray.length;
 	const NotificationInst = new Notification({
 		target: options.target || document.body,
 		props: {
-			...options,
+			...finalProps,
+			attrs: options.attrs,
 			show: false,
 			index,
 			onClose: async () => {

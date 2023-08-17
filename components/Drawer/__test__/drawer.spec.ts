@@ -29,6 +29,8 @@ describe('Test: KDrawer', () => {
 		instance.$set({ value: false });
 		await tick();
 		// The exit animation appears, which means that the drawer is closed
+		// (I don’t know why I still can’t get the dom after
+		// the animation is completed using `advanceTimersByTimeAsync`)
 		expect(host.innerHTML.includes('250ms linear 0ms 1 both')).toBeTruthy();
 	});
 
