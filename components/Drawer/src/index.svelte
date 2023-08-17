@@ -62,8 +62,8 @@
 			{#if footer}
 				<slot name="footer">
 					<div class="k-drawer--footer">
-						<KButton cls="k-drawer--footer--btn" on:click={cancel} type="info">Cancel</KButton>
-						<KButton cls="k-drawer--footer--btn" on:click={confirm} type="primary">Confirm</KButton>
+						<KButton cls="k-drawer--footer--btn k-drawer--footer--cancel--btn" on:click={cancel} type="info">Cancel</KButton>
+						<KButton cls="k-drawer--footer--btn k-drawer--footer--confirm--btn" on:click={confirm} type="primary">Confirm</KButton>
 					</div>
 				</slot>
 			{/if}
