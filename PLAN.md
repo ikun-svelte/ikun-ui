@@ -23,9 +23,10 @@ TODO
 | Three sizes of Button              | 🚧     |
 | ghost of Button                    | 🚧     |
 | click animation                    | 🚧     |
-| disabled style                     | 🚧     |
+| disabled style                     | ✅     |
 | fill style (Background color fill) | 🚧     |
 | isBorder                           | 🚧     |
+| Button group                       | ✅     |
 
 ## CheckBox
 
@@ -37,12 +38,11 @@ TODO
 
 ## Collapse
 
-| Enhance               | Status |
-| --------------------- | ------ |
-| Three sizes of Button | 🚧     |
-| ShowArrow             | 🚧     |
-| accordion             | 🚧     |
-| Indeterminate         | 🚧     |
+| Enhance       | Status |
+| ------------- | ------ |
+| ShowArrow     | 🚧     |
+| accordion     | 🚧     |
+| Indeterminate | 🚧     |
 
 ## Tag
 
@@ -62,7 +62,7 @@ TODO
 | ------------- | ------ |
 | KButton       | ✅     |
 | KCheckbox     | ✅     |
-| KCollapse     | 🚧     |
+| KCollapse     | ✅     |
 | KDrawer       | 🚧     |
 | KEyeDropper   | 🚧     |
 | KIcon         | ✅     |
@@ -86,7 +86,7 @@ TODO
 | KGrid       | 🚧     |
 | KLayout     | 🚧     |
 | KBreadcrumb | 🚧     |
-| KRadio      | 🚧     |
+| KRadio      | ✅     |
 | KRate       | 🚧     |
 | KAvatar     | 🚧     |
 | KBadge      | 🚧     |
