@@ -28,7 +28,7 @@ We use [Github issues](https://github.com/onu-ui/onu-ui/issues) for bug reports 
 2. Use `pnpm install` install the dependencies
 3. Run `pnpm run build` to build all components, presets, utils
 4. Please run `pnpm run play` to debug the component, and `pnpm run dev:docs` to debug the documentation site
-5. Modify according to your needs, whether it is to modify presets or components, you need to manually run `pnpm run build` in the corresponding directory after modification
+5. Modify according to your needs, whether it is to modify presets or components, you need to manually run `pnpm run build` in the corresponding directory after modification. Additionally, you can use `pnpm run watch` for automatic building of your changes.
 6. Make changes to the codebase. Please add tests if applicable.
 7. Make sure the test suite passes with `pnpm run test`.
 8. Commit your changes, adhering to the [Commit Guidelines](#commit-guidelines).
