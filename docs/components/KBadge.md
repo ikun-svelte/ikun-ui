@@ -31,7 +31,7 @@ Displays the amount of new messages.
 
 The amount is defined with value which accepts Number or String.
 
-<demo src="../../../../example/badge/basic.svelte"  github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
+<demo src="../../../../example/badge/basic.svelte"  github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Badge'></demo>
 
 ## Max Value
 
@@ -39,7 +39,7 @@ You can customize the max value.
 
 The max value is defined by property max which is a Number. Note that it only works when value is also a Number.
 
-<demo src="../../../../example/badge/max-value.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
+<demo src="../../../../example/badge/max-value.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Badge'></demo>
 
 ## Customizations
 
@@ -47,7 +47,7 @@ Displays text content other than numbers.
 
 When value is a String, it can display customized text.
 
-<demo src="../../../../example/badge/customizations.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
+<demo src="../../../../example/badge/customizations.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Badge'></demo>
 
 ## Dot Mark
 
@@ -55,7 +55,7 @@ Use a dot to mark content that needs to be noticed.
 
 Use the attribute is-dot. It is a Boolean.
 
-<demo src="../../../../example/badge/dot-mark.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/ButtonGroup'></demo>
+<demo src="../../../../example/badge/dot-mark.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Badge'></demo>
 
 ## Badge Props
 
@@ -64,7 +64,7 @@ Use the attribute is-dot. It is a Boolean.
 | value  | `string` / `number`                                  | `''`    | display value.                                                              |
 | max    | `number`                                             | `99`    | maximum value, shows {max}+ when exceeded. Only works if value is a number. |
 | is-dot | `boolean`                                            | `false` | if a little dot is displayed.                                               |
-| hidden | `boolean`                                            | `false` | hidden badge.                                                               |
+| show   | `boolean`                                            | `true`  | show badge.                                                                 |
 | type   | `primary` / `success` / `error` / `warning` / `info` | `error` | badge type.                                                                 |
 | cls    | `string`                                             | `''`    | Additional class for                                                        |
 

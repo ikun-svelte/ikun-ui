@@ -6,13 +6,13 @@
 </script>
 
 <KBadge value={count} cls="mr-40px">
-	<KButton on:click={() => count++}>🐔太美</KButton>
+	<KButton on:click={() => count++}>Chicken So Beautiful</KButton>
 </KBadge>
 
-<KBadge value={666} type="warning" cls="mr-40px">
-	<KButton type="error">卤出鸡脚了吧</KButton>
+<KBadge value={66} type="warning" cls="mr-40px">
+	<KButton type="error">Chicken Feet Marinated</KButton>
 </KBadge>
 
-<KBadge value="666" type="primary" hidden cls="mr-40px">
-	<KButton type="warning">看不见我</KButton>
+<KBadge value="666" type="primary" show={false} cls="mr-40px">
+	<KButton type="warning">Can't See Me</KButton>
 </KBadge>

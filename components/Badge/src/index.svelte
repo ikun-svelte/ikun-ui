@@ -5,7 +5,7 @@
 	export let value: string | number = '';
 	export let max: number = 99;
 	export let isDot: boolean = false;
-	export let hidden: boolean = false;
+	export let show: boolean = true;
 	export let type: IKunTypePro = 'error';
 	export let cls: string = '';
 
@@ -22,7 +22,7 @@
 
 <div class="k-badge--base {cls}">
 	<slot />
-	{#if !hidden && (content || isDot)}
+	{#if show && (content || isDot)}
 		<sup
 			class="
 			k-badge--content

@@ -3,10 +3,10 @@
 	import { KBadge } from '@ikun-ui/badge';
 </script>
 
-<KBadge value="来一张" type="info" cls="mr-40px">
-	<KButton>食不食油饼</KButton>
+<KBadge value="one" type="info" cls="mr-40px">
+	<KButton>Can't Eat Pancakes</KButton>
 </KBadge>
 
 <KBadge value="new" type="error" cls="mr-40px">
-	<KButton type="info">耗丸吗</KButton>
+	<KButton type="info">Consumption Pills</KButton>
 </KBadge>
