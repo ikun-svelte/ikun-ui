@@ -78,6 +78,7 @@ const handleCopy = () => {
 @import '../../../assets/styles/atom-one-dark.css';
 .k-docs-code {
 	width: 100%;
+	font-size: 14px;
 }
 .hljs {
 	border-radius: 8px;
