@@ -106,7 +106,7 @@
 <div class="my-10px">
 	<div class="mb-10px">KBadge</div>
 	<KBadge cls="mr-40px" value={badgeNumber}>
-		<KButton on:click={() => badgeNumber++}>爸爸打我</KButton>
+		<KButton on:click={() => badgeNumber++}>Click Me</KButton>
 	</KBadge>
 
 	<KBadge cls="mr-40px" value="new" type="success">
@@ -117,7 +117,7 @@
 		<KButton>IKunUI</KButton>
 	</KBadge>
 
-	<KBadge cls="mr-40px" value="看不到我" hidden>
+	<KBadge cls="mr-40px" value="Can't See Me" show={false}>
 		<KButton>IKunUI</KButton>
 	</KBadge>
 </div>

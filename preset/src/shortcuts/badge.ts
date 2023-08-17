@@ -2,8 +2,8 @@ export const badgeShortcuts: Record<string, string> = {
 	// badge
 	'k-badge--base': 'relative v-mid inline-block w-fit',
 	'k-badge--content':
-		'inline-flex justify-center items-center h-18px b-rd-10px text-12px p-y-0 p-x-6px whitespace-nowrap b-1px b-solid b-ikun-white color-ikun-white',
-	'k-badge--content-fixed': 'absolute top-0 right-10px translate-y--50% translate-100% z-1',
+		'infcc h-18px b-rd-10px text-12px p-y-0 p-x-6px whitespace-nowrap b-1px b-solid b-ikun-white color-ikun-white',
+	'k-badge--content-fixed': 'pa top-0 right-10px translate-y--50% translate-100% z-1',
 	'k-badge--content-dot': '[.k-badge--base>&]:(w-8px h-8px p-0 b-rd-50% right-5px)',
 	'k-badge--content-primary': 'bg-ikun-primary',
 	'k-badge--content-success': 'bg-ikun-success',

@@ -6,9 +6,9 @@
 </script>
 
 <KBadge value={count} max={12} cls="mr-40px">
-	<KButton on:click={() => count++}>让我怎么荔枝</KButton>
+	<KButton on:click={() => count++}>Lychee</KButton>
 </KBadge>
 
 <KBadge value={666} max={25} type="warning" cls="mr-40px">
-	<KButton type="info">小黑子</KButton>
+	<KButton type="info">Little Sunspot</KButton>
 </KBadge>
