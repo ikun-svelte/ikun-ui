@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KSwitch > props: disabled 1`] = `"<div class=\\"k-switch--base  k-switch__un_checked   \\" aria-hidden=\\"true\\"><div class=\\"k-switch-tx__un_checked\\"></div> <div class=\\"k-switch-circle\\"></div> </div>"`;
+
+exports[`Test: KSwitch > props: loading 1`] = `"<div class=\\"k-switch--base  k-switch__un_checked   \\" aria-hidden=\\"true\\"><div class=\\"k-switch-tx__un_checked\\"></div> <div class=\\"k-switch-circle\\"></div> </div>"`;
+
+exports[`Test: KSwitch > props: value 1`] = `"<div class=\\"k-switch--base  k-switch__un_checked   \\" aria-hidden=\\"true\\"><div class=\\"k-switch-tx__un_checked\\"></div> <div class=\\"k-switch-circle\\"></div> </div>"`;
