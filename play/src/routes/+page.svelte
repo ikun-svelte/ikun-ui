@@ -18,7 +18,8 @@
 	import { KMsgBox } from '@ikun-ui/message-box';
 	import { KRadio } from '@ikun-ui/radio';
 	import 'virtual:uno.css';
-
+	import { KForm, createKFormInstance } from '@ikun-ui/form';
+	import type { KFormInstance } from '@ikun-ui/form';
 	let checked = true;
 	let radioChecked = false;
 	let openDrawer = false;
@@ -26,6 +27,7 @@
 	let inputValue = '';
 
 	let badgeNumber = 98;
+	let form: KFormInstance = createKFormInstance();
 
 	const handleNotify = () => {
 		KNotify.success({
@@ -56,6 +58,11 @@
 	let selectVal = '';
 </script>
 
+<KForm bind:form>
+	----Form----
+	<KButton on:click={() => form.submit()}>Submit</KButton>
+	----Form----
+</KForm>
 <div class="flex fle-gap-2 p-2">
 	<KButton>Normal Button</KButton>
 	<KButton disabled>Disabled Button</KButton>
