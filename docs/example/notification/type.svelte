@@ -14,7 +14,7 @@
     <KButton type="info" cls="mx-2"
              on:click={()=> renderNotify(
                  'Hamlet',
-                 'To be or not to be, that is the question.',
+                 '哇，真的是你啊~',
                  'info')
                  }>
         info
@@ -22,7 +22,7 @@
     <KButton type="success" cls="mx-2"
              on:click={()=> renderNotify(
                  'Requiem for a Nun',
-                 'The past is never dead. It\'s not even past.',
+                 '香精煎鱼',
                  'success')
                  }>
         success
@@ -30,8 +30,8 @@
     <KButton type="warning" cls="mx-2"
              on:click={()=> renderNotify(
                  'One Hundred Years of Solitude',
-                 'Time flowed in a circle in the family, ' +
-                  'never-ending.',
+                 '香翅捞饭' +
+                  '',
                   'warning')
                   }>
         warning
@@ -39,7 +39,7 @@
     <KButton type="error" cls="mx-2"
              on:click={()=> renderNotify(
                  'A Tale of Two Cities',
-                 'It was the best of times, it was the worst of times.',
+                 '食不食油饼',
                  'error'
                  )}>
         error

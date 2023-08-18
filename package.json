@@ -76,7 +76,9 @@
 		"baiwusanyu-utils": "^1.0.14"
 	},
 	"dependencies": {
+		"@ikun-ui/badge": "workspace:*",
 		"@ikun-ui/button": "workspace:*",
+		"@ikun-ui/button-group": "workspace:*",
 		"@ikun-ui/checkbox": "workspace:*",
 		"@ikun-ui/client-only": "workspace:*",
 		"@ikun-ui/collapse": "workspace:*",
