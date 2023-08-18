@@ -11,9 +11,11 @@ const initHost = () => {
 };
 beforeEach(() => {
 	initHost();
+	vi.useFakeTimers();
 });
 afterEach(() => {
 	host.remove();
+	vi.restoreAllMocks();
 });
 
 describe('Test: KSwitch', () => {
@@ -144,8 +146,8 @@ describe('Test: KSwitch', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	// TODO
-	/*test('event: should trigger click event', async () => {
+
+	test('event: should trigger click event', async () => {
         const mockFn = vi.fn();
         const instance = new KSwitch({
             target: host,
@@ -161,8 +163,9 @@ describe('Test: KSwitch', () => {
         const switchElm = host.getElementsByClassName('k-switch--base')[0] as HTMLDivElement;
         switchElm.click()
         await tick();
+				await vi.advanceTimersByTimeAsync(350);
         expect(mockFn).toBeCalled()
-    });*/
+    });
 
 	test('event: should updateValue click event', async () => {
 		const updateEvent = vi.fn();
