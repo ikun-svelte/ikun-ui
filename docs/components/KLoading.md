@@ -39,12 +39,12 @@ Use `spinner`, be a real ikun.
 
 ## Loading Options
 
-| Name  | Type     | Default                                               | Description           |
-| ----- | -------- | ----------------------------------------------------- | --------------------- |
-| show  | `boolean`   | `false` | Whether to show loading              |
-| text   | `string` | `-`                                                   | loading text that displays under the spinner  |
-| fullScreen | `boolean`    | `false`                                                  | Show a full screen animation while loading data |
-| background | `string`    | `-`                                                  | background color of the mask |
-| spinner | `string`    | `-`                                                  | The class name of the snipper, following the unocss standard |
-| rotating | `boolean`    | `true`                                                  | Whether the snipper is rotated or not |
-| cls | `string`    | `-`                                                  | custom class name for Loading |
+| Name       | Type      | Default | Description                                                  |
+| ---------- | --------- | ------- | ------------------------------------------------------------ |
+| show       | `boolean` | `false` | Whether to show loading                                      |
+| text       | `string`  | `-`     | loading text that displays under the spinner                 |
+| fullScreen | `boolean` | `false` | Show a full screen animation while loading data              |
+| background | `string`  | `-`     | background color of the mask                                 |
+| spinner    | `string`  | `-`     | The class name of the snipper, following the unocss standard |
+| rotating   | `boolean` | `true`  | Whether the snipper is rotated or not                        |
+| cls        | `string`  | `-`     | custom class name for Loading                                |
