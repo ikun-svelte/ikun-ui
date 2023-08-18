@@ -15,6 +15,7 @@
 	import { KSelect } from '@ikun-ui/select';
 	import { KMsgBox } from '@ikun-ui/message-box';
 	import { KRadio } from '@ikun-ui/radio';
+	import { KLoading } from '@ikun-ui/loading';
 	import 'virtual:uno.css';
 
 	let checked = true;
@@ -29,8 +30,8 @@
 			duration: 99999,
 			autoClose: true,
 			content: 'Notify Success'
-		})
-	}
+		});
+	};
 
 	const handleMsgBox = () => {
 		KMsgBox.prompt({
@@ -48,8 +49,19 @@
 		});
 	};
 
-	let switchVal = false
-	let selectVal = ''
+	let switchVal = false;
+	let selectVal = '';
+
+	const loadingOptions = {
+		show: false,
+		text: 'loading...',
+    fullScreen: true
+	};
+
+
+	const handleToggleLoading = () => {
+		loadingOptions.show = !loadingOptions.show;
+	};
 </script>
 
 <div class="flex fle-gap-2 p-2">
@@ -111,3 +123,5 @@
 		<option>{item}</option>
 	{/each}
 </KSelect>
+<KButton on:click={handleToggleLoading}>ToggleLoading</KButton>
+<div use:KLoading={loadingOptions} class="w-200px h-50px bg-red"></div>

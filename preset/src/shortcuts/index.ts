@@ -18,6 +18,7 @@ import { notificationShortcuts } from './notification';
 import { switchShortcuts } from './swtich';
 import { selectShortcuts } from './select';
 import { msgBoxShortcuts } from './message-box';
+import { loadingShortcuts } from './loading';
 
 export default [
 	baseShortcuts,
@@ -53,7 +54,9 @@ export default [
 	// select
 	selectShortcuts,
 	// message box
-	msgBoxShortcuts
+	msgBoxShortcuts,
+	// loading
+	loadingShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -73,6 +76,7 @@ export function getSafeList() {
 	const switchList = Object.keys(switchShortcuts);
 	const selectList = Object.keys(selectShortcuts);
 	const msgBoxList = Object.keys(msgBoxShortcuts);
+	const loadingList = Object.keys(loadingShortcuts);
 	return iconList
 		.concat(msgBoxList)
 		.concat(selectList)
@@ -88,7 +92,8 @@ export function getSafeList() {
 		.concat(eyeDropperList)
 		.concat(buttonList)
 		.concat(collapseList)
-		.concat(checkboxList);
+		.concat(checkboxList)
+		.concat(loadingList);
 }
 
 export { baseShortcuts } from './base';
@@ -109,3 +114,4 @@ export { notificationShortcuts } from './notification';
 export { switchShortcuts } from './swtich';
 export { selectShortcuts } from './select';
 export { msgBoxShortcuts } from './message-box';
+export { loadingShortcuts } from './loading';

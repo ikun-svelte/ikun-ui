@@ -17,3 +17,4 @@ export * from '@ikun-ui/tag';
 export * from '@ikun-ui/tooltip';
 export * from '@ikun-ui/switch';
 export * from '@ikun-ui/message-box';
+export * from '@ikun-ui/loading';
