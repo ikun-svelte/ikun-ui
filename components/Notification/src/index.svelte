@@ -3,14 +3,15 @@
 	import { fly, type FlyParams, fade } from 'svelte/transition';
 	import { tick } from 'svelte';
 	import { isFunction, isString } from 'baiwusanyu-utils';
+	import type {NotifyPlacement, NotifyType} from "./types";
 	type IKunUncertainFunction<T = any> = () => T | void;
 	// right-top left-top right-bottom left-bottom center
-	export let placement:'right-top' | 'left-top' | 'right-bottom' | 'left-bottom' | 'center' = 'right-top';
+	export let placement:NotifyPlacement = 'right-top';
 	export let attrs = {};
 	export let cls = '';
 	export let close = false;
 	// info warning error success
-	export let type:'info' | 'warning'| 'error' | 'success' | null = null;
+	export let type: NotifyType | null = null;
 	export let onClose:null | IKunUncertainFunction= null;
 	export let offset = 0;
 	export let show = false;
