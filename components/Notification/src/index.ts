@@ -1,11 +1,11 @@
 import Notification from './index.svelte';
-import type {NotifyOptions, NotifyPlacement, NotifyExtend} from './types';
+import type { NotifyOptions, NotifyPlacement } from './types';
 import { jsonClone } from 'baiwusanyu-utils';
 export * from './types';
 
-declare type NotifyComponent = InstanceType<typeof Notification> & NotifyExtend;
+export declare type NotifyComponent = InstanceType<typeof Notification>;
 
-const defaultNotifyOptions: NotifyOptions<T, C> = {
+const defaultNotifyOptions: NotifyOptions<undefined, undefined> = {
 	placement: 'right-top',
 	close: true,
 	duration: 3000,
@@ -18,10 +18,10 @@ const notifyMap = {
 	center: [] as ReturnType<typeof NotifyFn>[],
 	'left-bottom': [] as ReturnType<typeof NotifyFn>[],
 	'right-bottom': [] as ReturnType<typeof NotifyFn>[],
-	'left-top': [] as ReturnType<typeof NotifyFn>[],
+	'left-top': [] as ReturnType<typeof NotifyFn>[]
 };
 
-const resolveNotifyOptions = (options: NotifyOptions) => {
+const resolveNotifyOptions = <T, C>(options: NotifyOptions<T, C>) => {
 	const evt = {
 		onClose: options.onClose
 	};
@@ -39,7 +39,7 @@ const resolveNotifyOptions = (options: NotifyOptions) => {
 	};
 };
 
-function mountNotify(options: NotifyOptions, evt: Record<string, any>) {
+function mountNotify<T, C>(options: NotifyOptions<T, C>, evt: Record<string, any>) {
 	const notifyArray = notifyMap[options.placement || 'right-top'];
 	let index = 0;
 	if (!notifyArray) {
@@ -66,11 +66,7 @@ function mountNotify(options: NotifyOptions, evt: Record<string, any>) {
 			show: false,
 			index,
 			onClose: async () => {
-				await unmountNotify(
-					options.placement || 'right-top',
-					NotificationInst,
-					0
-				);
+				await unmountNotify(options.placement || 'right-top', NotificationInst, 0);
 				evt.onClose && evt.onClose();
 			}
 		}
@@ -80,17 +76,14 @@ function mountNotify(options: NotifyOptions, evt: Record<string, any>) {
 
 	NotificationInst.$set({ show: true });
 	// auto close
-	autoUnmountNotify(options, NotificationInst as NotifyComponent);
+	autoUnmountNotify(options, NotificationInst);
 	// cache  NotificationInst
 	notifyArray.push(NotificationInst);
 
-	return NotificationInst as NotifyComponent
+	return NotificationInst;
 }
 
-async function autoUnmountNotify(
-	options: NotifyOptions,
-	inst: NotifyComponent
-) {
+async function autoUnmountNotify<T, C>(options: NotifyOptions<T, C>, inst: NotifyComponent) {
 	if (options.autoClose) {
 		await durationUnmountNotify(options.placement || 'right-top', inst, options.duration || 0);
 	}
@@ -106,11 +99,7 @@ async function durationUnmountNotify(
 	}, duration);
 }
 
-async function unmountNotify(
-	placement: NotifyPlacement,
-	inst: NotifyComponent,
-	duration: number
-) {
+async function unmountNotify(placement: NotifyPlacement, inst: NotifyComponent, duration: number) {
 	inst.$set({ show: false });
 	setTimeout(() => {
 		notifyMap[placement].splice(inst.__notify_index, 1);
@@ -121,35 +110,35 @@ async function unmountNotify(
 
 function updatedNotifyByIndex(placement: NotifyPlacement) {
 	notifyMap[placement].forEach((inst: NotifyComponent | undefined, index) => {
-		inst && (inst.$set({ index }))
-		inst && (inst.__notify_index = index)
+		inst && inst.$set({ index });
+		inst && (inst.__notify_index = index);
 	});
 }
 
-function NotifyFn(options: NotifyOptions) {
+function NotifyFn<T, C>(options: NotifyOptions<T, C>) {
 	const { finalOptions, evt } = resolveNotifyOptions(options);
 	return mountNotify(finalOptions, evt);
 }
 
-NotifyFn.info = (options: NotifyOptions = {}) => {
+NotifyFn.info = <T, C>(options: NotifyOptions<T, C> = {}) => {
 	options.type = 'info';
 	const { finalOptions, evt } = resolveNotifyOptions(options);
 	return mountNotify(finalOptions, evt);
 };
 
-NotifyFn.warning = (options: NotifyOptions = {}) => {
+NotifyFn.warning = <T, C>(options: NotifyOptions<T, C> = {}) => {
 	options.type = 'warning';
 	const { finalOptions, evt } = resolveNotifyOptions(options);
 	return mountNotify(finalOptions, evt);
 };
 
-NotifyFn.error = (options: NotifyOptions = {}) => {
+NotifyFn.error = <T, C>(options: NotifyOptions<T, C> = {}) => {
 	options.type = 'error';
 	const { finalOptions, evt } = resolveNotifyOptions(options);
 	return mountNotify(finalOptions, evt);
 };
 
-NotifyFn.success = (options: NotifyOptions = {}) => {
+NotifyFn.success = <T, C>(options: NotifyOptions<T, C> = {}) => {
 	options.type = 'success';
 	const { finalOptions, evt } = resolveNotifyOptions(options);
 	return mountNotify(finalOptions, evt);
@@ -167,10 +156,7 @@ NotifyFn.clearAll = () => {
 	});
 };
 
-NotifyFn.update = async (
-	inst: NotifyComponent,
-	options: NotifyOptions = {}
-) => {
+NotifyFn.update = async <T, C>(inst: NotifyComponent, options: NotifyOptions<T, C> = {}) => {
 	inst.$set({ ...options });
 };
 

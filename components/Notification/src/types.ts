@@ -3,13 +3,13 @@ import type { IKunTypeBase, IKunUncertainFunction } from '@ikun-ui/utils';
 
 export type NotifyType = IKunTypeBase;
 export type NotifyPlacement = 'right-top' | 'left-top' | 'right-bottom' | 'left-bottom' | 'center';
-export type NotifyExtend = {
+
+/*export type NotifyExtend = {
 	__notify_index: number;
 	__notify_placement: NotifyPlacement;
 	index: number;
 	show: boolean;
-};
-
+};*/
 
 export declare type NotifyOptions<T, C> = {
 	/**
