@@ -20,6 +20,7 @@
 					version="1.1"
 					xmlns="http://www.w3.org/2000/svg"
 					xmlns:xlink="http://www.w3.org/1999/xlink"
+          class="inline"
 				>
 					<g id="logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 						<circle id="ball2" fill="#FF7802" cx="161.5" cy="926.5" r="146.5">
