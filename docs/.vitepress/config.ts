@@ -93,6 +93,10 @@ const components = [
 			{
 				text: 'Modal',
 				link: '/components/KModal'
+			},
+			{
+				text: 'Loading',
+				link: '/components/KLoading'
 			}
 		]
 	},

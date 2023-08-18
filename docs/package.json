@@ -28,6 +28,7 @@
 		"@ikun-ui/switch": "workspace:*",
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
+		"@ikun-ui/loading": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"@vueuse/core": "^10.3.0"
 	},
