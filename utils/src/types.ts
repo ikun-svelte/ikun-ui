@@ -9,7 +9,7 @@ export type IKunUpdateField = (value?: any) => void;
 export type IKunFormInstance = {
 	values?: any;
 	submit: () => void;
-	setValue: (field: string, value: any) => void;
+	setValue: (path: string, value: any) => void;
 	setValues: (values: any) => void;
 	subscribe:
 		| ((callback: (values: any) => void) => void)
