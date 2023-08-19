@@ -13,6 +13,7 @@
 		form,
 		path: currentPath,
 		updateField: (value: any) => {
+			// TODO: validate field
 			form.setValue(currentPath, value);
 		},
 		subscribe: (callback: (value: any) => void) => {
