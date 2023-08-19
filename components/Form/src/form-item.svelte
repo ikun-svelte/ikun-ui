@@ -7,18 +7,20 @@
 
 	const form: FormInstance = getContext('Form');
 	setContext('Form', form);
-	setContext('$updateField', (value: any) => console.log(value));
+	setContext('$updateField', (value: any) => {
+		form.setValue(field, value);
+	});
 	console.log($$slots);
 </script>
 
 <div class="k-form-item">
-	<div class="k-form-item-label">
-		<slot name="label" />
-		{#if !$$slots.default && label}
-			{label}
-		{/if}
-	</div>
 	<div class="k-form-item-content">
-		<slot updateValue={console.log} />
+		<div class="k-form-item-label">
+			<slot name="label" />
+			{#if !$$slots.default && label}
+				{label}
+			{/if}
+		</div>
+		<slot />
 	</div>
 </div>
