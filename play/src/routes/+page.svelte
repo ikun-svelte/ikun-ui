@@ -18,7 +18,7 @@
 	import { KMsgBox } from '@ikun-ui/message-box';
 	import { KRadio } from '@ikun-ui/radio';
 	import 'virtual:uno.css';
-	import { KForm, createKFormInstance } from '@ikun-ui/form';
+	import { KForm, createKFormInstance, KFormItem } from '@ikun-ui/form';
 	import type { KFormInstance } from '@ikun-ui/form';
 	let checked = true;
 	let radioChecked = false;
@@ -60,6 +60,10 @@
 
 <KForm bind:form>
 	----Form----
+	<KFormItem label={'name'} field={'name'}>
+		<div slot="label">Name:</div>
+		<KInput placeholder="inputValue"></KInput>
+	</KFormItem>
 	<KButton on:click={() => form.submit()}>Submit</KButton>
 	----Form----
 </KForm>
