@@ -11,9 +11,8 @@ export type IKunFormInstance = {
 	submit: () => void;
 	setValue: (path: string, value: any) => void;
 	setValues: (values: any) => void;
-	subscribe:
-		| ((callback: (values: any) => void) => void)
-		| ((path: string, callback: (values: any) => void) => void);
+	subscribe: ((callback: (values: any) => void) => void) &
+		((path: string, callback: (values: any) => void) => void);
 };
 
 export type FormContext = {
