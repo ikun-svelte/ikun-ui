@@ -27,6 +27,7 @@
 	},
 	"dependencies": {
 		"@ikun-ui/utils": "workspace:*",
+		"@types/lodash": "^4.14.197",
 		"baiwusanyu-utils": "^1.0.14",
 		"lodash": "^4.17.21"
 	},

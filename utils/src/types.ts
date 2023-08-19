@@ -5,14 +5,19 @@ export type IKunSize = 'sm' | 'md' | 'lg';
 export type IKunPlacement = 'top' | 'left' | 'right' | 'bottom';
 export type IKunTrigger = 'manual' | 'click' | 'hover';
 export type IKunUpdateField = (value?: any) => void;
+
 export type IKunFormInstance = {
 	values?: any;
 	submit: () => void;
 	setValue: (field: string, value: any) => void;
 	setValues: (values: any) => void;
-	subscribe: (callback: (values: any) => void) => void;
+	subscribe:
+		| ((callback: (values: any) => void) => void)
+		| ((path: string, callback: (values: any) => void) => void);
 };
+
 export type FormContext = {
 	form: IKunFormInstance;
+	path: string;
 	updateField: IKunUpdateField;
 };

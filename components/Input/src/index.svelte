@@ -34,8 +34,8 @@
 	let valueInner = value;
 
 	if (formContext?.form) {
-		formContext?.form.subscribe((values: any) => {
-			console.log(values, valueInner);
+		formContext?.form.subscribe(formContext?.path, (value: any) => {
+			valueInner = value;
 		});
 	}
 </script>

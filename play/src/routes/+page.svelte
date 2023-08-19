@@ -68,6 +68,7 @@
 	</KFormItem>
 
 	<KButton on:click={() => form.submit()}>Submit</KButton>
+	<KButton on:click={() => form.setValue('name', 'ikun')}>setValue</KButton>
 	----Form----
 </KForm>
 <div class="flex fle-gap-2 p-2">
