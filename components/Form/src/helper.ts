@@ -4,7 +4,6 @@ export const createForm: () => IKunFormInstance = () => {
 	const FormInstance: IKunFormInstance = {
 		values: writable({}),
 		subscribe: (cb) => {
-			console.log(cb);
 			FormInstance.values.subscribe(cb);
 		},
 		submit: () => console.log('submit: ', FormInstance.values),

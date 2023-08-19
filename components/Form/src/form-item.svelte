@@ -6,9 +6,11 @@
 	export let field: string = '';
 
 	const form: IKunFormInstance = getContext('Form');
-	setContext('$form', form);
-	setContext('$updateField', (value: any) => {
-		form.setValue(field, value);
+	setContext('FormContext', {
+		form,
+		updateField: (value: any) => {
+			form.setValue(field, value);
+		}
 	});
 </script>
 

@@ -2,7 +2,7 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
-	import type { IKunUpdateField, IKunFormInstance } from '@ikun-ui/utils';
+	import type { FormContext } from '@ikun-ui/utils';
 	export let iconPrefix = '';
 	export let iconSuffix = '';
 	export let value = '';
@@ -18,17 +18,11 @@
 	 * @internal
 	 */
 	export let errorMsg: string = '';
-	const updateField: IKunUpdateField = getContext('$updateField');
-	const form: IKunFormInstance = getContext('$form');
-	if (form) {
-		form.subscribe((values) => {
-			console.log(values);
-		});
-	}
+	const formContext: FormContext = getContext('FormContext');
 	const dispatch = createEventDispatcher();
 	const onUpdated = (e: Event) => {
 		dispatch('input', (e.target as HTMLInputElement).value);
-		updateField((e.target as HTMLInputElement).value);
+		formContext?.updateField((e.target as HTMLInputElement).value);
 	};
 	const onEnter = (e: KeyboardEvent) => {
 		if (e.key === 'Enter') dispatch('enter', e);
@@ -38,6 +32,12 @@
 		dispatch('change', e);
 	};
 	let valueInner = value;
+
+	if (formContext?.form) {
+		formContext?.form.subscribe((values: any) => {
+			console.log(values, valueInner);
+		});
+	}
 </script>
 
 <div

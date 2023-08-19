@@ -12,3 +12,7 @@ export type IKunFormInstance = {
 	setValues: (values: any) => void;
 	subscribe: (callback: (values: any) => void) => void;
 };
+export type FormContext = {
+	form: IKunFormInstance;
+	updateField: IKunUpdateField;
+};

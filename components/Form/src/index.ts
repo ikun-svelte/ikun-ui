@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference types="./types" />
 import Form from './form.svelte';
 import FormItem from './form-item.svelte';
