@@ -20,4 +20,5 @@ export type FormContext = {
 	form: IKunFormInstance;
 	path: string;
 	updateField: IKunUpdateField;
+	subscribe: (value?: any) => void;
 };

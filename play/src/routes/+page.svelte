@@ -71,10 +71,17 @@
 		<KFormItem label={'a'} field={'a'}>
 			<KInput placeholder="inputValue"></KInput>
 		</KFormItem>
+		<KFormItem label={'b'} field={'b'}>
+			<KInput placeholder="inputValue"></KInput>
+		</KFormItem>
 	</KFormItem>
 
 	<KButton on:click={() => console.log(form.submit())}>Submit</KButton>
-	<KButton on:click={() => form.setValue('name', 'ikun')}>setValue</KButton>
+	<KButton
+		on:click={() => {
+			form.setValues({ name: 'ikun', password: '1145142333', obj: { a: 1, b: 2 } });
+		}}>setValue</KButton
+	>
 	----Form----
 </KForm>
 <div class="flex fle-gap-2 p-2">

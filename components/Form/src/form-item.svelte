@@ -14,6 +14,11 @@
 		path: currentPath,
 		updateField: (value: any) => {
 			form.setValue(currentPath, value);
+		},
+		subscribe: (callback: (value: any) => void) => {
+			form.subscribe(currentPath, (value: any) => {
+				callback(value);
+			});
 		}
 	});
 </script>

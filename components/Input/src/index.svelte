@@ -35,11 +35,7 @@
 
 	// When the user sets the form value directly
 	// dom value needs to change synchronously in the form schene
-	if (formContext?.form) {
-		formContext?.form.subscribe(formContext?.path, (value: any) => {
-			valueInner = value;
-		});
-	}
+	formContext?.subscribe((value: any) => (valueInner = value));
 </script>
 
 <div
