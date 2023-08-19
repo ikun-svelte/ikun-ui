@@ -26,7 +26,6 @@ export const createForm: () => IKunFormInstance = () => {
 		setValue: (path, value) => {
 			FormInstance.values.update((values: any) => {
 				_.set(values, path, value);
-				console.log(values);
 				return values;
 			});
 		},
