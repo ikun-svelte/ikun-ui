@@ -19,7 +19,7 @@
 	import { KRadio } from '@ikun-ui/radio';
 	import 'virtual:uno.css';
 	import { KForm, createKFormInstance, KFormItem } from '@ikun-ui/form';
-	import type { KFormInstance } from '@ikun-ui/form';
+	import { IKunFormInstance } from '@ikun-ui/utils';
 	let checked = true;
 	let radioChecked = false;
 	let openDrawer = false;
@@ -27,7 +27,7 @@
 	let inputValue = '';
 
 	let badgeNumber = 98;
-	let form: KFormInstance = createKFormInstance();
+	let form: IKunFormInstance = createKFormInstance();
 
 	const handleNotify = () => {
 		KNotify.success({
