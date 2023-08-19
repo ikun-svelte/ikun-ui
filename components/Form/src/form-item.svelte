@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { getContext, setContext } from 'svelte';
-	import type { IKunFormInstance } from '@ikun-ui/utils';
+	import type { IKunFormInstance, FormContext } from '@ikun-ui/utils';
+	import { getFormItemPath } from './helper';
 
 	export let label: string = '';
 	export let field: string = '';
-
 	const form: IKunFormInstance = getContext('Form');
+	const formContext: FormContext = getContext('FormContext');
+
 	setContext('FormContext', {
 		form,
-		path: field,
+		path: getFormItemPath(formContext?.path || '', field),
 		updateField: (value: any) => {
 			form.setValue(field, value);
 		}

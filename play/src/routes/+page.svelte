@@ -67,6 +67,12 @@
 		<KInput placeholder="inputValue"></KInput>
 	</KFormItem>
 
+	<KFormItem field={'obj'}>
+		<KFormItem label={'a'} field={'a'}>
+			<KInput placeholder="inputValue"></KInput>
+		</KFormItem>
+	</KFormItem>
+
 	<KButton on:click={() => form.submit()}>Submit</KButton>
 	<KButton on:click={() => form.setValue('name', 'ikun')}>setValue</KButton>
 	----Form----

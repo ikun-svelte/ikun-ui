@@ -1,5 +1,5 @@
 import type { IKunFormInstance } from '@ikun-ui/utils';
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 import _ from 'lodash';
 export const createForm: () => IKunFormInstance = () => {
 	const FormInstance: IKunFormInstance = {
@@ -17,7 +17,7 @@ export const createForm: () => IKunFormInstance = () => {
 				});
 			}
 		},
-		submit: () => console.log('submit: ', FormInstance.values),
+		submit: () => get(FormInstance.values),
 		setValue: (field, value) => {
 			FormInstance.values.update((values: any) => {
 				return { ...values, [field]: value };
@@ -31,4 +31,18 @@ export const createForm: () => IKunFormInstance = () => {
 		}
 	};
 	return FormInstance;
+};
+/**
+ * get path By nesting FormItems
+ * @param oldPath
+ * @param field
+ * @returns
+ */
+export const getFormItemPath = (oldPath: string, field: string) => {
+	if (oldPath === '') {
+		return field;
+	} else {
+		//we can resolve path e.g (a.0.b.c) by lodash
+		return oldPath + `.${field}`;
+	}
 };
