@@ -10,17 +10,18 @@
 	setContext('$updateField', (value: any) => {
 		form.setValue(field, value);
 	});
-	console.log($$slots);
 </script>
 
 <div class="k-form-item">
 	<div class="k-form-item-content">
-		<div class="k-form-item-label">
-			<slot name="label" />
-			{#if !$$slots.default && label}
-				{label}
-			{/if}
-		</div>
+		{#if $$slots.label || label}
+			<div class="k-form-item-label">
+				<slot name="label" />
+				{#if !$$slots.label && label}
+					{label}
+				{/if}
+			</div>
+		{/if}
 		<slot />
 	</div>
 </div>

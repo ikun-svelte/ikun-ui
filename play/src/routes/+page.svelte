@@ -61,9 +61,12 @@
 <KForm bind:form>
 	----Form----
 	<KFormItem label={'name'} field={'name'}>
-		<div slot="label">Name:</div>
 		<KInput placeholder="inputValue"></KInput>
 	</KFormItem>
+	<KFormItem label={'password'} field={'password'}>
+		<KInput placeholder="inputValue"></KInput>
+	</KFormItem>
+
 	<KButton on:click={() => form.submit()}>Submit</KButton>
 	----Form----
 </KForm>
