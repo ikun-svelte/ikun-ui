@@ -27,7 +27,8 @@
 	},
 	"dependencies": {
 		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.14"
+		"baiwusanyu-utils": "^1.0.14",
+		"lodash": "^4.17.21"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.0",
