@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { createForm } from './helper';
-	import type { FormInstance } from './types';
+	import type { IKunFormInstance } from '@ikun-ui/utils';
 	import { setContext } from 'svelte';
 
-	export const form: FormInstance = createForm();
+	export const form: IKunFormInstance = createForm();
 	setContext('Form', form);
 </script>
 

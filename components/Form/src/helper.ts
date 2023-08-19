@@ -1,9 +1,10 @@
-import type { FormInstance } from './types';
+import type { IKunFormInstance } from '@ikun-ui/utils';
 import { writable } from 'svelte/store';
-export const createForm: () => FormInstance = () => {
-	const FormInstance: FormInstance = {
+export const createForm: () => IKunFormInstance = () => {
+	const FormInstance: IKunFormInstance = {
 		values: writable({}),
 		subscribe: (cb) => {
+			console.log(cb);
 			FormInstance.values.subscribe(cb);
 		},
 		submit: () => console.log('submit: ', FormInstance.values),

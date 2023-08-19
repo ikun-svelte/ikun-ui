@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { getContext, setContext } from 'svelte';
-	import type { FormInstance } from './types';
+	import type { IKunFormInstance } from '@ikun-ui/utils';
 
 	export let label: string = '';
 	export let field: string = '';
 
-	const form: FormInstance = getContext('Form');
-	setContext('Form', form);
+	const form: IKunFormInstance = getContext('Form');
+	setContext('$form', form);
 	setContext('$updateField', (value: any) => {
 		form.setValue(field, value);
 	});
