@@ -8,11 +8,12 @@
 	const form: IKunFormInstance = getContext('Form');
 	const formContext: FormContext = getContext('FormContext');
 
+	const currentPath = getFormItemPath(formContext?.path || '', field);
 	setContext('FormContext', {
 		form,
-		path: getFormItemPath(formContext?.path || '', field),
+		path: currentPath,
 		updateField: (value: any) => {
-			form.setValue(field, value);
+			form.setValue(currentPath, value);
 		}
 	});
 </script>

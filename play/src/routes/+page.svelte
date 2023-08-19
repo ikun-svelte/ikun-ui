@@ -73,7 +73,7 @@
 		</KFormItem>
 	</KFormItem>
 
-	<KButton on:click={() => form.submit()}>Submit</KButton>
+	<KButton on:click={() => console.log(form.submit())}>Submit</KButton>
 	<KButton on:click={() => form.setValue('name', 'ikun')}>setValue</KButton>
 	----Form----
 </KForm>

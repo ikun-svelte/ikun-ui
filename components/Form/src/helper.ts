@@ -4,6 +4,12 @@ import _ from 'lodash';
 export const createForm: () => IKunFormInstance = () => {
 	const FormInstance: IKunFormInstance = {
 		values: writable({}),
+		/**
+		 * call cb when values change
+		 * if param path exist,callback will pass specific value
+		 * else pass values
+		 * @param args [callback] or [path,callback]
+		 */
 		subscribe: function (...args: any[]) {
 			if (args.length === 0) throw new Error('subscribe need at least one argument');
 			const callback = args.length === 1 ? args[0] : args[1];
@@ -12,22 +18,21 @@ export const createForm: () => IKunFormInstance = () => {
 				FormInstance.values.subscribe(callback);
 			} else if (arguments.length === 2) {
 				FormInstance.values.subscribe((values: any) => {
-					console.log(values, path);
 					callback(_.get(values, path));
 				});
 			}
 		},
 		submit: () => get(FormInstance.values),
-		setValue: (field, value) => {
+		setValue: (path, value) => {
 			FormInstance.values.update((values: any) => {
-				return { ...values, [field]: value };
+				_.set(values, path, value);
+				console.log(values);
+				return values;
 			});
 		},
 		setValues: (values: any) => {
-			FormInstance.values = {
-				...FormInstance.values,
-				...values
-			};
+			const oldValues: any = get(FormInstance.values) || {};
+			FormInstance.values.set({ ...oldValues, ...values });
 		}
 	};
 	return FormInstance;
