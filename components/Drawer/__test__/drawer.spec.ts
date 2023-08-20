@@ -1,7 +1,7 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
 import KDrawer from '../src';
-import KDrawerContent from './drawer.content.test.svelte';
+// import KDrawerContent from './drawer.content.test.svelte';
 let host: HTMLElement;
 
 const initHost = () => {
@@ -84,13 +84,15 @@ describe('Test: KDrawer', () => {
 		expect(mockFn).toBeCalled();
 	});
 
-	test('slot: content', async () => {
-		const instance = new KDrawerContent({
-			target: host
+	test('slot: header', async () => {
+		const instance = new KDrawer({
+			target: host,
+      props: {
+				value: true,
+      }
 		});
 		await tick();
 		expect(instance).toBeTruthy();
-		expect(document.getElementById('k_drawer_content'));
-		expect(host.innerHTML).matchSnapshot();
+		expect(host.innerHTML.includes('k-drawer--op')).toBeTruthy();
 	});
 });

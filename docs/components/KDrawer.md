@@ -31,6 +31,12 @@ Open the `drawer` by setting the `value` attribute
 
 <demo src="../../../../example/drawer/basic.svelte" github="Drawer"></demo>
 
+## Custom header
+
+Implement custom header through slots
+
+<demo src="../../../../example/drawer/custom.svelte" github="Drawer"></demo>
+
 ## Left or right
 
 You can choose to open from the `right` or `left`
