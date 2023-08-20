@@ -87,9 +87,9 @@ describe('Test: KDrawer', () => {
 	test('slot: header', async () => {
 		const instance = new KDrawer({
 			target: host,
-      props: {
-				value: true,
-      }
+			props: {
+				value: true
+			}
 		});
 		await tick();
 		expect(instance).toBeTruthy();
