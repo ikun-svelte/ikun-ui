@@ -1,9 +1,11 @@
 import Notification from './index.svelte';
-import type { SvelteComponent } from 'svelte';
-import type { NotifyOptions, NotifyComponent, NotifyPlacement } from './types';
+import type { NotifyOptions, NotifyPlacement } from './types';
+import { jsonClone } from 'baiwusanyu-utils';
 export * from './types';
 
-const defaultNotifyOptions: NotifyOptions<SvelteComponent> = {
+export declare type NotifyComponent = InstanceType<typeof Notification>;
+
+const defaultNotifyOptions: NotifyOptions<undefined, undefined> = {
 	placement: 'right-top',
 	close: true,
 	duration: 3000,
@@ -12,14 +14,14 @@ const defaultNotifyOptions: NotifyOptions<SvelteComponent> = {
 };
 
 const notifyMap = {
-	'right-top': [] as NotifyComponent<SvelteComponent>[],
-	center: [] as NotifyComponent<SvelteComponent>[],
-	'left-bottom': [] as NotifyComponent<SvelteComponent>[],
-	'right-bottom': [] as NotifyComponent<SvelteComponent>[],
-	'left-top': [] as NotifyComponent<SvelteComponent>[]
+	'right-top': [] as ReturnType<typeof NotifyFn>[],
+	center: [] as ReturnType<typeof NotifyFn>[],
+	'left-bottom': [] as ReturnType<typeof NotifyFn>[],
+	'right-bottom': [] as ReturnType<typeof NotifyFn>[],
+	'left-top': [] as ReturnType<typeof NotifyFn>[]
 };
 
-const resolveNotifyOptions = (options: NotifyOptions<SvelteComponent>) => {
+const resolveNotifyOptions = <T, C>(options: NotifyOptions<T, C>) => {
 	const evt = {
 		onClose: options.onClose
 	};
@@ -37,7 +39,7 @@ const resolveNotifyOptions = (options: NotifyOptions<SvelteComponent>) => {
 	};
 };
 
-function mountNotify(options: NotifyOptions<SvelteComponent>, evt: Record<string, any>) {
+function mountNotify<T, C>(options: NotifyOptions<T, C>, evt: Record<string, any>) {
 	const notifyArray = notifyMap[options.placement || 'right-top'];
 	let index = 0;
 	if (!notifyArray) {
@@ -48,19 +50,23 @@ function mountNotify(options: NotifyOptions<SvelteComponent>, evt: Record<string
 		return;
 	}
 
+	const finalProps = jsonClone(options);
+	Reflect.deleteProperty(finalProps, 'duration');
+	Reflect.deleteProperty(finalProps, 'autoClose');
+	Reflect.deleteProperty(finalProps, 'target');
+
 	index = notifyArray.length;
 	const NotificationInst = new Notification({
 		target: options.target || document.body,
 		props: {
-			...options,
+			...finalProps,
+			attrs: options.attrs,
+			title: options.title,
+			content: options.content,
 			show: false,
 			index,
 			onClose: async () => {
-				await unmountNotify(
-					options.placement || 'right-top',
-					NotificationInst as unknown as NotifyComponent<SvelteComponent>,
-					0
-				);
+				await unmountNotify(options.placement || 'right-top', NotificationInst, 0);
 				evt.onClose && evt.onClose();
 			}
 		}
@@ -70,17 +76,14 @@ function mountNotify(options: NotifyOptions<SvelteComponent>, evt: Record<string
 
 	NotificationInst.$set({ show: true });
 	// auto close
-	autoUnmountNotify(options, NotificationInst as unknown as NotifyComponent<SvelteComponent>);
+	autoUnmountNotify(options, NotificationInst);
 	// cache  NotificationInst
-	notifyArray.push(NotificationInst as unknown as NotifyComponent<SvelteComponent>);
+	notifyArray.push(NotificationInst);
 
 	return NotificationInst;
 }
 
-async function autoUnmountNotify(
-	options: NotifyOptions<SvelteComponent>,
-	inst: NotifyComponent<SvelteComponent>
-) {
+async function autoUnmountNotify<T, C>(options: NotifyOptions<T, C>, inst: NotifyComponent) {
 	if (options.autoClose) {
 		await durationUnmountNotify(options.placement || 'right-top', inst, options.duration || 0);
 	}
@@ -88,7 +91,7 @@ async function autoUnmountNotify(
 
 async function durationUnmountNotify(
 	placement: NotifyPlacement,
-	inst: NotifyComponent<SvelteComponent>,
+	inst: NotifyComponent,
 	duration: number
 ) {
 	setTimeout(() => {
@@ -96,11 +99,7 @@ async function durationUnmountNotify(
 	}, duration);
 }
 
-async function unmountNotify(
-	placement: NotifyPlacement,
-	inst: NotifyComponent<SvelteComponent>,
-	duration: number
-) {
+async function unmountNotify(placement: NotifyPlacement, inst: NotifyComponent, duration: number) {
 	inst.$set({ show: false });
 	setTimeout(() => {
 		notifyMap[placement].splice(inst.__notify_index, 1);
@@ -110,57 +109,54 @@ async function unmountNotify(
 }
 
 function updatedNotifyByIndex(placement: NotifyPlacement) {
-	notifyMap[placement].forEach((inst: NotifyComponent<SvelteComponent>, index) => {
-		inst.$set({ index });
-		inst.__notify_index = index;
+	notifyMap[placement].forEach((inst: NotifyComponent | undefined, index) => {
+		inst && inst.$set({ index });
+		inst && (inst.__notify_index = index);
 	});
 }
 
-function NotifyFn(options: NotifyOptions<SvelteComponent>) {
+function NotifyFn<T, C>(options: NotifyOptions<T, C>) {
 	const { finalOptions, evt } = resolveNotifyOptions(options);
 	return mountNotify(finalOptions, evt);
 }
 
-NotifyFn.info = (options: NotifyOptions<SvelteComponent> = {}) => {
+NotifyFn.info = <T, C>(options: NotifyOptions<T, C> = {}) => {
 	options.type = 'info';
 	const { finalOptions, evt } = resolveNotifyOptions(options);
 	return mountNotify(finalOptions, evt);
 };
 
-NotifyFn.warning = (options: NotifyOptions<SvelteComponent> = {}) => {
+NotifyFn.warning = <T, C>(options: NotifyOptions<T, C> = {}) => {
 	options.type = 'warning';
 	const { finalOptions, evt } = resolveNotifyOptions(options);
 	return mountNotify(finalOptions, evt);
 };
 
-NotifyFn.error = (options: NotifyOptions<SvelteComponent> = {}) => {
+NotifyFn.error = <T, C>(options: NotifyOptions<T, C> = {}) => {
 	options.type = 'error';
 	const { finalOptions, evt } = resolveNotifyOptions(options);
 	return mountNotify(finalOptions, evt);
 };
 
-NotifyFn.success = (options: NotifyOptions<SvelteComponent> = {}) => {
+NotifyFn.success = <T, C>(options: NotifyOptions<T, C> = {}) => {
 	options.type = 'success';
 	const { finalOptions, evt } = resolveNotifyOptions(options);
 	return mountNotify(finalOptions, evt);
 };
 
-NotifyFn.clear = async (inst: NotifyComponent<SvelteComponent>) => {
+NotifyFn.clear = async (inst: NotifyComponent) => {
 	await unmountNotify(inst.__notify_placment, inst, 300);
 };
 
 NotifyFn.clearAll = () => {
 	Object.keys(notifyMap).forEach((instArr) => {
-		notifyMap[instArr as NotifyPlacement].forEach((inst: NotifyComponent<SvelteComponent>) => {
-			unmountNotify(inst.__notify_placment, inst, 0);
+		notifyMap[instArr as NotifyPlacement].forEach((inst: NotifyComponent | undefined) => {
+			inst && unmountNotify(inst.__notify_placment, inst, 0);
 		});
 	});
 };
 
-NotifyFn.update = async (
-	inst: NotifyComponent<SvelteComponent>,
-	options: NotifyOptions<SvelteComponent> = {}
-) => {
+NotifyFn.update = async <T, C>(inst: NotifyComponent, options: NotifyOptions<T, C> = {}) => {
 	inst.$set({ ...options });
 };
 
