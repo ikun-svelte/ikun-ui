@@ -1,10 +1,14 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Test: KButton > props: button size 1`] = `"<button style=\\"border-radius: 4px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus k-button--primary__hover k-button--large\\" aria-hidden=\\"true\\">  </button>"`;
+
 exports[`Test: KButton > props: circle 1`] = `"<button style=\\"border-radius: 4px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus k-button--primary__hover k-button--circle\\" aria-hidden=\\"true\\">  </button>"`;
 
 exports[`Test: KButton > props: disabled 1`] = `"<button style=\\"border-radius: 4px;\\" class=\\"k-button--base k-button--primary k-cur-disabled k-button--disabled\\" aria-hidden=\\"true\\">  </button>"`;
 
 exports[`Test: KButton > props: icon 1`] = `"<button style=\\"border-radius: 4px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus k-button--primary__hover\\" aria-hidden=\\"true\\"><div role=\\"\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  \\"><div class=\\"icon-carbon-settings k-icon-transition k-button--primary__icon\\" style=\\"width: 24px; height: 24px;\\"></div></div>  </button>"`;
+
+exports[`Test: KButton > props: isBorder 1`] = `"<button style=\\"border-radius: 4px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus k-button--primary__hover k-button--primary__border\\" aria-hidden=\\"true\\">  </button>"`;
 
 exports[`Test: KButton > props: round 1`] = `"<button style=\\"border-radius: 30px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus k-button--primary__hover\\" aria-hidden=\\"true\\">  </button>"`;
 

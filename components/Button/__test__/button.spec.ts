@@ -155,6 +155,35 @@ describe('Test: KButton', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+  test('props: button size', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				size: 'large',
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes('k-button--large')
+		).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+  test('props: isBorder', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				isBorder: true,
+        type: 'primary'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes('k-button--primary__border')
+		).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('event: should trigger click event', async () => {
 		const mockFn = vi.fn();
 		const instance = new KButton({

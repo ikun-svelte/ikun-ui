@@ -44,6 +44,20 @@ Use the icon attribute to add icon.
 
 <demo src="../../../../example/button/icon.svelte" github='Button'></demo>
 
+## Button Size
+
+Use the 'size' property to control the button size.
+It supports enumerations such as "normal", "large", and "small".
+
+<demo src="../../../../example/button/size.svelte" github='Button'></demo>
+
+## Button Border
+
+Use the 'isBorder' property to determine if the button is bordered.
+It accepts a "Boolean" value.
+
+<demo src="../../../../example/button/isBorder.svelte" github='Button'></demo>
+
 ## Button Group
 
 Displayed as a button group, can be used to group a series of similar operations.
