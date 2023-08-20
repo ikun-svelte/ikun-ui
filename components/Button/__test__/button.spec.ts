@@ -155,32 +155,28 @@ describe('Test: KButton', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-  test('props: button size', async () => {
+	test('props: button size', async () => {
 		const instance = new KButton({
 			target: host,
 			props: {
-				size: 'large',
+				size: 'large'
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(
-			(host as HTMLElement)!.innerHTML.includes('k-button--large')
-		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--large')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-  test('props: isBorder', async () => {
+	test('props: isBorder', async () => {
 		const instance = new KButton({
 			target: host,
 			props: {
 				isBorder: true,
-        type: 'primary'
+				type: 'primary'
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(
-			(host as HTMLElement)!.innerHTML.includes('k-button--primary__border')
-		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--primary__border')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
