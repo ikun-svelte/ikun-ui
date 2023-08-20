@@ -1,18 +1,20 @@
 <script lang="ts">
 	import { isBool, isNumber, isString } from 'baiwusanyu-utils';
-	import {KIcon} from '@ikun-ui/icon';
-	import { createEventDispatcher, onMount } from 'svelte';
-	export let value:boolean = false;
-	export let disabled:boolean  = false;
-	export let cls:string = '';
+	import { KIcon } from '@ikun-ui/icon';
+	import { createEventDispatcher, getContext, onMount } from 'svelte';
+	import type { FormContext } from '@ikun-ui/utils';
+	export let value: boolean = false;
+	export let disabled: boolean = false;
+	export let cls: string = '';
 	export let attrs = {};
-	export let loading:boolean  = false;
-	export let checkedValue:string | number | boolean | undefined = undefined;
-	export let unCheckedValue:string | number | boolean | undefined = undefined;
+	export let loading: boolean = false;
+	export let checkedValue: string | number | boolean | undefined = undefined;
+	export let unCheckedValue: string | number | boolean | undefined = undefined;
 
 	export let checkedColor = '';
 
 	export let unCheckedColor = '';
+	const formContext: FormContext = getContext('FormContext');
 	const dispatch = createEventDispatcher();
 	let innerState = value;
 	let switching = '';
@@ -28,11 +30,11 @@
 	 * 设置动画样式类
 	 */
 
-	let switchCircleRef:null | HTMLElement = null;
+	let switchCircleRef: null | HTMLElement = null;
 	const changeClass = () => {
 		return new Promise((resolve) => {
 			switching = 'k-switch-tra';
-			if(switchCircleRef){
+			if (switchCircleRef) {
 				const circleWidth = switchCircleRef.getClientRects()[0]?.width;
 				switchCircleRef.style.right = innerState ? '2px' : `calc(100% - ${circleWidth}px - 2px)`;
 			}
@@ -65,6 +67,7 @@
 		const value = setInnerState();
 		emitChangeEvt();
 		dispatch('updateValue', value);
+		formContext?.updateField(value);
 		isUpdateModel = true;
 		await changeClass();
 	};
@@ -113,25 +116,33 @@
 		}
 	};
 	onMount(init);
+	// when filed change,dom value will change.
+	formContext?.subscribe((val: any) => {
+		if (val) {
+			value = val;
+		}
+	});
+	//initial field
+	formContext?.updateField(value);
 </script>
 
-<div class="
+<div
+	class="
   k-switch--base
   {disabled || loading ? 'k-switch__disabled' : ''}
-  {innerState ? `k-switch__checked ${checkedColor}`
-  : `k-switch__un_checked ${unCheckedColor}`}
+  {innerState ? `k-switch__checked ${checkedColor}` : `k-switch__un_checked ${unCheckedColor}`}
   {switching}
   {cls} "
-   aria-hidden="true"
-	 {...attrs}
-   on:click={handleClick}>
+	aria-hidden="true"
+	{...attrs}
+	on:click={handleClick}
+>
 	{#if !innerState}
 		<div class="k-switch-tx__un_checked">
 			<slot name="unCheckedRender" state={innerState} />
 		</div>
 	{/if}
-	<div class="k-switch-circle"
-		bind:this={switchCircleRef}>
+	<div class="k-switch-circle" bind:this={switchCircleRef}>
 		{#if loading}
 			<KIcon icon="i-carbon-circle-dash" cls="k-switch-loading k-switch-loading__dark" />
 		{/if}

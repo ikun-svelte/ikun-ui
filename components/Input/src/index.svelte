@@ -33,9 +33,10 @@
 	};
 	let valueInner = value;
 
-	// When the user sets the form value directly
-	// dom value needs to change synchronously in the form schene
+	// when filed change,dom value will change.
 	formContext?.subscribe((value: any) => (valueInner = value));
+	//initial field
+	formContext?.updateField(value);
 </script>
 
 <div

@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, getContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
+	import type { FormContext } from '@ikun-ui/utils';
 	export let disabled = false;
 	export let value = false;
 	export let cls = '';
 	export let attrs = {};
 	export let label = '';
+	const formContext: FormContext = getContext('FormContext');
 	// updateValue
 	const dispatch = createEventDispatcher();
 
@@ -16,12 +18,16 @@
 		if (disabled) return;
 		if (valueInner) return;
 		dispatch('updateValue', !valueInner);
-
+		formContext?.updateField(!valueInner);
 		classChecking = 'animate-ikun-checking';
 		setTimeout(() => {
 			classChecking = '';
 		}, 300);
 	};
+	// when filed change,dom value will change.
+	formContext?.subscribe((value: any) => (valueInner = value));
+	//initial field
+	formContext?.updateField(value);
 </script>
 
 <label

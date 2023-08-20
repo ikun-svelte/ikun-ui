@@ -19,7 +19,7 @@
 	import { KRadio } from '@ikun-ui/radio';
 	import 'virtual:uno.css';
 	import { KForm, createKFormInstance, KFormItem } from '@ikun-ui/form';
-	import { IKunFormInstance } from '@ikun-ui/utils';
+	import type { IKunFormInstance } from '@ikun-ui/utils';
 	let checked = true;
 	let radioChecked = false;
 	let openDrawer = false;
@@ -67,7 +67,7 @@
 		<KInput placeholder="inputValue"></KInput>
 	</KFormItem>
 
-	<KFormItem field={'obj'}>
+	<KFormItem field={'another'}>
 		<KFormItem label={'a'} field={'a'}>
 			<KInput placeholder="inputValue"></KInput>
 		</KFormItem>
@@ -75,11 +75,35 @@
 			<KInput placeholder="inputValue"></KInput>
 		</KFormItem>
 	</KFormItem>
+	<KFormItem label={'accept'} field={'accept'}>
+		<KCheckbox></KCheckbox>
+	</KFormItem>
+	<KFormItem label={'darkMode'} field={'darkMode'}>
+		<KSwitch></KSwitch>
+	</KFormItem>
+	<KFormItem label={'Ikun'} field={'Ikun'}>
+		<KRadio></KRadio>
+	</KFormItem>
+	<KFormItem label={'select'} field={'select'}>
+		<KSelect value={selectVal} iconPrefix="i-carbon-settings" placeholder="selectValue">
+			{#each ['Tiny', 'Small', 'Normal', 'Large', 'Huge'] as item (item)}
+				<option>{item}</option>
+			{/each}
+		</KSelect>
+	</KFormItem>
 
 	<KButton on:click={() => console.log(form.submit())}>Submit</KButton>
 	<KButton
 		on:click={() => {
-			form.setValues({ name: 'ikun', password: '1145142333', obj: { a: 1, b: 2 } });
+			form.setValues({
+				name: 'ikun',
+				password: '1145142333',
+				another: { a: 1, b: 2 },
+				accept: true,
+				darkMode: true,
+				Ikun: true,
+				select: 'Large'
+			});
 		}}>setValue</KButton
 	>
 	----Form----
