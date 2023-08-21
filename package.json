@@ -100,7 +100,8 @@
 		"@ikun-ui/select": "workspace:*",
 		"@ikun-ui/switch": "workspace:*",
 		"@ikun-ui/tag": "workspace:*",
-		"@ikun-ui/tooltip": "workspace:*"
+		"@ikun-ui/tooltip": "workspace:*",
+		"@ikun-ui/spin": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",
