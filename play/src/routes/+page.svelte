@@ -138,11 +138,21 @@
 	<span>KModal</span>
 </KModal>
 
-<KTag type="success">success KTag</KTag>
-<KTag type="info">info KTag</KTag>
-<KTag type="primary">primary KTag</KTag>
-<KTag type="error">error KTag</KTag>
-<KTag type="warning">warning KTag</KTag>
+<div class="my-10px">
+	<KTag
+		type="success"
+		icon="i-carbon-settings"
+		closeIcon="i-carbon-settings"
+		closable
+		on:click={(e) => console.log('KTag click', e)}
+		on:close={(e) => console.log('KTag close', e)}
+		>success KTag
+	</KTag>
+	<KTag type="info" icon="i-carbon-settings"></KTag>
+	<KTag type="primary" icon="i-carbon-settings" closable textColor="black">primary KTag</KTag>
+	<KTag type="error" closable>error KTag</KTag>
+	<KTag type="warning" border bgColor="red" textColor="#ffffff">warning KTag</KTag>
+</div>
 
 <KButton on:click={handleNotify}>handleNotify</KButton>
 <KButton on:click={handleMsgBox} type="info">handleMsgBox</KButton>
