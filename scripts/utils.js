@@ -13,7 +13,8 @@ export async function runCommand(command, dir, userOptions) {
 					shell: true,
 					encoding: 'GBK',
 					async: true,
-					silent: userOptions?.silent === undefined ? true : userOptions?.silent
+					silent: userOptions?.silent === undefined ? true : userOptions?.silent,
+					...userOptions
 				},
 				(code, output, err) => {
 					if (code === 0) {
@@ -23,7 +24,7 @@ export async function runCommand(command, dir, userOptions) {
 					}
 
 					const outputStr = output.toString();
-					if (outputStr) {
+					if (outputStr && !(userOptions?.silent ?? true)) {
 						console.log(outputStr);
 					}
 				}

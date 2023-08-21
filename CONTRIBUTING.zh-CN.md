@@ -34,6 +34,28 @@
 
 > 我知道DX并不是很好，如果你有好的方法欢迎提交PR
 
+## 组件指南
+
+使用`pnpm run new <组建名>`创建新的组件。
+
+例如，运行`pnpm run new button`，自动创建一个名为`button`组件的目录及基本的模版，并将其作为依赖添加到根目录的`package.json`中。
+
+### 目录结构
+
+```
+svelte-ui
+├─ components
+│  ├─ Button
+│  │  ├─ __test__
+│  │  │  └─ button.spec.ts
+│  │  ├─ package.json
+│  │  ├─ src
+│  │  │  ├─ index.svelte
+│  │  │  ├─ index.ts
+│  │  │  └─ types.d.ts
+│  │  └─ tsconfig.json
+```
+
 ## Commit 指南
 
 Commit messages 请遵循[conventional-changelog 标准](https://www.conventionalcommits.org/en/v1.0.0/)：

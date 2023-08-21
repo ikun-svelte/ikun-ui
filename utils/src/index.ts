@@ -1,3 +1,5 @@
 export * from './types';
 
-export { createCls } from './class-names';
+export { createCls, getPrefixCls } from './class-names';
+
+export { kebabToPascal } from './utils';
