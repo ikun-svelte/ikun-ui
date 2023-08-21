@@ -3,15 +3,15 @@ import type { MessageOptions } from './types';
 import type { SvelteComponent } from 'svelte';
 export * from './types';
 
-const resolveMessageOptions = (options: MessageOptions<SvelteComponent>) => {
+const resolveMessageOptions = <T>(options: MessageOptions<T>) => {
 	const OptionsRes = {
 		...options
-	} as NotifyOptions<SvelteComponent>;
+	} as NotifyOptions<T, undefined>
 	OptionsRes.title = options.content;
 	OptionsRes.placement = 'center';
 
 	Reflect.deleteProperty(OptionsRes, 'content');
-	return OptionsRes as NotifyOptions<SvelteComponent>;
+	return OptionsRes
 };
 
 function MsgFn(options: MessageOptions<SvelteComponent> = {}) {
@@ -38,9 +38,9 @@ MsgFn.clear = KNotify.clear;
 
 MsgFn.clearAll = KNotify.clearAll;
 
-MsgFn.update = async (
-	inst: NotifyComponent<SvelteComponent>,
-	options: MessageOptions<SvelteComponent> = {}
+MsgFn.update = async <T>(
+	inst: NotifyComponent,
+	options: MessageOptions<T> = {}
 ) => {
 	KNotify.update(inst, resolveMessageOptions(options));
 };
