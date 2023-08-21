@@ -1,19 +1,19 @@
 <script>
-	import { KLoading } from '@ikun-ui/loading';
+	import { KSpin } from '@ikun-ui/spin';
 	import { KButton } from '@ikun-ui/button';
-	const loadingOptions = {
+	const spinOptions = {
 		show: false,
 		spinner: 'ikun'
 	};
 
-	const handleLoading = () => {
-		loadingOptions.show = true;
+	const handleSpin = () => {
+		spinOptions.show = true;
 		setTimeout(() => {
-			loadingOptions.show = false;
+			spinOptions.show = false;
 		}, 3000);
 	};
 </script>
 
-<div use:KLoading={loadingOptions} class="w-full h-200px">
-	<KButton on:click={handleLoading}>Loading</KButton>
+<div use:KSpin={spinOptions} class="w-full h-200px">
+	<KButton on:click={handleSpin}>Spin</KButton>
 </div>
