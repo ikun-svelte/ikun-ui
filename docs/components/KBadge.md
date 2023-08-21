@@ -67,6 +67,7 @@ Use the attribute is-dot. It is a Boolean.
 | show   | `boolean`                                            | `true`  | show badge.                                                                 |
 | type   | `primary` / `success` / `error` / `warning` / `info` | `error` | badge type.                                                                 |
 | cls    | `string`                                             | `''`    | Additional class for                                                        |
+| attrs  | `any`                                                | `{}`    | Additional attributes                                                       |
 
 ## Badge Slots
 
