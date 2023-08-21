@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
+	import { createCls, getPrefixCls } from '@ikun-ui/utils';
 	import { isNumber } from 'baiwusanyu-utils';
 
 	export let icon: string = '';
@@ -33,10 +34,14 @@
 		hasLoadError = true;
 		dispatch('error', event);
 	};
+
+	// remove extra space from class names
+	const avatarCls = getPrefixCls('avatar');
+	$: cnames = createCls(avatarCls, cls);
 </script>
 
 <div
-	class="k-avatar {cls}"
+	class={cnames}
 	style="width: {avatarSize}; height: {avatarSize}; border-radius: {avatarRadius}"
 >
 	{#if (src || srcSet) && !hasLoadError}
