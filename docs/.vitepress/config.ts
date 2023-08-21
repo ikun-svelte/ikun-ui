@@ -95,8 +95,8 @@ const components = [
 				link: '/components/KModal'
 			},
 			{
-				text: 'Loading',
-				link: '/components/KLoading'
+				text: 'Spin',
+				link: '/components/KSpin'
 			}
 		]
 	},

@@ -1,9 +1,9 @@
 ---
-title: KLoading
+title: KSpin
 lang: en-US
 ---
 
-# KLoading
+# KSpin
 
 Show animation while loading data.
 
@@ -12,15 +12,15 @@ Show animation while loading data.
 ::: code-group
 
 ```bash [pnpm]
-pnpm add @ikun-ui/loading
+pnpm add @ikun-ui/spin
 ```
 
 ```bash [yarn]
-yarn add @ikun-ui/loading
+yarn add @ikun-ui/spin
 ```
 
 ```bash [npm]
-npm install @ikun-ui/loading
+npm install @ikun-ui/spin
 ```
 
 :::
@@ -29,22 +29,22 @@ npm install @ikun-ui/loading
 
 Use `show`, control loading show.
 
-<demo src="../../../../example/loading/basic.svelte"  github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Loading'></demo>
+<demo src="../../../../example/spin/basic.svelte"  github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Spin'></demo>
 
 ## IKUN usage
 
 Use `spinner`, be a real ikun.
 
-<demo src="../../../../example/loading/ikun.svelte"  github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Loading'></demo>
+<demo src="../../../../example/spin/ikun.svelte"  github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Spin'></demo>
 
 ## Loading Options
 
 | Name       | Type      | Default | Description                                                  |
 | ---------- | --------- | ------- | ------------------------------------------------------------ |
-| show       | `boolean` | `false` | Whether to show loading                                      |
+| show       | `boolean` | `false` | Whether to show spin                                      |
 | text       | `string`  | `-`     | loading text that displays under the spinner                 |
 | fullScreen | `boolean` | `false` | Show a full screen animation while loading data              |
 | background | `string`  | `-`     | background color of the mask                                 |
 | spinner    | `string`  | `-`     | The class name of the snipper, following the unocss standard |
 | rotating   | `boolean` | `true`  | Whether the snipper is rotated or not                        |
-| cls        | `string`  | `-`     | custom class name for Loading                                |
+| cls        | `string`  | `-`     | custom class name for Spin                                |
