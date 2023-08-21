@@ -15,7 +15,7 @@
 	import { KSelect } from '@ikun-ui/select';
 	import { KMsgBox } from '@ikun-ui/message-box';
 	import { KRadio } from '@ikun-ui/radio';
-	import { KLoading } from '@ikun-ui/loading';
+	import { KSpin } from '@ikun-ui/spin';
 	import 'virtual:uno.css';
 
 	let checked = true;
@@ -52,15 +52,15 @@
 	let switchVal = false;
 	let selectVal = '';
 
-	const loadingOptions = {
+	const spinOptions = {
 		show: false,
 		text: 'loading...',
     fullScreen: true
 	};
 
 
-	const handleToggleLoading = () => {
-		loadingOptions.show = !loadingOptions.show;
+	const handleToggleSpin = () => {
+		spinOptions.show = !spinOptions.show;
 	};
 </script>
 
@@ -123,5 +123,5 @@
 		<option>{item}</option>
 	{/each}
 </KSelect>
-<KButton on:click={handleToggleLoading}>ToggleLoading</KButton>
-<div use:KLoading={loadingOptions} class="w-200px h-50px bg-red"></div>
+<KButton on:click={handleToggleSpin}>ToggleSpin</KButton>
+<div use:KSpin={spinOptions} class="w-200px h-50px bg-red"></div>

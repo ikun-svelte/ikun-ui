@@ -10,9 +10,9 @@
 </script>
 
 {#if show}
-	<div class="k-loading--mask {cls}" style="background-color: {background};">
+	<div class="k-spin--mask {cls}" style="background-color: {background};">
 		{#if spinner === 'ikun'}
-			<div class="k-loading--spinner">
+			<div class="k-spin--spinner">
 				<svg
 					width="50"
 					height="44"
@@ -91,15 +91,15 @@
 						</circle>
 					</g>
 				</svg>
-        <p class="k-loading--text">ikun是我坚持下去的动力...</p>
+        <p class="k-spin--text">ikun是我坚持下去的动力...</p>
 			</div>
 		{:else}
-			<div class="k-loading--spinner">
-				<div class={rotating ? 'k-loading--spinner__rotating' : ''}>
+			<div class="k-spin--spinner">
+				<div class={rotating ? 'k-spin--spinner__rotating' : ''}>
 					<KIcon icon={spinner || 'i-carbon-circle-dash'} color="text-ikun-main" />
 				</div>
 				{#if text}
-					<p class="k-loading--text">{text}</p>
+					<p class="k-spin--text">{text}</p>
 				{/if}
 			</div>
 		{/if}

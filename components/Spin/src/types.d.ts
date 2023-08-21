@@ -1,28 +1,28 @@
 /// <reference types="svelte" />
 
-export declare interface LoadingOptions {
+export declare interface SpinOptions {
 	/**
-	 * show loading
+	 * show spin
 	 */
 	show: boolean;
 	/**
-	 * loading text
+	 * spin text
 	 */
 	text?: string;
 	/**
-	 * loading for full screen
+	 * spin for full screen
 	 */
 	fullScreen?: boolean;
 	/**
-	 * loading mask background color
+	 * spin mask background color
 	 */
 	background?: string;
 	/**
-	 * loading spinner
+	 * spin spinner
 	 */
 	spinner?: string;
 	/**
-	 * loading spinner rotating
+	 * spin spinner rotating
 	 */
 	rotating?: boolean;
 	/**

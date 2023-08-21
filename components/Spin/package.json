@@ -1,5 +1,5 @@
 {
-	"name": "@ikun-ui/loading",
+	"name": "@ikun-ui/spin",
 	"version": "0.0.9-beta.1",
 	"type": "module",
 	"main": "dist/index.js",
