@@ -685,6 +685,9 @@ importers:
 
   components/Tag:
     dependencies:
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
       '@ikun-ui/utils':
         specifier: workspace:*
         version: link:../../utils
