@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { KBadge } from '@ikun-ui/badge';
 	import { KButton } from '@ikun-ui/button';
+	import { KButtonGroup } from '@ikun-ui/button-group';
 	import { KIcon } from '@ikun-ui/icon';
 	import { KCollapse } from '@ikun-ui/collapse';
 	import { KCheckbox } from '@ikun-ui/checkbox';
@@ -23,6 +25,8 @@
 	let openDrawer = false;
 	let openModal = false;
 	let inputValue = '';
+
+	let badgeNumber = 98;
 
 	const handleNotify = () => {
 		KNotify.success({
@@ -72,6 +76,13 @@
 <KButton icon="i-carbon-settings" type="primary" on:click={() => (openDrawer = true)}>
 	drawer
 </KButton>
+
+<KButtonGroup cls="my-10px">
+	<KButton icon="i-carbon-settings" type="primary" round="10">drawer</KButton>
+	<KButton icon="i-carbon-settings" type="primary">drawer</KButton>
+	<KButton icon="i-carbon-settings" type="primary">drawer</KButton>
+</KButtonGroup>
+
 <KIcon icon="i-carbon-settings" btn></KIcon>
 <KCollapse>
 	<span slot="title">title</span>
@@ -103,6 +114,25 @@
 <KButton icon="i-carbon-settings" to type="success" on:click={() => (openModal = true)}>
 	KModal
 </KButton>
+
+<div class="my-10px">
+	<div class="mb-10px">KBadge</div>
+	<KBadge cls="mr-40px" value={badgeNumber}>
+		<KButton on:click={() => badgeNumber++}>Click Me</KButton>
+	</KBadge>
+
+	<KBadge cls="mr-40px" value="new" type="success">
+		<KButton>IKunUI</KButton>
+	</KBadge>
+
+	<KBadge cls="mr-40px" value="new" type="success" isDot>
+		<KButton>IKunUI</KButton>
+	</KBadge>
+
+	<KBadge cls="mr-40px" value="Can't See Me" show={false}>
+		<KButton>IKunUI</KButton>
+	</KBadge>
+</div>
 
 <KModal show={openModal} title="KModal" on:close={(v) => (openModal = v.detail)}>
 	<span>KModal</span>

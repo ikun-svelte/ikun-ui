@@ -29,26 +29,34 @@ npm install @ikun-ui/button
 
 Use `type`, `round` and `circle` to define Button's style.
 
-<demo src="../../../../example/button/basic.svelte"  github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
+<demo src="../../../../example/button/basic.svelte"  github='Button'></demo>
 
 ## Disabled Button
 
 Use `disabled` attribute to determine whether a button is disabled.  
 It accepts a `Boolean` value.
 
-<demo src="../../../../example/button/disabled.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
+<demo src="../../../../example/button/disabled.svelte" github='Button'></demo>
 
 ## Icon Button
 
 Use the icon attribute to add icon.
 
-<demo src="../../../../example/button/icon.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
+<demo src="../../../../example/button/icon.svelte" github='Button'></demo>
+
+## Button Group
+
+Displayed as a button group, can be used to group a series of similar operations.
+
+Use tag `<k-button-group>` to group your buttons.
+
+<demo src="../../../../example/button/group.svelte" github='ButtonGroup'></demo>
 
 ## Link Button
 
 Use the `to` attribute to set a specific url that you can click to jump to.
 
-<demo src="../../../../example/button/link.svelte" github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Button'></demo>
+<demo src="../../../../example/button/link.svelte" github='Button'></demo>
 
 ## Button Props
 
@@ -74,3 +82,9 @@ Use the `to` attribute to set a specific url that you can click to jump to.
 | Name    | Description               |
 | ------- | ------------------------- |
 | default | Customize default content |
+
+## Button Group Props
+
+| Name | Type     | Default | Description          |
+| ---- | -------- | ------- | -------------------- |
+| cls  | `string` | `-`     | Additional class for |

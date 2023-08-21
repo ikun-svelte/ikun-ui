@@ -53,6 +53,10 @@ const components = [
 		collapsed: false,
 		items: [
 			{
+				text: 'Badge',
+				link: '/components/KBadge'
+			},
+			{
 				text: 'Tag',
 				link: '/components/KTag'
 			}
