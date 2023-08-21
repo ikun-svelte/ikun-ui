@@ -12,6 +12,7 @@
 	export let size: string | number = '50px';
 	export let radius: string | number = '4px';
 	export let cls: string = '';
+	export let attrs: any = {};
 
 	let avatarSize: string = size;
 	$: if (isNumber(size)) {
@@ -43,6 +44,7 @@
 <div
 	class={cnames}
 	style="width: {avatarSize}; height: {avatarSize}; border-radius: {avatarRadius}"
+	{...attrs}
 >
 	{#if (src || srcSet) && !hasLoadError}
 		<img {src} {alt} {srcSet} on:error={onError} style="object-fit: {fit}" />
