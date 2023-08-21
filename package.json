@@ -99,6 +99,7 @@
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/slider": "workspace:*",
 		"baiwusanyu-utils": "^1.0.14"
 	},
 	"devDependencies": {

@@ -29,6 +29,7 @@
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/slider": "workspace:*",
 		"@vueuse/core": "^10.3.0"
 	},
 	"devDependencies": {

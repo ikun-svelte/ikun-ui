@@ -26,6 +26,7 @@
 		"access": "public"
 	},
 	"dependencies": {
+		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.14"

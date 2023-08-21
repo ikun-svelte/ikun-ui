@@ -65,6 +65,9 @@ importers:
       '@ikun-ui/select':
         specifier: workspace:*
         version: link:components/Select
+      '@ikun-ui/slider':
+        specifier: workspace:*
+        version: link:components/Slider
       '@ikun-ui/switch':
         specifier: workspace:*
         version: link:components/Switch
@@ -657,6 +660,9 @@ importers:
 
   components/Slider:
     dependencies:
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
       '@ikun-ui/tooltip':
         specifier: workspace:*
         version: link:../Tooltip
@@ -802,6 +808,9 @@ importers:
       '@ikun-ui/select':
         specifier: workspace:*
         version: link:../components/Select
+      '@ikun-ui/slider':
+        specifier: workspace:*
+        version: link:../components/Slider
       '@ikun-ui/switch':
         specifier: workspace:*
         version: link:../components/Switch
