@@ -1,7 +1,8 @@
 /// <reference types="svelte" />
 import { type IKunTypeBase, type IKunUncertainFunction } from '@ikun-ui/utils';
-type Extend = { show: boolean };
-export type MsgBoxComponent<T> = T & (MsgBoxOptions<T> & Extend);
+import MessageBox from './index.svelte'
+
+export declare type MsgBoxComponent = InstanceType<typeof MessageBox>;
 export type MsgBoxEmoType = IKunTypeBase;
 export type MsgBoxType = 'confirm' | 'alert' | 'prompt';
 export type MsgBoxLayout = 'center' | 'right';

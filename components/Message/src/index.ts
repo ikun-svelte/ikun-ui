@@ -1,6 +1,5 @@
 import { KNotify, type NotifyOptions, type NotifyComponent } from '@ikun-ui/notify';
 import type { MessageOptions } from './types';
-import type { SvelteComponent } from 'svelte';
 export * from './types';
 
 const resolveMessageOptions = <T>(options: MessageOptions<T>) => {
@@ -14,24 +13,24 @@ const resolveMessageOptions = <T>(options: MessageOptions<T>) => {
 	return OptionsRes;
 };
 
-function MsgFn(options: MessageOptions<SvelteComponent> = {}) {
-	return KNotify(resolveMessageOptions(options));
+function MsgFn<T>(options: MessageOptions<T> = {}) {
+	return KNotify(resolveMessageOptions<T>(options));
 }
 
-MsgFn.info = (options: MessageOptions<SvelteComponent> = {}) => {
-	return KNotify.info(resolveMessageOptions(options));
+MsgFn.info = <T>(options: MessageOptions<T> = {}) => {
+	return KNotify.info(resolveMessageOptions<T>(options));
 };
 
-MsgFn.warning = (options: MessageOptions<SvelteComponent> = {}) => {
-	return KNotify.warning(resolveMessageOptions(options));
+MsgFn.warning = <T>(options: MessageOptions<T> = {}) => {
+	return KNotify.warning(resolveMessageOptions<T>(options));
 };
 
-MsgFn.error = (options: MessageOptions<SvelteComponent> = {}) => {
-	return KNotify.error(resolveMessageOptions(options));
+MsgFn.error = <T>(options: MessageOptions<T> = {}) => {
+	return KNotify.error(resolveMessageOptions<T>(options));
 };
 
-MsgFn.success = (options: MessageOptions<SvelteComponent> = {}) => {
-	return KNotify.success(resolveMessageOptions(options));
+MsgFn.success = <T>(options: MessageOptions<T> = {}) => {
+	return KNotify.success(resolveMessageOptions<T>(options));
 };
 
 MsgFn.clear = KNotify.clear;
@@ -39,7 +38,7 @@ MsgFn.clear = KNotify.clear;
 MsgFn.clearAll = KNotify.clearAll;
 
 MsgFn.update = async <T>(inst: NotifyComponent, options: MessageOptions<T> = {}) => {
-	KNotify.update(inst, resolveMessageOptions(options));
+	KNotify.update(inst, resolveMessageOptions<T>(options));
 };
 
 export const KMessage = MsgFn;
