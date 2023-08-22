@@ -5,7 +5,8 @@ const mountSpin = (options: SpinOptions, target: HTMLElement) => {
 	return new Spin({
 		target: target,
 		props: {
-			...options
+			...options,
+			target
 		}
 	});
 };
@@ -14,7 +15,6 @@ const SpinFn = (node: HTMLElement, options: SpinOptions) => {
 	const { show, fullScreen } = options;
 	let SpinInst: Spin;
 	const initSpin = () => {
-		node.classList.add('k-spin--parent__relative');
 		SpinInst = mountSpin(options, fullScreen ? document.body : node);
 	};
 	if (show) {

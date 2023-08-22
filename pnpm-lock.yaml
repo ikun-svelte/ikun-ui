@@ -663,6 +663,12 @@ importers:
 
   components/Spin:
     dependencies:
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@ikun-ui/mask':
+        specifier: workspace:*
+        version: link:../Mask
       '@ikun-ui/utils':
         specifier: workspace:*
         version: link:../../utils

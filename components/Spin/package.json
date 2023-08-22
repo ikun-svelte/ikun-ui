@@ -27,6 +27,8 @@
 	},
 	"dependencies": {
 		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/icon": "workspace:*",
+		"@ikun-ui/mask": "workspace:*",
 		"baiwusanyu-utils": "^1.0.14"
 	},
 	"devDependencies": {

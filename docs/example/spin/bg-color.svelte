@@ -3,7 +3,8 @@
 	import { KButton } from '@ikun-ui/button';
 	const spinOptions = {
 		show: false,
-		background: 'rgba(255, 119, 7, 0.4)'
+		background: 'rgba(255, 119, 7, 0.4)',
+		text: 'loading...'
 	};
 
 	const handleSpin = () => {

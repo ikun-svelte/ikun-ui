@@ -9,7 +9,7 @@
 	const handleSpin = () => {
 		spinOptions.show = true;
 		setTimeout(() => {
-			// spinOptions.show = false;
+			spinOptions.show = false;
 		}, 3000);
 	};
 </script>

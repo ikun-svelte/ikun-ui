@@ -1,10 +1,12 @@
 <script>
 	import { KSpin } from '@ikun-ui/spin';
 	import { KButton } from '@ikun-ui/button';
+	import IKun from './ikun.svelte';
 	const spinOptions = {
 		show: false,
-		fullScreen: true,
-		text: 'loading...'
+		spinner: IKun,
+		rotating: false,
+		text: '只因你太美'
 	};
 
 	const handleSpin = () => {

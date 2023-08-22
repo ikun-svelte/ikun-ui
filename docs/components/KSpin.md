@@ -43,8 +43,11 @@ Use the `background` property to set the background color.
 
 <demo src="../../../../example/spin/bg-color.svelte"  github='Spin'></demo>
 
-## Custom Spinner(TODO)
+## Custom Spinner
 
+The `spinner` attribute can also be passed directly into a component to display content as a spin
+
+<demo src="../../../../example/spin/custom.svelte"  github='Spin'></demo>
 
 ## Loading Options
 
