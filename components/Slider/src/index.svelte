@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
 
-	export let value: number = 0;
 	export let min: number = 0;
 	export let max: number = 100;
+	export let value: number = 0;
 	export let step: number = 1;
 	export let disabled: boolean = false;
 	export let attrs = {};
@@ -16,15 +16,18 @@
 	let newPosition: number;
 
 	$:percentage = `${(value - min) / (max - min) * 100}%`;
+	$: if ( value < min ){
+		value = min
+		console.warn("The value must be between min and max ")
+	}else if ( value > max ){
+		value = max
+		console.warn("The value must be between min and max ")
+	}
 
 	// element
 	let sliderRunwayRef: null | HTMLElement = null;
 	// updateValue
 	const dispatch = createEventDispatcher();
-	const handleMouseEnter = () => {
-	};
-	const handleMouseLeave = () => {
-	};
 	const handleMouseDown = (event: MouseEvent) => {
 		if (disabled) {
 			return;
@@ -101,8 +104,6 @@
 			<div
 					class="k-slider--button-wrapper"
 					on:mousedown={handleMouseDown}
-					on:mouseenter={handleMouseEnter}
-					on:mouseleave={handleMouseLeave}
 					style="left: {percentage};"
 			>
 				{#if $$slots.buttonRender}

@@ -1,13 +1,13 @@
-<script lang="ts">
+<script>
     import { KSlider } from '@ikun-ui/slider';
 
-    let value: number = 0;
-    const handleInput = (event: CustomEvent) => {
+    let value = 0;
+    const handleInput = (event) => {
         value = event.detail;
     };
 
 </script>
 
 <KSlider disabled on:input={handleInput} value={value}></KSlider>
-<p class="px-2">{value}</p>
+<p class="px-2">value: {value}</p>
 

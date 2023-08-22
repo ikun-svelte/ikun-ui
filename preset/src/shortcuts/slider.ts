@@ -1,5 +1,5 @@
 export const sliderShortcuts: Record<string, string> = {
-    // select
+    // slider
     'k-slider--base': 'w-full h-8 ml-4.5 flex items-center',
     'k-slider--runway': 'flex-1 h-1.5 border-rd-0.75 bg-ikun-light-900 relative cursor-pointer',
     'k-slider--disabled': 'k-bg-disabled',

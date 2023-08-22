@@ -163,8 +163,11 @@
 	{/each}
 </KSelect>
 
-<div class="px-2 flex">
-	<KSlider value={20} step={1} on:input={(v) => {console.log("ipnut", v.detail)}} on:change={(v) => {console.log("change", v.detail)}} >
+<div class="px-2">
+	<KSlider on:input={(v) => {console.log("ipnut", v.detail)}} on:change={(v) => {console.log("change", v.detail)}} >
 		<div slot="buttonRender" class="text-6">🏀</div>
+	</KSlider>
+
+	<KSlider on:input={(v) => {console.log("ipnut", v.detail)}} on:change={(v) => {console.log("change", v.detail)}} >
 	</KSlider>
 </div>

@@ -35,6 +35,10 @@ Use `disabled` attribute to determine whether a slider is disabled.
 
 <demo src="../../../../example/slider/disabled.svelte" github="Slider"></demo>
 
+## Range slider
+
+<demo src="../../../../example/slider/range.svelte" github="Slider"></demo>
+
 ## Render slider
 
 <demo src="../../../../example/slider/render.svelte" github="Slider"></demo>
