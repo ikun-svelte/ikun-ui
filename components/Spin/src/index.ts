@@ -1,8 +1,5 @@
 import Spin from './index.svelte';
-
-// types
-
-import type { SpinOptions } from './types.d';
+import type { SpinOptions } from './types';
 
 const mountSpin = (options: SpinOptions, target: HTMLElement) => {
 	return new Spin({

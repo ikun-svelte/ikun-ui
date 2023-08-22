@@ -29,4 +29,8 @@ export declare interface SpinOptions {
 	 * custom class
 	 */
 	cls?: string;
+	/**
+	 * Additional attributes
+	 */
+	attrs?: any;
 }

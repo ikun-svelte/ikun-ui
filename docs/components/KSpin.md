@@ -43,11 +43,8 @@ Use the `background` property to set the background color.
 
 <demo src="../../../../example/spin/bg-color.svelte"  github='Spin'></demo>
 
-## IKUN usage
+## Custom Spinner(TODO)
 
-Use `spinner`, be a real ikun.
-
-<demo src="../../../../example/spin/ikun.svelte"  github='Spin'></demo>
 
 ## Loading Options
 
@@ -59,4 +56,5 @@ Use `spinner`, be a real ikun.
 | background | `string`  | `-`     | background color of the mask                                 |
 | spinner    | `string`  | `-`     | The class name of the snipper, following the unocss standard |
 | rotating   | `boolean` | `true`  | Whether the snipper is rotated or not                        |
-| cls        | `string`  | `-`     | custom class name for Spin                                   |
+| cls    | `string`  | `-`     | Additional class                                          |
+| attrs  | `any`     | `{}`    | Additional attributes                                     |
