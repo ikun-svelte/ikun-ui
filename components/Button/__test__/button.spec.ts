@@ -155,15 +155,40 @@ describe('Test: KButton', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('props: button size', async () => {
+	test('props: button md size', async () => {
 		const instance = new KButton({
 			target: host,
 			props: {
-				size: 'large'
+				size: 'md'
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-button--large')).toBeTruthy();
+		expect(!(host as HTMLElement)!.innerHTML.includes('k-button--sm')).toBeTruthy();
+		expect(!(host as HTMLElement)!.innerHTML.includes('k-button--lg')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: button sm size', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				size: 'sm'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--sm')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: button lg size', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				size: 'lg'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--lg')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 

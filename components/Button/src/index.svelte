@@ -11,7 +11,7 @@
 	export let attrs = {}
 	export let type: IKunTypePro = 'primary'
 	export let disabled = false
-  export let size: 'normal' | 'small' | 'large' = 'normal'
+  export let size: 'md' | 'sm' | 'lg' = 'md'
   export let isBorder = false
 	// todo: button size
 
@@ -31,13 +31,12 @@
 			[`${prefixCls}__active ${prefixCls}__focus ${prefixCls}__hover`]: !disabled,
 			'k-cur-disabled k-button--disabled': disabled,
 			'k-button--circle': circle,
-      'k-button--circle--small': circle && size === 'small',
-      'k-button--circle--large': circle && size === 'large',
-
+      'k-button--circle--sm': circle && size === 'sm',
+      'k-button--circle--lg': circle && size === 'lg',
 		},
     {
-      'k-button--small': size === 'small',
-      'k-button--large': size === 'large'
+      'k-button--sm': size === 'sm',
+      'k-button--lg': size === 'lg'
     },
     {
       [`k-button--${type}__border`]: isBorder
