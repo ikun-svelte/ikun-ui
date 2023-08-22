@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
-	import { getPrefixCls, createCls, KBreadcrumbKey } from '@ikun-ui/utils';
+	import { getPrefixCls, createCls, BreadcrumbKey } from '@ikun-ui/utils';
 
 	export let href: string = '';
 	export let cls: string = '';
 	export let attrs: Record<string, string> = {};
 
-	const { separator = '/', separatorIcon = '' } = getContext(KBreadcrumbKey) || {};
+	const breadcrumbProps = getContext(BreadcrumbKey) || {};
+	const { separator = '/', separatorIcon = '' } = breadcrumbProps;
 
 	// class names
 	const prefixCls = getPrefixCls('breadcrumb-item');

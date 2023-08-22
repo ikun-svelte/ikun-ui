@@ -80,7 +80,7 @@
 		{/each}
 	</KBreadcrumb>
 
-	<KBreadcrumb separatorIcon="i-carbon:arrow-right">
+	<KBreadcrumb separator="→" separatorIcon="i-carbon:arrow-right">
 		{#each breadcrumbList as breadcrumb}
 			<KBreadcrumbItem href={breadcrumb.href}>{breadcrumb.label}</KBreadcrumbItem>
 		{/each}

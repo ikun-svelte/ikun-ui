@@ -4,4 +4,4 @@ export { createCls, getPrefixCls } from './class-names';
 
 export { kebabToPascal } from './utils';
 
-export { KBreadcrumbKey } from './symbol-key';
+export { KSymbolKey, BreadcrumbKey } from './symbol-key';
