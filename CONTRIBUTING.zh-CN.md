@@ -52,7 +52,7 @@ svelte-ui
 │  │  ├─ src
 │  │  │  ├─ index.svelte
 │  │  │  ├─ index.ts
-│  │  │  └─ types.d.ts
+│  │  │  └─ types.ts
 │  │  └─ tsconfig.json
 ```
 

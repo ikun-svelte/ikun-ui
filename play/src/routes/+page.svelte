@@ -20,6 +20,7 @@
 	import { KSelect } from '@ikun-ui/select';
 	import { KMsgBox } from '@ikun-ui/message-box';
 	import { KRadio } from '@ikun-ui/radio';
+	import { KSpin } from '@ikun-ui/spin';
 	import 'virtual:uno.css';
 
 	let checked = true;
@@ -58,18 +59,30 @@
 	let switchVal = false;
 	let selectVal = '';
 
-	$: breadcrumbList = [
-		{ label: 'home', href: '/' },
-		{ label: 'breadcrumb', href: '' }
-	];
-	const addBreadcrumb = () => {
-		breadcrumbList.push({ label: 'test', href: '' });
-		breadcrumbList = breadcrumbList;
+	const spinOptions = {
+		show: false,
+		text: 'loading...',
+    fullScreen: true
 	};
-	const delBreadcrumb = () => {
-		breadcrumbList.pop();
-		breadcrumbList = breadcrumbList;
+
+
+	const handleToggleSpin = () => {
+		spinOptions.show = !spinOptions.show;
 	};
+
+
+    $: breadcrumbList = [
+        { label: 'home', href: '/' },
+        { label: 'breadcrumb', href: '' }
+    ];
+    const addBreadcrumb = () => {
+        breadcrumbList.push({ label: 'test', href: '' });
+        breadcrumbList = breadcrumbList;
+    };
+    const delBreadcrumb = () => {
+        breadcrumbList.pop();
+        breadcrumbList = breadcrumbList;
+    };
 </script>
 
 <div class="my-10px">
@@ -195,3 +208,5 @@
 		<option>{item}</option>
 	{/each}
 </KSelect>
+<KButton on:click={handleToggleSpin}>ToggleSpin</KButton>
+<div use:KSpin={spinOptions} class="w-200px h-50px bg-red"></div>

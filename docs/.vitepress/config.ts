@@ -111,6 +111,10 @@ const components = [
 			{
 				text: 'Modal',
 				link: '/components/KModal'
+			},
+			{
+				text: 'Spin',
+				link: '/components/KSpin'
 			}
 		]
 	},
