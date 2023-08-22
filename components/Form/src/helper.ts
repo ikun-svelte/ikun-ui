@@ -22,13 +22,16 @@ export const createForm: () => IKunFormInstance = () => {
 				});
 			}
 		},
+		// The form submit method, which returns the form value object
 		submit: () => get(FormInstance.values),
+		// Set the value of a specific field on a form
 		setValue: (path: string, value: any) => {
 			FormInstance.values.update((values: any) => {
 				_.set(values, path, value);
 				return values;
 			});
 		},
+		// set form value
 		setValues: (values: any) => {
 			const oldValues: any = get(FormInstance.values) || {};
 			FormInstance.values.set({ ...oldValues, ...values });

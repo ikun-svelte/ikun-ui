@@ -18,6 +18,7 @@
 		if (disabled) return;
 		if (valueInner) return;
 		dispatch('updateValue', !valueInner);
+		// When the component value changes, notify the form-item component
 		formContext?.updateField(!valueInner);
 		classChecking = 'animate-ikun-checking';
 		setTimeout(() => {
@@ -25,9 +26,13 @@
 		}, 300);
 	};
 	// when filed change,dom value will change.
-	formContext?.subscribe((value: any) => (valueInner = value));
+	// Triggered when form.setValues is called,
+	// set the value set by the form component to the radio component
+	formContext?.subscribe((value: any) => {
+		valueInner = value
+	});
 	//initial field
-	formContext?.updateField(value);
+	 formContext?.updateField(value);
 </script>
 
 <label
