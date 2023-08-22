@@ -25,9 +25,7 @@
 			: parentEl.getBoundingClientRect();
 		if (containerDomRect) {
 			drawerWidth = containerDomRect.width ? `${containerDomRect.width}px` : '100%';
-			drawerHeight = containerDomRect.height ? `${containerDomRect.height}px` : '100%';
-			// drawerTop = containerDomRect.top;
-			// drawerLeft = containerDomRect.left;
+			drawerHeight = '100%';
 		}
 	};
 
