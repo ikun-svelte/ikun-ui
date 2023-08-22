@@ -95,9 +95,9 @@ if you want to perform form validation, then you can handle it yourself through 
 
 ## MessageBox Api
 
-| Name            | Type                                   | Description                                                                                                      |
-| --------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| KMsgBox         | `(options: MsgBoxOptions)=>MsgBoxInst` | Render a `message box` according to the incoming options and return the `message box` instance                   |
-| KMsgBox.confirm | `(options: MsgBoxOptions)=>MsgBoxInst` | Render a `message box` of `confirm` type according to the incoming options and return the `message box` instance |
-| KMsgBox.alert   | `(options: MsgBoxOptions)=>MsgBoxInst` | Render a `message box` of `alert` type according to the incoming options and return the `message box` instance   |
-| KMsgBox.prompt  | `(options: MsgBoxOptions)=>MsgBoxInst` | Render a `message box` of `prompt` type according to the incoming options and return the `message box` instance  |
+| Name            | Type                                         | Description                                                                                                      |
+| --------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| KMsgBox         | `<T>(options: MsgBoxOptions<T>)=>MsgBoxInst` | Render a `message box` according to the incoming options and return the `message box` instance                   |
+| KMsgBox.confirm | `<T>(options: MsgBoxOptions<T>)=>MsgBoxInst` | Render a `message box` of `confirm` type according to the incoming options and return the `message box` instance |
+| KMsgBox.alert   | `<T>(options: MsgBoxOptions<T>)=>MsgBoxInst` | Render a `message box` of `alert` type according to the incoming options and return the `message box` instance   |
+| KMsgBox.prompt  | `<T>(options: MsgBoxOptions<T>)=>MsgBoxInst` | Render a `message box` of `prompt` type according to the incoming options and return the `message box` instance  |
