@@ -1,7 +1,7 @@
 import { KNotify, type NotifyOptions, type NotifyComponent } from '@ikun-ui/notify';
 import type { MessageOptions } from './types';
 export * from './types';
-export type MessageComponent = NotifyComponent
+export type MessageComponent = NotifyComponent;
 const resolveMessageOptions = <T>(options: MessageOptions<T>) => {
 	const OptionsRes = {
 		...options
