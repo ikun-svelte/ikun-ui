@@ -1,7 +1,5 @@
 export const buttonShortcuts: Record<string, string> = {
-	// button
 	'k-button--disabled': 'opacity-50',
-
 	'k-button--base': 'rounded k-border cursor-pointer f-c px-2 py-1 text-base w-fit',
 	'k-button--sm': 'text-sm px-1.5 py-0.8',
 	'k-button--lg': 'text-lg px-3 py-2',
