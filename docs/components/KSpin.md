@@ -29,13 +29,25 @@ npm install @ikun-ui/spin
 
 Use `show`, control loading show.
 
-<demo src="../../../../example/spin/basic.svelte"  github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Spin'></demo>
+<demo src="../../../../example/spin/basic.svelte"  github='Spin'></demo>
+
+## Full screen
+
+Use the `fullScreen` property to enable a full-screen spin.
+
+<demo src="../../../../example/spin/full.svelte"  github='Spin'></demo>
+
+## Custom background color
+
+Use the `background` property to set the background color.
+
+<demo src="../../../../example/spin/bg-color.svelte"  github='Spin'></demo>
 
 ## IKUN usage
 
 Use `spinner`, be a real ikun.
 
-<demo src="../../../../example/spin/ikun.svelte"  github='https://github.com/ikun-svelte/ikun-ui/tree/main/components/Spin'></demo>
+<demo src="../../../../example/spin/ikun.svelte"  github='Spin'></demo>
 
 ## Loading Options
 
