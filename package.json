@@ -3,7 +3,7 @@
 	"description": "🐔 A Svelte.js based UnoCSS UI library that allows you to make websites",
 	"packageManager": "pnpm@8.6.7",
 	"type": "module",
-	"version": "0.0.9-beta.1",
+	"version": "0.0.9-beta.2",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -68,14 +68,18 @@
 		"clean:dist": "rimraf dist && esno scripts/clean.js",
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
-		"update:deps": "npx taze -w -r major && pnpm run init"
+		"update:deps": "npx taze -w -r major && pnpm run init",
+		"create:new:comp": "esno scripts/new-component.ts"
 	},
 	"peerDependencies": {
+		"baiwusanyu-utils": "^1.0.14",
 		"svelte": "^4.0.0",
-		"unocss": "^0.54.1",
-		"baiwusanyu-utils": "^1.0.14"
+		"unocss": "^0.54.1"
 	},
 	"dependencies": {
+		"baiwusanyu-utils": "^1.0.14",
+		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/avatar": "workspace:*",
 		"@ikun-ui/badge": "workspace:*",
 		"@ikun-ui/button": "workspace:*",
 		"@ikun-ui/button-group": "workspace:*",
@@ -92,14 +96,12 @@
 		"@ikun-ui/modal": "workspace:*",
 		"@ikun-ui/notify": "workspace:*",
 		"@ikun-ui/popover": "workspace:*",
-		"@ikun-ui/radio": "workspace:*",
 		"@ikun-ui/preset": "workspace:*",
+		"@ikun-ui/radio": "workspace:*",
 		"@ikun-ui/select": "workspace:*",
 		"@ikun-ui/switch": "workspace:*",
 		"@ikun-ui/tag": "workspace:*",
-		"@ikun-ui/tooltip": "workspace:*",
-		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.14"
+		"@ikun-ui/tooltip": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",
@@ -107,7 +109,6 @@
 		"@sveltejs/kit": "^1.22.5",
 		"@sveltejs/package": "^2.2.1",
 		"@sveltejs/vite-plugin-svelte": "^2.4.5",
-		"svelte-preprocess": "latest",
 		"@testing-library/svelte": "^4.0.3",
 		"@types/node": "^20.4.9",
 		"@typescript-eslint/eslint-plugin": "^6.3.0",
@@ -125,6 +126,7 @@
 		"fast-glob": "^3.3.1",
 		"jsdom": "^22.1.0",
 		"npm-run-all": "^4.1.5",
+		"ora": "^7.0.1",
 		"prettier": "^3.0.1",
 		"prettier-plugin-svelte": "^3.0.3",
 		"publint": "^0.2.0",
@@ -133,6 +135,7 @@
 		"simple-git-hooks": "^2.9.0",
 		"svelte": "^4.1.2",
 		"svelte-check": "^3.4.6",
+		"svelte-preprocess": "latest",
 		"tslib": "^2.6.1",
 		"tsup": "^7.2.0",
 		"typescript": "^5.1.6",

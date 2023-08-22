@@ -31,3 +31,5 @@ export function createCls(
 	}
 	return classnames.join(' ');
 }
+
+export const getPrefixCls = (cls: string) => `k-${cls}`;
