@@ -18,6 +18,7 @@
 	import { KSelect } from '@ikun-ui/select';
 	import { KMsgBox } from '@ikun-ui/message-box';
 	import { KRadio } from '@ikun-ui/radio';
+	import { KSlider } from '@ikun-ui/slider';
 	import 'virtual:uno.css';
 
 	let checked = true;
@@ -55,6 +56,7 @@
 
 	let switchVal = false;
 	let selectVal = '';
+
 </script>
 
 <div class="flex fle-gap-2 p-2">
@@ -160,3 +162,9 @@
 		<option>{item}</option>
 	{/each}
 </KSelect>
+
+<div class="px-2 flex">
+	<KSlider value={20} step={1} on:input={(v) => {console.log("ipnut", v.detail)}} on:change={(v) => {console.log("change", v.detail)}} >
+		<div slot="buttonRender" class="text-6">🏀</div>
+	</KSlider>
+</div>
