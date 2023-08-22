@@ -42,7 +42,6 @@ You can choose to open from the `right` or `left`
 | Name      | Type                 | Default | Description                                   |
 | --------- | -------------------- | ------- | --------------------------------------------- |
 | placement | `'right' / 'left'`   | `right` | The placement in which the drawer opens       |
-| target    | `null / HTMLElement` | `-`     | Depending on which element to open the drawer |
 | value     | `boolean`            | `false` | open the Drawer                               |
 | cls       | `string`             | `-`     | Additional class                              |
 | attrs     | `any`                | `{}`    | Additional attributes                         |
