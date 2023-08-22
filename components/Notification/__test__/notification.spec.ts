@@ -1,6 +1,6 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
-import { KNotify, NotifyComponent } from '../src/index';
+import { KNotify, type NotifyComponent } from '../src/index';
 import KNotifyContent from './notification.content.svelte';
 import KNotifyTitle from './notification.title.svelte';
 

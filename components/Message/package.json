@@ -18,7 +18,7 @@
 	],
 	"scripts": {
 		"build": "npm run build:js",
-		"build:js": "tsc -p . --outDir dist/ --rootDir src/",
+		"build:js": "tsc -p . --outDir dist/",
 		"publish:npm": "pnpm publish --no-git-checks --access public"
 	},
 	"publishConfig": {

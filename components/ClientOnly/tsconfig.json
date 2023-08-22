@@ -5,6 +5,7 @@
 		"noImplicitAny": true,
 		"strict": true,
 		"declaration": true,
+		"rootDirs": ["src", "__test__"],
 		"paths": {
 			"@ikun-ui/utils": ["../../utils/index.ts"]
 		}

@@ -4,6 +4,7 @@
 		"noImplicitAny": true,
 		"strict": true,
 		"declaration": true,
+		"rootDirs": ["src", "__test__"],
 		"lib": ["dom"]
 	},
 	"include": ["src/**/*.ts", "src/**/*.svelte", "__test__/**/*.spec.ts"],

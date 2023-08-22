@@ -101,7 +101,11 @@ async function writeTsConfig(baseDir: string) {
   "compilerOptions": {
     "noImplicitAny": true,
     "strict": true,
-    "declaration": true
+    "declaration": true,
+		"rootDirs": [
+			"src",
+			"__test__"
+		]
   },
   "include": ["src/**/*.ts", "src/**/*.svelte", "__test__/**/*.spec.ts"],
   "exclude": ["node_modules/*"]
@@ -134,7 +138,7 @@ async function writePkgJson(baseDir: string, originalCompName: string) {
   ],
   "scripts": {
     "build": "npm run build:js && npm run build:svelte",
-    "build:js": "tsc -p . --outDir dist/ --rootDir src/",
+    "build:js": "tsc -p . --outDir dist/",
     "build:svelte": "svelte-strip strip src/ dist",
     "publish:npm": "pnpm publish --no-git-checks --access public"
   },
