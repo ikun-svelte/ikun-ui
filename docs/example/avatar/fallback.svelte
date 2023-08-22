@@ -3,5 +3,5 @@
 </script>
 
 <KAvatar icon="i-carbon-image">
-	<img src="https://ikun-ui.netlify.app/error.svg" />
+	<img src="https://ikun-ui.netlify.app/error.svg" alt="" />
 </KAvatar>
