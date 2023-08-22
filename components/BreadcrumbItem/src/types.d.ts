@@ -1,5 +1,6 @@
 /// <reference types="svelte" />
 export type KBreadcrumbItemProps = {
-  cls: string,
-  attrs: Record<string, string>
-}
+	href: string;
+	cls: string;
+	attrs: Record<string, string>;
+};
