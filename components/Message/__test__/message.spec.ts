@@ -1,6 +1,6 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
-import { KMessage, MessageComponent } from '../src/index';
+import { KMessage, type MessageComponent } from '../src/index';
 import KMessageContent from './message.content.svelte';
 
 let host: HTMLElement;

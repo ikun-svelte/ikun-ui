@@ -103,8 +103,8 @@ async function writeTsConfig(baseDir: string) {
     "strict": true,
     "declaration": true
   },
-  "include": ["src/**/*.ts", "src/**/*.svelte"],
-  "exclude": ["node_modules/*", "**/*.spec.ts"]
+  "include": ["src/**/*.ts", "src/**/*.svelte", "__test__/**/*.spec.ts"],
+  "exclude": ["node_modules/*"]
 }  
   `;
 
