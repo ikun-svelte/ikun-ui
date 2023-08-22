@@ -67,6 +67,16 @@ const components = [
 		]
 	},
 	{
+		text: 'Navigation',
+		collapsed: false,
+		items: [
+			{
+				text: 'Breadcrumb',
+				link: '/components/KBreadcrumb'
+			}
+		]
+	},
+	{
 		text: 'Feedback',
 		collapsed: false,
 		items: [
