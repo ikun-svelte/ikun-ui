@@ -1,7 +1,7 @@
 import { KNotify, type NotifyOptions, type NotifyComponent } from '@ikun-ui/notify';
 import type { MessageOptions } from './types';
 export * from './types';
-
+export type MessageComponent = NotifyComponent
 const resolveMessageOptions = <T>(options: MessageOptions<T>) => {
 	const OptionsRes = {
 		...options
@@ -37,7 +37,7 @@ MsgFn.clear = KNotify.clear;
 
 MsgFn.clearAll = KNotify.clearAll;
 
-MsgFn.update = async <T>(inst: NotifyComponent, options: MessageOptions<T> = {}) => {
+MsgFn.update = async <T>(inst: MessageComponent, options: MessageOptions<T> = {}) => {
 	KNotify.update(inst, resolveMessageOptions<T>(options));
 };
 
