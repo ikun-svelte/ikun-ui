@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KIcon > props: btn 1`] = `"<div role=\\"button\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark cursor-pointer \\"><div class=\\"i-carbon-settings k-icon-transition \\" style=\\"width: 24px; height: 24px;\\"></div></div>"`;
+
+exports[`Test: KIcon > props: color 1`] = `"<div role=\\"\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  \\"><div class=\\"i-carbon-settings k-icon-transition text-red\\" style=\\"width: 24px; height: 24px;\\"></div></div>"`;
+
+exports[`Test: KIcon > props: icon 1`] = `"<div role=\\"\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  \\"><div class=\\"i-carbon-settings k-icon-transition \\" style=\\"width: 24px; height: 24px;\\"></div></div>"`;
+
+exports[`Test: KIcon > props: width & height 1`] = `"<div role=\\"\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  \\"><div class=\\"i-carbon-settings k-icon-transition \\" style=\\"width: 30px; height: 30px;\\"></div></div>"`;
