@@ -83,7 +83,7 @@ You can render content through slots
 ## Notification Api
 
 | Name             | Type                                                                  | Description                                                                                                        |
-| ---------------- |-----------------------------------------------------------------------| ------------------------------------------------------------------------------------------------------------------ |
+| ---------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | KNotify          | `<T, C>(options: NotifyOptions<T, C>)=>NotifyInst`                    | Render a `notification` according to the incoming options and return the `notification` instance                   |
 | KNotify.info     | `<T, C>(options: NotifyOptions<T, C>)=>NotifyInst`                    | Render a `notification` of `info` type according to the incoming options and return the `notification` instance    |
 | KNotify.warning  | `<T, C>(options: NotifyOptions<T, C>)=>NotifyInst`                    | Render a `notification` of `warning` type according to the incoming options and return the `notification` instance |

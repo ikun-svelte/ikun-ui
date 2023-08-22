@@ -12,7 +12,7 @@ const resolveMsgBoxOptions = <T>(options: MsgBoxOptions<T>) => {
 	const finalOptions = {
 		...defaultMsgBoxOptions,
 		...options
-	} as MsgBoxOptions<T>
+	} as MsgBoxOptions<T>;
 
 	return {
 		finalOptions

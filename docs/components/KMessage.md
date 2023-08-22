@@ -82,13 +82,13 @@ You can render content through slots
 
 ## Message Api
 
-| Name              | Type                                                        | Description                                                                                              |
-| ----------------- |-------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
-| KMessage          | `<T>(options: MessageOptions<T>)=>MessageInst`                  | Render a `message` according to the incoming options and return the `message` instance                   |
-| KMessage.info     | `<T>(options: MessageOptions<T>)=>MessageInst`                  | Render a `message` of `info` type according to the incoming options and return the `message` instance    |
-| KMessage.warning  | `<T>(options: MessageOptions<T>)=>MessageInst`                  | Render a `message` of `warning` type according to the incoming options and return the `message` instance |
-| KMessage.success  | `<T>(options: MessageOptions<T>)=>MessageInst`                  | Render a `message` of `success` type according to the incoming options and return the `message` instance |
-| KMessage.error    | `<T>(options: MessageOptions<T>)=>MessageInst`                  | Render a `message` of `error` type according to the incoming options and return the `message` instance   |
+| Name              | Type                                                              | Description                                                                                              |
+| ----------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| KMessage          | `<T>(options: MessageOptions<T>)=>MessageInst`                    | Render a `message` according to the incoming options and return the `message` instance                   |
+| KMessage.info     | `<T>(options: MessageOptions<T>)=>MessageInst`                    | Render a `message` of `info` type according to the incoming options and return the `message` instance    |
+| KMessage.warning  | `<T>(options: MessageOptions<T>)=>MessageInst`                    | Render a `message` of `warning` type according to the incoming options and return the `message` instance |
+| KMessage.success  | `<T>(options: MessageOptions<T>)=>MessageInst`                    | Render a `message` of `success` type according to the incoming options and return the `message` instance |
+| KMessage.error    | `<T>(options: MessageOptions<T>)=>MessageInst`                    | Render a `message` of `error` type according to the incoming options and return the `message` instance   |
 | KMessage.update   | `<T>(inst: typeof MessageInst, options: MessageOptions<T>)=>void` | Update the specified message                                                                             |
-| KMessage.clearAll | `() => void`                                                | Clear all messages                                                                                       |
-| KMessage.clear    | `(inst: typeof MessageInst) => Promise<void>`               | Clear the specified message                                                                              |
+| KMessage.clearAll | `() => void`                                                      | Clear all messages                                                                                       |
+| KMessage.clear    | `(inst: typeof MessageInst) => Promise<void>`                     | Clear the specified message                                                                              |

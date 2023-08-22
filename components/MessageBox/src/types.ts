@@ -1,6 +1,6 @@
 /// <reference types="svelte" />
 import { type IKunTypeBase, type IKunUncertainFunction } from '@ikun-ui/utils';
-import MessageBox from './index.svelte'
+import MessageBox from './index.svelte';
 
 export declare type MsgBoxComponent = InstanceType<typeof MessageBox>;
 export type MsgBoxEmoType = IKunTypeBase;

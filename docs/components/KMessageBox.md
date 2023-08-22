@@ -95,8 +95,8 @@ if you want to perform form validation, then you can handle it yourself through 
 
 ## MessageBox Api
 
-| Name            | Type                                      | Description                                                                                                      |
-| --------------- |-------------------------------------------| ---------------------------------------------------------------------------------------------------------------- |
+| Name            | Type                                         | Description                                                                                                      |
+| --------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | KMsgBox         | `<T>(options: MsgBoxOptions<T>)=>MsgBoxInst` | Render a `message box` according to the incoming options and return the `message box` instance                   |
 | KMsgBox.confirm | `<T>(options: MsgBoxOptions<T>)=>MsgBoxInst` | Render a `message box` of `confirm` type according to the incoming options and return the `message box` instance |
 | KMsgBox.alert   | `<T>(options: MsgBoxOptions<T>)=>MsgBoxInst` | Render a `message box` of `alert` type according to the incoming options and return the `message box` instance   |
