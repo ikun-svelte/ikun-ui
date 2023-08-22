@@ -59,5 +59,5 @@ The `spinner` attribute can also be passed directly into a component to display 
 | background | `string`  | `-`     | background color of the mask                                 |
 | spinner    | `string`  | `-`     | The class name of the snipper, following the unocss standard |
 | rotating   | `boolean` | `true`  | Whether the snipper is rotated or not                        |
-| cls    | `string`  | `-`     | Additional class                                          |
-| attrs  | `any`     | `{}`    | Additional attributes                                     |
+| cls        | `string`  | `-`     | Additional class                                             |
+| attrs      | `any`     | `{}`    | Additional attributes                                        |

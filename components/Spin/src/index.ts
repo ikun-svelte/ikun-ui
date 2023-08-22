@@ -1,7 +1,7 @@
 import Spin from './index.svelte';
 import type { SpinOptions } from './types';
 
-const mountSpin = (options: SpinOptions, target: HTMLElement) => {
+const mountSpin = <T>(options: SpinOptions<T>, target: HTMLElement) => {
 	return new Spin({
 		target: target,
 		props: {
@@ -11,17 +11,17 @@ const mountSpin = (options: SpinOptions, target: HTMLElement) => {
 	});
 };
 
-const SpinFn = (node: HTMLElement, options: SpinOptions) => {
+const SpinFn = <T>(node: HTMLElement, options: SpinOptions<T>) => {
 	const { show, fullScreen } = options;
 	let SpinInst: Spin;
 	const initSpin = () => {
-		SpinInst = mountSpin(options, fullScreen ? document.body : node);
+		SpinInst = mountSpin<T>(options, fullScreen ? document.body : node);
 	};
 	if (show) {
 		initSpin();
 	}
 	return {
-		update(options: SpinOptions) {
+		update<T>(options: SpinOptions<T>) {
 			if (SpinInst) {
 				SpinInst.$set({ show: options.show });
 			} else {

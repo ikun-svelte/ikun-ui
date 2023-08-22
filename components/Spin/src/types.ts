@@ -1,6 +1,6 @@
 /// <reference types="svelte" />
 
-export declare interface SpinOptions {
+export declare interface SpinOptions<T> {
 	/**
 	 * show spin
 	 */
@@ -20,7 +20,7 @@ export declare interface SpinOptions {
 	/**
 	 * spin spinner
 	 */
-	spinner?: string;
+	spinner?: string | T;
 	/**
 	 * spin spinner rotating
 	 */
