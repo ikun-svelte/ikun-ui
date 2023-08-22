@@ -5,6 +5,8 @@ import { commonShortcuts } from './common';
 import { iconShortcuts } from './icon';
 import { avatarShortcuts } from './avatar';
 import { badgeShortcuts } from './badge';
+import { breadcrumbShortcuts } from './breadcrumb';
+import { breadcrumbItemShortcuts } from './breadcrumb-item';
 import { buttonShortcuts } from './button';
 import { buttonGroupShortcuts } from './button-group';
 import { collapseShortcuts } from './collapse';
@@ -31,6 +33,10 @@ export default [
 	avatarShortcuts,
 	// badge
 	badgeShortcuts,
+	// breadcrumb
+	breadcrumbShortcuts,
+	// breadcrumb item
+	breadcrumbItemShortcuts,
 	// button
 	buttonShortcuts,
 	// button group
@@ -69,6 +75,8 @@ export function getSafeList() {
 	const iconList = Object.keys(iconShortcuts);
 	const avatarList = Object.keys(avatarShortcuts);
 	const badgeList = Object.keys(badgeShortcuts);
+	const breadcrumbList = Object.keys(breadcrumbShortcuts);
+	const breadcrumbItemList = Object.keys(breadcrumbItemShortcuts);
 	const buttonList = Object.keys(buttonShortcuts);
 	const buttonGroupList = Object.keys(buttonGroupShortcuts);
 	const collapseList = Object.keys(collapseShortcuts);
@@ -100,6 +108,8 @@ export function getSafeList() {
 		.concat(eyeDropperList)
 		.concat(avatarList)
 		.concat(badgeList)
+		.concat(breadcrumbList)
+		.concat(breadcrumbItemList)
 		.concat(buttonList)
 		.concat(buttonGroupList)
 		.concat(collapseList)
@@ -111,6 +121,8 @@ export { commonShortcuts } from './common';
 export { iconShortcuts } from './icon';
 export { avatarShortcuts } from './avatar';
 export { badgeShortcuts } from './badge';
+export { breadcrumbShortcuts } from './breadcrumb';
+export { breadcrumbItemShortcuts } from './breadcrumb-item';
 export { buttonShortcuts } from './button';
 export { buttonGroupShortcuts } from './button-group';
 export { collapseShortcuts } from './collapse';
