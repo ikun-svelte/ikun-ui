@@ -26,8 +26,8 @@
 		if (containerDomRect) {
 			drawerWidth = containerDomRect.width ? `${containerDomRect.width}px` : '100%';
 			drawerHeight = containerDomRect.height ? `${containerDomRect.height}px` : '100%';
-			drawerTop = containerDomRect.top;
-			drawerLeft = containerDomRect.left;
+			// drawerTop = containerDomRect.top;
+			// drawerLeft = containerDomRect.left;
 		}
 	};
 
@@ -35,6 +35,9 @@
 		if (!target && value) {
 			await tick();
 			const parentEl = getParentEle()
+			if(parentEl === document.body){
+				drawerRef && (drawerRef.style.position = 'fixed');
+			}
 			parentEl.style.overflow = 'hidden'
 			parentEl.style.position = 'relative'
 			updatedPosition();
@@ -43,6 +46,9 @@
 
 		if (target && value) {
 			await tick();
+			if(target === document.body){
+				drawerRef && (drawerRef.style.position = 'fixed');
+			}
 			drawerRef && (target.style.overflow = 'hidden');
 			drawerRef && (target.style.position = 'relative');
 			updatedPosition();
