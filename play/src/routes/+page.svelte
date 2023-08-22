@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { KAvatar } from '@ikun-ui/avatar';
 	import { KBadge } from '@ikun-ui/badge';
 	import { KButton } from '@ikun-ui/button';
 	import { KButtonGroup } from '@ikun-ui/button-group';
@@ -114,6 +115,14 @@
 <KButton icon="i-carbon-settings" to type="success" on:click={() => (openModal = true)}>
 	KModal
 </KButton>
+
+<div class="my-10px">
+	<KAvatar>User</KAvatar>
+	<KAvatar icon="i-carbon-settings" size={30} radius="50%"></KAvatar>
+	<KAvatar src="https://ikun-ui.netlify.app/logo.svg"></KAvatar>
+	<KAvatar src="https://ikun-ui.netlify.app/logo.svg" size="60px" radius={8}></KAvatar>
+	<KAvatar src="https://ikun-ui.netlify.app/logo.svg" size={100} radius="50%"></KAvatar>
+</div>
 
 <div class="my-10px">
 	<div class="mb-10px">KBadge</div>

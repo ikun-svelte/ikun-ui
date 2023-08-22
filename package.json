@@ -79,6 +79,7 @@
 	"dependencies": {
 		"baiwusanyu-utils": "^1.0.14",
 		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/avatar": "workspace:*",
 		"@ikun-ui/badge": "workspace:*",
 		"@ikun-ui/button": "workspace:*",
 		"@ikun-ui/button-group": "workspace:*",

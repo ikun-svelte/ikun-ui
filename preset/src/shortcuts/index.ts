@@ -3,6 +3,7 @@ import type { UserShortcuts } from 'unocss';
 import { baseShortcuts } from './base';
 import { commonShortcuts } from './common';
 import { iconShortcuts } from './icon';
+import { avatarShortcuts } from './avatar';
 import { badgeShortcuts } from './badge';
 import { buttonShortcuts } from './button';
 import { buttonGroupShortcuts } from './button-group';
@@ -27,6 +28,8 @@ export default [
 	commonShortcuts,
 	// icon
 	iconShortcuts,
+	// avatar
+	avatarShortcuts,
 	// badge
 	badgeShortcuts,
 	// button
@@ -67,6 +70,7 @@ export default [
 
 export function getSafeList() {
 	const iconList = Object.keys(iconShortcuts);
+	const avatarList = Object.keys(avatarShortcuts);
 	const badgeList = Object.keys(badgeShortcuts);
 	const buttonList = Object.keys(buttonShortcuts);
 	const buttonGroupList = Object.keys(buttonGroupShortcuts);
@@ -98,6 +102,7 @@ export function getSafeList() {
 		.concat(inputList)
 		.concat(maskList)
 		.concat(eyeDropperList)
+		.concat(avatarList)
 		.concat(badgeList)
 		.concat(buttonList)
 		.concat(buttonGroupList)
@@ -109,6 +114,7 @@ export function getSafeList() {
 export { baseShortcuts } from './base';
 export { commonShortcuts } from './common';
 export { iconShortcuts } from './icon';
+export { avatarShortcuts } from './avatar';
 export { badgeShortcuts } from './badge';
 export { buttonShortcuts } from './button';
 export { buttonGroupShortcuts } from './button-group';

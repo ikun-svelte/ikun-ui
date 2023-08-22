@@ -53,6 +53,10 @@ const components = [
 		collapsed: false,
 		items: [
 			{
+				text: 'Avatar',
+				link: '/components/KAvatar'
+			},
+			{
 				text: 'Badge',
 				link: '/components/KBadge'
 			},
