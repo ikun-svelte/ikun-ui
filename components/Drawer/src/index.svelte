@@ -12,14 +12,12 @@
 	export let header = true;
 
 	const dispatch = createEventDispatcher();
-	$: showInner = value;
 
-	const close = () => {
-		showInner = !showInner;
-		dispatch('close', showInner);
+	const toggleClose = () => {
+		dispatch('close');
 	};
 
-	$: isRight = placement === 'right';
+	$: isRight = (placement === 'right')
 </script>
 
 <KClientOnly>
@@ -36,7 +34,7 @@
 						<KIcon
 							icon={isRight ? 'i-carbon-chevron-right' : 'i-carbon-chevron-left'}
 							color="hover:text-main"
-							on:click={close}
+							on:click={toggleClose}
 							btn
 						/>
 					</div>
