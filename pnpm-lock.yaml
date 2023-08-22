@@ -747,6 +747,9 @@ importers:
 
   components/Spin:
     dependencies:
+      '@ikun-ui/client-only':
+        specifier: workspace:*
+        version: link:../ClientOnly
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon
