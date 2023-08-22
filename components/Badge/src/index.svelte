@@ -8,6 +8,7 @@
 	export let show: boolean = true;
 	export let type: IKunTypePro = 'error';
 	export let cls: string = '';
+	export let attrs = {};
 
 	let content = `${value}`;
 	$: if (isDot) {
@@ -20,7 +21,7 @@
 	$: prefixCls = `k-badge--content-${type}`;
 </script>
 
-<div class="k-badge--base {cls}">
+<div class="k-badge--base {cls}" {...attrs}>
 	<slot />
 	{#if show && (content || isDot)}
 		<sup

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { KAvatar } from '@ikun-ui/avatar';
 	import { KBadge } from '@ikun-ui/badge';
 	import { KButton } from '@ikun-ui/button';
 	import { KButtonGroup } from '@ikun-ui/button-group';
@@ -156,6 +157,14 @@
 </KButton>
 
 <div class="my-10px">
+	<KAvatar>User</KAvatar>
+	<KAvatar icon="i-carbon-settings" size={30} radius="50%"></KAvatar>
+	<KAvatar src="https://ikun-ui.netlify.app/logo.svg"></KAvatar>
+	<KAvatar src="https://ikun-ui.netlify.app/logo.svg" size="60px" radius={8}></KAvatar>
+	<KAvatar src="https://ikun-ui.netlify.app/logo.svg" size={100} radius="50%"></KAvatar>
+</div>
+
+<div class="my-10px">
 	<div class="mb-10px">KBadge</div>
 	<KBadge cls="mr-40px" value={badgeNumber}>
 		<KButton on:click={() => badgeNumber++}>Click Me</KButton>
@@ -178,11 +187,21 @@
 	<span>KModal</span>
 </KModal>
 
-<KTag type="success">success KTag</KTag>
-<KTag type="info">info KTag</KTag>
-<KTag type="primary">primary KTag</KTag>
-<KTag type="error">error KTag</KTag>
-<KTag type="warning">warning KTag</KTag>
+<div class="my-10px">
+	<KTag
+		type="success"
+		icon="i-carbon-settings"
+		closeIcon="i-carbon-settings"
+		closable
+		on:click={(e) => console.log('KTag click', e)}
+		on:close={(e) => console.log('KTag close', e)}
+		>success KTag
+	</KTag>
+	<KTag type="info" icon="i-carbon-settings"></KTag>
+	<KTag type="primary" icon="i-carbon-settings" closable textColor="black">primary KTag</KTag>
+	<KTag type="error" closable>error KTag</KTag>
+	<KTag type="warning" border bgColor="red" textColor="#ffffff">warning KTag</KTag>
+</div>
 
 <KButton on:click={handleNotify}>handleNotify</KButton>
 <KButton on:click={handleMsgBox} type="info">handleMsgBox</KButton>

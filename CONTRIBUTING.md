@@ -36,6 +36,28 @@ We use [Github issues](https://github.com/onu-ui/onu-ui/issues) for bug reports 
 
 > I know DX is not very good, if you have a good method, welcome to submit a PR
 
+## Components Guidelines
+
+Run `pnpm run new <component name>` to create a new component.
+
+For instance, you can run `pnpm run new button` to automatically generate the `button` directory along with its base template. and will also add the new component to the root `package.json` as a dependency.
+
+### Directory Structure
+
+```
+svelte-ui
+├─ components
+│  ├─ Button
+│  │  ├─ __test__
+│  │  │  └─ button.spec.ts
+│  │  ├─ package.json
+│  │  ├─ src
+│  │  │  ├─ index.svelte
+│  │  │  ├─ index.ts
+│  │  │  └─ types.d.ts
+│  │  └─ tsconfig.json
+```
+
 ## Commit Guidelines
 
 Commit messages are required to follow the [conventional-changelog standard](https://www.conventionalcommits.org/en/v1.0.0/):
