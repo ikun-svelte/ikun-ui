@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/tag",
-	"version": "0.0.9-beta.1",
+	"version": "0.0.9-beta.2",
 	"type": "module",
 	"main": "dist/index.js",
 	"module": "dist/index.js",
@@ -26,6 +26,7 @@
 		"access": "public"
 	},
 	"dependencies": {
+		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.14"
 	},
