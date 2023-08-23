@@ -40,7 +40,7 @@ Render custom content via slots.
 ## Backtop Props
 
 | Name       | Type     | Default    | Description                                          |
-| ---------- | -------- |------------| ---------------------------------------------------- |
+| ---------- | -------- | ---------- | ---------------------------------------------------- |
 | right      | `number` | `40`       | Distance from the right side of the screen.          |
 | bottom     | `number` | `40`       | Distance from the bottom of the screen.              |
 | showHeight | `number` | `200`      | Scroll to this height to show the Backtop component. |

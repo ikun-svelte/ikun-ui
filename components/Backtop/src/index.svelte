@@ -47,9 +47,10 @@
     targetEl = document.documentElement
     if (target) {
       targetEl = document.querySelector<HTMLElement>(target) ?? undefined
-      if (!targetEl)
-        console.error(`${target} does not exist`)
-
+      if (!targetEl){
+        console.error(`[ikun-ui]: backtop component - ${target} does not exist`)
+        targetEl = document.documentElement
+      }
       container = targetEl
     }
   }
@@ -61,8 +62,8 @@
     }
   }
   handleScroll()
-
   onMount(() => {
+    debugger
     setContainer()
     container && container.addEventListener('scroll', handleScroll)
   })
@@ -88,6 +89,7 @@
          on:click|stopPropagation={handleClick}
          {...$$restProps}
          {...attrs}>
+        awdwdqwdwq
         <slot>
             <KIcon icon="i-carbon-arrow-up"/>
         </slot>
