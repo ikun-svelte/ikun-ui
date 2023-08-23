@@ -14,7 +14,7 @@ beforeEach(() => {
 afterEach(() => {
 	host.remove();
 });
-	
+
 describe('Test: KBacktop', () => {
 	test('props: cls', async () => {
 		const instance = new KBacktop({
@@ -24,10 +24,7 @@ describe('Test: KBacktop', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(
-			(host as HTMLElement)!.innerHTML.includes('k-backtop--test')
-		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-backtop--test')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
-})
-	
+});
