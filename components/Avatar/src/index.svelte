@@ -49,8 +49,8 @@
 	{#if (src || srcSet) && !hasLoadError}
 		<img {src} {alt} {srcSet} on:error={onError} style="object-fit: {fit}" />
 	{:else if icon}
-		<KIcon v-else-if="icon" {icon}></KIcon>
+		<KIcon {icon}></KIcon>
 	{:else}
-		<slot v-else />
+		<slot />
 	{/if}
 </div>

@@ -36,9 +36,9 @@
 
 ## 组件指南
 
-使用`pnpm run new <组建名>`创建新的组件。
+使用`pnpm run create:new:comp <组建名>`创建新的组件。
 
-例如，运行`pnpm run new button`，自动创建一个名为`button`组件的目录及基本的模版，并将其作为依赖添加到根目录的`package.json`中。
+例如，运行`pnpm run create:new:comp button`，自动创建一个名为`button`组件的目录及基本的模版，并将其作为依赖添加到根目录的`package.json`中。
 
 ### 目录结构
 
@@ -52,7 +52,7 @@ svelte-ui
 │  │  ├─ src
 │  │  │  ├─ index.svelte
 │  │  │  ├─ index.ts
-│  │  │  └─ types.d.ts
+│  │  │  └─ types.ts
 │  │  └─ tsconfig.json
 ```
 

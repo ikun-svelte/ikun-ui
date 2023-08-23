@@ -155,6 +155,91 @@ describe('Test: KButton', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: button md size', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				icon: 'i-carbon-settings',
+				size: 'md'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect(!(host as HTMLElement)!.innerHTML.includes('k-button--sm')).toBeTruthy();
+		expect(!(host as HTMLElement)!.innerHTML.includes('k-button--lg')).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes(
+				'k-button--primary__icon" style="width: 24px; height: 24px;"'
+			)
+		).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: button sm size', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				icon: 'i-carbon-settings',
+				size: 'sm'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--sm')).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes(
+				'k-button--primary__icon" style="width: 16px; height: 16px;"'
+			)
+		).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: button lg size', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				icon: 'i-carbon-settings',
+				size: 'lg'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--lg')).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes(
+				'k-button--primary__icon" style="width: 28px; height: 28px;"'
+			)
+		).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: isBorder', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				isBorder: true,
+				type: 'primary'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--primary__border')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: iconSize', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				icon: 'i-carbon-settings',
+				iconSize: 10086
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes(
+				'k-button--primary__icon" style="width: 10086px; height: 10086px;"'
+			)
+		).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('event: should trigger click event', async () => {
 		const mockFn = vi.fn();
 		const instance = new KButton({

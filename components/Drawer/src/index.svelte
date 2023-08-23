@@ -6,7 +6,6 @@
 	import { KClientOnly } from '@ikun-ui/client-only';
 	export let placement: 'right' | 'left' = 'right';
 	export let value = false;
-	export let target: null | HTMLElement = null;
 	export let cls = '';
 	export let attrs = {};
 	export let header = true;
@@ -17,11 +16,11 @@
 		dispatch('close');
 	};
 
-	$: isRight = (placement === 'right')
+	$: isRight = placement === 'right';
 </script>
 
 <KClientOnly>
-	<KMask {target} {value}>
+	<KMask target={document.body} {value}>
 		<div
 			class="k-drawer--base k-drawer--base__dark {isRight ? 'right-0' : 'left-0'} {cls}"
 			{...attrs}
@@ -40,8 +39,7 @@
 					</div>
 				</slot>
 			{/if}
-			<!-- Layout design needs to be optimized -->
-			<div class="k-drawer--content" style="height: calc(100% - 24px - 0.5rem - 34px)">
+			<div class="k-drawer--content" style="height: calc(100% - 24px)">
 				<slot />
 			</div>
 		</div>

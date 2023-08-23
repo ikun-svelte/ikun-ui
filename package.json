@@ -81,6 +81,7 @@
 		"@ikun-ui/utils": "workspace:*",
 		"@ikun-ui/avatar": "workspace:*",
 		"@ikun-ui/badge": "workspace:*",
+		"@ikun-ui/breadcrumb": "workspace:*",
 		"@ikun-ui/button": "workspace:*",
 		"@ikun-ui/button-group": "workspace:*",
 		"@ikun-ui/checkbox": "workspace:*",
@@ -101,7 +102,9 @@
 		"@ikun-ui/select": "workspace:*",
 		"@ikun-ui/switch": "workspace:*",
 		"@ikun-ui/tag": "workspace:*",
-		"@ikun-ui/tooltip": "workspace:*"
+		"@ikun-ui/tooltip": "workspace:*",
+		"@ikun-ui/spin": "workspace:*",
+		"@ikun-ui/breadcrumb-item": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",

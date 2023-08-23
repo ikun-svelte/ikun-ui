@@ -56,17 +56,6 @@ describe('Test: KDrawer', () => {
 		expect(host.innerHTML.includes('k-drawer--base k-drawer--base__dark right-0')).toBeTruthy();
 	});
 
-	// TODO
-	/* test('props: target', async () => {
-    const instance = new KDrawer({
-      target: host,
-      props: {
-        placement: 'left',
-        value: true
-      }
-    });
-  }); */
-
 	test('event: should trigger when close', async () => {
 		const mockFn = vi.fn();
 		const instance = new KDrawer({
