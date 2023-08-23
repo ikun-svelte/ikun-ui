@@ -21,6 +21,7 @@
 	import { KMsgBox } from '@ikun-ui/message-box';
 	import { KRadio } from '@ikun-ui/radio';
 	import { KSpin } from '@ikun-ui/spin';
+	import { KBacktop } from '@ikun-ui/backtop';
 	import 'virtual:uno.css';
 
 	let checked = true;
@@ -210,3 +211,5 @@
 </KSelect>
 <KButton on:click={handleToggleSpin}>ToggleSpin</KButton>
 <div use:KSpin={spinOptions} class="w-200px h-50px bg-red"></div>
+
+<KBacktop bottom="{100}" right="{100}" show-height="100"/>
