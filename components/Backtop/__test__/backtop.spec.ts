@@ -1,4 +1,4 @@
-import { afterEach, expect, test, describe, beforeEach } from 'vitest';
+import {afterEach, expect, test, describe, beforeEach, vi} from 'vitest';
 import "@testing-library/jest-dom";
 import { cleanup, render, fireEvent, screen } from "@testing-library/svelte";
 import KBacktop from '../src';
@@ -9,6 +9,9 @@ let host: HTMLElement;
 const initHost = () => {
 	host = document.createElement('div');
 	host.setAttribute('data-testid', 'host');
+	host.setAttribute('id', 'host');
+	document.body.style.height = '100px'
+	document.body.style.overflow = 'auto'
 	host.style.height = '6000px'
 	host.style.width = '6000px'
 	document.body.appendChild(host);
@@ -34,6 +37,16 @@ async function renderBacktop(overrideProps = {}) {
 }
 
 describe('Test: KBacktop', () => {
+
+	vi.mock("svelte", async () => {
+		const actual = await vi.importActual("svelte") as object;
+		return {
+			...actual,
+			// @ts-ignore
+			onMount: (await import('svelte/internal')).onMount,
+		};
+	});
+
 	/*test('props: cls', async () => {
 		const instance = new KBacktop({
 			target: host,
@@ -47,7 +60,22 @@ describe('Test: KBacktop', () => {
 	});*/
 
 	test('props: showHeight & right & bottom', async () => {
-		const { component } = await renderBacktop({
+		 new KBacktop({
+			target: document.body,
+			props: {
+				target: 'host',
+				right: 66,
+				bottom: 66,
+				showHeight: 0
+			}
+		});
+		 await tick()
+		document.body.scrollTop = 200
+		document.body.dispatchEvent(new Event('scroll', {bubbles: true}))
+		await tick()
+		debugger
+	/*	await renderBacktop({
+
 				right: 66,
 				bottom: 66,
 				showHeight: 0
@@ -56,11 +84,11 @@ describe('Test: KBacktop', () => {
 		const container = screen.getByTestId('host')
 		container.scrollTop  = 200
 		debugger
-		fireEvent.scroll(container)
+		fireEvent.scroll(host)
 		await tick()
 		debugger
 		console.log(screen.getAllByText('awdwdqwdwq'))
-		debugger
+		debugger*/
 		/*await tick()
 		expect(instance).toBeTruthy();
 		host.scrollTop = 2000

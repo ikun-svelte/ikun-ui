@@ -43,13 +43,13 @@
   }
 
   const setContainer = () => {
-    container = document
-    targetEl = document.documentElement
+    container = document.body
+    targetEl = document.body
     if (target) {
       targetEl = document.querySelector<HTMLElement>(target) ?? undefined
       if (!targetEl){
         console.error(`[ikun-ui]: backtop component - ${target} does not exist`)
-        targetEl = document.documentElement
+        targetEl = document.body
       }
       container = targetEl
     }
@@ -63,7 +63,6 @@
   }
   handleScroll()
   onMount(() => {
-    debugger
     setContainer()
     container && container.addEventListener('scroll', handleScroll)
   })
