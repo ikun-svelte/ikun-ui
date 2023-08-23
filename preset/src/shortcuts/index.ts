@@ -24,6 +24,7 @@ import { switchShortcuts } from './swtich';
 import { selectShortcuts } from './select';
 import { msgBoxShortcuts } from './message-box';
 import { spinShortcuts } from './spin';
+import { sliderShortcuts } from './slider';
 
 export default [
 	baseShortcuts,
@@ -71,7 +72,9 @@ export default [
 	// message box
 	msgBoxShortcuts,
 	// spin
-	spinShortcuts
+	spinShortcuts,
+	// slider
+	sliderShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -97,6 +100,7 @@ export function getSafeList() {
 	const selectList = Object.keys(selectShortcuts);
 	const msgBoxList = Object.keys(msgBoxShortcuts);
 	const spinList = Object.keys(spinShortcuts);
+	const sliderList = Object.keys(sliderShortcuts);
 	return iconList
 		.concat(msgBoxList)
 		.concat(selectList)
@@ -118,7 +122,8 @@ export function getSafeList() {
 		.concat(buttonGroupList)
 		.concat(collapseList)
 		.concat(checkboxList)
-		.concat(spinList);
+		.concat(spinList)
+		.concat(sliderList);
 }
 
 export { baseShortcuts } from './base';
@@ -145,3 +150,4 @@ export { switchShortcuts } from './swtich';
 export { selectShortcuts } from './select';
 export { msgBoxShortcuts } from './message-box';
 export { spinShortcuts } from './spin';
+export { sliderShortcuts } from './slider';
