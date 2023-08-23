@@ -5,6 +5,8 @@ import { commonShortcuts } from './common';
 import { iconShortcuts } from './icon';
 import { avatarShortcuts } from './avatar';
 import { badgeShortcuts } from './badge';
+import { breadcrumbShortcuts } from './breadcrumb';
+import { breadcrumbItemShortcuts } from './breadcrumb-item';
 import { buttonShortcuts } from './button';
 import { buttonGroupShortcuts } from './button-group';
 import { collapseShortcuts } from './collapse';
@@ -22,6 +24,8 @@ import { switchShortcuts } from './swtich';
 import { selectShortcuts } from './select';
 import { msgBoxShortcuts } from './message-box';
 import { formShortcuts } from './form';
+import { spinShortcuts } from './spin';
+
 export default [
 	baseShortcuts,
 	commonShortcuts,
@@ -31,6 +35,10 @@ export default [
 	avatarShortcuts,
 	// badge
 	badgeShortcuts,
+	// breadcrumb
+	breadcrumbShortcuts,
+	// breadcrumb item
+	breadcrumbItemShortcuts,
 	// button
 	buttonShortcuts,
 	// button group
@@ -64,13 +72,17 @@ export default [
 	// message box
 	msgBoxShortcuts,
 	// form fromItem
-	formShortcuts
+	formShortcuts,
+	// spin
+	spinShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
 	const iconList = Object.keys(iconShortcuts);
 	const avatarList = Object.keys(avatarShortcuts);
 	const badgeList = Object.keys(badgeShortcuts);
+	const breadcrumbList = Object.keys(breadcrumbShortcuts);
+	const breadcrumbItemList = Object.keys(breadcrumbItemShortcuts);
 	const buttonList = Object.keys(buttonShortcuts);
 	const buttonGroupList = Object.keys(buttonGroupShortcuts);
 	const collapseList = Object.keys(collapseShortcuts);
@@ -88,6 +100,7 @@ export function getSafeList() {
 	const selectList = Object.keys(selectShortcuts);
 	const msgBoxList = Object.keys(msgBoxShortcuts);
 	const formList = Object.keys(formShortcuts);
+	const spinList = Object.keys(spinShortcuts);
 	return iconList
 		.concat(msgBoxList)
 		.concat(selectList)
@@ -103,11 +116,14 @@ export function getSafeList() {
 		.concat(eyeDropperList)
 		.concat(avatarList)
 		.concat(badgeList)
+		.concat(breadcrumbList)
+		.concat(breadcrumbItemList)
 		.concat(buttonList)
 		.concat(buttonGroupList)
 		.concat(collapseList)
 		.concat(checkboxList)
-		.concat(formList);
+		.concat(formList)
+		.concat(spinList);
 }
 
 export { baseShortcuts } from './base';
@@ -115,6 +131,8 @@ export { commonShortcuts } from './common';
 export { iconShortcuts } from './icon';
 export { avatarShortcuts } from './avatar';
 export { badgeShortcuts } from './badge';
+export { breadcrumbShortcuts } from './breadcrumb';
+export { breadcrumbItemShortcuts } from './breadcrumb-item';
 export { buttonShortcuts } from './button';
 export { buttonGroupShortcuts } from './button-group';
 export { collapseShortcuts } from './collapse';
@@ -132,3 +150,4 @@ export { switchShortcuts } from './swtich';
 export { selectShortcuts } from './select';
 export { msgBoxShortcuts } from './message-box';
 export { formShortcuts } from './form';
+export { spinShortcuts } from './spin';

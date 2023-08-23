@@ -53,21 +53,21 @@ When value is a String, it can display customized text.
 
 Use a dot to mark content that needs to be noticed.
 
-Use the attribute is-dot. It is a Boolean.
+Use the attribute isDot. It is a Boolean.
 
 <demo src="../../../../example/badge/dot-mark.svelte" github='Badge'></demo>
 
 ## Badge Props
 
-| Name   | Type                                                 | Default | Description                                                                 |
-| ------ | ---------------------------------------------------- | ------- | --------------------------------------------------------------------------- |
-| value  | `string` / `number`                                  | `''`    | display value.                                                              |
-| max    | `number`                                             | `99`    | maximum value, shows {max}+ when exceeded. Only works if value is a number. |
-| is-dot | `boolean`                                            | `false` | if a little dot is displayed.                                               |
-| show   | `boolean`                                            | `true`  | show badge.                                                                 |
-| type   | `primary` / `success` / `error` / `warning` / `info` | `error` | badge type.                                                                 |
-| cls    | `string`                                             | `''`    | Additional class for                                                        |
-| attrs  | `any`                                                | `{}`    | Additional attributes                                                       |
+| Name  | Type                                                 | Default | Description                                                                 |
+| ----- | ---------------------------------------------------- | ------- | --------------------------------------------------------------------------- |
+| value | `string` / `number`                                  | `''`    | display value.                                                              |
+| max   | `number`                                             | `99`    | maximum value, shows {max}+ when exceeded. Only works if value is a number. |
+| isDot | `boolean`                                            | `false` | if a little dot is displayed.                                               |
+| show  | `boolean`                                            | `true`  | show badge.                                                                 |
+| type  | `primary` / `success` / `error` / `warning` / `info` | `error` | badge type.                                                                 |
+| cls   | `string`                                             | `''`    | Additional class for                                                        |
+| attrs | `any`                                                | `{}`    | Additional attributes                                                       |
 
 ## Badge Slots
 

@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KBadge > props: cls 1`] = `"<div class=\\"k-badge k-badge--base k-badge--test\\"> </div>"`;
+
+exports[`Test: KBadge > props: isDot 1`] = `"<div class=\\"k-badge k-badge--base\\"> <sup class=\\"k-badge--content k-badge--content-error k-badge--content-fixed k-badge--content-dot k-badge--content__dark\\"></sup></div>"`;
+
+exports[`Test: KBadge > props: max 1`] = `"<div class=\\"k-badge k-badge--base\\"> <sup class=\\"k-badge--content k-badge--content-error k-badge--content-fixed k-badge--content__dark\\">99+</sup></div>"`;
+
+exports[`Test: KBadge > props: show 1`] = `"<div class=\\"k-badge k-badge--base\\"> </div>"`;
+
+exports[`Test: KBadge > props: type 1`] = `"<div class=\\"k-badge k-badge--base\\"> <sup class=\\"k-badge--content k-badge--content-primary k-badge--content-fixed k-badge--content__dark\\">99+</sup></div>"`;
+
+exports[`Test: KBadge > props: type 2`] = `"<div class=\\"k-badge k-badge--base\\"> <sup class=\\"k-badge--content k-badge--content-success k-badge--content-fixed k-badge--content__dark\\">99+</sup></div>"`;
+
+exports[`Test: KBadge > props: type 3`] = `"<div class=\\"k-badge k-badge--base\\"> <sup class=\\"k-badge--content k-badge--content-error k-badge--content-fixed k-badge--content__dark\\">99+</sup></div>"`;
+
+exports[`Test: KBadge > props: type 4`] = `"<div class=\\"k-badge k-badge--base\\"> <sup class=\\"k-badge--content k-badge--content-warning k-badge--content-fixed k-badge--content__dark\\">99+</sup></div>"`;
+
+exports[`Test: KBadge > props: type 5`] = `"<div class=\\"k-badge k-badge--base\\"> <sup class=\\"k-badge--content k-badge--content-info k-badge--content-fixed k-badge--content__dark\\">99+</sup></div>"`;
+
+exports[`Test: KBadge > props: value is number 1`] = `"<div class=\\"k-badge k-badge--base\\"> <sup class=\\"k-badge--content k-badge--content-error k-badge--content-fixed k-badge--content__dark\\">23</sup></div>"`;
+
+exports[`Test: KBadge > props: value is string 1`] = `"<div class=\\"k-badge k-badge--base\\"> <sup class=\\"k-badge--content k-badge--content-error k-badge--content-fixed k-badge--content__dark\\">new</sup></div>"`;

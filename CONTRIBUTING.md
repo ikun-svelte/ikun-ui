@@ -38,9 +38,9 @@ We use [Github issues](https://github.com/onu-ui/onu-ui/issues) for bug reports 
 
 ## Components Guidelines
 
-Run `pnpm run new <component name>` to create a new component.
+Run `pnpm run create:new:comp <component name>` to create a new component.
 
-For instance, you can run `pnpm run new button` to automatically generate the `button` directory along with its base template. and will also add the new component to the root `package.json` as a dependency.
+For instance, you can run `pnpm run create:new:comp button` to automatically generate the `button` directory along with its base template. and will also add the new component to the root `package.json` as a dependency.
 
 ### Directory Structure
 
@@ -54,7 +54,7 @@ svelte-ui
 │  │  ├─ src
 │  │  │  ├─ index.svelte
 │  │  │  ├─ index.ts
-│  │  │  └─ types.d.ts
+│  │  │  └─ types.ts
 │  │  └─ tsconfig.json
 ```
 

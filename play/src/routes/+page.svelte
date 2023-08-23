@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { KAvatar } from '@ikun-ui/avatar';
 	import { KBadge } from '@ikun-ui/badge';
+	import { KBreadcrumb } from '@ikun-ui/breadcrumb';
+	import { KBreadcrumbItem } from '@ikun-ui/breadcrumb-item';
 	import { KButton } from '@ikun-ui/button';
 	import { KButtonGroup } from '@ikun-ui/button-group';
 	import { KIcon } from '@ikun-ui/icon';
@@ -18,6 +20,7 @@
 	import { KSelect } from '@ikun-ui/select';
 	import { KMsgBox } from '@ikun-ui/message-box';
 	import { KRadio } from '@ikun-ui/radio';
+	import { KSpin } from '@ikun-ui/spin';
 	import 'virtual:uno.css';
 	import { KForm, createKFormInstance, KFormItem } from '@ikun-ui/form';
 	import type { IKunFormInstance } from '@ikun-ui/utils';
@@ -57,6 +60,31 @@
 
 	let switchVal = false;
 	let selectVal = '';
+
+	const spinOptions = {
+		show: false,
+		text: 'loading...',
+    fullScreen: true
+	};
+
+
+	const handleToggleSpin = () => {
+		spinOptions.show = !spinOptions.show;
+	};
+
+
+    $: breadcrumbList = [
+        { label: 'home', href: '/' },
+        { label: 'breadcrumb', href: '' }
+    ];
+    const addBreadcrumb = () => {
+        breadcrumbList.push({ label: 'test', href: '' });
+        breadcrumbList = breadcrumbList;
+    };
+    const delBreadcrumb = () => {
+        breadcrumbList.pop();
+        breadcrumbList = breadcrumbList;
+    };
 </script>
 
 <KForm bind:form>
@@ -109,6 +137,26 @@
 	>
 	----Form----
 </KForm>
+<div class="my-10px">
+	<div class="mb-10px">Breadcrumb</div>
+	<KBreadcrumb separator="/">
+		{#each breadcrumbList as breadcrumb}
+			<KBreadcrumbItem href={breadcrumb.href}>{breadcrumb.label}</KBreadcrumbItem>
+		{/each}
+	</KBreadcrumb>
+
+	<KBreadcrumb separator="→" separatorIcon="i-carbon:arrow-right">
+		{#each breadcrumbList as breadcrumb}
+			<KBreadcrumbItem href={breadcrumb.href}>{breadcrumb.label}</KBreadcrumbItem>
+		{/each}
+	</KBreadcrumb>
+
+	<div class="fi">
+		<KButton cls="mt-10px" on:click={addBreadcrumb}>增加一个</KButton>
+		<KButton cls="mt-10px ml-10px" on:click={delBreadcrumb}>删除一个</KButton>
+	</div>
+</div>
+
 <div class="flex fle-gap-2 p-2">
 	<KButton>Normal Button</KButton>
 	<KButton disabled>Disabled Button</KButton>
@@ -212,3 +260,5 @@
 		<option>{item}</option>
 	{/each}
 </KSelect>
+<KButton on:click={handleToggleSpin}>ToggleSpin</KButton>
+<div use:KSpin={spinOptions} class="w-200px h-50px bg-red"></div>

@@ -84,7 +84,7 @@ if you want to perform form validation, then you can handle it yourself through 
 | confirmBtnText    | `string`                                  | `Confirm` | confirm button text                                                                                                                                      |
 | cancelBtnCls      | `string`                                  | `-`       | cancel button class (only `type != 'alert'`)                                                                                                             |
 | confirmBtnCls     | `string`                                  | `-`       | confirm button class                                                                                                                                     |
-| onConfirm         | `((r?: boolean, v?: string) => void)`     | `-`       | The callback method when the confirm, Only `type='prompt'` will return parameters, 'r' represents the verification result, `v` represents the input data |
+| onConfirm         | `((r?: boolean, v?: string) => void)`     | `-`       | The callback method when the confirm, Only `type='prompt'` will return parameters, `r` represents the verification result, `v` represents the input data |
 | onCancel          | `IKunUncertainFunction`                   | `-`       | The callback method when the cancel                                                                                                                      |
 | layout            | `'center' / 'right'`                      | `-`       | confirm button and cancel button layout                                                                                                                  |
 | inputValidator    | `RegExp / (v: string) => boolean`         | `-`       | validation function for the input. (only `type='confirm'`)                                                                                               |
@@ -95,9 +95,9 @@ if you want to perform form validation, then you can handle it yourself through 
 
 ## MessageBox Api
 
-| Name            | Type                                   | Description                                                                                                      |
-| --------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| KMsgBox         | `(options: MsgBoxOptions)=>MsgBoxInst` | Render a `message box` according to the incoming options and return the `message box` instance                   |
-| KMsgBox.confirm | `(options: MsgBoxOptions)=>MsgBoxInst` | Render a `message box` of `confirm` type according to the incoming options and return the `message box` instance |
-| KMsgBox.alert   | `(options: MsgBoxOptions)=>MsgBoxInst` | Render a `message box` of `alert` type according to the incoming options and return the `message box` instance   |
-| KMsgBox.prompt  | `(options: MsgBoxOptions)=>MsgBoxInst` | Render a `message box` of `prompt` type according to the incoming options and return the `message box` instance  |
+| Name            | Type                                             | Description                                                                                                      |
+| --------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| KMsgBox         | `<T,C>(options: MsgBoxOptions<T,C>)=>MsgBoxInst` | Render a `message box` according to the incoming options and return the `message box` instance                   |
+| KMsgBox.confirm | `<T,C>(options: MsgBoxOptions<T,C>)=>MsgBoxInst` | Render a `message box` of `confirm` type according to the incoming options and return the `message box` instance |
+| KMsgBox.alert   | `<T,C>(options: MsgBoxOptions<T,C>)=>MsgBoxInst` | Render a `message box` of `alert` type according to the incoming options and return the `message box` instance   |
+| KMsgBox.prompt  | `<T,C>(options: MsgBoxOptions<T,C>)=>MsgBoxInst` | Render a `message box` of `prompt` type according to the incoming options and return the `message box` instance  |
