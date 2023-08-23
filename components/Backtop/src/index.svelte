@@ -88,7 +88,6 @@
          on:click|stopPropagation={handleClick}
          {...$$restProps}
          {...attrs}>
-        awdwdqwdwq
         <slot>
             <KIcon icon="i-carbon-arrow-up"/>
         </slot>
