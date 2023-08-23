@@ -3,9 +3,9 @@
 </script>
 
 <div class="flex items-center flex-wrap">
-	<KButton type="info" cls="mx-2" size="lg">lg</KButton>
-	<KButton type="error" cls="mx-2" size="md">md</KButton>
-	<KButton type="success" cls="mx-2" size="sm">sm</KButton>
+	<KButton type="info" cls="mx-2" size="lg">lg size</KButton>
+	<KButton type="error" cls="mx-2" size="md">md size</KButton>
+	<KButton type="success" cls="mx-2" size="sm">sm size</KButton>
 </div>
 
 <div class="flex items-center mt-3 flex-wrap">
