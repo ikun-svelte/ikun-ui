@@ -81,6 +81,10 @@ const components = [
 		collapsed: false,
 		items: [
 			{
+				text: 'Alert',
+				link: '/components/KAlert'
+			},
+			{
 				text: 'Notification',
 				link: '/components/KNotification'
 			},

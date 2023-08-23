@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KAlert > props: cls 1`] = `"<div class=\\"k-alert k-alert--info k-alert--test\\"> <div class=\\"k-alert--content\\">  <span class=\\"k-alert--close k-alert--close__icon-color k-alert--close__no-title k-alert--info__close-icon\\" aria-hidden=\\"true\\"><div role=\\"\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  inline-flex\\"><div class=\\"i-carbon-close k-icon-transition \\" style=\\"width: 18px; height: 18px;\\"></div></div></span></div></div>"`;

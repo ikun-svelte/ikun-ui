@@ -4,8 +4,6 @@ exports[`Test: KButton > props: button lg size 1`] = `"<button style=\\"border-r
 
 exports[`Test: KButton > props: button md size 1`] = `"<button style=\\"border-radius: 4px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus k-button--primary__hover\\" aria-hidden=\\"true\\">  </button>"`;
 
-exports[`Test: KButton > props: button size 1`] = `"<button style=\\"border-radius: 4px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus k-button--primary__hover k-button--large\\" aria-hidden=\\"true\\">  </button>"`;
-
 exports[`Test: KButton > props: button sm size 1`] = `"<button style=\\"border-radius: 4px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus k-button--primary__hover k-button--sm\\" aria-hidden=\\"true\\">  </button>"`;
 
 exports[`Test: KButton > props: circle 1`] = `"<button style=\\"border-radius: 4px;\\" class=\\"k-button--base k-button--primary k-button--primary__active k-button--primary__focus k-button--primary__hover k-button--circle\\" aria-hidden=\\"true\\">  </button>"`;
