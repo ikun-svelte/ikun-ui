@@ -155,6 +155,56 @@ describe('Test: KButton', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: button md size', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				size: 'md'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect(!(host as HTMLElement)!.innerHTML.includes('k-button--sm')).toBeTruthy();
+		expect(!(host as HTMLElement)!.innerHTML.includes('k-button--lg')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: button sm size', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				size: 'sm'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--sm')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: button lg size', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				size: 'lg'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--lg')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: isBorder', async () => {
+		const instance = new KButton({
+			target: host,
+			props: {
+				isBorder: true,
+				type: 'primary'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--primary__border')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('event: should trigger click event', async () => {
 		const mockFn = vi.fn();
 		const instance = new KButton({
