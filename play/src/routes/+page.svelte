@@ -64,27 +64,25 @@
 	const spinOptions = {
 		show: false,
 		text: 'loading...',
-    fullScreen: true
+		fullScreen: true
 	};
-
 
 	const handleToggleSpin = () => {
 		spinOptions.show = !spinOptions.show;
 	};
 
-
-    $: breadcrumbList = [
-        { label: 'home', href: '/' },
-        { label: 'breadcrumb', href: '' }
-    ];
-    const addBreadcrumb = () => {
-        breadcrumbList.push({ label: 'test', href: '' });
-        breadcrumbList = breadcrumbList;
-    };
-    const delBreadcrumb = () => {
-        breadcrumbList.pop();
-        breadcrumbList = breadcrumbList;
-    };
+	$: breadcrumbList = [
+		{ label: 'home', href: '/' },
+		{ label: 'breadcrumb', href: '' }
+	];
+	const addBreadcrumb = () => {
+		breadcrumbList.push({ label: 'test', href: '' });
+		breadcrumbList = breadcrumbList;
+	};
+	const delBreadcrumb = () => {
+		breadcrumbList.pop();
+		breadcrumbList = breadcrumbList;
+	};
 </script>
 
 <KForm bind:form>
@@ -121,7 +119,12 @@
 		</KSelect>
 	</KFormItem>
 
-	<KButton on:click={() => console.log(form.submit())}>Submit</KButton>
+	<KButton
+		on:click={() => {
+			console.log(form.submit());
+			console.log(form);
+		}}>Submit</KButton
+	>
 	<KButton
 		on:click={() => {
 			form.setValues({
@@ -133,7 +136,12 @@
 				Ikun: true,
 				select: 'Large'
 			});
-		}}>setValue</KButton
+		}}>SetValue</KButton
+	>
+	<KButton
+		on:click={() => {
+			form.resetValues();
+		}}>ResetValues</KButton
 	>
 	----Form----
 </KForm>

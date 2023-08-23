@@ -1,9 +1,12 @@
-import type { IKunFormInstance } from '@ikun-ui/utils';
+import type { FormContext, IKunFormInstance } from '@ikun-ui/utils';
 import { get, writable } from 'svelte/store';
 import _ from 'lodash';
 export const createForm: () => IKunFormInstance = () => {
 	const FormInstance: IKunFormInstance = {
+		// store all Field values
 		values: writable({}),
+		// record all FormContexts , we can grab all FormContexts to control every Field.
+		contexts: {},
 		/**
 		 * call cb when values change
 		 * if param path exist,callback will pass specific value
@@ -35,6 +38,17 @@ export const createForm: () => IKunFormInstance = () => {
 		setValues: (values: any) => {
 			const oldValues: any = get(FormInstance.values) || {};
 			FormInstance.values.set({ ...oldValues, ...values });
+		},
+		setContext: (path: string, context: FormContext) => {
+			_.set(FormInstance.contexts, path, context);
+		},
+		resetValues: () => {
+			walkContexts(FormInstance.contexts as any, (node) => {
+				FormInstance.setValue(node.path, node.initialValue);
+			});
+		},
+		resetValue: (path: string) => {
+			console.log(path, FormInstance.contexts);
 		}
 	};
 	return FormInstance;
@@ -52,4 +66,29 @@ export const getFormItemPath = (oldPath: string, field: string) => {
 		//we can resolve path e.g (a.0.b.c) by lodash
 		return oldPath + `.${field}`;
 	}
+};
+
+type Contexts = {
+	[key: string]: FormContext | Contexts;
+};
+
+/**
+ * Get all the Contexts in the edge
+ * @param contexts
+ * @returns
+ */
+export const walkContexts = (contexts: Contexts, callback: (node: FormContext) => void) => {
+	function traverse(node: Contexts | FormContext) {
+		if (node.__FormContext__ === true) {
+			callback(node as FormContext);
+			return;
+		}
+		if (_.isObject(node)) {
+			Object.values(node).forEach((children) => {
+				traverse(children);
+			});
+		}
+	}
+
+	traverse(contexts);
 };
