@@ -7,7 +7,7 @@ export type MsgBoxEmoType = IKunTypeBase;
 export type MsgBoxType = 'confirm' | 'alert' | 'prompt';
 export type MsgBoxLayout = 'center' | 'right';
 export type ValidatorFn = (v: string) => boolean;
-export declare type MsgBoxOptions<T> = {
+export declare type MsgBoxOptions<T, C> = {
 	/**
 	 * Content of message-box title
 	 * which can be a html string or a svelte component
@@ -32,7 +32,7 @@ export declare type MsgBoxOptions<T> = {
 	 * The content of the message-box,
 	 * which can be a html string or a svelte component
 	 */
-	content?: string | T;
+	content?: string | C;
 	/**
 	 * cancel button text
 	 * @default cancel
