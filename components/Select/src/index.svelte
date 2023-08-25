@@ -11,23 +11,26 @@
 	// updateValue
 	const dispatch = createEventDispatcher();
 	const handleSelect = (e: Event) => {
-		dispatch('updateValue', (e.target as HTMLSelectElement).value)
-	}
+		if (disabled) return;
+		dispatch('updateValue', (e.target as HTMLSelectElement).value);
+	};
 </script>
 
-<div {...attrs}
-	 class="
+<div
+	{...attrs}
+	class="
 	 k-select--base
 	 k-select--base__dark
 	 k-select__hover
-	 k-select__focus {cls} {disabled ? 'k-select--base__disabled k-select--base__disabled__dark' : ''}">
+	 k-select__focus {cls} {disabled ? 'k-select--base__disabled k-select--base__disabled__dark' : ''}"
+>
 	<slot name="prefix">
 		{#if iconPrefix}
 			<KIcon icon={iconPrefix} cls="k-select--prefix" />
 		{/if}
 	</slot>
 	<select
-		bind:value={value}
+		bind:value
 		{disabled}
 		on:change={handleSelect}
 		class="
