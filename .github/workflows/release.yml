@@ -22,11 +22,6 @@ jobs:
           node-version: 16.x
           cache: pnpm
 
-      - run: npx changelogithub
-        continue-on-error: true
-        env:
-          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
-
       - name: Install
         run: pnpm install --no-frozen-lockfile
 
@@ -68,3 +63,9 @@ jobs:
 
       - name: Publish to npm
         run: pnpm run publish:script
+
+      - run: npx changelogithub
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+
