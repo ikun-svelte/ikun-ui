@@ -29,7 +29,7 @@
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.14",
-		"b-tween": "^0.3.3"
+		"smoke-distance": "^1.0.3"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.0",

@@ -1,7 +1,8 @@
 <script lang="ts">
   import { getPrefixCls, createCls } from '@ikun-ui/utils';
   import { KIcon } from '@ikun-ui/icon';
-  import BTween from 'b-tween'
+  import { SmokeDistance } from 'smoke-distance'
+  import type { easingType } from 'smoke-distance'
   import {createEventDispatcher, onDestroy, onMount} from "svelte";
   export let cls: string = '';
   export let attrs: Record<string, string> = {};
@@ -23,17 +24,17 @@
   const scrollToTop = () => {
     if (!targetEl) return
     const { scrollTop } = targetEl
-    const tween = new BTween({
+    const smoke = new SmokeDistance({
       from: { scrollTop },
       to: { scrollTop: 0 },
-      easing: easing,
+      easing: easing as easingType,
       duration: duration,
       onUpdate: (keys: any) => {
         if (targetEl)
           targetEl.scrollTop = keys.scrollTop
       },
     })
-    tween.start()
+    smoke.start()
   }
 
   const dispatch = createEventDispatcher();
@@ -43,8 +44,8 @@
   }
 
   const setContainer = () => {
-    container = document.body
-    targetEl = document.body
+    container = document
+    targetEl = document.documentElement
     if (target) {
       targetEl = document.querySelector<HTMLElement>(target) ?? undefined
       if (!targetEl){

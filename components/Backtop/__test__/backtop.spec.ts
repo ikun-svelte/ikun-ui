@@ -11,7 +11,7 @@ beforeEach(() => {
 	initHost();
 });
 afterEach(() => {
-	document.body.innerHTML = ''
+	document.body.innerHTML = '';
 });
 
 describe('Test: KBacktop', () => {
@@ -35,18 +35,18 @@ describe('Test: KBacktop', () => {
 		});
 
 		await tick();
-		expect(document.body.innerHTML.includes('k-backtop')).not.toBeTruthy();
+		expect(document.documentElement.innerHTML.includes('k-backtop')).not.toBeTruthy();
 
-		document.body.scrollTop = 50;
-		document.body.dispatchEvent(new Event('scroll', { bubbles: true }));
+		document.documentElement.scrollTop = 50;
+		document.documentElement.dispatchEvent(new Event('scroll', { bubbles: true }));
 		await tick();
 		expect(document.body.innerHTML.includes('k-backtop')).not.toBeTruthy();
 
-		document.body.scrollTop = 110;
-		document.body.dispatchEvent(new Event('scroll', { bubbles: true }));
+		document.documentElement.scrollTop = 110;
+		document.documentElement.dispatchEvent(new Event('scroll', { bubbles: true }));
 		await tick();
-		expect(document.body.innerHTML.includes('k-backtop')).toBeTruthy();
-		expect(document.body.innerHTML.includes('right: 66px; bottom: 66px;')).toBeTruthy();
+		expect(document.documentElement.innerHTML.includes('k-backtop')).toBeTruthy();
+		expect(document.documentElement.innerHTML.includes('right: 66px; bottom: 66px;')).toBeTruthy();
 	});
 
 	test('events: click', async () => {
@@ -56,29 +56,29 @@ describe('Test: KBacktop', () => {
 		});
 		await tick();
 		instance.$on('click', mockFn);
-		expect(document.body.innerHTML.includes('k-backtop')).not.toBeTruthy();
+		expect(document.documentElement.innerHTML.includes('k-backtop')).not.toBeTruthy();
 
-		document.body.scrollTop = 210;
-		document.body.dispatchEvent(new Event('scroll', { bubbles: true }));
+		document.documentElement.scrollTop = 210;
+		document.documentElement.dispatchEvent(new Event('scroll', { bubbles: true }));
 		await tick();
-		expect(document.body.innerHTML.includes('k-backtop')).toBeTruthy();
-		const triggerEl = document.body.children[0]
+		expect(document.documentElement.innerHTML.includes('k-backtop')).toBeTruthy();
+		const triggerEl = document.body.children[0];
 		triggerEl.dispatchEvent(new Event('click', { bubbles: true }));
 		await tick();
-		expect(mockFn).toBeCalled()
+		expect(mockFn).toBeCalled();
 	});
 
 	test('slot: custom render', async () => {
 		new KBacktopSlot({
-			target: document.body,
+			target: document.body
 		});
 
 		await tick();
-		expect(document.body.innerHTML.includes('k-backtop')).not.toBeTruthy();
-		document.body.scrollTop = 50;
-		document.body.dispatchEvent(new Event('scroll', { bubbles: true }));
+		expect(document.documentElement.innerHTML.includes('k-backtop')).not.toBeTruthy();
+		document.documentElement.scrollTop = 50;
+		document.documentElement.dispatchEvent(new Event('scroll', { bubbles: true }));
 		await tick();
-		expect(document.body.innerHTML.includes('k-backtop')).toBeTruthy();
-		expect(document.body.innerHTML.includes('__BACKTO_TEST')).toBeTruthy();
+		expect(document.documentElement.innerHTML.includes('k-backtop')).toBeTruthy();
+		expect(document.documentElement.innerHTML.includes('__BACKTO_TEST')).toBeTruthy();
 	});
 });
