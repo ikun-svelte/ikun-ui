@@ -50,5 +50,5 @@ export const buttonShortcuts: Record<string, string> = {
 	'k-button--info__hover': 'hover:border-ikun-info',
 	'k-button--info__icon': 'text-ikun-info',
 	'k-button--info__border': 'border-ikun-info',
-	'k-button--info__animate': 'animate-ikun-clicking--info',
+	'k-button--info__animate': 'animate-ikun-clicking--info'
 };

@@ -101,7 +101,7 @@ const getAnimation = (themeColor: string) => {
           60% { box-shadow: 0 0 0 4px rgba(45,212,191,0.2)}
           80% { box-shadow: 0 0 0 6px rgba(45,212,191,0.1)}
           100% { box-shadow: 0 0 0 10px rgba(45,212,191,0.05)}
-			}`,
+			}`
 		},
 		durations: {
 			'ikun-clicking--success': '.3s',
