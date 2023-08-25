@@ -117,8 +117,10 @@
 
 <KButtonGroup cls="my-10px">
 	<KButton icon="i-carbon-settings" type="primary" round="10">drawer</KButton>
-	<KButton icon="i-carbon-settings" type="primary">drawer</KButton>
-	<KButton icon="i-carbon-settings" type="primary">drawer</KButton>
+	<KButton icon="i-carbon-settings" type="info">drawer</KButton>
+	<KButton icon="i-carbon-settings" type="success">drawer</KButton>
+	<KButton icon="i-carbon-settings" type="error">drawer</KButton>
+	<KButton icon="i-carbon-settings" type="warning">drawer</KButton>
 </KButtonGroup>
 
 <KIcon icon="i-carbon-settings" btn></KIcon>
