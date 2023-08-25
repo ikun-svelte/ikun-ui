@@ -30,9 +30,6 @@ jobs:
       - name: Install
         run: pnpm install --no-frozen-lockfile
 
-      - name: unit test
-        run: pnpm run test
-
       - name: Set Timezone
         run: |
           sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -42,6 +39,9 @@ jobs:
 
       - name: Build
         run: pnpm run build
+
+      - name: unit test
+        run: pnpm run test
 
       - name: Set npmrc for components
         run: |
