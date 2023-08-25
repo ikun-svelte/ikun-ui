@@ -14,7 +14,7 @@
 	// Set path according to `formContext.path` and `field`
 	const currentPath = getFormItemPath(formContext?.path || '', field);
 	// Set form component context
-	const currentContext = {
+	const currentContext: FormContext = {
 		form,
 		__FormContext__: true,
 		initialValue: undefined,
