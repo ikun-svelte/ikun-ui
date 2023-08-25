@@ -104,7 +104,8 @@
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
 		"@ikun-ui/spin": "workspace:*",
-		"@ikun-ui/breadcrumb-item": "workspace:*"
+		"@ikun-ui/breadcrumb-item": "workspace:*",
+		"@ikun-ui/backtop": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",
