@@ -48,7 +48,8 @@ export const createForm: () => IKunFormInstance = () => {
 			});
 		},
 		resetValue: (path: string) => {
-			console.log(path, FormInstance.contexts);
+			const targetContext = _.get(FormInstance.contexts, path);
+			FormInstance.setValue(path, targetContext.initialValue);
 		}
 	};
 	return FormInstance;
