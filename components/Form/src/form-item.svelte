@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext, setContext } from 'svelte';
 	import type { IKunFormInstance, FormContext } from '@ikun-ui/utils';
-	import { getFormItemPath } from './helper';
+	import { getContextsPath, getFormItemPath } from './helper';
 
 	export let label: string = '';
 	export let field: string = '';
@@ -31,8 +31,6 @@
 			// save this initValue, it will used in form.resetValues.
 			currentContext.initialValue = initValue;
 			form.setValue(currentPath, initValue);
-			// record all leaf Context.
-			form.setContext(currentPath, currentContext as FormContext);
 		},
 		// The subscription method will be called in the component
 		// and register related callback functions
@@ -44,6 +42,10 @@
 			});
 		}
 	};
+	// record Context to form.contexts
+	form.setContext(getContextsPath(currentPath), currentContext as FormContext);
+
+	// setContexts for nested component.
 	setContext('FormContext', currentContext);
 </script>
 

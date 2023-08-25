@@ -1,4 +1,4 @@
-import type { FormContext, IKunFormInstance } from '@ikun-ui/utils';
+import type { Contexts, FormContext, IKunFormInstance } from '@ikun-ui/utils';
 import { get, writable } from 'svelte/store';
 import _ from 'lodash';
 export const createForm: () => IKunFormInstance = () => {
@@ -6,7 +6,7 @@ export const createForm: () => IKunFormInstance = () => {
 		// store all Field values
 		values: writable({}),
 		// record all FormContexts , we can grab all FormContexts to control every Field.
-		contexts: {},
+		contexts: {} as Contexts,
 		/**
 		 * call cb when values change
 		 * if param path exist,callback will pass specific value
@@ -39,16 +39,18 @@ export const createForm: () => IKunFormInstance = () => {
 			const oldValues: any = get(FormInstance.values) || {};
 			FormInstance.values.set({ ...oldValues, ...values });
 		},
+		// we use it to collect context.
 		setContext: (path: string, context: FormContext) => {
 			_.set(FormInstance.contexts, path, context);
 		},
 		resetValues: () => {
-			walkContexts(FormInstance.contexts as any, (node) => {
-				FormInstance.setValue(node.path, node.initialValue);
-			});
+			// walkContexts(FormInstance.contexts as any, (node) => {
+			// 	FormInstance.setValue(node.path, node.initialValue);
+			// });
+			FormInstance.resetValue('name');
 		},
 		resetValue: (path: string) => {
-			const targetContext = _.get(FormInstance.contexts, path);
+			const targetContext = _.get(FormInstance.contexts, getContextsPath(path));
 			FormInstance.setValue(path, targetContext.initialValue);
 		}
 	};
@@ -69,27 +71,29 @@ export const getFormItemPath = (oldPath: string, field: string) => {
 	}
 };
 
-type Contexts = {
-	[key: string]: FormContext | Contexts;
-};
-
 /**
- * Get all the Contexts in the edge
+ * wark all contexts.
  * @param contexts
  * @returns
  */
-export const walkContexts = (contexts: Contexts, callback: (node: FormContext) => void) => {
-	function traverse(node: Contexts | FormContext) {
-		if (node.__FormContext__ === true) {
-			callback(node as FormContext);
-			return;
-		}
-		if (_.isObject(node)) {
-			Object.values(node).forEach((children) => {
-				traverse(children);
-			});
-		}
+export const walkContexts = (
+	contexts: { [key: string]: Contexts },
+	callback: (node: FormContext) => void
+) => {
+	function traverse(node: Contexts) {
+		if (node.__FormContext__) return;
+		const currentContext = node.__this__;
+		const anotherNodesKeys = Object.keys(node).filter((key) => key !== '__this__');
+		anotherNodesKeys.forEach((item) => {
+			traverse(node[item]);
+		});
+		callback(currentContext);
 	}
-
-	traverse(contexts);
+	Object.values(contexts).forEach(traverse);
 };
+/**
+ * get contexts path,as contexts has attribute __this__ which is FormContexts.
+ * @param path
+ * @returns
+ */
+export const getContextsPath = (path: string) => path + '.__this__';

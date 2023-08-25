@@ -6,7 +6,9 @@ export type IKunPlacement = 'top' | 'left' | 'right' | 'bottom';
 export type IKunTrigger = 'manual' | 'click' | 'hover';
 export type IKunUpdateField = (value?: any) => void;
 export type Contexts = {
-	[key: string]: FormContext;
+	[key: string]: Contexts;
+} & {
+	__this__: FormContext;
 };
 export type IKunFormInstance = {
 	values: any;
