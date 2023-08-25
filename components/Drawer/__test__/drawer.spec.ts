@@ -73,7 +73,7 @@ describe('Test: KDrawer', () => {
 		expect(mockFn).toBeCalled();
 	});
 
-	test('slot: content', async () => {
+  test('slot: content', async () => {
 		const instance = new KDrawerContent({
 			target: host
 		});
@@ -81,5 +81,17 @@ describe('Test: KDrawer', () => {
 		expect(instance).toBeTruthy();
 		expect(document.getElementById('k_drawer_content'));
 		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slot: header', async () => {
+		const instance = new KDrawer({
+			target: host,
+			props: {
+				value: true
+			}
+		});
+		await tick();
+		expect(instance).toBeTruthy();
+		expect(host.innerHTML.includes('k-drawer--op')).toBeTruthy();
 	});
 });
