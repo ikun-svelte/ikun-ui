@@ -1,6 +1,7 @@
 import { tick } from 'svelte';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import KInput from '../src';
+import KInputSlots from './input.slots.svelte';
 
 let host: HTMLElement;
 
@@ -214,5 +215,46 @@ describe('Test: KInput', () => {
 		expect(mockFn).toBeCalled();
 		expect(inputElm).toBeTruthy();
 		expect(value).toEqual('ikun');
+	});
+
+	test('event: should not trigger event when disabled', async () => {
+		const mockFn = vi.fn();
+		const instance = new KInput({
+			target: host,
+			props: {
+				disabled: true
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		instance.$on('input', mockFn);
+		instance.$on('change', mockFn);
+		instance.$on('enter', mockFn);
+		const inputElm = host.getElementsByTagName('input')[0];
+		inputElm.dispatchEvent(new Event('input'));
+		inputElm.dispatchEvent(
+			new KeyboardEvent('keydown', {
+				bubbles: true,
+				cancelable: true,
+				key: 'Enter',
+				code: 'KeyEnter'
+			})
+		);
+		inputElm.value = 'ikun';
+
+		inputElm.dispatchEvent(new Event('change'));
+		await tick();
+		expect(mockFn).not.toBeCalled();
+	});
+
+	test('slot: prefix and suffix', async () => {
+		const instance = new KInputSlots({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		const prefixElm = host.getElementsByClassName('prefix')[0];
+		const suffixElm = host.getElementsByClassName('suffix')[0];
+		expect(prefixElm).toBeTruthy();
+		expect(suffixElm).toBeTruthy();
 	});
 });
