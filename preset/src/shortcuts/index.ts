@@ -25,7 +25,7 @@ import { selectShortcuts } from './select';
 import { msgBoxShortcuts } from './message-box';
 import { formShortcuts } from './form';
 import { spinShortcuts } from './spin';
-
+import { backtopShortcuts } from './backtop';
 export default [
 	baseShortcuts,
 	commonShortcuts,
@@ -74,7 +74,9 @@ export default [
 	// form fromItem
 	formShortcuts,
 	// spin
-	spinShortcuts
+	spinShortcuts,
+	// backtop
+	backtopShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -101,6 +103,7 @@ export function getSafeList() {
 	const msgBoxList = Object.keys(msgBoxShortcuts);
 	const formList = Object.keys(formShortcuts);
 	const spinList = Object.keys(spinShortcuts);
+	const backtopList = Object.keys(backtopShortcuts);
 	return iconList
 		.concat(msgBoxList)
 		.concat(selectList)
@@ -123,7 +126,8 @@ export function getSafeList() {
 		.concat(collapseList)
 		.concat(checkboxList)
 		.concat(formList)
-		.concat(spinList);
+		.concat(spinList)
+		.concat(backtopList);
 }
 
 export { baseShortcuts } from './base';
@@ -151,3 +155,4 @@ export { selectShortcuts } from './select';
 export { msgBoxShortcuts } from './message-box';
 export { formShortcuts } from './form';
 export { spinShortcuts } from './spin';
+export { backtopShortcuts } from './backtop';

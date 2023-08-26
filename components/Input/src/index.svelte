@@ -21,14 +21,17 @@
 	const formContext: FormContext = getContext('FormContext');
 	const dispatch = createEventDispatcher();
 	const onUpdated = (e: Event) => {
+		if (disabled) return;
 		dispatch('input', (e.target as HTMLInputElement).value);
 		formContext?.updateField((e.target as HTMLInputElement).value);
 	};
 	const onEnter = (e: KeyboardEvent) => {
+		if (disabled) return;
 		if (e.key === 'Enter') dispatch('enter', e);
 		else dispatch('keydown', e);
 	};
 	const onChange = (e: Event) => {
+		if (disabled) return;
 		dispatch('change', e);
 	};
 	let valueInner = value;
