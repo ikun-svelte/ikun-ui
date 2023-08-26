@@ -19,8 +19,8 @@ export type IKunFormInstance = {
 	setContext: (path: string, context: FormContext) => void;
 	resetValue: (path: string) => void;
 	resetValues: () => void;
-	subscribe: ((callback: (values: any) => void) => void) &
-		((path: string, callback: (values: any) => void) => void);
+	subscribe: (path: string, callback: (values: any) => void) => void;
+	subscribes: (callback: (values: any) => void) => void;
 };
 
 export type FormContext = {

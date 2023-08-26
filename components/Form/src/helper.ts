@@ -8,22 +8,19 @@ export const createForm: () => IKunFormInstance = () => {
 		// record all FormContexts , we can grab all FormContexts to control every Field.
 		contexts: {} as Contexts,
 		/**
-		 * call cb when values change
-		 * if param path exist,callback will pass specific value
-		 * else pass values
-		 * @param args [callback] or [path,callback]
+		 * call cb when values change,callback will pass specific value
 		 */
-		subscribe: function (...args: any[]) {
-			if (args.length === 0) throw new Error('subscribe need at least one argument');
-			const callback = args.length === 1 ? args[0] : args[1];
-			const path = args[0];
-			if (arguments.length === 1) {
-				FormInstance.values.subscribe(callback);
-			} else if (arguments.length === 2) {
-				FormInstance.values.subscribe((values: any) => {
-					callback(_.get(values, path));
-				});
-			}
+		subscribe: function (path, callback) {
+			FormInstance.values.subscribe((values: any) => {
+				callback(_.get(values, path));
+			});
+		},
+		/**
+		 * call cb when values change,callback will pass all values
+		 * @param callback
+		 */
+		subscribes: function (callback) {
+			FormInstance.values.subscribe(callback);
 		},
 		// The form submit method, which returns the form value object
 		submit: () => get(FormInstance.values),
