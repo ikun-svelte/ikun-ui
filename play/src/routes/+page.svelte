@@ -110,7 +110,7 @@
 	<KFormItem label={'darkMode'} field={'darkMode'}>
 		<KSwitch></KSwitch>
 	</KFormItem>
-	<KFormItem label={'Ikun'} field={'Ikun'}>
+	<KFormItem label={'isIKun'} field={'IKun'}>
 		<KRadio></KRadio>
 	</KFormItem>
 	<KFormItem label={'select'} field={'select'}>
@@ -136,7 +136,7 @@
 				another: { a: 1, b: 2 },
 				accept: true,
 				darkMode: true,
-				Ikun: true,
+				IKun: true,
 				select: 'Large'
 			});
 		}}>SetValue</KButton

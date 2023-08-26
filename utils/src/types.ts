@@ -35,4 +35,5 @@ export type FormContext = {
 	updateField: IKunUpdateField;
 	subscribe: (value?: any) => void;
 	initialField: (value?: any) => void;
+	resetField: () => void;
 };

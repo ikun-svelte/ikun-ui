@@ -48,13 +48,13 @@ export const createForm: () => IKunFormInstance = () => {
 		// reset all Field using context.initialValue
 		resetValues: () => {
 			walkEdgeContexts(FormInstance.contexts, (node) => {
-				FormInstance.setValue(node.path, node.initialValue);
+				node.resetField();
 			});
 		},
 		// reset specific Field using context.initialValue
 		resetValue: (path: string) => {
-			const targetContext = _.get(FormInstance.contexts, getContextsPath(path));
-			FormInstance.setValue(path, targetContext.initialValue);
+			const targetContext: any = _.get(FormInstance.contexts, getContextsPath(path));
+			targetContext.resetField();
 		},
 		validateValues: () => {
 			const errors: any[] = [];

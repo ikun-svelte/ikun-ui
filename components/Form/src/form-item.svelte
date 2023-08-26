@@ -60,6 +60,10 @@
 			form.subscribe(currentPath, (value: any) => {
 				callback(value);
 			});
+		},
+		resetField: () => {
+			errorMessage = '';
+			form.setValue(currentPath, currentContext.initialValue);
 		}
 	};
 	// record Context to form.contexts
