@@ -18,9 +18,7 @@
 	};
 	// when filed change,dom value will change.
 	formContext?.subscribe((val: any) => {
-		if (val) {
-			value = val;
-		}
+		value = val;
 	});
 	//initial field
 	formContext?.initialField(value);
