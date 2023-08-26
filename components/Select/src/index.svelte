@@ -13,6 +13,7 @@
 	// updateValue
 	const dispatch = createEventDispatcher();
 	const handleSelect = (e: Event) => {
+		if (disabled) return;
 		dispatch('updateValue', (e.target as HTMLSelectElement).value);
 		formContext?.updateField((e.target as HTMLSelectElement).value);
 	};
