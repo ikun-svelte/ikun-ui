@@ -77,12 +77,11 @@
 		"unocss": "^0.54.1"
 	},
 	"dependencies": {
-		"@ikun-ui/form": "workspace:*",
-		"baiwusanyu-utils": "^1.0.14",
-		"@ikun-ui/utils": "workspace:*",
 		"@ikun-ui/avatar": "workspace:*",
+		"@ikun-ui/backtop": "workspace:*",
 		"@ikun-ui/badge": "workspace:*",
 		"@ikun-ui/breadcrumb": "workspace:*",
+		"@ikun-ui/breadcrumb-item": "workspace:*",
 		"@ikun-ui/button": "workspace:*",
 		"@ikun-ui/button-group": "workspace:*",
 		"@ikun-ui/checkbox": "workspace:*",
@@ -90,6 +89,7 @@
 		"@ikun-ui/collapse": "workspace:*",
 		"@ikun-ui/drawer": "workspace:*",
 		"@ikun-ui/eye-dropper": "workspace:*",
+		"@ikun-ui/form": "workspace:*",
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/input": "workspace:*",
 		"@ikun-ui/mask": "workspace:*",
@@ -101,12 +101,14 @@
 		"@ikun-ui/preset": "workspace:*",
 		"@ikun-ui/radio": "workspace:*",
 		"@ikun-ui/select": "workspace:*",
+		"@ikun-ui/spin": "workspace:*",
 		"@ikun-ui/switch": "workspace:*",
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
-		"@ikun-ui/spin": "workspace:*",
-		"@ikun-ui/breadcrumb-item": "workspace:*",
-		"@ikun-ui/backtop": "workspace:*"
+		"@ikun-ui/utils": "workspace:*",
+		"@popperjs/core": "^2.11.8",
+		"baiwusanyu-utils": "^1.0.14",
+		"hash-sum": "^2.0.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",

@@ -1,7 +1,7 @@
 lockfileVersion: '6.0'
 
 settings:
-  autoInstallPeers: true
+  autoInstallPeers: false
   excludeLinksFromLockfile: false
 
 importers:
@@ -95,9 +95,15 @@ importers:
       '@ikun-ui/utils':
         specifier: workspace:*
         version: link:utils
+      '@popperjs/core':
+        specifier: ^2.11.8
+        version: 2.11.8
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14(hash-sum@2.0.0)
+      hash-sum:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@playwright/test':
         specifier: ^1.37.0
@@ -191,22 +197,22 @@ importers:
         version: 4.1.2
       svelte-check:
         specifier: ^3.4.6
-        version: 3.4.6(postcss@8.4.27)(svelte@4.1.2)
+        version: 3.4.6(svelte@4.1.2)
       svelte-preprocess:
         specifier: latest
-        version: 5.0.4(postcss@8.4.27)(svelte@4.1.2)(typescript@5.1.6)
+        version: 5.0.4(svelte@4.1.2)(typescript@5.1.6)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
       tsup:
         specifier: ^7.2.0
-        version: 7.2.0(postcss@8.4.27)(typescript@5.1.6)
+        version: 7.2.0(typescript@5.1.6)
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
       unocss:
         specifier: ^0.55.0
-        version: 0.55.0(postcss@8.4.27)(vite@4.4.9)
+        version: 0.55.0(vite@4.4.9)
       vite:
         specifier: ^4.4.9
         version: 4.4.9(@types/node@20.4.9)
@@ -224,14 +230,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -249,7 +255,7 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
       smoke-distance:
         specifier: ^1.0.3
         version: 1.0.3
@@ -259,7 +265,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -274,14 +280,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -299,14 +305,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -324,14 +330,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -349,14 +355,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -374,14 +380,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -399,14 +405,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -424,14 +430,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -449,14 +455,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -480,14 +486,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -502,14 +508,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -527,7 +533,7 @@ importers:
         version: 4.14.197
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -537,7 +543,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -552,14 +558,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -577,14 +583,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -599,14 +605,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -624,14 +630,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -658,14 +664,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -692,14 +698,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -717,14 +723,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -739,17 +745,17 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
       svelte-popperjs:
         specifier: ^1.3.2
-        version: 1.3.2(@popperjs/core@2.11.8)(svelte@4.0.0-next.3)
+        version: 1.3.2
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -767,14 +773,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -792,14 +798,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -823,14 +829,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -848,14 +854,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -873,14 +879,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -898,14 +904,14 @@ importers:
         version: link:../../utils
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -999,7 +1005,7 @@ importers:
         version: 3.3.4
       baiwusanyu-utils:
         specifier: ^1.0.14
-        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+        version: 1.0.14
       fs-extra:
         specifier: ^11.1.1
         version: 11.1.1
@@ -1011,13 +1017,13 @@ importers:
         version: 4.1.2
       svelte-popperjs:
         specifier: ^1.3.2
-        version: 1.3.2(@popperjs/core@2.11.8)(svelte@4.1.2)
+        version: 1.3.2(svelte@4.1.2)
       vite:
         specifier: ^4.4.9
-        version: 4.4.9(@types/node@20.4.9)
+        version: 4.4.9
       vitepress:
         specifier: 1.0.0-beta.7
-        version: 1.0.0-beta.7(@algolia/client-search@4.19.1)(@types/node@20.4.9)(search-insights@2.7.0)
+        version: 1.0.0-beta.7
       vue:
         specifier: ^3.3.4
         version: 3.3.4
@@ -1071,10 +1077,10 @@ importers:
         version: 4.1.2
       svelte-check:
         specifier: ^3.4.6
-        version: 3.4.6(postcss@8.4.26)(svelte@4.1.2)
+        version: 3.4.6(svelte@4.1.2)
       svelte-popperjs:
         specifier: ^1.3.2
-        version: 1.3.2(@popperjs/core@2.11.8)(svelte@4.1.2)
+        version: 1.3.2(svelte@4.1.2)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -1083,10 +1089,10 @@ importers:
         version: 5.1.6
       vite:
         specifier: ^4.4.9
-        version: 4.4.9(@types/node@20.4.9)
+        version: 4.4.9
       vitest:
         specifier: ^0.34.1
-        version: 0.34.1(@vitest/ui@0.34.1)(jsdom@22.1.0)
+        version: 0.34.1
 
   playground: {}
 
@@ -1101,47 +1107,44 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@algolia/autocomplete-core@1.9.3(@algolia/client-search@4.19.1)(algoliasearch@4.19.1)(search-insights@2.7.0):
+  /@algolia/autocomplete-core@1.9.3(algoliasearch@4.19.1):
     resolution: {integrity: sha512-009HdfugtGCdC4JdXUbVJClA0q0zh24yyePn+KUGk3rP7j8FEe/m5Yo/z65gn6nP/cM39PxpzqKrL7A6fP6PPw==}
     dependencies:
-      '@algolia/autocomplete-plugin-algolia-insights': 1.9.3(@algolia/client-search@4.19.1)(algoliasearch@4.19.1)(search-insights@2.7.0)
-      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@4.19.1)(algoliasearch@4.19.1)
+      '@algolia/autocomplete-plugin-algolia-insights': 1.9.3(algoliasearch@4.19.1)
+      '@algolia/autocomplete-shared': 1.9.3(algoliasearch@4.19.1)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - algoliasearch
       - search-insights
     dev: true
 
-  /@algolia/autocomplete-plugin-algolia-insights@1.9.3(@algolia/client-search@4.19.1)(algoliasearch@4.19.1)(search-insights@2.7.0):
+  /@algolia/autocomplete-plugin-algolia-insights@1.9.3(algoliasearch@4.19.1):
     resolution: {integrity: sha512-a/yTUkcO/Vyy+JffmAnTWbr4/90cLzw+CC3bRbhnULr/EM0fGNvM13oQQ14f2moLMcVDyAx/leczLlAOovhSZg==}
     peerDependencies:
       search-insights: '>= 1 < 3'
     dependencies:
-      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@4.19.1)(algoliasearch@4.19.1)
-      search-insights: 2.7.0
+      '@algolia/autocomplete-shared': 1.9.3(algoliasearch@4.19.1)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - algoliasearch
     dev: true
 
-  /@algolia/autocomplete-preset-algolia@1.9.3(@algolia/client-search@4.19.1)(algoliasearch@4.19.1):
+  /@algolia/autocomplete-preset-algolia@1.9.3(algoliasearch@4.19.1):
     resolution: {integrity: sha512-d4qlt6YmrLMYy95n5TB52wtNDr6EgAIPH81dvvvW8UmuWRgxEtY0NJiPwl/h95JtG2vmRM804M0DSwMCNZlzRA==}
     peerDependencies:
       '@algolia/client-search': '>= 4.9.1 < 6'
       algoliasearch: '>= 4.9.1 < 6'
     dependencies:
-      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@4.19.1)(algoliasearch@4.19.1)
-      '@algolia/client-search': 4.19.1
+      '@algolia/autocomplete-shared': 1.9.3(algoliasearch@4.19.1)
       algoliasearch: 4.19.1
     dev: true
 
-  /@algolia/autocomplete-shared@1.9.3(@algolia/client-search@4.19.1)(algoliasearch@4.19.1):
+  /@algolia/autocomplete-shared@1.9.3(algoliasearch@4.19.1):
     resolution: {integrity: sha512-Wnm9E4Ye6Rl6sTTqjoymD+l8DjSTHsHboVRYrKgEt8Q7UHm9nYbqhN/i0fhUYA3OAEH7WA8x3jfpnmJm3rKvaQ==}
     peerDependencies:
       '@algolia/client-search': '>= 4.9.1 < 6'
       algoliasearch: '>= 4.9.1 < 6'
     dependencies:
-      '@algolia/client-search': 4.19.1
       algoliasearch: 4.19.1
     dev: true
 
@@ -1241,6 +1244,7 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
+    dev: true
 
   /@antfu/install-pkg@0.1.1:
     resolution: {integrity: sha512-LyB/8+bSfa0DFGC06zpCEfs89/XoWZwws5ygEa5D+Xsm3OfI+aXQ86VgVG7Acyef+rSZ5HE7J8rrxzrQeM3PjQ==}
@@ -1300,20 +1304,23 @@ packages:
       '@babel/helper-validator-identifier': 7.22.5
       to-fast-properties: 2.0.0
 
-  /@baiwusanyu/utils-com@1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0):
+  /@baiwusanyu/utils-com@1.0.14:
+    resolution: {integrity: sha512-pr6a3hQGZYl8FGjf/RmOIo3zRSzkAgD/IsADDBBkAFKCZfMFsb6p7+2cKboEOn3WWRcJHf6jHRUL3hu9VRl+yA==}
+    peerDependencies:
+      ansi-colors: ^4.1.3
+      hash-sum: ^2.0.0
+
+  /@baiwusanyu/utils-com@1.0.14(hash-sum@2.0.0):
     resolution: {integrity: sha512-pr6a3hQGZYl8FGjf/RmOIo3zRSzkAgD/IsADDBBkAFKCZfMFsb6p7+2cKboEOn3WWRcJHf6jHRUL3hu9VRl+yA==}
     peerDependencies:
       ansi-colors: ^4.1.3
       hash-sum: ^2.0.0
     dependencies:
-      ansi-colors: 4.1.3
       hash-sum: 2.0.0
+    dev: false
 
-  /@baiwusanyu/utils-date@1.0.14(ansi-colors@4.1.3)(moment@2.29.4):
+  /@baiwusanyu/utils-date@1.0.14:
     resolution: {integrity: sha512-iel5xv1wqS7GX2jI+S/Q1KR76CbVCj9gUldhOFXP0vKLgKzuHRyqnnhBm8fBRMHp+AlfQiCVPFLdoqoc17qyBg==}
-    peerDependencies:
-      ansi-colors: ^4.1.3
-      moment: ^2.29.4
     dependencies:
       ansi-colors: 4.1.3
       moment: 2.29.4
@@ -1321,12 +1328,10 @@ packages:
   /@baiwusanyu/utils-is@1.0.14:
     resolution: {integrity: sha512-aN+ZjnsC3I3Ly6COEoFaErz16FXGMXf/NDpSfIh+3Y5UpAfUPSahsARxyic0YSFstVlHeBvxvUGM7+ZIJGcAoA==}
 
-  /@baiwusanyu/utils-log@1.0.14(ansi-colors@4.1.3):
+  /@baiwusanyu/utils-log@1.0.14:
     resolution: {integrity: sha512-D/caUWtKE2B/XPjhp7eQIOANarpT+QTSakI37daVUqqrSCDZN+qdkpdtqD2PfThzBkt31T4WAjyKs9tM2oCMLg==}
     peerDependencies:
       ansi-colors: ^4.1.3
-    dependencies:
-      ansi-colors: 4.1.3
 
   /@baiwusanyu/utils-normalize@1.0.14:
     resolution: {integrity: sha512-jwvf9hM7tQgFY0qSfesSGqavPKO5dMGOG34EwYT9A0tYoGyT8cuwegmqCyUYo7bH9z+AN9Cio5yGflqHgsuVKg==}
@@ -1341,10 +1346,10 @@ packages:
     resolution: {integrity: sha512-2Pu9HDg/uP/IT10rbQ+4OrTQuxIWdKVUEdcw9/w7kZJv9NeHS6skJx1xuRiFyoGKwAzcHXnLp7csE99sj+O1YA==}
     dev: true
 
-  /@docsearch/js@3.5.1(@algolia/client-search@4.19.1)(search-insights@2.7.0):
+  /@docsearch/js@3.5.1:
     resolution: {integrity: sha512-EXi8de5njxgP6TV3N9ytnGRLG9zmBNTEZjR4VzwPcpPLbZxxTLG2gaFyJyKiFVQxHW/DPlMrDJA3qoRRGEkgZw==}
     dependencies:
-      '@docsearch/react': 3.5.1(@algolia/client-search@4.19.1)(search-insights@2.7.0)
+      '@docsearch/react': 3.5.1
       preact: 10.16.0
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -1354,7 +1359,7 @@ packages:
       - search-insights
     dev: true
 
-  /@docsearch/react@3.5.1(@algolia/client-search@4.19.1)(search-insights@2.7.0):
+  /@docsearch/react@3.5.1:
     resolution: {integrity: sha512-t5mEODdLzZq4PTFAm/dvqcvZFdPDMdfPE5rJS5SC8OUq9mPzxEy6b+9THIqNM9P0ocCb4UC5jqBrxKclnuIbzQ==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
@@ -1368,8 +1373,8 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@algolia/autocomplete-core': 1.9.3(@algolia/client-search@4.19.1)(algoliasearch@4.19.1)(search-insights@2.7.0)
-      '@algolia/autocomplete-preset-algolia': 1.9.3(@algolia/client-search@4.19.1)(algoliasearch@4.19.1)
+      '@algolia/autocomplete-core': 1.9.3(algoliasearch@4.19.1)
+      '@algolia/autocomplete-preset-algolia': 1.9.3(algoliasearch@4.19.1)
       '@docsearch/css': 3.5.1
       algoliasearch: 4.19.1
     transitivePeerDependencies:
@@ -1900,17 +1905,21 @@ packages:
       '@jridgewell/set-array': 1.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
       '@jridgewell/trace-mapping': 0.3.18
+    dev: true
 
   /@jridgewell/resolve-uri@3.1.0:
     resolution: {integrity: sha512-F2msla3tad+Mfht5cJq7LSXcdudKTWCVYUgw6pLFOOHSTtZlj6SWNYAp+AhuqLmWdBO2X5hPrLcu8cVP8fy28w==}
     engines: {node: '>=6.0.0'}
+    dev: true
 
   /@jridgewell/set-array@1.1.2:
     resolution: {integrity: sha512-xnkseuNADM0gt2bs+BvhO0p78Mk762YnZdsuzFV018NoG1Sj1SCQvpSqa7XUaTam5vAGasABV9qXASMKnFMwMw==}
     engines: {node: '>=6.0.0'}
+    dev: true
 
   /@jridgewell/sourcemap-codec@1.4.14:
     resolution: {integrity: sha512-XPSJHWmi394fuUuzDnGz1wiKqWfo1yXecHQMRf2l6hztTO+nPru658AyDngaBe7isIxEkRsPR3FZh+s7iVa4Uw==}
+    dev: true
 
   /@jridgewell/sourcemap-codec@1.4.15:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
@@ -1920,6 +1929,7 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
+    dev: true
 
   /@jsdevtools/ez-spawn@3.0.4:
     resolution: {integrity: sha512-f5DRIOZf7wxogefH03RjMPMdBF7ADTWUMoOs9kaJo06EfwF+aFhMZMDZxHg/Xe12hptN9xoZjGso2fdjapBRIA==}
@@ -1976,6 +1986,7 @@ packages:
 
   /@popperjs/core@2.11.8:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+    dev: false
 
   /@rollup/pluginutils@5.0.2:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
@@ -2137,6 +2148,7 @@ packages:
 
   /@types/estree@1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
+    dev: true
 
   /@types/json-schema@7.0.12:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
@@ -2356,11 +2368,9 @@ packages:
       sirv: 2.0.3
     dev: true
 
-  /@unocss/postcss@0.55.0(postcss@8.4.27):
+  /@unocss/postcss@0.55.0:
     resolution: {integrity: sha512-qytqO8riNLpy1m6qVfISVHw3dwNRHgpxcUaufSN7P8lgsbOimwh2nRE35f/HoKS1VV+5JVsVaHmUFQVxwiW6cw==}
     engines: {node: '>=14'}
-    peerDependencies:
-      postcss: ^8.4.21
     dependencies:
       '@unocss/config': 0.55.0
       '@unocss/core': 0.55.0
@@ -2494,7 +2504,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.4.9(@types/node@20.4.9)
+      vite: 4.4.9
       vue: 3.3.4
     dev: true
 
@@ -2721,6 +2731,7 @@ packages:
     resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+    dev: true
 
   /agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
@@ -2835,6 +2846,7 @@ packages:
     resolution: {integrity: sha512-b0P0sZPKtyu8HkeRAfCq0IfURZK+SuwMjY1UXGBU27wpAiTwQAIlq56IbIO+ytk/JjS1fMR14ee5WBBfKi5J6A==}
     dependencies:
       dequal: 2.0.3
+    dev: true
 
   /array-buffer-byte-length@1.0.0:
     resolution: {integrity: sha512-LPuwb2P+NrQw3XhxGc36+XSvuBPopovXYTR9Ew++Du9Yb/bx5AzBfrIsBoj0EZUifjQU+sHL21sseZ3jerWO/A==}
@@ -2877,21 +2889,36 @@ packages:
     resolution: {integrity: sha512-jsyHu61e6N4Vbz/v18DHwWYKK0bSWLqn47eeDSKPB7m8tqMHF9YJ+mhIk2lVteyZrY8tnSj/jHOv4YiTCuCJgg==}
     dependencies:
       dequal: 2.0.3
+    dev: true
 
-  /baiwusanyu-utils@1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4):
+  /baiwusanyu-utils@1.0.14:
     resolution: {integrity: sha512-vV+2cR1rSrrJ8awy0FoNPKgiKVyJZLQ2Za8xrOreHkZ5zTlSSs4/5dVkcCfVonTzfyVmCxeXesVHdgBoukJl+g==}
     dependencies:
-      '@baiwusanyu/utils-com': 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)
-      '@baiwusanyu/utils-date': 1.0.14(ansi-colors@4.1.3)(moment@2.29.4)
+      '@baiwusanyu/utils-com': 1.0.14
+      '@baiwusanyu/utils-date': 1.0.14
       '@baiwusanyu/utils-is': 1.0.14
-      '@baiwusanyu/utils-log': 1.0.14(ansi-colors@4.1.3)
+      '@baiwusanyu/utils-log': 1.0.14
       '@baiwusanyu/utils-normalize': 1.0.14
       '@baiwusanyu/utils-obj': 1.0.14
       '@baiwusanyu/utils-task': 1.0.14
     transitivePeerDependencies:
       - ansi-colors
       - hash-sum
-      - moment
+
+  /baiwusanyu-utils@1.0.14(hash-sum@2.0.0):
+    resolution: {integrity: sha512-vV+2cR1rSrrJ8awy0FoNPKgiKVyJZLQ2Za8xrOreHkZ5zTlSSs4/5dVkcCfVonTzfyVmCxeXesVHdgBoukJl+g==}
+    dependencies:
+      '@baiwusanyu/utils-com': 1.0.14(hash-sum@2.0.0)
+      '@baiwusanyu/utils-date': 1.0.14
+      '@baiwusanyu/utils-is': 1.0.14
+      '@baiwusanyu/utils-log': 1.0.14
+      '@baiwusanyu/utils-normalize': 1.0.14
+      '@baiwusanyu/utils-obj': 1.0.14
+      '@baiwusanyu/utils-task': 1.0.14
+    transitivePeerDependencies:
+      - ansi-colors
+      - hash-sum
+    dev: false
 
   /balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -3119,6 +3146,7 @@ packages:
       acorn: 8.10.0
       estree-walker: 3.0.3
       periscopic: 3.1.0
+    dev: true
 
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -3197,6 +3225,7 @@ packages:
     dependencies:
       mdn-data: 2.0.30
       source-map-js: 1.0.2
+    dev: true
 
   /cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -3316,6 +3345,7 @@ packages:
   /dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
     engines: {node: '>=6'}
+    dev: true
 
   /destr@2.0.0:
     resolution: {integrity: sha512-FJ9RDpf3GicEBvzI3jxc2XhHzbqD8p4ANw/1kPsFBfTvP1b7Gn/Lg1vO7R9J4IVgoMbyUmFrFGZafJ1hPZpvlg==}
@@ -3712,6 +3742,7 @@ packages:
     resolution: {integrity: sha512-7RUKfXgSMMkzt6ZuXmqapOurLGPPfgj6l9uRZ7lRGolvk0y2yocc35LdcxKC5PQZdn2DMqioAQ2NoWcrTKmm6g==}
     dependencies:
       '@types/estree': 1.0.1
+    dev: true
 
   /esutils@2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
@@ -4105,6 +4136,7 @@ packages:
 
   /hash-sum@2.0.0:
     resolution: {integrity: sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==}
+    dev: false
 
   /highlight.js@11.8.0:
     resolution: {integrity: sha512-MedQhoqVdr0U6SSnWPzfiadUcDHfN/Wzq25AkXiQv9oiOO/sG0S7XkvpFIqWBl9Yq1UYyYOOVORs5UW2XlPyzg==}
@@ -4343,6 +4375,7 @@ packages:
     resolution: {integrity: sha512-baJJdQLiYaJdvFbJqXrcGv3WU3QCzBlUcI5QhbesIm6/xPsvmO+2CDoi/GMOFBQEQm+PXkwOPrp9KK5ozZsp2w==}
     dependencies:
       '@types/estree': 1.0.1
+    dev: true
 
   /is-regex@1.1.4:
     resolution: {integrity: sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg==}
@@ -4567,6 +4600,7 @@ packages:
 
   /locate-character@3.0.0:
     resolution: {integrity: sha512-SW13ws7BjaeJ6p7Q6CO2nchbYEc3X3J6WrmTTDto7yMPqVSZTUyY5Tjbid+Ab8gLnATtygYtiDIJGQRRn2ZOiA==}
+    dev: true
 
   /locate-path@6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
@@ -4650,6 +4684,7 @@ packages:
 
   /mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
+    dev: true
 
   /memorystream@0.3.1:
     resolution: {integrity: sha512-S3UwM3yj5mtUSEfP41UZmt/0SCoVYUcU1rkXv+BQ5Ig8ndL4sPoJNBUJERafdPb5jjHJGuMgytgKvKIf58XNBw==}
@@ -5114,6 +5149,7 @@ packages:
       '@types/estree': 1.0.1
       estree-walker: 3.0.3
       is-reference: 3.0.1
+    dev: true
 
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
@@ -5170,7 +5206,7 @@ packages:
       yaml: 1.10.2
     dev: true
 
-  /postcss-load-config@4.0.1(postcss@8.4.27):
+  /postcss-load-config@4.0.1:
     resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -5183,7 +5219,6 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.27
       yaml: 2.3.1
     dev: true
 
@@ -5509,11 +5544,6 @@ packages:
     engines: {node: '>=v12.22.7'}
     dependencies:
       xmlchars: 2.2.0
-    dev: true
-
-  /search-insights@2.7.0:
-    resolution: {integrity: sha512-GLbVaGgzYEKMvuJbHRhLi1qoBFnjXZGZ6l4LxOYPCp4lI2jDRB3jPU9/XNhMwv6kvnA9slTreq6pvK+b3o3aqg==}
-    engines: {node: '>=8.16.0'}
     dev: true
 
   /semver@5.7.2:
@@ -5863,7 +5893,7 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-check@3.4.6(postcss@8.4.26)(svelte@4.1.2):
+  /svelte-check@3.4.6(svelte@4.1.2):
     resolution: {integrity: sha512-OBlY8866Zh1zHQTkBMPS6psPi7o2umTUyj6JWm4SacnIHXpWFm658pG32m3dKvKFL49V4ntAkfFHKo4ztH07og==}
     hasBin: true
     peerDependencies:
@@ -5876,34 +5906,7 @@ packages:
       picocolors: 1.0.0
       sade: 1.8.1
       svelte: 4.1.2
-      svelte-preprocess: 5.0.4(postcss@8.4.26)(svelte@4.1.2)(typescript@5.1.6)
-      typescript: 5.1.6
-    transitivePeerDependencies:
-      - '@babel/core'
-      - coffeescript
-      - less
-      - postcss
-      - postcss-load-config
-      - pug
-      - sass
-      - stylus
-      - sugarss
-    dev: true
-
-  /svelte-check@3.4.6(postcss@8.4.27)(svelte@4.1.2):
-    resolution: {integrity: sha512-OBlY8866Zh1zHQTkBMPS6psPi7o2umTUyj6JWm4SacnIHXpWFm658pG32m3dKvKFL49V4ntAkfFHKo4ztH07og==}
-    hasBin: true
-    peerDependencies:
-      svelte: ^3.55.0 || ^4.0.0-next.0 || ^4.0.0
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.18
-      chokidar: 3.5.3
-      fast-glob: 3.3.1
-      import-fresh: 3.3.0
-      picocolors: 1.0.0
-      sade: 1.8.1
-      svelte: 4.1.2
-      svelte-preprocess: 5.0.4(postcss@8.4.27)(svelte@4.1.2)(typescript@5.1.6)
+      svelte-preprocess: 5.0.4(svelte@4.1.2)(typescript@5.1.6)
       typescript: 5.1.6
     transitivePeerDependencies:
       - '@babel/core'
@@ -5943,27 +5946,23 @@ packages:
       svelte: 4.1.2
     dev: true
 
-  /svelte-popperjs@1.3.2(@popperjs/core@2.11.8)(svelte@4.0.0-next.3):
+  /svelte-popperjs@1.3.2:
     resolution: {integrity: sha512-fwrErlkvngL876WXRnL3OLlfk/n9YkZwwLxuKRpZOYCJLt1zrwhoKTXS+/sRgDveD/zd6GQ35hV89EOip+NBGA==}
     peerDependencies:
       '@popperjs/core': '>=2'
       svelte: '>=3'
-    dependencies:
-      '@popperjs/core': 2.11.8
-      svelte: 4.0.0-next.3
     dev: false
 
-  /svelte-popperjs@1.3.2(@popperjs/core@2.11.8)(svelte@4.1.2):
+  /svelte-popperjs@1.3.2(svelte@4.1.2):
     resolution: {integrity: sha512-fwrErlkvngL876WXRnL3OLlfk/n9YkZwwLxuKRpZOYCJLt1zrwhoKTXS+/sRgDveD/zd6GQ35hV89EOip+NBGA==}
     peerDependencies:
       '@popperjs/core': '>=2'
       svelte: '>=3'
     dependencies:
-      '@popperjs/core': 2.11.8
       svelte: 4.1.2
     dev: true
 
-  /svelte-preprocess@5.0.4(postcss@8.4.26)(svelte@4.1.2)(typescript@5.1.6):
+  /svelte-preprocess@5.0.4(svelte@4.1.2)(typescript@5.1.6):
     resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
     engines: {node: '>= 14.10.0'}
     requiresBuild: true
@@ -6004,14 +6003,13 @@ packages:
       '@types/pug': 2.0.6
       detect-indent: 6.1.0
       magic-string: 0.27.0
-      postcss: 8.4.26
       sorcery: 0.11.0
       strip-indent: 3.0.0
       svelte: 4.1.2
       typescript: 5.1.6
     dev: true
 
-  /svelte-preprocess@5.0.4(postcss@8.4.27)(svelte@3.59.2)(typescript@5.1.6):
+  /svelte-preprocess@5.0.4(typescript@5.1.6):
     resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
     engines: {node: '>= 14.10.0'}
     requiresBuild: true
@@ -6052,110 +6050,12 @@ packages:
       '@types/pug': 2.0.6
       detect-indent: 6.1.0
       magic-string: 0.27.0
-      postcss: 8.4.27
       sorcery: 0.11.0
       strip-indent: 3.0.0
-      svelte: 3.59.2
       typescript: 5.1.6
     dev: true
 
-  /svelte-preprocess@5.0.4(postcss@8.4.27)(svelte@4.0.0-next.3)(typescript@5.1.6):
-    resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
-    engines: {node: '>= 14.10.0'}
-    requiresBuild: true
-    peerDependencies:
-      '@babel/core': ^7.10.2
-      coffeescript: ^2.5.1
-      less: ^3.11.3 || ^4.0.0
-      postcss: ^7 || ^8
-      postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0
-      pug: ^3.0.0
-      sass: ^1.26.8
-      stylus: ^0.55.0
-      sugarss: ^2.0.0 || ^3.0.0 || ^4.0.0
-      svelte: ^3.23.0 || ^4.0.0-next.0 || ^4.0.0
-      typescript: '>=3.9.5 || ^4.0.0 || ^5.0.0'
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      coffeescript:
-        optional: true
-      less:
-        optional: true
-      postcss:
-        optional: true
-      postcss-load-config:
-        optional: true
-      pug:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@types/pug': 2.0.6
-      detect-indent: 6.1.0
-      magic-string: 0.27.0
-      postcss: 8.4.27
-      sorcery: 0.11.0
-      strip-indent: 3.0.0
-      svelte: 4.0.0-next.3
-      typescript: 5.1.6
-    dev: true
-
-  /svelte-preprocess@5.0.4(postcss@8.4.27)(svelte@4.1.2)(typescript@5.1.6):
-    resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
-    engines: {node: '>= 14.10.0'}
-    requiresBuild: true
-    peerDependencies:
-      '@babel/core': ^7.10.2
-      coffeescript: ^2.5.1
-      less: ^3.11.3 || ^4.0.0
-      postcss: ^7 || ^8
-      postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0
-      pug: ^3.0.0
-      sass: ^1.26.8
-      stylus: ^0.55.0
-      sugarss: ^2.0.0 || ^3.0.0 || ^4.0.0
-      svelte: ^3.23.0 || ^4.0.0-next.0 || ^4.0.0
-      typescript: '>=3.9.5 || ^4.0.0 || ^5.0.0'
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      coffeescript:
-        optional: true
-      less:
-        optional: true
-      postcss:
-        optional: true
-      postcss-load-config:
-        optional: true
-      pug:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@types/pug': 2.0.6
-      detect-indent: 6.1.0
-      magic-string: 0.27.0
-      postcss: 8.4.27
-      sorcery: 0.11.0
-      strip-indent: 3.0.0
-      svelte: 4.1.2
-      typescript: 5.1.6
-    dev: true
-
-  /svelte-strip@2.0.0(postcss@8.4.27)(svelte@3.59.2):
+  /svelte-strip@2.0.0:
     resolution: {integrity: sha512-RZ8swt0ddE22ebZvFpMhW/x9rLIAwCZtWWnb5oohQEYcyuxzvzXwxImjFQ8DINXXMbvw6PB/NfnzDmHqMVrdbw==}
     hasBin: true
     peerDependencies:
@@ -6163,32 +6063,7 @@ packages:
     dependencies:
       glob: 9.3.5
       minimatch: 7.4.6
-      svelte: 3.59.2
-      svelte-preprocess: 5.0.4(postcss@8.4.27)(svelte@3.59.2)(typescript@5.1.6)
-      typescript: 5.1.6
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@babel/core'
-      - coffeescript
-      - less
-      - postcss
-      - postcss-load-config
-      - pug
-      - sass
-      - stylus
-      - sugarss
-    dev: true
-
-  /svelte-strip@2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3):
-    resolution: {integrity: sha512-RZ8swt0ddE22ebZvFpMhW/x9rLIAwCZtWWnb5oohQEYcyuxzvzXwxImjFQ8DINXXMbvw6PB/NfnzDmHqMVrdbw==}
-    hasBin: true
-    peerDependencies:
-      svelte: ^3.0.0
-    dependencies:
-      glob: 9.3.5
-      minimatch: 7.4.6
-      svelte: 4.0.0-next.3
-      svelte-preprocess: 5.0.4(postcss@8.4.27)(svelte@4.0.0-next.3)(typescript@5.1.6)
+      svelte-preprocess: 5.0.4(typescript@5.1.6)
       typescript: 5.1.6
       yargs: 17.7.2
     transitivePeerDependencies:
@@ -6214,29 +6089,6 @@ packages:
       svelte: 4.1.2
       typescript: 5.1.6
     dev: true
-
-  /svelte@3.59.2:
-    resolution: {integrity: sha512-vzSyuGr3eEoAtT/A6bmajosJZIUWySzY2CzB3w2pgPvnkUjGqlDnsNnA0PMO+mMAhuyMul6C2uuZzY6ELSkzyA==}
-    engines: {node: '>= 8'}
-    dev: true
-
-  /svelte@4.0.0-next.3:
-    resolution: {integrity: sha512-NogP/EuGk+xCzqye8hoj/Wz1OoTCTp1yQpsfAIkATlYct2xqoQADB1UjPLm/plQjhGQrZcODW2MHCiYsDTQWtA==}
-    engines: {node: '>=16'}
-    dependencies:
-      '@ampproject/remapping': 2.2.1
-      '@jridgewell/sourcemap-codec': 1.4.15
-      '@jridgewell/trace-mapping': 0.3.18
-      acorn: 8.10.0
-      aria-query: 5.3.0
-      axobject-query: 3.2.1
-      code-red: 1.0.3
-      css-tree: 2.3.1
-      estree-walker: 3.0.3
-      is-reference: 3.0.1
-      locate-character: 3.0.0
-      magic-string: 0.30.2
-      periscopic: 3.1.0
 
   /svelte@4.1.2:
     resolution: {integrity: sha512-/evA8U6CgOHe5ZD1C1W3va9iJG7mWflcCdghBORJaAhD2JzrVERJty/2gl0pIPrJYBGZwZycH6onYf+64XXF9g==}
@@ -6369,7 +6221,7 @@ packages:
     resolution: {integrity: sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig==}
     dev: true
 
-  /tsup@7.2.0(postcss@8.4.27)(typescript@5.1.6):
+  /tsup@7.2.0(typescript@5.1.6):
     resolution: {integrity: sha512-vDHlczXbgUvY3rWvqFEbSqmC1L7woozbzngMqTtL2PGBODTtWlRwGDDawhvWzr5c1QjKe4OAKqJGfE1xeXUvtQ==}
     engines: {node: '>=16.14'}
     hasBin: true
@@ -6393,8 +6245,7 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss: 8.4.27
-      postcss-load-config: 4.0.1(postcss@8.4.27)
+      postcss-load-config: 4.0.1
       resolve-from: 5.0.0
       rollup: 3.26.3
       source-map: 0.8.0-beta.0
@@ -6517,7 +6368,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: true
 
-  /unocss@0.55.0(postcss@8.4.27)(vite@4.4.9):
+  /unocss@0.55.0(vite@4.4.9):
     resolution: {integrity: sha512-mjtN/2Dr495swOA/u/UaA0keCtv8/vFc114pd0D4XzpbK2/nKNB9Got/lmhJp8fxblV+oNtLkD0PaHtpAvSpsw==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -6533,7 +6384,7 @@ packages:
       '@unocss/cli': 0.55.0
       '@unocss/core': 0.55.0
       '@unocss/extractor-arbitrary-variants': 0.55.0
-      '@unocss/postcss': 0.55.0(postcss@8.4.27)
+      '@unocss/postcss': 0.55.0
       '@unocss/preset-attributify': 0.55.0
       '@unocss/preset-icons': 0.55.0
       '@unocss/preset-mini': 0.55.0
@@ -6551,7 +6402,6 @@ packages:
       '@unocss/vite': 0.55.0(vite@4.4.9)
       vite: 4.4.9(@types/node@20.4.9)
     transitivePeerDependencies:
-      - postcss
       - rollup
       - supports-color
     dev: true
@@ -6602,6 +6452,41 @@ packages:
       - terser
     dev: true
 
+  /vite@4.4.9:
+    resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': '>= 14'
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      esbuild: 0.18.14
+      postcss: 8.4.27
+      rollup: 3.28.0
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
   /vite@4.4.9(@types/node@20.4.9):
     resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -6649,12 +6534,12 @@ packages:
       vite: 4.4.9(@types/node@20.4.9)
     dev: true
 
-  /vitepress@1.0.0-beta.7(@algolia/client-search@4.19.1)(@types/node@20.4.9)(search-insights@2.7.0):
+  /vitepress@1.0.0-beta.7:
     resolution: {integrity: sha512-P9Rw+FXatKIU4fVdtKxqwHl6fby8E/8zE3FIfep6meNgN4BxbWqoKJ6yfuuQQR9IrpQqwnyaBh4LSabyll6tWg==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.5.1
-      '@docsearch/js': 3.5.1(@algolia/client-search@4.19.1)(search-insights@2.7.0)
+      '@docsearch/js': 3.5.1
       '@vitejs/plugin-vue': 4.2.3(vite@4.4.9)(vue@3.3.4)
       '@vue/devtools-api': 6.5.0
       '@vueuse/core': 10.3.0(vue@3.3.4)
@@ -6664,7 +6549,7 @@ packages:
       mark.js: 8.11.1
       minisearch: 6.1.0
       shiki: 0.14.3
-      vite: 4.4.9(@types/node@20.4.9)
+      vite: 4.4.9
       vue: 3.3.4
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -6691,6 +6576,71 @@ packages:
       - sugarss
       - terser
       - universal-cookie
+    dev: true
+
+  /vitest@0.34.1:
+    resolution: {integrity: sha512-G1PzuBEq9A75XSU88yO5G4vPT20UovbC/2osB2KEuV/FisSIIsw7m5y2xMdB7RsAGHAfg2lPmp2qKr3KWliVlQ==}
+    engines: {node: '>=v14.18.0'}
+    hasBin: true
+    peerDependencies:
+      '@edge-runtime/vm': '*'
+      '@vitest/browser': '*'
+      '@vitest/ui': '*'
+      happy-dom: '*'
+      jsdom: '*'
+      playwright: '*'
+      safaridriver: '*'
+      webdriverio: '*'
+    peerDependenciesMeta:
+      '@edge-runtime/vm':
+        optional: true
+      '@vitest/browser':
+        optional: true
+      '@vitest/ui':
+        optional: true
+      happy-dom:
+        optional: true
+      jsdom:
+        optional: true
+      playwright:
+        optional: true
+      safaridriver:
+        optional: true
+      webdriverio:
+        optional: true
+    dependencies:
+      '@types/chai': 4.3.5
+      '@types/chai-subset': 1.3.3
+      '@types/node': 20.4.9
+      '@vitest/expect': 0.34.1
+      '@vitest/runner': 0.34.1
+      '@vitest/snapshot': 0.34.1
+      '@vitest/spy': 0.34.1
+      '@vitest/utils': 0.34.1
+      acorn: 8.10.0
+      acorn-walk: 8.2.0
+      cac: 6.7.14
+      chai: 4.3.7
+      debug: 4.3.4
+      local-pkg: 0.4.3
+      magic-string: 0.30.1
+      pathe: 1.1.1
+      picocolors: 1.0.0
+      std-env: 3.3.3
+      strip-literal: 1.0.1
+      tinybench: 2.5.0
+      tinypool: 0.7.0
+      vite: 4.4.9(@types/node@20.4.9)
+      vite-node: 0.34.1(@types/node@20.4.9)
+      why-is-node-running: 2.2.2
+    transitivePeerDependencies:
+      - less
+      - lightningcss
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
     dev: true
 
   /vitest@0.34.1(@vitest/ui@0.34.1)(jsdom@22.1.0):
