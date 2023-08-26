@@ -82,4 +82,16 @@ describe('Test: KDrawer', () => {
 		expect(document.getElementById('k_drawer_content'));
 		expect(host.innerHTML).matchSnapshot();
 	});
+
+	test('slot: header', async () => {
+		const instance = new KDrawer({
+			target: host,
+			props: {
+				value: true
+			}
+		});
+		await tick();
+		expect(instance).toBeTruthy();
+		expect(host.innerHTML.includes('k-drawer--op')).toBeTruthy();
+	});
 });

@@ -15,7 +15,7 @@
 
 	const dispatch = createEventDispatcher();
 
-	const onClick = (event: CustomEvent) => {
+	const onClick = (event: MouseEvent) => {
 		dispatch('click', event);
 	};
 
@@ -28,6 +28,7 @@
 <span
 	class="k-tag--base k-tag--{type} {border ? `k-tag--${type}__border` : ''} {cls}"
 	{...attrs}
+	aria-hidden="true"
 	style="background-color: {bgColor}; color: {textColor}"
 	on:click={onClick}
 >

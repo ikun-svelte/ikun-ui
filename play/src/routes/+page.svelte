@@ -22,6 +22,7 @@
 	import { KMsgBox } from '@ikun-ui/message-box';
 	import { KRadio } from '@ikun-ui/radio';
 	import { KSpin } from '@ikun-ui/spin';
+	import { KBacktop } from '@ikun-ui/backtop';
 	import 'virtual:uno.css';
 
 	let checked = true;
@@ -140,8 +141,10 @@
 
 <KButtonGroup cls="my-10px">
 	<KButton icon="i-carbon-settings" type="primary" round="10">drawer</KButton>
-	<KButton icon="i-carbon-settings" type="primary">drawer</KButton>
-	<KButton icon="i-carbon-settings" type="primary">drawer</KButton>
+	<KButton icon="i-carbon-settings" type="info">drawer</KButton>
+	<KButton icon="i-carbon-settings" type="success">drawer</KButton>
+	<KButton icon="i-carbon-settings" type="error">drawer</KButton>
+	<KButton icon="i-carbon-settings" type="warning">drawer</KButton>
 </KButtonGroup>
 
 <KIcon icon="i-carbon-settings" btn></KIcon>
@@ -234,3 +237,5 @@
 </KSelect>
 <KButton on:click={handleToggleSpin}>ToggleSpin</KButton>
 <div use:KSpin={spinOptions} class="w-200px h-50px bg-red"></div>
+
+<KBacktop bottom="{100}" right="{100}" show-height="100"/>

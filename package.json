@@ -3,7 +3,7 @@
 	"description": "🐔 A Svelte.js based UnoCSS UI library that allows you to make websites",
 	"packageManager": "pnpm@8.6.7",
 	"type": "module",
-	"version": "0.0.9-beta.2",
+	"version": "0.0.9-beta.3",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -105,7 +105,8 @@
 		"@ikun-ui/switch": "workspace:*",
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
-		"@ikun-ui/spin": "workspace:*"
+		"@ikun-ui/spin": "workspace:*",
+		"@ikun-ui/backtop": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",

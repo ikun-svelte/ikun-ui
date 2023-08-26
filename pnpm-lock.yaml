@@ -14,6 +14,9 @@ importers:
       '@ikun-ui/avatar':
         specifier: workspace:*
         version: link:components/Avatar
+      '@ikun-ui/backtop':
+        specifier: workspace:*
+        version: link:components/Backtop
       '@ikun-ui/badge':
         specifier: workspace:*
         version: link:components/Badge
@@ -247,6 +250,34 @@ importers:
       baiwusanyu-utils:
         specifier: ^1.0.14
         version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: ^5.0.0
+        version: 5.0.0
+      svelte-strip:
+        specifier: ^2.0.0
+        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+      tslib:
+        specifier: ^2.6.1
+        version: 2.6.1
+      typescript:
+        specifier: ^5.1.6
+        version: 5.1.6
+
+  components/Backtop:
+    dependencies:
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@ikun-ui/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      baiwusanyu-utils:
+        specifier: ^1.0.14
+        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+      smoke-distance:
+        specifier: ^1.0.3
+        version: 1.0.3
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
@@ -5587,6 +5618,10 @@ packages:
     resolution: {integrity: sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==}
     engines: {node: '>=12'}
     dev: true
+
+  /smoke-distance@1.0.3:
+    resolution: {integrity: sha512-wup6+TpdGHNDjxmqrS1zh514iV/Tof51lvKe9hwJxvCJTLKUNYYVFaOqnT5j/Y8PJYewxLfzX1m6kKvnqxefaA==}
+    dev: false
 
   /sorcery@0.11.0:
     resolution: {integrity: sha512-J69LQ22xrQB1cIFJhPfgtLuI6BpWRiWu1Y3vSsIwK/eAScqJxd/+CJlUuHQRdX2C9NGFamq+KqNywGgaThwfHw==}

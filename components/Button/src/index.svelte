@@ -15,12 +15,26 @@
 	export let size: 'md' | 'sm' | 'lg' = 'md'
 	export let isBorder = false
 
+	let btnRef:null | HTMLElement = null
+	let animationCls = ''
+	const handleAnimation = () => {
+		if(btnRef as HTMLElement){
+			animationCls = `k-button--${type}__animate`
+			setTimeout(() => {
+				animationCls = '';
+			}, 310);
+		}
+	}
+
 	const dispatch = createEventDispatcher()
 	const handleClick = (e: Event) => {
 		if (disabled) {
 			e.preventDefault()
 		}
-		if (!to && !disabled) dispatch('click', e)
+		if (!to && !disabled) {
+			dispatch('click', e)
+			handleAnimation()
+		}
 	}
 
 	$: prefixCls = `k-button--${type}`
@@ -43,6 +57,7 @@
     },
 		cls
 	)
+
 	$: attrsInner = extend(attrs, to ? { href: to } : {})
 
 	let iconSizeInner = 24
@@ -55,14 +70,18 @@
 
 <svelte:element
 	this={to ? 'a' : 'button'}
+	bind:this={btnRef}
 	style="border-radius: {round ? `${round}` : '4'}px"
-	class={cnames}
+	class={`${cnames} ${animationCls}`}
 	aria-hidden="true"
 	on:click={handleClick}
 	{...attrsInner}
 	{...$$restProps}>
 	{#if icon}
-		<KIcon {icon} color={`k-button--${type}__icon`} width={`${iconSizeInner}px`}  height={`${iconSizeInner}px`}/>
+		<KIcon {icon}
+			   color={`k-button--${type}__icon`}
+			   width={`${iconSizeInner}px`}
+			   height={`${iconSizeInner}px`}/>
 	{/if}
 
 	{#if $$slots.default && icon}
