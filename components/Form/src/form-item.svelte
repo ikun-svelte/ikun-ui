@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { getContext, setContext } from 'svelte';
 	import type { IKunFormInstance, FormContext } from '@ikun-ui/utils';
-	import { getContextsPath, getFormItemPath } from './helper';
-
+	import { getFormItemPath } from './helper';
+	import { safeParse, type BaseSchema, type Issue } from 'valibot';
 	export let label: string = '';
 	export let field: string = '';
 	export let initialValue: string = '';
+	export let rules: BaseSchema | undefined = void 0;
+	export let required: boolean = false;
 	// Set the component instance from the component context
 	const form: IKunFormInstance = getContext('Form');
 	// Get the form component context from the
@@ -22,8 +24,24 @@
 		updateField: (value: any) => {
 			// It will be called when the value of the component changes,
 			// and the related value will be updated to the corresponding field of the form instance
-			// TODO: validate field
 			form.setValue(currentPath, value);
+		},
+		validateField: () => {
+			const value = form.getValue(currentPath);
+			const errors: Issue[] = [];
+			if (required && !value)
+				errors.push({
+					validation: 'custom',
+					origin: 'value',
+					reason: 'any',
+					message: `${currentPath} is required`,
+					input: value
+				});
+			if (rules) {
+				const result = safeParse(rules, value);
+				if (!result.success) errors.push(...result.issues);
+			}
+			return errors;
 		},
 		initialField: (initialValueFromComponent: any) => {
 			// get initValue ,initialValue is entered by the user, so initialValue is preferred.
@@ -43,7 +61,7 @@
 		}
 	};
 	// record Context to form.contexts
-	form.setContext(getContextsPath(currentPath), currentContext as FormContext);
+	form.setContext(currentPath, currentContext as FormContext);
 
 	// setContexts for nested component.
 	setContext('FormContext', currentContext);

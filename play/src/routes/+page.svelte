@@ -25,6 +25,7 @@
 	import 'virtual:uno.css';
 	import { KForm, createKFormInstance, KFormItem } from '@ikun-ui/form';
 	import type { IKunFormInstance } from '@ikun-ui/utils';
+	import { endsWith, minLength, string } from 'valibot';
 	let checked = true;
 	let radioChecked = false;
 	let openDrawer = false;
@@ -88,10 +89,10 @@
 
 <KForm bind:form>
 	----Form----
-	<KFormItem label={'name'} field={'name'}>
+	<KFormItem label={'name'} field={'name'} required>
 		<KInput placeholder="inputValue"></KInput>
 	</KFormItem>
-	<KFormItem label={'password'} field={'password'}>
+	<KFormItem label={'password'} field={'password'} rules={string([minLength(1), endsWith('#any')])}>
 		<KInput placeholder="inputValue"></KInput>
 	</KFormItem>
 
@@ -122,15 +123,16 @@
 
 	<KButton
 		on:click={() => {
-			console.log(form.submit());
-			console.log(form);
+			form.validateValues();
+			const values = form.submit();
+			console.log(values);
 		}}>Submit</KButton
 	>
 	<KButton
 		on:click={() => {
 			form.setValues({
 				name: 'ikun',
-				password: '1145142333',
+				password: 'moushicheng#any',
 				another: { a: 1, b: 2 },
 				accept: true,
 				darkMode: true,
@@ -274,4 +276,4 @@
 <KButton on:click={handleToggleSpin}>ToggleSpin</KButton>
 <div use:KSpin={spinOptions} class="w-200px h-50px bg-red"></div>
 
-<KBacktop bottom="{100}" right="{100}" show-height="100"/>
+<KBacktop bottom={100} right={100} show-height="100" />

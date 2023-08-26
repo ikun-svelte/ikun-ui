@@ -24,6 +24,11 @@ export const createForm: () => IKunFormInstance = () => {
 		},
 		// The form submit method, which returns the form value object
 		submit: () => get(FormInstance.values),
+		// Get the value of a specific field on a form
+		getValue: (path: string) => {
+			const values = get(FormInstance.values);
+			return _.get(values, path);
+		},
 		// Set the value of a specific field on a form
 		setValue: (path: string, value: any) => {
 			FormInstance.values.update((values: any) => {
@@ -31,24 +36,34 @@ export const createForm: () => IKunFormInstance = () => {
 				return values;
 			});
 		},
-		// set form value
+		// Set form value
 		setValues: (values: any) => {
 			const oldValues: any = get(FormInstance.values) || {};
 			FormInstance.values.set({ ...oldValues, ...values });
 		},
-		// we use it to collect context.
+		// Use it to collect context.
 		setContext: (path: string, context: FormContext) => {
-			_.set(FormInstance.contexts, path, context);
+			_.set(FormInstance.contexts, getContextsPath(path), context);
 		},
+		// reset all Field using context.initialValue
 		resetValues: () => {
-			// walkContexts(FormInstance.contexts as any, (node) => {
-			// 	FormInstance.setValue(node.path, node.initialValue);
-			// });
-			FormInstance.resetValue('name');
+			walkEdgeContexts(FormInstance.contexts, (node) => {
+				FormInstance.setValue(node.path, node.initialValue);
+			});
 		},
+		// reset specific Field using context.initialValue
 		resetValue: (path: string) => {
 			const targetContext = _.get(FormInstance.contexts, getContextsPath(path));
 			FormInstance.setValue(path, targetContext.initialValue);
+		},
+		validateValues: () => {
+			const errors: any[] = [];
+			walkContexts(FormInstance.contexts, (node) => {
+				const error = node.validateField();
+				if (error.length > 0) errors.push(error);
+			});
+			if (errors.length > 0) throw errors;
+			return true;
 		}
 	};
 	return FormInstance;
@@ -66,6 +81,29 @@ export const getFormItemPath = (oldPath: string, field: string) => {
 		//we can resolve path e.g (a.0.b.c) by lodash
 		return oldPath + `.${field}`;
 	}
+};
+
+/**
+ * wark contexts in edge.
+ * @param contexts
+ * @returns
+ */
+export const walkEdgeContexts = (
+	contexts: { [key: string]: Contexts },
+	callback: (node: FormContext) => void
+) => {
+	function traverse(node: Contexts) {
+		if (node.__FormContext__) return;
+		const currentContext = node.__this__;
+		const anotherNodesKeys = Object.keys(node).filter((key) => key !== '__this__');
+		anotherNodesKeys.forEach((item) => {
+			traverse(node[item]);
+		});
+		if (anotherNodesKeys.length === 0) {
+			callback(currentContext);
+		}
+	}
+	Object.values(contexts).forEach(traverse);
 };
 
 /**
@@ -88,6 +126,7 @@ export const walkContexts = (
 	}
 	Object.values(contexts).forEach(traverse);
 };
+
 /**
  * get contexts path,as contexts has attribute __this__ which is FormContexts.
  * @param path

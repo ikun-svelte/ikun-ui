@@ -108,7 +108,8 @@
 		"@ikun-ui/utils": "workspace:*",
 		"@popperjs/core": "^2.11.8",
 		"baiwusanyu-utils": "^1.0.14",
-		"hash-sum": "^2.0.0"
+		"hash-sum": "^2.0.0",
+		"valibot": "^0.13.1"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",
