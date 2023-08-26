@@ -24,6 +24,7 @@
 		event.stopPropagation();
 		visible = false;
 		dispatch('close', event);
+		handleAnimation();
 	};
 
 	// class names
@@ -36,16 +37,32 @@
 	$: descriptionCls = createCls(`${prefixCls}--description`, {
 		[`${prefixCls}--description__no-title`]: noTitle
 	});
-	$: closeCls = createCls(`${prefixCls}--close`, `${prefixCls}--close__icon-color`, {
-		[`${prefixCls}--close__no-title`]: noTitle,
-		[`${prefixCls}--close__no-title__has-icon`]: showIcon,
-		[`${prefixCls}--${type}__close-icon`]: !$$slots.close
-	});
+	$: closeCls = createCls(
+		`${prefixCls}--close`,
+		`${prefixCls}--close__icon-color`,
+		{
+			[`${prefixCls}--close__no-title`]: noTitle,
+			[`${prefixCls}--${type}__close-icon`]: !$$slots.close
+		},
+		animationCls
+	);
 
 	// default type icon
 	$: typeIcon = `${prefixCls}--${type}__icon`;
 	$: typeIconColor = `${prefixCls}--${type}__icon-color`;
 	$: typeIconSize = noTitle ? '18px' : '24px';
+
+	// animation
+	let closeRef: HTMLElement | null = null;
+	let animationCls = '';
+	const handleAnimation = () => {
+		if (closeRef) {
+			animationCls = `${prefixCls}--${type}__animate`;
+			setTimeout(() => {
+				animationCls = '';
+			}, 310);
+		}
+	};
 </script>
 
 {#if visible}
@@ -79,7 +96,7 @@
 				</div>
 			{/if}
 			{#if closable}
-				<span class={closeCls} aria-hidden="true" on:click={onClose}>
+				<span bind:this={closeRef} class={closeCls} aria-hidden="true" on:click={onClose}>
 					<slot name="close">
 						<KIcon cls="inline-flex" icon={closeIcon} width="18px" height="18px"></KIcon>
 					</slot>

@@ -20,6 +20,8 @@ export const alertShortcuts: Record<string, string> = (() => {
 	Object.keys(types).forEach((type) => {
 		// type
 		typeCls[`${prefix}--${type}`] = `bg-ikun-${type}-100 text-ikun-${type}`;
+		// animate
+		typeCls[`${prefix}--${type}__animate`] = `animate-ikun-clicking--${type}`;
 		// icon
 		typeCls[`${prefix}--${type}__icon`] = types[type];
 		typeCls[`${prefix}--${type}__icon-color`] = `text-ikun-${type}`;
@@ -38,8 +40,7 @@ export const alertShortcuts: Record<string, string> = (() => {
 
 	// close
 	const closeTop = '10px';
-	const closeTopNoTitle = '10px';
-	const closeTopNoTitleHasIcon = '12px';
+	const closeTopNoTitle = '8px';
 	const closeFontSize = '12px';
 
 	return {
@@ -58,7 +59,6 @@ export const alertShortcuts: Record<string, string> = (() => {
 		// close
 		[`${prefix}--close`]: `text-${closeFontSize} inline-flex cursor-pointer absolute top-${closeTop} right-${basePx}`,
 		[`${prefix}--close__icon-color`]: '[&,&>div.k-icon--base]:color-ikun-stone-400',
-		[`${prefix}--close__no-title`]: `top-${closeTopNoTitle}`,
-		[`${prefix}--close__no-title__has-icon`]: `top-${closeTopNoTitleHasIcon}`
+		[`${prefix}--close__no-title`]: `top-${closeTopNoTitle}`
 	};
 })();
