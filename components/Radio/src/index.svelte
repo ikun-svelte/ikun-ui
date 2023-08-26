@@ -29,10 +29,10 @@
 	// Triggered when form.setValues is called,
 	// set the value set by the form component to the radio component
 	formContext?.subscribe((value: any) => {
-		valueInner = value
+		valueInner = value;
 	});
 	//initial field
-	 formContext?.updateField(value);
+	formContext?.initialField(value);
 </script>
 
 <label

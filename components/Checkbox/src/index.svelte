@@ -26,7 +26,7 @@
 	// when filed change,dom value will change.
 	formContext?.subscribe((value: any) => (valueInner = value));
 	//initial field
-	formContext?.updateField(value);
+	formContext?.initialField(value);
 </script>
 
 <label

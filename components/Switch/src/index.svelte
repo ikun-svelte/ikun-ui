@@ -123,7 +123,7 @@
 		}
 	});
 	//initial field
-	formContext?.updateField(value);
+	formContext?.initialField(value);
 </script>
 
 <div
