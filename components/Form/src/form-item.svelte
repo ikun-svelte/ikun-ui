@@ -8,6 +8,7 @@
 	export let initialValue: string = '';
 	export let rules: BaseSchema | undefined = void 0;
 	export let required: boolean = false;
+	let errorMessage = '';
 	// Set the component instance from the component context
 	const form: IKunFormInstance = getContext('Form');
 	// Get the form component context from the
@@ -41,6 +42,7 @@
 				const result = safeParse(rules, value);
 				if (!result.success) errors.push(...result.issues);
 			}
+			if (errors[0]) errorMessage = errors[0].message;
 			return errors;
 		},
 		initialField: (initialValueFromComponent: any) => {
@@ -68,17 +70,20 @@
 </script>
 
 <div class="k-form-item">
+	{#if $$slots.label}
+		<div class="k-form-item-label">
+			<slot name="label" />
+		</div>
+	{/if}
+	{#if !$$slots.label && label}
+		<div class="k-form-item-label">
+			{label}
+		</div>
+	{/if}
 	<div class="k-form-item-content">
-		{#if $$slots.label}
-			<div class="k-form-item-label">
-				<slot name="label" />
-			</div>
-		{/if}
-		{#if !$$slots.label && label}
-			<div class="k-form-item-label">
-				{label}
-			</div>
-		{/if}
 		<slot />
+		<div class="k-form-item-error-message">
+			{errorMessage}
+		</div>
 	</div>
 </div>
