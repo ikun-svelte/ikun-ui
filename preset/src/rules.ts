@@ -29,13 +29,22 @@ const notifyRules = {
 const switchRules = {
 	'k-switch-transition': { transition: 'right .1s linear' }
 };
+
+const rateRules = {
+	'k-rate-ms-x': { 'mask-size': 'auto 100%', '-webkit-mask-size': 'auto 100%' },
+	'k-rate-ms-y': { 'mask-size': '100% auto', '-webkit-mask-size': '100% auto' },
+	'k-rate-msp-l': { 'mask-position': 'left', '-webkit-mask-position': 'left' },
+	'k-rate-msp-r': { 'mask-position': 'right', '-webkit-mask-position': 'right' }
+};
+
 // 自定義的原子樣式規則
 export const defaultRules = {
 	...inputRules,
 	...btnRules,
 	...iconRules,
 	...notifyRules,
-	...switchRules
+	...switchRules,
+	...rateRules
 } as Record<string, any>;
 
 export const setMainColorToRules = <T>(
