@@ -1,53 +1,71 @@
 <script lang="ts">
+	import type { KInputProps } from './types';
 	import { createEventDispatcher } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
-	export let iconPrefix = '';
-	export let iconSuffix = '';
-	export let value = '';
-	export let cls = '';
-	export let placeholder = '';
-	export let disabled = false;
-	export let attrs = {};
+	import { createCls, getPrefixCls } from '@ikun-ui/utils';
+
+	export let value: KInputProps['value'] = '';
+	export let placeholder: KInputProps['placeholder'] = '';
+	export let disabled: KInputProps['disabled'] = false;
+	export let iconPrefix: KInputProps['iconPrefix'] = '';
+	export let iconSuffix: KInputProps['iconSuffix'] = '';
+	export let cls: KInputProps['cls'] = '';
+	export let attrs: KInputProps['attrs'] = {};
 	/**
 	 * @internal
 	 */
-	export let isError: boolean = false;
+	export let isError: KInputProps['isError'] = false;
 	/**
 	 * @internal
 	 */
-	export let errorMsg: string = '';
+	export let errorMsg: KInputProps['errorMsg'] = '';
+
 	const dispatch = createEventDispatcher();
-	const onUpdated = (e: Event) => {
+
+	const onInput = (e: InputEvent) => {
 		if (disabled) return;
 		dispatch('input', (e.target as HTMLInputElement).value);
 	};
+
+	const onChange = (e: Event) => {
+		if (disabled) return;
+		dispatch('change', e);
+	};
+
 	const onEnter = (e: KeyboardEvent) => {
 		if (disabled) return;
 		if (e.key === 'Enter') dispatch('enter', e);
 		else dispatch('keydown', e);
 	};
-	const onChange = (e: Event) => {
-		if (disabled) return;
-		dispatch('change', e);
-	};
-	let valueInner = value;
+
+	// class names
+	const prefixCls = getPrefixCls('input');
+	$: baseCls = createCls(
+		prefixCls,
+		`${prefixCls}--base`,
+		`${prefixCls}--base_dark`,
+		{
+			[`${prefixCls}--base__disabled`]: disabled,
+			[`${prefixCls}--base__disabled__dark`]: disabled
+		},
+		{
+			[`${prefixCls}--base__error`]: isError,
+			[`${prefixCls}--base__hover`]: !isError,
+			[`${prefixCls}--base__focus`]: !isError
+		},
+		cls
+	);
+	$: errorMsgCls = createCls(`${prefixCls}--base__msg__error`);
+	$: inputCls = createCls(`${prefixCls}--inner`, `${prefixCls}--inner__dark`, {
+		[`${prefixCls}--base__disabled`]: disabled,
+		[`${prefixCls}--base__disabled__dark`]: disabled
+	});
 </script>
 
-<div
-	class="
-	k-input--base
-	k-input--base__dark
-	{disabled ? 'k-input--base__disabled k-input--base__disabled__dark' : ''}
-	{isError ? 'k-input--base__error' : 'k-input--base__hover k-input--base__focus'}
-	{cls}"
->
+<div class={baseCls}>
 	{#if isError}
-		<span
-			out:fade={{ duration: 200 }}
-			in:fade={{ duration: 200 }}
-			class="k-input--base__msg__error"
-		>
+		<span class={errorMsgCls} transition:fade={{ duration: 200 }}>
 			{errorMsg}
 		</span>
 	{/if}
@@ -57,12 +75,10 @@
 		{/if}
 	</slot>
 	<input
-		class="k-input--inner k-input--inner__dark {disabled
-			? 'k-input--base__disabled k-input--base__disabled__dark'
-			: ''}"
-		bind:value={valueInner}
+		class={inputCls}
+		bind:value
 		{disabled}
-		on:input={onUpdated}
+		on:input={onInput}
 		on:change={onChange}
 		on:keydown={onEnter}
 		{placeholder}
