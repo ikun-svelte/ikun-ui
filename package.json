@@ -79,9 +79,11 @@
 	"dependencies": {
 		"baiwusanyu-utils": "^1.0.14",
 		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/alert": "workspace:*",
 		"@ikun-ui/avatar": "workspace:*",
 		"@ikun-ui/badge": "workspace:*",
 		"@ikun-ui/breadcrumb": "workspace:*",
+		"@ikun-ui/breadcrumb-item": "workspace:*",
 		"@ikun-ui/button": "workspace:*",
 		"@ikun-ui/button-group": "workspace:*",
 		"@ikun-ui/checkbox": "workspace:*",
@@ -104,7 +106,6 @@
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
 		"@ikun-ui/spin": "workspace:*",
-		"@ikun-ui/breadcrumb-item": "workspace:*",
 		"@ikun-ui/backtop": "workspace:*"
 	},
 	"devDependencies": {

@@ -3,6 +3,7 @@ import type { UserShortcuts } from 'unocss';
 import { baseShortcuts } from './base';
 import { commonShortcuts } from './common';
 import { iconShortcuts } from './icon';
+import { alertShortcuts } from './alert';
 import { avatarShortcuts } from './avatar';
 import { badgeShortcuts } from './badge';
 import { breadcrumbShortcuts } from './breadcrumb';
@@ -30,6 +31,8 @@ export default [
 	commonShortcuts,
 	// icon
 	iconShortcuts,
+	// alert
+	alertShortcuts,
 	// avatar
 	avatarShortcuts,
 	// badge
@@ -78,6 +81,7 @@ export default [
 
 export function getSafeList() {
 	const iconList = Object.keys(iconShortcuts);
+	const alertList = Object.keys(alertShortcuts);
 	const avatarList = Object.keys(avatarShortcuts);
 	const badgeList = Object.keys(badgeShortcuts);
 	const breadcrumbList = Object.keys(breadcrumbShortcuts);
@@ -113,6 +117,7 @@ export function getSafeList() {
 		.concat(inputList)
 		.concat(maskList)
 		.concat(eyeDropperList)
+		.concat(alertList)
 		.concat(avatarList)
 		.concat(badgeList)
 		.concat(breadcrumbList)
@@ -128,6 +133,7 @@ export function getSafeList() {
 export { baseShortcuts } from './base';
 export { commonShortcuts } from './common';
 export { iconShortcuts } from './icon';
+export { alertShortcuts } from './alert';
 export { avatarShortcuts } from './avatar';
 export { badgeShortcuts } from './badge';
 export { breadcrumbShortcuts } from './breadcrumb';

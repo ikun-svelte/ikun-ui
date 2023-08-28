@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { KAlert } from '@ikun-ui/alert';
 	import { KAvatar } from '@ikun-ui/avatar';
 	import { KBadge } from '@ikun-ui/badge';
 	import { KBreadcrumb } from '@ikun-ui/breadcrumb';
@@ -63,28 +64,51 @@
 	const spinOptions = {
 		show: false,
 		text: 'loading...',
-    fullScreen: true
+		fullScreen: true
 	};
-
 
 	const handleToggleSpin = () => {
 		spinOptions.show = !spinOptions.show;
 	};
 
-
-    $: breadcrumbList = [
-        { label: 'home', href: '/' },
-        { label: 'breadcrumb', href: '' }
-    ];
-    const addBreadcrumb = () => {
-        breadcrumbList.push({ label: 'test', href: '' });
-        breadcrumbList = breadcrumbList;
-    };
-    const delBreadcrumb = () => {
-        breadcrumbList.pop();
-        breadcrumbList = breadcrumbList;
-    };
+	$: breadcrumbList = [
+		{ label: 'home', href: '/' },
+		{ label: 'breadcrumb', href: '' }
+	];
+	const addBreadcrumb = () => {
+		breadcrumbList.push({ label: 'test', href: '' });
+		breadcrumbList = breadcrumbList;
+	};
+	const delBreadcrumb = () => {
+		breadcrumbList.pop();
+		breadcrumbList = breadcrumbList;
+	};
 </script>
+
+<div class="my-10px">
+	<KAlert cls="my-10px" title="哇，真的是你啊"></KAlert>
+	<KAlert cls="my-10px" title="哇，真的是你啊" type="success" showIcon></KAlert>
+	<KAlert
+		cls="my-10px"
+		title="哇，真的是你啊"
+		description="IKUN是我坚持下去的动力"
+		type="error"
+		showIcon
+		closeIcon="i-carbon-settings"
+	></KAlert>
+	<KAlert cls="my-10px" title="哇，真的是你啊" type="warning" showIcon closable={false}
+		>IKUN是我坚持下去的动力</KAlert
+	>
+	<KAlert cls="my-10px" description="IKUN是我坚持下去的动力" type="success" showIcon></KAlert>
+	<KAlert cls="my-10px" description="Sing Dance Rap" type="success" showIcon></KAlert>
+	<KAlert cls="my-10px" description="IKUN是我坚持下去的动力" type="success"></KAlert>
+	<KAlert cls="my-10px" type="error" showIcon>
+		<KIcon icon="i-carbon-settings" slot="icon"></KIcon>
+		<span slot="title">食不食油饼</span>
+		IKUN是我坚持下去的动力
+		<span slot="close">自定义关闭</span>
+	</KAlert>
+</div>
 
 <div class="my-10px">
 	<div class="mb-10px">Breadcrumb</div>
