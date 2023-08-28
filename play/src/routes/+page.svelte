@@ -84,20 +84,23 @@
 		breadcrumbList = breadcrumbList;
 	};
 
-	$: star = 3;
+	let starFull = 3;
+	let starHalf = 2.7;
 </script>
 
 <div class="my-10px">
 	<div class="mb-10px">Rate</div>
+	<KRate value={starHalf} showScore max={5} disabled></KRate>
 	<KRate
-		value={star}
+		value={starFull}
 		showScore
 		max={5}
 		texts={'4444'}
 		icons={{ 2: 'i-carbon-ai-status-in-progress', 4: 'i-carbon-status-partial-fail' }}
 		colors={{ 2: 'color-green', 4: 'color-blue', 5: 'color-red' }}
 		voidIcon="i-carbon-settings"
-		on:updateValue={(e) => (star = e.detail)}
+		allowHalf
+		on:updateValue={(e) => (starFull = e.detail)}
 	></KRate>
 </div>
 

@@ -7,22 +7,23 @@
 
 	export let max: KRateProps['max'] = 5;
 	export let value: KRateProps['value'] = 0;
-	export let allowHalf: KRateProps['allowHalf'] = false;
+	// TODO allow half
+	// export let allowHalf: KRateProps['allowHalf'] = false;
 	export let showScore: KRateProps['showScore'] = false;
 	export let scoreTemplate: KRateProps['scoreTemplate'] = '{value}';
 	// showText will cover showScore
 	export let showText: KRateProps['showText'] = false;
 	export let texts: KRateProps['texts'] = '';
-	export let textColor: KRateProps['textColor'] = '#303133';
+	export let textColor: KRateProps['textColor'] = 'color-#303133';
 	export let icons: KRateProps['icons'] = 'i-carbon-star-filled';
-	// export let colors: KRateProps['colors'] = '#f7ba2a';
-	export let colors: KRateProps['colors'] = 'red';
+	export let colors: KRateProps['colors'] = 'color-#f7ba2a';
 	export let voidIcon: KRateProps['voidIcon'] = 'i-carbon-star';
-	export let voidColor: KRateProps['voidColor'] = '#cdd0d6';
+	export let voidColor: KRateProps['voidColor'] = 'color-#cdd0d6';
 	export let disabled: KRateProps['disabled'] = false;
-	export let disableVoidIcon: KRateProps['disableVoidIcon'] = 'star';
-	export let disableVoidColor: KRateProps['disableVoidColor'] = '#f0f2f5';
-	export let clearable: KRateProps['clearable'] = false;
+	export let disableVoidIcon: KRateProps['disableVoidIcon'] = 'i-carbon-star-filled';
+	export let disableVoidColor: KRateProps['disableVoidColor'] = 'color-#f0f2f5';
+	// TODO clearable
+	// export let clearable: KRateProps['clearable'] = false;
 	export let cls: KRateProps['cls'] = '';
 	export let attrs: KRateProps['attrs'] = {};
 
@@ -34,11 +35,10 @@
 	const maxNumbers = Array.from({ length: max }, (v, i) => i + 1);
 
 	$: currentValue = value;
-	$: pointerAtLeftHalf = true;
 	$: rateDisabled = disabled;
 
 	// text or score, text will cover score
-	$: text = '';
+	let text = '';
 	$: {
 		if (showText) {
 			text = isString(texts) ? texts : texts[Math.ceil(currentValue)];
@@ -50,34 +50,25 @@
 		}
 	}
 
-	// $: hoverIndex = -1;
-	const setCurrentValue = (value: number, _event?: MouseEvent) => {
-		console.log(_event);
+	const setCurrentValue = (value: number) => {
 		if (rateDisabled) {
 			return;
 		}
 		currentValue = value;
-		// hoverIndex = value;
 	};
+
 	const resetCurrentValue = () => {
 		if (rateDisabled) {
 			return;
 		}
-		if (allowHalf) {
-			pointerAtLeftHalf = value !== Math.floor(value);
-		}
 		currentValue = value;
-		// hoverIndex = -1;
 	};
 
 	$: valueDecimal = value * 100 - Math.floor(value) * 100;
 	$: valueDecimalLeftWidth = +iconSize.replace(/px/g, '') * (valueDecimal / 100);
 	$: valueDecimalRightWidth = +iconSize.replace(/px/g, '') - valueDecimalLeftWidth;
 	const showDecimalIcon = (item: number) => {
-		const showWhenDisabled = rateDisabled && valueDecimal > 0 && item - 1 < value && item > value;
-		const showWhenAllowHalf =
-			allowHalf && pointerAtLeftHalf && item - 0.5 <= currentValue && item > currentValue;
-		return showWhenDisabled || showWhenAllowHalf;
+		return rateDisabled && valueDecimal > 0 && item - 1 < value && item > value;
 	};
 
 	const getContinuity = (
@@ -137,7 +128,7 @@
 	{#each maxNumbers as item}
 		<span
 			class={itemCls}
-			on:mousemove={(event) => setCurrentValue(item, event)}
+			on:mousemove={() => setCurrentValue(item)}
 			on:mouseleave={resetCurrentValue}
 			on:click={handleUpdateValue}
 		>
@@ -145,7 +136,12 @@
 				{#if item <= currentValue}
 					<KIcon icon={activeIcon} width={iconSize} height={iconSize} color={activeColor}></KIcon>
 				{:else}
-					<KIcon icon={voidIcon} width={iconSize} height={iconSize} color={voidColor}></KIcon>
+					<KIcon
+						icon={rateDisabled ? disableVoidIcon : voidIcon}
+						width={iconSize}
+						height={iconSize}
+						color={rateDisabled ? disableVoidColor : voidColor}
+					></KIcon>
 				{/if}
 			{:else}
 				<KIcon
@@ -161,7 +157,7 @@
 				<KIcon
 					cls={decimalIconRightCls}
 					icon={decimalIcon}
-					width={iconSize}
+					width="0px"
 					height={iconSize}
 					color={decimalVoidColor}
 					attrs={{
