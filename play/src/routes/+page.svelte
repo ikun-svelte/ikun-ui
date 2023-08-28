@@ -22,6 +22,7 @@
 	import { KRadio } from '@ikun-ui/radio';
 	import { KSpin } from '@ikun-ui/spin';
 	import { KBacktop } from '@ikun-ui/backtop';
+	import { KRate } from '@ikun-ui/rate';
 	import 'virtual:uno.css';
 
 	let checked = true;
@@ -63,28 +64,45 @@
 	const spinOptions = {
 		show: false,
 		text: 'loading...',
-    fullScreen: true
+		fullScreen: true
 	};
-
 
 	const handleToggleSpin = () => {
 		spinOptions.show = !spinOptions.show;
 	};
 
+	$: breadcrumbList = [
+		{ label: 'home', href: '/' },
+		{ label: 'breadcrumb', href: '' }
+	];
+	const addBreadcrumb = () => {
+		breadcrumbList.push({ label: 'test', href: '' });
+		breadcrumbList = breadcrumbList;
+	};
+	const delBreadcrumb = () => {
+		breadcrumbList.pop();
+		breadcrumbList = breadcrumbList;
+	};
 
-    $: breadcrumbList = [
-        { label: 'home', href: '/' },
-        { label: 'breadcrumb', href: '' }
-    ];
-    const addBreadcrumb = () => {
-        breadcrumbList.push({ label: 'test', href: '' });
-        breadcrumbList = breadcrumbList;
-    };
-    const delBreadcrumb = () => {
-        breadcrumbList.pop();
-        breadcrumbList = breadcrumbList;
-    };
+	let starFull = 3;
+	let starHalf = 2.7;
 </script>
+
+<div class="my-10px">
+	<div class="mb-10px">Rate</div>
+	<KRate value={starHalf} showScore max={5} disabled></KRate>
+	<KRate
+		value={starFull}
+		showScore
+		max={5}
+		texts={'4444'}
+		icons={{ 2: 'i-carbon-ai-status-in-progress', 4: 'i-carbon-status-partial-fail' }}
+		colors={{ 2: 'color-green', 4: 'color-blue', 5: 'color-red' }}
+		voidIcon="i-carbon-settings"
+		allowHalf
+		on:updateValue={(e) => (starFull = e.detail)}
+	></KRate>
+</div>
 
 <div class="my-10px">
 	<div class="mb-10px">Breadcrumb</div>
@@ -214,4 +232,4 @@
 <KButton on:click={handleToggleSpin}>ToggleSpin</KButton>
 <div use:KSpin={spinOptions} class="w-200px h-50px bg-red"></div>
 
-<KBacktop bottom="{100}" right="{100}" show-height="100"/>
+<KBacktop bottom={100} right={100} show-height="100" />
