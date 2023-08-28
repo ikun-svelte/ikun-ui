@@ -170,7 +170,7 @@
 			{/if}
 		</span>
 	{/each}
-	{#if showText || showScore}
+	{#if (showText || showScore) && text}
 		<span class={textCls} style={`color: ${textColor}`}>{text}</span>
 	{/if}
 </div>
