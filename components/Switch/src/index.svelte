@@ -1,26 +1,39 @@
 <script lang="ts">
-	import { isBool, isNumber, isString } from 'baiwusanyu-utils';
-	import {KIcon} from '@ikun-ui/icon';
+	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher, onMount } from 'svelte';
-	export let value:boolean = false;
-	export let disabled:boolean  = false;
+
+	type SwitchValueType = string | number | boolean;
+
+	export let value:SwitchValueType = false;
+	export let disabled:boolean = false;
 	export let cls:string = '';
 	export let attrs = {};
-	export let loading:boolean  = false;
-	export let checkedValue:string | number | boolean | undefined = undefined;
-	export let unCheckedValue:string | number | boolean | undefined = undefined;
+	export let loading:boolean = false;
+	export let checkedValue:SwitchValueType = true;
+	export let unCheckedValue:SwitchValueType = false;
 
 	export let checkedColor = '';
-
 	export let unCheckedColor = '';
 	const dispatch = createEventDispatcher();
-	let innerState = value;
+	$: innerState = value === checkedValue;
 	let switching = '';
 	/**
 	 * 切换状态方法
 	 */
-	let changeData = {};
+	let changeData: {
+		newVal: SwitchValueType;
+		oldVal: SwitchValueType;
+	};
 	const emitChangeEvt = (): void => {
+		changeData = innerState
+			? {
+					newVal: unCheckedValue,
+					oldVal: checkedValue
+			  }
+			: {
+					newVal: checkedValue,
+					oldVal: unCheckedValue
+			  };
 		dispatch('change', changeData);
 	};
 
@@ -32,9 +45,10 @@
 	const changeClass = () => {
 		return new Promise((resolve) => {
 			switching = 'k-switch-tra';
-			if(switchCircleRef){
+			if (switchCircleRef) {
 				const circleWidth = switchCircleRef.getClientRects()[0]?.width;
-				switchCircleRef.style.right = innerState ? '1px' : `calc(100% - ${circleWidth}px - 1px)`;
+				const checked = changeData ? checkedValue === changeData.newVal : innerState;
+				switchCircleRef.style.right = checked ? '1px' : `calc(100% - ${circleWidth}px - 1px)`;
 			}
 			setTimeout(() => {
 				switching = '';
@@ -43,41 +57,20 @@
 		});
 	};
 
-	const setInnerState = (): string | number | boolean => {
-		if (innerState) {
-			innerState = false;
-			changeData = {
-				newVal: unCheckedValue ? unCheckedValue : false,
-				oldVal: checkedValue ? checkedValue : true
-			};
-			return unCheckedValue ? unCheckedValue : false;
-		}
-		innerState = true;
-		changeData = {
-			newVal: checkedValue ? checkedValue : true,
-			oldVal: unCheckedValue ? unCheckedValue : false
-		};
-		return checkedValue ? checkedValue : true;
-	};
 	let isUpdateModel = false;
 	const switchState = async () => {
 		// 切换状态
-		const value = setInnerState();
 		emitChangeEvt();
-		dispatch('updateValue', value);
+		dispatch('updateValue', changeData.newVal);
 		isUpdateModel = true;
 		await changeClass();
 	};
 
-	let oldValue = value;
-	$: if (value !== oldValue) {
-		if (isUpdateModel) {
-			isUpdateModel = false;
-		} else {
-			setInnerState();
+	$: if (changeData && value !== changeData.newVal) {
+		if (!isUpdateModel) {
 			emitChangeEvt();
 		}
-		oldValue = value;
+		isUpdateModel = false;
 	}
 	/**
 	 * 点击方法
@@ -93,45 +86,27 @@
 	 */
 	const init = async () => {
 		await changeClass();
-		if (
-			unCheckedValue !== undefined &&
-			unCheckedValue !== '' &&
-			(isBool(unCheckedValue) || isString(unCheckedValue) || isNumber(unCheckedValue)) &&
-			value === unCheckedValue
-		) {
-			innerState = false;
-			return;
-		}
-		if (
-			checkedValue !== undefined &&
-			checkedValue !== '' &&
-			(isBool(checkedValue) || isString(checkedValue) || isNumber(checkedValue)) &&
-			value === checkedValue
-		) {
-			innerState = true;
-			return;
-		}
 	};
 	onMount(init);
 </script>
 
-<div class="
+<div
+	class="
   k-switch--base
   {disabled || loading ? 'k-switch__disabled' : ''}
-  {innerState ? `k-switch__checked ${checkedColor}`
-  : `k-switch__un_checked ${unCheckedColor}`}
+  {innerState ? `k-switch__checked ${checkedColor}` : `k-switch__un_checked ${unCheckedColor}`}
   {switching}
-  {cls} "
-   aria-hidden="true"
-	 {...attrs}
-   on:click={handleClick}>
+  {cls}"
+	aria-hidden="true"
+	{...attrs}
+	on:click={handleClick}
+>
 	{#if !innerState}
 		<div class="k-switch-tx__un_checked">
 			<slot name="unCheckedRender" state={innerState} />
 		</div>
 	{/if}
-	<div class="k-switch-circle"
-		bind:this={switchCircleRef}>
+	<div class="k-switch-circle" bind:this={switchCircleRef}>
 		{#if loading}
 			<KIcon icon="i-carbon-circle-dash" cls="k-switch-loading k-switch-loading__dark" />
 		{/if}
