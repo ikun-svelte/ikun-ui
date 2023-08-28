@@ -110,7 +110,9 @@
 	// class names
 	const prefixCls = getPrefixCls('rate');
 	$: baseCls = createCls(prefixCls, { [`${prefixCls}--disabled`]: rateDisabled }, cls);
-	$: itemCls = createCls(`${prefixCls}--item`);
+	$: itemCls = createCls(`${prefixCls}--item`, {
+		[`${prefixCls}--item__not-disabled`]: !rateDisabled
+	});
 	$: textCls = createCls(`${prefixCls}--text`);
 
 	// decimal icon => not full checked
