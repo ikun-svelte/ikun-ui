@@ -44,7 +44,7 @@
 	$: baseCls = createCls(
 		prefixCls,
 		`${prefixCls}--base`,
-		`${prefixCls}--base_dark`,
+		`${prefixCls}--base__dark`,
 		{
 			[`${prefixCls}--base__disabled`]: disabled,
 			[`${prefixCls}--base__disabled__dark`]: disabled

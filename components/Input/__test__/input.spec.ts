@@ -1,7 +1,9 @@
 import { tick } from 'svelte';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
+import { fireEvent } from '@testing-library/svelte';
 import KInput from '../src';
 import KInputSlots from './input.slots.svelte';
+import KInputBindValueUpdate from './input.bind.value.update.svelte';
 
 let host: HTMLElement;
 
@@ -256,5 +258,26 @@ describe('Test: KInput', () => {
 		const suffixElm = host.getElementsByClassName('suffix')[0];
 		expect(prefixElm).toBeTruthy();
 		expect(suffixElm).toBeTruthy();
+	});
+
+	test('props: bind value be updated in real time', async () => {
+		const instance = new KInputBindValueUpdate({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+
+		const spanElm = host.querySelector('span');
+		expect(spanElm).toBeTruthy();
+		expect(spanElm?.textContent).toBe('');
+
+		const inputElm = host.querySelector('input');
+		expect(inputElm).toBeTruthy();
+
+		await fireEvent.input(inputElm, { target: { value: 'input change' } });
+		await tick();
+
+		expect(inputElm.value).toBe('input change');
+
+		expect(spanElm?.textContent).toBe('input change');
 	});
 });
