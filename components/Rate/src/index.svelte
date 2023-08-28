@@ -37,11 +37,31 @@
 	$: currentValue = value;
 	$: rateDisabled = disabled;
 
+	const getContinuity = (
+		numbers: number[],
+		nkObj: string | Record<number, string>
+	): Record<number, string> => {
+		if (isString(nkObj)) {
+			return numbers.reduce((previous, current) => {
+				previous[current] = nkObj;
+				return previous;
+			}, {});
+		} else {
+			const oks = Object.keys(nkObj);
+			return numbers.reduce((previous, current) => {
+				const nk = oks.find((k) => k >= current);
+				previous[current] = nk ? nkObj[nk] : nkObj[oks[oks.length - 1]];
+				return previous;
+			}, {});
+		}
+	};
+
 	// text or score, text will cover score
 	let text = '';
+	const textsMap = getContinuity(maxNumbers, texts);
 	$: {
 		if (showText) {
-			text = isString(texts) ? texts : texts[Math.ceil(currentValue)];
+			text = isString(texts) ? texts : textsMap[Math.ceil(currentValue)];
 		} else if (showScore) {
 			text = scoreTemplate.replace(
 				/\{\s*value\s*\}/,
@@ -69,25 +89,6 @@
 	$: valueDecimalRightWidth = +iconSize.replace(/px/g, '') - valueDecimalLeftWidth;
 	const showDecimalIcon = (item: number) => {
 		return rateDisabled && valueDecimal > 0 && item - 1 < value && item > value;
-	};
-
-	const getContinuity = (
-		numbers: number[],
-		nkObj: string | Record<number, string>
-	): Record<number, string> => {
-		if (isString(nkObj)) {
-			return numbers.reduce((previous, current) => {
-				previous[current] = nkObj;
-				return previous;
-			}, {});
-		} else {
-			const oks = Object.keys(nkObj);
-			return numbers.reduce((previous, current) => {
-				const nk = oks.find((k) => k >= current);
-				previous[current] = nk ? nkObj[nk] : nkObj[oks[oks.length - 1]];
-				return previous;
-			}, {});
-		}
 	};
 
 	const iconsMap = getContinuity(maxNumbers, icons);
