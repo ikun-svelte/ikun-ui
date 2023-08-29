@@ -22,6 +22,7 @@
 	import { KRadio } from '@ikun-ui/radio';
 	import { KSpin } from '@ikun-ui/spin';
 	import { KBacktop } from '@ikun-ui/backtop';
+	import { KProgress } from '@ikun-ui/progress';
 	import 'virtual:uno.css';
 
 	let checked = true;
@@ -306,3 +307,9 @@
 <div use:KSpin={spinOptions} class="w-200px h-50px bg-red"></div>
 
 <KBacktop bottom={100} right={100} show-height="100" />
+
+<KProgress color="red" percentage={10} >
+	<span>🏀</span>
+</KProgress>
+
+<KProgress color="#000" percentage={10} type="circle" ></KProgress>
