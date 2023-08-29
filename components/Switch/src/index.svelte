@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher, onMount } from 'svelte';
-
-	type SwitchValueType = string | number | boolean;
+	import type { SwitchValueType } from './types';
 
 	export let value:SwitchValueType = false;
 	export let disabled:boolean = false;
@@ -16,7 +15,6 @@
 	export let unCheckedColor = '';
 	const dispatch = createEventDispatcher();
 	$: innerState = value === checkedValue;
-	let switching = '';
 	/**
 	 * 切换状态方法
 	 */
@@ -40,14 +38,13 @@
 	/**
 	 * 设置动画样式类
 	 */
-
+	let switching = '';
 	let switchCircleRef:null | HTMLElement = null;
-	const changeClass = () => {
+	const changeClass = (checked: boolean) => {
 		return new Promise((resolve) => {
 			switching = 'k-switch-tra';
 			if (switchCircleRef) {
 				const circleWidth = switchCircleRef.getClientRects()[0]?.width;
-				const checked = changeData ? checkedValue === changeData.newVal : innerState;
 				switchCircleRef.style.right = checked ? '1px' : `calc(100% - ${circleWidth}px - 1px)`;
 			}
 			setTimeout(() => {
@@ -63,7 +60,7 @@
 		emitChangeEvt();
 		dispatch('updateValue', changeData.newVal);
 		isUpdateModel = true;
-		await changeClass();
+		await changeClass(changeData.newVal === checkedValue);
 	};
 
 	$: if (changeData && value !== changeData.newVal) {
@@ -85,7 +82,7 @@
 	 * 初始化方法
 	 */
 	const init = async () => {
-		await changeClass();
+		await changeClass(innerState);
 	};
 	onMount(init);
 </script>
