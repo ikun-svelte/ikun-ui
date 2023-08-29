@@ -1,25 +1,47 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import type { KButtonGroupPropsInner, KButtonProps } from './types';
+	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import { extend } from 'baiwusanyu-utils';
-	import { createCls, type IKunTypePro } from '@ikun-ui/utils';
-	export let to: HTMLAnchorElement['href'] = '';
-	export let icon = '';
-	export let round: string | number = '';
-	export let circle = false;
-	export let cls = '';
-	export let attrs = {};
-	export let type: IKunTypePro = 'primary';
-	export let disabled = false;
-	export let iconSize: null | number = null;
-	export let size: 'md' | 'sm' | 'lg' = 'md';
-	export let isBorder = false;
+	import { createCls, getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
+
+	export let type: KButtonProps['type'];
+	export let size: KButtonProps['size'];
+	export let icon: KButtonProps['icon'] = '';
+	export let iconSize: KButtonProps['iconSize'];
+	export let to: KButtonProps['to'] = '';
+	export let round: KButtonProps['round'] = '';
+	export let circle: KButtonProps['circle'] = false;
+	export let isBorder: KButtonProps['isBorder'];
+	export let disabled: KButtonProps['disabled'];
+	export let cls: KButtonProps['cls'] = '';
+	export let attrs: KButtonProps['attrs'] = {};
+
+	enum EButtonIconSize {
+		'lg' = 20,
+		'md' = 16,
+		'sm' = 12
+	}
+
+	const buttonGroupPropsInner = getContext<KButtonGroupPropsInner>(ButtonGroupKey) || {};
+	const typeInner = type || buttonGroupPropsInner?.type || 'primary';
+	const sizeInner = buttonGroupPropsInner?.size || size || 'md';
+	const isBorderInner = isBorder || buttonGroupPropsInner?.isBorder || false;
+	const disabledInner = disabled || buttonGroupPropsInner?.disabled || false;
+	let iconSizeInner: KButtonProps['iconSize'];
+	$: if (buttonGroupPropsInner?.iconSize) {
+		iconSizeInner = buttonGroupPropsInner.iconSize;
+	} else if (iconSize) {
+		iconSizeInner = iconSize;
+	} else {
+		iconSizeInner = EButtonIconSize[sizeInner];
+	}
 
 	let btnRef: null | HTMLElement = null;
 	let animationCls = '';
 	const handleAnimation = () => {
 		if (btnRef as HTMLElement) {
-			animationCls = `k-button--${type}__animate`;
+			animationCls = `${prefixCls}--${typeInner}__animate`;
 			setTimeout(() => {
 				animationCls = '';
 			}, 310);
@@ -28,57 +50,48 @@
 
 	const dispatch = createEventDispatcher();
 	const handleClick = (e: Event) => {
-		if (disabled) {
+		if (disabledInner) {
 			e.preventDefault();
 		}
-		if (!to && !disabled) {
+		if (!to && !disabledInner) {
 			dispatch('click', e);
 			handleAnimation();
 		}
 	};
 
-	$: prefixCls = `k-button--${type}`;
+	// class names
+	$: prefixCls = getPrefixCls('button');
+	$: typePrefixCls = `${prefixCls}--${typeInner}`;
 	$: cnames = createCls(
-		'k-button--base',
 		prefixCls,
+		`${prefixCls}--base`,
+		typePrefixCls,
 		{
-			[`${prefixCls}__active ${prefixCls}__focus ${prefixCls}__hover`]: !disabled,
-			'k-cur-disabled k-button--disabled': disabled,
-			'k-button--circle': circle,
-			'k-button--circle--sm': circle && size === 'sm',
-			'k-button--circle--lg': circle && size === 'lg'
+			[`${typePrefixCls}__active ${typePrefixCls}__focus ${typePrefixCls}__hover`]: !disabledInner,
+			[`k-cur-disabled ${prefixCls}--disabled`]: disabledInner,
+			[`${prefixCls}--circle`]: circle,
+			[`${prefixCls}--circle--sm`]: circle && sizeInner === 'sm',
+			[`${prefixCls}--circle--lg`]: circle && sizeInner === 'lg'
 		},
 		{
-			'k-button--sm': size === 'sm',
-			'k-button--lg': size === 'lg'
+			[`${prefixCls}--sm`]: sizeInner === 'sm',
+			[`${prefixCls}--lg`]: sizeInner === 'lg'
 		},
 		{
-			[`k-button--${type}__border`]: isBorder
+			[`${prefixCls}--${typeInner}__border`]: isBorderInner
 		},
+		animationCls,
 		cls
 	);
 
 	$: attrsInner = extend(attrs, to ? { href: to } : {});
-
-	enum EButtonIconSize {
-		'lg' = 20,
-		'md' = 16,
-		'sm' = 12
-	}
-
-	let iconSizeInner = EButtonIconSize.md;
-	$: if (iconSize) {
-		iconSizeInner = iconSize;
-	} else {
-		iconSizeInner = size && EButtonIconSize[size] ? EButtonIconSize[size] : EButtonIconSize.md;
-	}
 </script>
 
 <svelte:element
 	this={to ? 'a' : 'button'}
 	bind:this={btnRef}
-	style="border-radius: {round ? `${round}` : '4'}px"
-	class={`${cnames} ${animationCls}`}
+	style="border-radius: {round ? `${round}` : '4'}px; font-size: {iconSizeInner}px"
+	class={cnames}
 	aria-hidden="true"
 	on:click={handleClick}
 	{...attrsInner}
@@ -87,14 +100,14 @@
 	{#if icon}
 		<KIcon
 			{icon}
-			color={`k-button--${type}__icon`}
+			color={`${prefixCls}--${typeInner}__icon`}
 			width={`${iconSizeInner}px`}
 			height={`${iconSizeInner}px`}
 		/>
 	{/if}
 
 	{#if $$slots.default && icon}
-		<div class="ml-1" />
+		<div class="ml-1"></div>
 	{/if}
 	<slot />
 </svelte:element>

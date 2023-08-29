@@ -47,14 +47,14 @@ Implement custom header and footer through slots
 
 ## Modal Props
 
-| Name   | Type                 | Default  | Description               |
-| ------ | -------------------- | -------- | ------------------------- |
-| title  | `string`             | `-`      | content of Modal title    |
-| footer | `boolean`            | `false`  | Show bottom footer button |
-| show   | `boolean`            | `false`  | show the Modal            |
-| layout | `'center' / 'right'` | `center` | footer button layout      |
-| cls    | `string`             | `-`      | Additional class          |
-| attrs  | `any`                | `{}`     | Additional attributes     |
+| Name   | Type                     | Default  | Description               |
+| ------ | ------------------------ | -------- | ------------------------- |
+| title  | `string`                 | `-`      | content of Modal title    |
+| footer | `boolean`                | `false`  | Show bottom footer button |
+| show   | `boolean`                | `false`  | show the Modal            |
+| layout | `'center' / 'right'`     | `center` | footer button layout      |
+| cls    | `string`                 | `-`      | Additional class          |
+| attrs  | `Record<string, string>` | `{}`     | Additional attributes     |
 
 ## Modal Events
 

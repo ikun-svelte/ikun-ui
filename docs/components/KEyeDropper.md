@@ -33,10 +33,10 @@ Call the `eyedropper` interface by using `scoped slots`
 
 ## EyeDropper Props
 
-| Name  | Type     | Default | Description           |
-| ----- | -------- | ------- | --------------------- |
-| cls   | `string` | `-`     | Additional class      |
-| attrs | `any`    | `{}`    | Additional attributes |
+| Name  | Type                     | Default | Description           |
+| ----- | ------------------------ | ------- | --------------------- |
+| cls   | `string`                 | `-`     | Additional class      |
+| attrs | `Record<string, string>` | `{}`    | Additional attributes |
 
 ## EyeDropper Slots
 
