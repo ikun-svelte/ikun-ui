@@ -85,6 +85,18 @@
 </script>
 
 <div class="my-10px">
+	<div class="my-10px">KInput</div>
+	<KInput
+		bind:value={inputValue}
+		placeholder="inputValue"
+		iconPrefix="i-carbon-settings"
+		on:input={() => {
+			console.log('on:input =>', inputValue);
+		}}
+	></KInput>
+</div>
+
+<div class="my-10px">
 	<div class="mb-10px">Breadcrumb</div>
 	<KBreadcrumb separator="/">
 		{#each breadcrumbList as breadcrumb}
@@ -156,8 +168,6 @@
 <KEyeDropper let:open>
 	<KButton type="primary" on:click={() => open()}>KEyeDropper</KButton>
 </KEyeDropper>
-
-<KInput value={inputValue} placeholder="inputValue" iconPrefix="i-carbon-settings"></KInput>
 
 <KTooltip content="KTooltip - content" placement="bottom">
 	<KButton type="warning" slot="triggerEl">KTooltip - trigger</KButton>
