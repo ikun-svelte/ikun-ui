@@ -61,7 +61,7 @@ Use the `isBorder` property to determine if the button is bordered.
 
 Displayed as a button group, can be used to group a series of similar operations.
 
-Use tag `<k-button-group>` to group your buttons.
+Use tag `<KButtonGroup>` to group your buttons.
 
 <demo src="../../../../example/button/group.svelte" github='ButtonGroup'></demo>
 
@@ -73,19 +73,19 @@ Use the `to` attribute to set a specific url that you can click to jump to.
 
 ## Button Props
 
-| Name     | Type                                                  | Default    | Description                                               |
-| -------- | ----------------------------------------------------- | ---------- | --------------------------------------------------------- |
-| icon     | `string`                                              | `-`        | The class name of the icon, following the unocss standard |
-| circle   | `boolean`                                             | `false`    | Determine whether it's a circle button                    |
-| to       | `string`                                              | `-`        | Determine whether it's a link button                      |
-| round    | `string \| number`                                    | `-`        | Button's border radius                                    |
-| disabled | `boolean`                                             | `false`    | Disable the button                                        |
-| type     | `'success' / 'error' / 'warning' / 'info'/ 'primary'` | `primary'` | Button type                                               |
-| size     | `'sm' / 'md' / 'lg'`                                  | `md`       | Button size                                               |
-| type     | `boolean`                                             | `false`    | Border style button                                       |
-| iconSize | `number`                                              | `24`       | The icon size of the button                               |
-| cls      | `string`                                              | `-`        | Additional class for                                      |
-| attrs    | `any`                                                 | `{}`       | Additional attributes                                     |
+| Name     | Type                                                 | Default    | Description                                               |
+| -------- | ---------------------------------------------------- | ---------- | --------------------------------------------------------- |
+| icon     | `string`                                             | `-`        | The class name of the icon, following the unocss standard |
+| circle   | `boolean`                                            | `false`    | Determine whether it's a circle button                    |
+| to       | `string`                                             | `-`        | Determine whether it's a link button                      |
+| round    | `string` / `number`                                  | `-`        | Button's border radius                                    |
+| disabled | `boolean`                                            | `false`    | Disable the button                                        |
+| type     | `primary` / `success` / `error` / `warning` / `info` | `primary'` | Button type                                               |
+| size     | `'sm' / 'md' / 'lg'`                                 | `md`       | Button size                                               |
+| type     | `boolean`                                            | `false`    | Border style button                                       |
+| iconSize | `number`                                             | `24`       | The icon size of the button                               |
+| cls      | `string`                                             | `-`        | Additional class for                                      |
+| attrs    | `any`                                                | `{}`       | Additional attributes                                     |
 
 ## Button Events
 

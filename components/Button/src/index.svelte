@@ -12,7 +12,7 @@
 	export let type: IKunTypePro = 'primary';
 	export let disabled = false;
 	export let iconSize: null | number = null;
-	export let size: 'md' | 'sm' | 'lg' = 'md';
+	export let size: 'sm' | 'md' | 'lg' = 'md';
 	export let isBorder = false;
 
 	let btnRef: null | HTMLElement = null;
@@ -77,7 +77,7 @@
 <svelte:element
 	this={to ? 'a' : 'button'}
 	bind:this={btnRef}
-	style="border-radius: {round ? `${round}` : '4'}px"
+	style="border-radius: {round ? `${round}` : '4'}px; font-size: {iconSizeInner}px"
 	class={`${cnames} ${animationCls}`}
 	aria-hidden="true"
 	on:click={handleClick}

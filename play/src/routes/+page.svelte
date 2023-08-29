@@ -63,27 +63,25 @@
 	const spinOptions = {
 		show: false,
 		text: 'loading...',
-    fullScreen: true
+		fullScreen: true
 	};
-
 
 	const handleToggleSpin = () => {
 		spinOptions.show = !spinOptions.show;
 	};
 
-
-    $: breadcrumbList = [
-        { label: 'home', href: '/' },
-        { label: 'breadcrumb', href: '' }
-    ];
-    const addBreadcrumb = () => {
-        breadcrumbList.push({ label: 'test', href: '' });
-        breadcrumbList = breadcrumbList;
-    };
-    const delBreadcrumb = () => {
-        breadcrumbList.pop();
-        breadcrumbList = breadcrumbList;
-    };
+	$: breadcrumbList = [
+		{ label: 'home', href: '/' },
+		{ label: 'breadcrumb', href: '' }
+	];
+	const addBreadcrumb = () => {
+		breadcrumbList.push({ label: 'test', href: '' });
+		breadcrumbList = breadcrumbList;
+	};
+	const delBreadcrumb = () => {
+		breadcrumbList.pop();
+		breadcrumbList = breadcrumbList;
+	};
 </script>
 
 <div class="my-10px">
@@ -115,13 +113,32 @@
 	drawer
 </KButton>
 
-<KButtonGroup cls="my-10px">
-	<KButton icon="i-carbon-settings" type="primary" round="10">drawer</KButton>
-	<KButton icon="i-carbon-settings" type="info">drawer</KButton>
-	<KButton icon="i-carbon-settings" type="success">drawer</KButton>
-	<KButton icon="i-carbon-settings" type="error">drawer</KButton>
-	<KButton icon="i-carbon-settings" type="warning">drawer</KButton>
-</KButtonGroup>
+<div class="my-10px">
+	<div class="my-10px">KButtonGroup</div>
+	<KButtonGroup>
+		<KButton icon="i-carbon-settings" type="primary" round="20" size="sm"></KButton>
+		<KButton icon="i-carbon-add" type="info" size="sm">add</KButton>
+		<KButton icon="i-carbon-edit" type="success" size="sm">edit</KButton>
+		<KButton icon="i-carbon-view" type="error" size="sm">view</KButton>
+		<KButton icon="i-carbon-trash-can" type="warning" size="sm">delelte</KButton>
+	</KButtonGroup>
+
+	<KButtonGroup>
+		<KButton icon="i-carbon-settings" type="primary" round="20" size="md"></KButton>
+		<KButton icon="i-carbon-settings" type="info" size="md">drawer</KButton>
+		<KButton icon="i-carbon-settings" type="success" size="md">drawer</KButton>
+		<KButton icon="i-carbon-settings" type="error" size="md">drawer</KButton>
+		<KButton icon="i-carbon-settings" type="warning" size="md">drawer</KButton>
+	</KButtonGroup>
+
+	<KButtonGroup>
+		<KButton icon="i-carbon-settings" type="primary" round="20" size="lg"></KButton>
+		<KButton icon="i-carbon-settings" type="info" size="lg">drawer</KButton>
+		<KButton icon="i-carbon-settings" type="success" size="lg">drawer</KButton>
+		<KButton icon="i-carbon-settings" type="error" size="lg">drawer</KButton>
+		<KButton icon="i-carbon-settings" type="warning" size="lg">drawer</KButton>
+	</KButtonGroup>
+</div>
 
 <KIcon icon="i-carbon-settings" btn></KIcon>
 <KCollapse>
@@ -214,4 +231,4 @@
 <KButton on:click={handleToggleSpin}>ToggleSpin</KButton>
 <div use:KSpin={spinOptions} class="w-200px h-50px bg-red"></div>
 
-<KBacktop bottom="{100}" right="{100}" show-height="100"/>
+<KBacktop bottom={100} right={100} show-height="100" />
