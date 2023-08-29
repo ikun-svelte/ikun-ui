@@ -1,8 +1,23 @@
 <script lang="ts">
-	import { createCls, getPrefixCls } from '@ikun-ui/utils';
+	import type { KButtonGroupProps } from './types';
+	import { createCls, getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
+	import { setContext } from 'svelte';
 
-	export let cls = '';
-	export let attrs = {};
+	export let type: KButtonGroupProps['type'] = 'primary';
+	export let size: KButtonGroupProps['size'] = 'md';
+	export let iconSize: KButtonGroupProps['iconSize'] = null;
+	export let isBorder: KButtonGroupProps['isBorder'] = false;
+	export let disabled: KButtonGroupProps['disabled'] = false;
+	export let cls: KButtonGroupProps['cls'] = '';
+	export let attrs: KButtonGroupProps['attrs'] = {};
+
+	setContext(ButtonGroupKey, {
+		type,
+		size,
+		iconSize,
+		isBorder,
+		disabled
+	});
 
 	// class names
 	$: prefixCls = getPrefixCls('button-group');

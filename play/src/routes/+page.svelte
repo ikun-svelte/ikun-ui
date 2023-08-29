@@ -116,39 +116,103 @@
 	</div>
 </div>
 
-<div class="flex fle-gap-2 p-2">
-	<KButton>Normal Button</KButton>
-	<KButton disabled>Disabled Button</KButton>
-	<KButton to="https://github.com/ikun-svelte/ikun-ui">Link</KButton>
-</div>
 <KButton icon="i-carbon-settings" type="primary" on:click={() => (openDrawer = true)}>
 	drawer
 </KButton>
 
 <div class="my-10px">
-	<div class="my-10px">KButtonGroup</div>
-	<KButtonGroup>
-		<KButton icon="i-carbon-settings" type="primary" round="20" size="sm"></KButton>
-		<KButton icon="i-carbon-add" type="info" size="sm">add</KButton>
-		<KButton icon="i-carbon-edit" type="success" size="sm">edit</KButton>
-		<KButton icon="i-carbon-view" type="error" size="sm">view</KButton>
-		<KButton icon="i-carbon-trash-can" type="warning" size="sm">delelte</KButton>
-	</KButtonGroup>
+	<div>Button Type</div>
+	<div class="flex flex-gap-2 p-2">
+		<KButton>Normal Button</KButton>
+		<KButton type="success">Success Button</KButton>
+		<KButton type="error">Error Button</KButton>
+		<KButton type="warning">Warning Button</KButton>
+		<KButton type="info">Info Button</KButton>
+		<KButton to="https://github.com/ikun-svelte/ikun-ui">Link Button</KButton>
+	</div>
+	<div>Button Size</div>
+	<div class="flex-gap-2 p-2">
+		<KButton cls="inline-flex" size="sm">SM Button</KButton>
+		<KButton cls="inline-flex" size="md">MD Button</KButton>
+		<KButton cls="inline-flex" size="lg">LG Button</KButton>
+	</div>
+	<div>Button Other Attrs</div>
+	<div class="flex flex-gap-2 p-2">
+		<KButton icon="i-carbon-settings" round="50">Icon Button</KButton>
+		<KButton icon="i-carbon-settings" circle></KButton>
+		<KButton isBorder>Border Button</KButton>
+		<KButton disabled>Disabled Button</KButton>
+	</div>
+</div>
 
-	<KButtonGroup>
-		<KButton icon="i-carbon-settings" type="primary" round="20" size="md"></KButton>
-		<KButton icon="i-carbon-settings" type="info" size="md">drawer</KButton>
-		<KButton icon="i-carbon-settings" type="success" size="md">drawer</KButton>
-		<KButton icon="i-carbon-settings" type="error" size="md">drawer</KButton>
-		<KButton icon="i-carbon-settings" type="warning" size="md">drawer</KButton>
-	</KButtonGroup>
+<div class="my-10px">
+	<div class="my-10px">KButtonGroup Type & Size</div>
+	<div class="flex-gap-2 p-2">
+		<KButtonGroup type="success" size="sm">
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="warning" size="md">delelte</KButton>
+		</KButtonGroup>
 
-	<KButtonGroup>
-		<KButton icon="i-carbon-settings" type="primary" round="20" size="lg"></KButton>
-		<KButton icon="i-carbon-settings" type="info" size="lg">drawer</KButton>
-		<KButton icon="i-carbon-settings" type="success" size="lg">drawer</KButton>
-		<KButton icon="i-carbon-settings" type="error" size="lg">drawer</KButton>
-		<KButton icon="i-carbon-settings" type="warning" size="lg">drawer</KButton>
+		<KButtonGroup type="error" size="md">
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="warning" size="md">delelte</KButton>
+		</KButtonGroup>
+
+		<KButtonGroup type="error" size="lg">
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="warning" size="md">delelte</KButton>
+		</KButtonGroup>
+	</div>
+	<div class="my-10px">KButtonGroup Other Attrs</div>
+	<div class="flex-gap-2 p-2">
+		<KButtonGroup type="success" size="md" disabled>
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="warning" size="sm">delelte</KButton>
+		</KButtonGroup>
+
+		<KButtonGroup type="error" size="md" disabled={false}>
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="warning" size="lg" disabled={true}>delelte</KButton>
+		</KButtonGroup>
+
+		<KButtonGroup type="warning" size="md" isBorder>
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="primary" size="lg">delelte</KButton>
+		</KButtonGroup>
+
+		<KButtonGroup type="info" size="md" isBorder={false}>
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="warning" size="sm" isBorder={true}>delelte</KButton>
+		</KButtonGroup>
+	</div>
+	<div class="my-10px">KButtonGroup IconSize</div>
+	<KButtonGroup iconSize={20}>
+		<KButton icon="i-carbon-settings"></KButton>
+		<KButton icon="i-carbon-add">add</KButton>
+		<KButton icon="i-carbon-edit">edit</KButton>
+		<KButton icon="i-carbon-view">view</KButton>
+		<KButton icon="i-carbon-trash-can" iconSize={10}>delelte</KButton>
 	</KButtonGroup>
 </div>
 

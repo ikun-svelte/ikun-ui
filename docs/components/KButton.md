@@ -75,15 +75,15 @@ Use the `to` attribute to set a specific url that you can click to jump to.
 
 | Name     | Type                                                 | Default    | Description                                               |
 | -------- | ---------------------------------------------------- | ---------- | --------------------------------------------------------- |
-| icon     | `string`                                             | `-`        | The class name of the icon, following the unocss standard |
-| circle   | `boolean`                                            | `false`    | Determine whether it's a circle button                    |
-| to       | `string`                                             | `-`        | Determine whether it's a link button                      |
-| round    | `string` / `number`                                  | `-`        | Button's border radius                                    |
-| disabled | `boolean`                                            | `false`    | Disable the button                                        |
 | type     | `primary` / `success` / `error` / `warning` / `info` | `primary'` | Button type                                               |
 | size     | `'sm' / 'md' / 'lg'`                                 | `md`       | Button size                                               |
-| type     | `boolean`                                            | `false`    | Border style button                                       |
-| iconSize | `number`                                             | `24`       | The icon size of the button                               |
+| icon     | `string`                                             | `-`        | The class name of the icon, following the unocss standard |
+| iconSize | `number`                                             | `-`        | The icon size of the button                               |
+| to       | `string`                                             | `-`        | Determine whether it's a link button                      |
+| round    | `string` / `number`                                  | `-`        | Button's border radius                                    |
+| circle   | `boolean`                                            | `false`    | Determine whether it's a circle button                    |
+| isBorder | `boolean`                                            | `false`    | Border style button                                       |
+| disabled | `boolean`                                            | `false`    | Disable the button                                        |
 | cls      | `string`                                             | `-`        | Additional class for                                      |
 | attrs    | `any`                                                | `{}`       | Additional attributes                                     |
 
@@ -101,6 +101,12 @@ Use the `to` attribute to set a specific url that you can click to jump to.
 
 ## Button Group Props
 
-| Name | Type     | Default | Description          |
-| ---- | -------- | ------- | -------------------- |
-| cls  | `string` | `-`     | Additional class for |
+| Name     | Type                                                 | Default | Description                                                         |
+| -------- | ---------------------------------------------------- | ------- | ------------------------------------------------------------------- |
+| type     | `primary` / `success` / `error` / `warning` / `info` | `false` | Buttons type.                                                       |
+| size     | `'sm' / 'md' / 'lg'`                                 | `md`    | Buttons size. It will cover button size.                            |
+| iconSize | `number`                                             | `-`     | The icon size of the buttons. It will cover button iconSize.        |
+| isBorder | `boolean`                                            | `false` | Border style buttons. If true, will override the button's isBorder. |
+| disabled | `boolean`                                            | `false` | Disable buttons. If true, will override the button's disabled.      |
+| cls      | `string`                                             | `-`     | Additional class for                                                |
+| attrs    | `Record<string, string>`                             | `{}`    | Additional attributes                                               |
