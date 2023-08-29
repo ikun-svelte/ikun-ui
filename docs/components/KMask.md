@@ -37,13 +37,13 @@ Set the background color of the mask through the color Attribute
 
 ## Mask Props
 
-| Name   | Type                 | Default          | Description                            |
-| ------ | -------------------- | ---------------- | -------------------------------------- |
-| color  | `string`             | `-`              | The background color of the mask       |
-| value  | `boolean`            | `false`          | Whether to display the mask            |
-| target | `null / HTMLElement` | `parent element` | The target element covered by the mask |
-| cls    | `string`             | `-`              | Additional class                       |
-| attrs  | `any`                | `{}`             | Additional attributes                  |
+| Name   | Type                     | Default          | Description                            |
+| ------ | ------------------------ | ---------------- | -------------------------------------- |
+| color  | `string`                 | `-`              | The background color of the mask       |
+| value  | `boolean`                | `false`          | Whether to display the mask            |
+| target | `null / HTMLElement`     | `parent element` | The target element covered by the mask |
+| cls    | `string`                 | `-`              | Additional class                       |
+| attrs  | `Record<string, string>` | `{}`             | Additional attributes                  |
 
 ## Mask Slots
 

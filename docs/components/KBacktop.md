@@ -39,16 +39,16 @@ Render custom content via slots.
 
 ## Backtop Props
 
-| Name       | Type     | Default    | Description                                          |
-| ---------- | -------- | ---------- | ---------------------------------------------------- |
-| right      | `number` | `40`       | Distance from the right side of the screen.          |
-| bottom     | `number` | `40`       | Distance from the bottom of the screen.              |
-| showHeight | `number` | `200`      | Scroll to this height to show the Backtop component. |
-| target     | `string` | `-`        | Scroll target element `id`                           |
-| easing     | `string` | `quartOut` | Animation during back to top(TODO)                   |
-| duration   | `number` | `500`      | Time spent back to top.                              |
-| cls        | `string` | `''`       | Additional class for                                 |
-| attrs      | `any`    | `{}`       | Additional attributes                                |
+| Name       | Type                     | Default    | Description                                          |
+| ---------- | ------------------------ | ---------- | ---------------------------------------------------- |
+| right      | `number`                 | `40`       | Distance from the right side of the screen.          |
+| bottom     | `number`                 | `40`       | Distance from the bottom of the screen.              |
+| showHeight | `number`                 | `200`      | Scroll to this height to show the Backtop component. |
+| target     | `string`                 | `-`        | Scroll target element `id`                           |
+| easing     | `string`                 | `quartOut` | Animation during back to top(TODO)                   |
+| duration   | `number`                 | `500`      | Time spent back to top.                              |
+| cls        | `string`                 | `''`       | Additional class for                                 |
+| attrs      | `Record<string, string>` | `{}`       | Additional attributes                                |
 
 ## Backtop Events
 

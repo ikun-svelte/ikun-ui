@@ -85,7 +85,7 @@ Use the `to` attribute to set a specific url that you can click to jump to.
 | isBorder | `boolean`                                            | `false`    | Border style button                                       |
 | disabled | `boolean`                                            | `false`    | Disable the button                                        |
 | cls      | `string`                                             | `-`        | Additional class for                                      |
-| attrs    | `any`                                                | `{}`       | Additional attributes                                     |
+| attrs    | `Record<string, string>`                             | `{}`       | Additional attributes                                     |
 
 ## Button Events
 
