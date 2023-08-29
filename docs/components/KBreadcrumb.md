@@ -39,12 +39,12 @@ Set `separatorIcon` to use `KIcon` as the separator, it will cover `separator`.
 
 ## Breadcrumb Props
 
-| Name          | Type     | Default | Description                                                |
-| ------------- | -------- | ------- | ---------------------------------------------------------- |
-| separator     | `string` | `/`     | separator character                                        |
-| separatorIcon | `string` | `''`    | The class name of the icon, following the unocss standard. |
-| cls           | `string` | `''`    | Additional class for                                       |
-| attrs         | `any`    | `{}`    | Additional attributes                                      |
+| Name          | Type                     | Default | Description                                                |
+| ------------- | ------------------------ | ------- | ---------------------------------------------------------- |
+| separator     | `string`                 | `/`     | separator character                                        |
+| separatorIcon | `string`                 | `''`    | The class name of the icon, following the unocss standard. |
+| cls           | `string`                 | `''`    | Additional class for                                       |
+| attrs         | `Record<string, string>` | `{}`    | Additional attributes                                      |
 
 ## Breadcrumb Slots
 
@@ -54,11 +54,11 @@ Set `separatorIcon` to use `KIcon` as the separator, it will cover `separator`.
 
 ## BreadcrumbItem Props
 
-| Name  | Type     | Default | Description                                                                                                                                                |
-| ----- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| href  | `string` | `''`    | The URL that the hyperlink points to, same as [href <span class="i-carbon-link text-12px" />](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) |
-| cls   | `string` | `''`    | Additional class for                                                                                                                                       |
-| attrs | `any`    | `{}`    | Additional attributes                                                                                                                                      |
+| Name  | Type                     | Default | Description                                                                                                                                                |
+| ----- | ------------------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| href  | `string`                 | `''`    | The URL that the hyperlink points to, same as [href <span class="i-carbon-link text-12px" />](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) |
+| cls   | `string`                 | `''`    | Additional class for                                                                                                                                       |
+| attrs | `Record<string, string>` | `{}`    | Additional attributes                                                                                                                                      |
 
 ## BreadcrumbItem Slots
 

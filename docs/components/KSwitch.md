@@ -65,7 +65,7 @@ Use `disabled` attribute to determine whether a switch is loading.
 | unCheckedColor | `string`                    | `-`     | unChecked state switch color |
 | checkedColor   | `string`                    | `-`     | Checked state switch color   |
 | cls            | `string`                    | `-`     | Additional class             |
-| attrs          | `any`                       | `{}`    | Additional attributes        |
+| attrs          | `Record<string, string>`    | `{}`    | Additional attributes        |
 
 ## Switch Events
 

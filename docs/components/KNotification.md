@@ -78,7 +78,7 @@ You can render content through slots
 | title     | `string / SvelteComponent`                                  | `-`         | The title content of the notification, which can be a html string or a svelte component |
 | content   | `string / SvelteComponent`                                  | `-`         | The content of the notification, which can be a html string or a svelte component       |
 | cls       | `string`                                                    | `-`         | Additional class                                                                        |
-| attrs     | `any`                                                       | `{}`        | Additional attributes                                                                   |
+| attrs     | `Record<string, string>`                                    | `{}`        | Additional attributes                                                                   |
 
 ## Notification Api
 

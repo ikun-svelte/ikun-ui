@@ -43,15 +43,15 @@ Disable the input through the disabled attribute
 
 ## Input Props
 
-| Name        | Type      | Default | Description                                                      |
-| ----------- | --------- | ------- | ---------------------------------------------------------------- |
-| value       | `string`  | `-`     | Binding value                                                    |
-| iconPrefix  | `string`  | `-`     | The class name of the prefix icon, following the unocss standard |
-| iconSuffix  | `string`  | `-`     | The class name of the suffix icon, following the unocss standard |
-| placeholder | `string`  | `false` | Input's placeholder                                              |
-| disabled    | `boolean` | `false` | Disable the Input                                                |
-| cls         | `string`  | `-`     | Additional class                                                 |
-| attrs       | `any`     | `{}`    | Additional attributes                                            |
+| Name        | Type                     | Default | Description                                                      |
+| ----------- | ------------------------ | ------- | ---------------------------------------------------------------- |
+| value       | `string`                 | `-`     | Binding value                                                    |
+| iconPrefix  | `string`                 | `-`     | The class name of the prefix icon, following the unocss standard |
+| iconSuffix  | `string`                 | `-`     | The class name of the suffix icon, following the unocss standard |
+| placeholder | `string`                 | `false` | Input's placeholder                                              |
+| disabled    | `boolean`                | `false` | Disable the Input                                                |
+| cls         | `string`                 | `-`     | Additional class                                                 |
+| attrs       | `Record<string, string>` | `{}`    | Additional attributes                                            |
 
 ## Input Events
 

@@ -45,12 +45,12 @@ You can choose to open from the `right` or `left`
 
 ## Drawer Props
 
-| Name      | Type               | Default | Description                             |
-| --------- | ------------------ | ------- | --------------------------------------- |
-| placement | `'right' / 'left'` | `right` | The placement in which the drawer opens |
-| value     | `boolean`          | `false` | open the Drawer                         |
-| cls       | `string`           | `-`     | Additional class                        |
-| attrs     | `any`              | `{}`    | Additional attributes                   |
+| Name      | Type                     | Default | Description                             |
+| --------- | ------------------------ | ------- | --------------------------------------- |
+| placement | `'right' / 'left'`       | `right` | The placement in which the drawer opens |
+| value     | `boolean`                | `false` | open the Drawer                         |
+| cls       | `string`                 | `-`     | Additional class                        |
+| attrs     | `Record<string, string>` | `{}`    | Additional attributes                   |
 
 ## Drawer Events
 
