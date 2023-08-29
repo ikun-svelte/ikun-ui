@@ -14,8 +14,10 @@
 	export let showText: KProgressProps['showText'] = true;
 	export let cls: KProgressProps['cls'] = '';
 
-	// let circleRadius = (width - strokeWidth * 2) / 2;
-	// let perimeter = 2 * Math.PI * circleRadius;
+	let rate = type === 'dashboard' ? 0.75 : 1
+	let circleRadius = (width - strokeWidth * 2) / 2;
+	let perimeter = 2 * Math.PI * circleRadius;
+	let strokeDashoffset = -1 * perimeter * (1 - rate) / 2;
 
 	$: prefixCls = `k-progress--${status}`;
 	$: cnames = createCls('k-progress--base', cls);
@@ -57,7 +59,42 @@
 		</div>
 	</div>
 {:else if ['circle', 'dashboard'].includes(type)}
-	<svg {width} height={width}>
-		<circle cx="100" cy="50" r="40" stroke="{color}" stroke-width="2" fill="none" />
+	<svg {width} height={width} viewBox="0 0 {width} {width}">
+		<circle
+				cx="{width / 2}"
+				cy="{width / 2}"
+				r="{circleRadius}"
+				stroke="{color}"
+				stroke-width="{strokeWidth}"
+				stroke-dasharray="{perimeter * rate} {perimeter}"
+				stroke-dashoffset="{strokeDashoffset}"
+				fill="none"
+				transform="rotate({type === 'dashboard' ? 90 : -90}, 100, {width/2})"
+		/>
+		<circle
+				cx="{width / 2}"
+				cy="{width / 2}"
+				r="{circleRadius}"
+				stroke="red"
+				stroke-width="{strokeWidth}"
+				stroke-dasharray="{perimeter * rate * (percentage / 100)} {perimeter}"
+				stroke-dashoffset="{strokeDashoffset}"
+				fill="none"
+				transform="rotate({type === 'dashboard' ? 90 : -90}, 100, {width/2})"
+				{...{'ui-progress-bar': true}}
+		/>
 	</svg>
+	{#if showText}
+		{#if $$slots.default}
+			<slot />
+		{:else}
+			<span>{format || `${percentage}%`}</span>
+		{/if}
+	{/if}
 {/if}
+
+<style>
+	[ui-progress-bar] {
+		transition: stroke-dasharray 0.28s linear;
+	}
+</style>

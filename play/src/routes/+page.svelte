@@ -83,6 +83,14 @@
 		breadcrumbList.pop();
 		breadcrumbList = breadcrumbList;
 	};
+
+	let percentage = 10
+	setInterval(() => {
+		if (percentage >= 100) {
+			return percentage = 100
+		}
+		percentage ++;
+	}, 200)
 </script>
 
 <div class="my-10px">
@@ -312,4 +320,5 @@
 	<span>🏀</span>
 </KProgress>
 
-<KProgress color="#000" percentage={10} type="circle" ></KProgress>
+<KProgress width={200} strokeWidth={10} color="#000" percentage={percentage} type="circle" ></KProgress>
+<KProgress width={200} strokeWidth={10} color="#000" percentage={percentage} type="dashboard" ></KProgress>
