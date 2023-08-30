@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { createPopperActions, type PopperOptions } from 'svelte-popperjs';
 	import { fade } from 'svelte/transition';
-	import { tick } from 'svelte';
 	import type {IKunPlacement, IKunTrigger} from "@ikun-ui/utils";
 	// top left right bottom
 	export let placement:IKunPlacement = 'top';
@@ -9,9 +8,11 @@
 	export let trigger: IKunTrigger = 'hover';
 	export let attrs = {};
 	export let cls = '';
+	$:curPlacement = placement
 	let arrowRef:null | HTMLElement = null;
-	const [popperRef, popperContent, getPopperInst] = createPopperActions({
+	const [popperRef, popperContent] = createPopperActions({
 		placement,
+		onFirstUpdate: updateArrow,
 		modifiers: [
 			{
 				name: 'offset',
@@ -24,6 +25,17 @@
 				options: {
 					fallbackPlacements: ['top', 'right', 'bottom', 'left']
 				}
+			},
+			{
+				name: 'updated',
+				enabled: true,
+				phase: 'afterWrite',
+				fn(arg: any) {
+					if(arg.state.placement !== curPlacement){
+						curPlacement = arg.state.placement
+						updateArrow()
+					}
+				},
 			}
 		],
 		strategy: 'fixed'
@@ -59,25 +71,15 @@
 			async () => {
 				if (isEnter) {
 					isShow = true;
-					await tick();
-					updateArrow();
 					return;
 				}
 				isShow = show;
-				await tick();
-				updateArrow();
 			},
 			trigger === 'hover' ? 200 : 0
 		);
 	}
 
-	let curPlacement = placement;
-	$: if (curPlacement !== placement) {
-		updateArrow();
-	}
 	function updateArrow() {
-		const popper = getPopperInst();
-		popper && (curPlacement = popper.state.placement as typeof curPlacement);
 		arrowRef && arrowRef.removeAttribute(`data-popper-arrow-top`);
 		arrowRef && arrowRef.removeAttribute(`data-popper-arrow-bottom`);
 		arrowRef && arrowRef.removeAttribute(`data-popper-arrow-left`);
@@ -144,7 +146,7 @@
 		width: 8px;
 		height: 8px;
 		transform: rotate(45deg);
-		background-color: #fff;
+		background-color: var(--ikun-white);
 		top: 0;
 		position: absolute;
 		left: 0;

@@ -39,13 +39,13 @@ Set the `disabled` attribute.
 
 ## Radio Props
 
-| Name     | Type      | Default | Description                   |
-| -------- | --------- | ------- | ----------------------------- |
-| label    | `string`  | `-`     | Label of the Radio            |
-| disabled | `boolean` | `false` | Whether the Radio is disabled |
-| value    | `boolean` | `false` | Binding value                 |
-| cls      | `string`  | `-`     | Additional class              |
-| attrs    | `any`     | `{}`    | Additional attributes         |
+| Name     | Type                     | Default | Description                   |
+| -------- | ------------------------ | ------- | ----------------------------- |
+| label    | `string`                 | `-`     | Label of the Radio            |
+| disabled | `boolean`                | `false` | Whether the Radio is disabled |
+| value    | `boolean`                | `false` | Binding value                 |
+| cls      | `string`                 | `-`     | Additional class              |
+| attrs    | `Record<string, string>` | `{}`    | Additional attributes         |
 
 ## Radio Events
 
