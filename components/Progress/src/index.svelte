@@ -18,25 +18,38 @@
 	let circleRadius = (width - strokeWidth * 2) / 2;
 	let perimeter = 2 * Math.PI * circleRadius;
 	let strokeDashoffset = -1 * perimeter * (1 - rate) / 2;
+	const strokeLinecap = 'round'
+
+	// circle progress theme
+	const STATUS_COLOR_MAP: Record<string, string> = {
+		primary: '#ccfbf1',
+		success: '#dcfce7',
+		error: '#ffe4e6',
+		warning: '#fef3c7'
+	}
+
+	const getCurrentCircleStorkeColor = (status: string) => {
+		return STATUS_COLOR_MAP[status]
+	}
 
 	$: prefixCls = `k-progress--${status}`;
 	$: cnames = createCls('k-progress--base', cls);
 </script>
 
 {#if type === 'line'}
-	<div class="flex items-center w-full">
+	<div class="k-progress--container">
 		<div
-			class={`flex w-full border-rd-4 bg-ikun-light-500 ${cnames}`}
+			class={`${cnames}`}
 			style="width: {showText
 				? `90%`
 				: ''}; height: {strokeWidth}px; border-radius: {strokeWidth}px;"
 		>
-			<div class="k-progress--runway w-full h-full">
+			<div class="k-progress--runway">
 				<div
-					class={`flex items-center justify-end h-full transition-width delay-0 linear ${prefixCls} ${color}`}
-					style="width: {percentage}%; left: 0%; border-radius: {strokeWidth}px; transition-duration: {duration}s"
+					class={`k-progress--bar ${prefixCls}`}
+					style="width: {percentage}%; left: 0%; bg-[{color}]; border-radius: {strokeWidth}px; transition-duration: {duration}s"
 				>
-					<div class="px-2">
+					<div class="k-progress-content--textInside">
 						{#if showText && textInside}
 							{#if $$slots.default}
 								<slot />
@@ -48,7 +61,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex-1 px-2">
+		<div class="k-progress-content--textOutside">
 			{#if showText && !textInside}
 				{#if $$slots.default}
 					<slot />
@@ -59,38 +72,44 @@
 		</div>
 	</div>
 {:else if ['circle', 'dashboard'].includes(type)}
-	<svg {width} height={width} viewBox="0 0 {width} {width}">
-		<circle
-				cx="{width / 2}"
-				cy="{width / 2}"
-				r="{circleRadius}"
-				stroke="{color}"
-				stroke-width="{strokeWidth}"
-				stroke-dasharray="{perimeter * rate} {perimeter}"
-				stroke-dashoffset="{strokeDashoffset}"
-				fill="none"
-				transform="rotate({type === 'dashboard' ? 90 : -90}, 100, {width/2})"
-		/>
-		<circle
-				cx="{width / 2}"
-				cy="{width / 2}"
-				r="{circleRadius}"
-				stroke="red"
-				stroke-width="{strokeWidth}"
-				stroke-dasharray="{perimeter * rate * (percentage / 100)} {perimeter}"
-				stroke-dashoffset="{strokeDashoffset}"
-				fill="none"
-				transform="rotate({type === 'dashboard' ? 90 : -90}, 100, {width/2})"
-				{...{'ui-progress-bar': true}}
-		/>
-	</svg>
-	{#if showText}
-		{#if $$slots.default}
-			<slot />
-		{:else}
-			<span>{format || `${percentage}%`}</span>
-		{/if}
-	{/if}
+	<div class="pr inline-block" style="height: {width}px; width: {width}px;">
+		<svg {width} height={width} viewBox="0 0 {width} {width}">
+			<circle
+					cx="{width / 2}"
+					cy="{width / 2}"
+					r="{circleRadius}"
+					stroke="#f2f2f2"
+					stroke-width="{strokeWidth}"
+					stroke-linecap="{strokeLinecap}"
+					stroke-dasharray="{perimeter * rate} {perimeter}"
+					stroke-dashoffset="{strokeDashoffset}"
+					fill="none"
+					transform="rotate({type === 'dashboard' ? 90 : -90}, 100, {width/2})"
+			/>
+			<circle
+					cx="{width / 2}"
+					cy="{width / 2}"
+					r="{circleRadius}"
+					stroke="{color || getCurrentCircleStorkeColor(status)}"
+					stroke-width="{strokeWidth}"
+					stroke-linecap="{strokeLinecap}"
+					stroke-dasharray="{perimeter * rate * (percentage / 100)} {perimeter}"
+					stroke-dashoffset="{strokeDashoffset}"
+					fill="none"
+					transform="rotate({type === 'dashboard' ? 90 : -90}, 100, {width/2})"
+					{...{'ui-progress-bar': true}}
+			/>
+		</svg>
+		<div class="pa left-50% top-50% translate--50%">
+			{#if showText}
+				{#if $$slots.default}
+					<slot />
+				{:else}
+					<span>{format || `${percentage}%`}</span>
+				{/if}
+			{/if}
+		</div>
+	</div>
 {/if}
 
 <style>
