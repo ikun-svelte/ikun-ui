@@ -55,12 +55,14 @@ Disable the input through the disabled attribute
 
 ## Input Events
 
-| Name    | Description                             | Type                                     |
-| ------- | --------------------------------------- | ---------------------------------------- |
-| input   | Event fired on input                    | `(value: HTMLInputElement.value)=> void` |
-| enter   | Event fired when `enter` is pressed     | `(value: Event)=> void`                  |
-| keydown | Event fired when `keyboard` is pressed  | `(value: Event)=> void`                  |
-| change  | Event fired when the `value` is changes | `(value: Event)=> void`                  |
+| Name             | Description                                                        | Type                                     |
+| ---------------- | ------------------------------------------------------------------ | ---------------------------------------- |
+| input            | Event fired on input                                               | `(value: HTMLInputElement.value)=> void` |
+| enter            | Event fired when `enter` is pressed                                | `(value: Event)=> void`                  |
+| keydown          | Event fired when `keyboard` is pressed                             | `(value: Event)=> void`                  |
+| change           | Event fired when the `value` is changes                            | `(value: Event)=> void`                  |
+| compositionstart | The compositionstart event is fired when a text composition system | `(e: CompositionEvent)=> void`           |
+| compositionend   | The compositionend event is fired when a text composition system   | `(e: CompositionEvent)=> void`           |
 
 ## Input Slots
 

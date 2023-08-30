@@ -155,6 +155,32 @@ describe('Test: KInput', () => {
 		expect(value).toBe('ikun');
 	});
 
+	test('event: should trigger compositionstart event', async () => {
+		const mockFn = vi.fn();
+		const instance = new KInput({
+			target: host
+		});
+		await tick();
+		instance.$on('compositionstart', mockFn);
+		const inputElm = host.getElementsByTagName('input')[0];
+		inputElm.dispatchEvent(new Event('compositionstart'));
+		await tick();
+		expect(mockFn).toBeCalled();
+	});
+
+	test('event: should trigger compositionend event', async () => {
+		const mockFn = vi.fn();
+		const instance = new KInput({
+			target: host
+		});
+		await tick();
+		instance.$on('compositionend', mockFn);
+		const inputElm = host.getElementsByTagName('input')[0];
+		inputElm.dispatchEvent(new Event('compositionend'));
+		await tick();
+		expect(mockFn).toBeCalled();
+	});
+
 	test('event: should trigger enter event when pressing enter', async () => {
 		const mockFn = vi.fn();
 		const instance = new KInput({

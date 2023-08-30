@@ -39,6 +39,16 @@
 		else dispatch('keydown', e);
 	};
 
+	const onCompositionStart = (e: CompositionEvent) => {
+		if (disabled) return;
+		dispatch('compositionstart', e);
+	};
+
+	const onCompositionEnd = (e: CompositionEvent) => {
+		if (disabled) return;
+		dispatch('compositionend', e);
+	};
+
 	// class names
 	const prefixCls = getPrefixCls('input');
 	$: baseCls = createCls(
@@ -81,6 +91,8 @@
 		on:input={onInput}
 		on:change={onChange}
 		on:keydown={onEnter}
+		on:compositionstart={onCompositionStart}
+		on:compositionend={onCompositionEnd}
 		{placeholder}
 		{...attrs}
 	/>
