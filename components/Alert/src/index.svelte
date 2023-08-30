@@ -1,26 +1,26 @@
 <script lang="ts">
+	import type { KAlertProps } from './types';
 	import { createEventDispatcher } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { KIcon } from '@ikun-ui/icon';
 	import { getPrefixCls, createCls } from '@ikun-ui/utils';
-	import type { IKunTypeBase } from '@ikun-ui/utils/src';
 
-	export let type: IKunTypeBase = 'info';
-	export let title: string = '';
-	export let description: string = '';
-	export let showIcon: boolean = false;
+	export let type: KAlertProps['type'] = 'info';
+	export let title: KAlertProps['title'] = '';
+	export let description: KAlertProps['description'] = '';
+	export let showIcon: KAlertProps['showIcon'] = false;
 	// will cover type icon
-	export let icon: string = '';
-	export let closable: boolean = true;
-	export let closeIcon: string = 'i-carbon-close';
-	export let cls: string = '';
-	export let attrs: Record<string, string> = {};
+	export let icon: KAlertProps['icon'] = '';
+	export let closable: KAlertProps['closable'] = true;
+	export let closeIcon: KAlertProps['closeIcon'] = 'i-carbon-close';
+	export let cls: KAlertProps['cls'] = '';
+	export let attrs: KAlertProps['attrs'] = {};
 
 	const dispatch = createEventDispatcher();
 
 	$: visible = true;
-	const onClose = (event: PointerEvent) => {
+	const onClose = (event: Event) => {
 		event.stopPropagation();
 		visible = false;
 		dispatch('close', event);
@@ -43,6 +43,9 @@
 		{
 			[`${prefixCls}--close__no-title`]: noTitle,
 			[`${prefixCls}--${type}__close-icon`]: !$$slots.close
+		},
+		{
+			[`${prefixCls}--close__has-description`]: !noTitle && (description || $$slots.default)
 		},
 		animationCls
 	);
@@ -95,13 +98,13 @@
 					<slot>{description}</slot>
 				</div>
 			{/if}
-			{#if closable}
-				<span bind:this={closeRef} class={closeCls} aria-hidden="true" on:click={onClose}>
-					<slot name="close">
-						<KIcon cls="inline-flex" icon={closeIcon} width="18px" height="18px"></KIcon>
-					</slot>
-				</span>
-			{/if}
 		</div>
+		{#if closable}
+			<div bind:this={closeRef} class={closeCls} aria-hidden="true" on:click={onClose}>
+				<slot name="close">
+					<KIcon cls="inline-flex" icon={closeIcon} width="16px" height="16px"></KIcon>
+				</slot>
+			</div>
+		{/if}
 	</div>
 {/if}

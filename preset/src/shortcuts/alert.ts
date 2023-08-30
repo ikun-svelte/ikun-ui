@@ -1,64 +1,45 @@
-export const alertShortcuts: Record<string, string> = (() => {
-	const prefix = 'k-alert';
+export const alertShortcuts = {
+	'k-alert': 'w-full box-border fi relative m-0 px-16px py-8px b-rd-4px overflow-hidden',
+	'k-alert--icon': 'mr-8px',
 
-	// base
-	const radius = '4px';
-	const basePx = '16px';
-	const basePy = '8px';
+	// success
+	'k-alert--success': 'bg-ikun-success-100 text-ikun-success',
+	'k-alert--success__animate': 'animate-ikun-clicking--success',
+	'k-alert--success__icon': 'i-carbon-checkmark-filled',
+	'k-alert--success__icon-color': 'text-ikun-success',
+	'k-alert--success__close-icon':
+		'hover:(bg-ikun-success [&>div.k-icon--base]:text-ikun-white b-rd-50%) active:(b-ikun-success k-btn-shadow--success)',
 
-	// icon
-	const iconMr = '8px';
+	// error
+	'k-alert--error': 'bg-ikun-error-100 text-ikun-error',
+	'k-alert--error__animate': 'animate-ikun-clicking--error',
+	'k-alert--error__icon': 'i-carbon-error-filled',
+	'k-alert--error__icon-color': 'text-ikun-error',
+	'k-alert--error__close-icon':
+		'hover:(bg-ikun-error [&>div.k-icon--base]:text-ikun-white b-rd-50%) active:(b-ikun-error k-btn-shadow--error)',
 
-	// type
-	const typeCls = {};
-	const types = {
-		success: 'i-carbon-checkmark-filled',
-		error: 'i-carbon-error-filled',
-		warning: 'i-carbon-warning-filled',
-		info: 'i-carbon-information-filled'
-	};
-	Object.keys(types).forEach((type) => {
-		// type
-		typeCls[`${prefix}--${type}`] = `bg-ikun-${type}-100 text-ikun-${type}`;
-		// animate
-		typeCls[`${prefix}--${type}__animate`] = `animate-ikun-clicking--${type}`;
-		// icon
-		typeCls[`${prefix}--${type}__icon`] = types[type];
-		typeCls[`${prefix}--${type}__icon-color`] = `text-ikun-${type}`;
-		// close icon
-		typeCls[
-			`${prefix}--${type}__close-icon`
-		] = `hover:(bg-ikun-${type} [&>div.k-icon--base]:text-ikun-white b-rd-50%) active:(b-ikun-${type} k-btn-shadow--${type})`;
-	});
+	// warning
+	'k-alert--warning': 'bg-ikun-warning-100 text-ikun-warning',
+	'k-alert--warning__animate': 'animate-ikun-clicking--warning',
+	'k-alert--warning__icon': 'i-carbon-warning-filled',
+	'k-alert--warning__icon-color': 'text-ikun-warning',
+	'k-alert--warning__close-icon':
+		'hover:(bg-ikun-warning [&>div.k-icon--base]:text-ikun-white b-rd-50%) active:(b-ikun-warning k-btn-shadow--warning)',
 
-	// title
-	const titleFontSize = '14px';
+	// info
+	'k-alert--info': 'bg-ikun-info-100 text-ikun-info',
+	'k-alert--info__animate': 'animate-ikun-clicking--info',
+	'k-alert--info__icon': 'i-carbon-information-filled',
+	'k-alert--info__icon-color': 'text-ikun-info',
+	'k-alert--info__close-icon':
+		'hover:(bg-ikun-info [&>div.k-icon--base]:text-ikun-white b-rd-50%) active:(b-ikun-info k-btn-shadow--info)',
 
-	// description
-	const descriptionFontSize = '12px';
-	const descriptionMt = '8px';
+	'k-alert--content': 'text-14px flex-1',
+	'k-alert--title': 'font-600',
+	'k-alert--description': 'text-12px text-justify m-0 mt-4px',
+	'k-alert--description__no-title': 'mt-0',
 
-	// close
-	const closeTop = '10px';
-	const closeTopNoTitle = '8px';
-	const closeFontSize = '12px';
-
-	return {
-		// alert
-		[prefix]: `w-full box-border fi relative m-0 px-${basePx} py-${basePy} b-rd-${radius} overflow-hidden`,
-		[`${prefix}--icon`]: `mr-${iconMr}`,
-		// alert types
-		...typeCls,
-		// content
-		[`${prefix}--content`]: `table-cell`,
-		// title
-		[`${prefix}--title`]: `text-${titleFontSize} font-600`,
-		// description
-		[`${prefix}--description`]: `text-${descriptionFontSize} text-justify m-0 mt-${descriptionMt}`,
-		[`${prefix}--description__no-title`]: 'mt-0',
-		// close
-		[`${prefix}--close`]: `text-${closeFontSize} inline-flex cursor-pointer absolute top-${closeTop} right-${basePx}`,
-		[`${prefix}--close__icon-color`]: '[&,&>div.k-icon--base]:color-ikun-stone-400',
-		[`${prefix}--close__no-title`]: `top-${closeTopNoTitle}`
-	};
-})();
+	'k-alert--close': 'text-12px inline-flex cursor-pointer ml-8px',
+	'k-alert--close__icon-color': '[&,&>div.k-icon--base]:color-ikun-stone-400',
+	'k-alert--close__has-description': 'absolute top-10px right-16px'
+};
