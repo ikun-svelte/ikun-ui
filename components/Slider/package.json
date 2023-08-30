@@ -1,5 +1,5 @@
 {
-	"name": "@ikun-ui/popover",
+	"name": "@ikun-ui/slider",
 	"version": "0.0.9-beta.3",
 	"type": "module",
 	"main": "./src/index.ts",
@@ -29,8 +29,7 @@
 	},
 	"dependencies": {
 		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.14",
-		"svelte-popperjs": "^1.3.2"
+		"baiwusanyu-utils": "^1.0.14"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.0",

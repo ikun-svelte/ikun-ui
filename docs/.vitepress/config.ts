@@ -45,6 +45,10 @@ const components = [
 			{
 				text: 'Select',
 				link: '/components/KSelect'
+			},
+			{
+				text: 'Slider',
+				link: '/components/KSlider'
 			}
 		]
 	},

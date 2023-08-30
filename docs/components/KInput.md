@@ -43,15 +43,16 @@ Disable the input through the disabled attribute
 
 ## Input Props
 
-| Name        | Type                     | Default | Description                                                      |
-| ----------- | ------------------------ | ------- | ---------------------------------------------------------------- |
-| value       | `string`                 | `-`     | Binding value                                                    |
-| iconPrefix  | `string`                 | `-`     | The class name of the prefix icon, following the unocss standard |
-| iconSuffix  | `string`                 | `-`     | The class name of the suffix icon, following the unocss standard |
-| placeholder | `string`                 | `false` | Input's placeholder                                              |
-| disabled    | `boolean`                | `false` | Disable the Input                                                |
-| cls         | `string`                 | `-`     | Additional class                                                 |
-| attrs       | `Record<string, string>` | `{}`    | Additional attributes                                            |
+| Name                | Type                     | Default | Description                                                      |
+| ------------------- | ------------------------ | ------- | ---------------------------------------------------------------- |
+| value               | `string`                 | `-`     | Binding value                                                    |
+| iconPrefix          | `string`                 | `-`     | The class name of the prefix icon, following the unocss standard |
+| iconSuffix          | `string`                 | `-`     | The class name of the suffix icon, following the unocss standard |
+| placeholder         | `string`                 | `false` | Input's placeholder                                              |
+| disabled            | `boolean`                | `false` | Disable the Input                                                |
+| useCompositionInput | `boolean`                | `false` | Bind value will be updated after the composition input ends      |
+| cls                 | `string`                 | `-`     | Additional class                                                 |
+| attrs               | `Record<string, string>` | `{}`    | Additional attributes                                            |
 
 ## Input Events
 
@@ -63,6 +64,9 @@ Disable the input through the disabled attribute
 | change           | Event fired when the `value` is changes                            | `(value: Event)=> void`                  |
 | compositionstart | The compositionstart event is fired when a text composition system | `(e: CompositionEvent)=> void`           |
 | compositionend   | The compositionend event is fired when a text composition system   | `(e: CompositionEvent)=> void`           |
+| compositionInput | Event fired when enable `useCompositionInput`                      | `(value: Event)=> void`                  |
+
+> > > > > > > Stashed changes
 
 ## Input Slots
 

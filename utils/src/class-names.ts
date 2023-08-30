@@ -23,7 +23,7 @@ export function createCls(
 				continue;
 			}
 			for (const key in arg as Record<string, any>) {
-				if (hasOwn.call(arg, key) && arg[key]) {
+				if (hasOwn.call(arg, key) && (arg as Record<string, any>)[key]) {
 					classnames.push(key);
 				}
 			}

@@ -23,6 +23,7 @@
 	import { KRadio } from '@ikun-ui/radio';
 	import { KSpin } from '@ikun-ui/spin';
 	import { KBacktop } from '@ikun-ui/backtop';
+    import { KSlider } from '@ikun-ui/slider';
 	import 'virtual:uno.css';
 
 	let checked = true;
@@ -118,6 +119,9 @@
 		iconPrefix="i-carbon-settings"
 		on:input={() => {
 			console.log('on:input =>', inputValue);
+		}}
+		on:compositionInput={() => {
+			console.log('on:compositionInput =>', inputValue);
 		}}
 	></KInput>
 </div>
@@ -332,3 +336,8 @@
 <div use:KSpin={spinOptions} class="w-200px h-50px bg-red"></div>
 
 <KBacktop bottom={100} right={100} show-height="100" />
+<div class="px-4">
+    <KSlider on:input={(v) => {console.log("ipnut", v.detail)}} on:change={(v) => {console.log("change", v.detail)}} >
+        <div slot="buttonRender" class="text-6">🏀</div>
+    </KSlider>
+</div>
