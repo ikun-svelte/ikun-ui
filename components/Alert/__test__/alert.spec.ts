@@ -1,4 +1,5 @@
-import { afterEach, expect, test, describe, beforeEach } from 'vitest';
+import { tick } from 'svelte';
+import { afterEach, expect, test, describe, beforeEach, vi } from 'vitest';
 import KAlert from '../src';
 import KAlertTitle from './alert.title.test.svelte';
 import KAlertDescription from './alert.description.test.svelte';
@@ -179,6 +180,30 @@ describe('Test: KAlert', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host.querySelector('#alert-close')?.textContent).toBe('this is close slot');
+		expect(host.querySelector('#alert-console')?.textContent).toBe('true');
+		await tick();
+		const closeElm = host.getElementsByClassName(' k-alert--close')[0] as HTMLDivElement;
+		closeElm.dispatchEvent(new Event('click'));
+		await tick();
+		expect(host.querySelector('#alert-console')?.textContent).toBe('false');
 		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('events: close event', async () => {
+		const mockFn = vi.fn();
+		const instance = new KAlert({
+			target: host,
+			props: {
+				closable: true,
+				title: 'KAlert title'
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		instance.$on('close', mockFn);
+		const closeElm = host.getElementsByClassName(' k-alert--close')[0] as HTMLDivElement;
+		closeElm.dispatchEvent(new Event('click'));
+		await tick();
+		expect(mockFn).toBeCalled();
 	});
 });
