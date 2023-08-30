@@ -22,6 +22,7 @@
 	import { KRadio } from '@ikun-ui/radio';
 	import { KSpin } from '@ikun-ui/spin';
 	import { KBacktop } from '@ikun-ui/backtop';
+	import { KProgress } from '@ikun-ui/progress';
 	import 'virtual:uno.css';
 
 	let checked = true;
@@ -82,6 +83,14 @@
 		breadcrumbList.pop();
 		breadcrumbList = breadcrumbList;
 	};
+
+	let percentage = 10
+	setInterval(() => {
+		if (percentage >= 100) {
+			return percentage = 100
+		}
+		percentage ++;
+	}, 200)
 </script>
 
 <div class="my-10px">
@@ -306,3 +315,10 @@
 <div use:KSpin={spinOptions} class="w-200px h-50px bg-red"></div>
 
 <KBacktop bottom={100} right={100} show-height="100" />
+
+<KProgress color="red" percentage={10} >
+	<span>🏀</span>
+</KProgress>
+
+<KProgress width={200} strokeWidth={10} color="#000" percentage={percentage} type="circle" ></KProgress>
+<KProgress width={200} strokeWidth={10} color="#000" percentage={percentage} type="dashboard" ></KProgress>
