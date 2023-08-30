@@ -1,6 +1,6 @@
 import { tick } from 'svelte';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
-import KPopoverSlot from './popover.placement.svelte';
+import KPopoverPlacement from './popover.placement.svelte';
 import KPopoverTrigger from './popover.trigger.svelte';
 import KPopoverSlots from './popover.slots.svelte';
 
@@ -22,7 +22,7 @@ afterEach(() => {
 
 describe('Test: KPopover', () => {
 	test('props: placement', async () => {
-		const instance = new KPopoverSlot({
+		const instance = new KPopoverPlacement({
 			target: host
 		});
 		expect(instance).toBeTruthy();
@@ -36,8 +36,7 @@ describe('Test: KPopover', () => {
 		vi.runAllTimers();
 		await tick();
 		expect(host.innerHTML.includes('有美一人，清扬婉兮')).toBeTruthy();
-		// TODO
-		// expect(host.innerHTML.includes('data-popper-arrow-top')).toBeTruthy();
+		expect(host.innerHTML.includes('data-popper-arrow-bottom')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
