@@ -12,6 +12,8 @@
 	export let iconSuffix: KInputProps['iconSuffix'] = '';
 	export let cls: KInputProps['cls'] = '';
 	export let attrs: KInputProps['attrs'] = {};
+	export let useCompositionInput: KInputProps['useCompositionInput'] = false;
+
 	/**
 	 * @internal
 	 */
@@ -23,9 +25,16 @@
 
 	const dispatch = createEventDispatcher();
 
-	const onInput = (e: InputEvent) => {
+	const onInput = (e: Event) => {
 		if (disabled) return;
-		dispatch('input', (e.target as HTMLInputElement).value);
+		const { value: inputValue } = e.target as HTMLInputElement;
+		dispatch('input', inputValue, e);
+		if (!useCompositionInput || !isComposing) {
+			value = inputValue;
+			if (useCompositionInput && !isComposing) {
+				dispatch('compositionInput', inputValue, e);
+			}
+		}
 	};
 
 	const onChange = (e: Event) => {
@@ -39,14 +48,24 @@
 		else dispatch('keydown', e);
 	};
 
+	let isComposing = false;
 	const onCompositionStart = (e: CompositionEvent) => {
 		if (disabled) return;
 		dispatch('compositionstart', e);
+		isComposing = true;
 	};
 
 	const onCompositionEnd = (e: CompositionEvent) => {
 		if (disabled) return;
 		dispatch('compositionend', e);
+
+		if (!isComposing) {
+			return;
+		}
+		isComposing = false;
+		if (useCompositionInput) {
+			e.target?.dispatchEvent(new Event('input'));
+		}
 	};
 
 	// class names
@@ -86,7 +105,7 @@
 	</slot>
 	<input
 		class={inputCls}
-		bind:value
+		{value}
 		{disabled}
 		on:input={onInput}
 		on:change={onChange}

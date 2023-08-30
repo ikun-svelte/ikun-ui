@@ -9,4 +9,5 @@ export type KInputProps = {
 	errorMsg: string;
 	cls: string;
 	attrs: Record<string, string>;
+	useCompositionInput: boolean;
 };

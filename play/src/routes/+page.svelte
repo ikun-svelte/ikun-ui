@@ -93,6 +93,9 @@
 		on:input={() => {
 			console.log('on:input =>', inputValue);
 		}}
+		on:compositionInput={() => {
+			console.log('on:compositionInput =>', inputValue);
+		}}
 	></KInput>
 </div>
 
