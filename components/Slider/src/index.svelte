@@ -15,12 +15,12 @@
     let startPosition: number;
     let newPosition: number;
 
-    $:percentage = `${ (value - min) / (max - min) * 100 }%`;
     $: if ( value < min ) {
         value = min;
     } else if ( value > max ) {
         value = max;
     }
+    $:percentage = `${ (value - min) / (max - min) * 100 }%`;
 
     // element
     let sliderRunwayRef: null | HTMLElement = null;
@@ -97,24 +97,19 @@
 </script>
 
 <div class='w-full flex'>
-    <div
-            {...attrs}
-            class='k-slider--base {cls}'
-    >
-        <div
-                bind:this={sliderRunwayRef}
-                class='k-slider--runway {disabled ? "k-cur-disabled" : ""}'
-                on:mousedown={handleRunwayClick}
-        >
-            <div
-                    class='k-slider--bar'
-                    style='width: {percentage}; left: 0%'
+    <div {...attrs}
+         class='k-slider--base {cls}'>
+        <div bind:this={sliderRunwayRef}
+             class='k-slider--runway {disabled ? "k-cur-disabled" : ""}'
+             aria-hidden="true"
+             on:mousedown={handleRunwayClick}>
+            <div class='k-slider--bar'
+                 style='width: {percentage}; left: 0%'
             ></div>
-            <div
-                    class='k-slider--button-wrapper'
-                    on:mousedown={handleMouseDown}
-                    style='left: {percentage};'
-            >
+            <div class='k-slider--button-wrapper'
+                 aria-hidden="true"
+                 on:mousedown={handleMouseDown}
+                 style='left: {percentage};'>
                 {#if $$slots.buttonRender}
                     <slot name='buttonRender'/>
                 {:else}

@@ -45,15 +45,15 @@ Use `disabled` attribute to determine whether a slider is disabled.
 
 ## Slider Props
 
-| Name     | Type      | Default | Description                |
-| -------- | --------- | ------- | -------------------------- |
-| value    | `number`  | `0`     | Binding value              |
-| min      | `number`  | `0`     | Minimum value              |
-| max      | `number`  | `100`   | Maximum value              |
-| step     | `number`  | `1`     | Step size                  |
-| disabled | `boolean` | `false` | Whether Slider is disabled |
-| cls      | `string`  | `-`     | Additional class           |
-| attrs    | `any`     | `{}`    | Additional attributes      |
+| Name     | Type                     | Default | Description                |
+| -------- | ------------------------ | ------- | -------------------------- |
+| value    | `number`                 | `0`     | Binding value              |
+| min      | `number`                 | `0`     | Minimum value              |
+| max      | `number`                 | `100`   | Maximum value              |
+| step     | `number`                 | `1`     | Step size                  |
+| disabled | `boolean`                | `false` | Whether Slider is disabled |
+| cls      | `string`                 | `-`     | Additional class           |
+| attrs    | `Record<string, string>` | `{}`    | Additional attributes      |
 
 ## Slider Events
 
