@@ -1,41 +1,43 @@
 {
-	"name": "@ikun-ui/drawer",
-	"version": "0.0.9-beta.3",
-	"type": "module",
-	"main": "dist/index.js",
-	"module": "dist/index.js",
-	"svelte": "dist/index.js",
-	"types": "src/index.ts",
-	"keywords": [
-		"svelte",
-		"svelte3",
-		"web component",
-		"component",
-		"react",
-		"vue",
-		"svelte-kit",
-		"dx"
-	],
-	"scripts": {
-		"build": "npm run build:js && npm run build:svelte",
-		"build:js": "tsc -p . --outDir dist/ --rootDir src/",
-		"build:svelte": "svelte-strip strip src/ dist",
-		"publish:npm": "pnpm publish --no-git-checks --access public"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"dependencies": {
-		"@ikun-ui/client-only": "workspace:*",
-		"@ikun-ui/icon": "workspace:*",
-		"@ikun-ui/mask": "workspace:*",
-		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.14"
-	},
-	"devDependencies": {
-		"@tsconfig/svelte": "^5.0.0",
-		"svelte-strip": "^2.0.0",
-		"tslib": "^2.6.1",
-		"typescript": "^5.1.6"
-	}
+  "name": "@ikun-ui/drawer",
+  "version": "0.0.9-beta.3",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "src/index.ts",
+  "keywords": [
+    "svelte",
+    "svelte3",
+    "web component",
+    "component",
+    "react",
+    "vue",
+    "svelte-kit",
+    "dx"
+  ],
+  "scripts": {
+    "build": "npm run build:js && npm run build:svelte",
+    "build:js": "tsc -p . --outDir dist/ --rootDir src/",
+    "build:svelte": "svelte-strip strip src/ dist",
+    "publish:npm": "pnpm publish --no-git-checks --access public"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "svelte": "dist/index.js",
+    "types": "src/index.ts"
+  },
+  "dependencies": {
+    "@ikun-ui/client-only": "workspace:*",
+    "@ikun-ui/icon": "workspace:*",
+    "@ikun-ui/mask": "workspace:*",
+    "@ikun-ui/utils": "workspace:*",
+    "baiwusanyu-utils": "^1.0.14"
+  },
+  "devDependencies": {
+    "@tsconfig/svelte": "^5.0.0",
+    "svelte-strip": "^2.0.0",
+    "tslib": "^2.6.1",
+    "typescript": "^5.1.6"
+  }
 }
