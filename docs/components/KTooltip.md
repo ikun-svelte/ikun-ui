@@ -48,7 +48,7 @@ Specify different trigger methods through the `trigger` attribute
 | placement | `'top' / 'left' / 'right' / 'bottom'` | `top`   | Where the `tooltip` appears |
 | trigger   | `'manual' / 'click' / 'hover'`        | `hover` | How `tooltip` are triggered |
 | cls       | `string`                              | `-`     | Additional class            |
-| attrs     | `any`                                 | `{}`    | Additional attributes       |
+| attrs     | `Record<string, string>`              | `{}`    | Additional attributes       |
 | content   | `string`                              | `-`     | `tooltip`'s content         |
 
 ## Tooltip Slots

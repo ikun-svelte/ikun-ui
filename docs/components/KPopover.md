@@ -48,7 +48,7 @@ Specify different trigger methods through the `trigger` attribute
 | placement | `'top' / 'left' / 'right' / 'bottom'` | `top`   | Where the `popover` appears |
 | trigger   | `'manual' / 'click' / 'hover'`        | `hover` | How popovers are triggered  |
 | cls       | `string`                              | `-`     | Additional class            |
-| attrs     | `any`                                 | `{}`    | Additional attributes       |
+| attrs     | `Record<string, string>`              | `{}`    | Additional attributes       |
 
 ## Popover Slots
 

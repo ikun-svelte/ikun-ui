@@ -55,7 +55,7 @@ Use the `type` attribute to define Tag's type. In addition, the `bgColor` and `t
 | closable  | `boolean`                                            | `false`          | whether Tag can be removed                                |
 | closeIcon | `string`                                             | `i-carbon-close` | The class name of the icon, following the unocss standard |
 | cls       | `string`                                             | `-`              | Additional class for                                      |
-| attrs     | `any`                                                | `{}`             | Additional attributes                                     |
+| attrs     | `Record<string, string>`                             | `{}`             | Additional attributes                                     |
 
 ## Tag Events
 

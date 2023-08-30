@@ -71,13 +71,54 @@ const getAnimation = (themeColor: string) => {
           60% { box-shadow: 0 0 0 4px rgba(${themeColor},0.2)}
           80% { box-shadow: 0 0 0 6px rgba(${themeColor},0.1)}
           100% { box-shadow: 0 0 0 8px rgba(${themeColor},0.05)}
+			}`,
+			'ikun-clicking--success': `{
+			 	  0% { box-shadow: 0 0 0 2px rgba(74,222,128,0.4)}
+          60% { box-shadow: 0 0 0 4px rgba(74,222,128,0.2)}
+          80% { box-shadow: 0 0 0 6px rgba(74,222,128,0.1)}
+          100% { box-shadow: 0 0 0 10px rgba(74,222,128,0.05)}
+			}`,
+			'ikun-clicking--error': `{
+			 	  0% { box-shadow: 0 0 0 2px rgba(251,113,133,0.4)}
+          60% { box-shadow: 0 0 0 4px rgba(251,113,133,0.2)}
+          80% { box-shadow: 0 0 0 6px rgba(251,113,133,0.1)}
+          100% { box-shadow: 0 0 0 10px rgba(251,113,133,0.05)}
+			}`,
+			'ikun-clicking--warning': `{
+			 	  0% { box-shadow: 0 0 0 2px rgba(251,191,36,0.4)}
+          60% { box-shadow: 0 0 0 4px rgba(251,191,36,0.2)}
+          80% { box-shadow: 0 0 0 6px rgba(251,191,36,0.1)}
+          100% { box-shadow: 0 0 0 10px rgba(251,191,36,0.05)}
+			}`,
+			'ikun-clicking--info': `{
+			 	  0% { box-shadow: 0 0 0 2px rgba(148,163,184,0.4)}
+          60% { box-shadow: 0 0 0 4px rgba(148,163,184,0.2)}
+          80% { box-shadow: 0 0 0 6px rgba(148,163,184,0.1)}
+          100% { box-shadow: 0 0 0 10px rgba(148,163,184,0.05)}
+			}`,
+			'ikun-clicking--primary': `{
+			 	  0% { box-shadow: 0 0 0 2px rgba(45,212,191,0.4)}
+          60% { box-shadow: 0 0 0 4px rgba(45,212,191,0.2)}
+          80% { box-shadow: 0 0 0 6px rgba(45,212,191,0.1)}
+          100% { box-shadow: 0 0 0 10px rgba(45,212,191,0.05)}
 			}`
 		},
 		durations: {
+			'ikun-clicking--success': '.3s',
+			'ikun-clicking--error': '.3s',
+			'ikun-clicking--warning': '.3s',
+			'ikun-clicking--info': '.3s',
+			'ikun-clicking--primary': '.3s',
 			'ikun-checking': '.3s',
 			'ikun-switching': '.3s'
 		},
 		timingFns: {
+			'ikun-clicking--success': 'linear',
+			'ikun-clicking--error': 'linear',
+			'ikun-clicking--warning': 'linear',
+			'ikun-clicking--info': 'linear',
+			'ikun-clicking--primary': 'linear',
+			'ikun-clicking': 'linear',
 			'ikun-checking': 'linear',
 			'ikun-switching': 'linear'
 		}

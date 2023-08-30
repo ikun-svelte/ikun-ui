@@ -1,10 +1,10 @@
 export const buttonShortcuts: Record<string, string> = {
 	// button
 	'k-button--disabled': 'opacity-50',
-	'k-button--base': 'rounded k-border cursor-pointer f-c px-2 py-1 text-base w-fit',
+	'k-button--base': 'rounded k-border cursor-pointer f-c px-2 py-1 w-fit line-height-none',
 	// button-size
-	'k-button--sm': 'text-sm px-1.5 py-0.8',
-	'k-button--lg': 'text-lg px-3 py-2',
+	'k-button--sm': 'px-1.5 py-0.8',
+	'k-button--lg': 'px-3 py-2',
 	'k-button--circle': '!rounded-full p-2',
 	'k-button--circle--sm': '!rounded-full !p-2',
 	'k-button--circle--lg': '!rounded-full !p-3',
@@ -16,6 +16,7 @@ export const buttonShortcuts: Record<string, string> = {
 	'k-button--primary__hover': 'hover:border-ikun-primary',
 	'k-button--primary__icon': 'text-ikun-primary',
 	'k-button--primary__border': 'border-ikun-primary',
+	'k-button--primary__animate': 'animate-ikun-clicking--primary',
 
 	'k-button--success': 'bg-ikun-success-100 text-ikun-success border-ikun-success-100',
 	'k-button--success__active': 'active:border-ikun-success active:k-btn-shadow--success',
@@ -24,6 +25,7 @@ export const buttonShortcuts: Record<string, string> = {
 	'k-button--success__hover': 'hover:border-ikun-success',
 	'k-button--success__icon': 'text-ikun-success',
 	'k-button--success__border': 'border-ikun-success',
+	'k-button--success__animate': 'animate-ikun-clicking--success',
 
 	'k-button--error': 'bg-ikun-error-100 text-ikun-error border-ikun-error-100',
 	'k-button--error__active': 'active:border-ikun-error active:k-btn-shadow--error',
@@ -31,6 +33,7 @@ export const buttonShortcuts: Record<string, string> = {
 	'k-button--error__hover': 'hover:border-ikun-error',
 	'k-button--error__icon': 'text-ikun-error',
 	'k-button--error__border': 'border-ikun-error',
+	'k-button--error__animate': 'animate-ikun-clicking--error',
 
 	'k-button--warning': 'bg-ikun-warning-100 text-ikun-warning border-ikun-warning-100',
 	'k-button--warning__active': 'active:border-ikun-warning active:k-btn-shadow--warning',
@@ -39,11 +42,13 @@ export const buttonShortcuts: Record<string, string> = {
 	'k-button--warning__hover': 'hover:border-ikun-warning',
 	'k-button--warning__icon': 'text-ikun-warning',
 	'k-button--warning__border': 'border-ikun-warning',
+	'k-button--warning__animate': 'animate-ikun-clicking--warning',
 
 	'k-button--info': 'bg-ikun-info-100 text-ikun-info border-ikun-info-100',
 	'k-button--info__active': 'active:border-ikun-info active:k-btn-shadow--info',
 	'k-button--info__focus': 'focus-visible:border-ikun-info focus-visible:k-btn-shadow--info',
 	'k-button--info__hover': 'hover:border-ikun-info',
 	'k-button--info__icon': 'text-ikun-info',
-	'k-button--info__border': 'border-ikun-info'
+	'k-button--info__border': 'border-ikun-info',
+	'k-button--info__animate': 'animate-ikun-clicking--info'
 };

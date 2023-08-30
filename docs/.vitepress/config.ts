@@ -77,6 +77,10 @@ const components = [
 			{
 				text: 'Breadcrumb',
 				link: '/components/KBreadcrumb'
+			},
+			{
+				text: 'Backtop',
+				link: '/components/KBacktop'
 			}
 		]
 	},

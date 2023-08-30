@@ -46,7 +46,7 @@ Use `disabled` attribute to determine whether a slider is disabled.
 ## Slider Props
 
 | Name     | Type      | Default | Description                |
-|----------|-----------|---------|----------------------------|
+| -------- | --------- | ------- | -------------------------- |
 | value    | `number`  | `0`     | Binding value              |
 | min      | `number`  | `0`     | Minimum value              |
 | max      | `number`  | `100`   | Maximum value              |
@@ -57,13 +57,13 @@ Use `disabled` attribute to determine whether a slider is disabled.
 
 ## Slider Events
 
-| Name   | Description           | Type                    |
-|--------| --------------------- |-------------------------|
-| change | Fires when the value changes and the mouse is released| `(value: CustomEvent)=> void` |
-| input  | Trigger in real time when data changes | `(value: CustomEvent)=> void` |
+| Name   | Description                                            | Type                          |
+| ------ | ------------------------------------------------------ | ----------------------------- |
+| change | Fires when the value changes and the mouse is released | `(value: CustomEvent)=> void` |
+| input  | Trigger in real time when data changes                 | `(value: CustomEvent)=> void` |
 
 ## Slider Slots
 
-| Name   | Description                     |
-| ------ |---------------------------------|
+| Name         | Description                     |
+| ------------ | ------------------------------- |
 | buttonRender | Customize slider button content |

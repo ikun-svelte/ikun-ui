@@ -73,7 +73,7 @@ describe('Test: KDrawer', () => {
 		expect(mockFn).toBeCalled();
 	});
 
-  test('slot: content', async () => {
+	test('slot: content', async () => {
 		const instance = new KDrawerContent({
 			target: host
 		});
