@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { log, setGlobalPrefix, extend, deepClone } from 'baiwusanyu-utils';
 import { kebabToPascal } from '@ikun-ui/utils';
-import ora, { Ora } from 'ora';
+import ora from 'ora';
 //@ts-ignore
 import { runCommand } from './utils.js';
 const require = createRequire(import.meta.url);
@@ -18,11 +18,11 @@ const componentsRoot = 'components/';
 const pkgPath = path.join(__dirname, 'package.json');
 const rootPKG = require(pkgPath);
 
-const upperReg: RegExp = /[A-Z]/;
+const upperReg = /[A-Z]/;
 
 const compDevDeps = ['@tsconfig/svelte', 'svelte-strip', 'tslib', 'typescript'];
-const getDeps = (dep: string) => `"${dep}": "${rootPKG.dependencies[dep]}"`;
-const _write = async (file: string, content: string, witreSpinner: Ora) => {
+const getDeps = (dep) => `"${dep}": "${rootPKG.dependencies[dep]}"`;
+const _write = async (file, content, witreSpinner) => {
 	return new Promise((resolve, reject) => {
 		fs.writeFile(file, content, async (err) => {
 			if (err) {
@@ -37,7 +37,7 @@ const _write = async (file: string, content: string, witreSpinner: Ora) => {
 	});
 };
 
-const write = (file: string, content: string) => writeFnSpinnerRegister(file, content, _write);
+const write = (file, content) => writeFnSpinnerRegister(file, content, _write);
 
 createComponent().catch(async (err) => {
 	await rollback(err);
@@ -70,7 +70,7 @@ async function createComponent() {
 		`${originalCompName} has been created successfully. Thank you for your contribution, and enjoy your coding!`
 	);
 }
-function mkCompDirsSync(...dirs: string[]): void {
+function mkCompDirsSync(...dirs) {
 	dirs.forEach((dir) => fs.mkdirSync(dir));
 }
 
@@ -79,7 +79,7 @@ function mkCompDirsSync(...dirs: string[]): void {
  * component already exists.
  * returns a string that has been convertd.
  */
-function createCompName(componentName: string): string {
+function createCompName(componentName) {
 	if (!originalCompName || upperReg.test(originalCompName)) {
 		log('error', `Please name a compnent with the kebab case. e.g, pnpm run new check-box`);
 		process.exit(1);
@@ -93,7 +93,7 @@ function createCompName(componentName: string): string {
 	return _compName;
 }
 
-async function writeTsConfig(baseDir: string) {
+async function writeTsConfig(baseDir) {
 	const file = `${baseDir}/tsconfig.json`;
 	const tsConfigContent = `{
   "extends": "@tsconfig/svelte/tsconfig.json",
@@ -111,7 +111,7 @@ async function writeTsConfig(baseDir: string) {
 	write(file, tsConfigContent);
 }
 
-async function writePkgJson(baseDir: string, originalCompName: string) {
+async function writePkgJson(baseDir, originalCompName) {
 	const file = `${baseDir}/package.json`;
 	const version = rootPKG.version;
 	const pkgContent = `{
@@ -151,7 +151,7 @@ async function writePkgJson(baseDir: string, originalCompName: string) {
 	write(file, pkgContent);
 }
 
-async function writeComponent(baseDir: string, originalCompName: string) {
+async function writeComponent(baseDir, originalCompName) {
 	const file = `${baseDir}/index.svelte`;
 	const svelteContent = `<script lang="ts">
   import { getPrefixCls, createCls } from '@ikun-ui/utils';
@@ -171,7 +171,7 @@ async function writeComponent(baseDir: string, originalCompName: string) {
 	write(file, svelteContent);
 }
 
-async function writeEntry(baseDir: string, compName: string) {
+async function writeEntry(baseDir, compName) {
 	const file = `${baseDir}/index.ts`;
 	const entryContent = `/// <reference types="./types" />
 import ${compName} from './index.svelte';
@@ -181,7 +181,7 @@ export default ${compName};`;
 	write(file, entryContent);
 }
 
-async function writeTypeDTs(baseDir: string, compName: string) {
+async function writeTypeDTs(baseDir, compName) {
 	const file = `${baseDir}/types.d.ts`;
 	const typeDtsContent = `/// <reference types="svelte" />
 export type K${compName}Props = {
@@ -194,7 +194,7 @@ export type K${compName}Props = {
 /**
  * add dependence of current component into the package.json dependeces.
  */
-async function appendDepToPkg(compName: string) {
+async function appendDepToPkg(compName) {
 	const pkgCopy = deepClone(rootPKG);
 	const depName = `@ikun-ui/${compName}`;
 	if (depName in pkgCopy.dependencies) {
@@ -215,14 +215,14 @@ async function devDependenciesInstall() {
 	const spinners = ora('installing dependencies...').start();
 	await runCommand(`pnpm -F=${libName} install ${compDevDeps.join(' ')} --save-dev`, __dirname, {
 		silent: true
-	}).catch((err: Error['message']) => {
+	}).catch((err) => {
 		spinners.fail(`Failed to install dependencies. Please check the issue and try again.\n ${err}`);
 	});
 	spinners.clear();
 	spinners.succeed('dependencies installed successfully.');
 }
 
-async function writeTest(baseDir: string, compName: string, originalCompName: string) {
+async function writeTest(baseDir, compName, originalCompName) {
 	const file = `${baseDir}/${originalCompName}.spec.ts`;
 	const testContent = `import { afterEach, expect, test, describe, beforeEach } from 'vitest';
 import K${compName} from '../src';
@@ -264,13 +264,13 @@ describe('Test: K${compName}', () => {
  * if any files have been changed but the scripts encounter errors, perform a rollback to
  * a previous state.
  */
-async function rollback(err: any) {
+async function rollback(err) {
 	log('error', `rollback err: ${err}`);
 	await write(pkgPath, JSON.stringify(rootPKG, null, 2));
 	process.exit(1);
 }
 
-async function writeFnSpinnerRegister(file: string, content: string, fn: typeof _write) {
+async function writeFnSpinnerRegister(file, content, fn) {
 	const witreSpinner = ora(`createing file: ${file}`).start();
 	await fn(file, content, witreSpinner);
 }
