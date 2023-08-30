@@ -5,15 +5,15 @@
 	import { extend } from 'baiwusanyu-utils';
 	import { createCls, getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
 
-	export let type: KButtonProps['type'];
-	export let size: KButtonProps['size'];
+	export let type: KButtonProps['type'] | '' = '';
+	export let size: KButtonProps['size'] | '' = '';
 	export let icon: KButtonProps['icon'] = '';
-	export let iconSize: KButtonProps['iconSize'];
+	export let iconSize: KButtonProps['iconSize'] = null;
 	export let to: KButtonProps['to'] = '';
 	export let round: KButtonProps['round'] = '';
 	export let circle: KButtonProps['circle'] = false;
-	export let isBorder: KButtonProps['isBorder'];
-	export let disabled: KButtonProps['disabled'];
+	export let isBorder: KButtonProps['isBorder'] = false;
+	export let disabled: KButtonProps['disabled'] = false;
 	export let cls: KButtonProps['cls'] = '';
 	export let attrs: KButtonProps['attrs'] = {};
 
