@@ -21,3 +21,4 @@ export * from '@ikun-ui/switch';
 export * from '@ikun-ui/message-box';
 export * from '@ikun-ui/spin';
 export * from '@ikun-ui/backtop';
+export * from '@ikun-ui/slider';
