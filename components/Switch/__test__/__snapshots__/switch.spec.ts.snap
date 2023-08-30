@@ -10,6 +10,6 @@ exports[`Test: KSwitch > props: loading 1`] = `"<div class=\\"k-switch--base  k-
 
 exports[`Test: KSwitch > props: unCheckedColor and checkedColor 1`] = `"<div class=\\"k-switch--base  k-switch__checked #1314  \\" aria-hidden=\\"true\\"> <div class=\\"k-switch-circle\\"></div> <div class=\\"k-switch-tx__checked\\"></div></div>"`;
 
-exports[`Test: KSwitch > props: unCheckedValue and checkedValue 1`] = `"<div class=\\"k-switch--base  k-switch__checked  k-switch-tra \\" aria-hidden=\\"true\\"> <div class=\\"k-switch-circle\\" style=\\"right: 2px;\\"></div> <div class=\\"k-switch-tx__checked\\"></div></div>"`;
+exports[`Test: KSwitch > props: unCheckedValue and checkedValue 1`] = `"<div class=\\"k-switch--base  k-switch__checked  k-switch-tra \\" aria-hidden=\\"true\\"> <div class=\\"k-switch-circle\\" style=\\"right: 1px;\\"></div> <div class=\\"k-switch-tx__checked\\"></div></div>"`;
 
 exports[`Test: KSwitch > props: value 1`] = `"<div class=\\"k-switch--base  k-switch__un_checked   \\" aria-hidden=\\"true\\"><div class=\\"k-switch-tx__un_checked\\"></div> <div class=\\"k-switch-circle\\"></div> </div>"`;

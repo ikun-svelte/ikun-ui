@@ -51,13 +51,13 @@ The `spinner` attribute can also be passed directly into a component to display 
 
 ## Loading Options
 
-| Name       | Type      | Default | Description                                                  |
-| ---------- | --------- | ------- | ------------------------------------------------------------ |
-| show       | `boolean` | `false` | Whether to show spin                                         |
-| text       | `string`  | `-`     | loading text that displays under the spinner                 |
-| fullScreen | `boolean` | `false` | Show a full screen animation while loading data              |
-| background | `string`  | `-`     | background color of the mask                                 |
-| spinner    | `string`  | `-`     | The class name of the snipper, following the unocss standard |
-| rotating   | `boolean` | `true`  | Whether the snipper is rotated or not                        |
-| cls        | `string`  | `-`     | Additional class                                             |
-| attrs      | `any`     | `{}`    | Additional attributes                                        |
+| Name       | Type                     | Default | Description                                                  |
+| ---------- | ------------------------ | ------- | ------------------------------------------------------------ |
+| show       | `boolean`                | `false` | Whether to show spin                                         |
+| text       | `string`                 | `-`     | loading text that displays under the spinner                 |
+| fullScreen | `boolean`                | `false` | Show a full screen animation while loading data              |
+| background | `string`                 | `-`     | background color of the mask                                 |
+| spinner    | `string`                 | `-`     | The class name of the snipper, following the unocss standard |
+| rotating   | `boolean`                | `true`  | Whether the snipper is rotated or not                        |
+| cls        | `string`                 | `-`     | Additional class                                             |
+| attrs      | `Record<string, string>` | `{}`    | Additional attributes                                        |
