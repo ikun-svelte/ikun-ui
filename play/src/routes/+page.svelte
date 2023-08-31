@@ -23,7 +23,8 @@
 	import { KRadio } from '@ikun-ui/radio';
 	import { KSpin } from '@ikun-ui/spin';
 	import { KBacktop } from '@ikun-ui/backtop';
-    import { KSlider } from '@ikun-ui/slider';
+	import { KSlider } from '@ikun-ui/slider';
+	import { KProgress } from '@ikun-ui/progress';
 	import 'virtual:uno.css';
 
 	let checked = true;
@@ -84,6 +85,15 @@
 		breadcrumbList.pop();
 		breadcrumbList = breadcrumbList;
 	};
+
+	let percentage = 10;
+	let timer = setInterval(() => {
+		if (percentage >= 100) {
+			clearInterval(timer);
+			return (percentage = 100);
+		}
+		percentage++;
+	}, 280);
 </script>
 
 <div class="my-10px">
@@ -337,7 +347,21 @@
 
 <KBacktop bottom={100} right={100} show-height="100" />
 <div class="px-4">
-    <KSlider on:input={(v) => {console.log("ipnut", v.detail)}} on:change={(v) => {console.log("change", v.detail)}} >
-        <div slot="buttonRender" class="text-6">🏀</div>
-    </KSlider>
+	<KSlider
+		on:input={(v) => {
+			console.log('ipnut', v.detail);
+		}}
+		on:change={(v) => {
+			console.log('change', v.detail);
+		}}
+	>
+		<div slot="buttonRender" class="text-6">🏀</div>
+	</KSlider>
 </div>
+
+<KProgress {percentage} color="#f8a153" status="success">
+	<span>🏀</span>
+</KProgress>
+
+<KProgress {percentage} type="circle"></KProgress>
+<KProgress {percentage} color="#f8a153" type="dashboard"></KProgress>
