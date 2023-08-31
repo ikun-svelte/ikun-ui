@@ -30,6 +30,7 @@
 		"@ikun-ui/tooltip": "workspace:*",
 		"@ikun-ui/spin": "workspace:*",
 		"@ikun-ui/slider": "workspace:*",
+		"@ikun-ui/progress": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"@vueuse/core": "^10.3.0"
 	},

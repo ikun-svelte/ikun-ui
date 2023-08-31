@@ -67,6 +67,10 @@ const components = [
 			{
 				text: 'Tag',
 				link: '/components/KTag'
+			},
+			{
+				text: 'Progress',
+				link: '/components/KProgress'
 			}
 		]
 	},

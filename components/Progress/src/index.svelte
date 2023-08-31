@@ -19,7 +19,6 @@
 	let perimeter = 2 * Math.PI * circleRadius;
 	let strokeDashoffset = (-1 * perimeter * (1 - rate)) / 2;
 	const strokeLinecap = 'round';
-
 	// circle progress theme
 	const STATUS_COLOR_MAP: Record<string, string> = {
 		primary: '#ccfbf1',
@@ -28,12 +27,17 @@
 		warning: '#fef3c7'
 	};
 
+	$: prefixCls = `k-progress--${status}`;
+	$: cnames = createCls('k-progress--base', cls);
+	$: if (percentage >= 100) {
+		percentage = 100;
+	} else if (percentage <= 0) {
+		percentage = 0;
+	}
+
 	const getCurrentCircleStorkeColor = (status: string) => {
 		return STATUS_COLOR_MAP[status];
 	};
-
-	$: prefixCls = `k-progress--${status}`;
-	$: cnames = createCls('k-progress--base', cls);
 </script>
 
 {#if type === 'line'}

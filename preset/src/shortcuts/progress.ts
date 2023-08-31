@@ -4,7 +4,7 @@ export const progressShortcuts: Record<string, string> = {
 	'k-progress--base': 'flex w-full h-6 bg-ikun-light-500 border-rd-4',
 	'k-progress--runway': 'w-full h-full',
 	'k-progress--bar': 'fce h-full transition-width delay-0 linear',
-	'k-progress-content--textInside': 'px-2',
+	'k-progress-content--textInside': 'px-2 text-right',
 	'k-progress-content--textOutside': 'flex-1 px-2',
 
 	// progress theme

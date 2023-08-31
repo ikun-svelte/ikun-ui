@@ -1010,6 +1010,9 @@ importers:
       '@ikun-ui/preset':
         specifier: workspace:*
         version: link:../preset
+      '@ikun-ui/progress':
+        specifier: workspace:*
+        version: link:../components/Progress
       '@ikun-ui/select':
         specifier: workspace:*
         version: link:../components/Select

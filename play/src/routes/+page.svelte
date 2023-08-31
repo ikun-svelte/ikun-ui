@@ -363,5 +363,5 @@
 	<span>🏀</span>
 </KProgress>
 
-<KProgress {percentage} type="circle"></KProgress>
+<KProgress {percentage} width={200} type="circle"></KProgress>
 <KProgress {percentage} color="#f8a153" type="dashboard"></KProgress>
