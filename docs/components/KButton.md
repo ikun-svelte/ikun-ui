@@ -31,6 +31,22 @@ Use `type`, `round` and `circle` to define Button's style.
 
 <demo src="../../../../example/button/basic.svelte"  github='Button'></demo>
 
+## Plain Button
+
+When you set the `plain` property to `true`, plain buttons will be rendered.
+
+<demo src="../../../../example/button/plain.svelte"  github='Button'></demo>
+
+## Ghost Button
+
+When you set the `ghost` property to `true`, ghost buttons will be rendered.
+
+::: tip
+Ghost Button takes precedence over Plain Button
+:::
+
+<demo src="../../../../example/button/ghost.svelte"  github='Button'></demo>
+
 ## Disabled Button
 
 Use `disabled` attribute to determine whether a button is disabled.  
@@ -55,6 +71,10 @@ It supports enumerations such as `md`, `sm`, and `lg`.
 
 Use the `isBorder` property to determine if the button is bordered.
 
+::: tip
+Applies only to plain button
+:::
+
 <demo src="../../../../example/button/isBorder.svelte" github='Button'></demo>
 
 ## Button Group
@@ -74,7 +94,7 @@ Use the `to` attribute to set a specific url that you can click to jump to.
 ## Button Props
 
 | Name     | Type                                                 | Default    | Description                                               |
-| -------- | ---------------------------------------------------- | ---------- | --------------------------------------------------------- |
+| -------- | ---------------------------------------------------- | ---------- |-----------------------------------------------------------|
 | type     | `primary` / `success` / `error` / `warning` / `info` | `primary'` | Button type                                               |
 | size     | `'sm' / 'md' / 'lg'`                                 | `md`       | Button size                                               |
 | icon     | `string`                                             | `-`        | The class name of the icon, following the unocss standard |
@@ -83,6 +103,8 @@ Use the `to` attribute to set a specific url that you can click to jump to.
 | round    | `string` / `number`                                  | `-`        | Button's border radius                                    |
 | circle   | `boolean`                                            | `false`    | Determine whether it's a circle button                    |
 | isBorder | `boolean`                                            | `false`    | Border style button                                       |
+| plain    | `boolean`                                            | `false`    | Determine whether it's a plain button                     |
+| ghost    | `boolean`                                            | `false`    | Determine whether it's a ghost button                     |
 | disabled | `boolean`                                            | `false`    | Disable the button                                        |
 | cls      | `string`                                             | `-`        | Additional class for                                      |
 | attrs    | `Record<string, string>`                             | `{}`       | Additional attributes                                     |
