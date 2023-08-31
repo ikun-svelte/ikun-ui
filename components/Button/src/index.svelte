@@ -13,6 +13,8 @@
 	export let round: KButtonProps['round'] = '';
 	export let circle: KButtonProps['circle'] = false;
 	export let isBorder: KButtonProps['isBorder'] = false;
+	export let plain: KButtonProps['plain'] = false;
+	export let ghost: KButtonProps['ghost'] = false;
 	export let disabled: KButtonProps['disabled'] = false;
 	export let cls: KButtonProps['cls'] = '';
 	export let attrs: KButtonProps['attrs'] = {};
@@ -62,12 +64,19 @@
 	// class names
 	$: prefixCls = getPrefixCls('button');
 	$: typePrefixCls = `${prefixCls}--${typeInner}`;
+	$: typePrefixClsHover = `${typePrefixCls}__hover`;
 	$: cnames = createCls(
 		prefixCls,
 		`${prefixCls}--base`,
-		typePrefixCls,
 		{
-			[`${typePrefixCls}__active ${typePrefixCls}__focus ${typePrefixCls}__hover`]: !disabledInner,
+			[`${typePrefixCls}__ghost`]: !plain && ghost,
+			[`${typePrefixCls}__fill`]: !plain && !ghost,
+			[`${typePrefixClsHover}__fill`]: !plain && !ghost,
+			[typePrefixCls]: plain && !ghost,
+			[typePrefixClsHover]: plain && !ghost
+		},
+		{
+			[`${typePrefixCls}__active ${typePrefixCls}__focus`]: !disabledInner,
 			[`k-cur-disabled ${prefixCls}--disabled`]: disabledInner,
 			[`${prefixCls}--circle`]: circle,
 			[`${prefixCls}--circle--sm`]: circle && sizeInner === 'sm',
@@ -85,6 +94,12 @@
 	);
 
 	$: attrsInner = extend(attrs, to ? { href: to } : {});
+
+	$: prefixIconCls = `${prefixCls}--${typeInner}__icon`
+	$: cnamesIcon = createCls({
+		[prefixIconCls]: true,
+		[`${prefixIconCls}__fill`]: !plain && !ghost,
+	})
 </script>
 
 <svelte:element
@@ -100,7 +115,7 @@
 	{#if icon}
 		<KIcon
 			{icon}
-			color={`${prefixCls}--${typeInner}__icon`}
+			color={cnamesIcon}
 			width={`${iconSizeInner}px`}
 			height={`${iconSizeInner}px`}
 		/>

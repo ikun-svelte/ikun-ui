@@ -16,7 +16,7 @@
 	>
 </div>
 <style>
-	:global(.k-button--primary) {
-		color: #2dd4bf !important;
+	:global(.k-button--primary__fill) {
+		color: #ccfbf1 !important;
 	}
 </style>
