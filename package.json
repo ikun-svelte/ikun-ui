@@ -46,7 +46,7 @@
 		"init": "pnpm i",
 		"dev": "pnpm run build && pnpm run play",
 		"dev:docs": "pnpm run --filter @ikun-ui/docs docs:dev",
-		"play": "pnpm run --filter @ikun-ui/play dev",
+		"play": "esno scripts/play.js && pnpm run --filter @ikun-ui/play dev",
 		"build": "run-s build:* && run-s build-*",
 		"build-preset": "pnpm run --filter @ikun-ui/preset build",
 		"build-lib": "tsup --config tsup.config.ts",
