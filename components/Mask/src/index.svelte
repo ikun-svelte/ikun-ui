@@ -55,12 +55,14 @@
 		window.removeEventListener('resize', updatedPosition);
 	};
 	onDestroy(reset);
-
+	let oldValue = value
 	$: if (value) {
 		setParent();
+		oldValue = value
 	} else {
-		setTimeout(() => {
+		oldValue !== value && setTimeout(() => {
 			reset();
+			oldValue = value
 		}, 300)
 	}
 </script>
