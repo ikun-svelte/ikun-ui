@@ -1,42 +1,51 @@
 <script lang="ts">
-	import { isBool, isNumber, isString } from 'baiwusanyu-utils';
 	import { KIcon } from '@ikun-ui/icon';
-	import { createEventDispatcher, getContext, onMount } from 'svelte';
-	import type { FormContext } from '@ikun-ui/utils';
-	export let value: boolean = false;
+	import { createEventDispatcher, onMount } from 'svelte';
+	import type { SwitchValueType } from './types';
+
+	export let value: SwitchValueType = false;
 	export let disabled: boolean = false;
 	export let cls: string = '';
 	export let attrs = {};
 	export let loading: boolean = false;
-	export let checkedValue: string | number | boolean | undefined = undefined;
-	export let unCheckedValue: string | number | boolean | undefined = undefined;
+	export let checkedValue: SwitchValueType = true;
+	export let unCheckedValue: SwitchValueType = false;
 
 	export let checkedColor = '';
-
 	export let unCheckedColor = '';
-	const formContext: FormContext = getContext('FormContext');
 	const dispatch = createEventDispatcher();
-	let innerState = value;
-	let switching = '';
+	$: innerState = value === checkedValue;
 	/**
 	 * 切换状态方法
 	 */
-	let changeData = {};
+	let changeData: {
+		newVal: SwitchValueType;
+		oldVal: SwitchValueType;
+	};
 	const emitChangeEvt = (): void => {
+		changeData = innerState
+			? {
+					newVal: unCheckedValue,
+					oldVal: checkedValue
+			  }
+			: {
+					newVal: checkedValue,
+					oldVal: unCheckedValue
+			  };
 		dispatch('change', changeData);
 	};
 
 	/**
 	 * 设置动画样式类
 	 */
-
+	let switching = '';
 	let switchCircleRef: null | HTMLElement = null;
-	const changeClass = () => {
+	const changeClass = (checked: boolean) => {
 		return new Promise((resolve) => {
 			switching = 'k-switch-tra';
 			if (switchCircleRef) {
 				const circleWidth = switchCircleRef.getClientRects()[0]?.width;
-				switchCircleRef.style.right = innerState ? '2px' : `calc(100% - ${circleWidth}px - 2px)`;
+				switchCircleRef.style.right = checked ? '1px' : `calc(100% - ${circleWidth}px - 1px)`;
 			}
 			setTimeout(() => {
 				switching = '';
@@ -45,42 +54,20 @@
 		});
 	};
 
-	const setInnerState = (): string | number | boolean => {
-		if (innerState) {
-			innerState = false;
-			changeData = {
-				newVal: unCheckedValue ? unCheckedValue : false,
-				oldVal: checkedValue ? checkedValue : true
-			};
-			return unCheckedValue ? unCheckedValue : false;
-		}
-		innerState = true;
-		changeData = {
-			newVal: checkedValue ? checkedValue : true,
-			oldVal: unCheckedValue ? unCheckedValue : false
-		};
-		return checkedValue ? checkedValue : true;
-	};
 	let isUpdateModel = false;
 	const switchState = async () => {
 		// 切换状态
-		const value = setInnerState();
 		emitChangeEvt();
-		dispatch('updateValue', value);
-		formContext?.updateField(value);
+		dispatch('updateValue', changeData.newVal);
 		isUpdateModel = true;
-		await changeClass();
+		await changeClass(changeData.newVal === checkedValue);
 	};
 
-	let oldValue = value;
-	$: if (value !== oldValue) {
-		if (isUpdateModel) {
-			isUpdateModel = false;
-		} else {
-			setInnerState();
+	$: if (changeData && value !== changeData.newVal) {
+		if (!isUpdateModel) {
 			emitChangeEvt();
 		}
-		oldValue = value;
+		isUpdateModel = false;
 	}
 	/**
 	 * 点击方法
@@ -95,35 +82,9 @@
 	 * 初始化方法
 	 */
 	const init = async () => {
-		await changeClass();
-		if (
-			unCheckedValue !== undefined &&
-			unCheckedValue !== '' &&
-			(isBool(unCheckedValue) || isString(unCheckedValue) || isNumber(unCheckedValue)) &&
-			value === unCheckedValue
-		) {
-			innerState = false;
-			return;
-		}
-		if (
-			checkedValue !== undefined &&
-			checkedValue !== '' &&
-			(isBool(checkedValue) || isString(checkedValue) || isNumber(checkedValue)) &&
-			value === checkedValue
-		) {
-			innerState = true;
-			return;
-		}
+		await changeClass(innerState);
 	};
 	onMount(init);
-	// when filed change,dom value will change.
-	formContext?.subscribe((val: any) => {
-		if (val) {
-			value = val;
-		}
-	});
-	//initial field
-	formContext?.initialField(value);
 </script>
 
 <div
@@ -132,7 +93,7 @@
   {disabled || loading ? 'k-switch__disabled' : ''}
   {innerState ? `k-switch__checked ${checkedColor}` : `k-switch__un_checked ${unCheckedColor}`}
   {switching}
-  {cls} "
+  {cls}"
 	aria-hidden="true"
 	{...attrs}
 	on:click={handleClick}

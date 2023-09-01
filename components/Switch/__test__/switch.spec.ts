@@ -51,6 +51,11 @@ describe('Test: KSwitch', () => {
 		await tick();
 		instance.$on('updateValue', (v) => {
 			value = v.detail;
+			instance.$set({
+				value,
+				unCheckedValue: '哭泣',
+				checkedValue: '微笑'
+			});
 		});
 		const switchElm = host.getElementsByTagName('div')[0];
 		switchElm.click();

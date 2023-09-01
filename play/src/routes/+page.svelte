@@ -149,6 +149,18 @@
 	----Form----
 </KForm>
 <div class="my-10px">
+	<div class="my-10px">KInput</div>
+	<KInput
+		bind:value={inputValue}
+		placeholder="inputValue"
+		iconPrefix="i-carbon-settings"
+		on:input={() => {
+			console.log('on:input =>', inputValue);
+		}}
+	></KInput>
+</div>
+
+<div class="my-10px">
 	<div class="mb-10px">Breadcrumb</div>
 	<KBreadcrumb separator="/">
 		{#each breadcrumbList as breadcrumb}
@@ -168,22 +180,105 @@
 	</div>
 </div>
 
-<div class="flex fle-gap-2 p-2">
-	<KButton>Normal Button</KButton>
-	<KButton disabled>Disabled Button</KButton>
-	<KButton to="https://github.com/ikun-svelte/ikun-ui">Link</KButton>
-</div>
 <KButton icon="i-carbon-settings" type="primary" on:click={() => (openDrawer = true)}>
 	drawer
 </KButton>
 
-<KButtonGroup cls="my-10px">
-	<KButton icon="i-carbon-settings" type="primary" round="10">drawer</KButton>
-	<KButton icon="i-carbon-settings" type="info">drawer</KButton>
-	<KButton icon="i-carbon-settings" type="success">drawer</KButton>
-	<KButton icon="i-carbon-settings" type="error">drawer</KButton>
-	<KButton icon="i-carbon-settings" type="warning">drawer</KButton>
-</KButtonGroup>
+<div class="my-10px">
+	<div>Button Type</div>
+	<div class="flex flex-gap-2 p-2">
+		<KButton>Normal Button</KButton>
+		<KButton type="success">Success Button</KButton>
+		<KButton type="error">Error Button</KButton>
+		<KButton type="warning">Warning Button</KButton>
+		<KButton type="info">Info Button</KButton>
+		<KButton to="https://github.com/ikun-svelte/ikun-ui">Link Button</KButton>
+	</div>
+	<div>Button Size</div>
+	<div class="flex-gap-2 p-2">
+		<KButton cls="inline-flex" size="sm">SM Button</KButton>
+		<KButton cls="inline-flex" size="md">MD Button</KButton>
+		<KButton cls="inline-flex" size="lg">LG Button</KButton>
+	</div>
+	<div>Button Other Attrs</div>
+	<div class="flex flex-gap-2 p-2">
+		<KButton icon="i-carbon-settings" round="50">Icon Button</KButton>
+		<KButton icon="i-carbon-settings" circle></KButton>
+		<KButton isBorder>Border Button</KButton>
+		<KButton disabled>Disabled Button</KButton>
+	</div>
+</div>
+
+<div class="my-10px">
+	<div class="my-10px">KButtonGroup Type & Size</div>
+	<div class="flex-gap-2 p-2">
+		<KButtonGroup type="success" size="sm">
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="warning" size="md">delelte</KButton>
+		</KButtonGroup>
+
+		<KButtonGroup type="error" size="md">
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="warning" size="md">delelte</KButton>
+		</KButtonGroup>
+
+		<KButtonGroup type="error" size="lg">
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="warning" size="md">delelte</KButton>
+		</KButtonGroup>
+	</div>
+	<div class="my-10px">KButtonGroup Other Attrs</div>
+	<div class="flex-gap-2 p-2">
+		<KButtonGroup type="success" size="md" disabled>
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="warning" size="sm">delelte</KButton>
+		</KButtonGroup>
+
+		<KButtonGroup type="error" size="md" disabled={false}>
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="warning" size="lg" disabled={true}>delelte</KButton>
+		</KButtonGroup>
+
+		<KButtonGroup type="warning" size="md" isBorder>
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="primary" size="lg">delelte</KButton>
+		</KButtonGroup>
+
+		<KButtonGroup type="info" size="md" isBorder={false}>
+			<KButton icon="i-carbon-settings" round="20"></KButton>
+			<KButton icon="i-carbon-add">add</KButton>
+			<KButton icon="i-carbon-edit">edit</KButton>
+			<KButton icon="i-carbon-view">view</KButton>
+			<KButton icon="i-carbon-trash-can" type="warning" size="sm" isBorder={true}>delelte</KButton>
+		</KButtonGroup>
+	</div>
+	<div class="my-10px">KButtonGroup IconSize</div>
+	<KButtonGroup iconSize={20}>
+		<KButton icon="i-carbon-settings"></KButton>
+		<KButton icon="i-carbon-add">add</KButton>
+		<KButton icon="i-carbon-edit">edit</KButton>
+		<KButton icon="i-carbon-view">view</KButton>
+		<KButton icon="i-carbon-trash-can" iconSize={10}>delelte</KButton>
+	</KButtonGroup>
+</div>
 
 <KIcon icon="i-carbon-settings" btn></KIcon>
 <KCollapse>
@@ -201,8 +296,6 @@
 <KEyeDropper let:open>
 	<KButton type="primary" on:click={() => open()}>KEyeDropper</KButton>
 </KEyeDropper>
-
-<KInput value={inputValue} placeholder="inputValue" iconPrefix="i-carbon-settings"></KInput>
 
 <KTooltip content="KTooltip - content" placement="bottom">
 	<KButton type="warning" slot="triggerEl">KTooltip - trigger</KButton>

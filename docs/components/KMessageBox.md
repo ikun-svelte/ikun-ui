@@ -91,7 +91,7 @@ if you want to perform form validation, then you can handle it yourself through 
 | inputErrorMessage | `string`                                  | `-`       | error message when validation fails (only `type='confirm'`)                                                                                              |
 | inputPlaceholder  | `string`                                  | `-`       | input placeholder (only `type='confirm'`)                                                                                                                |
 | cls               | `string`                                  | `-`       | Additional class                                                                                                                                         |
-| attrs             | `any`                                     | `{}`      | Additional attributes                                                                                                                                    |
+| attrs             | `Record<string, string>`                  | `{}`      | Additional attributes                                                                                                                                    |
 
 ## MessageBox Api
 
