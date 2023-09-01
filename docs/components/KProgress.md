@@ -72,7 +72,7 @@ By setting `type="dashboard"`, you can get a dashboard style of progress easily.
 | duration    | `number`                                     | `0.28 (s)` | Control the animation duration of progress (`type` is 'line') |
 | showText    | `boolean`                                    | `true`     | Whether to show percentage                                    |
 | cls         | `string`                                     | `true`     | Additional class                                              |
-
+| attrs     | `Record<string, string>`              | `{}`    | Additional attributes       |
 ## Progress Slots
 
 | Name    | Description        |

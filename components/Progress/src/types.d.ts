@@ -13,4 +13,5 @@ export type KProgressProps = {
 	width: number;
 	duration: number;
 	cls: string;
+	attrs: Record<string, string>;
 };
