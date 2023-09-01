@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { createCls } from '@ikun-ui/utils';
+	import { createCls, getPrefixCls } from "@ikun-ui/utils";
 	import type { KProgressProps } from './types';
-
+	import ProgressCircle from './circle.svelte'
 	export let percentage: KProgressProps['percentage'] = 0;
 	export let status: KProgressProps['status'] = 'primary';
 	export let type: KProgressProps['type'] = 'line';
@@ -14,46 +14,43 @@
 	export let showText: KProgressProps['showText'] = true;
 	export let cls: KProgressProps['cls'] = '';
 	export let attrs: KProgressProps['attrs'] = {};
-	let rate = type === 'dashboard' ? 0.75 : 1;
-	let circleRadius = (width - strokeWidth * 2) / 2;
-	let perimeter = 2 * Math.PI * circleRadius;
-	let strokeDashoffset = (-1 * perimeter * (1 - rate)) / 2;
-	const strokeLinecap = 'round';
-	// circle progress theme
-	const STATUS_COLOR_MAP: Record<string, string> = {
-		primary: '#ccfbf1',
-		success: '#dcfce7',
-		error: '#ffe4e6',
-		warning: '#fef3c7'
-	};
 
-	$: prefixCls = `k-progress--${status}`;
-	$: cnames = createCls('k-progress--base', cls);
 	$: if (percentage >= 100) {
 		percentage = 100;
 	} else if (percentage <= 0) {
 		percentage = 0;
 	}
 
-	const getCurrentCircleStorkeColor = (status: string) => {
-		return STATUS_COLOR_MAP[status];
-	};
+
+	// class
+	const prefixCls = getPrefixCls('progress');
+	$: containerCls = createCls(`${prefixCls}--container`, cls);
+	$: baseCls = `${prefixCls}--base`
+	$: runwayCls = `${prefixCls}--runway`
+	$: barCls = createCls(
+		`${prefixCls}--bar`,
+		`${prefixCls}--${status}`
+	);
+	$: contentTxtInsideCls = `${prefixCls}--content__textInside`
+	$: contentTxtOutsideCls = `${prefixCls}--content__textOutside`
+	$: circleDashboardCls = `${prefixCls}__cd`
+	$: textCls = `${prefixCls}--text__cd`
 </script>
 
 {#if type === 'line'}
-	<div class="k-progress--container" {...$$restProps} {...attrs}>
-		<div
-			class={`${cnames}`}
-			style="width: {showText
-				? `90%`
-				: ''}; height: {strokeWidth}px; border-radius: {strokeWidth}px;"
-		>
-			<div class="k-progress--runway">
-				<div
-					class={`k-progress--bar ${prefixCls}`}
-					style="width: {percentage}%; left: 0%; background-color: {color}; border-radius: {strokeWidth}px; transition-duration: {duration}s"
-				>
-					<div class="k-progress-content--textInside">
+	<div class={containerCls} {...$$restProps} {...attrs}>
+		<div class={baseCls}
+				 style:width={showText ? '90%' : ''}
+				 style:height="{strokeWidth}px"
+				 style:border-radius="{strokeWidth}px">
+			<div class={runwayCls}>
+				<div class={barCls}
+					   style:width="{percentage}%"
+					   style:background-color="{color}"
+					   style:border-radius="{strokeWidth}px"
+					   style:transition-duration="{duration}s"
+					   style:left="0%">
+					<div class={contentTxtInsideCls}>
 						{#if showText && textInside}
 							{#if $$slots.default}
 								<slot />
@@ -65,7 +62,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="k-progress-content--textOutside">
+		<div class={contentTxtOutsideCls}>
 			{#if showText && !textInside}
 				{#if $$slots.default}
 					<slot />
@@ -76,35 +73,21 @@
 		</div>
 	</div>
 {:else if ['circle', 'dashboard'].includes(type)}
-	<div class="pr inline-block" style="height: {width}px; width: {width}px;" {...$$restProps} {...attrs}>
+	<div class={circleDashboardCls}
+			 style:width="{width}px"
+			 style:height="{width}px"
+			 {...$$restProps}
+			 {...attrs}>
 		<svg {width} height={width} viewBox="0 0 {width} {width}">
-			<circle
-				cx={width / 2}
-				cy={width / 2}
-				r={circleRadius}
-				stroke="#f2f2f2"
-				stroke-width={strokeWidth}
-				stroke-linecap={strokeLinecap}
-				stroke-dasharray="{perimeter * rate} {perimeter}"
-				stroke-dashoffset={strokeDashoffset}
-				fill="none"
-				transform="rotate({type === 'dashboard' ? 90 : -90}, {width / 2}, {width / 2})"
-			/>
-			<circle
-				cx={width / 2}
-				cy={width / 2}
-				r={circleRadius}
-				stroke={color || getCurrentCircleStorkeColor(status)}
-				stroke-width={strokeWidth}
-				stroke-linecap={strokeLinecap}
-				stroke-dasharray="{perimeter * rate * (percentage / 100)} {perimeter}"
-				stroke-dashoffset={strokeDashoffset}
-				fill="none"
-				transform="rotate({type === 'dashboard' ? 90 : -90}, {width / 2}, {width / 2})"
-				{...{ 'ui-progress-bar': true }}
-			/>
+			<ProgressCircle size="{width}"
+											{strokeWidth}
+											{percentage}
+											{type}
+											{color}
+											{status}>
+			</ProgressCircle>
 		</svg>
-		<div class="pa left-50% top-50% translate--50%">
+		<div class={textCls}>
 			{#if showText}
 				{#if $$slots.default}
 					<slot />
@@ -115,9 +98,3 @@
 		</div>
 	</div>
 {/if}
-
-<style>
-	[ui-progress-bar] {
-		transition: stroke-dasharray 0.28s linear;
-	}
-</style>

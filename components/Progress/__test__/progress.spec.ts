@@ -92,7 +92,7 @@ describe('Test: KProgress', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		expect(host.innerHTML.includes('#dcfce7')).toBeTruthy();
+		expect(host.innerHTML.includes('k-progress--stroke--success')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -172,7 +172,7 @@ describe('Test: KProgress', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const Elm = host.getElementsByClassName('k-progress-content--textInside')[0] as HTMLDivElement;
+		const Elm = host.getElementsByClassName('k-progress--content__textInside')[0] as HTMLDivElement;
 		const textContent = Elm.children[0].innerHTML;
 		expect(parseFloat(textContent)).toBe(10);
 		expect(host.innerHTML).matchSnapshot();
