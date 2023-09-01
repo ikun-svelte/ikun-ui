@@ -26,19 +26,24 @@
       [`${prefixCls}--stroke--${status}`]: !color
     },
   )
+
+  $: circleDashboardRunwayCls =  createCls(
+    `${prefixCls}--stroke--runway`,
+    `${prefixCls}--stroke--runway__dark`
+  )
 </script>
 
 <circle
   cx={size / 2}
   cy={size / 2}
   r={circleRadius}
-  stroke="#f2f2f2"
   stroke-width={strokeWidth}
   stroke-linecap='round'
   stroke-dasharray="{strokeDasharrayRunway} {perimeter}"
   stroke-dashoffset={strokeDashoffset}
   fill="none"
   transform="{circleRotate}"
+  class="{circleDashboardRunwayCls}"
 />
 <circle
   cx={size / 2}

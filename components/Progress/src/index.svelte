@@ -25,7 +25,10 @@
 	// class
 	const prefixCls = getPrefixCls('progress');
 	$: containerCls = createCls(`${prefixCls}--container`, cls);
-	$: baseCls = `${prefixCls}--base`
+	$: baseCls =createCls(
+		`${prefixCls}--base`,
+		`${prefixCls}--base__dark`
+	);
 	$: runwayCls = `${prefixCls}--runway`
 	$: barCls = createCls(
 		`${prefixCls}--bar`,
