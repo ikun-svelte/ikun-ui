@@ -31,10 +31,10 @@
 	const isBorderInner = isBorder || buttonGroupPropsInner?.isBorder || false;
 	const disabledInner = disabled || buttonGroupPropsInner?.disabled || false;
 	let iconSizeInner: KButtonProps['iconSize'];
-	$: if (buttonGroupPropsInner?.iconSize) {
-		iconSizeInner = buttonGroupPropsInner.iconSize;
-	} else if (iconSize) {
+	$: if (iconSize) {
 		iconSizeInner = iconSize;
+	} else if (buttonGroupPropsInner?.iconSize) {
+		iconSizeInner = buttonGroupPropsInner.iconSize;
 	} else {
 		iconSizeInner = EButtonIconSize[sizeInner];
 	}
