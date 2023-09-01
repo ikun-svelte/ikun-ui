@@ -13,7 +13,7 @@
 	export let duration: KProgressProps['duration'] = 0.28;
 	export let showText: KProgressProps['showText'] = true;
 	export let cls: KProgressProps['cls'] = '';
-
+	export let attrs: KProgressProps['attrs'] = {};
 	let rate = type === 'dashboard' ? 0.75 : 1;
 	let circleRadius = (width - strokeWidth * 2) / 2;
 	let perimeter = 2 * Math.PI * circleRadius;
@@ -41,7 +41,7 @@
 </script>
 
 {#if type === 'line'}
-	<div class="k-progress--container">
+	<div class="k-progress--container" {...$$restProps} {...attrs}>
 		<div
 			class={`${cnames}`}
 			style="width: {showText
@@ -76,7 +76,7 @@
 		</div>
 	</div>
 {:else if ['circle', 'dashboard'].includes(type)}
-	<div class="pr inline-block" style="height: {width}px; width: {width}px;">
+	<div class="pr inline-block" style="height: {width}px; width: {width}px;" {...$$restProps} {...attrs}>
 		<svg {width} height={width} viewBox="0 0 {width} {width}">
 			<circle
 				cx={width / 2}
