@@ -1,9 +1,14 @@
 <script>
 	import { KProgress } from '@ikun-ui/progress';
+	import { onDestroy } from "svelte";
 	let percentage = 10;
-	setInterval(() => {
+	let timer = setInterval(() => {
+		if (percentage >= 100) {
+			percentage = 10;
+		}
 		percentage++;
 	}, 280);
+	onDestroy(() => clearInterval(timer))
 </script>
 
 <div>

@@ -94,7 +94,7 @@ Use the `to` attribute to set a specific url that you can click to jump to.
 ## Button Props
 
 | Name     | Type                                                 | Default    | Description                                               |
-| -------- | ---------------------------------------------------- | ---------- |-----------------------------------------------------------|
+| -------- | ---------------------------------------------------- | ---------- | --------------------------------------------------------- |
 | type     | `primary` / `success` / `error` / `warning` / `info` | `primary'` | Button type                                               |
 | size     | `'sm' / 'md' / 'lg'`                                 | `md`       | Button size                                               |
 | icon     | `string`                                             | `-`        | The class name of the icon, following the unocss standard |
