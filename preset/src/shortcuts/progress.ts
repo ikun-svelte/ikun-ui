@@ -3,14 +3,23 @@ export const progressShortcuts: Record<string, string> = {
 	'k-progress--container': 'fi w-full',
 	'k-progress--base': 'flex w-full h-6 bg-ikun-light-500 border-rd-4',
 	'k-progress--runway': 'w-full h-full',
-	'k-progress--bar': 'fce h-full transition-width delay-0 linear',
-	'k-progress-content--textInside': 'px-2 text-right',
-	'k-progress-content--textOutside': 'flex-1 px-2',
+	'k-progress--bar': 'fce h-full k-progress-transition',
+	'k-progress--bar__cd': 'k-progress-transition__cd',
+	'k-progress--content__textInside': 'px-2 text-right',
+	'k-progress--content__textOutside': 'flex-1 px-2',
+	'k-progress__cd': 'pr inline-block',
+	'k-progress--text__cd': 'pa left-50% top-50% translate--50%',
 
 	// progress theme
-	'k-progress--primary': 'bg-ikun-primary-100 text-ikun-primary border-ikun-primary-100',
-	'k-progress--success': 'bg-ikun-success-100 text-ikun-success border-ikun-success-100',
-	'k-progress--error': 'bg-ikun-error-100 text-ikun-error border-ikun-error-100',
-	'k-progress--warning': 'bg-ikun-warning-100 text-ikun-warning border-ikun-warning-100',
-	'k-progress--info': 'bg-ikun-info-100 text-ikun-info border-ikun-info-100'
+	'k-progress--primary': 'bg-ikun-primary text-ikun-primary-100',
+	'k-progress--success': 'bg-ikun-success text-ikun-success-100',
+	'k-progress--error': 'bg-ikun-error text-ikun-error-100',
+	'k-progress--warning': 'bg-ikun-warning text-ikun-warning-100',
+	'k-progress--info': 'bg-ikun-info text-ikun-info-100',
+	'k-progress--stroke--primary': '[.k-progress__cd>&]: stroke-ikun-primary',
+	'k-progress--stroke--success': '[.k-progress__cd>&]: stroke-ikun-success',
+	'k-progress--stroke--error': '[.k-progress__cd>&]: stroke-ikun-error',
+	'k-progress--stroke--warning': '[.k-progress__cd>&]: stroke-ikun-warning',
+	'k-progress--stroke--info': '[.k-progress__cd>&]: stroke-ikun-info'
+	// dark
 };
