@@ -2,6 +2,7 @@
 	import { createCls, getPrefixCls } from "@ikun-ui/utils";
 	import type { KProgressProps } from './types';
 	import ProgressCircle from './circle.svelte'
+	import { isFunction } from "baiwusanyu-utils";
 	export let percentage: KProgressProps['percentage'] = 0;
 	export let status: KProgressProps['status'] = 'primary';
 	export let type: KProgressProps['type'] = 'line';
@@ -9,7 +10,7 @@
 	export let width: KProgressProps['width'] = 126;
 	export let color: KProgressProps['color'] = '';
 	export let textInside: KProgressProps['textInside'] = false;
-	export let format: KProgressProps['format'] = '';
+	export let format: KProgressProps['format'] = null;
 	export let duration: KProgressProps['duration'] = 0.28;
 	export let showText: KProgressProps['showText'] = true;
 	export let cls: KProgressProps['cls'] = '';
@@ -20,6 +21,8 @@
 	} else if (percentage <= 0) {
 		percentage = 0;
 	}
+
+	$: percentageContent = format && isFunction(format) ? format(percentage) : `${percentage}%`
 
 
 	// class
@@ -58,7 +61,7 @@
 							{#if $$slots.default}
 								<slot />
 							{:else}
-								<span>{format || `${percentage}%`}</span>
+								<span>{percentageContent}</span>
 							{/if}
 						{/if}
 					</div>
@@ -70,7 +73,7 @@
 				{#if $$slots.default}
 					<slot />
 				{:else}
-					<span>{format || `${percentage}%`}</span>
+					<span>{percentageContent}</span>
 				{/if}
 			{/if}
 		</div>
@@ -95,7 +98,7 @@
 				{#if $$slots.default}
 					<slot />
 				{:else}
-					<span>{format || `${percentage}%`}</span>
+					<span>{percentageContent}</span>
 				{/if}
 			{/if}
 		</div>

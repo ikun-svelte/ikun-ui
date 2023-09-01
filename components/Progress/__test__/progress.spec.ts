@@ -183,13 +183,13 @@ describe('Test: KProgress', () => {
 			target: host,
 			props: {
 				percentage: 10,
-				format: '我欲与君相知，长命无绝衰',
+				format: (v) => `我欲与君相知，长命无绝衰${v}`,
 				type: 'line'
 			}
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		expect(host.innerHTML.includes('我欲与君相知，长命无绝衰')).toBeTruthy();
+		expect(host.innerHTML.includes(`我欲与君相知，长命无绝衰10`)).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
