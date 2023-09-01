@@ -68,7 +68,7 @@ By setting `type="dashboard"`, you can get a dashboard style of progress easily.
 | width       | `number`                                     | `126`      | The canvas width of circle progress                           |
 | color       | `string`                                     | `-`        | The current color of progress bar                             |
 | textInside  | `boolean`                                    | `false`    | Put description inside the progress bar (`type` is 'line')    |
-| format      | `string / number`                            | `-`        | Custom text format                                            |
+| format      | `(v: number) => string`                      | `-`        | Custom text format                                            |
 | duration    | `number`                                     | `0.28 (s)` | Control the animation duration of progress (`type` is 'line') |
 | showText    | `boolean`                                    | `true`     | Whether to show percentage                                    |
 | cls         | `string`                                     | `true`     | Additional class                                              |

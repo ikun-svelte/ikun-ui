@@ -8,7 +8,7 @@ export type KProgressProps = {
 	color: string;
 	showText: boolean;
 	textInside: boolean;
-	format: string | number;
+	format: (v: number) => string;
 	strokeWidth: number;
 	width: number;
 	duration: number;

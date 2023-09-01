@@ -23,5 +23,5 @@ export const progressShortcuts: Record<string, string> = {
 	'k-progress--stroke--info': '[.k-progress__cd>&]: stroke-ikun-info',
 	// dark
 	'k-progress--base__dark': 'dark:bg-ikun-dark-300',
-	'k-progress--stroke--runway__dark': 'dark:stroke-ikun-dark-300',
+	'k-progress--stroke--runway__dark': 'dark:stroke-ikun-dark-300'
 };
