@@ -1,3 +1,4 @@
+/// <reference types="svelte" />
 import type { IKunTypePro } from '@ikun-ui/utils';
 export type KButtonProps = {
 	type: IKunTypePro;
@@ -17,9 +18,3 @@ export type KButtonProps = {
 export type KButtonGroupPropsInner = Partial<
 	Pick<KButtonProps, 'type' | 'size' | 'iconSize' | 'isBorder' | 'disabled'>
 >;
-
-declare module '*.svelte' {
-	import { SvelteComponent } from 'svelte';
-	const component: SvelteComponent;
-	export default component;
-}
