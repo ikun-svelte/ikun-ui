@@ -1,5 +1,5 @@
 import { tick } from 'svelte';
-import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, test } from 'vitest';
 import KProgress from '../src';
 import KProgressSlots from './progress.slots.svelte';
 

@@ -224,11 +224,7 @@ describe('Test: KButton', () => {
 			}
 		});
 		expect(success).toBeTruthy();
-		expect(
-			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--success__ghost'
-			)
-		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--success__ghost')).toBeTruthy();
 
 		const error = new KButton({
 			target: host,
@@ -238,11 +234,7 @@ describe('Test: KButton', () => {
 			}
 		});
 		expect(error).toBeTruthy();
-		expect(
-			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--error__ghost'
-			)
-		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--error__ghost')).toBeTruthy();
 
 		const warning = new KButton({
 			target: host,
@@ -252,11 +244,7 @@ describe('Test: KButton', () => {
 			}
 		});
 		expect(warning).toBeTruthy();
-		expect(
-			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--warning__ghost'
-			)
-		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--warning__ghost')).toBeTruthy();
 
 		const info = new KButton({
 			target: host,
@@ -266,11 +254,7 @@ describe('Test: KButton', () => {
 			}
 		});
 		expect(info).toBeTruthy();
-		expect(
-			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--info__ghost'
-			)
-		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--info__ghost')).toBeTruthy();
 
 		const primary = new KButton({
 			target: host,
@@ -280,11 +264,7 @@ describe('Test: KButton', () => {
 			}
 		});
 		expect(primary).toBeTruthy();
-		expect(
-			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--primary__ghost'
-			)
-		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--primary__ghost')).toBeTruthy();
 
 		expect(host.innerHTML).matchSnapshot();
 	});
