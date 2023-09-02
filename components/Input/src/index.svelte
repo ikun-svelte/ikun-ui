@@ -19,9 +19,9 @@
 	/**
 	 * @internal
 	 */
-	const formContext: FormContext = getContext('FormContext');
 	export let errorMsg: KInputProps['errorMsg'] = '';
 
+	const formContext: FormContext = getContext('FormContext');
 	const dispatch = createEventDispatcher();
 
 	const onInput = (e: InputEvent) => {

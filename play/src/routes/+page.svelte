@@ -108,7 +108,7 @@
 		<KCheckbox></KCheckbox>
 	</KFormItem>
 	<KFormItem label={'darkMode'} field={'darkMode'}>
-		<KSwitch></KSwitch>
+		<KSwitch value={switchVal} on:updateValue={(v) => (switchVal = v.detail)}></KSwitch>
 	</KFormItem>
 	<KFormItem label={'isIKun'} field={'IKun'}>
 		<KRadio></KRadio>

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { KIcon } from '@ikun-ui/icon';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher, getContext, onMount } from 'svelte';
 	import type { SwitchValueType } from './types';
-
+	import type { FormContext } from '@ikun-ui/utils';
 	export let value: SwitchValueType = false;
 	export let disabled: boolean = false;
 	export let cls: string = '';
@@ -13,10 +13,11 @@
 
 	export let checkedColor = '';
 	export let unCheckedColor = '';
+	const formContext: FormContext = getContext('FormContext');
 	const dispatch = createEventDispatcher();
 	$: innerState = value === checkedValue;
 	/**
-	 * 切换状态方法
+	 * change state method
 	 */
 	let changeData: {
 		newVal: SwitchValueType;
@@ -36,7 +37,7 @@
 	};
 
 	/**
-	 * 设置动画样式类
+	 * set animation class
 	 */
 	let switching = '';
 	let switchCircleRef: null | HTMLElement = null;
@@ -56,10 +57,11 @@
 
 	let isUpdateModel = false;
 	const switchState = async () => {
-		// 切换状态
+		// switch state
 		emitChangeEvt();
 		dispatch('updateValue', changeData.newVal);
 		isUpdateModel = true;
+		formContext?.updateField(changeData.newVal);
 		await changeClass(changeData.newVal === checkedValue);
 	};
 
@@ -70,7 +72,7 @@
 		isUpdateModel = false;
 	}
 	/**
-	 * 点击方法
+	 * click method
 	 * @param {Event} e - 事件对象
 	 */
 	const handleClick = async (e?: Event) => {
@@ -79,10 +81,18 @@
 		dispatch('click', e);
 	};
 	/**
-	 * 初始化方法
+	 * initial method
 	 */
 	const init = async () => {
 		await changeClass(innerState);
+		// when filed change,dom value will change.
+		formContext?.subscribe(async (_value: any) => {
+			if (value === _value) return;
+			value = _value;
+			await changeClass(_value === checkedValue);
+		});
+		//initial field
+		formContext?.initialField(value);
 	};
 	onMount(init);
 </script>
