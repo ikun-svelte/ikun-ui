@@ -74,7 +74,7 @@
 	}
 	/**
 	 * click method
-	 * @param {Event} e - 事件对象
+	 * @param {Event} e - event obejct
 	 */
 	const handleClick = async (e?: Event) => {
 		if (disabled || loading) return;
