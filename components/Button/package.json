@@ -1,11 +1,8 @@
 {
 	"name": "@ikun-ui/button",
-	"version": "0.0.9-beta.3",
+	"version": "0.0.9-beta.4",
 	"type": "module",
-	"main": "dist/index.js",
-	"module": "dist/index.js",
-	"svelte": "dist/index.js",
-	"types": "src/index.ts",
+	"main": "./src/index.ts",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -23,7 +20,11 @@
 		"publish:npm": "pnpm publish --no-git-checks --access public"
 	},
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"main": "dist/index.js",
+		"module": "dist/index.js",
+		"svelte": "dist/index.js",
+		"types": "src/index.ts"
 	},
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",

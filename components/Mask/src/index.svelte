@@ -6,15 +6,15 @@
 	export let cls = '';
 	export let value = false;
 	export let target: null | HTMLElement = null;
-	let drawerRef: null | HTMLElement = null;
-	let drawerWidth = '100%';
-	let drawerHeight = '100%';
-	let drawerTop = 0;
-	let drawerLeft = 0;
+	let maskRef: null | HTMLElement = null;
+	let maskWidth = '100%';
+	let maskHeight = '100%';
+	let maskTop = 0;
+	let maskLeft = 0;
 
 	const getParentEle = () => {
-		if(drawerRef && drawerRef.parentElement){
-			return drawerRef.parentElement
+		if(maskRef && maskRef.parentElement){
+			return maskRef.parentElement
 		}
 		return document.body
 	}
@@ -24,67 +24,59 @@
 			? target.getBoundingClientRect()
 			: parentEl.getBoundingClientRect();
 		if (containerDomRect) {
-			drawerWidth = containerDomRect.width ? `${containerDomRect.width}px` : '100%';
-			drawerHeight = '100%';
+			maskWidth = containerDomRect.width ? `${containerDomRect.width}px` : '100%';
+			maskHeight =  '100%';
 		}
 	};
 
 	async function setParent() {
-		if (!target && value) {
-			await tick();
-			const parentEl = getParentEle()
-			if(parentEl === document.body){
-				drawerRef && (drawerRef.style.position = 'fixed');
-			}
-			parentEl.style.overflow = 'hidden'
-			parentEl.style.position = 'relative'
-			updatedPosition();
-			window.addEventListener('resize', updatedPosition);
+		if (!value) return;
+
+		await tick();
+
+		const parentEl = target || getParentEle();
+		const isBody = parentEl === document.body;
+
+		if (isBody) {
+			maskRef && (maskRef.style.position = 'fixed');
 		}
 
-		if (target && value) {
-			await tick();
-			if(target === document.body){
-				drawerRef && (drawerRef.style.position = 'fixed');
-			}
-			drawerRef && (target.style.overflow = 'hidden');
-			drawerRef && (target.style.position = 'relative');
-			updatedPosition();
-			window.addEventListener('resize', updatedPosition);
-		}
+		parentEl.style.overflow = 'hidden';
+		parentEl.style.position = 'relative';
+		updatedPosition();
+		window.addEventListener('resize', updatedPosition);
 	}
 
 	const reset = () => {
-		if (!target){
-			const parentEl = getParentEle()
-			parentEl.style.overflow = ''
-			parentEl.style.position = ''
-		}else {
-			target.style.overflow = ''
-			target.style.position = ''
-		}
+		const parentEl = target || getParentEle()
+		parentEl.style.overflow = ''
+		parentEl.style.position = ''
 
 		window.removeEventListener('resize', updatedPosition);
 	};
 	onDestroy(reset);
-
+	let oldValue = value
 	$: if (value) {
 		setParent();
+		oldValue = value
 	} else {
-		reset();
+		oldValue !== value && setTimeout(() => {
+			reset();
+			oldValue = value
+		}, 300)
 	}
 </script>
 
 {#if value}
 	<div
-		bind:this={drawerRef}
+		bind:this={maskRef}
 		{...attrs}
 		out:fade={{ duration: 300 }}
 		in:fade={{ duration: 300 }}
-		style:top="{drawerTop}px"
-		style:left="{drawerLeft}px"
-		style:width="{drawerWidth}"
-		style:height="{drawerHeight}"
+		style:top="{maskTop}px"
+		style:left="{maskLeft}px"
+		style:width="{maskWidth}"
+		style:height="{maskHeight}"
 		style={color ? `background-color: ${color}` : ''}
 		class="k-mask--base {cls}">
 		<slot />

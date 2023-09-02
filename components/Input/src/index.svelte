@@ -12,6 +12,8 @@
 	export let iconSuffix: KInputProps['iconSuffix'] = '';
 	export let cls: KInputProps['cls'] = '';
 	export let attrs: KInputProps['attrs'] = {};
+	export let useCompositionInput: KInputProps['useCompositionInput'] = false;
+
 	/**
 	 * @internal
 	 */
@@ -24,10 +26,16 @@
 	const formContext: FormContext = getContext('FormContext');
 	const dispatch = createEventDispatcher();
 
-	const onInput = (e: InputEvent) => {
+	const onInput = (e: Event) => {
 		if (disabled) return;
-		dispatch('input', (e.target as HTMLInputElement).value);
-		formContext?.updateField((e.target as HTMLInputElement).value);
+		const { value: inputValue } = e.target as HTMLInputElement;
+		dispatch('input', inputValue, e);
+		if (!useCompositionInput || !isComposing) {
+			value = inputValue;
+			if (useCompositionInput && !isComposing) {
+				dispatch('compositionInput', inputValue, e);
+			}
+		}
 	};
 
 	const onChange = (e: Event) => {
@@ -44,6 +52,27 @@
 	formContext?.subscribe((_value: any) => (value = _value));
 	//initial field
 	formContext?.initialField(value);
+
+	let isComposing = false;
+	const onCompositionStart = (e: CompositionEvent) => {
+		if (disabled) return;
+		dispatch('compositionstart', e);
+		isComposing = true;
+	};
+
+	const onCompositionEnd = (e: CompositionEvent) => {
+		if (disabled) return;
+		dispatch('compositionend', e);
+
+		if (!isComposing) {
+			return;
+		}
+		isComposing = false;
+		if (useCompositionInput) {
+			e.target?.dispatchEvent(new Event('input'));
+		}
+	};
+
 	// class names
 	const prefixCls = getPrefixCls('input');
 	$: baseCls = createCls(
@@ -81,11 +110,13 @@
 	</slot>
 	<input
 		class={inputCls}
-		bind:value
+		{value}
 		{disabled}
 		on:input={onInput}
 		on:change={onChange}
 		on:keydown={onEnter}
+		on:compositionstart={onCompositionStart}
+		on:compositionend={onCompositionEnd}
 		{placeholder}
 		{...attrs}
 	/>

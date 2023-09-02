@@ -82,7 +82,7 @@ describe('Test: KButton', () => {
 		expect(success).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--success k-button--success__active k-button--success__focus k-button--success__hover'
+				'k-button--success__fill k-button--success__hover__fill k-button--success__active k-button--success__focus'
 			)
 		).toBeTruthy();
 
@@ -95,7 +95,7 @@ describe('Test: KButton', () => {
 		expect(error).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--error k-button--error__active k-button--error__focus k-button--error__hover'
+				'k-button--error__fill k-button--error__hover__fill k-button--error__active k-button--error__focus'
 			)
 		).toBeTruthy();
 
@@ -108,7 +108,7 @@ describe('Test: KButton', () => {
 		expect(warning).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--warning k-button--warning__active k-button--warning__focus k-button--warning__hover'
+				'k-button--warning__fill k-button--warning__hover__fill k-button--warning__active k-button--warning__focus'
 			)
 		).toBeTruthy();
 
@@ -121,7 +121,7 @@ describe('Test: KButton', () => {
 		expect(info).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--info k-button--info__active k-button--info__focus k-button--info__hover'
+				'k-button--info__fill k-button--info__hover__fill k-button--info__active k-button--info__focus'
 			)
 		).toBeTruthy();
 
@@ -134,9 +134,137 @@ describe('Test: KButton', () => {
 		expect(primary).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--primary k-button--primary__active k-button--primary__focus k-button--primary__hover'
+				'k-button--primary__fill k-button--primary__hover__fill k-button--primary__active k-button--primary__focus'
 			)
 		).toBeTruthy();
+
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: plain', async () => {
+		const success = new KButton({
+			target: host,
+			props: {
+				type: 'success',
+				plain: true
+			}
+		});
+		expect(success).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes(
+				'k-button--success k-button--success__hover k-button--success__active k-button--success__focus'
+			)
+		).toBeTruthy();
+
+		const error = new KButton({
+			target: host,
+			props: {
+				type: 'error',
+				plain: true
+			}
+		});
+		expect(error).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes(
+				'k-button--error k-button--error__hover k-button--error__active k-button--error__focus'
+			)
+		).toBeTruthy();
+
+		const warning = new KButton({
+			target: host,
+			props: {
+				type: 'warning',
+				plain: true
+			}
+		});
+		expect(warning).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes(
+				'k-button--warning k-button--warning__hover k-button--warning__active k-button--warning__focus'
+			)
+		).toBeTruthy();
+
+		const info = new KButton({
+			target: host,
+			props: {
+				type: 'info',
+				plain: true
+			}
+		});
+		expect(info).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes(
+				'k-button--info k-button--info__hover k-button--info__active k-button--info__focus'
+			)
+		).toBeTruthy();
+
+		const primary = new KButton({
+			target: host,
+			props: {
+				type: 'primary',
+				plain: true
+			}
+		});
+		expect(primary).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes(
+				'k-button--primary k-button--primary__hover k-button--primary__active k-button--primary__focus'
+			)
+		).toBeTruthy();
+
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: ghost', async () => {
+		const success = new KButton({
+			target: host,
+			props: {
+				type: 'success',
+				ghost: true
+			}
+		});
+		expect(success).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--success__ghost')).toBeTruthy();
+
+		const error = new KButton({
+			target: host,
+			props: {
+				type: 'error',
+				ghost: true
+			}
+		});
+		expect(error).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--error__ghost')).toBeTruthy();
+
+		const warning = new KButton({
+			target: host,
+			props: {
+				type: 'warning',
+				ghost: true
+			}
+		});
+		expect(warning).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--warning__ghost')).toBeTruthy();
+
+		const info = new KButton({
+			target: host,
+			props: {
+				type: 'info',
+				ghost: true
+			}
+		});
+		expect(info).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--info__ghost')).toBeTruthy();
+
+		const primary = new KButton({
+			target: host,
+			props: {
+				type: 'primary',
+				ghost: true
+			}
+		});
+		expect(primary).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-button--primary__ghost')).toBeTruthy();
 
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -168,7 +296,7 @@ describe('Test: KButton', () => {
 		expect(!(host as HTMLElement)!.innerHTML.includes('k-button--lg')).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--primary__icon" style="width: 16px; height: 16px;"'
+				'k-button--primary__icon__fill" style="width: 16px; height: 16px;"'
 			)
 		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
@@ -186,7 +314,7 @@ describe('Test: KButton', () => {
 		expect((host as HTMLElement)!.innerHTML.includes('k-button--sm')).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--primary__icon" style="width: 12px; height: 12px;"'
+				'k-button--primary__icon__fill" style="width: 12px; height: 12px;"'
 			)
 		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
@@ -204,7 +332,7 @@ describe('Test: KButton', () => {
 		expect((host as HTMLElement)!.innerHTML.includes('k-button--lg')).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--primary__icon" style="width: 20px; height: 20px;"'
+				'k-button--primary__icon__fill" style="width: 20px; height: 20px;"'
 			)
 		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
@@ -234,7 +362,7 @@ describe('Test: KButton', () => {
 		expect(instance).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--primary__icon" style="width: 10086px; height: 10086px;"'
+				'k-button--primary__icon__fill" style="width: 10086px; height: 10086px;"'
 			)
 		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();

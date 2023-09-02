@@ -3,6 +3,7 @@ import type { UserShortcuts } from 'unocss';
 import { baseShortcuts } from './base';
 import { commonShortcuts } from './common';
 import { iconShortcuts } from './icon';
+import { alertShortcuts } from './alert';
 import { avatarShortcuts } from './avatar';
 import { badgeShortcuts } from './badge';
 import { breadcrumbShortcuts } from './breadcrumb';
@@ -26,11 +27,15 @@ import { msgBoxShortcuts } from './message-box';
 import { formShortcuts } from './form';
 import { spinShortcuts } from './spin';
 import { backtopShortcuts } from './backtop';
+import { sliderShortcuts } from './slider';
+import { progressShortcuts } from './progress';
 export default [
 	baseShortcuts,
 	commonShortcuts,
 	// icon
 	iconShortcuts,
+	// alert
+	alertShortcuts,
 	// avatar
 	avatarShortcuts,
 	// badge
@@ -76,11 +81,16 @@ export default [
 	// spin
 	spinShortcuts,
 	// backtop
-	backtopShortcuts
+	backtopShortcuts,
+	// slider
+	sliderShortcuts,
+	// progress
+	progressShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
 	const iconList = Object.keys(iconShortcuts);
+	const alertList = Object.keys(alertShortcuts);
 	const avatarList = Object.keys(avatarShortcuts);
 	const badgeList = Object.keys(badgeShortcuts);
 	const breadcrumbList = Object.keys(breadcrumbShortcuts);
@@ -104,6 +114,8 @@ export function getSafeList() {
 	const formList = Object.keys(formShortcuts);
 	const spinList = Object.keys(spinShortcuts);
 	const backtopList = Object.keys(backtopShortcuts);
+	const sliderList = Object.keys(sliderShortcuts);
+	const progressList = Object.keys(progressShortcuts);
 	return iconList
 		.concat(msgBoxList)
 		.concat(selectList)
@@ -117,6 +129,7 @@ export function getSafeList() {
 		.concat(inputList)
 		.concat(maskList)
 		.concat(eyeDropperList)
+		.concat(alertList)
 		.concat(avatarList)
 		.concat(badgeList)
 		.concat(breadcrumbList)
@@ -127,12 +140,15 @@ export function getSafeList() {
 		.concat(checkboxList)
 		.concat(formList)
 		.concat(spinList)
-		.concat(backtopList);
+		.concat(backtopList)
+		.concat(sliderList)
+		.concat(progressList);
 }
 
 export { baseShortcuts } from './base';
 export { commonShortcuts } from './common';
 export { iconShortcuts } from './icon';
+export { alertShortcuts } from './alert';
 export { avatarShortcuts } from './avatar';
 export { badgeShortcuts } from './badge';
 export { breadcrumbShortcuts } from './breadcrumb';
@@ -156,3 +172,5 @@ export { msgBoxShortcuts } from './message-box';
 export { formShortcuts } from './form';
 export { spinShortcuts } from './spin';
 export { backtopShortcuts } from './backtop';
+export { sliderShortcuts } from './slider';
+export { progressShortcuts } from './progress';

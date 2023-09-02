@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@ikun-ui/alert':
+        specifier: workspace:*
+        version: link:components/Alert
       '@ikun-ui/avatar':
         specifier: workspace:*
         version: link:components/Avatar
@@ -74,12 +77,18 @@ importers:
       '@ikun-ui/preset':
         specifier: workspace:*
         version: link:preset
+      '@ikun-ui/progress':
+        specifier: workspace:*
+        version: link:components/Progress
       '@ikun-ui/radio':
         specifier: workspace:*
         version: link:components/Radio
       '@ikun-ui/select':
         specifier: workspace:*
         version: link:components/Select
+      '@ikun-ui/slider':
+        specifier: workspace:*
+        version: link:components/Slider
       '@ikun-ui/spin':
         specifier: workspace:*
         version: link:components/Spin
@@ -222,6 +231,31 @@ importers:
       vitest:
         specifier: ^0.34.1
         version: 0.34.1(@vitest/ui@0.34.1)(jsdom@22.1.0)
+
+  components/Alert:
+    dependencies:
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@ikun-ui/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      baiwusanyu-utils:
+        specifier: ^1.0.14
+        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: ^5.0.0
+        version: 5.0.0
+      svelte-strip:
+        specifier: ^2.0.0
+        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+      tslib:
+        specifier: ^2.6.1
+        version: 2.6.1
+      typescript:
+        specifier: ^5.1.6
+        version: 5.1.6
 
   components/Avatar:
     dependencies:
@@ -738,6 +772,31 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
 
+  components/Progress:
+    dependencies:
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@ikun-ui/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      baiwusanyu-utils:
+        specifier: ^1.0.14
+        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: ^5.0.0
+        version: 5.0.0
+      svelte-strip:
+        specifier: ^2.0.0
+        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+      tslib:
+        specifier: ^2.6.1
+        version: 2.6.1
+      typescript:
+        specifier: ^5.1.6
+        version: 5.1.6
+
   components/Radio:
     dependencies:
       '@ikun-ui/icon':
@@ -781,6 +840,28 @@ importers:
       svelte-strip:
         specifier: ^2.0.0
         version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
+      tslib:
+        specifier: ^2.6.1
+        version: 2.6.1
+      typescript:
+        specifier: ^5.1.6
+        version: 5.1.6
+
+  components/Slider:
+    dependencies:
+      '@ikun-ui/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      baiwusanyu-utils:
+        specifier: ^1.0.14
+        version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: ^5.0.0
+        version: 5.0.0
+      svelte-strip:
+        specifier: ^2.0.0
+        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -941,9 +1022,15 @@ importers:
       '@ikun-ui/preset':
         specifier: workspace:*
         version: link:../preset
+      '@ikun-ui/progress':
+        specifier: workspace:*
+        version: link:../components/Progress
       '@ikun-ui/select':
         specifier: workspace:*
         version: link:../components/Select
+      '@ikun-ui/slider':
+        specifier: workspace:*
+        version: link:../components/Slider
       '@ikun-ui/spin':
         specifier: workspace:*
         version: link:../components/Spin

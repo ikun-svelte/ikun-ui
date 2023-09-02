@@ -45,6 +45,10 @@ const components = [
 			{
 				text: 'Select',
 				link: '/components/KSelect'
+			},
+			{
+				text: 'Slider',
+				link: '/components/KSlider'
 			}
 		]
 	},
@@ -63,6 +67,10 @@ const components = [
 			{
 				text: 'Tag',
 				link: '/components/KTag'
+			},
+			{
+				text: 'Progress',
+				link: '/components/KProgress'
 			}
 		]
 	},
@@ -84,6 +92,10 @@ const components = [
 		text: 'Feedback',
 		collapsed: false,
 		items: [
+			{
+				text: 'Alert',
+				link: '/components/KAlert'
+			},
 			{
 				text: 'Notification',
 				link: '/components/KNotification'

@@ -3,7 +3,7 @@
 	"description": "🐔 A Svelte.js based UnoCSS UI library that allows you to make websites",
 	"packageManager": "pnpm@8.6.7",
 	"type": "module",
-	"version": "0.0.9-beta.3",
+	"version": "0.0.9-beta.4",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -46,7 +46,7 @@
 		"init": "pnpm i",
 		"dev": "pnpm run build && pnpm run play",
 		"dev:docs": "pnpm run --filter @ikun-ui/docs docs:dev",
-		"play": "pnpm run --filter @ikun-ui/play dev",
+		"play": "esno scripts/play.js && pnpm run --filter @ikun-ui/play dev",
 		"build": "run-s build:* && run-s build-*",
 		"build-preset": "pnpm run --filter @ikun-ui/preset build",
 		"build-lib": "tsup --config tsup.config.ts",
@@ -69,7 +69,7 @@
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "esno scripts/new-component.ts"
+		"create:new:comp": "esno scripts/new-component.js"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
@@ -77,6 +77,9 @@
 		"unocss": "^0.54.1"
 	},
 	"dependencies": {
+		"baiwusanyu-utils": "^1.0.14",
+		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/alert": "workspace:*",
 		"@ikun-ui/avatar": "workspace:*",
 		"@ikun-ui/backtop": "workspace:*",
 		"@ikun-ui/badge": "workspace:*",
@@ -105,9 +108,9 @@
 		"@ikun-ui/switch": "workspace:*",
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
-		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.14",
-		"valibot": "^0.13.1"
+		"valibot": "^0.13.1",
+		"@ikun-ui/slider": "workspace:*",
+		"@ikun-ui/progress": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",

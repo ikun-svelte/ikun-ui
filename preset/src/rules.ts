@@ -29,13 +29,19 @@ const notifyRules = {
 const switchRules = {
 	'k-switch-transition': { transition: 'right .1s linear' }
 };
+
+const progressRules = {
+	'k-progress-transition__cd': { transition: 'stroke-dasharray 0.28s linear' },
+	'k-progress-transition': { transition: 'width 0.28s linear' }
+};
 // 自定義的原子樣式規則
 export const defaultRules = {
 	...inputRules,
 	...btnRules,
 	...iconRules,
 	...notifyRules,
-	...switchRules
+	...switchRules,
+	...progressRules
 } as Record<string, any>;
 
 export const setMainColorToRules = <T>(
