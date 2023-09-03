@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { onDestroy, tick } from 'svelte';
 	import { fade } from 'svelte/transition';
+	import { clsx, type ClassValue } from 'clsx';
+
 	export let color = '';
 	export let attrs = {};
-	export let cls = '';
+	export let cls: ClassValue = '';
 	export let value = false;
 	export let target: null | HTMLElement = null;
+
 	let maskRef: null | HTMLElement = null;
 	let maskWidth = '100%';
 	let maskHeight = '100%';
@@ -13,19 +16,19 @@
 	let maskLeft = 0;
 
 	const getParentEle = () => {
-		if(maskRef && maskRef.parentElement){
-			return maskRef.parentElement
+		if (maskRef && maskRef.parentElement) {
+			return maskRef.parentElement;
 		}
-		return document.body
-	}
+		return document.body;
+	};
 	const updatedPosition = () => {
-		const parentEl = getParentEle()
+		const parentEl = getParentEle();
 		const containerDomRect = target
 			? target.getBoundingClientRect()
 			: parentEl.getBoundingClientRect();
 		if (containerDomRect) {
 			maskWidth = containerDomRect.width ? `${containerDomRect.width}px` : '100%';
-			maskHeight =  '100%';
+			maskHeight = '100%';
 		}
 	};
 
@@ -48,23 +51,26 @@
 	}
 
 	const reset = () => {
-		const parentEl = target || getParentEle()
-		parentEl.style.overflow = ''
-		parentEl.style.position = ''
+		const parentEl = target || getParentEle();
+		parentEl.style.overflow = '';
+		parentEl.style.position = '';
 
 		window.removeEventListener('resize', updatedPosition);
 	};
 	onDestroy(reset);
-	let oldValue = value
+	let oldValue = value;
 	$: if (value) {
 		setParent();
-		oldValue = value
+		oldValue = value;
 	} else {
-		oldValue !== value && setTimeout(() => {
-			reset();
-			oldValue = value
-		}, 300)
+		oldValue !== value &&
+			setTimeout(() => {
+				reset();
+				oldValue = value;
+			}, 300);
 	}
+
+	$: cnames = clsx(cls);
 </script>
 
 {#if value}
@@ -75,10 +81,11 @@
 		in:fade={{ duration: 300 }}
 		style:top="{maskTop}px"
 		style:left="{maskLeft}px"
-		style:width="{maskWidth}"
-		style:height="{maskHeight}"
+		style:width={maskWidth}
+		style:height={maskHeight}
 		style={color ? `background-color: ${color}` : ''}
-		class="k-mask--base {cls}">
+		class="k-mask--base {cnames}"
+	>
 		<slot />
 	</div>
 {/if}

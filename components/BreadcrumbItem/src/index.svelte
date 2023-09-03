@@ -2,10 +2,11 @@
 	import type { KBreadcrumbItemPropsPropsInner } from './types';
 	import { getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
-	import { getPrefixCls, createCls, BreadcrumbKey } from '@ikun-ui/utils';
+	import { getPrefixCls, BreadcrumbKey } from '@ikun-ui/utils';
+	import { clsx, type ClassValue } from 'clsx';
 
 	export let href: string = '';
-	export let cls: string = '';
+	export let cls: ClassValue = '';
 	export let attrs: Record<string, string> = {};
 
 	const breadcrumbProps = getContext<KBreadcrumbItemPropsPropsInner>(BreadcrumbKey) || {};
@@ -13,11 +14,11 @@
 
 	// class names
 	const prefixCls = getPrefixCls('breadcrumb-item');
-	$: itemCls = createCls(prefixCls, cls);
-	$: linkCls = createCls(`${prefixCls}-content`, `${prefixCls}-content__dark`, {
+	$: itemCls = clsx(prefixCls, cls);
+	$: linkCls = clsx(`${prefixCls}-content`, `${prefixCls}-content__dark`, {
 		[`${prefixCls}-link`]: !!href
 	});
-	$: separatorCls = createCls(`${prefixCls}-separator`, `${prefixCls}-separator__dark`);
+	$: separatorCls = clsx(`${prefixCls}-separator`, `${prefixCls}-separator__dark`);
 </script>
 
 <span class={itemCls} {...$$restProps} {...attrs}>

@@ -77,10 +77,9 @@
 		"unocss": "^0.54.1"
 	},
 	"dependencies": {
-		"baiwusanyu-utils": "^1.0.14",
-		"@ikun-ui/utils": "workspace:*",
 		"@ikun-ui/alert": "workspace:*",
 		"@ikun-ui/avatar": "workspace:*",
+		"@ikun-ui/backtop": "workspace:*",
 		"@ikun-ui/badge": "workspace:*",
 		"@ikun-ui/breadcrumb": "workspace:*",
 		"@ikun-ui/breadcrumb-item": "workspace:*",
@@ -100,15 +99,17 @@
 		"@ikun-ui/notify": "workspace:*",
 		"@ikun-ui/popover": "workspace:*",
 		"@ikun-ui/preset": "workspace:*",
+		"@ikun-ui/progress": "workspace:*",
 		"@ikun-ui/radio": "workspace:*",
 		"@ikun-ui/select": "workspace:*",
+		"@ikun-ui/slider": "workspace:*",
+		"@ikun-ui/spin": "workspace:*",
 		"@ikun-ui/switch": "workspace:*",
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
-		"@ikun-ui/spin": "workspace:*",
-		"@ikun-ui/backtop": "workspace:*",
-		"@ikun-ui/slider": "workspace:*",
-		"@ikun-ui/progress": "workspace:*"
+		"@ikun-ui/utils": "workspace:*",
+		"baiwusanyu-utils": "^1.0.14",
+		"clsx": "^2.0.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",

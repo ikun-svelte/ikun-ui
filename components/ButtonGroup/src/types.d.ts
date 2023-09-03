@@ -1,5 +1,6 @@
 /// <reference types="svelte" />
 import type { IKunTypePro } from '@ikun-ui/utils/src';
+import type { ClassValue } from 'clsx'
 
 export type KButtonGroupProps = {
 	type: IKunTypePro;
@@ -7,6 +8,6 @@ export type KButtonGroupProps = {
 	iconSize: number | null;
 	isBorder: boolean;
 	disabled: boolean;
-	cls: string;
+	cls: ClassValue;
 	attrs: Record<string, string>;
 };
