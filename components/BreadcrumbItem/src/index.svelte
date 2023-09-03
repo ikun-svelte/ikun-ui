@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { KBreadcrumbItemPropsPropsInner } from './types';
 	import { getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import { getPrefixCls, createCls, BreadcrumbKey } from '@ikun-ui/utils';
@@ -7,7 +8,7 @@
 	export let cls: string = '';
 	export let attrs: Record<string, string> = {};
 
-	const breadcrumbProps = getContext(BreadcrumbKey) || {};
+	const breadcrumbProps = getContext<KBreadcrumbItemPropsPropsInner>(BreadcrumbKey) || {};
 	const { separator = '/', separatorIcon = '' } = breadcrumbProps;
 
 	// class names
