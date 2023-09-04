@@ -7,7 +7,7 @@
 	export let width = '24px';
 	export let height = '24px';
 	export let color = '';
-	export let attrs = {};
+	export let attrs: Record<string, string> = {};
 	export let cls: ClassValue = undefined;
 
 	const dispatch = createEventDispatcher();
