@@ -34,6 +34,12 @@ const progressRules = {
 	'k-progress-transition__cd': { transition: 'stroke-dasharray 0.28s linear' },
 	'k-progress-transition': { transition: 'width 0.28s linear' }
 };
+const popoverRules = {
+	'k-popover-shadow__left': { 'box-shadow': '10px 0px 16px rgb(0 0 0 / 0.25)' },
+	'k-popover-shadow__top': { 'box-shadow': '0 6px 16px rgb(0 0 0 / 0.25)' },
+	'k-popover-shadow__bottom': { 'box-shadow': '0 -6px 16px rgb(0 0 0 / 0.25)' },
+	'k-popover-shadow__right': { 'box-shadow': '-10px 0px 16px rgb(0 0 0 / 0.25)' }
+};
 // 自定義的原子樣式規則
 export const defaultRules = {
 	...inputRules,
@@ -41,7 +47,8 @@ export const defaultRules = {
 	...iconRules,
 	...notifyRules,
 	...switchRules,
-	...progressRules
+	...progressRules,
+	...popoverRules
 } as Record<string, any>;
 
 export const setMainColorToRules = <T>(
@@ -51,6 +58,17 @@ export const setMainColorToRules = <T>(
 ) => {
 	// set main color to input shadow
 	rules['k-input-shadow'] = { 'box-shadow': `0 0 0 2px rgb(${themeColorRGB}, 0.5)` };
+	// set main color to popover shadow (dark mode)
+	rules['k-popover-shadow__left__dark'] = {
+		'box-shadow': `4px 0px 12px rgb(${themeColorRGB}, 0.8)`
+	};
+	rules['k-popover-shadow__top__dark'] = { 'box-shadow': `0 6px 16px rgb(${themeColorRGB}, 0.8)` };
+	rules['k-popover-shadow__bottom__dark'] = {
+		'box-shadow': `0 -6px 16px rgb(${themeColorRGB}, 0.8)`
+	};
+	rules['k-popover-shadow__right__dark'] = {
+		'box-shadow': `-4px 0px 12px rgb(${themeColorRGB}, 0.8)`
+	};
 	// transform rule
 	const finalRules: Array<Array<Record<string, any>>> = [];
 	Object.keys(rules).forEach((name) => {

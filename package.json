@@ -44,7 +44,7 @@
 	},
 	"scripts": {
 		"init": "pnpm i",
-		"dev": "pnpm run build && pnpm run play",
+		"dev": "pnpm run build",
 		"dev:docs": "pnpm run --filter @ikun-ui/docs docs:dev",
 		"play": "esno scripts/play.js && pnpm run --filter @ikun-ui/play dev",
 		"build": "run-s build:* && run-s build-*",
@@ -153,7 +153,7 @@
 		"vitest": "^0.34.1"
 	},
 	"lint-staged": {
-		"*": [
+		"*.{svelte,js,ts,jsx,tsx,md,json}": [
 			"prettier --write",
 			"eslint"
 		]
