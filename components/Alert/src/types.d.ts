@@ -1,6 +1,6 @@
 /// <reference types="svelte" />
 import type { IKunTypeBase } from '@ikun-ui/utils';
-import type { ClassValue } from 'clsx'
+import type { ClassValue } from 'clsx';
 
 export type KAlertProps = {
 	type: IKunTypeBase;

@@ -1,5 +1,5 @@
 /// <reference types="svelte" />
-import type { ClassValue } from 'clsx'
+import type { ClassValue } from 'clsx';
 
 export type KInputProps = {
 	value: string;
