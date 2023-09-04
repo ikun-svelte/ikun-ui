@@ -39,13 +39,14 @@ You can render content through slots
 
 ## Collapse Props
 
-| Name    | Type                     | Default | Description                    |
-| ------- | ------------------------ | ------- | ------------------------------ |
-| title   | `string`                 | `-`     | content of Collapse Item title |
-| content | `string`                 | `-`     | content of Collapse Item       |
-| show    | `boolean`                | `false` | expand the Collapse            |
-| cls     | `string`                 | `-`     | Additional class               |
-| attrs   | `Record<string, string>` | `{}`    | Additional attributes          |
+| Name      | Type                     | Default | Description                          |
+| --------- | ------------------------ | ------- | ------------------------------------ |
+| title     | `string`                 | `-`     | Content of Collapse Item title       |
+| content   | `string`                 | `-`     | Content of Collapse Item             |
+| show      | `boolean`                | `false` | Expand the Collapse                  |
+| showClose | `boolean`                | `true`  | Determine whether display close ionc |
+| cls       | `string`                 | `-`     | Additional class                     |
+| attrs     | `Record<string, string>` | `{}`    | Additional attributes                |
 
 ## Collapse Events
 
@@ -55,7 +56,8 @@ You can render content through slots
 
 ## Collapse Slots
 
-| Name    | Description                           |
-| ------- | ------------------------------------- |
-| title   | Customize Collapse Item title content |
-| content | Customize Collapse Item content       |
+| Name      | Description                           |
+| --------- | ------------------------------------- |
+| title     | Customize Collapse Item title content |
+| content   | Customize Collapse Item content       |
+| closeIcon | Customize close icon                  |
