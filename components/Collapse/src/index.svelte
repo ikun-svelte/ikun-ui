@@ -10,6 +10,7 @@
 	export let attrs = {};
 	export let cls: ClassValue = '';
 	export let show = false;
+	export let showClose = true;
 
 	const dispatch = createEventDispatcher();
 	let showInner = show;
@@ -36,7 +37,11 @@
 		<slot name="title">
 			{title}
 		</slot>
-		<KIcon icon="i-carbon-chevron-right {showInner ? 'rotate-90' : ''}" />
+		<slot name="closeIcon">
+			{#if showClose}
+				<KIcon icon="i-carbon-chevron-right {showInner ? 'rotate-90' : ''}" />
+			{/if}
+		</slot>
 	</div>
 	{#if showInner}
 		<div

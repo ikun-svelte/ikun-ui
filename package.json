@@ -153,7 +153,7 @@
 		"vitest": "^0.34.1"
 	},
 	"lint-staged": {
-		"*.{svelte,js,ts,jsx,tsx,md,json}": [
+		"*.{svelte,js,ts,jsx,tsx,json}": [
 			"prettier --write",
 			"eslint"
 		]
