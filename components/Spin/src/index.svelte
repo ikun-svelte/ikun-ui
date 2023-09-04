@@ -10,7 +10,6 @@
 	export let spinner: any = 'i-carbon-circle-dash';
 	export let background = '';
 	export let cls: ClassValue = '';
-	// TODO: unit test
 	export let attrs = {};
 	export let target = document.body;
 	export let rotating: boolean = true;
