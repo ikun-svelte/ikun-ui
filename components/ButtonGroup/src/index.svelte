@@ -9,7 +9,7 @@
 	export let iconSize: KButtonGroupProps['iconSize'] = null;
 	export let isBorder: KButtonGroupProps['isBorder'] = false;
 	export let disabled: KButtonGroupProps['disabled'] = false;
-	export let cls: KButtonGroupProps['cls'] = '';
+	export let cls: KButtonGroupProps['cls'] = undefined;
 	export let attrs: KButtonGroupProps['attrs'] = {};
 
 	setContext(ButtonGroupKey, {

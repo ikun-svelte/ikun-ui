@@ -6,13 +6,12 @@
 
 	export let disabled = false;
 	export let value = false;
-	export let cls: ClassValue = '';
-	export let attrs = {};
+	export let cls: ClassValue = undefined;
+	export let attrs: Record<string, string> = {};
 	export let label = '';
 	// updateValue
 	const dispatch = createEventDispatcher();
 
-	$: cnames = clsx(cls);
 	$: valueInner = value;
 	let classChecking = '';
 	const handleUpdateValue = () => {
@@ -27,14 +26,17 @@
 </script>
 
 <label
-	class="k-checkbox--base k-checkbox--base__dark {cnames} {disabled ? 'k-cur-disabled' : ''}"
+	class={clsx(cls, 'k-checkbox--base k-checkbox--base__dark', {
+		'k-cur-disabled': disabled
+	})}
 	{...attrs}
 >
 	<input value={valueInner} {disabled} type="checkbox" on:change={handleUpdateValue} hidden />
 	<div
-		class="k-checkbox--box
-				{valueInner && !disabled ? 'bg-ikun-main border-ikun-main' : ''}
-				{classChecking} {disabled ? 'k-checkbox--box__disabled' : ''}"
+		class={clsx(classChecking, 'k-checkbox--box', {
+			'bg-ikun-main border-ikun-main': valueInner && !disabled,
+			'k-checkbox--box__disabled': disabled
+		})}
 	>
 		{#if valueInner}
 			<div out:fade={{ duration: 200 }} in:fade={{ duration: 200 }}>
@@ -44,7 +46,11 @@
 	</div>
 	<slot>
 		{#if label}
-			<span class="k-checkbox--label {valueInner && !disabled ? 'text-ikun-main' : ''}">
+			<span
+				class={clsx('k-checkbox--label', {
+					'text-ikun-main': valueInner && !disabled
+				})}
+			>
 				{label}
 			</span>
 		{/if}
