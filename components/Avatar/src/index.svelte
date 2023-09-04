@@ -12,8 +12,8 @@
 	export let fit: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down' = 'cover';
 	export let size: string | number = '50px';
 	export let radius: string | number = '4px';
-	export let cls: ClassValue = '';
-	export let attrs: any = {};
+	export let cls: ClassValue = undefined;
+	export let attrs: Record<string, string> = {};
 
 	let avatarSize: string = size;
 	$: if (isNumber(size)) {
