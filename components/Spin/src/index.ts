@@ -13,8 +13,8 @@ const mountSpin = <T>(options: SpinOptions<T>, target: HTMLElement) => {
 
 const SpinFn = <T>(node: HTMLElement, options: SpinOptions<T>) => {
 	const { show, fullScreen } = options;
-	const finalOption = options
-	Reflect.deleteProperty(finalOption, 'fullScreen')
+	const finalOption = options;
+	Reflect.deleteProperty(finalOption, 'fullScreen');
 	let SpinInst: Spin;
 	const initSpin = () => {
 		SpinInst = mountSpin<T>(finalOption, fullScreen ? document.body : node);
