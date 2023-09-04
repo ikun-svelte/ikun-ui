@@ -10,3 +10,4 @@ export const KSymbolKey = (key: string) => {
 export const BreadcrumbKey = KSymbolKey('breadcrumb');
 
 export const ButtonGroupKey = KSymbolKey('buttonGroup');
+export const collapseWrapperKey = KSymbolKey('collapseWrapper');
