@@ -104,6 +104,9 @@ importers:
       baiwusanyu-utils:
         specifier: ^1.0.14
         version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@playwright/test':
         specifier: ^1.37.0
@@ -234,6 +237,9 @@ importers:
       baiwusanyu-utils:
         specifier: ^1.0.14
         version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
@@ -259,6 +265,9 @@ importers:
       baiwusanyu-utils:
         specifier: ^1.0.14
         version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
@@ -284,6 +293,9 @@ importers:
       baiwusanyu-utils:
         specifier: ^1.0.14
         version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
       smoke-distance:
         specifier: ^1.0.3
         version: 1.0.3
@@ -309,6 +321,9 @@ importers:
       baiwusanyu-utils:
         specifier: ^1.0.14
         version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
@@ -334,6 +349,9 @@ importers:
       baiwusanyu-utils:
         specifier: ^1.0.14
         version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
@@ -359,6 +377,9 @@ importers:
       baiwusanyu-utils:
         specifier: ^1.0.14
         version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
@@ -384,6 +405,9 @@ importers:
       baiwusanyu-utils:
         specifier: ^1.0.14
         version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
@@ -409,6 +433,9 @@ importers:
       baiwusanyu-utils:
         specifier: ^1.0.14
         version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
@@ -584,6 +611,9 @@ importers:
       baiwusanyu-utils:
         specifier: ^1.0.14
         version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
@@ -774,6 +804,9 @@ importers:
       baiwusanyu-utils:
         specifier: ^1.0.14
         version: 1.0.14(ansi-colors@4.1.3)(hash-sum@2.0.0)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.0
@@ -3180,6 +3213,11 @@ packages:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
     dev: true
+
+  /clsx@2.0.0:
+    resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
+    engines: {node: '>=6'}
+    dev: false
 
   /code-red@1.0.3:
     resolution: {integrity: sha512-kVwJELqiILQyG5aeuyKFbdsI1fmQy1Cmf7dQ8eGmVuJoaRVdwey7WaMknr2ZFeVSYSKT0rExsa8EGw0aoI/1QQ==}

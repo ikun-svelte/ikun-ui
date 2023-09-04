@@ -4,7 +4,8 @@
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { KIcon } from '@ikun-ui/icon';
-	import { getPrefixCls, createCls } from '@ikun-ui/utils';
+	import { getPrefixCls } from '@ikun-ui/utils';
+	import clsx from 'clsx';
 
 	export let type: KAlertProps['type'] = 'info';
 	export let title: KAlertProps['title'] = '';
@@ -29,15 +30,15 @@
 
 	// class names
 	const prefixCls = getPrefixCls('alert');
-	$: baseCls = createCls(prefixCls, `${prefixCls}--${type}`, cls);
-	$: iconCls = createCls(`${prefixCls}--icon`);
-	$: contentCls = createCls(`${prefixCls}--content`);
-	$: titleCls = createCls(`${prefixCls}--title`);
+	$: baseCls = clsx(prefixCls, `${prefixCls}--${type}`, cls);
+	$: iconCls = clsx(`${prefixCls}--icon`);
+	$: contentCls = clsx(`${prefixCls}--content`);
+	$: titleCls = clsx(`${prefixCls}--title`);
 	$: noTitle = !(title || $$slots.title);
-	$: descriptionCls = createCls(`${prefixCls}--description`, {
+	$: descriptionCls = clsx(`${prefixCls}--description`, {
 		[`${prefixCls}--description__no-title`]: noTitle
 	});
-	$: closeCls = createCls(
+	$: closeCls = clsx(
 		`${prefixCls}--close`,
 		`${prefixCls}--close__icon-color`,
 		{

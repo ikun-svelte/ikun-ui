@@ -1,5 +1,7 @@
 /// <reference types="svelte" />
 import type { IKunTypePro } from '@ikun-ui/utils';
+import type { ClassValue } from 'clsx';
+
 export type KButtonProps = {
 	type: IKunTypePro;
 	size: 'sm' | 'md' | 'lg';
@@ -12,9 +14,10 @@ export type KButtonProps = {
 	ghost: boolean;
 	isBorder: boolean;
 	disabled: boolean;
-	cls: string;
+	cls: ClassValue;
 	attrs: Record<string, string>;
 };
+
 export type KButtonGroupPropsInner = Partial<
 	Pick<KButtonProps, 'type' | 'size' | 'iconSize' | 'isBorder' | 'disabled'>
 >;

@@ -1,5 +1,6 @@
 /// <reference types="svelte" />
 import { type IKunTypePro } from '@ikun-ui/utils';
+import type { ClassValue } from 'clsx';
 
 export type KProgressProps = {
 	percentage: number;
@@ -8,10 +9,10 @@ export type KProgressProps = {
 	color: string;
 	showText: boolean;
 	textInside: boolean;
-	format: (v: number) => string;
+	format: ((v: number) => string) | null;
 	strokeWidth: number;
 	width: number;
 	duration: number;
-	cls: string;
+	cls: ClassValue;
 	attrs: Record<string, string>;
 };

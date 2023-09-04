@@ -105,7 +105,7 @@ async function writeTsConfig(baseDir) {
   },
   "include": ["src/**/*.ts", "src/**/*.svelte"],
   "exclude": ["node_modules/*", "**/*.spec.ts"]
-}  
+}
   `;
 
 	write(file, tsConfigContent);
@@ -144,6 +144,7 @@ async function writePkgJson(baseDir, originalCompName) {
   "dependencies": {
     "@ikun-ui/icon": "workspace:*",
     "@ikun-ui/utils": "workspace:*",
+		"clsx": "^2.0.0",
     ${getDeps('baiwusanyu-utils')}
   }
 }
@@ -154,14 +155,15 @@ async function writePkgJson(baseDir, originalCompName) {
 async function writeComponent(baseDir, originalCompName) {
 	const file = `${baseDir}/index.svelte`;
 	const svelteContent = `<script lang="ts">
-  import { getPrefixCls, createCls } from '@ikun-ui/utils';
-  
+  import { getPrefixCls } from '@ikun-ui/utils';
+	import clsx from 'clsx';
+
   export let cls: string = '';
   export let attrs: Record<string, string> = {};
-  
+
   const prefixCls = getPrefixCls('${originalCompName}');
 
-  $: cnames = createCls(prefixCls, {
+  $: cnames = clsx(prefixCls, {
     [\`$\{prefixCls}--base\`]: true
   }, cls);
 </script>
@@ -240,7 +242,7 @@ beforeEach(() => {
 afterEach(() => {
 	host.remove();
 });
-	
+
 describe('Test: K${compName}', () => {
 	test('props: cls', async () => {
 		const instance = new K${compName}({

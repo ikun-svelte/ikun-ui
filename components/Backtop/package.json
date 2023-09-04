@@ -31,6 +31,7 @@
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.14",
+		"clsx": "^2.0.0",
 		"smoke-distance": "^1.0.3"
 	},
 	"devDependencies": {

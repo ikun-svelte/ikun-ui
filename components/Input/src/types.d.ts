@@ -1,4 +1,6 @@
 /// <reference types="svelte" />
+import type { ClassValue } from 'clsx';
+
 export type KInputProps = {
 	value: string;
 	placeholder: string;
@@ -7,7 +9,7 @@ export type KInputProps = {
 	iconSuffix: string;
 	isError: boolean;
 	errorMsg: string;
-	cls: string;
+	cls: ClassValue;
 	attrs: Record<string, string>;
 	useCompositionInput: boolean;
 };

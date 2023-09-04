@@ -2,14 +2,15 @@
 	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher, onMount } from 'svelte';
 	import type { SwitchValueType } from './types';
+	import { clsx, type ClassValue } from 'clsx';
 
-	export let value:SwitchValueType = false;
-	export let disabled:boolean = false;
-	export let cls:string = '';
+	export let value: SwitchValueType = false;
+	export let disabled: boolean = false;
+	export let cls: ClassValue = '';
 	export let attrs = {};
-	export let loading:boolean = false;
-	export let checkedValue:SwitchValueType = true;
-	export let unCheckedValue:SwitchValueType = false;
+	export let loading: boolean = false;
+	export let checkedValue: SwitchValueType = true;
+	export let unCheckedValue: SwitchValueType = false;
 
 	export let checkedColor = '';
 	export let unCheckedColor = '';
@@ -39,7 +40,7 @@
 	 * 设置动画样式类
 	 */
 	let switching = '';
-	let switchCircleRef:null | HTMLElement = null;
+	let switchCircleRef: null | HTMLElement = null;
 	const changeClass = (checked: boolean) => {
 		return new Promise((resolve) => {
 			switching = 'k-switch-tra';
@@ -85,6 +86,8 @@
 		await changeClass(innerState);
 	};
 	onMount(init);
+
+	$: cnames = clsx(cls);
 </script>
 
 <div
@@ -93,7 +96,7 @@
   {disabled || loading ? 'k-switch__disabled' : ''}
   {innerState ? `k-switch__checked ${checkedColor}` : `k-switch__un_checked ${unCheckedColor}`}
   {switching}
-  {cls}"
+  {cnames}"
 	aria-hidden="true"
 	{...attrs}
 	on:click={handleClick}
