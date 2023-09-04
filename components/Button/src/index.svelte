@@ -3,7 +3,8 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import { extend } from 'baiwusanyu-utils';
-	import { createCls, getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
+	import { getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
+	import clsx from 'clsx';
 
 	export let type: KButtonProps['type'] | '' = '';
 	export let size: KButtonProps['size'] | '' = '';
@@ -65,7 +66,7 @@
 	$: prefixCls = getPrefixCls('button');
 	$: typePrefixCls = `${prefixCls}--${typeInner}`;
 	$: typePrefixClsHover = `${typePrefixCls}__hover`;
-	$: cnames = createCls(
+	$: cnames = clsx(
 		prefixCls,
 		`${prefixCls}--base`,
 		{
@@ -95,11 +96,11 @@
 
 	$: attrsInner = extend(attrs, to ? { href: to } : {});
 
-	$: prefixIconCls = `${prefixCls}--${typeInner}__icon`
-	$: cnamesIcon = createCls({
+	$: prefixIconCls = `${prefixCls}--${typeInner}__icon`;
+	$: cnamesIcon = clsx({
 		[prefixIconCls]: true,
-		[`${prefixIconCls}__fill`]: !plain && !ghost,
-	})
+		[`${prefixIconCls}__fill`]: !plain && !ghost
+	});
 </script>
 
 <svelte:element
@@ -113,12 +114,7 @@
 	{...$$restProps}
 >
 	{#if icon}
-		<KIcon
-			{icon}
-			color={cnamesIcon}
-			width={`${iconSizeInner}px`}
-			height={`${iconSizeInner}px`}
-		/>
+		<KIcon {icon} color={cnamesIcon} width={`${iconSizeInner}px`} height={`${iconSizeInner}px`} />
 	{/if}
 
 	{#if $$slots.default && icon}

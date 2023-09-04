@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/backtop",
-	"version": "0.0.9-beta.4",
+	"version": "0.0.9-beta.5",
 	"type": "module",
 	"main": "./src/index.ts",
 	"types": "src/index.ts",
@@ -31,6 +31,7 @@
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.14",
+		"clsx": "^2.0.0",
 		"smoke-distance": "^1.0.3"
 	},
 	"devDependencies": {

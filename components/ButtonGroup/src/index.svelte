@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { KButtonGroupProps } from './types';
-	import { createCls, getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
+	import { getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
 	import { setContext } from 'svelte';
+	import clsx from 'clsx';
 
 	export let type: KButtonGroupProps['type'] = 'primary';
 	export let size: KButtonGroupProps['size'] = 'md';
@@ -21,7 +22,7 @@
 
 	// class names
 	$: prefixCls = getPrefixCls('button-group');
-	$: cnames = createCls(prefixCls, cls);
+	$: cnames = clsx(prefixCls, cls);
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
