@@ -17,7 +17,6 @@ const initHost = () => {
 beforeEach(() => {
 	initHost();
 	vi.useFakeTimers();
-
 });
 afterEach(() => {
 	host.remove();
@@ -31,11 +30,11 @@ describe('Test: KSpin', () => {
 		});
 		await tick();
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML.includes('k-spin--spinner')).not.toBeTruthy()
-		const btn = document.getElementById('spin_show')
-		btn?.click()
+		expect(host.innerHTML.includes('k-spin--spinner')).not.toBeTruthy();
+		const btn = document.getElementById('spin_show');
+		btn?.click();
 		await tick();
-		expect(host.innerHTML.includes('k-spin--spinner')).toBeTruthy()
+		expect(host.innerHTML.includes('k-spin--spinner')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -45,13 +44,13 @@ describe('Test: KSpin', () => {
 		});
 		await tick();
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML.includes('k-spin--spinner')).not.toBeTruthy()
-		expect(host.innerHTML.includes('多看一眼就会爆炸！')).not.toBeTruthy()
-		const btn = document.getElementById('spin_text')
-		btn?.click()
+		expect(host.innerHTML.includes('k-spin--spinner')).not.toBeTruthy();
+		expect(host.innerHTML.includes('多看一眼就会爆炸！')).not.toBeTruthy();
+		const btn = document.getElementById('spin_text');
+		btn?.click();
 		await tick();
-		expect(host.innerHTML.includes('k-spin--spinner')).toBeTruthy()
-		expect(host.innerHTML.includes('多看一眼就会爆炸！')).toBeTruthy()
+		expect(host.innerHTML.includes('k-spin--spinner')).toBeTruthy();
+		expect(host.innerHTML.includes('多看一眼就会爆炸！')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -61,15 +60,19 @@ describe('Test: KSpin', () => {
 		});
 		await tick();
 		expect(instance).toBeTruthy();
-		expect(document.body.innerHTML.includes('k-spin--spinner')).not.toBeTruthy()
-		expect(document.body.innerHTML.includes('k-mask--base')).not.toBeTruthy()
-		const btn = document.getElementById('spin_full')
-		btn?.click()
+		expect(document.body.innerHTML.includes('k-spin--spinner')).not.toBeTruthy();
+		expect(document.body.innerHTML.includes('k-mask--base')).not.toBeTruthy();
+		const btn = document.getElementById('spin_full');
+		btn?.click();
 		await tick();
-		expect(document.body.innerHTML.includes('k-spin--spinner')).toBeTruthy()
-		expect(document.body.innerHTML.includes('k-mask--base')).toBeTruthy()
+		expect(document.body.innerHTML.includes('k-spin--spinner')).toBeTruthy();
+		expect(document.body.innerHTML.includes('k-mask--base')).toBeTruthy();
 		await vi.advanceTimersByTimeAsync(320);
-		expect(document.body.innerHTML.includes('top: 0px; left: 0px; width: 100%; height: 100%; position: fixed;')).toBeTruthy()
+		expect(
+			document.body.innerHTML.includes(
+				'top: 0px; left: 0px; width: 100%; height: 100%; position: fixed;'
+			)
+		).toBeTruthy();
 		expect(document.body).matchSnapshot();
 	});
 
@@ -79,13 +82,13 @@ describe('Test: KSpin', () => {
 		});
 		await tick();
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML.includes('k-spin--spinner')).not.toBeTruthy()
-		const btn = document.getElementById('spin_bg')
-		btn?.click()
+		expect(host.innerHTML.includes('k-spin--spinner')).not.toBeTruthy();
+		const btn = document.getElementById('spin_bg');
+		btn?.click();
 		await tick();
-		expect(host.innerHTML.includes('k-spin--spinner')).toBeTruthy()
+		expect(host.innerHTML.includes('k-spin--spinner')).toBeTruthy();
 		await vi.advanceTimersByTimeAsync(320);
-		expect(host.innerHTML.includes('background-color: red;')).toBeTruthy()
+		expect(host.innerHTML.includes('background-color: red;')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -95,14 +98,14 @@ describe('Test: KSpin', () => {
 		});
 		await tick();
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML.includes('k-spin--spinner')).not.toBeTruthy()
-		const btn = document.getElementById('spin_spinner')
-		btn?.click()
+		expect(host.innerHTML.includes('k-spin--spinner')).not.toBeTruthy();
+		const btn = document.getElementById('spin_spinner');
+		btn?.click();
 		await tick();
-		expect(host.innerHTML.includes('k-spin--spinner')).toBeTruthy()
-		expect(host.innerHTML.includes('custom spinner')).toBeTruthy()
+		expect(host.innerHTML.includes('k-spin--spinner')).toBeTruthy();
+		expect(host.innerHTML.includes('custom spinner')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
-  });
+	});
 
 	test('options: rotating', async () => {
 		const instance = new KSpinRotate({
@@ -110,12 +113,12 @@ describe('Test: KSpin', () => {
 		});
 		await tick();
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML.includes('k-spin--spinner')).not.toBeTruthy()
-		const btn = document.getElementById('spin_rotate')
-		btn?.click()
+		expect(host.innerHTML.includes('k-spin--spinner')).not.toBeTruthy();
+		const btn = document.getElementById('spin_rotate');
+		btn?.click();
 		await tick();
-		expect(host.innerHTML.includes('k-spin--spinner')).toBeTruthy()
-		expect(host.innerHTML.includes('k-spin--spinner__rotating')).not.toBeTruthy()
+		expect(host.innerHTML.includes('k-spin--spinner')).toBeTruthy();
+		expect(host.innerHTML.includes('k-spin--spinner__rotating')).not.toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 });

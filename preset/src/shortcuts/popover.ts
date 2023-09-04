@@ -6,10 +6,9 @@ export const popoverShortcuts: Record<string, string> = {
 	'k-popover--base__right': 'k-popover-shadow__right',
 	'k-popover--base__bottom': 'k-popover-shadow__bottom',
 	// dark
-	'k-popover--base__dark':
-		'dark:bg-ikun-dark-300 dark:text-ikun-white',
+	'k-popover--base__dark': 'dark:bg-ikun-dark-300 dark:text-ikun-white',
 	'k-popover--base__left__dark': 'dark:k-popover-shadow__left__dark',
 	'k-popover--base__top__dark': 'dark:k-popover-shadow__top__dark',
 	'k-popover--base__right__dark': 'dark:k-popover-shadow__right__dark',
-	'k-popover--base__bottom__dark': 'dark:k-popover-shadow__bottom__dark',
+	'k-popover--base__bottom__dark': 'dark:k-popover-shadow__bottom__dark'
 };
