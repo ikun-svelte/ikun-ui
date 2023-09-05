@@ -95,11 +95,19 @@
 		},
 		cls
 	);
-	$: cnames = clsx(`${prefixCls}--title`, `${prefixCls}--title__dark`);
+	$: cnames = clsx(`${prefixCls}--title`, `${prefixCls}--title__dark`, {
+		[`${prefixCls}--title__active`]: showInner && collapseContext
+	});
 
 	$: cnamesLine = clsx(`${prefixCls}--line`);
 
 	$: cnamesContent = clsx(`${prefixCls}--content`);
+
+	$: cnamesTitleIcon = clsx({
+		'i-carbon-chevron-right': true,
+		['rotate-90']: showInner,
+		[`${prefixCls}--title__active`]: showInner && collapseContext
+	});
 </script>
 
 <div class={clsInner} {...attrs}>
@@ -109,7 +117,7 @@
 		</slot>
 		<slot name="closeIcon">
 			{#if showClose}
-				<KIcon icon="i-carbon-chevron-right {showInner ? 'rotate-90' : ''}" />
+				<KIcon icon={cnamesTitleIcon} />
 			{/if}
 		</slot>
 	</div>

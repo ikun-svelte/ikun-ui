@@ -2,11 +2,11 @@
 	import { getPrefixCls, collapseWrapperKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import { onMount, setContext } from 'svelte';
-	import type { collapseMapType } from './types';
+	import type { collapseMapType, KCollapseWrapperProps } from './types';
 
-	export let cls: string = '';
-	export let accordion = false;
-	export let attrs: Record<string, string> = {};
+	export let cls: KCollapseWrapperProps['cls'] = '';
+	export let accordion: KCollapseWrapperProps['accordion'] = false;
+	export let attrs: KCollapseWrapperProps['attrs'] = {};
 
 	const collapseMap: collapseMapType = {};
 	const setCollapseMap = (key: string, cb: () => void) => {

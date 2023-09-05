@@ -1,5 +1,6 @@
 /// <reference types="svelte" />
 export type KCollapseWrapperProps = {
+	accordion: boolean;
 	cls: string;
 	attrs: Record<string, string>;
 };

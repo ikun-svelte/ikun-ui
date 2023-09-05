@@ -2,6 +2,7 @@ export const collapseShortcuts: Record<string, string> = {
 	// collapse
 	'k-collapse--base': 'p4 k-border border-ikun-bd-base rounded',
 	'k-collapse--title': 'fb cursor-pointer text-ikun-tx-base font-bold',
+	'k-collapse--title__active': 'text-ikun-main',
 	'k-collapse--content': 'mt4',
 	'k-collapse--line': 'border-ikun-bd-base border-solid mb-4 bdt-1',
 	// collapse wrapper
