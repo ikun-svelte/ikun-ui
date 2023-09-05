@@ -32,6 +32,6 @@
 	onMount(initEyeDropper);
 </script>
 
-<div class={clsx(cls, 'k-eyedropper--base')} {...attrs}>
+<div class={clsx('k-eyedropper--base', cls)} {...attrs}>
 	<slot {sRGBHex} {open} {isSupported} />
 </div>
