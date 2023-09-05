@@ -3,7 +3,8 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import { extend } from 'baiwusanyu-utils';
-	import { createCls, getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
+	import { getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
+	import clsx from 'clsx';
 
 	export let type: KButtonProps['type'] | '' = '';
 	export let size: KButtonProps['size'] | '' = '';
@@ -31,10 +32,10 @@
 	const isBorderInner = isBorder || buttonGroupPropsInner?.isBorder || false;
 	const disabledInner = disabled || buttonGroupPropsInner?.disabled || false;
 	let iconSizeInner: KButtonProps['iconSize'];
-	$: if (buttonGroupPropsInner?.iconSize) {
-		iconSizeInner = buttonGroupPropsInner.iconSize;
-	} else if (iconSize) {
+	$: if (iconSize) {
 		iconSizeInner = iconSize;
+	} else if (buttonGroupPropsInner?.iconSize) {
+		iconSizeInner = buttonGroupPropsInner.iconSize;
 	} else {
 		iconSizeInner = EButtonIconSize[sizeInner];
 	}
@@ -65,7 +66,7 @@
 	$: prefixCls = getPrefixCls('button');
 	$: typePrefixCls = `${prefixCls}--${typeInner}`;
 	$: typePrefixClsHover = `${typePrefixCls}__hover`;
-	$: cnames = createCls(
+	$: cnames = clsx(
 		prefixCls,
 		`${prefixCls}--base`,
 		{
@@ -96,7 +97,7 @@
 	$: attrsInner = extend(attrs, to ? { href: to } : {});
 
 	$: prefixIconCls = `${prefixCls}--${typeInner}__icon`;
-	$: cnamesIcon = createCls({
+	$: cnamesIcon = clsx({
 		[prefixIconCls]: true,
 		[`${prefixIconCls}__fill`]: !plain && !ghost
 	});

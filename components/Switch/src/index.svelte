@@ -2,11 +2,12 @@
 	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher, getContext, onMount } from 'svelte';
 	import type { SwitchValueType } from './types';
+	import { clsx, type ClassValue } from 'clsx';
 	import type { FormContext } from '@ikun-ui/utils';
 
 	export let value: SwitchValueType = false;
 	export let disabled: boolean = false;
-	export let cls: string = '';
+	export let cls: ClassValue = '';
 	export let attrs = {};
 	export let loading: boolean = false;
 	export let checkedValue: SwitchValueType = true;
@@ -96,6 +97,8 @@
 		formContext?.initialField(value);
 	};
 	onMount(init);
+
+	$: cnames = clsx(cls);
 </script>
 
 <div
@@ -104,7 +107,7 @@
   {disabled || loading ? 'k-switch__disabled' : ''}
   {innerState ? `k-switch__checked ${checkedColor}` : `k-switch__un_checked ${unCheckedColor}`}
   {switching}
-  {cls}"
+  {cnames}"
 	aria-hidden="true"
 	{...attrs}
 	on:click={handleClick}

@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
-	import { createCls, getPrefixCls } from '@ikun-ui/utils';
+	import { getPrefixCls } from '@ikun-ui/utils';
 	import { isNumber } from 'baiwusanyu-utils';
+	import { clsx, type ClassValue } from 'clsx';
 
 	export let icon: string = '';
 	export let src: string = '';
@@ -11,7 +12,7 @@
 	export let fit: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down' = 'cover';
 	export let size: string | number = '50px';
 	export let radius: string | number = '4px';
-	export let cls: string = '';
+	export let cls: ClassValue = '';
 	export let attrs: any = {};
 
 	let avatarSize: string = size;
@@ -38,7 +39,7 @@
 
 	// remove extra space from class names
 	const avatarCls = getPrefixCls('avatar');
-	$: cnames = createCls(avatarCls, cls);
+	$: cnames = clsx(avatarCls, cls);
 </script>
 
 <div

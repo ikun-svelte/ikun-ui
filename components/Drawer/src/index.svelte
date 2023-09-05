@@ -4,11 +4,15 @@
 	import { KIcon } from '@ikun-ui/icon';
 	import { KMask } from '@ikun-ui/mask';
 	import { KClientOnly } from '@ikun-ui/client-only';
+	import { clsx, type ClassValue } from 'clsx';
+
 	export let placement: 'right' | 'left' = 'right';
 	export let value = false;
-	export let cls = '';
+	export let cls: ClassValue = '';
 	export let attrs = {};
 	export let header = true;
+
+	$: cnames = clsx(cls);
 
 	const dispatch = createEventDispatcher();
 
@@ -22,7 +26,7 @@
 <KClientOnly>
 	<KMask target={document.body} {value}>
 		<div
-			class="k-drawer--base k-drawer--base__dark {isRight ? 'right-0' : 'left-0'} {cls}"
+			class="k-drawer--base k-drawer--base__dark {isRight ? 'right-0' : 'left-0'} {cnames}"
 			{...attrs}
 			out:fly={{ duration: 250, x: isRight ? 200 : -200 }}
 			in:fly={{ duration: 250, x: isRight ? 200 : -200 }}

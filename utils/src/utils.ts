@@ -10,16 +10,8 @@ export const isRewritten = (target: Record<string, any>): boolean => {
  * e.g., pnpm run new check-box -> `CheckBox`
  */
 export const kebabToPascal = (name: string): string => {
-	let camelCase: string = name[0].toLocaleUpperCase();
-	let point: number = 1;
-	while (point < name.length) {
-		if (name[point] === '-') {
-			++point;
-			camelCase += name[point].toUpperCase();
-		} else {
-			camelCase += name[point];
-		}
-		point++;
-	}
-	return camelCase;
+	return name
+		.split('-')
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join('');
 };

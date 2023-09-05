@@ -3,15 +3,18 @@
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	import type { FormContext } from '@ikun-ui/utils';
+	import { clsx, type ClassValue } from 'clsx';
+
 	export let disabled = false;
 	export let value = false;
-	export let cls = '';
+	export let cls: ClassValue = '';
 	export let attrs = {};
 	export let label = '';
 	const formContext: FormContext = getContext('FormContext');
 	// updateValue
 	const dispatch = createEventDispatcher();
 
+	$: cnames = clsx(cls);
 	$: valueInner = value;
 	let classChecking = '';
 	const handleUpdateValue = () => {
@@ -30,7 +33,7 @@
 </script>
 
 <label
-	class="k-checkbox--base k-checkbox--base__dark {cls} {disabled ? 'k-cur-disabled' : ''}"
+	class="k-checkbox--base k-checkbox--base__dark {cnames} {disabled ? 'k-cur-disabled' : ''}"
 	{...attrs}
 >
 	<input value={valueInner} {disabled} type="checkbox" on:change={handleUpdateValue} hidden />

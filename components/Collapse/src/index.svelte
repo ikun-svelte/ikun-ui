@@ -2,10 +2,13 @@
 	import { fly } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher } from 'svelte';
+	import { clsx, type ClassValue } from 'clsx';
+	import { getPrefixCls } from '@ikun-ui/utils';
+
 	export let title = '';
 	export let content = '';
 	export let attrs = {};
-	export let cls = '';
+	export let cls: ClassValue = '';
 	export let show = false;
 
 	const dispatch = createEventDispatcher();
@@ -16,22 +19,32 @@
 	};
 	$: if (show) showInner = true;
 	else showInner = false;
+
+	// class
+	const prefixCls = getPrefixCls('collapse');
+	$: clsInner = clsx(`${prefixCls}`, `${prefixCls}--base`, cls);
+	$: cnames = clsx(`${prefixCls}--title`, `${prefixCls}--title__dark`, {
+		[`${prefixCls}--title__show`]: showInner
+	});
+
+	$: cnamesLine = clsx(`${prefixCls}--line`);
+	$: cnamesContent = clsx(`${prefixCls}--content`);
 </script>
 
-<div class="k-collapse--base k-collapse--base__dark {cls}" {...attrs}>
-	<div class="k-collapse--title k-collapse--title__dark"
-		 on:click={showContent}
-		 aria-hidden="true">
+<div class={clsInner} {...attrs}>
+	<div class={cnames} on:click={showContent} aria-hidden="true">
 		<slot name="title">
-			{ title }
+			{title}
 		</slot>
 		<KIcon icon="i-carbon-chevron-right {showInner ? 'rotate-90' : ''}" />
 	</div>
 	{#if showInner}
-		<div class="k-collapse--content"
-			 out:fly={{ y: 0, duration: 300 }}
-			 in:fly={{ y: -60, duration: 300 }}>
-			<div class="k-collapse--line" />
+		<div
+			class={cnamesContent}
+			out:fly={{ y: -30, duration: 300 }}
+			in:fly={{ y: -30, duration: 300 }}
+		>
+			<div class={cnamesLine} />
 			<slot name="content">{content}</slot>
 		</div>
 	{/if}

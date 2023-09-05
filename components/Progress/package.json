@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/progress",
-	"version": "0.0.9-beta.4",
+	"version": "0.0.9-beta.5",
 	"type": "module",
 	"main": "./src/index.ts",
 	"keywords": [
@@ -29,7 +29,8 @@
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.14"
+		"baiwusanyu-utils": "^1.0.14",
+		"clsx": "^2.0.0"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.0",

@@ -2,10 +2,12 @@
 	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher, getContext } from 'svelte';
 	import type { FormContext } from '@ikun-ui/utils';
+	import { clsx, type ClassValue } from 'clsx';
+
 	export let iconPrefix = '';
 	export let iconSuffix = '';
 	export let value = '';
-	export let cls = '';
+	export let cls: ClassValue = '';
 	export let placeholder = '';
 	export let disabled = false;
 	export let attrs = {};
@@ -23,6 +25,8 @@
 	});
 	//initial field
 	formContext?.initialField(value);
+
+	$: cnames = clsx(cls);
 </script>
 
 <div
@@ -31,7 +35,9 @@
 	 k-select--base
 	 k-select--base__dark
 	 k-select__hover
-	 k-select__focus {cls} {disabled ? 'k-select--base__disabled k-select--base__disabled__dark' : ''}"
+	 k-select__focus {cnames} {disabled
+		? 'k-select--base__disabled k-select--base__disabled__dark'
+		: ''}"
 >
 	<slot name="prefix">
 		{#if iconPrefix}

@@ -3,8 +3,10 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
-	import { createCls, getPrefixCls } from '@ikun-ui/utils';
 	import type { FormContext } from '@ikun-ui/utils';
+	import { getPrefixCls } from '@ikun-ui/utils';
+	import clsx from 'clsx';
+
 	export let value: KInputProps['value'] = '';
 	export let placeholder: KInputProps['placeholder'] = '';
 	export let disabled: KInputProps['disabled'] = false;
@@ -75,7 +77,7 @@
 
 	// class names
 	const prefixCls = getPrefixCls('input');
-	$: baseCls = createCls(
+	$: baseCls = clsx(
 		prefixCls,
 		`${prefixCls}--base`,
 		`${prefixCls}--base__dark`,
@@ -90,8 +92,8 @@
 		},
 		cls
 	);
-	$: errorMsgCls = createCls(`${prefixCls}--base__msg__error`);
-	$: inputCls = createCls(`${prefixCls}--inner`, `${prefixCls}--inner__dark`, {
+	$: errorMsgCls = clsx(`${prefixCls}--base__msg__error`);
+	$: inputCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__dark`, {
 		[`${prefixCls}--base__disabled`]: disabled,
 		[`${prefixCls}--base__disabled__dark`]: disabled
 	});

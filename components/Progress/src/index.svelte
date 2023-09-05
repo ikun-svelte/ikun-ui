@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { createCls, getPrefixCls } from "@ikun-ui/utils";
+	import { getPrefixCls } from '@ikun-ui/utils';
 	import type { KProgressProps } from './types';
-	import ProgressCircle from './circle.svelte'
-	import { isFunction } from "baiwusanyu-utils";
+	import ProgressCircle from './circle.svelte';
+	import { isFunction } from 'baiwusanyu-utils';
+	import clsx from 'clsx';
+
 	export let percentage: KProgressProps['percentage'] = 0;
 	export let status: KProgressProps['status'] = 'primary';
 	export let type: KProgressProps['type'] = 'line';
@@ -22,40 +24,37 @@
 		percentage = 0;
 	}
 
-	$: percentageContent = format && isFunction(format) ? format(percentage) : `${percentage}%`
-
+	$: percentageContent = format && isFunction(format) ? format(percentage) : `${percentage}%`;
 
 	// class
 	const prefixCls = getPrefixCls('progress');
-	$: containerCls = createCls(`${prefixCls}`, cls);
-	$: baseCls =createCls(
-		`${prefixCls}--base`,
-		`${prefixCls}--base__dark`
-	);
-	$: runwayCls = `${prefixCls}--runway`
-	$: barCls = createCls(
-		`${prefixCls}--bar`,
-		`${prefixCls}--${status}`
-	);
-	$: contentTxtInsideCls = `${prefixCls}--content__textInside`
-	$: contentTxtOutsideCls = `${prefixCls}--content__textOutside`
-	$: circleDashboardCls = `${prefixCls}__cd`
-	$: textCls = `${prefixCls}--text__cd`
+	$: containerCls = clsx(`${prefixCls}`, cls);
+	$: baseCls = clsx(`${prefixCls}--base`, `${prefixCls}--base__dark`);
+	$: runwayCls = `${prefixCls}--runway`;
+	$: barCls = clsx(`${prefixCls}--bar`, `${prefixCls}--${status}`);
+	$: contentTxtInsideCls = `${prefixCls}--content__textInside`;
+	$: contentTxtOutsideCls = `${prefixCls}--content__textOutside`;
+	$: circleDashboardCls = `${prefixCls}__cd`;
+	$: textCls = `${prefixCls}--text__cd`;
 </script>
 
 {#if type === 'line'}
 	<div class={containerCls} {...$$restProps} {...attrs}>
-		<div class={baseCls}
-				 style:width={showText ? '90%' : ''}
-				 style:height="{strokeWidth}px"
-				 style:border-radius="{strokeWidth}px">
+		<div
+			class={baseCls}
+			style:width={showText ? '90%' : ''}
+			style:height="{strokeWidth}px"
+			style:border-radius="{strokeWidth}px"
+		>
 			<div class={runwayCls}>
-				<div class={barCls}
-					   style:width="{percentage}%"
-					   style:background-color="{color}"
-					   style:border-radius="{strokeWidth}px"
-					   style:transition-duration="{duration}s"
-					   style:left="0%">
+				<div
+					class={barCls}
+					style:width="{percentage}%"
+					style:background-color={color}
+					style:border-radius="{strokeWidth}px"
+					style:transition-duration="{duration}s"
+					style:left="0%"
+				>
 					<div class={contentTxtInsideCls}>
 						{#if showText && textInside}
 							{#if $$slots.default}
@@ -79,19 +78,16 @@
 		</div>
 	</div>
 {:else if ['circle', 'dashboard'].includes(type)}
-	<div class={circleDashboardCls}
-			 style:width="{width}px"
-			 style:height="{width}px"
-			 {...$$restProps}
-			 {...attrs}>
+	<div
+		class={circleDashboardCls}
+		style:width="{width}px"
+		style:height="{width}px"
+		{...$$restProps}
+		{...attrs}
+	>
 		<svg {width} height={width} viewBox="0 0 {width} {width}">
-			<ProgressCircle size="{width}"
-											{strokeWidth}
-											{percentage}
-											{type}
-											{color}
-											{status}>
-			</ProgressCircle>
+			<ProgressCircle size={width} {strokeWidth} {percentage} {type} {color} {status}
+			></ProgressCircle>
 		</svg>
 		<div class={textCls}>
 			{#if showText}
