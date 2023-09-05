@@ -32,6 +32,7 @@
 		if (disabled) return;
 		const { value: inputValue } = e.target as HTMLInputElement;
 		dispatch('input', inputValue, e);
+		formContext?.updateField(inputValue);
 		if (!useCompositionInput || !isComposing) {
 			value = inputValue;
 			if (useCompositionInput && !isComposing) {
@@ -43,6 +44,7 @@
 	const onChange = (e: Event) => {
 		if (disabled) return;
 		dispatch('change', e);
+		formContext?.updateField((e?.target as HTMLInputElement)?.value);
 	};
 
 	const onEnter = (e: KeyboardEvent) => {
