@@ -6,7 +6,7 @@
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import { clsx, type ClassValue } from 'clsx';
 
-	export let cls: ClassValue = '';
+	export let cls: ClassValue = undefined;
 	export let attrs: Record<string, string> = {};
 	export let right: number = 40;
 	export let bottom: number = 40;
@@ -31,6 +31,7 @@
 			to: { scrollTop: 0 },
 			easing: easing as easingType,
 			duration: duration,
+			delay: 0,
 			onUpdate: (keys: any) => {
 				if (targetEl) targetEl.scrollTop = keys.scrollTop;
 			}

@@ -15,7 +15,7 @@
 	export let icon: KAlertProps['icon'] = '';
 	export let closable: KAlertProps['closable'] = true;
 	export let closeIcon: KAlertProps['closeIcon'] = 'i-carbon-close';
-	export let cls: KAlertProps['cls'] = '';
+	export let cls: KAlertProps['cls'] = undefined;
 	export let attrs: KAlertProps['attrs'] = {};
 
 	const dispatch = createEventDispatcher();
