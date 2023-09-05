@@ -37,7 +37,9 @@ describe('Test: KAvatar', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(
-			(host as HTMLElement)!.innerHTML.includes('i-carbon-settings k-icon-transition')
+			(host as HTMLElement)!.innerHTML.includes(
+				'k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings'
+			)
 		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});

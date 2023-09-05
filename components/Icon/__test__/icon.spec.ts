@@ -26,7 +26,7 @@ describe('Test: KIcon', () => {
 		});
 
 		expect(instance).toBeTruthy();
-		expect(host.children[0].innerHTML.includes('i-carbon-settings')).toBeTruthy();
+		expect(host.innerHTML.includes('i-carbon-settings')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -40,7 +40,7 @@ describe('Test: KIcon', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host.children[0].getAttribute('role') == 'button').toBeTruthy();
-		expect(host.innerHTML.includes('cursor-pointer')).toBeTruthy();
+		expect(host.innerHTML.includes('k-icon--role-button')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -53,7 +53,7 @@ describe('Test: KIcon', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.children[0].innerHTML.includes('text-red')).toBeTruthy();
+		expect(host.innerHTML.includes('text-red')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -67,8 +67,8 @@ describe('Test: KIcon', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.children[0].children[0].style.width).toBe('30px');
-		expect(host.children[0].children[0].style.height).toBe('30px');
+		expect(host.children[0].style.width).toBe('30px');
+		expect(host.children[0].style.height).toBe('30px');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
