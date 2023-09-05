@@ -13,9 +13,11 @@ const initHost = () => {
 };
 beforeEach(() => {
 	initHost();
+	vi.useFakeTimers();
 });
 afterEach(() => {
 	host.remove();
+	vi.restoreAllMocks();
 });
 
 describe('Test: KCollapse', () => {
@@ -92,15 +94,17 @@ describe('Test: KCollapse', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host.children[0].children.length).toBe(1);
-		const triggerEl = host.children[0].children[0];
+		const triggerEl = host.children[0].children[0].children[0];
 		triggerEl.dispatchEvent(new window.Event('click', { bubbles: true }));
 		await tick();
+		await vi.advanceTimersByTimeAsync(300);
 		expect(host.children[0].children.length).toBe(2);
 		expect(mockFn).toBeCalledTimes(1);
 		expect(show).toBeTruthy();
 		triggerEl.dispatchEvent(new window.Event('click', { bubbles: true }));
 		instance.$set({ show });
 		await tick();
+		await vi.advanceTimersByTimeAsync(300);
 		expect(mockFn).toBeCalledTimes(2);
 		expect(show).not.toBeTruthy();
 	});
