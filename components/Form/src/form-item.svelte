@@ -5,7 +5,7 @@
 	import { safeParse, type BaseSchema, type Issue } from 'valibot';
 	export let label: string = '';
 	export let field: string = '';
-	export let initialValue: string = '';
+	export let initialValue: string | undefined;
 	export let rules: BaseSchema | undefined = void 0;
 	export let required: boolean = false;
 	let errorMessage = '';

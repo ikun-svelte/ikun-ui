@@ -19,12 +19,12 @@
 		dispatch('updateValue', (e.target as HTMLSelectElement).value);
 		formContext?.updateField((e.target as HTMLSelectElement).value);
 	};
+	//initial field
+	formContext?.initialField(value);
 	// when filed change,dom value will change.
 	formContext?.subscribe((val: any) => {
 		value = val;
 	});
-	//initial field
-	formContext?.initialField(value);
 
 	$: cnames = clsx(cls);
 </script>

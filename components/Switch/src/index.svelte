@@ -87,14 +87,14 @@
 	 */
 	const init = async () => {
 		await changeClass(innerState);
+		//initial field
+		formContext?.initialField(unCheckedValue);
 		// when filed change,dom value will change.
 		formContext?.subscribe(async (_value: any) => {
 			if (value === _value) return;
 			value = _value;
 			await changeClass(_value === checkedValue);
 		});
-		//initial field
-		formContext?.initialField(value);
 	};
 	onMount(init);
 

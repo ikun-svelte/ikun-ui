@@ -52,10 +52,10 @@
 		if (e.key === 'Enter') dispatch('enter', e);
 		else dispatch('keydown', e);
 	};
-	// when filed change,dom value will change.
-	formContext?.subscribe((_value: any) => (value = _value));
 	//initial field
 	formContext?.initialField(value);
+	// when filed change,dom value will change.
+	formContext?.subscribe((_value: any) => (value = _value));
 
 	let isComposing = false;
 	const onCompositionStart = (e: CompositionEvent) => {

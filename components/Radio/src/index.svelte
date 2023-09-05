@@ -27,14 +27,14 @@
 			classChecking = '';
 		}, 300);
 	};
+	//initial field
+	formContext?.initialField(value);
 	// when filed change,dom value will change.
 	// Triggered when form.setValues is called,
 	// set the value set by the form component to the radio component
 	formContext?.subscribe((value: any) => {
 		valueInner = value;
 	});
-	//initial field
-	formContext?.initialField(value);
 
 	$: cnames = clsx(cls);
 </script>
