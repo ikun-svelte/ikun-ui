@@ -19,6 +19,10 @@ const components = [
 			{
 				text: 'Icon',
 				link: '/components/KIcon'
+			},
+			{
+				text: 'Link',
+				link: '/components/KLink'
 			}
 		]
 	},
