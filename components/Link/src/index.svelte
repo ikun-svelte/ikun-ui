@@ -34,7 +34,6 @@
 	);
 
 	$: contentCames = clsx(`${prefixCls}--content`);
-	// TODO 單側
 </script>
 
 <a
@@ -46,7 +45,7 @@
 	on:click={handleClick}
 >
 	{#if icon}
-		<KIcon {icon} width="auto" height="auto"></KIcon>
+		<KIcon {icon} width="auto" height="auto" color="ikun-initial"></KIcon>
 	{/if}
 	{#if $$slots.default}
 		<span class={contentCames}>

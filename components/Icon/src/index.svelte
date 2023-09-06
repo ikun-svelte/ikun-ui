@@ -23,8 +23,10 @@
 	// class names
 	$: cnames = clsx(
 		`${prefixCls}--base`,
-		`${prefixCls}--base__dark`,
-		{ [`${prefixCls}--role-button`]: !!btn },
+		{
+			[`${prefixCls}--base__dark`]: !color,
+			[`${prefixCls}--role-button`]: !!btn
+		},
 		`${prefixCls}-transition`,
 		icon,
 		color,

@@ -13,15 +13,18 @@
 	<div>
 		<KLink href={url} target="_blank" type="success">
 			vue
-			<KIcon icon="i-carbon-logo-vue" width="auto" height="auto" slot="icon"></KIcon>
+			<KIcon icon="i-carbon-logo-vue" width="auto" height="auto" slot="icon" color="initial"
+			></KIcon>
 		</KLink>
 		<KLink href={url} target="_blank" type="error">
 			svelte
-			<KIcon icon="i-carbon-logo-svelte" width="auto" height="auto" slot="icon"></KIcon>
+			<KIcon icon="i-carbon-logo-svelte" width="auto" height="auto" slot="icon" color="initial"
+			></KIcon>
 		</KLink>
 		<KLink href={url} target="_blank" type="primary">
 			react
-			<KIcon icon="i-carbon-logo-react" width="auto" height="auto" slot="icon"></KIcon>
+			<KIcon icon="i-carbon-logo-react" width="auto" height="auto" slot="icon" color="initial"
+			></KIcon>
 		</KLink>
 	</div>
 </div>
