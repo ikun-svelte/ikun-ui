@@ -6,8 +6,8 @@
 
 	export let disabled = false;
 	export let value = false;
-	export let cls: ClassValue = '';
-	export let attrs = {};
+	export let cls: ClassValue = undefined;
+	export let attrs: Record<string, string> = {};
 	export let label = '';
 	// updateValue
 	const dispatch = createEventDispatcher();
@@ -25,19 +25,23 @@
 		}, 300);
 	};
 
-	$: cnames = clsx(cls);
+	$: cnames = clsx('k-radio--base k-radio--base__dark', { 'k-cur-disabled': disabled }, cls);
+	$: radioboxCls = clsx(
+		'k-radio--box',
+		{
+			'border-ikun-main': valueInner && !disabled,
+			'k-radio--box__disabled': disabled
+		},
+		classChecking
+	);
+	$: labelCls = clsx('k-radio--label', {
+		'text-ikun-main': valueInner && !disabled
+	});
 </script>
 
-<label
-	class="k-radio--base k-radio--base__dark {cnames} {disabled ? 'k-cur-disabled' : ''}"
-	{...attrs}
->
+<label class={cnames} {...attrs}>
 	<input value={valueInner} {disabled} type="radio" on:change={handleUpdateValue} hidden />
-	<div
-		class="k-radio--box
-				{valueInner && !disabled ? 'bg-ikun-main border-ikun-main' : ''}
-				{classChecking} {disabled ? 'k-radio--box__disabled' : ''}"
-	>
+	<div class={radioboxCls}>
 		{#if valueInner}
 			<div out:fade={{ duration: 200 }} in:fade={{ duration: 200 }}>
 				<KIcon
@@ -51,7 +55,7 @@
 	</div>
 	<slot>
 		{#if label}
-			<span class="k-radio--label {valueInner && !disabled ? 'text-ikun-main' : ''}">
+			<span class={labelCls}>
 				{label}
 			</span>
 		{/if}
