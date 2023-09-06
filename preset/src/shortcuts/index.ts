@@ -29,7 +29,7 @@ import { backtopShortcuts } from './backtop';
 import { sliderShortcuts } from './slider';
 import { progressShortcuts } from './progress';
 import { linkShortcuts } from './link';
-linkShortcuts
+linkShortcuts;
 export default [
 	baseShortcuts,
 	commonShortcuts,
@@ -86,7 +86,7 @@ export default [
 	// progress
 	progressShortcuts,
 	// link
-	linkShortcuts,
+	linkShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -143,7 +143,7 @@ export function getSafeList() {
 		.concat(backtopList)
 		.concat(sliderList)
 		.concat(progressList)
-		.concat(linkList)
+		.concat(linkList);
 }
 
 export { baseShortcuts } from './base';

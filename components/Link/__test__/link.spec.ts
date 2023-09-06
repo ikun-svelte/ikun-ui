@@ -24,10 +24,7 @@ describe('Test: KLink', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(
-			(host as HTMLElement)!.innerHTML.includes('k-link--test')
-		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-link--test')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
-})
-	
+});

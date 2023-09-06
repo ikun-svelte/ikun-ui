@@ -34,8 +34,6 @@
 	);
 
 	$: contentCames = clsx(`${prefixCls}--content`);
-
-	// TODO 文檔
 	// TODO 單側
 </script>
 

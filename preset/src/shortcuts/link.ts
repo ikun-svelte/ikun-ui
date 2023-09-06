@@ -24,5 +24,5 @@ export const linkShortcuts: Record<string, string> = {
 	'k-link--underline__none': 'no-underline',
 
 	'k-link--disabled': 'opacity-50',
-	'k-link--content': 'mx-1',
+	'k-link--content': 'mx-1'
 };
