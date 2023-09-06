@@ -34,7 +34,10 @@
     , cls);
 
   $: contentCames = clsx(`${prefixCls}--content`)
-
+ // TODO 文檔
+ // TODO 單側
+ // TODO icon 尺寸
+ // TODO 重構icon class
 </script>
 
 <a class={cnames}
@@ -45,7 +48,7 @@
   on:click={handleClick}
 >
   {#if icon}
-    <KIcon icon={icon} cls={`${prefixCls}--${type}`}></KIcon>
+    <KIcon icon={icon}></KIcon>
   {/if}
   {#if $$slots.default}
     <span class={contentCames}>
@@ -56,9 +59,3 @@
     <slot name="icon" />
   {/if}
 </a>
-
-<style>
-.k-link--base:hover>.k-icon--base{
-    --at-apply: text-ikun-error;
-}
-</style>

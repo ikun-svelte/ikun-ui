@@ -1,6 +1,6 @@
 export const iconShortcuts: Record<string, string> = {
 	// icon
-	'k-icon--base': 'f-c text-ikun-tx-base',
+	'k-icon--base': 'f-c',
 	// dark
 	'k-icon--base__dark': 'dark:text-ikun-white'
 };
