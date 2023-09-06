@@ -65,6 +65,10 @@ const components = [
 				link: '/components/KBadge'
 			},
 			{
+				text: 'Collapse',
+				link: '/components/KCollapse'
+			},
+			{
 				text: 'Tag',
 				link: '/components/KTag'
 			},
@@ -115,10 +119,6 @@ const components = [
 			{
 				text: 'Tooltip',
 				link: '/components/KTooltip'
-			},
-			{
-				text: 'Collapse',
-				link: '/components/KCollapse'
 			},
 			{
 				text: 'Drawer',
