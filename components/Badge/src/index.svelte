@@ -9,7 +9,7 @@
 	export let isDot: boolean = false;
 	export let show: boolean = true;
 	export let type: IKunTypePro = 'error';
-	export let cls: ClassValue = '';
+	export let cls: ClassValue = undefined;
 	export let attrs: Record<string, string> = {};
 
 	let content = `${value}`;
