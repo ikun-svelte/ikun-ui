@@ -42,6 +42,12 @@ Use the `icon` attribute to define Icon. In addition,the `color` attribute can b
 
 <demo src="../../../../example/icon/basic.svelte" github='Icon'></demo>
 
+## Customizable icon color
+
+Define icon color using `background` style, customize a multi-color icon. In addition, it will cover `color`.
+
+<demo src="../../../../example/icon/multi-color.svelte" github='Icon'></demo>
+
 ## Icon Props
 
 | Name   | Type                     | Default | Description                                               |

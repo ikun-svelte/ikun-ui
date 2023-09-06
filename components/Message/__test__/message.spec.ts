@@ -113,7 +113,7 @@ describe('Test: KMessage', () => {
 			onClose: mockFn
 		});
 		await tick();
-		const btn = host.children[0].children[0].children[0].children[0];
+		const btn = host.children[0].children[0].children[0];
 		btn.dispatchEvent(new window.Event('click', { bubbles: true }));
 		await tick();
 		expect(mockFn).toBeCalled();
