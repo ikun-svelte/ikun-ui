@@ -7,13 +7,15 @@
 
 	export let title = '';
 	export let content = '';
-	export let attrs = {};
-	export let cls: ClassValue = '';
+	export let attrs: Record<string, string> = {};
+	export let cls: ClassValue = undefined;
 	export let show = false;
 	export let showClose = true;
 	export let uid: string = '';
+
 	const dispatch = createEventDispatcher();
 	let showInner = show;
+
 	const showContent = () => {
 		const showCur = !showInner;
 		if (showCur) {
