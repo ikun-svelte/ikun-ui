@@ -1,6 +1,7 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
 import KIcon from '../src/index.svelte';
+import KIconCustomizable from './customizable.icon.color.test.svelte';
 
 let host: HTMLElement;
 
@@ -92,5 +93,14 @@ describe('Test: KIcon', () => {
 		expect(instance).toBeTruthy();
 		expect(value).toBeTruthy();
 		expect(mockFn).toBeCalled();
+	});
+
+	test('style: customizable icon color', async () => {
+		const instance = new KIconCustomizable({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		expect(host.children[0].style.background).toBe('red');
+		expect(host.innerHTML).matchSnapshot();
 	});
 });
