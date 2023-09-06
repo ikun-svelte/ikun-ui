@@ -30,6 +30,8 @@
 		color,
 		cls
 	);
+	$: widthInner = !width ? '24px' : width === 'auto' ? undefined : width;
+	$: heightInner = !height ? '24px' : height === 'auto' ? undefined : height;
 </script>
 
 <span
@@ -38,7 +40,7 @@
 	aria-hidden="true"
 	{...$$restProps}
 	{...attrs}
-	style:width
-	style:height
+	style:width={widthInner}
+	style:height={heightInner}
 	on:click={onClick}
 ></span>
