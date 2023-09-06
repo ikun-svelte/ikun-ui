@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -249,7 +249,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -277,7 +277,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -308,7 +308,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -333,7 +333,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -361,7 +361,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -389,7 +389,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -417,7 +417,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -445,7 +445,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -470,7 +470,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -495,7 +495,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -520,7 +520,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -579,7 +579,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -601,7 +601,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -626,7 +626,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -654,7 +654,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -676,7 +676,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -701,7 +701,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -735,7 +735,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -769,7 +769,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -794,7 +794,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -847,7 +847,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -872,7 +872,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -897,7 +897,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -919,7 +919,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -950,7 +950,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -975,7 +975,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -1000,7 +1000,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -1025,7 +1025,7 @@ importers:
         version: 5.0.0
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(postcss@8.4.27)(svelte@3.59.2)
+        version: 2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3)
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
@@ -6283,54 +6283,6 @@ packages:
       typescript: 5.1.6
     dev: true
 
-  /svelte-preprocess@5.0.4(postcss@8.4.27)(svelte@3.59.2)(typescript@5.1.6):
-    resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
-    engines: {node: '>= 14.10.0'}
-    requiresBuild: true
-    peerDependencies:
-      '@babel/core': ^7.10.2
-      coffeescript: ^2.5.1
-      less: ^3.11.3 || ^4.0.0
-      postcss: ^7 || ^8
-      postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0
-      pug: ^3.0.0
-      sass: ^1.26.8
-      stylus: ^0.55.0
-      sugarss: ^2.0.0 || ^3.0.0 || ^4.0.0
-      svelte: ^3.23.0 || ^4.0.0-next.0 || ^4.0.0
-      typescript: '>=3.9.5 || ^4.0.0 || ^5.0.0'
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      coffeescript:
-        optional: true
-      less:
-        optional: true
-      postcss:
-        optional: true
-      postcss-load-config:
-        optional: true
-      pug:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@types/pug': 2.0.6
-      detect-indent: 6.1.0
-      magic-string: 0.27.0
-      postcss: 8.4.27
-      sorcery: 0.11.0
-      strip-indent: 3.0.0
-      svelte: 3.59.2
-      typescript: 5.1.6
-    dev: true
-
   /svelte-preprocess@5.0.4(postcss@8.4.27)(svelte@4.0.0-next.3)(typescript@5.1.6):
     resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
     engines: {node: '>= 14.10.0'}
@@ -6427,30 +6379,6 @@ packages:
       typescript: 5.1.6
     dev: true
 
-  /svelte-strip@2.0.0(postcss@8.4.27)(svelte@3.59.2):
-    resolution: {integrity: sha512-RZ8swt0ddE22ebZvFpMhW/x9rLIAwCZtWWnb5oohQEYcyuxzvzXwxImjFQ8DINXXMbvw6PB/NfnzDmHqMVrdbw==}
-    hasBin: true
-    peerDependencies:
-      svelte: ^3.0.0
-    dependencies:
-      glob: 9.3.5
-      minimatch: 7.4.6
-      svelte: 3.59.2
-      svelte-preprocess: 5.0.4(postcss@8.4.27)(svelte@3.59.2)(typescript@5.1.6)
-      typescript: 5.1.6
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@babel/core'
-      - coffeescript
-      - less
-      - postcss
-      - postcss-load-config
-      - pug
-      - sass
-      - stylus
-      - sugarss
-    dev: true
-
   /svelte-strip@2.0.0(postcss@8.4.27)(svelte@4.0.0-next.3):
     resolution: {integrity: sha512-RZ8swt0ddE22ebZvFpMhW/x9rLIAwCZtWWnb5oohQEYcyuxzvzXwxImjFQ8DINXXMbvw6PB/NfnzDmHqMVrdbw==}
     hasBin: true
@@ -6485,11 +6413,6 @@ packages:
       pascal-case: 3.1.2
       svelte: 4.1.2
       typescript: 5.1.6
-    dev: true
-
-  /svelte@3.59.2:
-    resolution: {integrity: sha512-vzSyuGr3eEoAtT/A6bmajosJZIUWySzY2CzB3w2pgPvnkUjGqlDnsNnA0PMO+mMAhuyMul6C2uuZzY6ELSkzyA==}
-    engines: {node: '>= 8'}
     dev: true
 
   /svelte@4.0.0-next.3:

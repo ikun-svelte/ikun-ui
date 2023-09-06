@@ -2,6 +2,7 @@
 	import type { KIconProps } from './types';
 	import { createEventDispatcher } from 'svelte';
 	import { clsx } from 'clsx';
+	import { getPrefixCls } from '@ikun-ui/utils';
 
 	export let icon: KIconProps['icon'] = '';
 	export let btn: KIconProps['btn'] = false;
@@ -18,12 +19,13 @@
 		dispatch('click', event);
 	};
 
+	const prefixCls = getPrefixCls('icon');
 	// class names
 	$: cnames = clsx(
-		'k-icon--base',
-		'k-icon--base__dark',
-		{ 'k-icon--role-button': !!btn },
-		'k-icon-transition',
+		`${prefixCls}--base`,
+		`${prefixCls}--base__dark`,
+		{ [`${prefixCls}--role-button`]: !!btn },
+		`${prefixCls}-transition`,
 		icon,
 		color,
 		cls
