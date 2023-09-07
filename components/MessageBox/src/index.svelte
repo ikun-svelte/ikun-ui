@@ -9,8 +9,8 @@
 	import { clsx, type ClassValue } from 'clsx';
 
 	export let show = false;
-	export let attrs = {};
-	export let cls: ClassValue = '';
+	export let attrs: Record<string, string> = {};
+	export let cls: ClassValue = undefined;
 	export let title: any = '';
 	export let emoType: MsgBoxEmoType | null = null;
 	export let type: 'alert' | 'confirm' | 'prompt' | null = null;
@@ -78,12 +78,14 @@
 		}
 	};
 
-	$: cnames = clsx(cls);
+	$: footerCls = clsx('k-msg-box--footer', layout === 'center' ? 'justify-center' : 'justify-end');
+	$: cancelBtnCls_ = clsx('k-msg-box--footer--btn', cancelBtnCls);
+	$: confirmBtnCls_ = clsx('k-msg-box--footer--btn', confirmBtnCls);
 </script>
 
 <KModal
 	show={showInner}
-	cls="k-msg-box--base k-msg-box--base__dark {cnames}"
+	cls={['k-msg-box--base k-msg-box--base__dark', cls]}
 	{attrs}
 	footer
 	{layout}
@@ -124,17 +126,14 @@
 			{/if}
 		</div>
 	{/if}
-	<div
-		slot="footer"
-		class="k-msg-box--footer {layout === 'center' ? 'justify-center' : 'justify-end'}"
-	>
+	<div slot="footer" class={footerCls}>
 		{#if type !== 'alert'}
-			<KButton cls="k-msg-box--footer--btn {cancelBtnCls}" on:click={handleCancel} type="info">
+			<KButton cls={cancelBtnCls_} on:click={handleCancel} type="info">
 				{cancelBtnText}
 			</KButton>
 		{/if}
 
-		<KButton cls="k-msg-box--footer--btn {confirmBtnCls}" on:click={handleConfirm} type="primary">
+		<KButton cls={confirmBtnCls_} on:click={handleConfirm} type="primary">
 			{confirmBtnText}
 		</KButton>
 	</div>
