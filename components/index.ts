@@ -2,6 +2,7 @@ export * from '@ikun-ui/badge';
 export * from '@ikun-ui/button';
 export * from '@ikun-ui/button-group';
 export * from '@ikun-ui/checkbox';
+export * from '@ikun-ui/checkbox-group';
 export * from '@ikun-ui/collapse';
 export * from '@ikun-ui/collapse-wrapper';
 export * from '@ikun-ui/client-only';

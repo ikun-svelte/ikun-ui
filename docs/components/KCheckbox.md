@@ -56,5 +56,5 @@ Set the `disabled` attribute.
 ## Checkbox Slots
 
 | Name    | Description             |
-| ------- |-------------------------|
+| ------- | ----------------------- |
 | default | Customize label content |

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import {createEventDispatcher, getContext} from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	import { clsx, type ClassValue } from 'clsx';
-	import { getPrefixCls } from '@ikun-ui/utils';
+	import {checkboxGroupKey, getPrefixCls} from '@ikun-ui/utils';
 
 	export let disabled = false;
 	export let value = false;
@@ -13,17 +13,40 @@
 	// updateValue
 	const dispatch = createEventDispatcher();
 
-	$: valueInner = value;
+	const checkboxContext = getContext<{
+		setCheckboxMap: (key: string, v: string) => void;
+		value: string[] | number[];
+		disabled: boolean
+	}>(checkboxGroupKey);
+
+	$: isDisabled = disabled || checkboxContext.disabled
+	let valueInner = checkboxContext ? hasLabel() : value
+	$: if(!isDisabled){
+		valueInner = checkboxContext ? hasLabel() : value
+		setAnimate()
+	}
+
+	function hasLabel(){
+		return checkboxContext.value.some(v => {
+			return v.toString() === label
+		})
+	}
+
 	let classChecking = '';
 	const handleUpdateValue = () => {
-		if (disabled) return;
-		dispatch('updateValue', !valueInner);
+		if (isDisabled) return;
+		valueInner = !valueInner
+		checkboxContext.setCheckboxMap(label, valueInner ? label : '')
+		dispatch('updateValue', valueInner);
+		setAnimate()
+	};
 
+	function setAnimate(){
 		classChecking = 'animate-ikun-checking';
 		setTimeout(() => {
 			classChecking = '';
 		}, 300);
-	};
+	}
 
 	// class
 	const prefixCls = getPrefixCls('checkbox');
@@ -31,7 +54,7 @@
 		`${prefixCls}--base`,
 		`${prefixCls}--base__dark`,
 		{
-			[`k-cur-disabled`]: disabled
+			[`k-cur-disabled`]: isDisabled
 		},
 		cls
 	);
@@ -39,19 +62,19 @@
 	$: boxCls = clsx(
 		`${prefixCls}--box`,
 		{
-			[`bg-ikun-main border-ikun-main`]: valueInner && !disabled,
-			[`${prefixCls}--box__disabled`]: disabled
+			[`bg-ikun-main border-ikun-main`]: valueInner && !isDisabled,
+			[`${prefixCls}--box__disabled`]: isDisabled
 		},
 		classChecking
 	);
 
 	$: labelCls = clsx(`${prefixCls}--label`, {
-		[`text-ikun-main`]: valueInner && !disabled
+		[`text-ikun-main`]: valueInner && !isDisabled
 	});
 </script>
 
 <label class={cnames} {...attrs}>
-	<input value={valueInner} {disabled} type="checkbox" on:change={handleUpdateValue} hidden />
+	<input value={valueInner} disabled={isDisabled} type="checkbox" on:change={handleUpdateValue} hidden />
 	<div class={boxCls}>
 		{#if valueInner}
 			<div out:fade={{ duration: 200 }} in:fade={{ duration: 200 }}>

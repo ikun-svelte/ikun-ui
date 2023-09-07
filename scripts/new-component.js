@@ -152,9 +152,15 @@ async function writePkgJson(baseDir, originalCompName) {
   "dependencies": {
     "@ikun-ui/icon": "workspace:*",
     "@ikun-ui/utils": "workspace:*",
-		"clsx": "^2.0.0",
+	"clsx": "^2.0.0",
     ${getDeps('baiwusanyu-utils')}
-  }
+  },
+  "devDependencies": {
+	"@tsconfig/svelte": "^5.0.0",
+	"svelte-strip": "^2.0.0",
+	"tslib": "^2.6.1",
+	"typescript": "^5.1.6"
+	}
 }
   `;
 	write(file, pkgContent);
