@@ -4,3 +4,7 @@ export type KBreadcrumbItemProps = {
 	cls: string;
 	attrs: Record<string, string>;
 };
+export type KBreadcrumbItemPropsPropsInner = Partial<{
+	separator: string;
+	separatorIcon: string;
+}>;

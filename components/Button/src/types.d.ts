@@ -1,5 +1,6 @@
 /// <reference types="svelte" />
 import type { IKunTypePro } from '@ikun-ui/utils';
+import type { ClassValue } from 'clsx';
 
 export type KButtonProps = {
 	type: IKunTypePro;
@@ -9,9 +10,11 @@ export type KButtonProps = {
 	to: HTMLAnchorElement['href'];
 	round: string | number;
 	circle: boolean;
+	plain: boolean;
+	ghost: boolean;
 	isBorder: boolean;
 	disabled: boolean;
-	cls: string;
+	cls: ClassValue;
 	attrs: Record<string, string>;
 };
 

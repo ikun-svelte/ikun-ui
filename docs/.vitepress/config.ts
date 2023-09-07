@@ -19,6 +19,10 @@ const components = [
 			{
 				text: 'Icon',
 				link: '/components/KIcon'
+			},
+			{
+				text: 'Link',
+				link: '/components/KLink'
 			}
 		]
 	},
@@ -49,6 +53,10 @@ const components = [
 			{
 				text: 'Select',
 				link: '/components/KSelect'
+			},
+			{
+				text: 'Slider',
+				link: '/components/KSlider'
 			}
 		]
 	},
@@ -65,8 +73,16 @@ const components = [
 				link: '/components/KBadge'
 			},
 			{
+				text: 'Collapse',
+				link: '/components/KCollapse'
+			},
+			{
 				text: 'Tag',
 				link: '/components/KTag'
+			},
+			{
+				text: 'Progress',
+				link: '/components/KProgress'
 			}
 		]
 	},
@@ -89,6 +105,10 @@ const components = [
 		collapsed: false,
 		items: [
 			{
+				text: 'Alert',
+				link: '/components/KAlert'
+			},
+			{
 				text: 'Notification',
 				link: '/components/KNotification'
 			},
@@ -107,10 +127,6 @@ const components = [
 			{
 				text: 'Tooltip',
 				link: '/components/KTooltip'
-			},
-			{
-				text: 'Collapse',
-				link: '/components/KCollapse'
 			},
 			{
 				text: 'Drawer',

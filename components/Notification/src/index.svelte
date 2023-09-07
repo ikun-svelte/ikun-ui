@@ -3,24 +3,26 @@
 	import { fly, type FlyParams, fade } from 'svelte/transition';
 	import { tick } from 'svelte';
 	import { isFunction, isString } from 'baiwusanyu-utils';
-	import type {NotifyPlacement, NotifyType} from "./types";
+	import type { NotifyPlacement, NotifyType } from './types';
+	import { clsx, type ClassValue } from 'clsx';
+
 	type IKunUncertainFunction<T = any> = () => T | void;
 	// right-top left-top right-bottom left-bottom center
-	export let placement:NotifyPlacement = 'right-top';
+	export let placement: NotifyPlacement = 'right-top';
 	export let attrs = {};
-	export let cls = '';
+	export let cls: ClassValue = '';
 	export let close = false;
 	// info warning error success
 	export let type: NotifyType | null = null;
-	export let onClose:null | IKunUncertainFunction= null;
+	export let onClose: null | IKunUncertainFunction = null;
 	export let offset = 0;
 	export let show = false;
 	export let index = 0;
 
-	export let title: any = ''
-	export let content: any = ''
+	export let title: any = '';
+	export let content: any = '';
 
-	let notificationRef:null | HTMLElement = null;
+	let notificationRef: null | HTMLElement = null;
 	let x = '0';
 	const resolveX = () => {
 		if (placement.startsWith('left')) {
@@ -95,24 +97,29 @@
 	const handleClose = () => {
 		onClose && onClose();
 	};
+
+	$: cnames = clsx(cls);
 </script>
 
 {#if show}
 	<div
-		class="k-notification--base k-notification--base__dark {cls}"
+		class="k-notification--base k-notification--base__dark {cnames}"
 		bind:this={notificationRef}
 		out:fade={{ duration: 200 }}
 		in:fly={flyAnimate.in}
 		{...attrs}
-		style="top: {y}; left: {x}">
+		style="top: {y}; left: {x}"
+	>
 		<div class="k-notification--body">
 			{#if title && isString(title)}
 				<h1 class="k-notification--title k-notification--title__dark">
 					{#if type}
-						<KIcon icon='k-notification--icon--{type}'
-							   on:click={handleClose}
-							   cls="k-notification--type--icon"
-							   color="k-notification--{type}" />
+						<KIcon
+							icon="k-notification--icon--{type}"
+							on:click={handleClose}
+							cls="k-notification--type--icon"
+							color="k-notification--{type}"
+						/>
 					{/if}
 					{@html title}
 				</h1>
@@ -121,10 +128,12 @@
 			{/if}
 
 			{#if close}
-				<KIcon icon="i-carbon-close"
-					   btn
-					   on:click={handleClose}
-					   color="k-notification--close--icon" />
+				<KIcon
+					icon="i-carbon-close"
+					btn
+					on:click={handleClose}
+					color="k-notification--close--icon"
+				/>
 			{/if}
 		</div>
 		{#if content}

@@ -155,30 +155,56 @@ describe('Test: KInput', () => {
 		expect(value).toBe('ikun');
 	});
 
-	test('event: should trigger compositionstart event', async () => {
-		const mockFn = vi.fn();
-		const instance = new KInput({
-			target: host
-		});
-		await tick();
-		instance.$on('compositionstart', mockFn);
-		const inputElm = host.getElementsByTagName('input')[0];
-		inputElm.dispatchEvent(new Event('compositionstart'));
-		await tick();
-		expect(mockFn).toBeCalled();
-	});
+	test('event: should trigger composition input event', async () => {
+		let value = '';
+		const mockInputFn = vi.fn();
+		const mockCompositionInputFn = vi.fn();
+		const mockCompositionStart = vi.fn();
+		const mockCompositionEnd = vi.fn();
 
-	test('event: should trigger compositionend event', async () => {
-		const mockFn = vi.fn();
 		const instance = new KInput({
-			target: host
+			target: host,
+			props: {
+				value,
+				useCompositionInput: true
+			}
 		});
 		await tick();
-		instance.$on('compositionend', mockFn);
+		instance.$on('input', () => {
+			mockInputFn();
+		});
+
+		instance.$on('compositionstart', () => {
+			mockCompositionStart();
+		});
+
+		instance.$on('compositionend', () => {
+			mockCompositionEnd();
+		});
+
+		instance.$on('compositionInput', (v) => {
+			value = v.detail;
+			mockCompositionInputFn();
+		});
+
 		const inputElm = host.getElementsByTagName('input')[0];
+		inputElm.value = 'ikun';
+		inputElm.dispatchEvent(new Event('compositionstart'));
+		inputElm.dispatchEvent(new Event('input'));
+		await tick();
+		expect(instance).toBeTruthy();
+		expect(mockCompositionStart).toBeCalled();
+		expect(mockInputFn.mock.calls.length).toBe(1);
+		expect(mockCompositionInputFn.mock.calls.length).toBe(0);
+		expect(value).toBe('');
+
+		inputElm.value = 'ikun ikun';
 		inputElm.dispatchEvent(new Event('compositionend'));
 		await tick();
-		expect(mockFn).toBeCalled();
+		expect(mockCompositionEnd).toBeCalled();
+		expect(mockInputFn.mock.calls.length).toBe(2);
+		expect(mockCompositionInputFn.mock.calls.length).toBe(1);
+		expect(value).toBe('ikun ikun');
 	});
 
 	test('event: should trigger enter event when pressing enter', async () => {
@@ -292,11 +318,11 @@ describe('Test: KInput', () => {
 		});
 		expect(instance).toBeTruthy();
 
-		const spanElm = host.querySelector('span');
+		const spanElm = host.querySelector('span')!;
 		expect(spanElm).toBeTruthy();
-		expect(spanElm?.textContent).toBe('');
+		expect(spanElm.textContent).toBe('');
 
-		const inputElm = host.querySelector('input');
+		const inputElm = host.querySelector('input')!;
 		expect(inputElm).toBeTruthy();
 
 		await fireEvent.input(inputElm, { target: { value: 'input change' } });
@@ -304,6 +330,6 @@ describe('Test: KInput', () => {
 
 		expect(inputElm.value).toBe('input change');
 
-		expect(spanElm?.textContent).toBe('input change');
+		expect(spanElm.textContent).toBe('input change');
 	});
 });

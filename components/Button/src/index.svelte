@@ -3,7 +3,8 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import { extend } from 'baiwusanyu-utils';
-	import { createCls, getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
+	import { getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
+	import clsx from 'clsx';
 
 	export let type: KButtonProps['type'] | '' = '';
 	export let size: KButtonProps['size'] | '' = '';
@@ -13,8 +14,10 @@
 	export let round: KButtonProps['round'] = '';
 	export let circle: KButtonProps['circle'] = false;
 	export let isBorder: KButtonProps['isBorder'] = false;
+	export let plain: KButtonProps['plain'] = false;
+	export let ghost: KButtonProps['ghost'] = false;
 	export let disabled: KButtonProps['disabled'] = false;
-	export let cls: KButtonProps['cls'] = '';
+	export let cls: KButtonProps['cls'] = undefined;
 	export let attrs: KButtonProps['attrs'] = {};
 
 	enum EButtonIconSize {
@@ -29,10 +32,10 @@
 	const isBorderInner = isBorder || buttonGroupPropsInner?.isBorder || false;
 	const disabledInner = disabled || buttonGroupPropsInner?.disabled || false;
 	let iconSizeInner: KButtonProps['iconSize'];
-	$: if (buttonGroupPropsInner?.iconSize) {
-		iconSizeInner = buttonGroupPropsInner.iconSize;
-	} else if (iconSize) {
+	$: if (iconSize) {
 		iconSizeInner = iconSize;
+	} else if (buttonGroupPropsInner?.iconSize) {
+		iconSizeInner = buttonGroupPropsInner.iconSize;
 	} else {
 		iconSizeInner = EButtonIconSize[sizeInner];
 	}
@@ -62,12 +65,19 @@
 	// class names
 	$: prefixCls = getPrefixCls('button');
 	$: typePrefixCls = `${prefixCls}--${typeInner}`;
-	$: cnames = createCls(
+	$: typePrefixClsHover = `${typePrefixCls}__hover`;
+	$: cnames = clsx(
 		prefixCls,
 		`${prefixCls}--base`,
-		typePrefixCls,
 		{
-			[`${typePrefixCls}__active ${typePrefixCls}__focus ${typePrefixCls}__hover`]: !disabledInner,
+			[`${typePrefixCls}__ghost`]: !plain && ghost,
+			[`${typePrefixCls}__fill`]: !plain && !ghost,
+			[`${typePrefixClsHover}__fill`]: !plain && !ghost,
+			[typePrefixCls]: plain && !ghost,
+			[typePrefixClsHover]: plain && !ghost
+		},
+		{
+			[`${typePrefixCls}__active ${typePrefixCls}__focus`]: !disabledInner,
 			[`k-cur-disabled ${prefixCls}--disabled`]: disabledInner,
 			[`${prefixCls}--circle`]: circle,
 			[`${prefixCls}--circle--sm`]: circle && sizeInner === 'sm',
@@ -85,6 +95,12 @@
 	);
 
 	$: attrsInner = extend(attrs, to ? { href: to } : {});
+
+	$: prefixIconCls = `${prefixCls}--${typeInner}__icon`;
+	$: cnamesIcon = clsx({
+		[prefixIconCls]: true,
+		[`${prefixIconCls}__fill`]: !plain && !ghost
+	});
 </script>
 
 <svelte:element
@@ -98,12 +114,7 @@
 	{...$$restProps}
 >
 	{#if icon}
-		<KIcon
-			{icon}
-			color={`${prefixCls}--${typeInner}__icon`}
-			width={`${iconSizeInner}px`}
-			height={`${iconSizeInner}px`}
-		/>
+		<KIcon {icon} color={cnamesIcon} width={`${iconSizeInner}px`} height={`${iconSizeInner}px`} />
 	{/if}
 
 	{#if $$slots.default && icon}

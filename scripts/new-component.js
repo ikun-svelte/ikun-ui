@@ -3,10 +3,16 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { log, setGlobalPrefix, extend, deepClone } from 'baiwusanyu-utils';
-import { kebabToPascal } from '@ikun-ui/utils';
 import ora from 'ora';
-//@ts-ignore
 import { runCommand } from './utils.js';
+
+const kebabToPascal = (name) => {
+	return name
+		.split('-')
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join('');
+};
+
 const require = createRequire(import.meta.url);
 
 const args = process.argv;
@@ -105,7 +111,7 @@ async function writeTsConfig(baseDir) {
   },
   "include": ["src/**/*.ts", "src/**/*.svelte"],
   "exclude": ["node_modules/*", "**/*.spec.ts"]
-}  
+}
   `;
 
 	write(file, tsConfigContent);
@@ -118,9 +124,7 @@ async function writePkgJson(baseDir, originalCompName) {
   "name": "@ikun-ui/${originalCompName}",
   "version": "${version}",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "svelte": "dist/index.js",
+  "main": "./src/index.ts",
   "types": "src/index.ts",
   "keywords": [
     "svelte",
@@ -139,11 +143,16 @@ async function writePkgJson(baseDir, originalCompName) {
     "publish:npm": "pnpm publish --no-git-checks --access public"
   },
   "publishConfig": {
-    "access": "public"
+	"access": "public",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"svelte": "dist/index.js",
+	"types": "src/index.ts"
   },
   "dependencies": {
     "@ikun-ui/icon": "workspace:*",
     "@ikun-ui/utils": "workspace:*",
+		"clsx": "^2.0.0",
     ${getDeps('baiwusanyu-utils')}
   }
 }
@@ -154,14 +163,15 @@ async function writePkgJson(baseDir, originalCompName) {
 async function writeComponent(baseDir, originalCompName) {
 	const file = `${baseDir}/index.svelte`;
 	const svelteContent = `<script lang="ts">
-  import { getPrefixCls, createCls } from '@ikun-ui/utils';
-  
+  import { getPrefixCls } from '@ikun-ui/utils';
+	import clsx from 'clsx';
+
   export let cls: string = '';
   export let attrs: Record<string, string> = {};
-  
+
   const prefixCls = getPrefixCls('${originalCompName}');
 
-  $: cnames = createCls(prefixCls, {
+  $: cnames = clsx(prefixCls, {
     [\`$\{prefixCls}--base\`]: true
   }, cls);
 </script>
@@ -240,7 +250,7 @@ beforeEach(() => {
 afterEach(() => {
 	host.remove();
 });
-	
+
 describe('Test: K${compName}', () => {
 	test('props: cls', async () => {
 		const instance = new K${compName}({

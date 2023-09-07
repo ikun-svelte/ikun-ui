@@ -1,30 +1,48 @@
 <script lang="ts">
+	import type { KIconProps } from './types';
 	import { createEventDispatcher } from 'svelte';
+	import { clsx } from 'clsx';
+	import { getPrefixCls } from '@ikun-ui/utils';
 
-	export let icon: string = ''
-	export let btn = false;
-	export let width = '24px';
-	export let height = '24px';
-	export let color = '';
-	export let attrs = {};
-	export let cls = '';
+	export let icon: KIconProps['icon'] = '';
+	export let btn: KIconProps['btn'] = false;
+	export let width: KIconProps['width'] = '24px';
+	export let height: KIconProps['height'] = '24px';
+	export let color: KIconProps['color'] = '';
+	export let cls: KIconProps['cls'] = '';
+	export let attrs: KIconProps['attrs'] = {};
 
-	$: iconInner = icon;
 	$: tag = btn ? 'button' : '';
+
 	const dispatch = createEventDispatcher();
-	const handleClick = (e:Event) => {
-		dispatch('click', e);
+	const onClick = (event: Event) => {
+		dispatch('click', event);
 	};
+
+	const prefixCls = getPrefixCls('icon');
+	// class names
+	$: cnames = clsx(
+		`${prefixCls}--base`,
+		{
+			[`${prefixCls}--base__dark`]: !color,
+			[`${prefixCls}--role-button`]: !!btn
+		},
+		`${prefixCls}-transition`,
+		icon,
+		color,
+		cls
+	);
+	$: widthInner = !width ? '24px' : width === 'auto' ? undefined : width;
+	$: heightInner = !height ? '24px' : height === 'auto' ? undefined : height;
 </script>
 
-<div
+<span
+	class={cnames}
 	role={tag}
 	aria-hidden="true"
+	{...$$restProps}
 	{...attrs}
-	class="k-icon--base k-icon--base__dark {btn ? 'cursor-pointer' : ''} {cls}"
-	on:click={handleClick}>
-	<div class="{iconInner} k-icon-transition {color}"
-		 style="
-		 width: {width}; height:{height};"
-	/>
-</div>
+	style:width={widthInner}
+	style:height={heightInner}
+	on:click={onClick}
+></span>

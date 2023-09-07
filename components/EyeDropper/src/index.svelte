@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	export let cls = '';
-	export let attrs = {}
+	import { clsx, type ClassValue } from 'clsx';
+
+	export let cls: ClassValue = undefined;
+	export let attrs: Record<string, string> = {};
+
 	interface EyeDropperOpenOptions {
 		signal?: AbortSignal;
 	}
@@ -29,6 +32,6 @@
 	onMount(initEyeDropper);
 </script>
 
-<div class="k-eyedropper--base {cls}" {...attrs}>
+<div class={clsx('k-eyedropper--base', cls)} {...attrs}>
 	<slot {sRGBHex} {open} {isSupported} />
 </div>

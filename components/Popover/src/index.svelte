@@ -1,15 +1,18 @@
 <script lang="ts">
 	import { createPopperActions, type PopperOptions } from 'svelte-popperjs';
 	import { fade } from 'svelte/transition';
-	import type {IKunPlacement, IKunTrigger} from "@ikun-ui/utils";
+	import type { IKunPlacement, IKunTrigger } from '@ikun-ui/utils';
+	import { getPrefixCls } from '@ikun-ui/utils';
+	import { clsx, type ClassValue } from 'clsx';
+
 	// top left right bottom
-	export let placement:IKunPlacement = 'top';
+	export let placement: IKunPlacement = 'top';
 	// hover click manual
 	export let trigger: IKunTrigger = 'hover';
 	export let attrs = {};
-	export let cls = '';
-	$:curPlacement = placement
-	let arrowRef:null | HTMLElement = null;
+	export let cls: ClassValue = '';
+	$: curPlacement = placement;
+	let arrowRef: null | HTMLElement = null;
 	const [popperRef, popperContent] = createPopperActions({
 		placement,
 		onFirstUpdate: updateArrow,
@@ -31,11 +34,11 @@
 				enabled: true,
 				phase: 'afterWrite',
 				fn(arg: any) {
-					if(arg.state.placement !== curPlacement){
-						curPlacement = arg.state.placement
-						updateArrow()
+					if (arg.state.placement !== curPlacement) {
+						curPlacement = arg.state.placement;
+						updateArrow();
 					}
-				},
+				}
 			}
 		],
 		strategy: 'fixed'
@@ -101,6 +104,15 @@
 			}
 		};
 	}
+
+	$: prefixCls = getPrefixCls('popover')
+	$: cnames = clsx(
+		`${prefixCls}--base`,
+		`${prefixCls}--base__${placement}`,
+		`${prefixCls}--base__${placement}__dark`,
+		`${prefixCls}--base__dark`,
+		 cls
+	);
 </script>
 
 <div style="width: fit-content">
@@ -116,7 +128,7 @@
 
 	{#if isShow}
 		<div
-			class="k-popover--base k-popover--base__dark {cls}"
+			class={cnames}
 			out:fade={{ duration: 200 }}
 			in:fade={{ duration: 200 }}
 			data-popper-placement
@@ -129,7 +141,7 @@
 		>
 			<slot name="contentEl" />
 			<div
-				{...{'ui-popover-arrow': true}}
+				{...{ 'k-popover-arrow': true }}
 				data-popper-arrow-bottom
 				data-popper-arrow-top
 				data-popper-arrow-right
@@ -141,7 +153,7 @@
 </div>
 
 <style>
-	[ui-popover-arrow]::after {
+	[k-popover-arrow]::after {
 		content: ' ';
 		width: 8px;
 		height: 8px;
@@ -152,8 +164,8 @@
 		left: 0;
 	}
 
-	:global(.dark [ui-popover-arrow]::after) {
-		--at-apply: bg-ikun-dark-300
+	:global(.dark [k-popover-arrow]::after) {
+		--at-apply: bg-ikun-dark-300;
 	}
 
 	[data-popper-arrow-top] {

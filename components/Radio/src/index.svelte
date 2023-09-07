@@ -2,9 +2,11 @@
 	import { createEventDispatcher } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
+	import { clsx, type ClassValue } from 'clsx';
+
 	export let disabled = false;
 	export let value = false;
-	export let cls = '';
+	export let cls: ClassValue = '';
 	export let attrs = {};
 	export let label = '';
 	// updateValue
@@ -22,10 +24,12 @@
 			classChecking = '';
 		}, 300);
 	};
+
+	$: cnames = clsx(cls);
 </script>
 
 <label
-	class="k-radio--base k-radio--base__dark {cls} {disabled ? 'k-cur-disabled' : ''}"
+	class="k-radio--base k-radio--base__dark {cnames} {disabled ? 'k-cur-disabled' : ''}"
 	{...attrs}
 >
 	<input value={valueInner} {disabled} type="radio" on:change={handleUpdateValue} hidden />

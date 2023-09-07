@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { isNumber } from 'baiwusanyu-utils';
 	import type { IKunTypePro } from '@ikun-ui/utils';
-	import { getPrefixCls, createCls } from '@ikun-ui/utils';
+	import { getPrefixCls } from '@ikun-ui/utils';
+	import { clsx, type ClassValue } from 'clsx';
 
 	export let value: string | number = '';
 	export let max: number = 99;
 	export let isDot: boolean = false;
 	export let show: boolean = true;
 	export let type: IKunTypePro = 'error';
-	export let cls: string = '';
+	export let cls: ClassValue = undefined;
 	export let attrs: Record<string, string> = {};
 
 	let content = `${value}`;
@@ -21,8 +22,8 @@
 
 	// class names
 	const prefixCls = getPrefixCls('badge');
-	$: baseCls = createCls(prefixCls, `${prefixCls}--base`, cls);
-	$: supCls = createCls(
+	$: baseCls = clsx(prefixCls, `${prefixCls}--base`, cls);
+	$: supCls = clsx(
 		`${prefixCls}--content`,
 		`${prefixCls}--content-${type}`,
 		`${prefixCls}--content-fixed`,

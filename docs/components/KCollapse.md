@@ -37,15 +37,23 @@ You can render content through slots
 
 <demo src="../../../../example/collapse/custom.svelte" github="Collapse"></demo>
 
+## Accordion
+
+Use the `KCollapseWrapper` component to wrap and set the `uid` to enable the accordion style
+
+<demo src="../../../../example/collapse/accordion.svelte" github="Collapse"></demo>
+
 ## Collapse Props
 
-| Name    | Type                     | Default | Description                    |
-| ------- | ------------------------ | ------- | ------------------------------ |
-| title   | `string`                 | `-`     | content of Collapse Item title |
-| content | `string`                 | `-`     | content of Collapse Item       |
-| show    | `boolean`                | `false` | expand the Collapse            |
-| cls     | `string`                 | `-`     | Additional class               |
-| attrs   | `Record<string, string>` | `{}`    | Additional attributes          |
+| Name      | Type                     | Default | Description                          |
+| --------- | ------------------------ | ------- | ------------------------------------ |
+| title     | `string`                 | `-`     | Content of Collapse Item title       |
+| content   | `string`                 | `-`     | Content of Collapse Item             |
+| show      | `boolean`                | `false` | Expand the Collapse                  |
+| showClose | `boolean`                | `true`  | Determine whether display close ionc |
+| uid       | `string`                 | `-`     | Incoming in accordion style          |
+| cls       | `string`                 | `-`     | Additional class                     |
+| attrs     | `Record<string, string>` | `{}`    | Additional attributes                |
 
 ## Collapse Events
 
@@ -55,7 +63,22 @@ You can render content through slots
 
 ## Collapse Slots
 
-| Name    | Description                           |
-| ------- | ------------------------------------- |
-| title   | Customize Collapse Item title content |
-| content | Customize Collapse Item content       |
+| Name      | Description                           |
+| --------- | ------------------------------------- |
+| title     | Customize Collapse Item title content |
+| content   | Customize Collapse Item content       |
+| closeIcon | Customize close icon                  |
+
+## Collapse Wrapper Props
+
+| Name      | Type                     | Default | Description                    |
+| --------- | ------------------------ | ------- | ------------------------------ |
+| accordion | `boolean`                | `false` | Whether to use accordion style |
+| cls       | `string`                 | `-`     | Additional class               |
+| attrs     | `Record<string, string>` | `{}`    | Additional attributes          |
+
+## Collapse Wrapper Slots
+
+| Name    | Description                        |
+| ------- | ---------------------------------- |
+| default | Customize Collapse wrapper content |

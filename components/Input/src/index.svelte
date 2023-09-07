@@ -3,7 +3,8 @@
 	import { createEventDispatcher } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
-	import { createCls, getPrefixCls } from '@ikun-ui/utils';
+	import { getPrefixCls } from '@ikun-ui/utils';
+	import clsx from 'clsx';
 
 	export let value: KInputProps['value'] = '';
 	export let placeholder: KInputProps['placeholder'] = '';
@@ -12,6 +13,8 @@
 	export let iconSuffix: KInputProps['iconSuffix'] = '';
 	export let cls: KInputProps['cls'] = '';
 	export let attrs: KInputProps['attrs'] = {};
+	export let useCompositionInput: KInputProps['useCompositionInput'] = false;
+
 	/**
 	 * @internal
 	 */
@@ -23,9 +26,16 @@
 
 	const dispatch = createEventDispatcher();
 
-	const onInput = (e: InputEvent) => {
+	const onInput = (e: Event) => {
 		if (disabled) return;
-		dispatch('input', (e.target as HTMLInputElement).value);
+		const { value: inputValue } = e.target as HTMLInputElement;
+		dispatch('input', inputValue, e);
+		if (!useCompositionInput || !isComposing) {
+			value = inputValue;
+			if (useCompositionInput && !isComposing) {
+				dispatch('compositionInput', inputValue, e);
+			}
+		}
 	};
 
 	const onChange = (e: Event) => {
@@ -39,19 +49,29 @@
 		else dispatch('keydown', e);
 	};
 
+	let isComposing = false;
 	const onCompositionStart = (e: CompositionEvent) => {
 		if (disabled) return;
 		dispatch('compositionstart', e);
+		isComposing = true;
 	};
 
 	const onCompositionEnd = (e: CompositionEvent) => {
 		if (disabled) return;
 		dispatch('compositionend', e);
+
+		if (!isComposing) {
+			return;
+		}
+		isComposing = false;
+		if (useCompositionInput) {
+			e.target?.dispatchEvent(new Event('input'));
+		}
 	};
 
 	// class names
 	const prefixCls = getPrefixCls('input');
-	$: baseCls = createCls(
+	$: baseCls = clsx(
 		prefixCls,
 		`${prefixCls}--base`,
 		`${prefixCls}--base__dark`,
@@ -66,8 +86,8 @@
 		},
 		cls
 	);
-	$: errorMsgCls = createCls(`${prefixCls}--base__msg__error`);
-	$: inputCls = createCls(`${prefixCls}--inner`, `${prefixCls}--inner__dark`, {
+	$: errorMsgCls = clsx(`${prefixCls}--base__msg__error`);
+	$: inputCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__dark`, {
 		[`${prefixCls}--base__disabled`]: disabled,
 		[`${prefixCls}--base__disabled__dark`]: disabled
 	});
@@ -86,7 +106,7 @@
 	</slot>
 	<input
 		class={inputCls}
-		bind:value
+		{value}
 		{disabled}
 		on:input={onInput}
 		on:change={onChange}

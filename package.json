@@ -3,7 +3,7 @@
 	"description": "🐔 A Svelte.js based UnoCSS UI library that allows you to make websites",
 	"packageManager": "pnpm@8.6.7",
 	"type": "module",
-	"version": "0.0.9-beta.3",
+	"version": "0.0.9-beta.5",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -44,9 +44,9 @@
 	},
 	"scripts": {
 		"init": "pnpm i",
-		"dev": "pnpm run build && pnpm run play",
+		"dev": "pnpm run build",
 		"dev:docs": "pnpm run --filter @ikun-ui/docs docs:dev",
-		"play": "pnpm run --filter @ikun-ui/play dev",
+		"play": "esno scripts/play.js && pnpm run --filter @ikun-ui/play dev",
 		"build": "run-s build:* && run-s build-*",
 		"build-preset": "pnpm run --filter @ikun-ui/preset build",
 		"build-lib": "tsup --config tsup.config.ts",
@@ -69,7 +69,7 @@
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "esno scripts/new-component.js"
+		"create:new:comp": "esno scripts/new-component.js link"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
@@ -77,11 +77,12 @@
 		"unocss": "^0.54.1"
 	},
 	"dependencies": {
-		"baiwusanyu-utils": "^1.0.14",
-		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/alert": "workspace:*",
 		"@ikun-ui/avatar": "workspace:*",
+		"@ikun-ui/backtop": "workspace:*",
 		"@ikun-ui/badge": "workspace:*",
 		"@ikun-ui/breadcrumb": "workspace:*",
+		"@ikun-ui/breadcrumb-item": "workspace:*",
 		"@ikun-ui/button": "workspace:*",
 		"@ikun-ui/button-group": "workspace:*",
 		"@ikun-ui/checkbox": "workspace:*",
@@ -98,15 +99,19 @@
 		"@ikun-ui/notify": "workspace:*",
 		"@ikun-ui/popover": "workspace:*",
 		"@ikun-ui/preset": "workspace:*",
+		"@ikun-ui/progress": "workspace:*",
 		"@ikun-ui/radio": "workspace:*",
 		"@ikun-ui/select": "workspace:*",
+		"@ikun-ui/slider": "workspace:*",
+		"@ikun-ui/spin": "workspace:*",
 		"@ikun-ui/switch": "workspace:*",
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
-		"@ikun-ui/spin": "workspace:*",
-		"@ikun-ui/breadcrumb-item": "workspace:*",
-		"@ikun-ui/backtop": "workspace:*",
-		"@ikun-ui/rate": "workspace:*"
+		"@ikun-ui/utils": "workspace:*",
+		"baiwusanyu-utils": "^1.0.14",
+		"clsx": "^2.0.0",
+		"@ikun-ui/collapse-wrapper": "workspace:*",
+		"@ikun-ui/link": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",
@@ -130,6 +135,7 @@
 		"esno": "^0.17.0",
 		"fast-glob": "^3.3.1",
 		"jsdom": "^22.1.0",
+		"lint-staged": "^14.0.1",
 		"npm-run-all": "^4.1.5",
 		"ora": "^7.0.1",
 		"prettier": "^3.0.1",
@@ -148,8 +154,14 @@
 		"vite": "^4.4.9",
 		"vitest": "^0.34.1"
 	},
+	"lint-staged": {
+		"*.{svelte,js,ts,jsx,tsx,json}": [
+			"prettier --write",
+			"eslint"
+		]
+	},
 	"simple-git-hooks": {
-		"pre-commit": "pnpm run format && pnpm run lint",
+		"pre-commit": "npx lint-staged",
 		"commit-msg": "node vertify-commit.js"
 	}
 }
