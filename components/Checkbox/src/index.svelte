@@ -45,13 +45,9 @@
 		classChecking
 	);
 
-	$: labelCls = clsx(
-		`${prefixCls}--label`,
-		{
-			[`text-ikun-main`]: valueInner && !disabled
-		},
-		classChecking
-	);
+	$: labelCls = clsx(`${prefixCls}--label`, {
+		[`text-ikun-main`]: valueInner && !disabled
+	});
 </script>
 
 <label class={cnames} {...attrs}>
