@@ -52,3 +52,9 @@ Set the `disabled` attribute.
 | Name        | Description                             | Type                    |
 | ----------- | --------------------------------------- | ----------------------- |
 | updateValue | Event fired when the `value` is changes | `(value: Event)=> void` |
+
+## Checkbox Slots
+
+| Name    | Description             |
+| ------- |-------------------------|
+| default | Customize label content |
