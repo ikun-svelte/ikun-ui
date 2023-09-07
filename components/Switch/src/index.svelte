@@ -89,7 +89,7 @@
 
 	$: cnames = clsx(
 		'k-switch--base',
-		innerState ? `k-switch__checked ${checkedColor}` : `k-switch__un_checked ${unCheckedColor}`,
+		innerState ? ['k-switch__checked', checkedColor] : ['k-switch__un_checked', unCheckedColor],
 		{
 			'k-switch__disabled': disabled || loading
 		},
