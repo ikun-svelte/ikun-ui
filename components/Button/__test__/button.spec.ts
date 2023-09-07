@@ -54,7 +54,7 @@ describe('Test: KButton', () => {
 		expect(instance).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'k-icon--base k-icon--base__dark k-icon-transition icon-carbon-settings k-button--primary__icon k-button--primary__icon__fill'
+				'k-icon--base k-icon-transition icon-carbon-settings k-button--primary__icon k-button--primary__icon__fill'
 			)
 		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();

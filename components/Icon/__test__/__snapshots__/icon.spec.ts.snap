@@ -2,7 +2,7 @@
 
 exports[`Test: KIcon > props: btn 1`] = `"<span class=\\"k-icon--base k-icon--base__dark k-icon--role-button k-icon-transition i-carbon-settings\\" role=\\"button\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span>"`;
 
-exports[`Test: KIcon > props: color 1`] = `"<span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings text-red\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span>"`;
+exports[`Test: KIcon > props: color 1`] = `"<span class=\\"k-icon--base k-icon-transition i-carbon-settings text-red\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span>"`;
 
 exports[`Test: KIcon > props: icon 1`] = `"<span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span>"`;
 
