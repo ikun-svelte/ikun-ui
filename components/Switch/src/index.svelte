@@ -6,8 +6,8 @@
 
 	export let value: SwitchValueType = false;
 	export let disabled: boolean = false;
-	export let cls: ClassValue = '';
-	export let attrs = {};
+	export let cls: ClassValue = undefined;
+	export let attrs: Record<string, string> = {};
 	export let loading: boolean = false;
 	export let checkedValue: SwitchValueType = true;
 	export let unCheckedValue: SwitchValueType = false;
@@ -87,20 +87,18 @@
 	};
 	onMount(init);
 
-	$: cnames = clsx(cls);
+	$: cnames = clsx(
+		'k-switch--base',
+		innerState ? `k-switch__checked ${checkedColor}` : `k-switch__un_checked ${unCheckedColor}`,
+		{
+			'k-switch__disabled': disabled || loading
+		},
+		switching,
+		cls
+	);
 </script>
 
-<div
-	class="
-  k-switch--base
-  {disabled || loading ? 'k-switch__disabled' : ''}
-  {innerState ? `k-switch__checked ${checkedColor}` : `k-switch__un_checked ${unCheckedColor}`}
-  {switching}
-  {cnames}"
-	aria-hidden="true"
-	{...attrs}
-	on:click={handleClick}
->
+<div class={cnames} aria-hidden="true" {...attrs} on:click={handleClick}>
 	{#if !innerState}
 		<div class="k-switch-tx__un_checked">
 			<slot name="unCheckedRender" state={innerState} />
