@@ -20,11 +20,11 @@ Every significant change is documented in the changelog file.
 
 ## Reporting Issues
 
-We use [Github issues](https://github.com/onu-ui/onu-ui/issues) for bug reports and feature requests. Before reporting an issue, please make sure you have searched for similar [issues](https://github.com/onu-ui/onu-ui/issues) as they may have been already answered or being fixed. For bug reporting, please include the minimum code that can be used to reproduce the problem. For feature request,
+We use [Github issues](https://github.com/ikun-svelte/ikun-ui/issues) for bug reports and feature requests. Before reporting an issue, please make sure you have searched for similar [issues](https://github.com/ikun-svelte/ikun-ui/issues) as they may have been already answered or being fixed. For bug reporting, please include the minimum code that can be used to reproduce the problem. For feature request,
 
 ## Sending a pull request
 
-1. Fork [the repository](https://github.com/onu-ui/onu-ui)，and create your branch from `main`. For new feature, please submit your changes directly to the `feature` branch. Other changes should go against `main` branch.
+1. Fork [the repository](https://github.com/ikun-svelte/ikun-ui)，and create your branch from `main`. For new feature, please submit your changes directly to the `feature` branch. Other changes should go against `main` branch.
 2. Use `pnpm install` install the dependencies
 3. Run `pnpm run build` to build all components, presets, utils
 4. Please run `pnpm run play` to debug the component, and `pnpm run dev:docs` to debug the documentation site
@@ -68,6 +68,9 @@ Commit messages are required to follow the [conventional-changelog standard](htt
 [optional body]
 
 [optional footer(s)]
+
+// such as 
+feat(components/Button): typing and classes
 ```
 
 👉 [Commit example](https://github.com/unocss/unocss/releases/tag/v0.39.0)
@@ -84,7 +87,7 @@ The following is a list of commit types:
 - perf: Improve performance.
 - test: Add missing or correct existing tests.
 
-## OnuUI Repository Structure
+## iKun Repository Structure
 
 This repository is managed by `pnpm`:
 
