@@ -19,7 +19,7 @@
 		disabled: boolean
 	}>(checkboxGroupKey);
 
-	$: isDisabled = disabled || checkboxContext.disabled
+	$: isDisabled = disabled || checkboxContext && checkboxContext.disabled
 	let valueInner = checkboxContext ? hasLabel() : value
 	$: if(!isDisabled){
 		valueInner = checkboxContext ? hasLabel() : value
@@ -36,7 +36,7 @@
 	const handleUpdateValue = () => {
 		if (isDisabled) return;
 		valueInner = !valueInner
-		checkboxContext.setCheckboxMap(label, valueInner ? label : '')
+		checkboxContext && checkboxContext.setCheckboxMap(label, valueInner ? label : '')
 		dispatch('updateValue', valueInner);
 		setAnimate()
 	};
