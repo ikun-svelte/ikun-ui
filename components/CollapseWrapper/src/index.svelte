@@ -4,7 +4,7 @@
 	import { onMount, setContext } from 'svelte';
 	import type { collapseMapType, KCollapseWrapperProps } from './types';
 
-	export let cls: KCollapseWrapperProps['cls'] = '';
+	export let cls: KCollapseWrapperProps['cls'] = undefined;
 	export let accordion: KCollapseWrapperProps['accordion'] = false;
 	export let attrs: KCollapseWrapperProps['attrs'] = {};
 
