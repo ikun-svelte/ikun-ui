@@ -101,6 +101,7 @@
 		"@ikun-ui/preset": "workspace:*",
 		"@ikun-ui/progress": "workspace:*",
 		"@ikun-ui/radio": "workspace:*",
+		"@ikun-ui/rate": "workspace:*",
 		"@ikun-ui/select": "workspace:*",
 		"@ikun-ui/slider": "workspace:*",
 		"@ikun-ui/spin": "workspace:*",

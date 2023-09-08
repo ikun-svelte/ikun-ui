@@ -1,54 +1,50 @@
 <script lang="ts">
 	import type { KRateProps } from './types';
-	import { KIcon } from '@ikun-ui/icon';
-	import { getPrefixCls, createCls } from '@ikun-ui/utils';
-	import { isString } from 'baiwusanyu-utils';
 	import { createEventDispatcher } from 'svelte';
+	import { clsx } from 'clsx';
+	import { isString } from 'baiwusanyu-utils';
+	import { getPrefixCls } from '@ikun-ui/utils';
+	import { KIcon } from '@ikun-ui/icon';
 
 	export let max: KRateProps['max'] = 5;
 	export let value: KRateProps['value'] = 0;
-	// TODO allow half
-	// export let allowHalf: KRateProps['allowHalf'] = false;
+	export let allowHalf: KRateProps['allowHalf'] = false;
 	export let showScore: KRateProps['showScore'] = false;
 	export let scoreTemplate: KRateProps['scoreTemplate'] = '{value}';
 	// showText will cover showScore
 	export let showText: KRateProps['showText'] = false;
 	export let texts: KRateProps['texts'] = '';
-	export let textColor: KRateProps['textColor'] = 'color-#303133';
+	export let textColor: KRateProps['textColor'] = '#303133';
 	export let icons: KRateProps['icons'] = 'i-carbon-star-filled';
-	export let colors: KRateProps['colors'] = 'color-#f7ba2a';
+	export let colors: KRateProps['colors'] = '#f7ba2a';
 	export let voidIcon: KRateProps['voidIcon'] = 'i-carbon-star';
-	export let voidColor: KRateProps['voidColor'] = 'color-#cdd0d6';
+	export let voidColor: KRateProps['voidColor'] = '#cdd0d6';
 	export let disabled: KRateProps['disabled'] = false;
 	export let disableVoidIcon: KRateProps['disableVoidIcon'] = 'i-carbon-star-filled';
-	export let disableVoidColor: KRateProps['disableVoidColor'] = 'color-#f0f2f5';
-	// TODO clearable
-	// export let clearable: KRateProps['clearable'] = false;
-	export let cls: KRateProps['cls'] = '';
+	export let disableVoidColor: KRateProps['disableVoidColor'] = '#f0f2f5';
+	export let clearable: KRateProps['clearable'] = false;
+	export let cls: KRateProps['cls'] = undefined;
 	export let attrs: KRateProps['attrs'] = {};
 
 	const dispatch = createEventDispatcher();
 
-	// TODO customize size
 	const iconSize = '18px';
-
-	const maxNumbers = Array.from({ length: max }, (v, i) => i + 1);
+	const maxNumbers = Array.from({ length: max }, (_, i) => i + 1);
 
 	$: currentValue = value;
-	$: rateDisabled = disabled;
 
 	const getContinuity = (
 		numbers: number[],
 		nkObj: string | Record<number, string>
 	): Record<number, string> => {
 		if (isString(nkObj)) {
-			return numbers.reduce((previous, current) => {
-				previous[current] = nkObj;
+			return numbers.reduce((previous: Record<number, string>, current) => {
+				previous[current] = nkObj as string;
 				return previous;
 			}, {});
 		} else {
-			const oks = Object.keys(nkObj);
-			return numbers.reduce((previous, current) => {
+			const oks = Object.keys(nkObj).map((m) => +m);
+			return numbers.reduce((previous: Record<number, string>, current) => {
 				const nk = oks.find((k) => k >= current);
 				previous[current] = nk ? nkObj[nk] : nkObj[oks[oks.length - 1]];
 				return previous;
@@ -57,120 +53,141 @@
 	};
 
 	// text or score, text will cover score
+	let textsMap: Record<number, string>;
 	let text = '';
-	const textsMap = getContinuity(maxNumbers, texts);
 	$: {
+		textsMap = getContinuity(maxNumbers, texts);
 		if (showText) {
-			text = isString(texts) ? texts : textsMap[Math.ceil(currentValue)];
+			text = (isString(texts) ? texts : textsMap[Math.ceil(currentValue)]) as string;
 		} else if (showScore) {
-			text = scoreTemplate.replace(
-				/\{\s*value\s*\}/,
-				rateDisabled ? `${value}` : `${currentValue}`
-			);
+			text = scoreTemplate.replace(/\{\s*value\s*\}/, disabled ? `${value}` : `${currentValue}`);
+		} else {
+			text = '';
 		}
 	}
 
-	const setCurrentValue = (value: number) => {
-		if (rateDisabled) {
+	const originValueDecimal = value * 100 - Math.floor(value) * 100;
+	const originPointerHalf = value !== Math.floor(value);
+
+	$: pointerAtLeftHalf = originPointerHalf;
+	$: valueDecimal = originValueDecimal;
+
+	let showDecimalIcon: (item: number) => boolean;
+	$: {
+		showDecimalIcon = (item: number) => {
+			const showWhenDisabled = disabled && valueDecimal > 0 && item - 1 < value && item > value;
+			const showWhenAllowHalf =
+				allowHalf && pointerAtLeftHalf && item - 0.5 <= currentValue && item > currentValue;
+			return showWhenDisabled || showWhenAllowHalf;
+		};
+	}
+
+	const setCurrentValue = (value: number, event: MouseEvent) => {
+		if (disabled) {
 			return;
 		}
-		currentValue = value;
+		if (allowHalf && event) {
+			let target = event.target as HTMLElement;
+			pointerAtLeftHalf = event.offsetX * 2 <= target.clientWidth;
+			valueDecimal = pointerAtLeftHalf ? 50 : originValueDecimal;
+			currentValue = pointerAtLeftHalf ? value - 0.5 : value;
+		} else {
+			resetOrigin();
+		}
 	};
 
 	const resetCurrentValue = () => {
-		if (rateDisabled) {
+		if (disabled) {
 			return;
 		}
+		resetOrigin();
+	};
+
+	const resetOrigin = () => {
+		if (allowHalf) {
+			pointerAtLeftHalf = originPointerHalf;
+		}
+		valueDecimal = originValueDecimal;
 		currentValue = value;
 	};
 
-	$: valueDecimal = value * 100 - Math.floor(value) * 100;
-	$: valueDecimalLeftWidth = +iconSize.replace(/px/g, '') * (valueDecimal / 100);
-	$: valueDecimalRightWidth = +iconSize.replace(/px/g, '') - valueDecimalLeftWidth;
-	const showDecimalIcon = (item: number) => {
-		return rateDisabled && valueDecimal > 0 && item - 1 < value && item > value;
-	};
+	let iconsMap: Record<number, string>;
+	let activeIcon: string;
+	let decimalIcon: string;
+	$: {
+		iconsMap = getContinuity(maxNumbers, icons);
+		activeIcon = iconsMap[Math.ceil(currentValue)];
+		decimalIcon = iconsMap[Math.ceil(currentValue)];
+	}
 
-	const iconsMap = getContinuity(maxNumbers, icons);
-	$: activeIcon = iconsMap[Math.ceil(currentValue)];
+	let colorsMap: Record<number, string>;
+	let activeColor: string;
+	let decimalActiveColor: string;
+	$: {
+		colorsMap = getContinuity(maxNumbers, colors);
+		activeColor = colorsMap[Math.ceil(currentValue)];
+		decimalActiveColor = colorsMap[Math.ceil(currentValue)];
+	}
 
-	const colorsMap = getContinuity(maxNumbers, colors);
-	$: activeColor = colorsMap[Math.ceil(currentValue)];
-
-	$: decimalIcon = iconsMap[Math.ceil(value)];
-	$: decimalActiveColor = colorsMap[Math.ceil(value)];
-	$: decimalVoidColor = voidColor;
+	$: decimalBackground = `linear-gradient(to right, ${decimalActiveColor} 0%, ${decimalActiveColor} ${valueDecimal}%, ${disableVoidColor} ${valueDecimal}%, ${disableVoidColor} 100%);`;
 
 	const handleUpdateValue = () => {
-		if (rateDisabled) {
+		if (disabled) {
 			return;
 		}
-		dispatch('updateValue', currentValue);
+		if (clearable && value === currentValue) {
+			dispatch('updateValue', 0);
+		} else {
+			dispatch('updateValue', currentValue);
+		}
 	};
 
 	// class names
 	const prefixCls = getPrefixCls('rate');
-	$: baseCls = createCls(prefixCls, { [`${prefixCls}--disabled`]: rateDisabled }, cls);
-	$: itemCls = createCls(`${prefixCls}--item`, {
-		[`${prefixCls}--item__not-disabled`]: !rateDisabled
+	$: baseCls = clsx(prefixCls, { [`${prefixCls}--disabled`]: disabled }, cls);
+	$: itemCls = clsx(`${prefixCls}--item`, {
+		[`${prefixCls}--item__not-disabled`]: !disabled
 	});
-	$: textCls = createCls(`${prefixCls}--text`);
-
-	// decimal icon => not full checked
-	$: decimalIconLeftCls = createCls(
-		`${prefixCls}--icon__decimal`,
-		`${prefixCls}--icon__decimal-left`
-	);
-	$: decimalIconRightCls = createCls(
-		`${prefixCls}--icon__decimal`,
-		`${prefixCls}--icon__decimal-right`
-	);
+	$: textCls = clsx(`${prefixCls}--text`);
 </script>
 
 <div class={baseCls} {...$$restProps} {...attrs}>
 	{#each maxNumbers as item}
 		<span
 			class={itemCls}
-			on:mousemove={() => setCurrentValue(item)}
+			aria-hidden="true"
+			on:mousemove={(event) => setCurrentValue(item, event)}
 			on:mouseleave={resetCurrentValue}
 			on:click={handleUpdateValue}
 		>
 			{#if !showDecimalIcon(item)}
 				{#if item <= currentValue}
-					<KIcon icon={activeIcon} width={iconSize} height={iconSize} color={activeColor}></KIcon>
-				{:else}
 					<KIcon
-						icon={rateDisabled ? disableVoidIcon : voidIcon}
+						icon={activeIcon}
 						width={iconSize}
 						height={iconSize}
-						color={rateDisabled ? disableVoidColor : voidColor}
+						style="background: {activeColor};"
+					></KIcon>
+				{:else}
+					<KIcon
+						icon={disabled ? disableVoidIcon : voidIcon}
+						width={iconSize}
+						height={iconSize}
+						style="background: {disabled ? disableVoidColor : voidColor}"
 					></KIcon>
 				{/if}
 			{:else}
 				<KIcon
-					cls={decimalIconLeftCls}
+					cls="decimal"
 					icon={decimalIcon}
 					width={iconSize}
 					height={iconSize}
-					color={decimalActiveColor}
-					attrs={{
-						style: `width: ${valueDecimalLeftWidth}px`
-					}}
-				></KIcon>
-				<KIcon
-					cls={decimalIconRightCls}
-					icon={decimalIcon}
-					width="0px"
-					height={iconSize}
-					color={decimalVoidColor}
-					attrs={{
-						style: `width: ${valueDecimalRightWidth}px`
-					}}
+					style="background: {decimalBackground}"
 				></KIcon>
 			{/if}
 		</span>
 	{/each}
 	{#if (showText || showScore) && text}
-		<span class={textCls} style={`color: ${textColor}`}>{text}</span>
+		<span class={textCls} style:color={textColor}>{text}</span>
 	{/if}
 </div>

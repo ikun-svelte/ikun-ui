@@ -1,8 +1,10 @@
 /// <reference types="svelte" />
+import { ClassValue } from 'clsx';
+
 export type KRateProps = {
 	max: number;
 	value: number;
-	// allowHalf: boolean;
+	allowHalf: boolean;
 	showScore: boolean;
 	scoreTemplate: string;
 	showText: boolean;
@@ -15,7 +17,7 @@ export type KRateProps = {
 	disabled: boolean;
 	disableVoidIcon: string;
 	disableVoidColor: string;
-	// clearable: boolean;
-	cls: string;
+	clearable: boolean;
+	cls: ClassValue;
 	attrs: Record<string, string>;
 };
