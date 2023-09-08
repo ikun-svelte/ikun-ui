@@ -71,19 +71,20 @@ describe('Test: KRate', () => {
 	});
 
 	test('props: scoreTemplate', async () => {
-		const value = 3;
-		const showScore = true;
-		const scoreTemplate = 'this is {value}';
 		const instance = new KRate({
 			target: host,
 			props: {
-				value,
-				showScore,
-				scoreTemplate
+				value: 3,
+				allowHalf: true,
+				showScore: true,
+				scoreTemplate: 'the score is {value} points'
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.querySelector('.k-rate--text')?.textContent).toBe(`this is ${value}`);
+		expect(host.querySelector('.k-rate--text')?.textContent).toBe('the score is 3 points');
+		instance.$set({ value: 4.5 });
+		await tick();
+		expect(host.querySelector('.k-rate--text')?.textContent).toBe('the score is 4.5 points');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
