@@ -1,6 +1,6 @@
+import { tick } from 'svelte';
 import { afterEach, expect, test, describe, beforeEach } from 'vitest';
 import KRate from '../src';
-import { tick } from 'svelte';
 
 let host: HTMLElement;
 
@@ -131,7 +131,7 @@ describe('Test: KRate', () => {
 	test('props: showText and textColor', async () => {
 		const showText = true;
 		const texts = 'the text';
-		const textColor = 'color-red';
+		const textColor = 'red';
 		const instance = new KRate({
 			target: host,
 			props: {
@@ -141,7 +141,7 @@ describe('Test: KRate', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes(textColor)).toBeTruthy();
+		expect(host.querySelector('.k-rate--text').style.color).toBe(textColor);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -186,7 +186,7 @@ describe('Test: KRate', () => {
 
 	test('props: colors is string', async () => {
 		const value = 3;
-		const colors = 'color-test';
+		const colors = 'red';
 		const instance = new KRate({
 			target: host,
 			props: {
@@ -195,15 +195,18 @@ describe('Test: KRate', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes(colors)).toBeTruthy();
+		const stars = host.querySelectorAll('.k-rate--item');
+		expect(stars[0].children[0].style.background).toBe(colors);
+		expect(stars[1].children[0].style.background).toBe(colors);
+		expect(stars[2].children[0].style.background).toBe(colors);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
 	test('props: colors is object', async () => {
 		const value = 1;
 		const colors = {
-			2: 'color-2',
-			4: 'color-4'
+			2: 'red',
+			4: 'blue'
 		};
 		const instance = new KRate({
 			target: host,
@@ -213,13 +216,14 @@ describe('Test: KRate', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.querySelectorAll(`.${colors[2]}`).length).toBe(value);
+		const stars = host.querySelectorAll('.k-rate--item');
+		expect(stars[0].children[0].style.background).toBe('red');
 		instance.$set({ value: 3 });
 		await tick();
-		expect(host.querySelectorAll(`.${colors[4]}`).length).toBe(3);
+		expect(stars[2].children[0].style.background).toBe('blue');
 		instance.$set({ value: 5 });
 		await tick();
-		expect(host.querySelectorAll(`.${colors[4]}`).length).toBe(5);
+		expect(stars[4].children[0].style.background).toBe('blue');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -240,7 +244,7 @@ describe('Test: KRate', () => {
 
 	test('props: voidColor', async () => {
 		const value = 3;
-		const voidColor = 'color-void';
+		const voidColor = 'green';
 		const instance = new KRate({
 			target: host,
 			props: {
@@ -249,7 +253,9 @@ describe('Test: KRate', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.querySelectorAll(`.${voidColor}`).length).toBe(2);
+		const stars = host.querySelectorAll('.k-rate--item');
+		expect(stars[2].children[0].style.background).not.toBe(voidColor);
+		expect(stars[3].children[0].style.background).toBe(voidColor);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -283,7 +289,7 @@ describe('Test: KRate', () => {
 
 	test('props: disableVoidColor', async () => {
 		const value = 3;
-		const disableVoidColor = 'color-disabled-void';
+		const disableVoidColor = '#ff00f0';
 		const instance = new KRate({
 			target: host,
 			props: {
@@ -293,7 +299,9 @@ describe('Test: KRate', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.querySelectorAll(`.${disableVoidColor}`).length).toBe(2);
+		const stars = host.querySelectorAll('.k-rate--item');
+		expect(stars[2].children[0].style.background).not.toBe('rgb(255, 0, 240)');
+		expect(stars[3].children[0].style.background).toBe('rgb(255, 0, 240)');
 		expect(host.innerHTML).matchSnapshot();
 	});
 });
