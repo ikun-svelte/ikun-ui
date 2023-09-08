@@ -13,33 +13,60 @@
 	// updateValue
 	const dispatch = createEventDispatcher();
 
+	// 获取上下文
 	const checkboxContext = getContext<{
-		setCheckboxMap: (key: string, v: string) => void;
+		setCheckboxMap: (key: string, v: {
+			label: string,
+			update: (v: string[] | number[]) => void
+		}) => void;
 		value: string[] | number[];
 		disabled: boolean
+		handleUpdated: (key: string, v: {
+			label: string,
+			update: (v: string[] | number[]) => void
+		}) => void;
 	}>(checkboxGroupKey);
 
+	// 设置 disabled
 	$: isDisabled = disabled || checkboxContext && checkboxContext.disabled
+
+	// 根据 checkboxContext.value  或 value 来设置 valueInner
 	let valueInner = checkboxContext ? hasLabel() : value
 	$: if(!isDisabled){
 		valueInner = checkboxContext ? hasLabel() : value
 		setAnimate()
 	}
+	// 注册 checkboxMap
+	checkboxContext && checkboxContext.setCheckboxMap(label, { label, update: handleUpdateValueFromGroup })
 
-	function hasLabel(){
-		return checkboxContext.value.some(v => {
+	function hasLabel(v?: string[] | number[]){
+		return (v || checkboxContext.value).some(v => {
 			return v.toString() === label
 		})
 	}
 
 	let classChecking = '';
-	const handleUpdateValue = () => {
+	function handleUpdateValue() {
 		if (isDisabled) return;
 		valueInner = !valueInner
-		checkboxContext && checkboxContext.setCheckboxMap(label, valueInner ? label : '')
+		// 更新 checkboxGroup valueInner
+		checkboxContext && checkboxContext.handleUpdated(
+				label, {
+					label: valueInner ? label : '',
+					update: handleUpdateValueFromGroup
+				})
 		dispatch('updateValue', valueInner);
 		setAnimate()
-	};
+	}
+
+	/**
+	 * 同步从 checkbox group valueInner 变化
+	 * @param v
+	 */
+	function handleUpdateValueFromGroup(v: string[] | number[]) {
+		valueInner = hasLabel(v)
+		setAnimate()
+	}
 
 	function setAnimate(){
 		classChecking = 'animate-ikun-checking';
