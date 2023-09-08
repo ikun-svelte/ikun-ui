@@ -10,5 +10,5 @@ export const rateShortcuts: Record<string, string> = {
 	'k-rate--item__not-disabled': 'cursor-pointer',
 
 	// text
-	'k-rate--text': 'ml-6px'
+	'k-rate--text': 'ml-6px text-10px line-height-1'
 };

@@ -9,4 +9,6 @@
 	};
 </script>
 
-<KRate {value} {icons} {colors} on:updateValue={onUpdateValue}></KRate>
+<div class="fcc">
+	<KRate {value} {icons} {colors} on:updateValue={onUpdateValue}></KRate>
+</div>

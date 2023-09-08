@@ -82,7 +82,7 @@
 		};
 	}
 
-	const setCurrentValue = (value: number, event: MouseEvent) => {
+	const setCurrentValue = (index: number, event: MouseEvent) => {
 		if (disabled) {
 			return;
 		}
@@ -90,9 +90,9 @@
 			let target = event.target as HTMLElement;
 			pointerAtLeftHalf = event.offsetX * 2 <= target.clientWidth;
 			valueDecimal = pointerAtLeftHalf ? 50 : originValueDecimal;
-			currentValue = pointerAtLeftHalf ? value - 0.5 : value;
+			currentValue = pointerAtLeftHalf ? index - 0.5 : index;
 		} else {
-			resetOrigin();
+			resetOrigin(index);
 		}
 	};
 
@@ -103,12 +103,12 @@
 		resetOrigin();
 	};
 
-	const resetOrigin = () => {
+	const resetOrigin = (index?: number) => {
 		if (allowHalf) {
 			pointerAtLeftHalf = originPointerHalf;
 		}
 		valueDecimal = originValueDecimal;
-		currentValue = value;
+		currentValue = index || value;
 	};
 
 	let iconsMap: Record<number, string>;

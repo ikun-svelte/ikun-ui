@@ -2,10 +2,8 @@
 	import { KRate } from '@ikun-ui/rate';
 
 	let value = 3;
-	const colors = { 2: 'color-blue', 4: 'color-green', 5: 'color-red' };
-	const onUpdateValue = (e) => {
-		value = e.detail;
-	};
+	const colors = { 2: 'blue', 4: 'green', 5: 'red' };
+	const onUpdateValue = (e) => (value = e.detail);
 </script>
 
 <div class="fcc">
