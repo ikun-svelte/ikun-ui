@@ -7,8 +7,8 @@
 	export let value: number = 0;
 	export let step: number = 1;
 	export let disabled: boolean = false;
-	export let attrs = {};
-	export let cls: ClassValue = '';
+	export let attrs: Record<string, string> = {};
+	export let cls: ClassValue = undefined;
 
 	// current value
 	let isDragging: boolean = false;
@@ -96,14 +96,17 @@
 		window.removeEventListener('mouseup', onDragEnd);
 	};
 
-	$: cnames = clsx(cls);
+	$: cnames = clsx('k-slider--base', cls);
+	$: sliderRunwayCls = clsx('k-slider--runway', {
+		'k-cur-disabled': disabled
+	});
 </script>
 
 <div class="w-full flex">
-	<div {...attrs} class="k-slider--base {cnames}">
+	<div {...attrs} class={cnames}>
 		<div
 			bind:this={sliderRunwayRef}
-			class="k-slider--runway {disabled ? 'k-cur-disabled' : ''}"
+			class={sliderRunwayCls}
 			aria-hidden="true"
 			on:mousedown={handleRunwayClick}
 		>
@@ -112,7 +115,7 @@
 				class="k-slider--button-wrapper"
 				aria-hidden="true"
 				on:mousedown={handleMouseDown}
-				style="left: {percentage};"
+				style:left={percentage}
 			>
 				{#if $$slots.buttonRender}
 					<slot name="buttonRender" />

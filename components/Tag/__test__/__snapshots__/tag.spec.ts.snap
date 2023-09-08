@@ -1,5 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KTag > props: type 1`] = `"<span class=\\"k-tag--base k-tag--primary  \\" aria-hidden=\\"true\\" style=\\"\\">  </span><span class=\\"k-tag--base k-tag--info  \\" aria-hidden=\\"true\\" style=\\"\\">  </span><span class=\\"k-tag--base k-tag--warning  \\" aria-hidden=\\"true\\" style=\\"\\">  </span><span class=\\"k-tag--base k-tag--error  \\" aria-hidden=\\"true\\" style=\\"\\">  </span><span class=\\"k-tag--base k-tag--success  \\" aria-hidden=\\"true\\" style=\\"\\">  </span>"`;
+exports[`Test: KTag > props: type 1`] = `"<span class=\\"k-tag--base k-tag--primary\\" aria-hidden=\\"true\\" style=\\"\\">  </span><span class=\\"k-tag--base k-tag--info\\" aria-hidden=\\"true\\" style=\\"\\">  </span><span class=\\"k-tag--base k-tag--warning\\" aria-hidden=\\"true\\" style=\\"\\">  </span><span class=\\"k-tag--base k-tag--error\\" aria-hidden=\\"true\\" style=\\"\\">  </span><span class=\\"k-tag--base k-tag--success\\" aria-hidden=\\"true\\" style=\\"\\">  </span>"`;
 
-exports[`Test: KTag > slot: default 1`] = `"<span class=\\"k-tag--base k-tag--primary  \\" aria-hidden=\\"true\\" style=\\"\\"> <span>KTag</span> </span>"`;
+exports[`Test: KTag > slot: default 1`] = `"<span class=\\"k-tag--base k-tag--primary\\" aria-hidden=\\"true\\" style=\\"\\"> <span>KTag</span> </span>"`;

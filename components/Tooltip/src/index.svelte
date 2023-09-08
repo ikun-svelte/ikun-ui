@@ -6,8 +6,8 @@
 	export let placement: IKunPlacement = 'top';
 	// hover click manual
 	export let trigger: IKunTrigger = 'hover';
-	export let cls: ClassValue = '';
-	export let attrs = {};
+	export let cls: ClassValue = undefined;
+	export let attrs: Record<string, string> = {};
 	export let content = '';
 
 	$: cnames = clsx(cls);

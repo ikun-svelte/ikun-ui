@@ -11,7 +11,7 @@
 	export let disabled: KInputProps['disabled'] = false;
 	export let iconPrefix: KInputProps['iconPrefix'] = '';
 	export let iconSuffix: KInputProps['iconSuffix'] = '';
-	export let cls: KInputProps['cls'] = '';
+	export let cls: KInputProps['cls'] = undefined;
 	export let attrs: KInputProps['attrs'] = {};
 	export let useCompositionInput: KInputProps['useCompositionInput'] = false;
 

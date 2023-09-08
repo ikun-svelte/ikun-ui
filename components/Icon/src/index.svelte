@@ -9,7 +9,7 @@
 	export let width: KIconProps['width'] = '24px';
 	export let height: KIconProps['height'] = '24px';
 	export let color: KIconProps['color'] = '';
-	export let cls: KIconProps['cls'] = '';
+	export let cls: KIconProps['cls'] = undefined;
 	export let attrs: KIconProps['attrs'] = {};
 
 	$: tag = btn ? 'button' : '';

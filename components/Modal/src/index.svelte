@@ -8,8 +8,8 @@
 	import { clsx, type ClassValue } from 'clsx';
 
 	export let show = false;
-	export let attrs = {};
-	export let cls: ClassValue = '';
+	export let attrs: Record<string, string> = {};
+	export let cls: ClassValue = undefined;
 	export let title = '';
 	export let footer = false;
 	// center、right
@@ -31,14 +31,15 @@
 		close();
 	};
 
-	$: cnames = clsx(cls);
+	$: cnames = clsx('k-modal--base k-modal--base__dark', cls);
+	$: footerCls = clsx('k-modal--footer', layout === 'center' ? 'justify-center' : 'justify-end');
 </script>
 
 <KClientOnly>
 	<KMask value={showInner} target={document.body}>
 		<div
 			{...attrs}
-			class="k-modal--base k-modal--base__dark {cnames}"
+			class={cnames}
 			out:fly={{ y: -30, duration: 300 }}
 			in:fly={{ y: -30, duration: 300 }}
 		>
@@ -55,7 +56,7 @@
 			</div>
 			{#if footer}
 				<slot name="footer">
-					<div class="k-modal--footer {layout === 'center' ? 'justify-center' : 'justify-end'}">
+					<div class={footerCls}>
 						<KButton cls="k-modal--footer--btn" on:click={cancel} type="info">Cancel</KButton>
 						<KButton cls="k-modal--footer--btn" on:click={confirm} type="primary">Confirm</KButton>
 					</div>

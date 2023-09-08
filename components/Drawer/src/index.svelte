@@ -8,11 +8,13 @@
 
 	export let placement: 'right' | 'left' = 'right';
 	export let value = false;
-	export let cls: ClassValue = '';
-	export let attrs = {};
+	export let cls: ClassValue = undefined;
+	export let attrs: Record<string, string> = {};
 	export let header = true;
 
 	$: cnames = clsx(cls);
+	$: maskCls = clsx('k-drawer--base k-drawer--base__dark', isRight ? 'right-0' : 'left-0', cnames);
+	$: headerCls = clsx('k-drawer--op', isRight ? 'justify-start' : 'justify-end');
 
 	const dispatch = createEventDispatcher();
 
@@ -26,14 +28,14 @@
 <KClientOnly>
 	<KMask target={document.body} {value}>
 		<div
-			class="k-drawer--base k-drawer--base__dark {isRight ? 'right-0' : 'left-0'} {cnames}"
+			class={maskCls}
 			{...attrs}
 			out:fly={{ duration: 250, x: isRight ? 200 : -200 }}
 			in:fly={{ duration: 250, x: isRight ? 200 : -200 }}
 		>
 			{#if header}
 				<slot name="header">
-					<div class="k-drawer--op {isRight ? 'justify-start' : 'justify-end'}">
+					<div class={headerCls}>
 						<KIcon
 							icon={isRight ? 'i-carbon-chevron-right' : 'i-carbon-chevron-left'}
 							color="hover:text-main"

@@ -11,8 +11,8 @@
 	export let border: boolean = false;
 	export let closable: boolean = false;
 	export let closeIcon: string = 'i-carbon-close';
-	export let cls: ClassValue = '';
-	export let attrs = {};
+	export let cls: ClassValue = undefined;
+	export let attrs: Record<string, string> = {};
 
 	const dispatch = createEventDispatcher();
 
@@ -25,11 +25,17 @@
 		dispatch('close', event);
 	};
 
-	$: cnames = clsx(cls);
+	$: cnames = clsx(
+		`k-tag--base k-tag--${type}`,
+		{
+			[`k-tag--${type}__border`]: border
+		},
+		cls
+	);
 </script>
 
 <span
-	class="k-tag--base k-tag--{type} {border ? `k-tag--${type}__border` : ''} {cnames}"
+	class={cnames}
 	{...attrs}
 	aria-hidden="true"
 	style="background-color: {bgColor}; color: {textColor}"
@@ -37,7 +43,7 @@
 >
 	{#if icon}
 		<KIcon
-			cls="k-tag--icon {$$slots.default ? 'k-tag--icon__has-slot' : ''}"
+			cls={['k-tag--icon__has-slot', { 'k-tag--icon__has-slot': $$slots.default }]}
 			{icon}
 			width="0.8rem"
 			height="0.8rem"

@@ -15,7 +15,7 @@
 	export let format: KProgressProps['format'] = null;
 	export let duration: KProgressProps['duration'] = 0.28;
 	export let showText: KProgressProps['showText'] = true;
-	export let cls: KProgressProps['cls'] = '';
+	export let cls: KProgressProps['cls'] = undefined;
 	export let attrs: KProgressProps['attrs'] = {};
 
 	$: if (percentage >= 100) {
