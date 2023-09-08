@@ -41,13 +41,6 @@ const popoverRules = {
 	'k-popover-shadow__right': { 'box-shadow': '-10px 0px 16px rgb(0 0 0 / 0.25)' }
 };
 
-const rateRules = {
-	'k-rate-ms-x': { 'mask-size': 'auto 100%', '-webkit-mask-size': 'auto 100%' },
-	'k-rate-ms-y': { 'mask-size': '100% auto', '-webkit-mask-size': '100% auto' },
-	'k-rate-msp-l': { 'mask-position': 'left', '-webkit-mask-position': 'left' },
-	'k-rate-msp-r': { 'mask-position': 'right', '-webkit-mask-position': 'right' }
-};
-
 // 自定義的原子樣式規則
 export const defaultRules = {
 	...inputRules,
@@ -56,8 +49,7 @@ export const defaultRules = {
 	...notifyRules,
 	...switchRules,
 	...progressRules,
-	...popoverRules,
-	...rateRules
+	...popoverRules
 } as Record<string, any>;
 
 export const setMainColorToRules = <T>(

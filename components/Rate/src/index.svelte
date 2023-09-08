@@ -14,14 +14,14 @@
 	// showText will cover showScore
 	export let showText: KRateProps['showText'] = false;
 	export let texts: KRateProps['texts'] = '';
-	export let textColor: KRateProps['textColor'] = '#303133';
+	export let textColor: KRateProps['textColor'] = 'var(--ikun-zinc-500)';
 	export let icons: KRateProps['icons'] = 'i-carbon-star-filled';
-	export let colors: KRateProps['colors'] = '#f7ba2a';
+	export let colors: KRateProps['colors'] = 'var(--ikun-amber-500)';
 	export let voidIcon: KRateProps['voidIcon'] = 'i-carbon-star';
-	export let voidColor: KRateProps['voidColor'] = '#cdd0d6';
+	export let voidColor: KRateProps['voidColor'] = 'var(--ikun-stone-300)';
 	export let disabled: KRateProps['disabled'] = false;
 	export let disableVoidIcon: KRateProps['disableVoidIcon'] = 'i-carbon-star-filled';
-	export let disableVoidColor: KRateProps['disableVoidColor'] = '#f0f2f5';
+	export let disableVoidColor: KRateProps['disableVoidColor'] = 'var(--ikun-light-700)';
 	export let clearable: KRateProps['clearable'] = false;
 	export let cls: KRateProps['cls'] = undefined;
 	export let attrs: KRateProps['attrs'] = {};
@@ -178,7 +178,6 @@
 				{/if}
 			{:else}
 				<KIcon
-					cls="decimal"
 					icon={decimalIcon}
 					width={iconSize}
 					height={iconSize}
