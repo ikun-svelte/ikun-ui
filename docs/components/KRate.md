@@ -45,6 +45,12 @@ Add attribute `showText` to display text at the right of Rate. You can assign `t
 
 <demo src="../../../../example/rate/with-text.svelte" github='Rate'></demo>
 
+## ShowScore and ScoreTemplate
+
+Add attribute `showScore` to display score at the right of Rate. You can customize score display by set `scoreTemplate`, which is a string and internally uses `{value}` to represent the score.
+
+<demo src="../../../../example/rate/score-template.svelte" github='Rate'></demo>
+
 ## Clearable
 
 You can reset the value to `0` when you click at the same value again.
