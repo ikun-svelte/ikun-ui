@@ -54,7 +54,7 @@ Link with icon
 | Name      | Type                                                             | Default   | Description                         |
 | --------- | ---------------------------------------------------------------- | --------- | ----------------------------------- |
 | type      | `primary` / `success` / `error` / `warning` / `info` / `default` | `default` | Button type                         |
-| underline | `boolean`                                                        | `false`   | whether the component has underline |
+| underline | `boolean`                                                        | `true`    | whether the component has underline |
 | disabled  | `boolean`                                                        | `false`   | whether the component is disabled   |
 | href      | `string`                                                         | `-`       | same as native hyperlink's href     |
 | icon      | `string`                                                         | `-`       | link's icon                         |
