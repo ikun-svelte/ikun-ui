@@ -18,6 +18,7 @@
       updateCheckBoxValue()
   }
 
+
   // value 值变化，更新 checkbox 组件
  const updateCheckBoxValue = () => {
      (Array.from(checkboxMap.values()) as checkboxMapValue[])
@@ -25,7 +26,7 @@
  }
   // updateValue
   const dispatch = createEventDispatcher();
-  const checkboxMap:checkboxMapType = new Map()
+  const checkboxMap:checkboxMapType<checkboxMapValue> = new Map()
 
   // 设置 checkboxMap，由 checkbox 组件调用，
   const setCheckboxMap = (key: string, v: checkboxMapValue) => {

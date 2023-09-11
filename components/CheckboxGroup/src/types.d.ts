@@ -7,4 +7,4 @@ export type KCheckboxGroupProps = {
 	attrs: Record<string, string>;
 };
 
-export type checkboxMapType = Map<string, string>;
+export type checkboxMapType<T> = Map<string, T>;
