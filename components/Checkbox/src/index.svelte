@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {createEventDispatcher, getContext} from 'svelte';
+	import { createEventDispatcher, getContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	import { clsx, type ClassValue } from 'clsx';
@@ -10,70 +10,52 @@
 	export let cls: ClassValue = undefined;
 	export let attrs: Record<string, string> = {};
 	export let label = '';
+	export let uid: string | number = '';
 	// updateValue
 	const dispatch = createEventDispatcher();
 
-	// 获取上下文
-	const checkboxContext = getContext<{
-		setCheckboxMap: (key: string, v: {
-			label: string,
-			update: (v: string[] | number[]) => void
-		}) => void;
-		value: string[] | number[];
-		disabled: boolean
-		handleUpdated: (key: string, v: {
-			label: string,
-			update: (v: string[] | number[]) => void
-		}) => void;
-	}>(checkboxGroupKey);
-
-	// 设置 disabled
-	$: isDisabled = disabled || checkboxContext && checkboxContext.disabled
-
-	// 根据 checkboxContext.value  或 value 来设置 valueInner
-	let valueInner = checkboxContext ? hasLabel() : value
-	$: if(!isDisabled){
-		valueInner = checkboxContext ? hasLabel() : value
-		setAnimate()
+	let valueInner = value;
+	$: if(value !== valueInner && !uid){
+		valueInner = value
 	}
-	// 注册 checkboxMap
-	checkboxContext && checkboxContext.setCheckboxMap(label, { label, update: handleUpdateValueFromGroup })
-
-	function hasLabel(v?: string[] | number[]){
-		return (v || checkboxContext.value).some(v => {
-			return v.toString() === label
-		})
-	}
-
 	let classChecking = '';
-	function handleUpdateValue() {
-		if (isDisabled) return;
-		valueInner = !valueInner
-		// 更新 checkboxGroup valueInner
-		checkboxContext && checkboxContext.handleUpdated(
-				label, {
-					label: valueInner ? label : '',
-					update: handleUpdateValueFromGroup
-				})
-		dispatch('updateValue', valueInner);
-		setAnimate()
+
+	const ctx = getContext(checkboxGroupKey) as {
+		registerCheckbox: (
+				uid: string | number,
+				op: {
+					doUpdatedValue: (v: boolean, inner?:boolean) => void,
+				}
+		) => void
+		updatedValueWhenCheckboxChange: (v: boolean, uid: string | number) => void
 	}
 
-	/**
-	 * 同步从 checkbox group valueInner 变化
-	 * @param v
-	 */
-	function handleUpdateValueFromGroup(v: string[] | number[]) {
-		valueInner = hasLabel(v)
-		setAnimate()
-	}
+	const handleUpdateValue = () => {
+		if (disabled) return;
+		doUpdatedValue(!valueInner, true)
+		!uid && dispatch('updateValue', valueInner);
+	};
 
-	function setAnimate(){
+	const doUpdatedValue = (v: boolean, inner: boolean = false) => {
+		valueInner = v
 		classChecking = 'animate-ikun-checking';
 		setTimeout(() => {
 			classChecking = '';
 		}, 300);
+		if(uid && ctx && inner){
+			ctx.updatedValueWhenCheckboxChange(v, uid)
+		}
 	}
+
+	function doRegisterCheckbox() {
+		if(uid && ctx){
+			// 注册 checkbox
+			ctx.registerCheckbox(uid, {
+				doUpdatedValue
+			})
+		}
+	}
+	doRegisterCheckbox()
 
 	// class
 	const prefixCls = getPrefixCls('checkbox');
@@ -81,7 +63,7 @@
 		`${prefixCls}--base`,
 		`${prefixCls}--base__dark`,
 		{
-			[`k-cur-disabled`]: isDisabled
+			[`k-cur-disabled`]: disabled
 		},
 		cls
 	);
@@ -89,19 +71,19 @@
 	$: boxCls = clsx(
 		`${prefixCls}--box`,
 		{
-			[`bg-ikun-main border-ikun-main`]: valueInner && !isDisabled,
-			[`${prefixCls}--box__disabled`]: isDisabled
+			[`bg-ikun-main border-ikun-main`]: valueInner && !disabled,
+			[`${prefixCls}--box__disabled`]: disabled
 		},
 		classChecking
 	);
 
 	$: labelCls = clsx(`${prefixCls}--label`, {
-		[`text-ikun-main`]: valueInner && !isDisabled
+		[`text-ikun-main`]: valueInner && !disabled
 	});
 </script>
 
 <label class={cnames} {...attrs}>
-	<input value={valueInner} disabled={isDisabled} type="checkbox" on:change={handleUpdateValue} hidden />
+	<input value={valueInner} {disabled} type="checkbox" on:change={handleUpdateValue} hidden />
 	<div class={boxCls}>
 		{#if valueInner}
 			<div out:fade={{ duration: 200 }} in:fade={{ duration: 200 }}>

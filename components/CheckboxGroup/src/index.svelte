@@ -1,66 +1,84 @@
 <script lang="ts">
   import { checkboxGroupKey, getPrefixCls} from '@ikun-ui/utils';
   import { clsx } from 'clsx';
-  import type { KCheckboxGroupProps, checkboxMapType } from "./types";
+  import type {KCheckboxGroupProps, checkboxMapType} from "./types";
   import {createEventDispatcher, setContext} from "svelte";
+  import { jsonClone } from "baiwusanyu-utils";
+
   export let disabled:KCheckboxGroupProps["disabled"] = false;
+  // 与 checkbox uid 对应
   export let value:KCheckboxGroupProps["value"] = [];
   export let cls: KCheckboxGroupProps["cls"] = undefined;
   export let attrs: KCheckboxGroupProps["attrs"] = {};
-
-  interface checkboxMapValue {
-      label: string,
-      update: (v: string[] | number[]) => void
-  }
-  let valueInner = value
-  $: if(!disabled && valueInner.join() !== value.join()){
-      valueInner = value
-      updateCheckBoxValue()
-  }
-
-
-  // value 值变化，更新 checkbox 组件
- const updateCheckBoxValue = () => {
-     (Array.from(checkboxMap.values()) as checkboxMapValue[])
-         .forEach((v: checkboxMapValue) => v.update && v.update(valueInner))
- }
   // updateValue
   const dispatch = createEventDispatcher();
-  const checkboxMap:checkboxMapType<checkboxMapValue> = new Map()
+  const checkboxMap: checkboxMapType = new Map()
 
-  // 设置 checkboxMap，由 checkbox 组件调用，
-  const setCheckboxMap = (key: string, v: checkboxMapValue) => {
-      if(disabled){
-          return
+  let valueInner = value
+  $: if(valueInner !== value){
+     // 当 checkbox group 变化时，同步 value 到 checkbox
+      valueInner.forEach((v: string | number) => {
+          setCheckBoxValue(v.toString())
+      })
+      if(valueInner.length === 0){
+          value.forEach((v: string | number) => {
+              setCheckBoxValue(v.toString())
+          })
       }
-      checkboxMap.set(key, v)
-  };
-
-  // 更新 value
-  const handleUpdated = (key: string, v: checkboxMapValue) => {
-      checkboxMap.set(key, v)
-      valueInner = (Array.from(checkboxMap.values()) as checkboxMapValue[])
-          .map((v: checkboxMapValue) => v.label)
-          .filter((v: string ) => v)
-      dispatch('updateValue', valueInner);
+      valueInner = value
   }
 
+  // 注册 checkbox
+  const registerCheckbox = (
+      uid: string | number,
+      op: {
+          doUpdatedValue: (v: boolean, inner?:boolean) => void,
+      }) => {
+      checkboxMap.set(uid, op)
+      // 根据 checkbox group 值，设置 checkbox
+      setCheckBoxValue(uid.toString())
+  }
 
-  // ✅ disabled 时可以初始化值
-  // ✅  disabled 时value 变化 ，不能 change 所有checkbox值
+  // 根据 checkbox group 值，设置 checkbox
+  const setCheckBoxValue = (uid: string) => {
+      const cbMapItem = checkboxMap.get(uid)
+      if(cbMapItem){
+          const cbMapItemDoUpdated = cbMapItem.doUpdatedValue
+          let res = value.some((v: string | number) => {
+              return v.toString() === uid
+          })
+          cbMapItemDoUpdated(res)
+      }
+  }
+
+  // 当 checkbox 变化时， 更新 checkboxGroup 值
+  const updatedValueWhenCheckboxChange = (status: boolean, uid: string | number) => {
+      let finalValue = jsonClone(value)
+      if(status){
+          finalValue.push(uid)
+          finalValue = [...new Set([...finalValue])]
+      }else{
+          finalValue = finalValue.filter((v: string | number) => v !== uid)
+      }
+      valueInner = value
+      dispatch('updateValue', finalValue);
+  }
+  // TODO disabled 时可以初始化值
+  // TODO disabled 时value 变化 ，不能 change 所有checkbox值
   // TODO disabled 变化时，值时 value 最新值
-  // ✅ 非 disabled 时，value 变化 , change 所有checkbox值
+
+  // ✅ disabled 时，value 变化 , change 所有checkbox值
   // ✅ 非 disabled 时，可以初始值
-  // ✅ checkbox 有一个值变化时，则触发 group 值
+  // ✅ 非 disabled 时，checkbox 有一个值变化时，则触发 group 值
   setContext(checkboxGroupKey, {
       // 传递给 checkbox 组件，注册 checkbox
-      setCheckboxMap,
+      registerCheckbox,
       // 传递给 checkbox 组件， 设置初始值
-      value: valueInner,
-      // 传递给 checkbox 组件， 设置禁用
-      disabled,
-      // 传递给 checkbox 组件， 更新 checkboxGroup valueInner
-      handleUpdated
+     // value: valueInner,
+     // // 传递给 checkbox 组件， 设置禁用
+     // disabled,
+     // 传递给 checkbox 组件， 更新 checkboxGroup valueInner
+      updatedValueWhenCheckboxChange
   });
 
   const prefixCls = getPrefixCls('checkbox-group');

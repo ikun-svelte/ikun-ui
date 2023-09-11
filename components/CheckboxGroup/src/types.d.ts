@@ -7,4 +7,8 @@ export type KCheckboxGroupProps = {
 	attrs: Record<string, string>;
 };
 
-export type checkboxMapType<T> = Map<string, T>;
+interface checkboxMapItem {
+	doUpdatedValue: (v: boolean, inner?:boolean) => void,
+}
+
+export type checkboxMapType = Map<string, checkboxMapItem>;
