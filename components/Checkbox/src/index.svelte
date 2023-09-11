@@ -24,19 +24,31 @@
 		registerCheckbox: (
 				uid: string | number,
 				op: {
-					doUpdatedValue: (v: boolean, inner?:boolean) => void,
+					doUpdatedValue: (
+							v: boolean,
+							inner?:boolean) => void,
+					setDisabled: (v: boolean) => void
 				}
 		) => void
+		disabled: boolean
 		updatedValueWhenCheckboxChange: (v: boolean, uid: string | number) => void
 	}
 
+	$: isDisabled = ctx.disabled || disabled
+	function setDisabled( v: boolean) {
+		isDisabled = v
+	}
+
 	const handleUpdateValue = () => {
-		if (disabled) return;
+		if (isDisabled) return;
 		doUpdatedValue(!valueInner, true)
 		!uid && dispatch('updateValue', valueInner);
 	};
 
-	const doUpdatedValue = (v: boolean, inner: boolean = false) => {
+	const doUpdatedValue = (
+			v: boolean,
+			inner: boolean = false
+	) => {
 		valueInner = v
 		classChecking = 'animate-ikun-checking';
 		setTimeout(() => {
@@ -51,7 +63,8 @@
 		if(uid && ctx){
 			// 注册 checkbox
 			ctx.registerCheckbox(uid, {
-				doUpdatedValue
+				doUpdatedValue,
+				setDisabled
 			})
 		}
 	}
@@ -63,7 +76,7 @@
 		`${prefixCls}--base`,
 		`${prefixCls}--base__dark`,
 		{
-			[`k-cur-disabled`]: disabled
+			[`k-cur-disabled`]: isDisabled
 		},
 		cls
 	);
@@ -71,19 +84,19 @@
 	$: boxCls = clsx(
 		`${prefixCls}--box`,
 		{
-			[`bg-ikun-main border-ikun-main`]: valueInner && !disabled,
-			[`${prefixCls}--box__disabled`]: disabled
+			[`bg-ikun-main border-ikun-main`]: valueInner && !isDisabled,
+			[`${prefixCls}--box__disabled`]: isDisabled
 		},
 		classChecking
 	);
 
 	$: labelCls = clsx(`${prefixCls}--label`, {
-		[`text-ikun-main`]: valueInner && !disabled
+		[`text-ikun-main`]: valueInner && !isDisabled
 	});
 </script>
 
 <label class={cnames} {...attrs}>
-	<input value={valueInner} {disabled} type="checkbox" on:change={handleUpdateValue} hidden />
+	<input value={valueInner} disabled="{isDisabled}" type="checkbox" on:change={handleUpdateValue} hidden />
 	<div class={boxCls}>
 		{#if valueInner}
 			<div out:fade={{ duration: 200 }} in:fade={{ duration: 200 }}>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { checkboxGroupKey, getPrefixCls} from '@ikun-ui/utils';
   import { clsx } from 'clsx';
-  import type {KCheckboxGroupProps, checkboxMapType} from "./types";
+  import type {KCheckboxGroupProps, checkboxMapType, checkboxMapItem} from "./types";
   import {createEventDispatcher, setContext} from "svelte";
   import { jsonClone } from "baiwusanyu-utils";
 
@@ -14,27 +14,41 @@
   const dispatch = createEventDispatcher();
   const checkboxMap: checkboxMapType = new Map()
 
+  // value 变化 同步 checkbox value 值
   let valueInner = value
   $: if(valueInner !== value){
-     // 当 checkbox group 变化时，同步 value 到 checkbox
-      valueInner.forEach((v: string | number) => {
-          setCheckBoxValue(v.toString())
-      })
-      if(valueInner.length === 0){
-          value.forEach((v: string | number) => {
+      if(!disabled){
+          // 当 checkbox group 变化时，同步 value 到 checkbox
+          valueInner.forEach((v: string | number) => {
               setCheckBoxValue(v.toString())
           })
+          if(valueInner.length === 0){
+              value.forEach((v: string | number) => {
+                  setCheckBoxValue(v.toString())
+              })
+          }
+          valueInner = value
       }
-      valueInner = value
   }
 
+  // disable 变化 同步 checkbox disable 状态
+  let disabledInner = disabled
+  $: if(disabledInner !== disabled){
+      Array.from(checkboxMap.values()).forEach((m: checkboxMapItem) => {
+          m.setDisabled(disabled)
+      })
+      disabledInner = disabled
+  }
   // 注册 checkbox
   const registerCheckbox = (
       uid: string | number,
       op: {
-          doUpdatedValue: (v: boolean, inner?:boolean) => void,
+          doUpdatedValue: (
+              v: boolean,
+              inner?:boolean) => void,
+          setDisabled: (v: boolean) => void
       }) => {
-      checkboxMap.set(uid, op)
+      checkboxMap.set(uid.toString(), op)
       // 根据 checkbox group 值，设置 checkbox
       setCheckBoxValue(uid.toString())
   }
@@ -62,10 +76,11 @@
       }
       valueInner = value
       dispatch('updateValue', finalValue);
+
   }
-  // TODO disabled 时可以初始化值
-  // TODO disabled 时value 变化 ，不能 change 所有checkbox值
-  // TODO disabled 变化时，值时 value 最新值
+  // ✅ disabled 时可以初始化值
+  // ✅ disabled 时value 变化 ，不能 change 所有checkbox值
+  // ✅ disabled 变化时，值时 value 最新值
 
   // ✅ disabled 时，value 变化 , change 所有checkbox值
   // ✅ 非 disabled 时，可以初始值
@@ -73,10 +88,8 @@
   setContext(checkboxGroupKey, {
       // 传递给 checkbox 组件，注册 checkbox
       registerCheckbox,
-      // 传递给 checkbox 组件， 设置初始值
-     // value: valueInner,
-     // // 传递给 checkbox 组件， 设置禁用
-     // disabled,
+     // 传递给 checkbox 组件， 设置禁用
+     disabled,
      // 传递给 checkbox 组件， 更新 checkboxGroup valueInner
       updatedValueWhenCheckboxChange
   });
