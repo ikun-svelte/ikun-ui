@@ -16,7 +16,6 @@
 	const dispatch = createEventDispatcher();
 
 	const ctx = getContext(checkboxGroupKey) as checkboxGroupCtx;
-
 	let valueInner = value;
 	$: if (value !== valueInner && !ctx) {
 		valueInner = value;
@@ -32,7 +31,7 @@
 		if (isDisabled) return;
 		doUpdatedValue(!valueInner, true);
 		// Being in a checkbox group does not trigger it
-		ctx && dispatch('updateValue', valueInner);
+		!ctx && dispatch('updateValue', valueInner);
 	};
 
 	/**
