@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KCheckboxGroup > props: cls 1`] = `"<div class=\\"k-checkbox-group k-checkbox-group--base k-checkbox-group--test\\"></div>"`;
