@@ -1,12 +1,11 @@
 <script lang="ts">
+	import type { KCheckboxGroupProps, checkboxMapType, checkboxMapItem } from './types';
 	import { checkboxGroupKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KCheckboxGroupProps, checkboxMapType, checkboxMapItem } from './types';
 	import { createEventDispatcher, setContext } from 'svelte';
 	import { jsonClone } from 'baiwusanyu-utils';
 
 	export let disabled: KCheckboxGroupProps['disabled'] = false;
-	// 与 checkbox uid 对应
 	export let value: KCheckboxGroupProps['value'] = [];
 	export let cls: KCheckboxGroupProps['cls'] = undefined;
 	export let attrs: KCheckboxGroupProps['attrs'] = {};
@@ -14,11 +13,10 @@
 	const dispatch = createEventDispatcher();
 	const checkboxMap: checkboxMapType = new Map();
 
-	// value 变化 同步 checkbox value 值
+	// value changes synchronizes the value of the checkbox
 	let valueInner = value;
 	$: if (valueInner !== value) {
 		if (!disabled) {
-			// 当 checkbox group 变化时，同步 value 到 checkbox
 			valueInner.forEach((v: string | number) => {
 				setCheckBoxValue(v.toString());
 			});
@@ -33,7 +31,7 @@
 		}
 	}
 
-	// disable 变化 同步 checkbox disable 状态
+	// disable change synchronization checkbox disable status
 	let disabledInner = disabled;
 	$: if (disabledInner !== disabled) {
 		Array.from(checkboxMap.values()).forEach((m: checkboxMapItem) => {
@@ -41,20 +39,22 @@
 		});
 		disabledInner = disabled;
 	}
-	// 注册 checkbox
-	const registerCheckbox = (
-		uid: string | number,
-		op: {
-			doUpdatedValue: (v: boolean, inner?: boolean) => void;
-			setDisabled: (v: boolean) => void;
-		}
-	) => {
+
+	// Register checkbox
+	// Registration will only be called when the checkbox component is initialized
+	const registerCheckbox = (uid: string | number, op: checkboxMapItem) => {
 		checkboxMap.set(uid.toString(), op);
-		// 根据 checkbox group 值，设置 checkbox
+		// Immediately after registration is completed,
+		// the doUpdatedValue method provided by the checkbox component is executed.
+		// In this way, the value of checkbox is initialized based
+		// on the binding value of checkbox group.
 		setCheckBoxValue(uid.toString());
 	};
 
-	// 根据 checkbox group 值，设置 checkbox
+	/**
+	 * Set the value of checkbox based on the value of checkbox group
+	 * @param uid
+	 */
 	const setCheckBoxValue = (uid: string) => {
 		const cbMapItem = checkboxMap.get(uid);
 		if (cbMapItem) {
@@ -66,7 +66,11 @@
 		}
 	};
 
-	// 当 checkbox 变化时， 更新 checkboxGroup 值
+	/**
+	 * When checkbox changes, update checkboxGroup value
+	 * @param status
+	 * @param uid
+	 */
 	const updatedValueWhenCheckboxChange = (status: boolean, uid: string | number) => {
 		let finalValue = jsonClone(value);
 		if (status) {
@@ -85,12 +89,13 @@
 	// ✅ disabled 时，value 变化 , change 所有checkbox值
 	// ✅ 非 disabled 时，可以初始值
 	// ✅ 非 disabled 时，checkbox 有一个值变化时，则触发 group 值
+
 	setContext(checkboxGroupKey, {
-		// 传递给 checkbox 组件，注册 checkbox
+		// Passed to the checkbox component to register the checkbox in the context
 		registerCheckbox,
-		// 传递给 checkbox 组件， 设置禁用
+		// Passed to the checkbox component to set the disable during initialization
 		disabled,
-		// 传递给 checkbox 组件， 更新 checkboxGroup valueInner
+		// Passed to the checkbox component to update the valueInner of checkboxGroup
 		updatedValueWhenCheckboxChange
 	});
 

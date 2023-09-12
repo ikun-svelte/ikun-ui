@@ -3,7 +3,8 @@
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	import { clsx, type ClassValue } from 'clsx';
-	import {checkboxGroupKey, getPrefixCls} from '@ikun-ui/utils';
+	import { checkboxGroupKey, getPrefixCls } from '@ikun-ui/utils';
+	import type { checkboxGroupCtx } from '@ikun-ui/checkbox-group';
 
 	export let disabled = false;
 	export let value = false;
@@ -14,61 +15,74 @@
 	// updateValue
 	const dispatch = createEventDispatcher();
 
+	const ctx = getContext(checkboxGroupKey) as checkboxGroupCtx;
+
 	let valueInner = value;
-	$: if(value !== valueInner && !uid){
-		valueInner = value
+	$: if (value !== valueInner && !ctx) {
+		valueInner = value;
 	}
 	let classChecking = '';
 
-	const ctx = getContext(checkboxGroupKey) as {
-		registerCheckbox: (
-				uid: string | number,
-				op: {
-					doUpdatedValue: (
-							v: boolean,
-							inner?:boolean) => void,
-					setDisabled: (v: boolean) => void
-				}
-		) => void
-		disabled: boolean
-		updatedValueWhenCheckboxChange: (v: boolean, uid: string | number) => void
-	}
+	$: isDisabled = (ctx && ctx.disabled) || disabled;
 
-	$: isDisabled = ctx.disabled || disabled
-	function setDisabled( v: boolean) {
-		isDisabled = v
-	}
-
+	/**
+	 * Click the `checkbox` to update the binding value
+	 */
 	const handleUpdateValue = () => {
 		if (isDisabled) return;
-		doUpdatedValue(!valueInner, true)
-		!uid && dispatch('updateValue', valueInner);
+		doUpdatedValue(!valueInner, true);
+		// Being in a checkbox group does not trigger it
+		ctx && dispatch('updateValue', valueInner);
 	};
 
-	const doUpdatedValue = (
-			v: boolean,
-			inner: boolean = false
-	) => {
-		valueInner = v
+	/**
+	 * Set checkbox value
+	 * @param v latest value
+	 * @param inner Whether it is an internal call, it may be called in the checkbox group
+	 */
+	const doUpdatedValue = (v: boolean, inner: boolean = false) => {
+		valueInner = v;
 		classChecking = 'animate-ikun-checking';
 		setTimeout(() => {
 			classChecking = '';
 		}, 300);
-		if(uid && ctx && inner){
-			ctx.updatedValueWhenCheckboxChange(v, uid)
+
+		// When it is clicked in the checkbox group,
+		// update the value to the checkbox group synchronously
+		if (uid && ctx && inner) {
+			ctx.updatedValueWhenCheckboxChange(v, uid);
 		}
+	};
+
+	/**
+	 * Method exposed to checkbox group.
+	 * When the disabled value of checkbox group changes,
+	 * it will be executed to update the disabled state of checkbox.
+	 * @param v disabled value
+	 */
+	function setDisabled(v: boolean) {
+		isDisabled = v;
 	}
 
+	/**
+	 * Register checkbox
+	 */
 	function doRegisterCheckbox() {
-		if(uid && ctx){
-			// 注册 checkbox
+		if (uid && ctx) {
+			// Register checkbox
 			ctx.registerCheckbox(uid, {
+				// Expose the doUpdatedValue method,
+				// and when the `checkbox group` binding value changes,
+				// the `checkbox` can be updated synchronously
 				doUpdatedValue,
+				// Expose the setDisabled method.
+				// When the disabled value bound to the `checkbox group` changes,
+				// the `checkbox` can be disabled synchronously.
 				setDisabled
-			})
+			});
 		}
 	}
-	doRegisterCheckbox()
+	doRegisterCheckbox();
 
 	// class
 	const prefixCls = getPrefixCls('checkbox');
@@ -96,7 +110,13 @@
 </script>
 
 <label class={cnames} {...attrs}>
-	<input value={valueInner} disabled="{isDisabled}" type="checkbox" on:change={handleUpdateValue} hidden />
+	<input
+		value={valueInner}
+		disabled={isDisabled}
+		type="checkbox"
+		on:change={handleUpdateValue}
+		hidden
+	/>
 	<div class={boxCls}>
 		{#if valueInner}
 			<div out:fade={{ duration: 200 }} in:fade={{ duration: 200 }}>

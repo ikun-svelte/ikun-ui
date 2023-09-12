@@ -30,6 +30,7 @@
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/checkbox-group": "workspace:*",
 		"baiwusanyu-utils": "^1.0.14"
 	},
 	"devDependencies": {
