@@ -86,6 +86,7 @@
 		"@ikun-ui/button": "workspace:*",
 		"@ikun-ui/button-group": "workspace:*",
 		"@ikun-ui/checkbox": "workspace:*",
+		"@ikun-ui/checkbox-group": "workspace:*",
 		"@ikun-ui/client-only": "workspace:*",
 		"@ikun-ui/collapse": "workspace:*",
 		"@ikun-ui/drawer": "workspace:*",
@@ -111,8 +112,7 @@
 		"baiwusanyu-utils": "^1.0.14",
 		"clsx": "^2.0.0",
 		"@ikun-ui/collapse-wrapper": "workspace:*",
-		"@ikun-ui/link": "workspace:*",
-		"@ikun-ui/checkbox-group": "workspace:*"
+		"@ikun-ui/link": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",
