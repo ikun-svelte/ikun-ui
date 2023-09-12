@@ -20,13 +20,10 @@
 			valueInner.forEach((v: string | number) => {
 				setCheckBoxValue(v.toString());
 			});
-			// TODO patch
-			console.log(valueInner.length);
-			if (valueInner.length === 0) {
-				value.forEach((v: string | number) => {
-					setCheckBoxValue(v.toString());
-				});
-			}
+
+			value.forEach((v: string | number) => {
+				setCheckBoxValue(v.toString());
+			});
 			valueInner = value;
 		}
 	}
@@ -86,7 +83,7 @@
 	// ✅ disabled 时value 变化 ，不能 change 所有checkbox值
 	// ✅ disabled 变化时，值时 value 最新值
 
-	// ✅ disabled 时，value 变化 , change 所有checkbox值
+	// ✅ 非 disabled 时，value 变化 , change 所有checkbox值
 	// ✅ 非 disabled 时，可以初始值
 	// ✅ 非 disabled 时，checkbox 有一个值变化时，则触发 group 值
 
