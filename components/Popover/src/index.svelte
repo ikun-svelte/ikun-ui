@@ -9,8 +9,8 @@
 	export let placement: IKunPlacement = 'top';
 	// hover click manual
 	export let trigger: IKunTrigger = 'hover';
-	export let attrs = {};
-	export let cls: ClassValue = '';
+	export let attrs: Record<string, string> = {};
+	export let cls: ClassValue = undefined;
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
 	const [popperRef, popperContent] = createPopperActions({
@@ -105,13 +105,13 @@
 		};
 	}
 
-	$: prefixCls = getPrefixCls('popover')
+	$: prefixCls = getPrefixCls('popover');
 	$: cnames = clsx(
 		`${prefixCls}--base`,
 		`${prefixCls}--base__${placement}`,
 		`${prefixCls}--base__${placement}__dark`,
 		`${prefixCls}--base__dark`,
-		 cls
+		cls
 	);
 </script>
 
