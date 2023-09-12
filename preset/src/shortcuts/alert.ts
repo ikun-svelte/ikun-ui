@@ -32,7 +32,7 @@ export const alertShortcuts = {
 	'k-alert--info__icon': 'i-carbon-information-filled',
 	'k-alert--info__icon-color': 'text-ikun-info',
 	'k-alert--info__close-icon':
-		'hover:(bg-ikun-info [&>div.k-icon--base]:text-ikun-white b-rd-50%) active:(b-ikun-info k-btn-shadow--info)',
+		'hover:(bg-ikun-info-500 [&>div.k-icon--base]:text-ikun-white b-rd-50%) active:(b-ikun-info-500 k-btn-shadow--info)',
 
 	'k-alert--content': 'text-14px flex-1',
 	'k-alert--title': 'font-600',
