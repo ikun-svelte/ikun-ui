@@ -83,8 +83,6 @@
 	// ✅ disabled 时value 变化 ，不能 change 所有checkbox值
 	// ✅ disabled 变化时，值时 value 最新值
 
-	// ✅ 非 disabled 时，value 变化 , change 所有checkbox值
-	// ✅ 非 disabled 时，可以初始值
 	// ✅ 非 disabled 时，checkbox 有一个值变化时，则触发 group 值
 
 	setContext(checkboxGroupKey, {
