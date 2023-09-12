@@ -2,18 +2,23 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
 	import { checkboxGroupKey, getPrefixCls } from '@ikun-ui/utils';
 	import type { checkboxGroupCtx } from '@ikun-ui/checkbox-group';
-
-	export let disabled = false;
-	export let value = false;
-	export let cls: ClassValue = undefined;
-	export let attrs: Record<string, string> = {};
-	export let label = '';
-	export let uid: string | number = '';
-	// updateValue
+	import type { KCheckboxProps } from './types';
+	export let disabled: KCheckboxProps['disabled'] = false;
+	export let value: KCheckboxProps['value'] = false;
+	export let cls: KCheckboxProps['cls'] = undefined;
+	export let attrs: KCheckboxProps['attrs'] = {};
+	export let label: KCheckboxProps['label'] = '';
+	// TODO document
+	export let uid: KCheckboxProps['uid'] = '';
+	// TODO document
+	export let indeterminate: KCheckboxProps['indeterminate'] = false;
 	const dispatch = createEventDispatcher();
+
+	// TODO unit test
+	$: isIndeterminate = indeterminate;
 
 	const ctx = getContext(checkboxGroupKey) as checkboxGroupCtx;
 	let valueInner = value;
@@ -30,6 +35,7 @@
 	const handleUpdateValue = () => {
 		if (isDisabled) return;
 		doUpdatedValue(!valueInner, true);
+		isIndeterminate = false;
 		// Being in a checkbox group does not trigger it
 		!ctx && dispatch('updateValue', valueInner);
 	};
@@ -97,14 +103,14 @@
 	$: boxCls = clsx(
 		`${prefixCls}--box`,
 		{
-			[`bg-ikun-main border-ikun-main`]: valueInner && !isDisabled,
+			[`bg-ikun-main border-ikun-main`]: (valueInner && !isDisabled) || isIndeterminate,
 			[`${prefixCls}--box__disabled`]: isDisabled
 		},
 		classChecking
 	);
 
 	$: labelCls = clsx(`${prefixCls}--label`, {
-		[`text-ikun-main`]: valueInner && !isDisabled
+		[`text-ikun-main`]: (valueInner && !isDisabled) || isIndeterminate
 	});
 </script>
 
@@ -117,10 +123,13 @@
 		hidden
 	/>
 	<div class={boxCls}>
-		{#if valueInner}
+		{#if valueInner && !isIndeterminate}
 			<div out:fade={{ duration: 200 }} in:fade={{ duration: 200 }}>
 				<KIcon icon="i-carbon-checkmark" color="!text-white" width="16px" height="16px" />
 			</div>
+		{/if}
+		{#if isIndeterminate}
+			<KIcon icon="i-carbon-subtract" color="!text-white" width="16px" height="16px" />
 		{/if}
 	</div>
 	<slot>
