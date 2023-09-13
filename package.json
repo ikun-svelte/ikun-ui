@@ -69,7 +69,7 @@
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "esno scripts/new-component.js link"
+		"create:new:comp": "esno scripts/new-component.js checkbox-group"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
@@ -86,6 +86,7 @@
 		"@ikun-ui/button": "workspace:*",
 		"@ikun-ui/button-group": "workspace:*",
 		"@ikun-ui/checkbox": "workspace:*",
+		"@ikun-ui/checkbox-group": "workspace:*",
 		"@ikun-ui/client-only": "workspace:*",
 		"@ikun-ui/collapse": "workspace:*",
 		"@ikun-ui/drawer": "workspace:*",

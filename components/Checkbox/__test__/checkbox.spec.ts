@@ -86,6 +86,22 @@ describe('Test: KCheckBox', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: indeterminate', async () => {
+		const instance = new KCheckBox({
+			target: host,
+			props: {
+				indeterminate: true
+			}
+		});
+		await tick();
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('i-carbon-subtract')).toBeTruthy();
+		instance.$set({ indeterminate: false });
+		await tick();
+		expect((host as HTMLElement)!.innerHTML.includes('i-carbon-subtract')).not.toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('event: should trigger updateValue event', async () => {
 		const mockFn = vi.fn();
 		let value = false;

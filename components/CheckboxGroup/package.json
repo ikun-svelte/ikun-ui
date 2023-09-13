@@ -1,6 +1,6 @@
 {
-	"name": "@ikun-ui/checkbox",
-	"version": "0.0.9-beta.6",
+	"name": "@ikun-ui/checkbox-group",
+	"version": "0.0.9-beta.5",
 	"type": "module",
 	"main": "./src/index.ts",
 	"types": "src/index.ts",
@@ -30,7 +30,7 @@
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"@ikun-ui/checkbox-group": "workspace:*",
+		"clsx": "^2.0.0",
 		"baiwusanyu-utils": "^1.0.14"
 	},
 	"devDependencies": {

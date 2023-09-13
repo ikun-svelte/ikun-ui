@@ -69,7 +69,7 @@ Commit messages are required to follow the [conventional-changelog standard](htt
 
 [optional footer(s)]
 
-// such as 
+// such as
 feat(components/Button): typing and classes
 ```
 
