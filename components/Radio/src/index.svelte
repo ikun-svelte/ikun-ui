@@ -29,7 +29,7 @@
 	$: radioboxCls = clsx(
 		'k-radio--box',
 		{
-			'border-ikun-main': valueInner && !disabled,
+			'k-radio__selected': valueInner && !disabled,
 			'k-radio--box__disabled': disabled
 		},
 		classChecking
