@@ -1,5 +1,5 @@
-import { afterEach, expect, test, describe, beforeEach } from 'vitest';
-import KCheckboxGroup from '../src';
+import { afterEach, expect, test, describe, beforeEach, vi } from 'vitest';
+import KRadioGroup from '../src';
 import KGroupBase from './group.base.svelte';
 import KGroupChange from './group.change.svelte';
 import KGroupTrigger from './group.trigger.svelte';
@@ -17,38 +17,40 @@ const initHost = () => {
 };
 beforeEach(() => {
 	initHost();
+	vi.useFakeTimers();
 });
 afterEach(() => {
 	host.remove();
+	vi.restoreAllMocks();
 });
 
-describe('Test: KCheckboxGroup', () => {
+describe('Test: KRadioGroup', () => {
 	test('props: cls', async () => {
-		const instance = new KCheckboxGroup({
+		const instance = new KRadioGroup({
 			target: host,
 			props: {
-				cls: 'k-checkbox-group--test'
+				cls: 'k-radio-group--test'
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-checkbox-group--test')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-radio-group--test')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('When it is not disabled, the value of the checkbox can be initialized.', async () => {
+	test('When it is not disabled, the value of the radio can be initialized.', async () => {
 		const instance = new KGroupBase({
 			target: host
 		});
 		await tick();
 		expect(instance).toBeTruthy();
 		const inputEls = host.querySelectorAll('input');
-		expect(inputEls[0].value === 'true').toBeTruthy();
-		expect(inputEls[1].value === 'false').toBeTruthy();
-		expect(inputEls[2].value === 'true').toBeTruthy();
+		expect(inputEls[0].value === 'false').toBeTruthy();
+		expect(inputEls[1].value === 'true').toBeTruthy();
+		expect(inputEls[2].value === 'false').toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('When it is not disabled, the value changes and the status of the checkbox changes.', async () => {
+	test('When it is not disabled, the value changes and the status of the radio changes.', async () => {
 		const instance = new KGroupChange({
 			target: host
 		});
@@ -67,7 +69,7 @@ describe('Test: KCheckboxGroup', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('When it is not disabled, when a value of the checkbox changes, the group value is triggered.', async () => {
+	test('When it is not disabled, when a value of the radio changes, the group value is triggered.', async () => {
 		const instance = new KGroupTrigger({
 			target: host
 		});
@@ -81,24 +83,17 @@ describe('Test: KCheckboxGroup', () => {
 		expect(divEl?.innerHTML).toBe('3');
 		inputEls[0].click();
 		await tick();
-		expect(divEl?.innerHTML).toBe('3,1');
+		expect(divEl?.innerHTML).toBe('1');
 		expect(inputEls[0].value === 'true').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
-		expect(inputEls[2].value === 'true').toBeTruthy();
+		expect(inputEls[2].value === 'false').toBeTruthy();
 		inputEls[1].click();
 		await tick();
-		expect(divEl?.innerHTML).toBe('3,1,2');
-		inputEls[0].click();
-		await tick();
-		inputEls[1].click();
-		await tick();
-		inputEls[2].click();
-		await tick();
-		expect(divEl?.innerHTML).toBe('');
+		expect(divEl?.innerHTML).toBe('2');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('When it is disabled, the value of the checkbox can be initialized.', async () => {
+	test('When it is disabled, the value of the radio can be initialized.', async () => {
 		const instance = new KGroupBaseDisabled({
 			target: host
 		});
@@ -107,13 +102,13 @@ describe('Test: KCheckboxGroup', () => {
 		const inputEls = host.querySelectorAll('input');
 		expect(inputEls[0].value === 'true').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
-		expect(inputEls[2].value === 'true').toBeTruthy();
-		expect(host.innerHTML.includes('k-checkbox--box__disabled')).toBeTruthy();
-		expect(host.innerHTML.match(/k-checkbox--box__disabled/g)?.length === 3).toBeTruthy();
+		expect(inputEls[2].value === 'false').toBeTruthy();
+		expect(host.innerHTML.includes('k-radio--box__disabled')).toBeTruthy();
+		expect(host.innerHTML.match(/k-radio--box__disabled/g)?.length === 3).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('When it is disabled, the value changes and the status of the checkbox not changes.', async () => {
+	test('When it is disabled, the value changes and the status of the radio not changes.', async () => {
 		const instance = new KGroupChangeDisabled({
 			target: host
 		});
@@ -132,7 +127,7 @@ describe('Test: KCheckboxGroup', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('When it is disabled, when a value of the checkbox changes, the group value is not triggered.', async () => {
+	test('When it is disabled, when a value of the radio changes, the group value is not triggered.', async () => {
 		const instance = new KGroupTriggerDisabled({
 			target: host
 		});
@@ -163,7 +158,7 @@ describe('Test: KCheckboxGroup', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('When the disabled value changes, the checkbox value can be synchronized.', async () => {
+	test('When the disabled value changes, the radio value can be synchronized.', async () => {
 		const instance = new KGroupModelDisabled({
 			target: host
 		});

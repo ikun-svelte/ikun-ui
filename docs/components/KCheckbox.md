@@ -53,15 +53,15 @@ The `indeterminate` property can help you to achieve a 'check all' effect.
 
 ## Checkbox Props
 
-| Name          | Type                     | Default | Description                                                                          |
-| ------------- | ------------------------ | ------- | ------------------------------------------------------------------------------------ |
-| label         | `string`                 | `-`     | Label of the Checkbox                                                                |
-| disabled      | `boolean`                | `false` | Whether the Checkbox is disabled                                                     |
-| value         | `boolean`                | `false` | Binding value                                                                        |
-| uid           | `string`                 | `-`     | The unique value of the tag component, must be passed when wrapped by checkbox-group |
-| indeterminate | `boolean`                | `false` | Determine whether it is an intermediate state                                        |
-| cls           | `string`                 | `-`     | Additional class                                                                     |
-| attrs         | `Record<string, string>` | `{}`    | Additional attributes                                                                |
+| Name          | Type                     | Default | Description                                                                                   |
+| ------------- | ------------------------ | ------- | --------------------------------------------------------------------------------------------- |
+| label         | `string`                 | `-`     | Label of the `checkbox`                                                                       |
+| disabled      | `boolean`                | `false` | Whether the `checkbox` is disabled                                                            |
+| value         | `boolean`                | `false` | Binding value                                                                                 |
+| uid           | `string`                 | `-`     | The unique value of the `checkbox` component, must be passed when wrapped by `checkbox-group` |
+| indeterminate | `boolean`                | `false` | Determine whether it is an intermediate state                                                 |
+| cls           | `string`                 | `-`     | Additional class                                                                              |
+| attrs         | `Record<string, string>` | `{}`    | Additional attributes                                                                         |
 
 ## Checkbox Events
 
@@ -77,12 +77,12 @@ The `indeterminate` property can help you to achieve a 'check all' effect.
 
 ## Checkbox Group Props
 
-| Name     | Type                      | Default | Description                              |
-| -------- | ------------------------- | ------- | ---------------------------------------- |
-| disabled | `boolean`                 | `false` | Whether the `checkbox-gropp` is disabled |
-| value    | `Array<string \| number>` | `-`     | Binding value                            |
-| cls      | `string`                  | `-`     | Additional class                         |
-| attrs    | `Record<string, string>`  | `{}`    | Additional attributes                    |
+| Name     | Type                      | Default | Description                                                                              |
+| -------- | ------------------------- | ------- | ---------------------------------------------------------------------------------------- |
+| disabled | `boolean`                 | `false` | Whether the `checkbox-group` is disabled                                                 |
+| value    | `Array<string \| number>` | `-`     | Binding value,Its elements must be consistent with the `uid` of the `checkbox` component |
+| cls      | `string`                  | `-`     | Additional class                                                                         |
+| attrs    | `Record<string, string>`  | `{}`    | Additional attributes                                                                    |
 
 ## Checkbox Group Events
 
@@ -92,6 +92,6 @@ The `indeterminate` property can help you to achieve a 'check all' effect.
 
 ## Checkbox Group Slots
 
-| Name    | Description                           |
-| ------- | ------------------------------------- |
-| default | Please pass in the checkbox component |
+| Name    | Description                             |
+| ------- | --------------------------------------- |
+| default | Please pass in the `checkbox` component |
