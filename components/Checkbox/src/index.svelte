@@ -11,9 +11,7 @@
 	export let cls: KCheckboxProps['cls'] = undefined;
 	export let attrs: KCheckboxProps['attrs'] = {};
 	export let label: KCheckboxProps['label'] = '';
-	// TODO document
 	export let uid: KCheckboxProps['uid'] = '';
-	// TODO document
 	export let indeterminate: KCheckboxProps['indeterminate'] = false;
 	const dispatch = createEventDispatcher();
 
