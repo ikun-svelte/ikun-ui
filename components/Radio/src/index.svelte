@@ -33,14 +33,14 @@
 	};
 
 	const doUpdatedValue = (v: boolean, inner: boolean = false) => {
-		valueInner = v;
 		classChecking = 'animate-ikun-checking';
 		setTimeout(() => {
 			classChecking = '';
 		}, 300);
 
-		if (uid && ctx && inner) {
-			ctx.updatedValueWhenRadioChange(v, uid);
+		if (uid && ctx) {
+			valueInner = v;
+			inner && ctx.updatedValueWhenRadioChange(v, uid);
 		}
 	};
 
@@ -77,7 +77,6 @@
 </script>
 
 <label class={cnames} {...attrs}>
-	{valueInner}
 	<input
 		value={valueInner}
 		disabled={isDisabled}
