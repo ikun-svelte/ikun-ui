@@ -65,34 +65,37 @@ You can customize `icons` by passing icons.
 
 <demo src="../../../../example/rate/more-icon.svelte" github='Rate'></demo>
 
-## Disabled
+## Readonly
 
-Disabled Rate is for displaying rating score.
+Read-only Rate is for displaying rating score. Half star is supported.
+
+Use attribute `readonly` to make the component read-only. Add `readonlyVoidIcon` and `readonlyVoidColor` to set unselected icons and colors.
 
 <demo src="../../../../example/rate/readonly.svelte" github='Rate'></demo>
 
 ## Rate Props
 
-| Name             | Type                                | Default                   | Description                                                                                     |
-| ---------------- | ----------------------------------- | ------------------------- | ----------------------------------------------------------------------------------------------- |
-| max              | `number`                            | `5`                       | max rating score.                                                                               |
-| value            | `number`                            | `0`                       | rate value.                                                                                     |
-| allowHalf        | `boolean`                           | `false`                   | whether picking half start is allowed.                                                          |
-| showScore        | `boolean`                           | `false`                   | whether to display current score. `showScore` and `showText` cannot be `true` at the same time. |
-| scoreTemplate    | `string`                            | `'{value}'`               | score template.                                                                                 |
-| showText         | `boolean`                           | `false`                   | whether to display texts.                                                                       |
-| texts            | `string` / `Record<number, string>` | `''`                      | text or text map.                                                                               |
-| textColor        | `string`                            | `'var(--ikun-zinc-500)'`  | color of texts.                                                                                 |
-| icons            | `string` / `Record<number, string>` | `'i-carbon-star-filled'`  | icon or icons map.                                                                              |
-| colors           | `string` / `Record<number, string>` | `'var(--ikun-amber-500)'` | color or colors map.                                                                            |
-| voidIcon         | `string`                            | `'i-carbon-star`          | void icon.                                                                                      |
-| voidColor        | `string`                            | `'var(--ikun-stone-300)'` | void icon color.                                                                                |
-| disabled         | `boolean`                           | `false`                   | whether rate is disabled.                                                                       |
-| disableVoidIcon  | `string`                            | `'i-carbon-star-filled'`  | disabled void icon.                                                                             |
-| disableVoidColor | `string`                            | `'var(--ikun-light-700)'` | disabled void icon color.                                                                       |
-| clearable        | `boolean`                           | `false`                   | whether value can be reset to `0`.                                                              |
-| cls              | `string`                            | `-`                       | Additional class                                                                                |
-| attrs            | `Record<string, string>`            | `{}`                      | Additional attributes                                                                           |
+| Name              | Type                                | Default                   | Description                                                                                     |
+| ----------------- | ----------------------------------- | ------------------------- | ----------------------------------------------------------------------------------------------- |
+| max               | `number`                            | `5`                       | max rating score.                                                                               |
+| value             | `number`                            | `0`                       | rate value.                                                                                     |
+| allowHalf         | `boolean`                           | `false`                   | whether picking half start is allowed.                                                          |
+| showScore         | `boolean`                           | `false`                   | whether to display current score. `showScore` and `showText` cannot be `true` at the same time. |
+| scoreTemplate     | `string`                            | `'{value}'`               | score template.                                                                                 |
+| showText          | `boolean`                           | `false`                   | whether to display texts.                                                                       |
+| texts             | `string` / `Record<number, string>` | `''`                      | text or text map.                                                                               |
+| textColor         | `string`                            | `'var(--ikun-zinc-500)'`  | color of texts.                                                                                 |
+| icons             | `string` / `Record<number, string>` | `'i-carbon-star-filled'`  | icon or icons map.                                                                              |
+| colors            | `string` / `Record<number, string>` | `'var(--ikun-amber-500)'` | color or colors map.                                                                            |
+| voidIcon          | `string`                            | `'i-carbon-star`          | void icon.                                                                                      |
+| voidColor         | `string`                            | `'var(--ikun-stone-300)'` | void icon color.                                                                                |
+| disabled          | `boolean`                           | `false`                   | whether rate is disabled.                                                                       |
+| readonly          | `boolean`                           | `false`                   | whether rate is readonly.                                                                       |
+| readonlyVoidIcon  | `string`                            | `'i-carbon-star-filled'`  | readonly void icon.                                                                             |
+| readonlyVoidColor | `string`                            | `'var(--ikun-light-700)'` | readonly void icon color.                                                                       |
+| clearable         | `boolean`                           | `false`                   | whether value can be reset to `0`.                                                              |
+| cls               | `string`                            | `-`                       | Additional class                                                                                |
+| attrs             | `Record<string, string>`            | `{}`                      | Additional attributes                                                                           |
 
 ## Rate Events
 

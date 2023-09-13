@@ -21,8 +21,8 @@
 	export let voidColor: KRateProps['voidColor'] = 'var(--ikun-stone-300)';
 	export let disabled: KRateProps['disabled'] = false;
 	export let readonly: KRateProps['readonly'] = false;
-	export let disableVoidIcon: KRateProps['disableVoidIcon'] = 'i-carbon-star-filled';
-	export let disableVoidColor: KRateProps['disableVoidColor'] = 'var(--ikun-light-700)';
+	export let readonlyVoidIcon: KRateProps['readonlyVoidIcon'] = 'i-carbon-star-filled';
+	export let readonlyVoidColor: KRateProps['readonlyVoidColor'] = 'var(--ikun-light-700)';
 	export let clearable: KRateProps['clearable'] = false;
 	export let cls: KRateProps['cls'] = undefined;
 	export let attrs: KRateProps['attrs'] = {};
@@ -61,7 +61,10 @@
 		if (showText) {
 			text = (isString(texts) ? texts : textsMap[Math.ceil(currentValue)]) as string;
 		} else if (showScore) {
-			text = scoreTemplate.replace(/\{\s*value\s*\}/, disabled ? `${value}` : `${currentValue}`);
+			text = scoreTemplate.replace(
+				/\{\s*value\s*\}/,
+				readonly || disabled ? `${value}` : `${currentValue}`
+			);
 		} else {
 			text = '';
 		}
@@ -76,15 +79,16 @@
 	let showDecimalIcon: (item: number) => boolean;
 	$: {
 		showDecimalIcon = (item: number) => {
-			const showWhenDisabled = disabled && valueDecimal > 0 && item - 1 < value && item > value;
+			const showWhenReadonlyOrDisabled =
+				(readonly || disabled) && valueDecimal > 0 && item - 1 < value && item > value;
 			const showWhenAllowHalf =
 				allowHalf && pointerAtLeftHalf && item - 0.5 <= currentValue && item > currentValue;
-			return showWhenDisabled || showWhenAllowHalf;
+			return showWhenReadonlyOrDisabled || showWhenAllowHalf;
 		};
 	}
 
 	const setCurrentValue = (index: number, event: MouseEvent) => {
-		if (disabled) {
+		if (readonly || disabled) {
 			return;
 		}
 		if (allowHalf && event) {
@@ -98,7 +102,7 @@
 	};
 
 	const resetCurrentValue = () => {
-		if (disabled) {
+		if (readonly || disabled) {
 			return;
 		}
 		resetOrigin();
@@ -130,10 +134,10 @@
 		decimalActiveColor = colorsMap[Math.ceil(currentValue)];
 	}
 
-	$: decimalBackground = `linear-gradient(to right, ${decimalActiveColor} 0%, ${decimalActiveColor} ${valueDecimal}%, ${disableVoidColor} ${valueDecimal}%, ${disableVoidColor} 100%);`;
+	$: decimalBackground = `linear-gradient(to right, ${decimalActiveColor} 0%, ${decimalActiveColor} ${valueDecimal}%, ${readonlyVoidColor} ${valueDecimal}%, ${readonlyVoidColor} 100%);`;
 
 	const handleUpdateValue = () => {
-		if (disabled) {
+		if (readonly || disabled) {
 			return;
 		}
 		if (clearable && value === currentValue) {
@@ -145,9 +149,17 @@
 
 	// class names
 	const prefixCls = getPrefixCls('rate');
-	$: baseCls = clsx(prefixCls, { [`${prefixCls}--disabled`]: disabled }, cls);
+	$: baseCls = clsx(
+		prefixCls,
+		{
+			[`${prefixCls}--readonly`]: readonly,
+			[`${prefixCls}--disabled`]: disabled
+		},
+		cls
+	);
 	$: itemCls = clsx(`${prefixCls}--item`, {
-		[`${prefixCls}--item__not-disabled`]: !disabled
+		[`${prefixCls}--item__not-readonly`]: !readonly,
+		[`${prefixCls}--item__disabled`]: disabled
 	});
 	$: textCls = clsx(`${prefixCls}--text`);
 </script>
@@ -171,10 +183,10 @@
 					></KIcon>
 				{:else}
 					<KIcon
-						icon={disabled ? disableVoidIcon : voidIcon}
+						icon={readonly ? readonlyVoidIcon : voidIcon}
 						width={iconSize}
 						height={iconSize}
-						style="background: {disabled ? disableVoidColor : voidColor}"
+						style="background: {readonly ? readonlyVoidColor : voidColor}"
 					></KIcon>
 				{/if}
 			{:else}

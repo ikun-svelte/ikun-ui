@@ -272,31 +272,43 @@ describe('Test: KRate', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('props: disableVoidIcon', async () => {
-		const value = 3;
-		const disableVoidIcon = 'i-icon-disabled-void';
+	test('props: readonly', async () => {
 		const instance = new KRate({
 			target: host,
 			props: {
-				value,
-				disabled: true,
-				disableVoidIcon
+				readonly: true
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.querySelectorAll(`.${disableVoidIcon}`).length).toBe(2);
+		expect((host as HTMLElement)!.innerHTML.includes('k-rate--readonly')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('props: disableVoidColor', async () => {
+	test('props: readonlyVoidIcon', async () => {
 		const value = 3;
-		const disableVoidColor = '#ff00f0';
+		const readonlyVoidIcon = 'i-icon-readonly-void';
 		const instance = new KRate({
 			target: host,
 			props: {
 				value,
-				disabled: true,
-				disableVoidColor
+				readonly: true,
+				readonlyVoidIcon
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect(host.querySelectorAll(`.${readonlyVoidIcon}`).length).toBe(2);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: readonlyVoidColor', async () => {
+		const value = 3;
+		const readonlyVoidColor = '#ff00f0';
+		const instance = new KRate({
+			target: host,
+			props: {
+				value,
+				readonly: true,
+				readonlyVoidColor
 			}
 		});
 		expect(instance).toBeTruthy();
