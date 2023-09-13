@@ -29,7 +29,9 @@
 	},
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
+		"@ikun-ui/radio-group": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
+		"clsx": "^2.0.0",
 		"baiwusanyu-utils": "^1.0.14"
 	},
 	"devDependencies": {

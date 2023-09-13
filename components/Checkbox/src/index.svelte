@@ -15,7 +15,6 @@
 	export let indeterminate: KCheckboxProps['indeterminate'] = false;
 	const dispatch = createEventDispatcher();
 
-	// TODO unit test
 	$: isIndeterminate = indeterminate;
 
 	const ctx = getContext(checkboxGroupKey) as checkboxGroupCtx;

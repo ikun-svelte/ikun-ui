@@ -1,56 +1,93 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import type { KRadioProps } from './types';
+	import { radioGroupKey } from '@ikun-ui/utils';
+	import type { RadioGroupCtx } from '@ikun-ui/radio-group';
+	export let disabled: KRadioProps['disabled'] = false;
+	export let value: KRadioProps['value'] = false;
+	export let cls: KRadioProps['cls'] = undefined;
+	export let attrs: KRadioProps['attrs'] = {};
+	export let label: KRadioProps['label'] = '';
 
-	export let disabled = false;
-	export let value = false;
-	export let cls: ClassValue = undefined;
-	export let attrs: Record<string, string> = {};
-	export let label = '';
+	export let uid: KRadioProps['uid'] = '';
 	// updateValue
 	const dispatch = createEventDispatcher();
 
-	$: valueInner = value;
-	let classChecking = '';
-	const handleUpdateValue = () => {
-		if (disabled) return;
-		if (valueInner) return;
-		dispatch('updateValue', !valueInner);
+	const ctx = getContext(radioGroupKey) as RadioGroupCtx;
 
+	let valueInner = value;
+	$: if (value !== valueInner && !ctx) {
+		valueInner = value;
+	}
+
+	let classChecking = '';
+	$: isDisabled = (ctx && ctx.disabled) || disabled;
+	const handleUpdateValue = () => {
+		if (isDisabled) return;
+		if (valueInner) return;
+
+		doUpdatedValue(!valueInner, true);
+		!ctx && dispatch('updateValue', !valueInner);
+	};
+
+	const doUpdatedValue = (v: boolean, inner: boolean = false) => {
+		valueInner = v;
 		classChecking = 'animate-ikun-checking';
 		setTimeout(() => {
 			classChecking = '';
 		}, 300);
+
+		if (uid && ctx && inner) {
+			ctx.updatedValueWhenRadioChange(v, uid);
+		}
 	};
 
-	$: cnames = clsx('k-radio--base k-radio--base__dark', { 'k-cur-disabled': disabled }, cls);
+	function setDisabled(v: boolean) {
+		isDisabled = v;
+	}
+
+	/**
+	 * Register radio
+	 */
+	function doRegisterRadio() {
+		if (uid && ctx) {
+			// Register checkbox
+			ctx.registerRadio(uid, {
+				doUpdatedValue,
+				setDisabled
+			});
+		}
+	}
+	doRegisterRadio();
+
+	$: cnames = clsx('k-radio--base k-radio--base__dark', { 'k-cur-disabled': isDisabled }, cls);
 	$: radioboxCls = clsx(
 		'k-radio--box',
 		{
-			'k-radio__selected': valueInner && !disabled,
-			'k-radio--box__disabled': disabled
+			'k-radio__selected': valueInner && !isDisabled,
+			'k-radio--box__disabled': isDisabled
 		},
 		classChecking
 	);
 	$: labelCls = clsx('k-radio--label', {
-		'text-ikun-main': valueInner && !disabled
+		'text-ikun-main': valueInner && !isDisabled
 	});
 </script>
 
 <label class={cnames} {...attrs}>
-	<input value={valueInner} {disabled} type="radio" on:change={handleUpdateValue} hidden />
+	{valueInner}
+	<input
+		value={valueInner}
+		disabled={isDisabled}
+		type="radio"
+		on:click={handleUpdateValue}
+		hidden
+	/>
 	<div class={radioboxCls}>
 		{#if valueInner}
-			<div out:fade={{ duration: 200 }} in:fade={{ duration: 200 }}>
-				<KIcon
-					icon="i-carbon:radio-button-checked"
-					color="!text-white"
-					width="16px"
-					height="16px"
-				/>
-			</div>
+			<KIcon icon="i-carbon:radio-button-checked" color="!text-white" width="16px" height="16px" />
 		{/if}
 	</div>
 	<slot>
