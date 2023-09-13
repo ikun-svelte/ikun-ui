@@ -48,7 +48,7 @@ describe('Test: KCheckboxGroup', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('When it is disabled, the value changes and the status of the checkbox not changes.', async () => {
+	test('When it is not disabled, the value changes and the status of the checkbox changes.', async () => {
 		const instance = new KGroupChange({
 			target: host
 		});

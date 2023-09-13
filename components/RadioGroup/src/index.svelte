@@ -39,7 +39,7 @@
 		// the doUpdatedValue method provided by the radio component is executed.
 		// In this way, the value of radio is initialized based
 		// on the binding value of radio group.
-		setRadioValue(uid.toString(), valueInner === uid);
+		setRadioValue(uid.toString(), valueInner.toString() === uid.toString());
 	};
 
 	/**
