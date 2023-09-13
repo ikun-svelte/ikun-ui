@@ -15,6 +15,7 @@ export type KRateProps = {
 	voidIcon: string;
 	voidColor: string;
 	disabled: boolean;
+	readonly: boolean;
 	disableVoidIcon: string;
 	disableVoidColor: string;
 	clearable: boolean;

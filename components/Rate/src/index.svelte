@@ -20,6 +20,7 @@
 	export let voidIcon: KRateProps['voidIcon'] = 'i-carbon-star';
 	export let voidColor: KRateProps['voidColor'] = 'var(--ikun-stone-300)';
 	export let disabled: KRateProps['disabled'] = false;
+	export let readonly: KRateProps['readonly'] = false;
 	export let disableVoidIcon: KRateProps['disableVoidIcon'] = 'i-carbon-star-filled';
 	export let disableVoidColor: KRateProps['disableVoidColor'] = 'var(--ikun-light-700)';
 	export let clearable: KRateProps['clearable'] = false;

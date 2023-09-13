@@ -5,6 +5,9 @@ export const rateShortcuts: Record<string, string> = {
 	// disabled
 	'k-rate--disabled': '',
 
+	// readonly
+	'k-rate--readonly': '',
+
 	// item
 	'k-rate--item': 'infcc',
 	'k-rate--item__not-disabled': 'cursor-pointer',

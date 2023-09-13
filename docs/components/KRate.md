@@ -65,9 +65,9 @@ You can customize `icons` by passing icons.
 
 <demo src="../../../../example/rate/more-icon.svelte" github='Rate'></demo>
 
-## Readonly
+## Disabled
 
-Readonly Rate is for displaying rating score.
+Disabled Rate is for displaying rating score.
 
 <demo src="../../../../example/rate/readonly.svelte" github='Rate'></demo>
 
@@ -87,7 +87,7 @@ Readonly Rate is for displaying rating score.
 | colors           | `string` / `Record<number, string>` | `'var(--ikun-amber-500)'` | color or colors map.                                                                            |
 | voidIcon         | `string`                            | `'i-carbon-star`          | void icon.                                                                                      |
 | voidColor        | `string`                            | `'var(--ikun-stone-300)'` | void icon color.                                                                                |
-| disabled         | `boolean`                           | `false`                   | whether rate is readonly.                                                                       |
+| disabled         | `boolean`                           | `false`                   | whether rate is disabled.                                                                       |
 | disableVoidIcon  | `string`                            | `'i-carbon-star-filled'`  | disabled void icon.                                                                             |
 | disableVoidColor | `string`                            | `'var(--ikun-light-700)'` | disabled void icon color.                                                                       |
 | clearable        | `boolean`                           | `false`                   | whether value can be reset to `0`.                                                              |
