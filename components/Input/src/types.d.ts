@@ -2,6 +2,7 @@
 import type { ClassValue } from 'clsx';
 
 export type KInputProps = {
+	size: 'sm' | 'md' | 'lg';
 	value: string;
 	placeholder: string;
 	disabled: boolean;

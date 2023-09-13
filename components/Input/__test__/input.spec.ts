@@ -20,6 +20,51 @@ afterEach(() => {
 });
 
 describe('Test: KInput', () => {
+	test('props: input sm size', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				size: 'sm',
+				iconPrefix: 'i-prefix',
+				iconSuffix: 'i-suffix'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-input--sm')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-input--icon--sm')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: input md size', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				size: 'md',
+				iconPrefix: 'i-prefix',
+				iconSuffix: 'i-suffix'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-input--md')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-input--icon--md')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: input lg size', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				size: 'lg',
+				iconPrefix: 'i-prefix',
+				iconSuffix: 'i-suffix'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-input--lg')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-input--icon--lg')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('props: value', async () => {
 		const instance = new KInput({
 			target: host,
@@ -94,7 +139,7 @@ describe('Test: KInput', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		const inputElm = host.getElementsByClassName('k-input--base')[0];
+		const inputElm = host.getElementsByClassName('k-input')[0];
 		expect(inputElm.className.includes('ikun')).toBe(true);
 		expect(host.innerHTML).matchSnapshot();
 	});
