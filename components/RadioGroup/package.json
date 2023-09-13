@@ -1,5 +1,5 @@
 {
-	"name": "@ikun-ui/checkbox-group",
+	"name": "@ikun-ui/radio-group",
 	"version": "0.0.9-beta.6",
 	"type": "module",
 	"main": "./src/index.ts",
