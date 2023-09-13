@@ -18,6 +18,7 @@ import { eyeDropperShortcuts } from './eye-dropper';
 import { inputShortcuts } from './input';
 import { popoverShortcuts } from './popover';
 import { radioShortcuts } from './radio';
+import { rateShortcuts } from './rate';
 import { modalShortcuts } from './modal';
 import { tagShortcuts } from './tag';
 import { notificationShortcuts } from './notification';
@@ -65,6 +66,8 @@ export default [
 	popoverShortcuts,
 	// radio
 	radioShortcuts,
+	// rate
+	rateShortcuts,
 	// modal
 	modalShortcuts,
 	// tag
@@ -106,6 +109,7 @@ export function getSafeList() {
 	const eyeDropperList = Object.keys(eyeDropperShortcuts);
 	const popoverList = Object.keys(popoverShortcuts);
 	const radioList = Object.keys(radioShortcuts);
+	const rateList = Object.keys(rateShortcuts);
 	const modalList = Object.keys(modalShortcuts);
 	const tagList = Object.keys(tagShortcuts);
 	const notificationList = Object.keys(notificationShortcuts);
@@ -126,6 +130,7 @@ export function getSafeList() {
 		.concat(modalList)
 		.concat(popoverList)
 		.concat(radioList)
+		.concat(rateList)
 		.concat(drawerList)
 		.concat(inputList)
 		.concat(maskList)
@@ -164,6 +169,7 @@ export { eyeDropperShortcuts } from './eye-dropper';
 export { inputShortcuts } from './input';
 export { popoverShortcuts } from './popover';
 export { radioShortcuts } from './radio';
+export { rateShortcuts } from './rate';
 export { modalShortcuts } from './modal';
 export { tagShortcuts } from './tag';
 export { notificationShortcuts } from './notification';
