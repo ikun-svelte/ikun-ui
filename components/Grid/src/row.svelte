@@ -35,8 +35,6 @@
 	);
 </script>
 
-<div class={cnames} {...$$restProps} {...attrs}></div>
-
 <svelte:element
 	this={tag}
 	class={cnames}

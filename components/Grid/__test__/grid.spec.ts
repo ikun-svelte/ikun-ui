@@ -24,10 +24,7 @@ describe('Test: KGrid', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(
-			(host as HTMLElement)!.innerHTML.includes('k-grid--test')
-		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-grid--test')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
-})
-	
+});

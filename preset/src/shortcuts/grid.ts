@@ -10,9 +10,5 @@ export const gridShortcuts: Record<string, string> = {
 
 	'k-row__align__top': 'items-start',
 	'k-row__align__middle': 'items-center',
-	'k-row__align__bottom': 'items-end',
-
-	// col
-	'k-col--base': '',
-	'k-col__guttered': ''
+	'k-row__align__bottom': 'items-end'
 };

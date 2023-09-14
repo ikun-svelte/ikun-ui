@@ -20,11 +20,12 @@
 
 	const prefixCls = getPrefixCls('col');
 	$: gutterValue = (getContext(KSymbolKey) as number) || 0;
-
-	$: pxStyle = '';
+	$: pxStyle = '' as undefined | string;
 	$: {
 		if (gutterValue) {
 			pxStyle = `-${gutterValue / 2}px`;
+		} else {
+			pxStyle = undefined;
 		}
 	}
 
@@ -62,7 +63,7 @@
 			if (isNumber(sizeMap[size])) {
 				classes.push(`${prefixCls}-${size}-${sizeMap[size]}`);
 			} else if (isObject(sizeMap[size])) {
-				Object.entries(sizeMap[size]).forEach(([prop, sizeProp]) => {
+				Object.entries(sizeMap[size] as any).forEach(([prop, sizeProp]) => {
 					classes.push(
 						prop !== 'span'
 							? `${prefixCls}-${size}-${prop}-${sizeProp}`
@@ -77,10 +78,12 @@
 	$: cnames = clsx(
 		prefixCls,
 		{
-			[`${prefixCls}--base`]: true,
-			[`${prefixCls}__guttered`]: gutterValue
+			[`${prefixCls}--base`]: true
 		},
 		...createCls(),
+		{
+			[`is-guttered`]: gutterValue
+		},
 		cls
 	);
 </script>
