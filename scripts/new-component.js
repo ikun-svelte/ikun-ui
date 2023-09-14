@@ -170,7 +170,7 @@ async function writeComponent(baseDir, originalCompName) {
 	const file = `${baseDir}/index.svelte`;
 	const svelteContent = `<script lang="ts">
   import { getPrefixCls } from '@ikun-ui/utils';
-	import clsx from 'clsx';
+	import { clsx } from 'clsx';
 
   export let cls: string = '';
   export let attrs: Record<string, string> = {};

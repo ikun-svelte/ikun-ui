@@ -4,7 +4,7 @@
 	import { clsx } from 'clsx';
 	import { createEventDispatcher, setContext } from 'svelte';
 
-	export let cls: KRadioGroupProps['cls'] = '';
+	export let cls: KRadioGroupProps['cls'] = undefined;
 	export let attrs: KRadioGroupProps['attrs'] = {};
 	export let disabled: KRadioGroupProps['disabled'] = false;
 	export let value: KRadioGroupProps['value'] = '';

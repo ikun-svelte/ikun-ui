@@ -30,7 +30,7 @@ import { backtopShortcuts } from './backtop';
 import { sliderShortcuts } from './slider';
 import { progressShortcuts } from './progress';
 import { linkShortcuts } from './link';
-linkShortcuts;
+import { layoutShortcuts } from './layout';
 export default [
 	baseShortcuts,
 	commonShortcuts,
@@ -89,10 +89,14 @@ export default [
 	// progress
 	progressShortcuts,
 	// link
-	linkShortcuts
+	linkShortcuts,
+	// layout
+	layoutShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
+	const comList = Object.keys(baseShortcuts);
+	const baseList = Object.keys(commonShortcuts);
 	const iconList = Object.keys(iconShortcuts);
 	const alertList = Object.keys(alertShortcuts);
 	const avatarList = Object.keys(avatarShortcuts);
@@ -121,7 +125,10 @@ export function getSafeList() {
 	const sliderList = Object.keys(sliderShortcuts);
 	const progressList = Object.keys(progressShortcuts);
 	const linkList = Object.keys(linkShortcuts);
+	const layoutList = Object.keys(layoutShortcuts);
 	return iconList
+		.concat(comList)
+		.concat(baseList)
 		.concat(msgBoxList)
 		.concat(selectList)
 		.concat(switchList)
@@ -148,7 +155,8 @@ export function getSafeList() {
 		.concat(backtopList)
 		.concat(sliderList)
 		.concat(progressList)
-		.concat(linkList);
+		.concat(linkList)
+		.concat(layoutList);
 }
 
 export { baseShortcuts } from './base';
@@ -181,3 +189,4 @@ export { backtopShortcuts } from './backtop';
 export { sliderShortcuts } from './slider';
 export { progressShortcuts } from './progress';
 export { linkShortcuts } from './link';
+export { layoutShortcuts } from './layout';
