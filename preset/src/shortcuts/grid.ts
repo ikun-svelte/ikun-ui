@@ -13,5 +13,6 @@ export const gridShortcuts: Record<string, string> = {
 	'k-row__align__bottom': 'items-end',
 
 	// col
-	'k-col--base': ''
+	'k-col--base': '',
+	'k-col__guttered': ''
 };
