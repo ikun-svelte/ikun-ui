@@ -39,20 +39,20 @@ Set the `disabled` attribute.
 
 ## Radio group
 
-In fact, more often we use `radio-group` to implement radio selection
+In fact, more often we use `radioGroup` to implement radio selection.
 
 <demo src="radio/group.svelte" github="RadioGroup"></demo>
 
 ## Radio Props
 
-| Name     | Type                     | Default | Description                                                                             |
-| -------- | ------------------------ | ------- | --------------------------------------------------------------------------------------- |
-| label    | `string`                 | `-`     | Label of the Radio                                                                      |
-| disabled | `boolean`                | `false` | Whether the Radio is disabled                                                           |
-| value    | `boolean`                | `false` | Binding value                                                                           |
-| uid      | `string`                 | `-`     | The unique value of the `radio` component, must be passed when wrapped by `radio-group` |
-| cls      | `string`                 | `-`     | Additional class                                                                        |
-| attrs    | `Record<string, string>` | `{}`    | Additional attributes                                                                   |
+| Name     | Type                     | Default | Description                                                                            |
+| -------- | ------------------------ | ------- | -------------------------------------------------------------------------------------- |
+| label    | `string`                 | `-`     | Label of the Radio                                                                     |
+| disabled | `boolean`                | `false` | Whether the Radio is disabled                                                          |
+| value    | `boolean`                | `false` | Binding value                                                                          |
+| uid      | `string`                 | `-`     | The unique value of the `radio` component, must be passed when wrapped by `radioGroup` |
+| cls      | `string`                 | `-`     | Additional class                                                                       |
+| attrs    | `Record<string, string>` | `{}`    | Additional attributes                                                                  |
 
 ## Radio Events
 
@@ -64,19 +64,19 @@ In fact, more often we use `radio-group` to implement radio selection
 
 | Name     | Type                     | Default | Description                                                                           |
 | -------- | ------------------------ | ------- | ------------------------------------------------------------------------------------- |
-| disabled | `boolean`                | `false` | Whether the `radio-group` is disabled                                                 |
+| disabled | `boolean`                | `false` | Whether the `radioGroup` is disabled                                                  |
 | value    | `string \| number`       | `-`     | Binding value,Its elements must be consistent with the `uid` of the `radio` component |
 | cls      | `string`                 | `-`     | Additional class                                                                      |
 | attrs    | `Record<string, string>` | `{}`    | Additional attributes                                                                 |
 
-## Checkbox Group Events
+## Radio Group Events
 
 | Name        | Description                             | Type                          |
 | ----------- | --------------------------------------- | ----------------------------- |
 | updateValue | Event fired when the `value` is changes | `(value: CustomEvent)=> void` |
 
-## Checkbox Group Slots
+## Radio Group Slots
 
-| Name    | Description                           |
-| ------- | ------------------------------------- |
-| default | Please pass in the checkbox component |
+| Name    | Description                        |
+| ------- | ---------------------------------- |
+| default | Please pass in the radio component |

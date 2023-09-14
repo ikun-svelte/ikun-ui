@@ -83,15 +83,6 @@
 		},
 		cls
 	);
-
-	// ✅ 非禁用，可以初始化
-	// ✅ 非禁用，value 变化同步到 radio
-	// ✅ 非禁用，radio 变化同步到 radio group
-
-	// ✅ 禁用，可以初始化
-	// ✅ 禁用，value 变化不同步到 radio
-	// ✅ 禁用，radio 变化不同步到 radio group
-	// ✅ 禁用 -> 非禁用，radio group 同步最新 radio值
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
