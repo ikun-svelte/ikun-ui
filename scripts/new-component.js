@@ -198,10 +198,12 @@ export default ${compName};`;
 }
 
 async function writeTypeDTs(baseDir, compName) {
+	const imp = "import type { ClassValue } from 'clsx';";
 	const file = `${baseDir}/types.d.ts`;
 	const typeDtsContent = `/// <reference types="svelte" />
+${imp}
 export type K${compName}Props = {
-  cls: string,
+  cls: ClassValue,
   attrs: Record<string, string>
 }`;
 	write(file, typeDtsContent);

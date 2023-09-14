@@ -27,13 +27,13 @@ npm install @ikun-ui/mask
 
 ## Basic usage
 
-<demo src="../../../../example/mask/basic.svelte" github="Mask"></demo>
+<demo src="mask/basic.svelte" github="Mask"></demo>
 
 ## Custom background color
 
 Set the background color of the mask through the color Attribute
 
-<demo src="../../../../example/mask/bg-color.svelte" github="Mask"></demo>
+<demo src="mask/bg-color.svelte" github="Mask"></demo>
 
 ## Mask Props
 

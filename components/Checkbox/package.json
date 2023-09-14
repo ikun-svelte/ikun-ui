@@ -31,7 +31,8 @@
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"@ikun-ui/checkbox-group": "workspace:*",
-		"baiwusanyu-utils": "^1.0.14"
+		"baiwusanyu-utils": "^1.0.14",
+		"clsx": "^2.0.0"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.0",

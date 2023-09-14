@@ -29,13 +29,13 @@ npm install @ikun-ui/breadcrumb @ikun-ui/breadcrumb-item
 
 In `KBreadcrumb`, each `KBreadcrumbItem` is a tag that stands for every level starting from homepage. This component has a String attribute `separator`, and it determines the `separator`. Its default value is '/'.
 
-<demo src="../../../../example/breadcrumb/basic.svelte"  github='Breadcrumb'></demo>
+<demo src="breadcrumb/basic.svelte"  github='Breadcrumb'></demo>
 
 ## Icon separator
 
 Set `separatorIcon` to use `KIcon` as the separator, it will cover `separator`.
 
-<demo src="../../../../example/breadcrumb/separator-icon.svelte"  github='Breadcrumb'></demo>
+<demo src="breadcrumb/separator-icon.svelte"  github='Breadcrumb'></demo>
 
 ## Breadcrumb Props
 

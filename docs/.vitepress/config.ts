@@ -77,6 +77,10 @@ const components = [
 				link: '/components/KCollapse'
 			},
 			{
+				text: 'Ellipsis',
+				link: '/components/KEllipsis'
+			},
+			{
 				text: 'Tag',
 				link: '/components/KTag'
 			},

@@ -6,6 +6,6 @@
 		"declaration": true,
 		"lib": ["dom"]
 	},
-	"include": ["src/**/*.ts", "src/**/*.svelte"],
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.svelte"],
 	"exclude": ["node_modules/*", "**/*.spec.ts"]
 }

@@ -27,19 +27,19 @@ npm install @ikun-ui/popover
 
 ## Basic usage
 
-<demo src="../../../../example/popover/basic.svelte" github="Popover"></demo>
+<demo src="popover/basic.svelte" github="Popover"></demo>
 
 ## Different placement
 
 Specify different display positions through the `placement` attribute
 
-<demo src="../../../../example/popover/placement.svelte" github="Popover"></demo>
+<demo src="popover/placement.svelte" github="Popover"></demo>
 
 ## Different triggers
 
 Specify different trigger methods through the `trigger` attribute
 
-<demo src="../../../../example/popover/trigger.svelte" github="Popover"></demo>
+<demo src="popover/trigger.svelte" github="Popover"></demo>
 
 ## Popover Props
 

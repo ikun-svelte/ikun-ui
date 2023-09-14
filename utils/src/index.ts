@@ -7,5 +7,6 @@ export {
 	BreadcrumbKey,
 	ButtonGroupKey,
 	collapseWrapperKey,
-	checkboxGroupKey
+	checkboxGroupKey,
+	radioGroupKey
 } from './symbol-key';

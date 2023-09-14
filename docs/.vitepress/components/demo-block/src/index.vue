@@ -19,7 +19,8 @@ const props = defineProps({
 let comp = null;
 const el = ref();
 onMounted(async () => {
-	comp = await modules[props.src]();
+	const path = `../../../../example/${props.src}`;
+	comp = await modules[path]();
 	new comp.default({
 		target: el.value
 	});
