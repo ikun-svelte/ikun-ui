@@ -62,8 +62,6 @@
 	);
 </script>
 
-<div class={cnames} {...$$restProps} {...attrs}></div>
-
 <KTooltip {content} placement="top">
 	<div
 		class={cnames}
