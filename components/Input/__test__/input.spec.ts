@@ -20,49 +20,29 @@ afterEach(() => {
 });
 
 describe('Test: KInput', () => {
-	test('props: input sm size', async () => {
-		const instance = new KInput({
-			target: host,
-			props: {
-				size: 'sm',
-				iconPrefix: 'i-prefix',
-				iconSuffix: 'i-suffix'
-			}
-		});
-		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-input--sm')).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-input--icon--sm')).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
-	});
-
-	test('props: input md size', async () => {
-		const instance = new KInput({
-			target: host,
-			props: {
-				size: 'md',
-				iconPrefix: 'i-prefix',
-				iconSuffix: 'i-suffix'
-			}
-		});
-		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-input--md')).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-input--icon--md')).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
-	});
-
-	test('props: input lg size', async () => {
-		const instance = new KInput({
-			target: host,
-			props: {
-				size: 'lg',
-				iconPrefix: 'i-prefix',
-				iconSuffix: 'i-suffix'
-			}
-		});
-		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-input--lg')).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-input--icon--lg')).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
+	test('props: size', async () => {
+		const sizes = ['sm', 'md', 'lg'];
+		for (const size of sizes) {
+			host.remove();
+			initHost();
+			const instance = new KInput({
+				target: host,
+				props: {
+					size,
+					iconPrefix: 'i-prefix',
+					iconSuffix: 'i-suffix'
+				}
+			});
+			expect(instance).toBeTruthy();
+			expect((host as HTMLElement)!.innerHTML.includes(`k-input--${size}`)).toBeTruthy();
+			expect(
+				(host as HTMLElement)!.innerHTML.includes(`k-input--icon--${size} k-input--prefix-icon`)
+			).toBeTruthy();
+			expect(
+				(host as HTMLElement)!.innerHTML.includes(`k-input--icon--${size} k-input--suffix-icon`)
+			).toBeTruthy();
+			expect(host.innerHTML).matchSnapshot();
+		}
 	});
 
 	test('props: value', async () => {
@@ -75,6 +55,33 @@ describe('Test: KInput', () => {
 		expect(instance).toBeTruthy();
 		const inputElem = host.getElementsByTagName('input')[0];
 		expect(inputElem.value).toBe('ikun');
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: placeholder', async () => {
+		const placeholder = '我见青山多妩媚，料青山见我应如是';
+		const instance = new KInput({
+			target: host,
+			props: {
+				placeholder
+			}
+		});
+		expect(instance).toBeTruthy();
+		const inputElm = host.getElementsByTagName('input')[0];
+		expect(inputElm.placeholder).toEqual(placeholder);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: disabled', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				disabled: true
+			}
+		});
+		expect(instance).toBeTruthy();
+		const inputElm = host.getElementsByTagName('input')[0];
+		expect(inputElm.disabled).not.toBeNull();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -104,30 +111,24 @@ describe('Test: KInput', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('props: placeholder', async () => {
-		const placeholder = '我见青山多妩媚，料青山见我应如是';
+	test('props: isError and errorMsg', async () => {
 		const instance = new KInput({
 			target: host,
 			props: {
-				placeholder
+				isError: true,
+				errorMsg: 'value is required'
 			}
 		});
 		expect(instance).toBeTruthy();
-		const inputElm = host.getElementsByTagName('input')[0];
-		expect(inputElm.placeholder).toEqual(placeholder);
-		expect(host.innerHTML).matchSnapshot();
-	});
-
-	test('props: disabled', async () => {
-		const instance = new KInput({
-			target: host,
-			props: {
-				disabled: true
-			}
-		});
-		expect(instance).toBeTruthy();
-		const inputElm = host.getElementsByTagName('input')[0];
-		expect(inputElm.disabled).not.toBeNull();
+		expect((host as HTMLElement)!.innerHTML.includes(`k-input__error`)).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes(`k-input__msg__error`)).toBeTruthy();
+		expect(host.querySelector('.k-input__msg__error')?.textContent).toBe('value is required');
+		instance.$set({ errorMsg: 'change error msg' });
+		await tick();
+		expect(host.querySelector('.k-input__msg__error')?.textContent).toBe('change error msg');
+		instance.$set({ isError: false });
+		await tick();
+		expect((host as HTMLElement)!.innerHTML.includes(`k-input__error`)).toBeFalsy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
