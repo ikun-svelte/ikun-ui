@@ -1,5 +1,5 @@
 /// <reference types="./types" />
-import Grid from './index.svelte';
-export { Grid as KGrid };
-
-export default Grid;
+import Row from './row.svelte';
+import Col from './col.svelte';
+export { Row as KRow };
+export { Col as KCol };
