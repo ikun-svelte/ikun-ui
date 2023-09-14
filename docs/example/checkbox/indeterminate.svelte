@@ -32,7 +32,7 @@
 
 <KCheckbox value={isAll} on:updateValue={handleCheckAll} {indeterminate}>check all</KCheckbox>
 <KCheckboxGroup value={status} on:updateValue={handleStatus}>
-	<KCheckbox label="KCheckbox 1" uid="1"></KCheckbox>
-	<KCheckbox label="KCheckbox 2" uid="2"></KCheckbox>
-	<KCheckbox label="KCheckbox 3" uid="3"></KCheckbox>
+	<KCheckbox label="KCheckbox 1" uid="l1"></KCheckbox>
+	<KCheckbox label="KCheckbox 2" uid="l2"></KCheckbox>
+	<KCheckbox label="KCheckbox 3" uid="l3"></KCheckbox>
 </KCheckboxGroup>
