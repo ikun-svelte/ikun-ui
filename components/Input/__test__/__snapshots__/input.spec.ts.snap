@@ -10,7 +10,7 @@ exports[`Test: KInput > props: iconPrefix 1`] = `"<div class=\\"k-input k-input-
 
 exports[`Test: KInput > props: iconSuffix 1`] = `"<div class=\\"k-input k-input--md k-input__dark k-input__hover k-input__focus\\"> <input class=\\"k-input--inner k-input--inner__dark\\" placeholder=\\"\\"> <span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-search k-input--icon k-input--icon--md k-input--suffix-icon\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span> </div>"`;
 
-exports[`Test: KInput > props: isError and errorMsg 1`] = `"<div class=\\"k-input k-input--md k-input__dark k-input__hover k-input__focus\\"> <input class=\\"k-input--inner k-input--inner__dark\\" placeholder=\\"\\">  <span class=\\"k-input__msg__error\\" style=\\"animation: __svelte_185617033_0 200ms linear 0ms 1 both;\\">change error msg</span></div>"`;
+exports[`Test: KInput > props: isError and errorMsg 1`] = `"<div class=\\"k-input k-input--md k-input__dark k-input__hover k-input__focus\\"> <input class=\\"k-input--inner k-input--inner__dark\\" placeholder=\\"\\">  <span class=\\"k-input__msg__error\\" style=\\"animation: __svelte_185617033_0 200ms linear 0ms 1 both;\\">change error msg.</span></div>"`;
 
 exports[`Test: KInput > props: placeholder 1`] = `"<div class=\\"k-input k-input--md k-input__dark k-input__hover k-input__focus\\"> <input class=\\"k-input--inner k-input--inner__dark\\" placeholder=\\"我见青山多妩媚，料青山见我应如是\\">  </div>"`;
 

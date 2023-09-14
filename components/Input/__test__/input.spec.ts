@@ -123,9 +123,9 @@ describe('Test: KInput', () => {
 		expect((host as HTMLElement)!.innerHTML.includes(`k-input__error`)).toBeTruthy();
 		expect((host as HTMLElement)!.innerHTML.includes(`k-input__msg__error`)).toBeTruthy();
 		expect(host.querySelector('.k-input__msg__error')?.textContent).toBe('value is required');
-		instance.$set({ errorMsg: 'change error msg' });
+		instance.$set({ errorMsg: 'change error msg.' });
 		await tick();
-		expect(host.querySelector('.k-input__msg__error')?.textContent).toBe('change error msg');
+		expect(host.querySelector('.k-input__msg__error')?.textContent).toBe('change error msg.');
 		instance.$set({ isError: false });
 		await tick();
 		expect((host as HTMLElement)!.innerHTML.includes(`k-input__error`)).toBeFalsy();
