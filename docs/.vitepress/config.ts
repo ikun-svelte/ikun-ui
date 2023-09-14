@@ -27,6 +27,16 @@ const components = [
 		]
 	},
 	{
+		text: 'Layout',
+		collapsed: false,
+		items: [
+			{
+				text: 'Layout',
+				link: '/components/KLayout'
+			}
+		]
+	},
+	{
 		text: 'Form',
 		collapsed: false,
 		items: [
