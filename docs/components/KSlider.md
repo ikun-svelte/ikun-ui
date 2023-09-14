@@ -27,21 +27,21 @@ npm install @ikun-ui/slider
 
 ## Basic usage
 
-<demo src="../../../../example/slider/basic.svelte" github="Slider"></demo>
+<demo src="slider/basic.svelte" github="Slider"></demo>
 
 ## Disabled slider
 
 Use `disabled` attribute to determine whether a slider is disabled.
 
-<demo src="../../../../example/slider/disabled.svelte" github="Slider"></demo>
+<demo src="slider/disabled.svelte" github="Slider"></demo>
 
 ## Range slider
 
-<demo src="../../../../example/slider/range.svelte" github="Slider"></demo>
+<demo src="slider/range.svelte" github="Slider"></demo>
 
 ## Render slider
 
-<demo src="../../../../example/slider/render.svelte" github="Slider"></demo>
+<demo src="slider/render.svelte" github="Slider"></demo>
 
 ## Slider Props
 

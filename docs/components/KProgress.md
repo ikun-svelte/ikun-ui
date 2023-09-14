@@ -27,7 +27,7 @@ npm install @ikun-ui/progress
 
 ## Basic usage
 
-<demo src="../../../../example/progress/basic.svelte" github="Progress"></demo>
+<demo src="progress/basic.svelte" github="Progress"></demo>
 
 ## TextInside progress
 
@@ -37,25 +37,25 @@ In this case the percentage takes no additional space.
 
 `textInside` attribute to put description inside the progress bar.
 
-<demo src="../../../../example/progress/textInside.svelte" github="Progress"></demo>
+<demo src="progress/textInside.svelte" github="Progress"></demo>
 
 ## Color progress
 
 `color` attribute decides the `color` of progress bar.
 
-<demo src="../../../../example/progress/color.svelte" github="Progress"></demo>
+<demo src="progress/color.svelte" github="Progress"></demo>
 
 ## Circle progress
 
 By setting `type="circle"`, you can get a circle style of progress easily.
 
-<demo src="../../../../example/progress/circle.svelte" github="Progress"></demo>
+<demo src="progress/circle.svelte" github="Progress"></demo>
 
 ## Dashboard progress
 
 By setting `type="dashboard"`, you can get a dashboard style of progress easily.
 
-<demo src="../../../../example/progress/dashboard.svelte" github="Progress"></demo>
+<demo src="progress/dashboard.svelte" github="Progress"></demo>
 
 ## Progress Props
 

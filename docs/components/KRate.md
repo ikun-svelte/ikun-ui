@@ -29,13 +29,13 @@ npm install @ikun-ui/rate
 
 Use `colors` prop to set color for different level.
 
-<demo src="../../../../example/rate/basic.svelte"  github='Rate'></demo>
+<demo src="rate/basic.svelte"  github='Rate'></demo>
 
 ## With allowHalf
 
 Add attribute `allowHalf` Half star allowed.
 
-<demo src="../../../../example/rate/allow-half.svelte"  github='Rate'></demo>
+<demo src="rate/allow-half.svelte"  github='Rate'></demo>
 
 ## With text
 
@@ -43,19 +43,19 @@ Using text to indicate rating score.
 
 Add attribute `showText` to display text at the right of Rate. You can assign `texts` for different scores using texts.
 
-<demo src="../../../../example/rate/with-text.svelte" github='Rate'></demo>
+<demo src="rate/with-text.svelte" github='Rate'></demo>
 
 ## ShowScore and ScoreTemplate
 
 Add attribute `showScore` to display score at the right of Rate. You can customize score display by set `scoreTemplate`, which is a string and internally uses `{value}` to represent the score.
 
-<demo src="../../../../example/rate/score-template.svelte" github='Rate'></demo>
+<demo src="rate/score-template.svelte" github='Rate'></demo>
 
 ## Clearable
 
 You can reset the value to `0` when you click at the same value again.
 
-<demo src="../../../../example/rate/clearable.svelte" github='Rate'></demo>
+<demo src="rate/clearable.svelte" github='Rate'></demo>
 
 ## More icons
 
@@ -63,7 +63,7 @@ You can use different icons to distinguish different rate components.
 
 You can customize `icons` by passing icons.
 
-<demo src="../../../../example/rate/more-icon.svelte" github='Rate'></demo>
+<demo src="rate/more-icon.svelte" github='Rate'></demo>
 
 ## Readonly
 
@@ -71,7 +71,7 @@ Read-only Rate is for displaying rating score. Half star is supported.
 
 Use attribute `readonly` to make the component read-only. Add `readonlyVoidIcon` and `readonlyVoidColor` to set unselected icons and colors.
 
-<demo src="../../../../example/rate/readonly.svelte" github='Rate'></demo>
+<demo src="rate/readonly.svelte" github='Rate'></demo>
 
 ## Rate Props
 

@@ -29,13 +29,13 @@ npm install @ikun-ui/checkbox
 
 Checkbox can be used alone to switch between two states.
 
-<demo src="../../../../example/checkbox/basic.svelte" github="Checkbox"></demo>
+<demo src="checkbox/basic.svelte" github="Checkbox"></demo>
 
 ## Disabled checkbox
 
 Set the `disabled` attribute.
 
-<demo src="../../../../example/checkbox/disabled.svelte" github="Checkbox"></demo>
+<demo src="checkbox/disabled.svelte" github="Checkbox"></demo>
 
 ## Checkbox group
 
@@ -43,13 +43,13 @@ It is used for multiple checkboxes which are bound in one group, and indicates w
 Bind an array of string or number type to the `checkbox-group` component and pass the checkbox component as a slot.
 At the same time, `uid` must be passed to the `checkbox` component to mark its uniqueness.
 
-<demo src="../../../../example/checkbox/group.svelte" github="CheckboxGroup"></demo>
+<demo src="checkbox/group.svelte" github="CheckboxGroup"></demo>
 
 ## Indeterminate
 
 The `indeterminate` property can help you to achieve a 'check all' effect.
 
-<demo src="../../../../example/checkbox/indeterminate.svelte" github="CheckboxGroup"></demo>
+<demo src="checkbox/indeterminate.svelte" github="CheckboxGroup"></demo>
 
 ## Checkbox Props
 

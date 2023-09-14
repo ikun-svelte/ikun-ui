@@ -29,19 +29,19 @@ npm install @ikun-ui/collapse
 
 You can expand multiple panels
 
-<demo src="../../../../example/collapse/basic.svelte" github="Collapse"></demo>
+<demo src="collapse/basic.svelte" github="Collapse"></demo>
 
 ## Custom title and content
 
 You can render content through slots
 
-<demo src="../../../../example/collapse/custom.svelte" github="Collapse"></demo>
+<demo src="collapse/custom.svelte" github="Collapse"></demo>
 
 ## Accordion
 
 Use the `KCollapseWrapper` component to wrap and set the `uid` to enable the accordion style
 
-<demo src="../../../../example/collapse/accordion.svelte" github="Collapse"></demo>
+<demo src="collapse/accordion.svelte" github="Collapse"></demo>
 
 ## Collapse Props
 

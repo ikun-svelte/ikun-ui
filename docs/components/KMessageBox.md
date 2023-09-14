@@ -27,23 +27,23 @@ npm install @ikun-ui/message-box
 
 ## Basic usage
 
-<demo src="../../../../example/message-box/basic.svelte" github="MessageBox"></demo>
+<demo src="message-box/basic.svelte" github="MessageBox"></demo>
 
 ## Alert MessageBox
 
 `Alert MessageBox` is used for message notification type scenarios
 
-<demo src="../../../../example/message-box/alert.svelte" github="MessageBox"></demo>
+<demo src="message-box/alert.svelte" github="MessageBox"></demo>
 
 ## Confirm MessageBox
 
 `Confirm MessageBox` is used in scenarios where confirmation messages are required
 
-<demo src="../../../../example/message-box/confirm.svelte" github="MessageBox"></demo>
+<demo src="message-box/confirm.svelte" github="MessageBox"></demo>
 
 Display different emotion category `message box` by `emoType` attributes
 
-<demo src="../../../../example/message-box/type.svelte" github="MessageBox"></demo>
+<demo src="message-box/type.svelte" github="MessageBox"></demo>
 
 ## Prompt MessageBox
 
@@ -53,13 +53,13 @@ Display different emotion category `message box` by `emoType` attributes
 `inputErrorMessage` and `inputValidator` properties can be verified
 :::
 
-<demo src="../../../../example/message-box/prompt.svelte" github="MessageBox"></demo>
+<demo src="message-box/prompt.svelte" github="MessageBox"></demo>
 
 ## Customize button text
 
 The `cancelBtnText` and `confirmBtnText` attributes set the button text
 
-<demo src="../../../../example/message-box/btn-text.svelte" github="MessageBox"></demo>
+<demo src="message-box/btn-text.svelte" github="MessageBox"></demo>
 
 ## Custom title and content
 
@@ -70,7 +70,7 @@ When customizing the `title` and `content`,
 if you want to perform form validation, then you can handle it yourself through the `onConfirm` event.
 :::
 
-<demo src="../../../../example/message-box/custom.svelte" github="MessageBox"></demo>
+<demo src="message-box/custom.svelte" github="MessageBox"></demo>
 
 ## MessageBox Options
 

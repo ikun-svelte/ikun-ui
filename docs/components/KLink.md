@@ -29,25 +29,25 @@ npm install @ikun-ui/link
 
 Basic text link
 
-<demo src="../../../../example/link/basic.svelte" github='link'></demo>
+<demo src="link/basic.svelte" github='link'></demo>
 
 ## Disabled
 
 Disabled state of link
 
-<demo src="../../../../example/link/disabled.svelte" github='link'></demo>
+<demo src="link/disabled.svelte" github='link'></demo>
 
 ## Underline
 
 Underline of link
 
-<demo src="../../../../example/link/underline.svelte" github='link'></demo>
+<demo src="link/underline.svelte" github='link'></demo>
 
 ## Icon
 
 Link with icon
 
-<demo src="../../../../example/link/icon.svelte" github='link'></demo>
+<demo src="link/icon.svelte" github='link'></demo>
 
 ## link Props
 
