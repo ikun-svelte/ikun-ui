@@ -1,21 +1,21 @@
 <script lang="ts">
 	import { getPrefixCls, KSymbolKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KGridProps } from './types';
+	import type { KGridProps, KRowProps } from './types';
 	import { setContext } from 'svelte';
 	export let cls: KGridProps['cls'] = undefined;
 	export let attrs: KGridProps['attrs'] = {};
-	export let gutter: KGridProps['gutter'] = 0;
-	export let justify: KGridProps['justify'] = 'start';
-	export let align: KGridProps['align'] = undefined;
-	export let tag: KGridProps['tag'] = 'div';
+	export let gutter: KRowProps['gutter'] = 0;
+	export let justify: KRowProps['justify'] = 'start';
+	export let align: KRowProps['align'] = undefined;
+	export let tag: KRowProps['tag'] = 'div';
 
 	$: gutterValue = gutter;
 	setContext(KSymbolKey, {
 		gutter: gutterValue
 	});
 
-	$: mxStyle = undefined;
+	$: mxStyle = '';
 	$: {
 		if (gutterValue) {
 			mxStyle = `-${gutter / 2}px`;
