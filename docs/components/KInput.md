@@ -73,8 +73,6 @@ Add `size` attribute to change the size of Input. It supports `sm`, `md` and `lg
 | compositionend   | The compositionend event is fired when a text composition system   | `(e: CompositionEvent)=> void`           |
 | compositionInput | Event fired when enable `useCompositionInput`                      | `(value: Event)=> void`                  |
 
-> > > > > > > Stashed changes
-
 ## Input Slots
 
 | Name   | Description                    |
