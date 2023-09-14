@@ -29,7 +29,7 @@ npm install @ikun-ui/message
 
 Determine the display position by setting the `placement` option
 
-<demo src="../../../../example/message/basic.svelte" github="Message"></demo>
+<demo src="message/basic.svelte" github="Message"></demo>
 
 ## Different emotion categories
 
@@ -39,30 +39,30 @@ Display different emotion category messages by calling different methods
 The method of `MessageInst.info/success/error/warning` takes precedence over `options.type`.
 :::
 
-<demo src="../../../../example/message/type.svelte" github="Message"></demo>
+<demo src="message/type.svelte" github="Message"></demo>
 
 ## Closable message
 
 Through the options, you can set whether the message can be closed,
 the duration of existence, automatic close and close callback
 
-<demo src="../../../../example/message/close.svelte" github="Message"></demo>
+<demo src="message/close.svelte" github="Message"></demo>
 
 ## message with offset
 
 Sometimes you may need the message to be slightly offset by a distance in the y-axis direction
 
-<demo src="../../../../example/message/offset.svelte" github="Message"></demo>
+<demo src="message/offset.svelte" github="Message"></demo>
 
 ## Update the message
 
-<demo src="../../../../example/message/update.svelte" github="Message"></demo>
+<demo src="message/update.svelte" github="Message"></demo>
 
 ## Custom content
 
 You can render content through slots
 
-<demo src="../../../../example/message/custom.svelte" github="Message"></demo>
+<demo src="message/custom.svelte" github="Message"></demo>
 
 ## Message Options
 

@@ -29,19 +29,19 @@ npm install @ikun-ui/radio
 
 Radio should not have too many options. Otherwise, use the Select component instead.
 
-<demo src="../../../../example/radio/basic.svelte" github="Radio"></demo>
+<demo src="radio/basic.svelte" github="Radio"></demo>
 
 ## Disabled radio
 
 Set the `disabled` attribute.
 
-<demo src="../../../../example/radio/disabled.svelte" github="Radio"></demo>
+<demo src="radio/disabled.svelte" github="Radio"></demo>
 
 ## Radio group
 
 In fact, more often we use `radio-group` to implement radio selection
 
-<demo src="../../../../example/radio/group.svelte" github="RadioGroup"></demo>
+<demo src="radio/group.svelte" github="RadioGroup"></demo>
 
 ## Radio Props
 

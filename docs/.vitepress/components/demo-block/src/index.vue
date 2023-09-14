@@ -19,10 +19,11 @@ const props = defineProps({
 let comp = null;
 const el = ref();
 onMounted(async () => {
-	comp = await modules[props.src]();
-	new comp.default({
-		target: el.value
-	});
+   const path = `../../../../example/${props.src}`
+	 comp = await modules[path]();
+	 new comp.default({
+	 	target: el.value
+	 });
 });
 const showCode = ref(false);
 const code = computed(() => decodeURIComponent(props.source));

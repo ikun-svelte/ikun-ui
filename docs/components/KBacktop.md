@@ -29,13 +29,13 @@ npm install @ikun-ui/backtop
 
 Scroll down to see the bottom-right button.
 
-<demo src="../../../../example/backtop/basic.svelte"  github='Backtop'></demo>
+<demo src="backtop/basic.svelte"  github='Backtop'></demo>
 
 ## Slot Render
 
 Render custom content via slots.
 
-<demo src="../../../../example/backtop/custom.svelte" github='Backtop'></demo>
+<demo src="backtop/custom.svelte" github='Backtop'></demo>
 
 ## Backtop Props
 
