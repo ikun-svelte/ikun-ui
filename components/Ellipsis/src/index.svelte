@@ -1,36 +1,39 @@
 <script lang="ts">
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { KTooltip } from '@ikun-ui/tooltip';
-	import clsx from 'clsx';
+	import { clsx } from 'clsx';
 	import type { KEllipsisProps } from './types';
 
 	export let content: KEllipsisProps['content'] = '';
-	export let text: KEllipsisProps['content'] = '';
-	export let expend: KEllipsisProps['expend'] = false;
+	export let text: KEllipsisProps['text'] = '';
+	export let expand: KEllipsisProps['expand'] = false;
+	// TODO: How to mock this in vitest ?
 	export let lineClamp: KEllipsisProps['lineClamp'] = null;
 	export let num: KEllipsisProps['num'] = 5;
 	export let placement: KEllipsisProps['placement'] = 'right';
-	export let cls: string = '';
-	export let attrs: Record<string, string> = {};
+	export let cls: KEllipsisProps['cls'] = '';
+	export let attrs: KEllipsisProps['attrs'] = {};
 
 	let isExpand = false;
 	let textCache = '';
 	let textInner = text;
+	let placementInner = placement;
 	const handleText = () => {
 		if (num === 0) return;
-		if (placement === 'right') textInner = `${text?.slice(0, text?.length - num)}...`;
+		if (placementInner === 'right') textInner = `${text?.slice(0, text?.length - num)}...`;
 
-		if (placement === 'center') {
+		if (placementInner === 'center') {
 			const elpNumCenter = num / 2;
 			const lenCenter = text?.length / 2;
 			const subStrHead = text?.substring(0, lenCenter - elpNumCenter);
 			const subStrFoot = text?.substring(lenCenter + elpNumCenter, text.length);
 			textInner = `${subStrHead}...${subStrFoot}`;
 		}
-		if (placement === 'left') textInner = `...${text.substring(num, text.length)}`;
+		if (placementInner === 'left') textInner = `...${text.substring(num, text.length)}`;
 	};
 	$: {
 		textCache = text;
+		placementInner = placement;
 		handleText();
 	}
 
@@ -41,8 +44,8 @@
 
 	let styleContent = !lineClamp ? '' : styleStr;
 
-	const handleExpend = () => {
-		if (!expend) return;
+	const handleExpand = () => {
+		if (!expand) return;
 		isExpand = !isExpand;
 		styleContent = isExpand ? '' : styleStr;
 		isExpand && (textInner = textCache);
@@ -69,7 +72,7 @@
 		{...attrs}
 		aria-hidden="true"
 		style={styleContent}
-		on:click={handleExpend}
+		on:click={handleExpand}
 	>
 		{textInner}
 	</div>

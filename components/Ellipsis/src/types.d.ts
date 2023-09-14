@@ -3,9 +3,9 @@ import type { ClassValue } from 'clsx';
 export type KEllipsisProps = {
 	cls: ClassValue;
 	attrs: Record<string, string>;
-	textcontent: string;
+	content: string;
 	text: string;
-	expend: boolean;
+	expand: boolean;
 	lineClamp: number | null;
 	num: number;
 	placement: 'left' | 'right' | 'center';
