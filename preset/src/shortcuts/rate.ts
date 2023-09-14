@@ -3,10 +3,10 @@ export const rateShortcuts: Record<string, string> = {
 	'k-rate': 'fsc',
 
 	// disabled
-	'k-rate--disabled': 'op60 cursor',
+	'k-rate--disabled': 'op60 cursor-not-allowed',
 
 	// readonly
-	'k-rate--readonly': '',
+	'k-rate--readonly': 'cursor-auto',
 
 	// item
 	'k-rate--item': 'infcc',
@@ -14,5 +14,5 @@ export const rateShortcuts: Record<string, string> = {
 	'k-rate--item__disabled': 'cursor-not-allowed',
 
 	// text
-	'k-rate--text': 'ml-6px text-10px line-height-1'
+	'k-rate--text': 'ml-6px text-10px line-height-none'
 };
