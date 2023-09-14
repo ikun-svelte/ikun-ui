@@ -1,16 +1,31 @@
 export const inputShortcuts: Record<string, string> = {
 	// input
-	'k-input--base': 'fi rounded k-border border-ikun-bd-base py-1 pl-1 pr-2 pr',
-	'k-input--base__disabled': 'k-bg-disabled k-cur-disabled',
-	'k-input--base__hover': 'hover:border-ikun-main',
-	'k-input--base__focus': 'focus-within:border-ikun-main focus-within:k-input-shadow',
-	'k-input--inner': 'ml-0.4em w-full flex-auto !outline-none border-transparent text-base',
-	'k-input--icon': 'ml-0.3em mr-0.1em text-1.1em op50',
+	'k-input': 'relative fi rounded k-border border-ikun-bd-base',
+	'k-input--inner': 'w-full flex-auto border-none text-size-inherit',
+	'k-input--icon': 'op50',
+	'k-input--prefix-icon': 'mr-1.5',
+	'k-input--suffix-icon': 'ml-1.5',
+
+	// size
+	'k-input--sm': 'h-22px px-1.5 text-12px',
+	'k-input--md': 'h-30px px-2.5 text-14px',
+	'k-input--lg': 'h-38px px-3.5 text-16px',
+
+	'k-input--icon--sm': '!w-12px !h-12px',
+	'k-input--icon--md': '!w-14px !h-14px',
+	'k-input--icon--lg': '!w-16px !h-16px',
+
+	'k-input__disabled': 'k-bg-disabled k-cur-disabled',
+	'k-input__hover': 'hover:border-ikun-main',
+	'k-input__focus': 'focus-within:border-ikun-main focus-within:k-input-shadow',
+
 	// error
-	'k-input--base__error': 'border-ikun-error k-input-shadow--error',
-	'k-input--base__msg__error': 'absolute left-0 -bottom-5 text-xs text-ikun-error',
+	'k-input__error': 'border-ikun-error k-input-shadow--error',
+	'k-input__msg__error':
+		'absolute left-0 top-full pt-2px text-ikun-error text-12px line-height-none',
+
 	// dark
+	'k-input__dark': 'dark:bg-ikun-dark-300',
 	'k-input--inner__dark': 'dark:bg-ikun-dark-300',
-	'k-input--base__disabled__dark': 'dark:bg-ikun-dark',
-	'k-input--base__dark': 'dark:bg-ikun-dark-300'
+	'k-input__disabled__dark': 'dark:bg-ikun-dark'
 };

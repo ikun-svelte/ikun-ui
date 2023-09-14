@@ -41,10 +41,17 @@ Disable the input through the disabled attribute
 
 <demo src="input/disabled.svelte" github="Input"></demo>
 
+## Sizes
+
+Add `size` attribute to change the size of Input. It supports `sm`, `md` and `lg`.
+
+<demo src="input/sizes.svelte" github="Input"></demo>
+
 ## Input Props
 
 | Name                | Type                     | Default | Description                                                      |
 | ------------------- | ------------------------ | ------- | ---------------------------------------------------------------- |
+| size                | `sm` / `md` / `lg`       | `md`    | size of Input.                                                   |
 | value               | `string`                 | `-`     | Binding value                                                    |
 | iconPrefix          | `string`                 | `-`     | The class name of the prefix icon, following the unocss standard |
 | iconSuffix          | `string`                 | `-`     | The class name of the suffix icon, following the unocss standard |
@@ -65,8 +72,6 @@ Disable the input through the disabled attribute
 | compositionstart | The compositionstart event is fired when a text composition system | `(e: CompositionEvent)=> void`           |
 | compositionend   | The compositionend event is fired when a text composition system   | `(e: CompositionEvent)=> void`           |
 | compositionInput | Event fired when enable `useCompositionInput`                      | `(value: Event)=> void`                  |
-
-> > > > > > > Stashed changes
 
 ## Input Slots
 
