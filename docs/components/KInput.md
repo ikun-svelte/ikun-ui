@@ -45,7 +45,7 @@ Disable the input through the disabled attribute
 
 Add `size` attribute to change the size of Input. It supports `sm`, `md` and `lg`.
 
-<demo src="../../../../example/input/sizes.svelte" github="Input"></demo>
+<demo src="input/sizes.svelte" github="Input"></demo>
 
 ## Input Props
 
