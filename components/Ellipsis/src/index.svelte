@@ -11,7 +11,7 @@
 	export let lineClamp: KEllipsisProps['lineClamp'] = null;
 	export let num: KEllipsisProps['num'] = 5;
 	export let placement: KEllipsisProps['placement'] = 'right';
-	export let cls: KEllipsisProps['cls'] = '';
+	export let cls: KEllipsisProps['cls'] = undefined;
 	export let attrs: KEllipsisProps['attrs'] = {};
 
 	let isExpand = false;
