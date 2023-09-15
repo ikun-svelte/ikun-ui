@@ -62,7 +62,7 @@
 			text = (isString(texts) ? texts : textsMap[Math.ceil(currentValue)]) as string;
 		} else if (showScore) {
 			text = scoreTemplate.replace(
-				/\{\s*value\s*\}/,
+				/\{\s*value\s*\}/g,
 				readonly || disabled ? `${value}` : `${currentValue}`
 			);
 		} else {
