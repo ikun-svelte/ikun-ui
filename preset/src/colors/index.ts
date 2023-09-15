@@ -1,6 +1,4 @@
-// 主題顔色
-const prefix = '--ikun';
-
+import { COLOR_PREFIX } from '../utils/constant';
 export const defaultColors = {
 	inherit: 'inherit',
 	current: 'currentColor',
@@ -325,10 +323,10 @@ export const getCSSPreflights = (theme = defaultColors) => {
 	let res = '';
 	Object.keys(theme).forEach((k) => {
 		if (typeof theme[k] === 'string') {
-			res = res + '\n' + `${prefix}-${k}:${theme[k]};`;
+			res = res + '\n' + `${COLOR_PREFIX}-${k}:${theme[k]};`;
 		} else {
 			Object.keys(theme[k]).forEach((v) => {
-				res = res + '\n' + `${prefix}-${k}-${v}:${theme[k][v]};`;
+				res = res + '\n' + `${COLOR_PREFIX}-${k}-${v}:${theme[k][v]};`;
 			});
 		}
 	});
