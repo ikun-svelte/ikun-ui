@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getPrefixCls, KSymbolKey } from '@ikun-ui/utils';
+	import { getPrefixCls, rowKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import type { KGridProps, KRowProps } from './types';
 	import { setContext } from 'svelte';
@@ -10,14 +10,13 @@
 	export let align: KRowProps['align'] = undefined;
 	export let tag: KRowProps['tag'] = 'div';
 
-	$: gutterValue = gutter;
-	setContext(KSymbolKey, {
-		gutter: gutterValue
+	setContext(rowKey, {
+		gutter
 	});
 
 	$: mxStyle = '';
 	$: {
-		if (gutterValue) {
+		if (gutter) {
 			mxStyle = `-${gutter / 2}px`;
 		}
 	}

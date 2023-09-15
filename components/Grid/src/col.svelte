@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getPrefixCls, KSymbolKey } from '@ikun-ui/utils';
+	import { getPrefixCls, rowKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import type { KGridProps, KColProps } from './types';
 	import { getContext } from 'svelte';
@@ -19,30 +19,19 @@
 	export let xl: KColProps['xl'] = undefined;
 
 	const prefixCls = getPrefixCls('col');
-	$: gutterValue = (getContext(KSymbolKey) as number) || 0;
+	$: gutterValue = getContext(rowKey).gutter || 0;
 	$: pxStyle = '' as undefined | string;
 	$: {
 		if (gutterValue) {
-			pxStyle = `-${gutterValue / 2}px`;
+			pxStyle = `${gutterValue / 2}px`;
 		} else {
 			pxStyle = undefined;
 		}
 	}
 
-	$: posMap = {
-		span,
-		offset,
-		push,
-		pull
-	};
+	$: posMap = { span, offset, push, pull };
 
-	$: sizeMap = {
-		xs,
-		sm,
-		md,
-		lg,
-		xl
-	};
+	$: sizeMap = { xs, sm, md, lg, xl };
 
 	const createCls = () => {
 		const classes: string[] = [];
