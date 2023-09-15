@@ -1,3 +1,12 @@
+const BREAK_POINT = {
+	xs: '768px',
+	sm: '768px',
+	md: '992px',
+	lg: '1200px',
+	xl: '1920px'
+};
+
+/******************************* Static style rules for KCol components *******************************************/
 function createSpanCls(colNum: number, index: number, isSize = false) {
 	const res = {
 		'max-width': `${(1 / colNum) * index * 100}%`,
@@ -44,10 +53,27 @@ function createColClsByNum(colNum: number) {
 	return cls;
 }
 
+/**
+ * Get the static rules of the KCol component
+ * @param colNum
+ */
+export function getColCls(colNum = 24) {
+	return {
+		['k-col-0']: {
+			display: 'none'
+		},
+		...createColClsByNum(colNum)
+	};
+}
+
+/******************************* Media query breakpoint style rules for KCol components *******************************************/
+/**
+ * Generate reactive breakpoint code for the KCol component
+ * @param colNum
+ */
 export function createColSizeClsByNum(colNum: number = 24) {
-	const sizeMap = ['xs', 'sm', 'md', 'lg', 'xl'];
 	const cls: Record<string, Record<string, string>> = {};
-	sizeMap.forEach((size) => {
+	Object.keys(BREAK_POINT).forEach((size) => {
 		cls[`ikun-${size}:k-col-${size}-0`] = {
 			display: 'none'
 		};
@@ -71,30 +97,16 @@ export function createColSizeClsByNum(colNum: number = 24) {
 	return cls;
 }
 
-export function createGridColCls(colNum = 24) {
-	const baseCls = {
-		['k-col-0']: {
-			display: 'none'
-		}
-	};
-
-	return {
-		...baseCls,
-		...createColClsByNum(colNum)
-	};
-}
-
+/**
+ * Generate media query code that meets breakpoints for the KCol component
+ * @param size
+ * @param clsName
+ * @param colNum
+ */
 export function createBreakPointCls(size: string, clsName: string, colNum = 24) {
-	const breakPoint = {
-		xs: '768px',
-		sm: '768px',
-		md: '992px',
-		lg: '1200px',
-		xl: '1920px'
-	};
 	const colSizeCls = createColSizeClsByNum(colNum);
 	if (size && clsName) {
-		const sizeValue = breakPoint[size];
+		const sizeValue = BREAK_POINT[size];
 		let clsValue = '';
 		Object.keys(colSizeCls[clsName]).forEach((v) => {
 			clsValue = clsValue + `${v}: ${colSizeCls[clsName][v]};\n`;
@@ -107,4 +119,22 @@ export function createBreakPointCls(size: string, clsName: string, colNum = 24) 
 		}
 		return clsValue;
 	}
+}
+
+/**
+ * get reactive breakpoint rules for the KCol component
+ */
+export function getColBreakPointRules() {
+	return () => [
+		/^(ikun-xs:|ikun-sm:|ikun-md:|ikun-lg:|ikun-xl:)/,
+		(inputData) => {
+			const sizeMatch = inputData[0].match(/ikun-(.*?):/);
+			const clsName = inputData.input;
+			if (sizeMatch && clsName) {
+				return createBreakPointCls(sizeMatch[1], clsName);
+			} else {
+				return;
+			}
+		}
+	];
 }
