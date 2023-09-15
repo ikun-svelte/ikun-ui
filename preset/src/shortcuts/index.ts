@@ -99,6 +99,7 @@ export const defaultShortcuts = [
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
+	// shortcuts
 	const comList = Object.keys(baseShortcuts);
 	const baseList = Object.keys(commonShortcuts);
 	const iconList = Object.keys(iconShortcuts);
@@ -131,7 +132,7 @@ export function getSafeList() {
 	const linkList = Object.keys(linkShortcuts);
 	const layoutList = Object.keys(layoutShortcuts);
 	const gridList = Object.keys(gridShortcuts);
-	const res = iconList
+	let res = iconList
 		.concat(comList)
 		.concat(baseList)
 		.concat(msgBoxList)
@@ -162,9 +163,12 @@ export function getSafeList() {
 		.concat(progressList)
 		.concat(linkList)
 		.concat(layoutList)
-		.concat(gridList)
-		.concat(Object.keys(createColSizeClsByNum()))
-		.concat(Object.keys(getColCls()));
+		.concat(gridList);
+
+	// rules
+	const colSizeRules = Object.keys(createColSizeClsByNum());
+	const colRules = Object.keys(getColCls());
+	res = res.concat(colSizeRules).concat(colRules);
 	return res;
 }
 
