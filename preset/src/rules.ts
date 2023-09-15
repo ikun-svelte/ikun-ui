@@ -125,6 +125,8 @@ export const setMainColorToRules = <T>(
 			const clsName = inputData.input;
 			if (sizeMatch && clsName) {
 				return createBreakPointCls(sizeMatch[1], clsName);
+			} else {
+				return;
 			}
 		}
 	]);

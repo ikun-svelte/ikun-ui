@@ -31,6 +31,10 @@ const components = [
 		collapsed: false,
 		items: [
 			{
+				text: 'Grid',
+				link: '/components/KGrid'
+			},
+			{
 				text: 'Layout',
 				link: '/components/KLayout'
 			}

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getPrefixCls, rowKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KGridProps, KColProps } from './types';
+	import type { KGridProps, KColProps, KGridCtx } from './types';
 	import { getContext } from 'svelte';
 	import { isNumber, isObject } from 'baiwusanyu-utils';
 
@@ -19,7 +19,7 @@
 	export let xl: KColProps['xl'] = undefined;
 
 	const prefixCls = getPrefixCls('col');
-	$: gutterValue = getContext(rowKey).gutter || 0;
+	$: gutterValue = (getContext(rowKey) as KGridCtx).gutter || 0;
 	$: pxStyle = '' as undefined | string;
 	$: {
 		if (gutterValue) {
@@ -42,7 +42,7 @@
 				if (prop === 'span') {
 					classes.push(`${prefixCls}-${pos}`);
 				} else if (pos > 0) {
-					classes.push(`${prefixCls}-${pos}-${pos}`);
+					classes.push(`${prefixCls}-${prop}-${pos}`);
 				}
 			}
 		});

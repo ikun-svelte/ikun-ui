@@ -76,3 +76,7 @@ export type KColProps = {
 	 */
 	tag: string;
 };
+
+export interface KGridCtx {
+	gutter: number;
+}
