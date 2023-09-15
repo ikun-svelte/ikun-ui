@@ -70,14 +70,14 @@ five breakpoints are preset: `xs`, `sm`, `md`, `lg` and `xl`.
 
 ## KRow Props
 
-| Name    | Type                                                                        | Default | Description                         |
-| ------- | --------------------------------------------------------------------------- | ------- | ----------------------------------- |
-| gutter  | `number`                                                                    | `0`     | grid spacing                        |
+| Name    | Type                                                      | Default | Description                         |
+| ------- | --------------------------------------------------------- | ------- | ----------------------------------- |
+| gutter  | `number`                                                  | `0`     | grid spacing                        |
 | justify | `'start'\|'end'\|'center'\|'around'\|'between'\|'evenly'` | `start` | horizontal alignment of flex layout |
-| align   | `top \| middle \| bottom`                                                   | `-`     | vertical alignment of flex layout   |
-| tag     | `string`                                                                    | `div`   | custom element tag                  |
-| cls     | `string`                                                                    | `'-'`   | Additional class                    |
-| attrs   | `Record<string, string>`                                                    | `{}`    | Additional attributes               |
+| align   | `top \| middle \| bottom`                                 | `-`     | vertical alignment of flex layout   |
+| tag     | `string`                                                  | `div`   | custom element tag                  |
+| cls     | `string`                                                  | `'-'`   | Additional class                    |
+| attrs   | `Record<string, string>`                                  | `{}`    | Additional attributes               |
 
 ## KRow Slots
 

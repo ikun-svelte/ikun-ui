@@ -33,7 +33,7 @@ import { linkShortcuts } from './src/link';
 import { layoutShortcuts } from './src/layout';
 import { gridShortcuts } from './src/grid';
 import { createColSizeClsByNum, getColCls } from '../rules/src/grid';
-export default [
+export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
 	// icon
