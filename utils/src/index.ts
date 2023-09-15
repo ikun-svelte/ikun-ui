@@ -8,5 +8,6 @@ export {
 	ButtonGroupKey,
 	collapseWrapperKey,
 	checkboxGroupKey,
-	radioGroupKey
+	radioGroupKey,
+	rowKey
 } from './symbol-key';

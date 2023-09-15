@@ -1,6 +1,7 @@
 import type { Rule, RuleContext } from 'unocss';
 import type { Theme } from '@unocss/preset-uno';
 import { parseCssColor } from '@unocss/preset-mini/utils';
+import { createBreakPointCls, createGridColCls } from './rules/grid';
 /* const SwitchSizeMap = {
 	sm: ['2rem', '1.125rem', '0.85rem'],
 	md: ['2.5rem', '1.375rem', '1.1rem'],
@@ -41,6 +42,8 @@ const popoverRules = {
 	'k-popover-shadow__right': { 'box-shadow': '-10px 0px 16px rgb(0 0 0 / 0.25)' }
 };
 
+const gridRules = createGridColCls();
+
 // 自定義的原子樣式規則
 export const defaultRules = {
 	...inputRules,
@@ -49,7 +52,8 @@ export const defaultRules = {
 	...notifyRules,
 	...switchRules,
 	...progressRules,
-	...popoverRules
+	...popoverRules,
+	...gridRules
 } as Record<string, any>;
 
 export const setMainColorToRules = <T>(
@@ -111,6 +115,19 @@ export const setMainColorToRules = <T>(
 				'--ikun-context': color,
 				[attr]: 'var(--ikun-context)'
 			};
+		}
+	]);
+
+	finalRules.push([
+		/^(ikun-xs:|ikun-sm:|ikun-md:|ikun-lg:|ikun-xl:)/,
+		(inputData) => {
+			const sizeMatch = inputData[0].match(/ikun-(.*?):/);
+			const clsName = inputData.input;
+			if (sizeMatch && clsName) {
+				return createBreakPointCls(sizeMatch[1], clsName);
+			} else {
+				return;
+			}
 		}
 	]);
 	return finalRules as Rule<Theme>[];

@@ -69,7 +69,7 @@
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "esno scripts/new-component.js layout"
+		"create:new:comp": "esno scripts/new-component.js grid"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
@@ -116,7 +116,8 @@
 		"@ikun-ui/ellipsis": "workspace:*",
 		"@ikun-ui/layout": "workspace:*",
 		"baiwusanyu-utils": "^1.0.14",
-		"clsx": "^2.0.0"
+		"clsx": "^2.0.0",
+		"@ikun-ui/grid": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",

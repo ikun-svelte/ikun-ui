@@ -167,16 +167,17 @@ async function writePkgJson(baseDir, originalCompName) {
 }
 
 async function writeComponent(baseDir, originalCompName) {
+	const propsName = `K${originalCompName.replace(/^\w/, (char) => char.toUpperCase())}Props`;
 	const file = `${baseDir}/index.svelte`;
 	const svelteContent = `<script lang="ts">
   import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-
-  export let cls: string = '';
-  export let attrs: Record<string, string> = {};
-
+  import type { ${propsName} } from "./types";
+  
+  export let cls: ${propsName}["cls"] = undefined;
+  export let attrs: ${propsName}["attrs"] = {};
+ 
   const prefixCls = getPrefixCls('${originalCompName}');
-
   $: cnames = clsx(prefixCls, {
     [\`$\{prefixCls}--base\`]: true
   }, cls);
