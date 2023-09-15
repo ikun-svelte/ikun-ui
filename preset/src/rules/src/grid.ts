@@ -1,10 +1,4 @@
-const BREAK_POINT = {
-	xs: '768px',
-	sm: '768px',
-	md: '992px',
-	lg: '1200px',
-	xl: '1920px'
-};
+import { BREAK_POINT } from '../../utils/constant';
 
 /******************************* Static style rules for KCol components *******************************************/
 function createSpanCls(colNum: number, index: number, isSize = false) {
