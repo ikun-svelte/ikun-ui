@@ -980,6 +980,9 @@ importers:
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon
+      '@ikun-ui/popover':
+        specifier: workspace:*
+        version: link:../Popover
       '@ikun-ui/utils':
         specifier: workspace:*
         version: link:../../utils
