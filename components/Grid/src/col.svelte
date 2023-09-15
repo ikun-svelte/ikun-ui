@@ -8,7 +8,7 @@
 	export let cls: KGridProps['cls'] = undefined;
 	export let attrs: KGridProps['attrs'] = {};
 	export let tag: KColProps['tag'] = 'div';
-	export let span: KColProps['span'] = 36;
+	export let span: KColProps['span'] = 24;
 	export let offset: KColProps['offset'] = 0;
 	export let push: KColProps['push'] = 0;
 	export let pull: KColProps['pull'] = 0;
@@ -37,26 +37,27 @@
 		const classes: string[] = [];
 		const posNames = ['span', 'offset', 'push', 'pull'] as const;
 		posNames.forEach((prop) => {
-			const size = posMap[prop];
-			if (isNumber(size)) {
+			const pos = posMap[prop];
+			if (isNumber(pos)) {
 				if (prop === 'span') {
-					classes.push(`${prefixCls}-${size}`);
-				} else if (size > 0) {
-					classes.push(`${prefixCls}-${prop}-${size}`);
+					classes.push(`${prefixCls}-${pos}`);
+				} else if (pos > 0) {
+					classes.push(`${prefixCls}-${pos}-${pos}`);
 				}
 			}
 		});
 
 		const sizeNames = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
 		sizeNames.forEach((size) => {
+			const breakingPoint = size === 'xs' ? `ikun-${size}` : `ikun-${size}`;
 			if (isNumber(sizeMap[size])) {
-				classes.push(`${prefixCls}-${size}-${sizeMap[size]}`);
+				classes.push(`${breakingPoint}:${prefixCls}-${size}-${sizeMap[size]}`);
 			} else if (isObject(sizeMap[size])) {
 				Object.entries(sizeMap[size] as any).forEach(([prop, sizeProp]) => {
 					classes.push(
 						prop !== 'span'
-							? `${prefixCls}-${size}-${prop}-${sizeProp}`
-							: `${prefixCls}-${size}-${sizeProp}`
+							? `${breakingPoint}:${prefixCls}-${size}-${prop}-${sizeProp}`
+							: `${breakingPoint}:${prefixCls}-${size}-${sizeProp}`
 					);
 				});
 			}
@@ -67,12 +68,11 @@
 	$: cnames = clsx(
 		prefixCls,
 		{
-			[`${prefixCls}--base`]: true
+			[`${prefixCls}--base`]: true,
+			[`${prefixCls}__guttered`]: gutterValue && span,
+			[`${prefixCls}__guttered__none`]: gutterValue && !span
 		},
 		...createCls(),
-		{
-			[`is-guttered`]: gutterValue
-		},
 		cls
 	);
 </script>

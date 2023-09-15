@@ -32,6 +32,7 @@ import { progressShortcuts } from './progress';
 import { linkShortcuts } from './link';
 import { layoutShortcuts } from './layout';
 import { gridShortcuts } from './grid';
+import { createColSizeClsByNum, createGridColCls } from '../rules/grid';
 export default [
 	baseShortcuts,
 	commonShortcuts,
@@ -129,8 +130,8 @@ export function getSafeList() {
 	const progressList = Object.keys(progressShortcuts);
 	const linkList = Object.keys(linkShortcuts);
 	const layoutList = Object.keys(layoutShortcuts);
-	const gridtList = Object.keys(gridShortcuts);
-	return iconList
+	const gridList = Object.keys(gridShortcuts);
+	const res = iconList
 		.concat(comList)
 		.concat(baseList)
 		.concat(msgBoxList)
@@ -161,7 +162,10 @@ export function getSafeList() {
 		.concat(progressList)
 		.concat(linkList)
 		.concat(layoutList)
-		.concat(gridtList);
+		.concat(gridList)
+		.concat(Object.keys(createColSizeClsByNum()))
+		.concat(Object.keys(createGridColCls()));
+	return res;
 }
 
 export { baseShortcuts } from './base';

@@ -14,4 +14,4 @@ export const collapseWrapperKey = KSymbolKey('collapseWrapper');
 export const checkboxGroupKey = KSymbolKey('checkboxGroup');
 export const radioGroupKey = KSymbolKey('checkboxGroup');
 
-export const rowKey = KSymbolKey('rowKey');
+export const rowKey = KSymbolKey('row');

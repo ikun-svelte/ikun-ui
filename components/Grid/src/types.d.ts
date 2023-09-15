@@ -33,7 +33,7 @@ export interface ResponsiveSize {
 export type KColProps = {
 	/**
 	 * number of column the grid spans
-	 * @default 36
+	 * @default 24
 	 */
 	span: number;
 	/**
