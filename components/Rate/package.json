@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/rate",
-	"version": "0.0.9-beta.6",
+	"version": "0.0.9-beta.7",
 	"type": "module",
 	"main": "./src/index.ts",
 	"types": "src/index.ts",
