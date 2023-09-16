@@ -165,7 +165,7 @@ describe('Test: KPopconfirm', () => {
 		expect(
 			host.innerHTML.includes('<div class="k-popconfirm--content">清扬婉兮</div>')
 		).toBeTruthy();
-		const btnCancel = host.querySelector('.k-button--info__fill');
+		const btnCancel = host.querySelector('.k-button--info__ghost');
 		const btnConfirm = host.querySelector('.k-button--primary__fill');
 		btnConfirm.click();
 		btnCancel.click();
@@ -233,7 +233,7 @@ describe('Test: KPopconfirm', () => {
 		).toBeTruthy();
 		expect(mockFn).toBeCalledTimes(0);
 		expect(show).not.toBeTruthy();
-		const btnCancel = host.querySelector('.k-button--info__fill');
+		const btnCancel = host.querySelector('.k-button--info__ghost');
 		btnCancel?.dispatchEvent(
 			new Event('click', {
 				bubbles: true

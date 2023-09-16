@@ -1,6 +1,6 @@
 /// <reference types="svelte" />
 import type { ClassValue } from 'clsx';
-import { IKunTrigger, IKunTypeBase } from '@ikun-ui/utils';
+import { IKunPlacement, IKunTrigger, IKunTypeBase } from '@ikun-ui/utils';
 export type KPopconfirmProps = {
 	cls: ClassValue;
 	attrs: Record<string, string>;
@@ -38,5 +38,10 @@ export type KPopconfirmProps = {
 	 * @default false
 	 */
 	asyncClose: boolean;
+	/**
+	 * @default 'top'
+	 */
+	placement: IKunPlacement;
+	iconCls: string;
 };
 // dark

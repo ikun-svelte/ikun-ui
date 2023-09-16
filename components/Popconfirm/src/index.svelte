@@ -11,15 +11,17 @@
 	export let attrs: KPopconfirmProps['attrs'] = {};
 	export let type: KPopconfirmProps['type'] = 'info';
 	export let icon: KPopconfirmProps['icon'] = '';
+	export let iconCls: KPopconfirmProps['iconCls'] = '';
 	export let disabled: KPopconfirmProps['disabled'] = false;
-	export let cancelBtnText: KPopconfirmProps['cancelBtnText'] = 'cancel';
+	export let cancelBtnText: KPopconfirmProps['cancelBtnText'] = 'Cancel';
 	export let cancelBtnCls: KPopconfirmProps['cancelBtnCls'] = '';
-	export let confirmBtnText: KPopconfirmProps['confirmBtnText'] = 'confirm';
+	export let confirmBtnText: KPopconfirmProps['confirmBtnText'] = 'Confirm';
 	export let confirmBtnCls: KPopconfirmProps['confirmBtnCls'] = '';
 	export let showCancel: KPopconfirmProps['showCancel'] = true;
 	export let title: KPopconfirmProps['title'] = '';
 	export let content: KPopconfirmProps['content'] = '';
 	export let trigger: KPopconfirmProps['trigger'] = 'click';
+	export let placement: KPopconfirmProps['placement'] = 'top';
 	export let asyncClose: KPopconfirmProps['asyncClose'] = false;
 
 	const dispatch = createEventDispatcher();
@@ -63,7 +65,8 @@
 
 	$: titleIconCls = clsx({
 		[`${prefixCls}--icon`]: true,
-		[`${prefixCls}--${type}`]: !icon
+		[`${prefixCls}--${type}`]: !icon,
+		[`${iconCls}`]: true
 	});
 
 	$: titleIconTypeCls = clsx({
@@ -80,7 +83,7 @@
 	});
 </script>
 
-<KPopover {trigger} {disabled} bind:this={popoverRef} on:change={handleChange}>
+<KPopover {trigger} {disabled} bind:this={popoverRef} on:change={handleChange} {placement}>
 	<slot slot="triggerEl" />
 	<div class={cnames} {...$$restProps} {...attrs} slot="contentEl">
 		{#if !$$slots.title}
@@ -103,7 +106,7 @@
 		{#if !$$slots.footer}
 			<div class={footerCls}>
 				{#if showCancel}
-					<KButton cls="mr-2 {cancelBtnCls}" on:click={handleCancel} type="info" size="sm">
+					<KButton cls="mr-2 {cancelBtnCls}" on:click={handleCancel} type="info" ghost size="sm">
 						{cancelBtnText}
 					</KButton>
 				{/if}
