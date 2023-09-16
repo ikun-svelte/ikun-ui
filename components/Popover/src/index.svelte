@@ -71,7 +71,7 @@
 		}
 	};
 
-	function updateShow(show: boolean) {
+	export function updateShow(show: boolean) {
 		if (disabled) return;
 		setTimeout(
 			async () => {

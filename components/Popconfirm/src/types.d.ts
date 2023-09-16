@@ -12,7 +12,7 @@ export type KPopconfirmProps = {
 	/**
 	 * @default false
 	 */
-	disabled: boolean;
+	disabled: boolean; // ✅
 	/**
 	 * @default cancel
 	 */
@@ -33,12 +33,16 @@ export type KPopconfirmProps = {
 	 * @default click
 	 */
 	trigger: IKunTrigger; // ✅
+	/**
+	 * @default false
+	 */
+	asyncClose: boolean; // ✅
 };
 // ✅ slot - title
 // ✅ slot - content
 // ✅ slot - footer
 
-// event - onCancel
-// event - onConfirm
-// event - onShow
+// ✅ event - confirm
+// ✅ event - cancel
+// ✅ event - change
 // dark

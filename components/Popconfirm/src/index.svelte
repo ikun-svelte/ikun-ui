@@ -5,6 +5,7 @@
 	import { KIcon } from '@ikun-ui/icon';
 	import { clsx } from 'clsx';
 	import type { KPopconfirmProps } from './types';
+	import { createEventDispatcher } from 'svelte';
 
 	export let cls: KPopconfirmProps['cls'] = undefined;
 	export let attrs: KPopconfirmProps['attrs'] = {};
@@ -19,7 +20,34 @@
 	export let title: KPopconfirmProps['title'] = '';
 	export let content: KPopconfirmProps['content'] = '';
 	export let trigger: KPopconfirmProps['trigger'] = 'click';
+	export let asyncClose: KPopconfirmProps['asyncClose'] = false;
 
+	const dispatch = createEventDispatcher();
+	let popoverRef: any = null;
+	const closePopover = () => {
+		popoverRef && popoverRef.updateShow(false);
+	};
+	const handleConfirm = () => {
+		!asyncClose && closePopover();
+		dispatch('confirm', {
+			close: closePopover,
+			type: 'confirm'
+		});
+	};
+
+	const handleCancel = () => {
+		!asyncClose && closePopover();
+		dispatch('cancel', {
+			close: closePopover,
+			type: 'cancel'
+		});
+	};
+
+	const handleChange = (e: CustomEvent) => {
+		dispatch('change', e.detail);
+	};
+
+	// class
 	const prefixCls = getPrefixCls('popconfirm');
 	$: cnames = clsx(
 		prefixCls,
@@ -44,7 +72,7 @@
 	});
 </script>
 
-<KPopover {trigger}>
+<KPopover {trigger} {disabled} bind:this={popoverRef} on:change={handleChange}>
 	<slot slot="triggerEl" />
 	<div class={cnames} {...$$restProps} {...attrs} slot="contentEl">
 		{#if !$$slots.title}
@@ -67,11 +95,11 @@
 		{#if !$$slots.footer}
 			<div class="flex justify-end items-center">
 				{#if showCancel}
-					<KButton cls="mr-2 {cancelBtnCls}" type="info" size="sm">
+					<KButton cls="mr-2 {cancelBtnCls}" on:click={handleCancel} type="info" size="sm">
 						{cancelBtnText}
 					</KButton>
 				{/if}
-				<KButton cls={confirmBtnCls} size="sm">
+				<KButton cls={confirmBtnCls} on:click={handleConfirm} size="sm">
 					{confirmBtnText}
 				</KButton>
 			</div>
