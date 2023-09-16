@@ -101,9 +101,9 @@ async function durationUnmountNotify(
 
 async function unmountNotify(placement: NotifyPlacement, inst: NotifyComponent, duration: number) {
 	inst.$set({ show: false });
+	notifyMap[placement].splice(inst.__notify_index, 1);
+	updatedNotifyByIndex(placement);
 	setTimeout(() => {
-		notifyMap[placement].splice(inst.__notify_index, 1);
-		updatedNotifyByIndex(placement);
 		inst.$destroy();
 	}, duration);
 }
@@ -151,8 +151,15 @@ NotifyFn.clear = async (inst: NotifyComponent) => {
 NotifyFn.clearAll = () => {
 	Object.keys(notifyMap).forEach((instArr) => {
 		notifyMap[instArr as NotifyPlacement].forEach((inst: NotifyComponent | undefined) => {
-			inst && unmountNotify(inst.__notify_placment, inst, 0);
+			if (inst) {
+				inst.$set({ show: false });
+				setTimeout(() => {
+					inst.$destroy();
+				}, 300);
+			}
 		});
+		// array clear
+		notifyMap[instArr as NotifyPlacement].length = 0;
 	});
 };
 
