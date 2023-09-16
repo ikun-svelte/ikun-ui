@@ -35,3 +35,4 @@ export * from '@ikun-ui/grid';
 export * from '@ikun-ui/layout';
 export * from '@ikun-ui/radio-group';
 export * from '@ikun-ui/rate';
+export * from '@ikun-ui/popconfirm';
