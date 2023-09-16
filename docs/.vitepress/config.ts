@@ -19,6 +19,24 @@ const components = [
 			{
 				text: 'Icon',
 				link: '/components/KIcon'
+			},
+			{
+				text: 'Link',
+				link: '/components/KLink'
+			}
+		]
+	},
+	{
+		text: 'Layout',
+		collapsed: false,
+		items: [
+			{
+				text: 'Grid',
+				link: '/components/KGrid'
+			},
+			{
+				text: 'Layout',
+				link: '/components/KLayout'
 			}
 		]
 	},
@@ -43,6 +61,10 @@ const components = [
 				link: '/components/KRadio'
 			},
 			{
+				text: 'Rate',
+				link: '/components/KRate'
+			},
+			{
 				text: 'Select',
 				link: '/components/KSelect'
 			},
@@ -65,12 +87,28 @@ const components = [
 				link: '/components/KBadge'
 			},
 			{
+				text: 'Collapse',
+				link: '/components/KCollapse'
+			},
+			{
+				text: 'Ellipsis',
+				link: '/components/KEllipsis'
+			},
+			{
 				text: 'Tag',
 				link: '/components/KTag'
 			},
 			{
 				text: 'Progress',
 				link: '/components/KProgress'
+			},
+			{
+				text: 'Popover',
+				link: '/components/KPopover'
+			},
+			{
+				text: 'Tooltip',
+				link: '/components/KTooltip'
 			}
 		]
 	},
@@ -109,18 +147,6 @@ const components = [
 				link: '/components/KMessageBox'
 			},
 			{
-				text: 'Popover',
-				link: '/components/KPopover'
-			},
-			{
-				text: 'Tooltip',
-				link: '/components/KTooltip'
-			},
-			{
-				text: 'Collapse',
-				link: '/components/KCollapse'
-			},
-			{
 				text: 'Drawer',
 				link: '/components/KDrawer'
 			},
@@ -131,6 +157,10 @@ const components = [
 			{
 				text: 'Spin',
 				link: '/components/KSpin'
+			},
+			{
+				text: 'Popconfirm',
+				link: '/components/KPopconfirm'
 			}
 		]
 	},

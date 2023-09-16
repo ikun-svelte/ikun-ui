@@ -54,7 +54,7 @@ describe('Test: KButton', () => {
 		expect(instance).toBeTruthy();
 		expect(
 			(host as HTMLElement)!.innerHTML.includes(
-				'icon-carbon-settings k-icon-transition k-button--primary__icon'
+				'k-icon--base k-icon-transition icon-carbon-settings k-button--primary__icon k-button--primary__icon__fill'
 			)
 		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
@@ -294,10 +294,9 @@ describe('Test: KButton', () => {
 		expect(instance).toBeTruthy();
 		expect(!(host as HTMLElement)!.innerHTML.includes('k-button--sm')).toBeTruthy();
 		expect(!(host as HTMLElement)!.innerHTML.includes('k-button--lg')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('i-carbon-settings')).toBeTruthy();
 		expect(
-			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--primary__icon__fill" style="width: 16px; height: 16px;"'
-			)
+			(host as HTMLElement)!.innerHTML.includes('style="width: 16px; height: 16px;"')
 		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -312,10 +311,9 @@ describe('Test: KButton', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect((host as HTMLElement)!.innerHTML.includes('k-button--sm')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('i-carbon-settings')).toBeTruthy();
 		expect(
-			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--primary__icon__fill" style="width: 12px; height: 12px;"'
-			)
+			(host as HTMLElement)!.innerHTML.includes('style="width: 12px; height: 12px;"')
 		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -330,10 +328,9 @@ describe('Test: KButton', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect((host as HTMLElement)!.innerHTML.includes('k-button--lg')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('i-carbon-settings')).toBeTruthy();
 		expect(
-			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--primary__icon__fill" style="width: 20px; height: 20px;"'
-			)
+			(host as HTMLElement)!.innerHTML.includes('style="width: 20px; height: 20px;"')
 		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -360,10 +357,9 @@ describe('Test: KButton', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('i-carbon-settings')).toBeTruthy();
 		expect(
-			(host as HTMLElement)!.innerHTML.includes(
-				'k-button--primary__icon__fill" style="width: 10086px; height: 10086px;"'
-			)
+			(host as HTMLElement)!.innerHTML.includes('style="width: 10086px; height: 10086px;"')
 		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});

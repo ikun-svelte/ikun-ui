@@ -1,18 +1,20 @@
 <script lang="ts">
 	import { createPopperActions, type PopperOptions } from 'svelte-popperjs';
 	import { fade } from 'svelte/transition';
-	import type { IKunPlacement, IKunTrigger } from '@ikun-ui/utils';
 	import { getPrefixCls } from '@ikun-ui/utils';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import type { KPopoverProps } from './types';
+	import { createEventDispatcher } from 'svelte';
 
-	// top left right bottom
-	export let placement: IKunPlacement = 'top';
+	export let placement: KPopoverProps['placement'] = 'top';
 	// hover click manual
-	export let trigger: IKunTrigger = 'hover';
-	export let attrs = {};
-	export let cls: ClassValue = '';
+	export let trigger: KPopoverProps['trigger'] = 'hover';
+	export let attrs: KPopoverProps['attrs'] = {};
+	export let disabled: KPopoverProps['disabled'] = false;
+	export let cls: KPopoverProps['cls'] = undefined;
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
+	const dispatch = createEventDispatcher();
 	const [popperRef, popperContent] = createPopperActions({
 		placement,
 		onFirstUpdate: updateArrow,
@@ -69,14 +71,17 @@
 		}
 	};
 
-	function updateShow(show: boolean) {
+	export function updateShow(show: boolean) {
+		if (disabled) return;
 		setTimeout(
 			async () => {
 				if (isEnter) {
 					isShow = true;
+					dispatch('change', isShow);
 					return;
 				}
 				isShow = show;
+				dispatch('change', isShow);
 			},
 			trigger === 'hover' ? 200 : 0
 		);
@@ -105,13 +110,13 @@
 		};
 	}
 
-	$: prefixCls = getPrefixCls('popover')
+	$: prefixCls = getPrefixCls('popover');
 	$: cnames = clsx(
 		`${prefixCls}--base`,
 		`${prefixCls}--base__${placement}`,
 		`${prefixCls}--base__${placement}__dark`,
 		`${prefixCls}--base__dark`,
-		 cls
+		cls
 	);
 </script>
 

@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/checkbox",
-	"version": "0.0.9-beta.5",
+	"version": "0.0.9-beta.8",
 	"type": "module",
 	"main": "./src/index.ts",
 	"types": "src/index.ts",
@@ -30,7 +30,9 @@
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.16"
+		"baiwusanyu-utils": "^1.0.16",
+		"@ikun-ui/checkbox-group": "workspace:*",
+		"clsx": "^2.0.0"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.2",

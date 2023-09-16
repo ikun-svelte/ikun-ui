@@ -31,7 +31,7 @@ Alert components are non-overlay elements in the page that does not disappear au
 
 Alert provides 4 types of themes defined by `type`, whose default value is `info`.
 
-<demo src="../../../../example/alert/basic.svelte"  github='Alert'></demo>
+<demo src="alert/basic.svelte"  github='Alert'></demo>
 
 ## Customizable Close Button
 
@@ -41,7 +41,7 @@ Alert allows you to configure if it's closable. The close button text and closin
 
 In addition, `close slot` will cover `closeIcon`.
 
-<demo src="../../../../example/alert/close-button.svelte" github='Alert'></demo>
+<demo src="alert/close-button.svelte" github='Alert'></demo>
 
 ## With Icon
 
@@ -51,7 +51,7 @@ Setting the `showIcon` attribute displays an icon that corresponds with the curr
 
 In addition, `icon slot` will cover `icon`.
 
-<demo src="../../../../example/alert/icon.svelte" github='Alert'></demo>
+<demo src="alert/icon.svelte" github='Alert'></demo>
 
 ## With Description
 
@@ -59,7 +59,7 @@ Description includes a message with more detailed information.
 
 Besides the `title` attribute, you can add a `description` attribute to help you describe the alert with more details. Description can only store text string, and it will word wrap automatically.
 
-<demo src="../../../../example/alert/description.svelte" github='Alert'></demo>
+<demo src="alert/description.svelte" github='Alert'></demo>
 
 ## Alert Props
 

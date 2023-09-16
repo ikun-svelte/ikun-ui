@@ -11,3 +11,7 @@ export const BreadcrumbKey = KSymbolKey('breadcrumb');
 
 export const ButtonGroupKey = KSymbolKey('buttonGroup');
 export const collapseWrapperKey = KSymbolKey('collapseWrapper');
+export const checkboxGroupKey = KSymbolKey('checkboxGroup');
+export const radioGroupKey = KSymbolKey('checkboxGroup');
+
+export const rowKey = KSymbolKey('row');

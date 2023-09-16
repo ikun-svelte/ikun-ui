@@ -17,7 +17,7 @@
 	export let plain: KButtonProps['plain'] = false;
 	export let ghost: KButtonProps['ghost'] = false;
 	export let disabled: KButtonProps['disabled'] = false;
-	export let cls: KButtonProps['cls'] = '';
+	export let cls: KButtonProps['cls'] = undefined;
 	export let attrs: KButtonProps['attrs'] = {};
 
 	enum EButtonIconSize {

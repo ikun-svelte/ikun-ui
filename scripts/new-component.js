@@ -152,25 +152,32 @@ async function writePkgJson(baseDir, originalCompName) {
   "dependencies": {
     "@ikun-ui/icon": "workspace:*",
     "@ikun-ui/utils": "workspace:*",
-		"clsx": "^2.0.0",
+	"clsx": "^2.0.0",
     ${getDeps('baiwusanyu-utils')}
-  }
+  },
+  "devDependencies": {
+	"@tsconfig/svelte": "^5.0.0",
+	"svelte-strip": "^2.0.0",
+	"tslib": "^2.6.1",
+	"typescript": "^5.1.6"
+	}
 }
   `;
 	write(file, pkgContent);
 }
 
 async function writeComponent(baseDir, originalCompName) {
+	const propsName = `K${originalCompName.replace(/^\w/, (char) => char.toUpperCase())}Props`;
 	const file = `${baseDir}/index.svelte`;
 	const svelteContent = `<script lang="ts">
   import { getPrefixCls } from '@ikun-ui/utils';
-	import clsx from 'clsx';
-
-  export let cls: string = '';
-  export let attrs: Record<string, string> = {};
-
+	import { clsx } from 'clsx';
+  import type { ${propsName} } from "./types";
+  
+  export let cls: ${propsName}["cls"] = undefined;
+  export let attrs: ${propsName}["attrs"] = {};
+ 
   const prefixCls = getPrefixCls('${originalCompName}');
-
   $: cnames = clsx(prefixCls, {
     [\`$\{prefixCls}--base\`]: true
   }, cls);
@@ -192,10 +199,12 @@ export default ${compName};`;
 }
 
 async function writeTypeDTs(baseDir, compName) {
+	const imp = "import type { ClassValue } from 'clsx';";
 	const file = `${baseDir}/types.d.ts`;
 	const typeDtsContent = `/// <reference types="svelte" />
+${imp}
 export type K${compName}Props = {
-  cls: string,
+  cls: ClassValue,
   attrs: Record<string, string>
 }`;
 	write(file, typeDtsContent);

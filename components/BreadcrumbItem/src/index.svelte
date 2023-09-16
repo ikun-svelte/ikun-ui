@@ -6,7 +6,7 @@
 	import { clsx, type ClassValue } from 'clsx';
 
 	export let href: string = '';
-	export let cls: ClassValue = '';
+	export let cls: ClassValue = undefined;
 	export let attrs: Record<string, string> = {};
 
 	const breadcrumbProps = getContext<KBreadcrumbItemPropsPropsInner>(BreadcrumbKey) || {};

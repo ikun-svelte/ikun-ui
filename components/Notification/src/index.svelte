@@ -9,8 +9,8 @@
 	type IKunUncertainFunction<T = any> = () => T | void;
 	// right-top left-top right-bottom left-bottom center
 	export let placement: NotifyPlacement = 'right-top';
-	export let attrs = {};
-	export let cls: ClassValue = '';
+	export let attrs: Record<string, string> = {};
+	export let cls: ClassValue = undefined;
 	export let close = false;
 	// info warning error success
 	export let type: NotifyType | null = null;
@@ -98,12 +98,12 @@
 		onClose && onClose();
 	};
 
-	$: cnames = clsx(cls);
+	$: cnames = clsx('k-notification--base k-notification--base__dark', cls);
 </script>
 
 {#if show}
 	<div
-		class="k-notification--base k-notification--base__dark {cnames}"
+		class={cnames}
 		bind:this={notificationRef}
 		out:fade={{ duration: 200 }}
 		in:fly={flyAnimate.in}

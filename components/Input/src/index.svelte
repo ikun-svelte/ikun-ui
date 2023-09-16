@@ -6,12 +6,13 @@
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import clsx from 'clsx';
 
+	export let size: KInputProps['size'] = 'md';
 	export let value: KInputProps['value'] = '';
 	export let placeholder: KInputProps['placeholder'] = '';
 	export let disabled: KInputProps['disabled'] = false;
 	export let iconPrefix: KInputProps['iconPrefix'] = '';
 	export let iconSuffix: KInputProps['iconSuffix'] = '';
-	export let cls: KInputProps['cls'] = '';
+	export let cls: KInputProps['cls'] = undefined;
 	export let attrs: KInputProps['attrs'] = {};
 	export let useCompositionInput: KInputProps['useCompositionInput'] = false;
 
@@ -73,35 +74,33 @@
 	const prefixCls = getPrefixCls('input');
 	$: baseCls = clsx(
 		prefixCls,
-		`${prefixCls}--base`,
-		`${prefixCls}--base__dark`,
+		`${prefixCls}--${size}`,
+		`${prefixCls}__dark`,
 		{
-			[`${prefixCls}--base__disabled`]: disabled,
-			[`${prefixCls}--base__disabled__dark`]: disabled
+			[`${prefixCls}__disabled`]: disabled,
+			[`${prefixCls}__disabled__dark`]: disabled
 		},
 		{
-			[`${prefixCls}--base__error`]: isError,
-			[`${prefixCls}--base__hover`]: !isError,
-			[`${prefixCls}--base__focus`]: !isError
+			[`${prefixCls}__error`]: isError,
+			[`${prefixCls}__hover`]: !isError,
+			[`${prefixCls}__focus`]: !isError
 		},
 		cls
 	);
-	$: errorMsgCls = clsx(`${prefixCls}--base__msg__error`);
 	$: inputCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__dark`, {
-		[`${prefixCls}--base__disabled`]: disabled,
-		[`${prefixCls}--base__disabled__dark`]: disabled
+		[`${prefixCls}__disabled`]: disabled,
+		[`${prefixCls}__disabled__dark`]: disabled
 	});
+	$: iconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon--${size}`);
+	$: prefixIconCls = clsx(iconCls, `${prefixCls}--prefix-icon`);
+	$: suffixIconCls = clsx(iconCls, `${prefixCls}--suffix-icon`);
+	$: errorMsgCls = clsx(`${prefixCls}__msg__error`);
 </script>
 
 <div class={baseCls}>
-	{#if isError}
-		<span class={errorMsgCls} transition:fade={{ duration: 200 }}>
-			{errorMsg}
-		</span>
-	{/if}
 	<slot name="prefix">
 		{#if iconPrefix}
-			<KIcon cls="k-input--icon" icon={iconPrefix} />
+			<KIcon cls={prefixIconCls} icon={iconPrefix} />
 		{/if}
 	</slot>
 	<input
@@ -118,7 +117,12 @@
 	/>
 	<slot name="suffix">
 		{#if iconSuffix}
-			<KIcon cls="k-input--icon" icon={iconSuffix} />
+			<KIcon cls={suffixIconCls} icon={iconSuffix} />
 		{/if}
 	</slot>
+	{#if isError}
+		<span class={errorMsgCls} transition:fade={{ duration: 200 }}>
+			{errorMsg}
+		</span>
+	{/if}
 </div>

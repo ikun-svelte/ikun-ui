@@ -5,7 +5,7 @@
 
 	export let separator: string = '/';
 	export let separatorIcon: string = '';
-	export let cls: ClassValue = '';
+	export let cls: ClassValue = undefined;
 	export let attrs: Record<string, string> = {};
 
 	setContext(BreadcrumbKey, {

@@ -66,6 +66,10 @@ Commit messages 请遵循[conventional-changelog 标准](https://www.conventiona
 [可选 正文]
 
 [可选 脚注]
+
+
+// 例如
+feat(components/Button): typing and classes
 ```
 
 👉 [Commit example](https://github.com/unocss/unocss/releases/tag/v0.39.0)

@@ -29,19 +29,19 @@ npm install @ikun-ui/tag
 
 Use the `type` attribute to define Tag's type. In addition, the `bgColor` and `textColor` attribute can be used to set the background and text color of the Tag.
 
-<demo src="../../../../example/tag/basic.svelte"  github='Tag'></demo>
+<demo src="tag/basic.svelte"  github='Tag'></demo>
 
 ## Removable Tag
 
 `closable` attribute can be used to define a removable tag. `close` event triggers when Tag is removed. In addition, the `closeIcon` attribute can customize the close icon.
 
-<demo src="../../../../example/tag/removable.svelte"  github='Tag'></demo>
+<demo src="tag/removable.svelte"  github='Tag'></demo>
 
 ## Icon Tag
 
 `icon` attribute can be used to define a tag with an icon.
 
-<demo src="../../../../example/tag/icon.svelte"  github='Tag'></demo>
+<demo src="tag/icon.svelte"  github='Tag'></demo>
 
 ## Tag Props
 

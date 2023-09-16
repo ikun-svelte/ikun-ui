@@ -31,7 +31,7 @@ Displays the amount of new messages.
 
 The amount is defined with value which accepts Number or String.
 
-<demo src="../../../../example/badge/basic.svelte"  github='Badge'></demo>
+<demo src="badge/basic.svelte"  github='Badge'></demo>
 
 ## Max Value
 
@@ -39,7 +39,7 @@ You can customize the max value.
 
 The max value is defined by property max which is a Number. Note that it only works when value is also a Number.
 
-<demo src="../../../../example/badge/max-value.svelte" github='Badge'></demo>
+<demo src="badge/max-value.svelte" github='Badge'></demo>
 
 ## Customizations
 
@@ -47,7 +47,7 @@ Displays text content other than numbers.
 
 When value is a String, it can display customized text.
 
-<demo src="../../../../example/badge/customizations.svelte" github='Badge'></demo>
+<demo src="badge/customizations.svelte" github='Badge'></demo>
 
 ## Dot Mark
 
@@ -55,7 +55,7 @@ Use a dot to mark content that needs to be noticed.
 
 Use the attribute isDot. It is a Boolean.
 
-<demo src="../../../../example/badge/dot-mark.svelte" github='Badge'></demo>
+<demo src="badge/dot-mark.svelte" github='Badge'></demo>
 
 ## Badge Props
 

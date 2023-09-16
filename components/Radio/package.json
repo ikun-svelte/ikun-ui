@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/radio",
-	"version": "0.0.9-beta.5",
+	"version": "0.0.9-beta.8",
 	"type": "module",
 	"main": "./src/index.ts",
 	"types": "src/index.ts",
@@ -29,8 +29,10 @@
 	},
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
+		"@ikun-ui/radio-group": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.16"
+		"baiwusanyu-utils": "^1.0.16",
+		"clsx": "^2.0.0"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.2",

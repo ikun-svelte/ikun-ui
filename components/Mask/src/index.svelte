@@ -4,8 +4,8 @@
 	import { clsx, type ClassValue } from 'clsx';
 
 	export let color = '';
-	export let attrs = {};
-	export let cls: ClassValue = '';
+	export let attrs: Record<string, string> = {};
+	export let cls: ClassValue = undefined;
 	export let value = false;
 	export let target: null | HTMLElement = null;
 
@@ -57,6 +57,7 @@
 
 		window.removeEventListener('resize', updatedPosition);
 	};
+
 	onDestroy(reset);
 	let oldValue = value;
 	$: if (value) {
@@ -70,7 +71,7 @@
 			}, 300);
 	}
 
-	$: cnames = clsx(cls);
+	$: cnames = clsx('k-mask--base', cls);
 </script>
 
 {#if value}
@@ -83,8 +84,8 @@
 		style:left="{maskLeft}px"
 		style:width={maskWidth}
 		style:height={maskHeight}
-		style={color ? `background-color: ${color}` : ''}
-		class="k-mask--base {cnames}"
+		style={color ? `background-color: ${color}` : undefined}
+		class={cnames}
 	>
 		<slot />
 	</div>
