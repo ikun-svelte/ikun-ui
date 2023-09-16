@@ -101,6 +101,14 @@ const components = [
 			{
 				text: 'Progress',
 				link: '/components/KProgress'
+			},
+			{
+				text: 'Popover',
+				link: '/components/KPopover'
+			},
+			{
+				text: 'Tooltip',
+				link: '/components/KTooltip'
 			}
 		]
 	},
@@ -139,14 +147,6 @@ const components = [
 				link: '/components/KMessageBox'
 			},
 			{
-				text: 'Popover',
-				link: '/components/KPopover'
-			},
-			{
-				text: 'Tooltip',
-				link: '/components/KTooltip'
-			},
-			{
 				text: 'Drawer',
 				link: '/components/KDrawer'
 			},
@@ -157,6 +157,10 @@ const components = [
 			{
 				text: 'Spin',
 				link: '/components/KSpin'
+			},
+			{
+				text: 'Popconfirm',
+				link: '/components/KPopconfirm'
 			}
 		]
 	},

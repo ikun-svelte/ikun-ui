@@ -77,6 +77,8 @@
 		"unocss": "^0.54.1"
 	},
 	"dependencies": {
+		"baiwusanyu-utils": "^1.0.14",
+		"clsx": "^2.0.0",
 		"@ikun-ui/alert": "workspace:*",
 		"@ikun-ui/avatar": "workspace:*",
 		"@ikun-ui/backtop": "workspace:*",
@@ -115,9 +117,8 @@
 		"@ikun-ui/link": "workspace:*",
 		"@ikun-ui/ellipsis": "workspace:*",
 		"@ikun-ui/layout": "workspace:*",
-		"baiwusanyu-utils": "^1.0.14",
-		"clsx": "^2.0.0",
-		"@ikun-ui/grid": "workspace:*"
+		"@ikun-ui/grid": "workspace:*",
+		"@ikun-ui/popconfirm": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.37.0",

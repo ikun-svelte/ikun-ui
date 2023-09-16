@@ -20,7 +20,7 @@ afterEach(() => {
 	host.remove();
 	vi.useRealTimers();
 });
-
+// TODO E2E test
 describe('Test: KPopover', () => {
 	test('props: placement', async () => {
 		const instance = new KPopoverPlacement({
