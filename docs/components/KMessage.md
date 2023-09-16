@@ -91,4 +91,4 @@ You can render content through slots
 | KMessage.error    | `<T>(options: MessageOptions<T>)=>MessageInst`                    | Render a `message` of `error` type according to the incoming options and return the `message` instance   |
 | KMessage.update   | `<T>(inst: typeof MessageInst, options: MessageOptions<T>)=>void` | Update the specified message                                                                             |
 | KMessage.clearAll | `() => void`                                                      | Clear all messages                                                                                       |
-| KMessage.clear    | `(inst: typeof MessageInst) => Promise<void>`                     | Clear the specified message                                                                              |
+| KMessage.clear    | `(inst: typeof MessageInst) => void`                              | Clear the specified message                                                                              |

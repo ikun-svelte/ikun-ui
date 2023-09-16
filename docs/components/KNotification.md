@@ -91,4 +91,4 @@ You can render content through slots
 | KNotify.error    | `<T, C>(options: NotifyOptions<T, C>)=>NotifyInst`                    | Render a `notification` of `error` type according to the incoming options and return the `notification` instance   |
 | KNotify.update   | `<T, C>(inst: typeof NotifyInst, options: NotifyOptions<T, C>)=>void` | Update the specified notification                                                                                  |
 | KNotify.clearAll | `() => void`                                                          | Clear all notifications                                                                                            |
-| KNotify.clear    | `(inst: typeof NotifyInst) => Promise<void>`                          | Clear the specified notification                                                                                   |
+| KNotify.clear    | `(inst: typeof NotifyInst) => void`                                   | Clear the specified notification                                                                                   |

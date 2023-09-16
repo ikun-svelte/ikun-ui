@@ -5,6 +5,7 @@ export * from './types';
 
 export declare type NotifyComponent = InstanceType<typeof Notification>;
 
+const ANIMATION_DURATION = 300;
 const defaultNotifyOptions: NotifyOptions<undefined, undefined> = {
 	placement: 'right-top',
 	close: true,
@@ -65,8 +66,8 @@ function mountNotify<T, C>(options: NotifyOptions<T, C>, evt: Record<string, any
 			content: options.content,
 			show: false,
 			index,
-			onClose: async () => {
-				await unmountNotify(options.placement || 'right-top', NotificationInst, 0);
+			onClose() {
+				unmountNotify(options.placement || 'right-top', NotificationInst, ANIMATION_DURATION);
 				evt.onClose && evt.onClose();
 			}
 		}
@@ -95,11 +96,11 @@ async function durationUnmountNotify(
 	duration: number
 ) {
 	setTimeout(() => {
-		unmountNotify(placement, inst, 300);
+		unmountNotify(placement, inst, ANIMATION_DURATION);
 	}, duration);
 }
 
-async function unmountNotify(placement: NotifyPlacement, inst: NotifyComponent, duration: number) {
+function unmountNotify(placement: NotifyPlacement, inst: NotifyComponent, duration: number) {
 	inst.$set({ show: false });
 	notifyMap[placement].splice(inst.__notify_index, 1);
 	updatedNotifyByIndex(placement);
@@ -144,8 +145,8 @@ NotifyFn.success = <T, C>(options: NotifyOptions<T, C> = {}) => {
 	return mountNotify(finalOptions, evt);
 };
 
-NotifyFn.clear = async (inst: NotifyComponent) => {
-	await unmountNotify(inst.__notify_placment, inst, 300);
+NotifyFn.clear = (inst: NotifyComponent) => {
+	unmountNotify(inst.__notify_placment, inst, ANIMATION_DURATION);
 };
 
 NotifyFn.clearAll = () => {
@@ -155,7 +156,7 @@ NotifyFn.clearAll = () => {
 				inst.$set({ show: false });
 				setTimeout(() => {
 					inst.$destroy();
-				}, 300);
+				}, ANIMATION_DURATION);
 			}
 		});
 		// array clear
