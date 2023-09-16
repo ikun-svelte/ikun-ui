@@ -1,6 +1,8 @@
 export const popconfirmShortcuts: Record<string, string> = {
 	// popconfirm
 	'k-popconfirm--title': 'flex items-center font-bold',
+	'k-popconfirm--content': 'my-4 mx-2',
+	'k-popconfirm--footer': 'fec',
 	'k-popconfirm--icon': 'mr-2',
 	'k-popconfirm--info': 'text-ikun-info',
 	'k-popconfirm--warning': 'text-ikun-warning',

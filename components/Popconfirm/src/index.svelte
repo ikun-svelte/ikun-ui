@@ -24,21 +24,21 @@
 
 	const dispatch = createEventDispatcher();
 	let popoverRef: any = null;
-	const closePopover = () => {
+	export const close = () => {
 		popoverRef && popoverRef.updateShow(false);
 	};
 	const handleConfirm = () => {
-		!asyncClose && closePopover();
+		!asyncClose && close();
 		dispatch('confirm', {
-			close: closePopover,
+			close,
 			type: 'confirm'
 		});
 	};
 
 	const handleCancel = () => {
-		!asyncClose && closePopover();
+		!asyncClose && close();
 		dispatch('cancel', {
-			close: closePopover,
+			close,
 			type: 'cancel'
 		});
 	};
@@ -70,6 +70,14 @@
 		[`${prefixCls}--icon--${type}`]: !icon,
 		[`${icon}`]: icon
 	});
+
+	$: contentCls = clsx({
+		[`${prefixCls}--content`]: true
+	});
+
+	$: footerCls = clsx({
+		[`${prefixCls}--footer`]: true
+	});
 </script>
 
 <KPopover {trigger} {disabled} bind:this={popoverRef} on:change={handleChange}>
@@ -85,7 +93,7 @@
 		{/if}
 
 		{#if !$$slots.content}
-			<div class="my-4 mx-2">
+			<div class={contentCls}>
 				{content}
 			</div>
 		{:else}
@@ -93,7 +101,7 @@
 		{/if}
 
 		{#if !$$slots.footer}
-			<div class="flex justify-end items-center">
+			<div class={footerCls}>
 				{#if showCancel}
 					<KButton cls="mr-2 {cancelBtnCls}" on:click={handleCancel} type="info" size="sm">
 						{cancelBtnText}
