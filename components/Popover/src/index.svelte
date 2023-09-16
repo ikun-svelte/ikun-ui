@@ -4,6 +4,7 @@
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import type { KPopoverProps } from './types';
+	import { createEventDispatcher } from 'svelte';
 
 	export let placement: KPopoverProps['placement'] = 'top';
 	// hover click manual
@@ -13,6 +14,7 @@
 	export let cls: KPopoverProps['cls'] = undefined;
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
+	const dispatch = createEventDispatcher();
 	const [popperRef, popperContent] = createPopperActions({
 		placement,
 		onFirstUpdate: updateArrow,
@@ -75,9 +77,11 @@
 			async () => {
 				if (isEnter) {
 					isShow = true;
+					dispatch('change', isShow);
 					return;
 				}
 				isShow = show;
+				dispatch('change', isShow);
 			},
 			trigger === 'hover' ? 200 : 0
 		);
