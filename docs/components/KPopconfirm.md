@@ -43,7 +43,6 @@ Specify different display positions through the `placement` attribute
 
 <demo src="popconfirm/placement.svelte"  github='Popconfirm'></demo>
 
-
 ## Icon
 
 Change the icon through the `icon` attribute
@@ -71,9 +70,9 @@ Sometimes you don't want to close popconfirm immediately, but want to decide whe
 ## Popconfirm Props
 
 | Name           | Type                                             | Default   | Description                                                                                                        |
-| -------------- | ------------------------------------------------ | --------- |--------------------------------------------------------------------------------------------------------------------|
+| -------------- | ------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------------------------ |
 | icon           | `string`                                         | `-`       | The class name of the icon, following the unocss standard.                                                         |
-| iconCls   | `string`                                         | `-`       | Title icon class                                                                                                   |
+| iconCls        | `string`                                         | `-`       | Title icon class                                                                                                   |
 | disabled       | `boolean`                                        | `false`   | Whether the Radio is disabled                                                                                      |
 | type           | `'success' \| 'error'    \| 'warning' \| 'info'` | `info`    | The emotion category of the `popconfirm`.                                                                          |
 | cancelBtnText  | `string`                                         | `Cancel`  | cancel button text                                                                                                 |
