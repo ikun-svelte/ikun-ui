@@ -47,8 +47,15 @@ Specify different trigger methods through the `trigger` attribute
 | --------- | ------------------------------------- | ------- | --------------------------- |
 | placement | `'top' / 'left' / 'right' / 'bottom'` | `top`   | Where the `popover` appears |
 | trigger   | `'manual' / 'click' / 'hover'`        | `hover` | How popovers are triggered  |
+| disabled  | `boolean`                             | `false` | Disabled the popover        |
 | cls       | `string`                              | `-`     | Additional class            |
 | attrs     | `Record<string, string>`              | `{}`    | Additional attributes       |
+
+## Popover Events
+
+| Name   | Description                                       | Type                          |
+| ------ | ------------------------------------------------- | ----------------------------- |
+| change | Triggered when the popover display status changes | `(value: CustomEvent)=> void` |
 
 ## Popover Slots
 

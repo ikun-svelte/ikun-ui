@@ -60,7 +60,7 @@ Use `disabled` attribute to determine whether a switch is loading.
 | value          | `boolean`                   | `false` | Binding value                |
 | unCheckedValue | `string / number / boolean` | `false` | UnChecked state switch value |
 | checkedValue   | `string / number / boolean` | `true`  | Checked state switch value   |
-| disabled       | `boolean`                   | `-`     | Disabled the switch          |
+| disabled       | `boolean`                   | `false` | Disabled the switch          |
 | loading        | `boolean`                   | `-`     | Loading state switch         |
 | unCheckedColor | `string`                    | `-`     | unChecked state switch color |
 | checkedColor   | `string`                    | `-`     | Checked state switch color   |
