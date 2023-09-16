@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { createPopperActions, type PopperOptions } from 'svelte-popperjs';
 	import { fade } from 'svelte/transition';
-	import type { IKunPlacement, IKunTrigger } from '@ikun-ui/utils';
 	import { getPrefixCls } from '@ikun-ui/utils';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import type { KPopoverProps } from './types';
 
-	// top left right bottom
-	export let placement: IKunPlacement = 'top';
+	export let placement: KPopoverProps['placement'] = 'top';
 	// hover click manual
-	export let trigger: IKunTrigger = 'hover';
-	export let attrs: Record<string, string> = {};
-	export let cls: ClassValue = undefined;
+	export let trigger: KPopoverProps['trigger'] = 'hover';
+	export let attrs: KPopoverProps['attrs'] = {};
+	export let disabled: KPopoverProps['disabled'] = false;
+	export let cls: KPopoverProps['cls'] = undefined;
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
 	const [popperRef, popperContent] = createPopperActions({
@@ -70,6 +70,7 @@
 	};
 
 	function updateShow(show: boolean) {
+		if (disabled) return;
 		setTimeout(
 			async () => {
 				if (isEnter) {
