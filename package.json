@@ -77,8 +77,6 @@
 		"unocss": "^0.54.1"
 	},
 	"dependencies": {
-		"baiwusanyu-utils": "^1.0.16",
-		"clsx": "^2.0.0",
 		"@ikun-ui/alert": "workspace:*",
 		"@ikun-ui/avatar": "workspace:*",
 		"@ikun-ui/backtop": "workspace:*",
@@ -93,14 +91,19 @@
 		"@ikun-ui/collapse": "workspace:*",
 		"@ikun-ui/collapse-wrapper": "workspace:*",
 		"@ikun-ui/drawer": "workspace:*",
+		"@ikun-ui/ellipsis": "workspace:*",
 		"@ikun-ui/eye-dropper": "workspace:*",
+		"@ikun-ui/grid": "workspace:*",
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/input": "workspace:*",
+		"@ikun-ui/layout": "workspace:*",
+		"@ikun-ui/link": "workspace:*",
 		"@ikun-ui/mask": "workspace:*",
 		"@ikun-ui/message": "workspace:*",
 		"@ikun-ui/message-box": "workspace:*",
 		"@ikun-ui/modal": "workspace:*",
 		"@ikun-ui/notify": "workspace:*",
+		"@ikun-ui/popconfirm": "workspace:*",
 		"@ikun-ui/popover": "workspace:*",
 		"@ikun-ui/preset": "workspace:*",
 		"@ikun-ui/progress": "workspace:*",
@@ -114,11 +117,8 @@
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"@ikun-ui/link": "workspace:*",
-		"@ikun-ui/ellipsis": "workspace:*",
-		"@ikun-ui/layout": "workspace:*",
-		"@ikun-ui/grid": "workspace:*",
-		"@ikun-ui/popconfirm": "workspace:*"
+		"baiwusanyu-utils": "^1.0.16",
+		"clsx": "^2.0.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.38.0",
