@@ -37,7 +37,7 @@ export const defaultTheme = {
 		'ikun-stone-800': 'var(--ikun-stone-800)',
 		'ikun-stone-900': 'var(--ikun-stone-900)',
 		'ikun-stone-950': 'var(--ikun-stone-950)',
-		'ikun-disabled': 'var(--ikun-zinc-200)',
+		'ikun-disabled': 'var(--ikun-zinc-100)',
 		'ikun-primary': 'var(--ikun-teal-400)',
 		'ikun-primary-100': 'var(--ikun-teal-100)',
 		'ikun-primary-500': 'var(--ikun-teal-500)',
