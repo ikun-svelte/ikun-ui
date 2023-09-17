@@ -8,3 +8,9 @@ export type KContextmenuProps = {
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
+
+declare global {
+	interface Window {
+		__IKUN_CONTEXTMMENU_CLOSE: Array<() => void>;
+	}
+}

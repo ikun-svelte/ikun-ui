@@ -36,6 +36,8 @@
 		}
 	};
 	const handleShow = async (evt: MouseEvent) => {
+		window.__IKUN_CONTEXTMMENU_CLOSE.forEach((v: () => void) => v());
+
 		const event = evt as MouseEvent;
 		event.preventDefault();
 		if (disabled) return;
@@ -48,8 +50,10 @@
 	};
 
 	const handleClose = () => {
-		show = false;
-		dispatch('change', false);
+		if (show) {
+			show = false;
+			dispatch('change', false);
+		}
 	};
 
 	setContext(contextmenuKey, {
@@ -67,6 +71,8 @@
 				parentEl.addEventListener('contextmenu', handleShow);
 			}
 		}
+		!window.__IKUN_CONTEXTMMENU_CLOSE && (window.__IKUN_CONTEXTMMENU_CLOSE = []);
+		window.__IKUN_CONTEXTMMENU_CLOSE.push(handleClose);
 	});
 
 	onDestroy(() => {
@@ -98,7 +104,7 @@
 		};
 	}
 
-	// TODO: 关闭其他的 contextmenu
+	// TODO refactor
 	// class
 	const prefixCls = getPrefixCls('contextmenu');
 	$: cnames = clsx(
