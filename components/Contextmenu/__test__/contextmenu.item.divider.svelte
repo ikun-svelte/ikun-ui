@@ -5,7 +5,7 @@
 <div class="flex justify-center items-center w-full h-30vh bg-green-100">
 	<KContextmenu>
 		<KContextmenuItem>options 1</KContextmenuItem>
-		<KContextmenuItem>options 2</KContextmenuItem>
+		<KContextmenuItem divider>options 2</KContextmenuItem>
 		<KContextmenuItem>options 3</KContextmenuItem>
 	</KContextmenu>
 </div>
