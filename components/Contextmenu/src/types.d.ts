@@ -4,7 +4,6 @@ export type KContextmenuProps = {
 	disabled: boolean;
 	divider: boolean;
 	title: string;
-	trigger: 'click' | 'contextmenu';
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };

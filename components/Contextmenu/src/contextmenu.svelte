@@ -7,13 +7,11 @@
 	export let cls: KContextmenuProps['cls'] = undefined;
 	export let attrs: KContextmenuProps['attrs'] = {};
 	export let disabled: KContextmenuProps['disabled'] = false;
-	export let trigger: KContextmenuProps['trigger'] = 'contextmenu';
 
 	let show = false;
 	const dispatch = createEventDispatcher();
 	let contextmenuRef: null | HTMLElement = null;
 	let parentEl: null | HTMLElement = null;
-	$: isClickTrigger = trigger === 'click';
 
 	const style = {
 		left: '0',
@@ -45,7 +43,7 @@
 		show = true;
 		await tick();
 		setPosition(event.clientX, event.clientY);
-		!isClickTrigger && dispatch('contextmenu', event);
+		dispatch('contextmenu', event);
 		dispatch('change', true);
 	};
 
@@ -63,13 +61,7 @@
 	onMount(() => {
 		if (contextmenuRef) {
 			parentEl = contextmenuRef.parentElement || document.body;
-			if (isClickTrigger) {
-				parentEl.addEventListener('click', handleShow);
-			}
-
-			if (!isClickTrigger) {
-				parentEl.addEventListener('contextmenu', handleShow);
-			}
+			parentEl.addEventListener('contextmenu', handleShow);
 		}
 		!window.__IKUN_CONTEXTMMENU_CLOSE && (window.__IKUN_CONTEXTMMENU_CLOSE = []);
 		window.__IKUN_CONTEXTMMENU_CLOSE.push(handleClose);
@@ -78,16 +70,11 @@
 	onDestroy(() => {
 		if (contextmenuRef) {
 			parentEl = contextmenuRef.parentElement || document.body;
-			if (isClickTrigger) {
-				parentEl.removeEventListener('click', handleShow);
-			}
-
-			if (!isClickTrigger) {
-				parentEl.removeEventListener('contextmenu', handleShow);
-			}
+			parentEl.removeEventListener('contextmenu', handleShow);
 		}
 	});
 
+	// TODO refactor
 	function clickOutside(node: HTMLElement) {
 		function handleClickOutside(e: MouseEvent) {
 			const target = e.target as HTMLElement;
@@ -96,6 +83,7 @@
 				handleClose();
 			}
 		}
+
 		window.addEventListener('click', handleClickOutside);
 		return {
 			destroy: () => {
@@ -104,7 +92,6 @@
 		};
 	}
 
-	// TODO refactor
 	// class
 	const prefixCls = getPrefixCls('contextmenu');
 	$: cnames = clsx(

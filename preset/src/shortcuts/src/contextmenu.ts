@@ -7,5 +7,6 @@ export const contextmenuShortcuts: Record<string, string> = {
 	'k-contextmenu-item__divider':
 		'my-1 border-solid border-t-1 border-l-0 border-r-0 border-b-0 border-ikun-bd-base',
 	'k-contextmenu-sub-menu--base': 'k-contextmenu-item k-contextmenu-item--base fbc',
-	'k-contextmenu-sub-menu-item': 'k-contextmenu--base'
+	'k-contextmenu-sub-menu-item': 'k-contextmenu--base',
+	'k-contextmenu-sub-menu__disabled': 'k-contextmenu-item__disabled !hover:(k-bg-disabled text-ikun-info)'
 };

@@ -8,7 +8,7 @@
 	export let cls: KContextmenuProps['cls'] = undefined;
 	export let attrs: KContextmenuProps['attrs'] = {};
 	export let title: KContextmenuProps['title'] = '';
-
+	export let disabled: KContextmenuProps['disabled'] = false;
 	let show = false;
 	const style = {
 		left: '0',
@@ -17,6 +17,7 @@
 	};
 	let itemRef: HTMLElement | null = null;
 	const handleEnter = async (e: MouseEvent) => {
+		if(disabled) return
 		const target = e.target as HTMLElement;
 		show = true;
 		await tick();
@@ -39,6 +40,7 @@
 	};
 
 	const handleLeave = () => {
+		if(disabled) return
 		show = false;
 	};
 
@@ -47,7 +49,8 @@
 	$: cnames = clsx(
 		prefixCls,
 		{
-			[`${prefixCls}--base`]: true
+			[`${prefixCls}--base`]: true,
+			[`${prefixCls}__disabled`]: disabled,
 		},
 		cls
 	);
