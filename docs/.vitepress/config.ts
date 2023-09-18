@@ -17,6 +17,10 @@ const components = [
 				link: '/components/KButton'
 			},
 			{
+				text: 'Contextmenu',
+				link: '/components/KContextmenu'
+			},
+			{
 				text: 'Icon',
 				link: '/components/KIcon'
 			},

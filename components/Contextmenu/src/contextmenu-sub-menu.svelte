@@ -17,7 +17,7 @@
 	};
 	let itemRef: HTMLElement | null = null;
 	const handleEnter = async (e: MouseEvent) => {
-		if(disabled) return
+		if (disabled) return;
 		const target = e.target as HTMLElement;
 		show = true;
 		await tick();
@@ -40,7 +40,7 @@
 	};
 
 	const handleLeave = () => {
-		if(disabled) return
+		if (disabled) return;
 		show = false;
 	};
 
@@ -50,7 +50,7 @@
 		prefixCls,
 		{
 			[`${prefixCls}--base`]: true,
-			[`${prefixCls}__disabled`]: disabled,
+			[`${prefixCls}__disabled`]: disabled
 		},
 		cls
 	);
@@ -81,4 +81,3 @@
 		</div>
 	{/if}
 </li>
-<li />
