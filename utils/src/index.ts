@@ -9,5 +9,6 @@ export {
 	collapseWrapperKey,
 	checkboxGroupKey,
 	radioGroupKey,
-	rowKey
+	rowKey,
+	contextmenuKey
 } from './symbol-key';
