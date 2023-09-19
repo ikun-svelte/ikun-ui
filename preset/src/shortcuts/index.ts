@@ -12,6 +12,7 @@ import { buttonShortcuts } from './src/button';
 import { buttonGroupShortcuts } from './src/button-group';
 import { collapseShortcuts } from './src/collapse';
 import { checkboxShortcuts } from './src/checkbox';
+import { dividerShortcuts } from './src/divider';
 import { drawerShortcuts } from './src/drawer';
 import { maskShortcuts } from './src/mask';
 import { eyeDropperShortcuts } from './src/eye-dropper';
@@ -58,6 +59,8 @@ export const defaultShortcuts = [
 	collapseShortcuts,
 	// checkbox
 	checkboxShortcuts,
+	// divider
+	dividerShortcuts,
 	// drawer
 	drawerShortcuts,
 	// mask
@@ -118,6 +121,7 @@ export function getSafeList() {
 	const buttonGroupList = Object.keys(buttonGroupShortcuts);
 	const collapseList = Object.keys(collapseShortcuts);
 	const checkboxList = Object.keys(checkboxShortcuts);
+	const dividerList = Object.keys(dividerShortcuts);
 	const drawerList = Object.keys(drawerShortcuts);
 	const inputList = Object.keys(inputShortcuts);
 	const maskList = Object.keys(maskShortcuts);
@@ -173,8 +177,9 @@ export function getSafeList() {
 		.concat(linkList)
 		.concat(layoutList)
 		.concat(gridList)
-		.concat(contextmenuList)
-		.concat(popconfirmList);
+		.concat(popconfirmList)
+		.concat(dividerList)
+		.concat(contextmenuList);
 
 	// rules
 	const colSizeRules = Object.keys(createColSizeClsByNum());
@@ -195,6 +200,7 @@ export { buttonShortcuts } from './src/button';
 export { buttonGroupShortcuts } from './src/button-group';
 export { collapseShortcuts } from './src/collapse';
 export { checkboxShortcuts } from './src/checkbox';
+export { dividerShortcuts } from './src/divider';
 export { drawerShortcuts } from './src/drawer';
 export { maskShortcuts } from './src/mask';
 export { eyeDropperShortcuts } from './src/eye-dropper';

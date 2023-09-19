@@ -41,6 +41,10 @@ const components = [
 			{
 				text: 'Layout',
 				link: '/components/KLayout'
+			},
+			{
+				text: 'Divider',
+				link: '/components/KDivider'
 			}
 		]
 	},

@@ -26,7 +26,9 @@
 	};
 
 	$: cnames = clsx(
-		`k-tag--base k-tag--${type}`,
+		'k-tag',
+		'k-tag--base',
+		`k-tag--${type}`,
 		{
 			[`k-tag--${type}__border`]: border
 		},
@@ -36,6 +38,7 @@
 
 <span
 	class={cnames}
+	{...$$restProps}
 	{...attrs}
 	aria-hidden="true"
 	style="background-color: {bgColor}; color: {textColor}"
@@ -43,7 +46,7 @@
 >
 	{#if icon}
 		<KIcon
-			cls={['k-tag--icon__has-slot', { 'k-tag--icon__has-slot': $$slots.default }]}
+			cls={['k-tag--icon', { 'k-tag--icon__has-slot': $$slots.default }]}
 			{icon}
 			width="0.8rem"
 			height="0.8rem"
@@ -53,7 +56,7 @@
 	<slot />
 	{#if closable}
 		<KIcon
-			cls="k-tag--close-icon {`k-tag--${type}__close-icon`}"
+			cls={['k-tag--close-icon', `k-tag--${type}__close-icon`]}
 			icon={closeIcon}
 			width="0.8rem"
 			height="0.8rem"

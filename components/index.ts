@@ -38,3 +38,4 @@ export * from '@ikun-ui/rate';
 export * from '@ikun-ui/popconfirm';
 export * from '@ikun-ui/contextmenu';
 export * from '@ikun-ui/infinite';
+export * from '@ikun-ui/divider';
