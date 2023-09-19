@@ -51,7 +51,7 @@ describe('Test: KRate', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.querySelectorAll('.i-carbon-star-filled').length).toBe(value);
+		expect(host.querySelectorAll('.k-rate--active-icon').length).toBe(value);
 		expect(host.innerHTML).matchSnapshot();
 	});
 

@@ -14,5 +14,11 @@ export const rateShortcuts: Record<string, string> = {
 	'k-rate--item__disabled': 'k-cur-disabled',
 
 	// text
-	'k-rate--text': 'ml-6px text-10px line-height-none'
+	'k-rate--text': 'ml-6px text-10px line-height-none',
+
+	// fixed https://github.com/ikun-svelte/ikun-ui/issues/250
+	// default icons
+	'k-rate--void-icon': 'i-carbon-star',
+	'k-rate--active-icon': 'i-carbon-star-filled',
+	'k-rate--readonly-icon': 'i-carbon-star-filled'
 };

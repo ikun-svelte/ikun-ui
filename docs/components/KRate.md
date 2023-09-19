@@ -85,13 +85,13 @@ Use attribute `readonly` to make the component read-only. Add `readonlyVoidIcon`
 | showText          | `boolean`                           | `false`                   | whether to display texts.                                                                       |
 | texts             | `string` / `Record<number, string>` | `''`                      | text or text map.                                                                               |
 | textColor         | `string`                            | `'var(--ikun-zinc-500)'`  | color of texts.                                                                                 |
-| icons             | `string` / `Record<number, string>` | `'i-carbon-star-filled'`  | icon or icons map.                                                                              |
+| icons             | `string` / `Record<number, string>` | `'k-rate--active-icon'`   | icon or icons map, alias `i-carbon-star-filled` to `k-rate--active-icon`.                       |
 | colors            | `string` / `Record<number, string>` | `'var(--ikun-amber-500)'` | color or colors map.                                                                            |
-| voidIcon          | `string`                            | `'i-carbon-star`          | void icon.                                                                                      |
+| voidIcon          | `string`                            | `'k-rate--void-icon'`     | void icon, alias `i-carbon-star` to `k-rate--void-icon`.                                        |
 | voidColor         | `string`                            | `'var(--ikun-stone-300)'` | void icon color.                                                                                |
 | disabled          | `boolean`                           | `false`                   | whether rate is disabled.                                                                       |
 | readonly          | `boolean`                           | `false`                   | whether rate is readonly.                                                                       |
-| readonlyVoidIcon  | `string`                            | `'i-carbon-star-filled'`  | readonly void icon.                                                                             |
+| readonlyVoidIcon  | `string`                            | `'k-rate--readonly-icon'` | readonly void icon, alias `i-carbon-star-filled` to `k-rate--readonly-icon`.                    |
 | readonlyVoidColor | `string`                            | `'var(--ikun-light-700)'` | readonly void icon color.                                                                       |
 | clearable         | `boolean`                           | `false`                   | whether value can be reset to `0`.                                                              |
 | cls               | `string`                            | `-`                       | Additional class                                                                                |

@@ -15,13 +15,13 @@
 	export let showText: KRateProps['showText'] = false;
 	export let texts: KRateProps['texts'] = '';
 	export let textColor: KRateProps['textColor'] = 'var(--ikun-zinc-500)';
-	export let icons: KRateProps['icons'] = 'i-carbon-star-filled';
+	export let icons: KRateProps['icons'] = 'k-rate--active-icon';
 	export let colors: KRateProps['colors'] = 'var(--ikun-amber-500)';
-	export let voidIcon: KRateProps['voidIcon'] = 'i-carbon-star';
+	export let voidIcon: KRateProps['voidIcon'] = 'k-rate--void-icon';
 	export let voidColor: KRateProps['voidColor'] = 'var(--ikun-stone-300)';
 	export let disabled: KRateProps['disabled'] = false;
 	export let readonly: KRateProps['readonly'] = false;
-	export let readonlyVoidIcon: KRateProps['readonlyVoidIcon'] = 'i-carbon-star-filled';
+	export let readonlyVoidIcon: KRateProps['readonlyVoidIcon'] = 'k-rate--readonly-icon';
 	export let readonlyVoidColor: KRateProps['readonlyVoidColor'] = 'var(--ikun-light-700)';
 	export let clearable: KRateProps['clearable'] = false;
 	export let cls: KRateProps['cls'] = undefined;
