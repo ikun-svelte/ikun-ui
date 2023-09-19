@@ -49,14 +49,14 @@ You can set the style of divider.
 
 ## Divider Props
 
-| Name            | Type                        | Default            | Description                                                 |
-| --------------- | --------------------------- | ------------------ | ----------------------------------------------------------- |
-| direction       | `horizontal` / `vertical`   | `horizontal`       | Set divider's direction.                                    |
-| borderColor     | `string`                    | `'b-ikun-bd-base'` | divider's line color.                                       |
-| borderStyle     | `string`                    | `''`               | divider's line style.                                       |
-| contentPosition | `left` / `center` / `right` | `center`           | the position of the customized content on the divider line. |
-| cls             | `string`                    | `''`               | Additional class for                                        |
-| attrs           | `any`                       | `{}`               | Additional attributes                                       |
+| Name            | Type                                                                               | Default            | Description                                                 |
+| --------------- | ---------------------------------------------------------------------------------- | ------------------ | ----------------------------------------------------------- |
+| direction       | `horizontal` / `vertical`                                                          | `horizontal`       | Set divider's direction.                                    |
+| borderColor     | `string`                                                                           | `'b-ikun-bd-base'` | divider's line color.                                       |
+| borderStyle     | `dotted` / `dashed` / `solid` / `double` / `groove` / `ridge` / `inset` / `outset` | `'solid'`          | divider's line style.                                       |
+| contentPosition | `left` / `center` / `right`                                                        | `center`           | the position of the customized content on the divider line. |
+| cls             | `string`                                                                           | `-`                | Additional class for                                        |
+| attrs           | `Record<string, string>`                                                           | `{}`               | Additional attributes                                       |
 
 ## Divider Slots
 
