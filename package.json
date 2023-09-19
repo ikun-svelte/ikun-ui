@@ -69,7 +69,7 @@
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "esno scripts/new-component.js contextmenu"
+		"create:new:comp": "esno scripts/new-component.js infinite"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
@@ -119,7 +119,8 @@
 		"@ikun-ui/utils": "workspace:*",
 		"@ikun-ui/contextmenu": "workspace:*",
 		"baiwusanyu-utils": "^1.0.16",
-		"clsx": "^2.0.0"
+		"clsx": "^2.0.0",
+		"@ikun-ui/infinite": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.38.0",
