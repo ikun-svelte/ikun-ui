@@ -69,13 +69,13 @@ describe('Test: KDivider', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-divider--horizontal-solid')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-divider--horizontal__solid')).toBeTruthy();
 		instance.$set({ borderStyle: 'dotted' });
 		await tick();
-		expect((host as HTMLElement)!.innerHTML.includes('k-divider--horizontal-dotted')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-divider--horizontal__dotted')).toBeTruthy();
 		instance.$set({ direction: 'vertical', borderStyle: 'dashed' });
 		await tick();
-		expect((host as HTMLElement)!.innerHTML.includes('k-divider--vertical-dashed')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-divider--vertical__dashed')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 

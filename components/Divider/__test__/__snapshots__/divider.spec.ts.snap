@@ -1,11 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KDivider > props: borderColor 1`] = `"<div class=\\"k-divider k-divider--horizontal k-divider--horizontal-solid k-divider--content-center b-blue\\"></div>"`;
+exports[`Test: KDivider > props: borderColor 1`] = `"<div class=\\"k-divider k-divider--horizontal k-divider--horizontal__solid k-divider--content-center b-blue\\"></div>"`;
 
-exports[`Test: KDivider > props: borderStyle 1`] = `"<div class=\\"k-divider k-divider--vertical k-divider--vertical-dashed k-divider--content-center b-ikun-bd-base\\"></div>"`;
+exports[`Test: KDivider > props: borderStyle 1`] = `"<div class=\\"k-divider k-divider--vertical k-divider--vertical__dashed k-divider--content-center b-ikun-bd-base\\"></div>"`;
 
-exports[`Test: KDivider > props: cls 1`] = `"<div class=\\"k-divider k-divider--horizontal k-divider--horizontal-solid k-divider--content-center b-ikun-bd-base k-divider--test\\"></div>"`;
+exports[`Test: KDivider > props: cls 1`] = `"<div class=\\"k-divider k-divider--horizontal k-divider--horizontal__solid k-divider--content-center b-ikun-bd-base k-divider--test\\"></div>"`;
 
-exports[`Test: KDivider > props: direction 1`] = `"<div class=\\"k-divider k-divider--vertical k-divider--vertical-solid k-divider--content-center b-ikun-bd-base\\"></div>"`;
+exports[`Test: KDivider > props: direction 1`] = `"<div class=\\"k-divider k-divider--vertical k-divider--vertical__solid k-divider--content-center b-ikun-bd-base\\"></div>"`;
 
-exports[`Test: KDivider > slots: content 1`] = `"<div class=\\"k-divider k-divider--horizontal k-divider--horizontal-solid k-divider--content-left b-ikun-bd-base\\"><span class=\\"k-divider--content\\">divider left text</span></div> <div class=\\"k-divider k-divider--horizontal k-divider--horizontal-solid k-divider--content-center b-ikun-bd-base\\"><span class=\\"k-divider--content\\">divider center text</span></div> <div class=\\"k-divider k-divider--horizontal k-divider--horizontal-solid k-divider--content-right b-ikun-bd-base\\"><span class=\\"k-divider--content\\">divider right text</span></div>"`;
+exports[`Test: KDivider > slots: content 1`] = `"<div class=\\"k-divider k-divider--horizontal k-divider--horizontal__solid k-divider--content-left b-ikun-bd-base\\"><span class=\\"k-divider--content\\">divider left text</span></div> <div class=\\"k-divider k-divider--horizontal k-divider--horizontal__solid k-divider--content-center b-ikun-bd-base\\"><span class=\\"k-divider--content\\">divider center text</span></div> <div class=\\"k-divider k-divider--horizontal k-divider--horizontal__solid k-divider--content-right b-ikun-bd-base\\"><span class=\\"k-divider--content\\">divider right text</span></div>"`;

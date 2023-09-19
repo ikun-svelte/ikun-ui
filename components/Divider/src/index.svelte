@@ -15,7 +15,7 @@
 	$: dividerCls = clsx(
 		prefixCls,
 		`${prefixCls}--${direction}`,
-		`${prefixCls}--${direction}-${borderStyle}`,
+		`${prefixCls}--${direction}__${borderStyle}`,
 		`${prefixCls}--content-${contentPosition}`,
 		borderColor,
 		cls

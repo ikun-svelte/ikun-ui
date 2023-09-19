@@ -37,3 +37,4 @@ export * from '@ikun-ui/radio-group';
 export * from '@ikun-ui/rate';
 export * from '@ikun-ui/popconfirm';
 export * from '@ikun-ui/contextmenu';
+export * from '@ikun-ui/divider';

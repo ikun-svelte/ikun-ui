@@ -8,28 +8,31 @@ export const dividerShortcuts = {
 
 	// horizontal border style
 	'k-divider--horizontal-dotted':
-		'before:k-divider--vertical-dotted after:k-divider--vertical-dotted',
+		'before:k-divider--vertical__dotted after:k-divider--vertical__dotted',
 	'k-divider--horizontal-dashed':
-		'before:k-divider--vertical-dashed after:k-divider--vertical-dashed',
-	'k-divider--horizontal-solid': 'before:k-divider--vertical-solid after:k-divider--vertical-solid',
+		'before:k-divider--vertical__dashed after:k-divider--vertical__dashed',
+	'k-divider--horizontal-solid':
+		'before:k-divider--vertical__solid after:k-divider--vertical__solid',
 	'k-divider--horizontal-double':
-		'before:k-divider--vertical-double after:k-divider--vertical-double',
+		'before:k-divider--vertical__double after:k-divider--vertical__double',
 	'k-divider--horizontal-groove':
-		'before:k-divider--vertical-groove after:k-divider--vertical-groove',
-	'k-divider--horizontal-ridge': 'before:k-divider--vertical-ridge after:k-divider--vertical-ridge',
-	'k-divider--horizontal-inset': 'before:k-divider--vertical-inset after:k-divider--vertical-inset',
+		'before:k-divider--vertical__groove after:k-divider--vertical__groove',
+	'k-divider--horizontal-ridge':
+		'before:k-divider--vertical__ridge after:k-divider--vertical__ridge',
+	'k-divider--horizontal-inset':
+		'before:k-divider--vertical__inset after:k-divider--vertical__inset',
 	'k-divider--horizontal-outset':
-		'before:k-divider--vertical-outset after:k-divider--vertical-outset',
+		'before:k-divider--vertical__outset after:k-divider--vertical__outset',
 
 	// vertical border style
-	'k-divider--vertical-dotted': 'b-dotted',
-	'k-divider--vertical-dashed': 'b-dashed',
-	'k-divider--vertical-solid': 'b-solid',
-	'k-divider--vertical-double': 'b-double',
-	'k-divider--vertical-groove': 'b-groove',
-	'k-divider--vertical-ridge': 'b-ridge',
-	'k-divider--vertical-inset': 'b-inset',
-	'k-divider--vertical-outset': 'b-outset',
+	'k-divider--vertical__dotted': 'b-dotted',
+	'k-divider--vertical__dashed': 'b-dashed',
+	'k-divider--vertical__solid': 'b-solid',
+	'k-divider--vertical__double': 'b-double',
+	'k-divider--vertical__groove': 'b-groove',
+	'k-divider--vertical__ridge': 'b-ridge',
+	'k-divider--vertical__inset': 'b-inset',
+	'k-divider--vertical__outset': 'b-outset',
 
 	// content
 	'k-divider--content': 'px4 text-14px font-500 text-nowrap',
