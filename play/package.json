@@ -30,6 +30,7 @@
 		"svelte": "^4.0.0"
 	},
 	"devDependencies": {
+		"svelte-infinite-scroll": "latest",
 		"@iconify-json/carbon": "^1.1.21",
 		"@ikun-ui/preset": "workspace:*",
 		"@playwright/test": "^1.38.0",

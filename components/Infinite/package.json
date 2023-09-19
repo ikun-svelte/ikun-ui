@@ -31,6 +31,7 @@
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.16",
+		"svelte-infinite-scroll": "latest",
 		"clsx": "^2.0.0"
 	},
 	"devDependencies": {
