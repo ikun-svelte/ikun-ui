@@ -103,6 +103,10 @@ const components = [
 				link: '/components/KEllipsis'
 			},
 			{
+				text: 'Infinite',
+				link: '/components/KInfinite'
+			},
+			{
 				text: 'Tag',
 				link: '/components/KTag'
 			},
