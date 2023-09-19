@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KDivider > props: cls 1`] = `"<div class=\\"k-divider k-divider--horizontal k-divider--horizontal-solid k-divider--content-center b-ikun-bd-base k-divider--test\\"></div>"`;
