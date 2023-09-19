@@ -3,8 +3,8 @@ export const dividerShortcuts = {
 
 	// direction
 	'k-divider--horizontal':
-		'fi my4 before:(block w-50% h-0 b-1px b-solid b-ikun-bd-base scale-y-50%) after:(block w-50% h-0 b-1px b-solid b-ikun-bd-base scale-y-50%)',
-	'k-divider--vertical': 'infi w-0 h-1rem mx1 v-mid b-1px b-solid b-ikun-bd-base scale-x-50%',
+		'fi my4 before:(block w-50% h-0 b-1px b-color-inherit scale-y-50%) after:(block w-50% h-0 b-1px b-color-inherit scale-y-50%)',
+	'k-divider--vertical': 'infi w-0 h-1rem mx1 v-mid b-1px scale-x-50%',
 
 	// horizontal border style
 	'k-divider--horizontal-dotted':
@@ -32,7 +32,7 @@ export const dividerShortcuts = {
 	'k-divider--vertical-outset': 'b-outset',
 
 	// content
-	'k-divider--content': 'px4 text-14px font-500',
+	'k-divider--content': 'px4 text-14px font-500 text-nowrap',
 	'k-divider--content-left': 'before:w-20px after:w-100%',
 	'k-divider--content-center': 'before:w-50% after:w-50%',
 	'k-divider--content-right': 'before:w-100% after:w-20px'
