@@ -117,9 +117,10 @@
 		"@ikun-ui/tag": "workspace:*",
 		"@ikun-ui/tooltip": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/contextmenu": "workspace:*",
+		"@ikun-ui/divider": "workspace:*",
 		"baiwusanyu-utils": "^1.0.16",
-		"clsx": "^2.0.0",
-		"@ikun-ui/divider": "workspace:*"
+		"clsx": "^2.0.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.38.0",
