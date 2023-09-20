@@ -145,6 +145,29 @@ describe('Test: KInput', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: password', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				type: 'password'
+			}
+		});
+		expect(instance).toBeTruthy();
+		let iconElm = host.querySelector('.i-carbon-view-off');
+		expect(host.innerHTML.includes('type="password"')).toBeTruthy();
+		expect(host.innerHTML.includes('i-carbon-view-off')).toBeTruthy();
+		iconElm.click();
+		await tick();
+		expect(host.innerHTML.includes('type="text"')).toBeTruthy();
+		expect(host.innerHTML.includes('i-carbon-view')).toBeTruthy();
+		iconElm = host.querySelector('.i-carbon-view');
+		iconElm.click();
+		await tick();
+		expect(host.innerHTML.includes('type="password"')).toBeTruthy();
+		expect(host.innerHTML.includes('i-carbon-view-off')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('props: attrs', async () => {
 		const objAttr = {
 			name: 'KInput'

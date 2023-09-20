@@ -31,15 +31,21 @@ npm install @ikun-ui/input
 
 ## Prefix icon and suffix icon input
 
-Set the prefix through the icon attribute
+Set the prefix through the `icon` attribute
 
 <demo src="input/prefix.svelte" github="Input"></demo>
 
 ## Disabled input
 
-Disable the input through the disabled attribute
+Disable the input through the `disabled` attribute
 
 <demo src="input/disabled.svelte" github="Input"></demo>
+
+## Password input
+
+Enable the password input box and pass the `type` as `password`.
+
+<demo src="input/password.svelte" github="Input"></demo>
 
 ## Sizes
 
@@ -51,7 +57,8 @@ Add `size` attribute to change the size of Input. It supports `sm`, `md` and `lg
 
 | Name                | Type                     | Default | Description                                                      |
 | ------------------- | ------------------------ | ------- | ---------------------------------------------------------------- |
-| size                | `sm` / `md` / `lg`       | `md`    | size of Input.                                                   |
+| size                | `sm \| md \|lg`          | `md`    | size of Input.                                                   |
+| type                | `text \| password`       | `text`  | Determine whether it is a password input                         |
 | value               | `string`                 | `-`     | Binding value                                                    |
 | iconPrefix          | `string`                 | `-`     | The class name of the prefix icon, following the unocss standard |
 | iconSuffix          | `string`                 | `-`     | The class name of the suffix icon, following the unocss standard |

@@ -13,4 +13,5 @@ export type KInputProps = {
 	cls: ClassValue;
 	attrs: Record<string, string>;
 	useCompositionInput: boolean;
+	type: 'text' | 'password';
 };

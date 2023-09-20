@@ -15,6 +15,7 @@
 	export let cls: KInputProps['cls'] = undefined;
 	export let attrs: KInputProps['attrs'] = {};
 	export let useCompositionInput: KInputProps['useCompositionInput'] = false;
+	export let type: KInputProps['type'] = 'text';
 
 	/**
 	 * @internal
@@ -70,6 +71,7 @@
 		}
 	};
 
+	$: isPassword = type;
 	// class names
 	const prefixCls = getPrefixCls('input');
 	$: baseCls = clsx(
@@ -112,6 +114,7 @@
 		on:keydown={onEnter}
 		on:compositionstart={onCompositionStart}
 		on:compositionend={onCompositionEnd}
+		type={isPassword}
 		{placeholder}
 		{...attrs}
 	/>
@@ -120,6 +123,29 @@
 			<KIcon cls={suffixIconCls} icon={iconSuffix} />
 		{/if}
 	</slot>
+
+	{#if isPassword === 'password' && type === 'password'}
+		<div
+			role="button"
+			aria-hidden="true"
+			on:click={() => {
+				isPassword = 'text';
+			}}
+		>
+			<KIcon btn icon="i-carbon-view-off" cls='{iconCls} ml-1'/>
+		</div>
+	{/if}
+	{#if isPassword === 'text' && type === 'password'}
+		<div
+			role="button"
+			aria-hidden="true"
+			on:click={() => {
+				isPassword = 'password';
+			}}
+		>
+			<KIcon btn icon="i-carbon-view" cls='{iconCls} ml-1'/>
+		</div>
+	{/if}
 	{#if isError}
 		<span class={errorMsgCls} transition:fade={{ duration: 200 }}>
 			{errorMsg}
