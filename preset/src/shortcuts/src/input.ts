@@ -12,8 +12,8 @@ export const inputShortcuts: Record<string, string> = {
 	'k-input--lg': 'h-38px px-3.5 text-16px',
 
 	'k-input--icon--sm': '!w-12px !h-12px',
-	'k-input--icon--md': '!w-14px !h-14px',
-	'k-input--icon--lg': '!w-16px !h-16px',
+	'k-input--icon--md': '!w-20px !h-20px',
+	'k-input--icon--lg': '!w-24px !h-24px',
 
 	'k-input__disabled': 'k-bg-disabled k-cur-disabled',
 	'k-input__hover': 'hover:border-ikun-main',

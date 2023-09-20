@@ -132,7 +132,7 @@
 				isPassword = 'text';
 			}}
 		>
-			<KIcon icon="i-carbon-view-off" />
+			<KIcon btn icon="i-carbon-view-off" cls='{iconCls} ml-1'/>
 		</div>
 	{/if}
 	{#if isPassword === 'text' && type === 'password'}
@@ -143,7 +143,7 @@
 				isPassword = 'password';
 			}}
 		>
-			<KIcon icon="i-carbon-view" />
+			<KIcon btn icon="i-carbon-view" cls='{iconCls} ml-1'/>
 		</div>
 	{/if}
 	{#if isError}
