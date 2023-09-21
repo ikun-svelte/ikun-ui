@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -849,6 +849,9 @@ importers:
 
   components/Input:
     dependencies:
+      '@ikun-ui/button':
+        specifier: workspace:*
+        version: link:../Button
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon
