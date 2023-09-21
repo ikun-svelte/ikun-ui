@@ -19,7 +19,7 @@
 	export let attrs: KInputProps['attrs'] = {};
 	export let useCompositionInput: KInputProps['useCompositionInput'] = false;
 	export let type: KInputProps['type'] = 'text';
-
+	export let search: KInputProps['search'] = false;
 	/**
 	 * @internal
 	 */
@@ -50,8 +50,13 @@
 
 	const onEnter = (e: KeyboardEvent) => {
 		if (disabled) return;
-		if (e.key === 'Enter') dispatch('enter', e);
-		else dispatch('keydown', e);
+		if (e.key === 'Enter') {
+			if (search) {
+				dispatch('search', (e.target as HTMLInputElement)!.value);
+			} else {
+				dispatch('enter', e);
+			}
+		} else dispatch('keydown', e);
 	};
 
 	let isComposing = false;
@@ -77,12 +82,20 @@
 	let inputRef: null | HTMLInputElement = null;
 	const handlePrependClick = () => {
 		if (disabled) return;
-		inputRef && dispatch('triggerPrepend', inputRef.value);
+		if (search) {
+			inputRef && dispatch('search', inputRef.value);
+		} else {
+			inputRef && dispatch('triggerPrepend', inputRef.value);
+		}
 	};
 
 	const handleAppendClick = () => {
 		if (disabled) return;
-		inputRef && dispatch('triggerAppend', inputRef.value);
+		if (search) {
+			inputRef && dispatch('search', inputRef.value);
+		} else {
+			inputRef && dispatch('triggerAppend', inputRef.value);
+		}
 	};
 
 	$: isPassword = type;
@@ -122,7 +135,14 @@
 
 <div class={baseCls}>
 	{#if $$slots.prepend || prepend}
-		<KButton cls={prependCls} hiddenSlot type="main" icon={prepend} on:click={handlePrependClick}>
+		<KButton
+			cls={prependCls}
+			hiddenSlot
+			type="main"
+			icon={prepend}
+			on:click={handlePrependClick}
+			{disabled}
+		>
 			{#if $$slots.prepend}
 				<slot name="prepend" />
 			{/if}
@@ -183,7 +203,14 @@
 		{/if}
 	</div>
 	{#if $$slots.append || append}
-		<KButton cls={appendgCls} hiddenSlot type="main" icon={append} on:click={handleAppendClick}>
+		<KButton
+			cls={appendgCls}
+			hiddenSlot
+			type="main"
+			icon={append}
+			on:click={handleAppendClick}
+			{disabled}
+		>
 			{#if $$slots.append}
 				<slot name="append" />
 			{/if}

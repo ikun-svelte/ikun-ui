@@ -343,6 +343,32 @@ describe('Test: KInput', () => {
 		expect(mockFn).toBeCalled();
 	});
 
+	test('event: should trigger search event when pressing enter', async () => {
+		const mockFn = vi.fn();
+		const mockSearchFn = vi.fn();
+		const instance = new KInput({
+			target: host,
+			props: {
+				search: true
+			}
+		});
+		await tick();
+		instance.$on('enter', mockFn);
+		instance.$on('search', mockSearchFn);
+		const inputElm = host.getElementsByTagName('input')[0];
+		inputElm.dispatchEvent(
+			new KeyboardEvent('keydown', {
+				bubbles: true,
+				cancelable: true,
+				key: 'Enter',
+				code: 'Enter'
+			})
+		);
+		await tick();
+		expect(mockFn).not.toBeCalled();
+		expect(mockSearchFn).toBeCalled();
+	});
+
 	test('event: should trigger keydown event when not pressing enter', async () => {
 		const mockFn = vi.fn();
 		const instance = new KInput({
@@ -460,6 +486,58 @@ describe('Test: KInput', () => {
 		btnPrepend.click();
 		await tick();
 		expect(mockFnClick).toBeCalledTimes(2);
+		expect(valueClick).toBe('ikun');
+	});
+
+	test('event: should trigger prepend & append search', async () => {
+		let value = '';
+		let valueClick = '';
+		const mockFn = vi.fn();
+		const mockFnClick = vi.fn();
+		const mockFnSearch = vi.fn();
+		const instance = new KInput({
+			target: host,
+			props: {
+				value,
+				append: 'i-carbon-logo-svelte',
+				prepend: 'i-carbon-logo-vue',
+				search: true
+			}
+		});
+		await tick();
+		instance.$on('input', (v) => {
+			value = v.detail;
+			mockFn();
+		});
+		instance.$on('triggerPrepend', () => {
+			mockFnClick();
+		});
+		instance.$on('triggerAppend', () => {
+			mockFnClick();
+		});
+		instance.$on('search', (v) => {
+			valueClick = v.detail;
+			mockFnSearch();
+		});
+		const inputElm = host.getElementsByTagName('input')[0];
+		inputElm.value = 'ikun';
+		inputElm.dispatchEvent(new Event('input'));
+		await tick();
+		expect(instance).toBeTruthy();
+		expect(mockFn).toBeCalled();
+		expect(value).toBe('ikun');
+		const btnAppend = host.querySelector('.k-input--append');
+		const btnPrepend = host.querySelector('.k-input--prepend');
+		btnAppend.click();
+		await tick();
+		expect(mockFnClick).not.toBeCalled();
+		expect(mockFnSearch).toBeCalled();
+		expect(valueClick).toBe('ikun');
+		valueClick = '';
+		btnPrepend.click();
+		await tick();
+		expect(mockFnClick).not.toBeCalled();
+		expect(mockFnSearch).toBeCalledTimes(2);
 		expect(valueClick).toBe('ikun');
 	});
 
