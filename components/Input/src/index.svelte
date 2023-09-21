@@ -91,7 +91,7 @@
 	$: baseCls = clsx(prefixCls, cls);
 	$: inputWrapperCls = clsx(
 		`${prefixCls}--base`,
-		`${prefixCls}--${size}`,
+		`${prefixCls}__${size}`,
 		`${prefixCls}__dark`,
 		{
 			[`${prefixCls}__disabled`]: disabled,
@@ -112,17 +112,17 @@
 		[`${prefixCls}__disabled`]: disabled,
 		[`${prefixCls}__disabled__dark`]: disabled
 	});
-	$: iconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon--${size}`);
+	$: iconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${size}`);
 	$: prefixIconCls = clsx(iconCls, `${prefixCls}--prefix-icon`);
 	$: suffixIconCls = clsx(iconCls, `${prefixCls}--suffix-icon`);
 	$: errorMsgCls = clsx(`${prefixCls}__msg__error`);
-	$: prependCls = clsx(`${prefixCls}--prepend`);
-	$: appendgCls = clsx(`${prefixCls}--append`);
+	$: prependCls = clsx(`${prefixCls}--prepend`, `${prefixCls}--prepend__${size}`);
+	$: appendgCls = clsx(`${prefixCls}--append`, `${prefixCls}--append__${size}`);
 </script>
 
 <div class={baseCls}>
 	{#if $$slots.prepend || prepend}
-		<KButton cls={prependCls} type="main" icon={prepend} on:click={handlePrependClick}>
+		<KButton cls={prependCls} hiddenSlot type="main" icon={prepend} on:click={handlePrependClick}>
 			{#if $$slots.prepend}
 				<slot name="prepend" />
 			{/if}
@@ -183,7 +183,7 @@
 		{/if}
 	</div>
 	{#if $$slots.append || append}
-		<KButton cls={appendgCls} type="main" icon={append} on:click={handleAppendClick}>
+		<KButton cls={appendgCls} hiddenSlot type="main" icon={append} on:click={handleAppendClick}>
 			{#if $$slots.append}
 				<slot name="append" />
 			{/if}

@@ -35,12 +35,12 @@ describe('Test: KInput', () => {
 				}
 			});
 			expect(instance).toBeTruthy();
-			expect((host as HTMLElement)!.innerHTML.includes(`k-input--${size}`)).toBeTruthy();
+			expect((host as HTMLElement)!.innerHTML.includes(`k-input__${size}`)).toBeTruthy();
 			expect(
-				(host as HTMLElement)!.innerHTML.includes(`k-input--icon--${size} k-input--prefix-icon`)
+				(host as HTMLElement)!.innerHTML.includes(`k-input--icon__${size} k-input--prefix-icon`)
 			).toBeTruthy();
 			expect(
-				(host as HTMLElement)!.innerHTML.includes(`k-input--icon--${size} k-input--suffix-icon`)
+				(host as HTMLElement)!.innerHTML.includes(`k-input--icon__${size} k-input--suffix-icon`)
 			).toBeTruthy();
 			expect(host.innerHTML).matchSnapshot();
 		}

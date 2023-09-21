@@ -14,6 +14,7 @@ export type KButtonProps = {
 	ghost: boolean;
 	isBorder: boolean;
 	disabled: boolean;
+	hiddenSlot: boolean;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };

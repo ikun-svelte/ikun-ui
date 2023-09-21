@@ -13,14 +13,21 @@ export const inputShortcuts: Record<string, string> = {
 	// prepend append
 	'k-input--prepend': '!rounded-l !rounded-r-0',
 	'k-input--append': '!rounded-r !rounded-l-0',
-	// size
-	'k-input--sm': 'h-22px px-1.5 text-12px',
-	'k-input--md': 'h-30px px-2.5 text-14px',
-	'k-input--lg': 'h-38px px-3.5 text-16px',
+	'k-input--prepend__sm': 'h-22px',
+	'k-input--append__sm': 'h-22px',
+	'k-input--prepend__md': 'h-30px',
+	'k-input--append__md': 'h-30px',
+	'k-input--prepend__lg': 'h-38px',
+	'k-input--append__lg': 'h-38px',
 
-	'k-input--icon--sm': '!w-12px !h-12px',
-	'k-input--icon--md': '!w-20px !h-20px',
-	'k-input--icon--lg': '!w-24px !h-24px',
+	// size
+	'k-input__sm': 'h-22px px-1.5 text-12px',
+	'k-input__md': 'h-30px px-2.5 text-14px',
+	'k-input__lg': 'h-38px px-3.5 text-16px',
+
+	'k-input--icon__sm': '!w-12px !h-12px',
+	'k-input--icon__md': '!w-20px !h-20px',
+	'k-input--icon__lg': '!w-24px !h-24px',
 
 	'k-input__disabled': 'k-bg-disabled k-cur-disabled',
 	'k-input__hover': 'hover:border-ikun-main',

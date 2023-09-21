@@ -19,6 +19,7 @@
 	export let disabled: KButtonProps['disabled'] = false;
 	export let cls: KButtonProps['cls'] = undefined;
 	export let attrs: KButtonProps['attrs'] = {};
+	export let hiddenSlot: KButtonProps['hiddenSlot'] = false;
 
 	enum EButtonIconSize {
 		'lg' = 20,
@@ -116,8 +117,7 @@
 	{#if icon}
 		<KIcon {icon} color={cnamesIcon} width={`${iconSizeInner}px`} height={`${iconSizeInner}px`} />
 	{/if}
-
-	{#if $$slots.default && icon}
+	{#if $$slots.default && icon && !hiddenSlot}
 		<div class="ml-1"></div>
 	{/if}
 	<slot />
