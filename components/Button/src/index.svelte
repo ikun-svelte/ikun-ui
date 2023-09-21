@@ -19,6 +19,7 @@
 	export let disabled: KButtonProps['disabled'] = false;
 	export let cls: KButtonProps['cls'] = undefined;
 	export let attrs: KButtonProps['attrs'] = {};
+	export let hiddenSlot: KButtonProps['hiddenSlot'] = false;
 
 	enum EButtonIconSize {
 		'lg' = 20,
@@ -29,7 +30,7 @@
 	const buttonGroupPropsInner = getContext<KButtonGroupPropsInner>(ButtonGroupKey) || {};
 	const typeInner = type || buttonGroupPropsInner?.type || 'primary';
 	const sizeInner = buttonGroupPropsInner?.size || size || 'md';
-	const isBorderInner = isBorder || buttonGroupPropsInner?.isBorder || false;
+	const isBorderInner = isBorder || buttonGroupPropsInner?.isBorder || ghost || false;
 	const disabledInner = disabled || buttonGroupPropsInner?.disabled || false;
 	let iconSizeInner: KButtonProps['iconSize'];
 	$: if (iconSize) {
@@ -116,8 +117,7 @@
 	{#if icon}
 		<KIcon {icon} color={cnamesIcon} width={`${iconSizeInner}px`} height={`${iconSizeInner}px`} />
 	{/if}
-
-	{#if $$slots.default && icon}
+	{#if $$slots.default && icon && !hiddenSlot}
 		<div class="ml-1"></div>
 	{/if}
 	<slot />

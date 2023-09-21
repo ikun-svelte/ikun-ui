@@ -12,5 +12,9 @@ export function setMainColor(rules: Record<string, any>, themeColorRGB: string) 
 	rules['k-popover-shadow__right__dark'] = {
 		'box-shadow': `-4px 0px 12px rgb(${themeColorRGB}, 0.8)`
 	};
+
+	rules['k-btn-shadow--main'] = {
+		'box-shadow': `0 0 0 2px rgba(${themeColorRGB},0.5)`
+	};
 	return rules;
 }

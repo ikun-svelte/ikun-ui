@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { fireEvent } from '@testing-library/svelte';
 import KInput from '../src';
 import KInputSlots from './input.slots.svelte';
+import KInputSlotsAppend from './input.slots.append.svelte';
 import KInputBindValueUpdate from './input.bind.value.update.svelte';
 
 let host: HTMLElement;
@@ -34,12 +35,12 @@ describe('Test: KInput', () => {
 				}
 			});
 			expect(instance).toBeTruthy();
-			expect((host as HTMLElement)!.innerHTML.includes(`k-input--${size}`)).toBeTruthy();
+			expect((host as HTMLElement)!.innerHTML.includes(`k-input__${size}`)).toBeTruthy();
 			expect(
-				(host as HTMLElement)!.innerHTML.includes(`k-input--icon--${size} k-input--prefix-icon`)
+				(host as HTMLElement)!.innerHTML.includes(`k-input--icon__${size} k-input--prefix-icon`)
 			).toBeTruthy();
 			expect(
-				(host as HTMLElement)!.innerHTML.includes(`k-input--icon--${size} k-input--suffix-icon`)
+				(host as HTMLElement)!.innerHTML.includes(`k-input--icon__${size} k-input--suffix-icon`)
 			).toBeTruthy();
 			expect(host.innerHTML).matchSnapshot();
 		}
@@ -165,6 +166,52 @@ describe('Test: KInput', () => {
 		await tick();
 		expect(host.innerHTML.includes('type="password"')).toBeTruthy();
 		expect(host.innerHTML.includes('i-carbon-view-off')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: prepend', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				prepend: 'i-carbon-logo-svelte'
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect(host.innerHTML.includes('i-carbon-logo-svelte')).toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded__right')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: append', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				append: 'i-carbon-logo-svelte'
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect(host.innerHTML.includes('i-carbon-logo-svelte')).toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded__left')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: append & prepend', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				append: 'i-carbon-logo-svelte',
+				prepend: 'i-carbon-logo-vue'
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect(host.innerHTML.includes('i-carbon-logo-svelte')).toBeTruthy();
+		expect(host.innerHTML.includes('i-carbon-logo-vue')).toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded__left')).not.toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded__left')).not.toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded')).not.toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -370,6 +417,52 @@ describe('Test: KInput', () => {
 		expect(mockFn).not.toBeCalled();
 	});
 
+	test('event: should trigger prepend & append click', async () => {
+		let value = '';
+		let valueClick = '';
+		const mockFn = vi.fn();
+		const mockFnClick = vi.fn();
+		const instance = new KInput({
+			target: host,
+			props: {
+				value,
+				append: 'i-carbon-logo-svelte',
+				prepend: 'i-carbon-logo-vue'
+			}
+		});
+		await tick();
+		instance.$on('input', (v) => {
+			value = v.detail;
+			mockFn();
+		});
+		instance.$on('triggerPrepend', (v) => {
+			valueClick = v.detail;
+			mockFnClick();
+		});
+		instance.$on('triggerAppend', (v) => {
+			valueClick = v.detail;
+			mockFnClick();
+		});
+		const inputElm = host.getElementsByTagName('input')[0];
+		inputElm.value = 'ikun';
+		inputElm.dispatchEvent(new Event('input'));
+		await tick();
+		expect(instance).toBeTruthy();
+		expect(mockFn).toBeCalled();
+		expect(value).toBe('ikun');
+		const btnAppend = host.querySelector('.k-input--append');
+		const btnPrepend = host.querySelector('.k-input--prepend');
+		btnAppend.click();
+		await tick();
+		expect(mockFnClick).toBeCalled();
+		expect(valueClick).toBe('ikun');
+		valueClick = '';
+		btnPrepend.click();
+		await tick();
+		expect(mockFnClick).toBeCalledTimes(2);
+		expect(valueClick).toBe('ikun');
+	});
+
 	test('slot: prefix and suffix', async () => {
 		const instance = new KInputSlots({
 			target: host
@@ -379,6 +472,18 @@ describe('Test: KInput', () => {
 		const suffixElm = host.getElementsByClassName('suffix')[0];
 		expect(prefixElm).toBeTruthy();
 		expect(suffixElm).toBeTruthy();
+	});
+
+	test('slot: prepend and append', async () => {
+		const instance = new KInputSlotsAppend({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		expect(host.innerHTML.includes('i-carbon-logo-svelte')).toBeTruthy();
+		expect(host.innerHTML.includes('i-carbon-logo-vue')).toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded__left')).not.toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded__left')).not.toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded')).not.toBeTruthy();
 	});
 
 	test('props: bind value be updated in real time', async () => {

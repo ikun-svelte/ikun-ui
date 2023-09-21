@@ -3,6 +3,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
+	import { KButton } from '@ikun-ui/button';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import clsx from 'clsx';
 
@@ -12,6 +13,8 @@
 	export let disabled: KInputProps['disabled'] = false;
 	export let iconPrefix: KInputProps['iconPrefix'] = '';
 	export let iconSuffix: KInputProps['iconSuffix'] = '';
+	export let append: KInputProps['append'] = '';
+	export let prepend: KInputProps['prepend'] = '';
 	export let cls: KInputProps['cls'] = undefined;
 	export let attrs: KInputProps['attrs'] = {};
 	export let useCompositionInput: KInputProps['useCompositionInput'] = false;
@@ -71,12 +74,24 @@
 		}
 	};
 
+	let inputRef: null | HTMLInputElement = null;
+	const handlePrependClick = () => {
+		if (disabled) return;
+		inputRef && dispatch('triggerPrepend', inputRef.value);
+	};
+
+	const handleAppendClick = () => {
+		if (disabled) return;
+		inputRef && dispatch('triggerAppend', inputRef.value);
+	};
+
 	$: isPassword = type;
 	// class names
 	const prefixCls = getPrefixCls('input');
-	$: baseCls = clsx(
-		prefixCls,
-		`${prefixCls}--${size}`,
+	$: baseCls = clsx(prefixCls, cls);
+	$: inputWrapperCls = clsx(
+		`${prefixCls}--base`,
+		`${prefixCls}__${size}`,
 		`${prefixCls}__dark`,
 		{
 			[`${prefixCls}__disabled`]: disabled,
@@ -87,68 +102,91 @@
 			[`${prefixCls}__hover`]: !isError,
 			[`${prefixCls}__focus`]: !isError
 		},
-		cls
+		{
+			[`${prefixCls}__rounded`]: !$$slots.append && !append && !$$slots.prepend && !prepend,
+			[`${prefixCls}__rounded__left`]: ($$slots.append || append) && !$$slots.prepend && !prepend,
+			[`${prefixCls}__rounded__right`]: !$$slots.append && !append && ($$slots.prepend || prepend)
+		}
 	);
 	$: inputCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__dark`, {
 		[`${prefixCls}__disabled`]: disabled,
 		[`${prefixCls}__disabled__dark`]: disabled
 	});
-	$: iconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon--${size}`);
+	$: iconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${size}`);
 	$: prefixIconCls = clsx(iconCls, `${prefixCls}--prefix-icon`);
 	$: suffixIconCls = clsx(iconCls, `${prefixCls}--suffix-icon`);
 	$: errorMsgCls = clsx(`${prefixCls}__msg__error`);
+	$: prependCls = clsx(`${prefixCls}--prepend`, `${prefixCls}--prepend__${size}`);
+	$: appendgCls = clsx(`${prefixCls}--append`, `${prefixCls}--append__${size}`);
 </script>
 
 <div class={baseCls}>
-	<slot name="prefix">
-		{#if iconPrefix}
-			<KIcon cls={prefixIconCls} icon={iconPrefix} />
-		{/if}
-	</slot>
-	<input
-		class={inputCls}
-		{value}
-		{disabled}
-		on:input={onInput}
-		on:change={onChange}
-		on:keydown={onEnter}
-		on:compositionstart={onCompositionStart}
-		on:compositionend={onCompositionEnd}
-		type={isPassword}
-		{placeholder}
-		{...attrs}
-	/>
-	<slot name="suffix">
-		{#if iconSuffix}
-			<KIcon cls={suffixIconCls} icon={iconSuffix} />
-		{/if}
-	</slot>
+	{#if $$slots.prepend || prepend}
+		<KButton cls={prependCls} hiddenSlot type="main" icon={prepend} on:click={handlePrependClick}>
+			{#if $$slots.prepend}
+				<slot name="prepend" />
+			{/if}
+		</KButton>
+	{/if}
+	<div class={inputWrapperCls}>
+		<slot name="prefix">
+			{#if iconPrefix}
+				<KIcon cls={prefixIconCls} icon={iconPrefix} />
+			{/if}
+		</slot>
+		<input
+			class={inputCls}
+			{value}
+			{disabled}
+			bind:this={inputRef}
+			on:input={onInput}
+			on:change={onChange}
+			on:keydown={onEnter}
+			on:compositionstart={onCompositionStart}
+			on:compositionend={onCompositionEnd}
+			type={isPassword}
+			{placeholder}
+			{...attrs}
+		/>
+		<slot name="suffix">
+			{#if iconSuffix}
+				<KIcon cls={suffixIconCls} icon={iconSuffix} />
+			{/if}
+		</slot>
 
-	{#if isPassword === 'password' && type === 'password'}
-		<div
-			role="button"
-			aria-hidden="true"
-			on:click={() => {
-				isPassword = 'text';
-			}}
-		>
-			<KIcon btn icon="i-carbon-view-off" cls='{iconCls} ml-1'/>
-		</div>
-	{/if}
-	{#if isPassword === 'text' && type === 'password'}
-		<div
-			role="button"
-			aria-hidden="true"
-			on:click={() => {
-				isPassword = 'password';
-			}}
-		>
-			<KIcon btn icon="i-carbon-view" cls='{iconCls} ml-1'/>
-		</div>
-	{/if}
-	{#if isError}
-		<span class={errorMsgCls} transition:fade={{ duration: 200 }}>
-			{errorMsg}
-		</span>
+		{#if isPassword === 'password' && type === 'password'}
+			<div
+				role="button"
+				aria-hidden="true"
+				on:click={() => {
+					isPassword = 'text';
+				}}
+			>
+				<KIcon btn icon="i-carbon-view-off" cls="{iconCls} ml-1" />
+			</div>
+		{/if}
+		{#if isPassword === 'text' && type === 'password'}
+			<div
+				role="button"
+				aria-hidden="true"
+				on:click={() => {
+					isPassword = 'password';
+				}}
+			>
+				<KIcon btn icon="i-carbon-view" cls="{iconCls} ml-1" />
+			</div>
+		{/if}
+		{#if isError}
+			<span class={errorMsgCls} transition:fade={{ duration: 200 }}>
+				{errorMsg}
+			</span>
+		{/if}
+	</div>
+	{#if $$slots.append || append}
+		<KButton cls={appendgCls} hiddenSlot type="main" icon={append} on:click={handleAppendClick}>
+			{#if $$slots.append}
+				<slot name="append" />
+			{/if}
+		</KButton>
 	{/if}
 </div>

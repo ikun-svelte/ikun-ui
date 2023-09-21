@@ -77,6 +77,12 @@ const getAnimation = (themeColor: string) => {
           80% { box-shadow: 0 0 0 6px rgba(${themeColor},0.1)}
           100% { box-shadow: 0 0 0 8px rgba(${themeColor},0.05)}
 			}`,
+			'ikun-checking-main': `{
+			 		0% { box-shadow: 0 0 0 2px rgba(${themeColor},0.4)}
+          60% { box-shadow: 0 0 0 4px rgba(${themeColor},0.2)}
+          80% { box-shadow: 0 0 0 6px rgba(${themeColor},0.1)}
+          100% { box-shadow: 0 0 0 8px rgba(${themeColor},0.05)}
+					}`,
 			'ikun-clicking--success': `{
 			 	  0% { box-shadow: 0 0 0 2px rgba(74,222,128,0.4)}
           60% { box-shadow: 0 0 0 4px rgba(74,222,128,0.2)}
@@ -114,6 +120,7 @@ const getAnimation = (themeColor: string) => {
 			'ikun-clicking--warning': '.3s',
 			'ikun-clicking--info': '.3s',
 			'ikun-clicking--primary': '.3s',
+			'ikun-checking-main': '.3s',
 			'ikun-checking': '.3s',
 			'ikun-switching': '.3s'
 		},
@@ -123,6 +130,7 @@ const getAnimation = (themeColor: string) => {
 			'ikun-clicking--warning': 'linear',
 			'ikun-clicking--info': 'linear',
 			'ikun-clicking--primary': 'linear',
+			'ikun-checking-main': 'linear',
 			'ikun-clicking': 'linear',
 			'ikun-checking': 'linear',
 			'ikun-switching': 'linear'
