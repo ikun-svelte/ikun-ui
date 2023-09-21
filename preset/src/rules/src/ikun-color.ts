@@ -21,7 +21,7 @@ export const getIkunColorRules = <T>(colors: T) => {
 			const { input } = inputData;
 			if (!input) return;
 			const [, op, inputCls] = input.split(':');
-			const variable = inputCls.match(/^(?:text|bg)-(.+)/)[1];
+			const variable = inputCls.match(/^(?:text|bg|border)-(.+)/)[1];
 			if (!variable) return;
 			const color = parseColor<typeof colors>(
 				(theme.colors as Record<string, string>)[variable],
@@ -31,11 +31,12 @@ export const getIkunColorRules = <T>(colors: T) => {
 
 			let attr = inputCls.startsWith('bg-') ? 'background-color' : '';
 			attr = inputCls.startsWith('text-') ? 'color' : attr;
+			attr = inputCls.startsWith('border-') ? 'border-color' : attr;
 
 			if (!attr) return;
 			return {
-				'--ikun-context': color,
-				[attr]: 'var(--ikun-context)'
+				[`--ikun-context-${attr}`]: color,
+				[attr]: `var(--ikun-context-${attr})`
 			};
 		}
 	];

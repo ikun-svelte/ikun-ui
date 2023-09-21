@@ -29,7 +29,7 @@
 	const buttonGroupPropsInner = getContext<KButtonGroupPropsInner>(ButtonGroupKey) || {};
 	const typeInner = type || buttonGroupPropsInner?.type || 'primary';
 	const sizeInner = buttonGroupPropsInner?.size || size || 'md';
-	const isBorderInner = isBorder || buttonGroupPropsInner?.isBorder || false;
+	const isBorderInner = isBorder || buttonGroupPropsInner?.isBorder || ghost || false;
 	const disabledInner = disabled || buttonGroupPropsInner?.disabled || false;
 	let iconSizeInner: KButtonProps['iconSize'];
 	$: if (iconSize) {

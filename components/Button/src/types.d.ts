@@ -3,7 +3,7 @@ import type { IKunTypePro } from '@ikun-ui/utils';
 import type { ClassValue } from 'clsx';
 
 export type KButtonProps = {
-	type: IKunTypePro;
+	type: IKunTypePro | 'main';
 	size: 'sm' | 'md' | 'lg';
 	icon: string;
 	iconSize: number | null;

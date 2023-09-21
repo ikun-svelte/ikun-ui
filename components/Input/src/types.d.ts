@@ -8,6 +8,8 @@ export type KInputProps = {
 	disabled: boolean;
 	iconPrefix: string;
 	iconSuffix: string;
+	append: string;
+	prepend: string;
 	isError: boolean;
 	errorMsg: string;
 	cls: ClassValue;

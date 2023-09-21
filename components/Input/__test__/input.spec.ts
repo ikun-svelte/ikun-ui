@@ -168,6 +168,52 @@ describe('Test: KInput', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: prepend', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				prepend: 'i-carbon-logo-svelte'
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect(host.innerHTML.includes('i-carbon-logo-svelte')).toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded__right')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: append', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				append: 'i-carbon-logo-svelte'
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect(host.innerHTML.includes('i-carbon-logo-svelte')).toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded__left')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: append & prepend', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				append: 'i-carbon-logo-svelte',
+				prepend: 'i-carbon-logo-vue'
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect(host.innerHTML.includes('i-carbon-logo-svelte')).toBeTruthy();
+		expect(host.innerHTML.includes('i-carbon-logo-vue')).toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded__left')).not.toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded__left')).not.toBeTruthy();
+		expect(host.innerHTML.includes('k-input__rounded')).not.toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('props: attrs', async () => {
 		const objAttr = {
 			name: 'KInput'
