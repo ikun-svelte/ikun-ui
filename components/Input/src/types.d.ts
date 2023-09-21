@@ -11,6 +11,7 @@ export type KInputProps = {
 	append: string;
 	prepend: string;
 	isError: boolean;
+	search: boolean;
 	errorMsg: string;
 	cls: ClassValue;
 	attrs: Record<string, string>;
