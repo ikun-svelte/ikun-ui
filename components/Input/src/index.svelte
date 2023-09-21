@@ -122,7 +122,14 @@
 
 <div class={baseCls}>
 	{#if $$slots.prepend || prepend}
-		<KButton cls={prependCls} hiddenSlot type="main" icon={prepend} on:click={handlePrependClick}>
+		<KButton
+			cls={prependCls}
+			hiddenSlot
+			type="main"
+			icon={prepend}
+			on:click={handlePrependClick}
+			{disabled}
+		>
 			{#if $$slots.prepend}
 				<slot name="prepend" />
 			{/if}
@@ -183,7 +190,14 @@
 		{/if}
 	</div>
 	{#if $$slots.append || append}
-		<KButton cls={appendgCls} hiddenSlot type="main" icon={append} on:click={handleAppendClick}>
+		<KButton
+			cls={appendgCls}
+			hiddenSlot
+			type="main"
+			icon={append}
+			on:click={handleAppendClick}
+			{disabled}
+		>
 			{#if $$slots.append}
 				<slot name="append" />
 			{/if}
