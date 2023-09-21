@@ -3,7 +3,7 @@
 	"description": "🐔 A Svelte.js based UnoCSS UI library that allows you to make websites",
 	"packageManager": "pnpm@8.7.5",
 	"type": "module",
-	"version": "0.0.9-beta.8",
+	"version": "0.0.9-beta.9",
 	"keywords": [
 		"svelte",
 		"svelte3",
