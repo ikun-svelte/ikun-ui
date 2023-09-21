@@ -74,6 +74,17 @@
 		}
 	};
 
+	let inputRef: null | HTMLInputElement = null;
+	const handlePrependClick = () => {
+		if (disabled) return;
+		inputRef && dispatch('triggerPrepend', inputRef.value);
+	};
+
+	const handleAppendClick = () => {
+		if (disabled) return;
+		inputRef && dispatch('triggerAppend', inputRef.value);
+	};
+
 	$: isPassword = type;
 	// class names
 	const prefixCls = getPrefixCls('input');
@@ -111,7 +122,7 @@
 
 <div class={baseCls}>
 	{#if $$slots.prepend || prepend}
-		<KButton cls={prependCls} type="main" icon={prepend}>
+		<KButton cls={prependCls} type="main" icon={prepend} on:click={handlePrependClick}>
 			{#if $$slots.prepend}
 				<slot name="prepend" />
 			{/if}
@@ -127,6 +138,7 @@
 			class={inputCls}
 			{value}
 			{disabled}
+			bind:this={inputRef}
 			on:input={onInput}
 			on:change={onChange}
 			on:keydown={onEnter}
@@ -171,7 +183,7 @@
 		{/if}
 	</div>
 	{#if $$slots.append || append}
-		<KButton cls={appendgCls} type="main" icon={append}>
+		<KButton cls={appendgCls} type="main" icon={append} on:click={handleAppendClick}>
 			{#if $$slots.append}
 				<slot name="append" />
 			{/if}
