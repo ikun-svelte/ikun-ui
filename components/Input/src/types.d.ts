@@ -16,5 +16,7 @@ export type KInputProps = {
 	cls: ClassValue;
 	attrs: Record<string, string>;
 	useCompositionInput: boolean;
-	type: 'text' | 'password';
+	type: 'text' | 'password' | 'textarea';
+	autosize: boolean | { minRows?: number; maxRows?: number };
+	rows: number;
 };
