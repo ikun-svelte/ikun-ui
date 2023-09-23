@@ -21,6 +21,15 @@ afterEach(() => {
 });
 
 describe('Test: KInput', () => {
+	vi.mock('svelte', async () => {
+		const actual = (await vi.importActual('svelte')) as object;
+		return {
+			...actual,
+			// @ts-ignore
+			onMount: (await import('svelte/internal')).onMount
+		};
+	});
+
 	test('props: size', async () => {
 		const sizes = ['sm', 'md', 'lg'];
 		for (const size of sizes) {
@@ -212,6 +221,34 @@ describe('Test: KInput', () => {
 		expect(host.innerHTML.includes('k-input__rounded__left')).not.toBeTruthy();
 		expect(host.innerHTML.includes('k-input__rounded__left')).not.toBeTruthy();
 		expect(host.innerHTML.includes('k-input__rounded')).not.toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: textarea & rows', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				type: 'textarea',
+				rows: 6
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect(host.innerHTML.includes('style="min-height: -24px;"')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: textarea & autosize', async () => {
+		const instance = new KInput({
+			target: host,
+			props: {
+				type: 'textarea',
+				autosize: { minRows: 1, maxRows: 2 }
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect(host.innerHTML.includes('style="min-height: -4px; height: -8px;"')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
