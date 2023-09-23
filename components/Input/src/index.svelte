@@ -1,14 +1,14 @@
 <script lang="ts">
 	import type { KInputProps } from './types';
-	import {createEventDispatcher, onMount, tick} from 'svelte';
+	import { createEventDispatcher, onMount, tick } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	import { KButton } from '@ikun-ui/button';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import clsx from 'clsx';
-	import { isObject } from "baiwusanyu-utils";
-	import type {CSSObject} from "unocss";
-	import { compTextareaH } from './compute-textarea-h'
+	import { isObject } from 'baiwusanyu-utils';
+	import type { CSSObject } from 'unocss';
+	import { compTextareaH } from './compute-textarea-h';
 
 	export let size: KInputProps['size'] = 'md';
 	export let value: KInputProps['value'] = '';
@@ -103,37 +103,34 @@
 		}
 	};
 
-	let areaStyle: CSSObject = {}
+	let areaStyle: CSSObject = {};
 	const resizeTextarea = () => {
-		if (type !== 'textarea' || !inputRef)
-			return
+		if (type !== 'textarea' || !inputRef) return;
 
 		if (autosize) {
-			if(isObject(autosize)){
-				const minRows = (autosize as Record<string, number>).minRows ||  undefined
-				const maxRows = (autosize as Record<string, number>).maxRows ||  undefined
+			if (isObject(autosize)) {
+				const minRows = (autosize as Record<string, number>).minRows || undefined;
+				const maxRows = (autosize as Record<string, number>).maxRows || undefined;
 				areaStyle = {
-					...compTextareaH(inputRef as HTMLTextAreaElement, minRows, maxRows),
-				}
+					...compTextareaH(inputRef as HTMLTextAreaElement, minRows, maxRows)
+				};
 			}
 		} else {
 			areaStyle = {
-				minHeight: compTextareaH(inputRef  as HTMLTextAreaElement, rows).minHeight,
-			}
+				minHeight: compTextareaH(inputRef as HTMLTextAreaElement, rows).minHeight
+			};
 		}
+	};
 
-		console.log(areaStyle)
-	}
-
-	let valueInner = value
-	$: if(value !== valueInner){
-		valueInner = value
-		resizeTextarea()
+	let valueInner = value;
+	$: if (value !== valueInner) {
+		valueInner = value;
+		resizeTextarea();
 	}
 	onMount(async () => {
-		await tick()
-		resizeTextarea()
-	})
+		await tick();
+		resizeTextarea();
+	});
 
 	$: isPassword = type;
 	// class names
@@ -161,15 +158,16 @@
 		}
 	);
 	$: inputCls = clsx(
-			`${prefixCls}--inner`,
-			{
-			  [`${prefixCls}--inner__textarea`]: type === 'textarea'
-			},
-			`${prefixCls}--inner__dark`,
-			{
-				[`${prefixCls}__disabled`]: disabled,
-				[`${prefixCls}__disabled__dark`]: disabled
-			});
+		`${prefixCls}--inner`,
+		{
+			[`${prefixCls}--inner__textarea`]: type === 'textarea'
+		},
+		`${prefixCls}--inner__dark`,
+		{
+			[`${prefixCls}__disabled`]: disabled,
+			[`${prefixCls}__disabled__dark`]: disabled
+		}
+	);
 	$: iconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${size}`);
 	$: prefixIconCls = clsx(iconCls, `${prefixCls}--prefix-icon`);
 	$: suffixIconCls = clsx(iconCls, `${prefixCls}--suffix-icon`);
@@ -266,9 +264,9 @@
 {/if}
 
 {#if type === 'textarea'}
-<div class={baseCls}>
-	<div class={inputWrapperCls}>
-		<textarea
+	<div class={baseCls}>
+		<div class={inputWrapperCls}>
+			<textarea
 				class={inputCls}
 				{value}
 				{disabled}
@@ -276,13 +274,13 @@
 				on:input={onInput}
 				on:change={onChange}
 				on:keydown={onEnter}
-				style:min-height="{areaStyle.minHeight}"
-				style:height="{areaStyle.height}"
+				style:min-height={areaStyle.minHeight}
+				style:height={areaStyle.height}
 				on:compositionstart={onCompositionStart}
 				on:compositionend={onCompositionEnd}
 				{placeholder}
 				{...attrs}
-		/>
+			/>
+		</div>
 	</div>
-</div>
 {/if}

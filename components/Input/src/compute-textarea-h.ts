@@ -43,7 +43,7 @@ const CONTEXT_STYLE = [
  * @param targetElement
  */
 function computeNodeStyling(targetElement: HTMLElement): NodeStyle {
-	const style = globalThis.getComputedStyle(targetElement);
+	const style = window.getComputedStyle(targetElement);
 	const boxSizing = style.getPropertyValue('box-sizing');
 
 	const paddingSize =
