@@ -30,4 +30,6 @@ exports[`Test: KInput > props: size 3`] = `"<div class=\\"k-input\\"> <div class
 
 exports[`Test: KInput > props: textarea & autosize 1`] = `" <div class=\\"k-input\\"><div class=\\"k-input--base k-input__dark k-input__hover k-input__focus k-input__rounded\\"><textarea class=\\"k-input--inner k-input--inner__textarea k-input--inner__dark\\" placeholder=\\"\\" style=\\"min-height: -4px; height: -8px;\\"></textarea></div></div>"`;
 
+exports[`Test: KInput > props: textarea & rows 1`] = `" <div class=\\"k-input\\"><div class=\\"k-input--base k-input__dark k-input__hover k-input__focus k-input__rounded\\"><textarea class=\\"k-input--inner k-input--inner__textarea k-input--inner__dark\\" placeholder=\\"\\" style=\\"min-height: -24px;\\"></textarea></div></div>"`;
+
 exports[`Test: KInput > props: value 1`] = `"<div class=\\"k-input\\"> <div class=\\"k-input--base k-input__md k-input__dark k-input__hover k-input__focus k-input__rounded\\"> <input class=\\"k-input--inner k-input--inner__dark\\" type=\\"text\\" placeholder=\\"\\">    </div> </div> "`;
