@@ -29,13 +29,13 @@ npm install @ikun-ui/button
 
 Use `type`, `round` and `circle` to define Button's style.
 
-<demo src="../../../../example/button/basic.svelte"  github='Button'></demo>
+<demo src="button/basic.svelte"  github='Button'></demo>
 
 ## Plain Button
 
 When you set the `plain` property to `true`, plain buttons will be rendered.
 
-<demo src="../../../../example/button/plain.svelte"  github='Button'></demo>
+<demo src="button/plain.svelte"  github='Button'></demo>
 
 ## Ghost Button
 
@@ -45,27 +45,27 @@ When you set the `ghost` property to `true`, ghost buttons will be rendered.
 Ghost Button takes precedence over Plain Button
 :::
 
-<demo src="../../../../example/button/ghost.svelte"  github='Button'></demo>
+<demo src="button/ghost.svelte"  github='Button'></demo>
 
 ## Disabled Button
 
 Use `disabled` attribute to determine whether a button is disabled.  
 It accepts a `Boolean` value.
 
-<demo src="../../../../example/button/disabled.svelte" github='Button'></demo>
+<demo src="button/disabled.svelte" github='Button'></demo>
 
 ## Icon Button
 
 Use the icon attribute to add icon.
 
-<demo src="../../../../example/button/icon.svelte" github='Button'></demo>
+<demo src="button/icon.svelte" github='Button'></demo>
 
 ## Button Size
 
 Use the `size` property to control the button size.
 It supports enumerations such as `md`, `sm`, and `lg`.
 
-<demo src="../../../../example/button/size.svelte" github='Button'></demo>
+<demo src="button/size.svelte" github='Button'></demo>
 
 ## Button Border
 
@@ -75,7 +75,7 @@ Use the `isBorder` property to determine if the button is bordered.
 Applies only to plain button
 :::
 
-<demo src="../../../../example/button/isBorder.svelte" github='Button'></demo>
+<demo src="button/isBorder.svelte" github='Button'></demo>
 
 ## Button Group
 
@@ -83,13 +83,13 @@ Displayed as a button group, can be used to group a series of similar operations
 
 Use tag `<KButtonGroup>` to group your buttons.
 
-<demo src="../../../../example/button/group.svelte" github='ButtonGroup'></demo>
+<demo src="button/group.svelte" github='ButtonGroup'></demo>
 
 ## Link Button
 
 Use the `to` attribute to set a specific url that you can click to jump to.
 
-<demo src="../../../../example/button/link.svelte" github='Button'></demo>
+<demo src="button/link.svelte" github='Button'></demo>
 
 ## Button Props
 

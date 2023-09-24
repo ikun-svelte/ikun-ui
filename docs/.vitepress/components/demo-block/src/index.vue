@@ -19,7 +19,8 @@ const props = defineProps({
 let comp = null;
 const el = ref();
 onMounted(async () => {
-	comp = await modules[props.src]();
+	const path = `../../../../example/${props.src}`;
+	comp = await modules[path]();
 	new comp.default({
 		target: el.value
 	});
@@ -82,5 +83,28 @@ const handleCopy = () => {
 }
 .hljs {
 	border-radius: 8px;
+}
+</style>
+<style>
+.vp-doc .demo-link .k-link--default {
+	color: var(--ikun-gray-500);
+}
+.vp-doc .demo-link .k-link--success {
+	color: var(--ikun-green-400);
+}
+.vp-doc .demo-link .k-link--warning {
+	color: var(--ikun-amber-400);
+}
+.vp-doc .demo-link .k-link--primary {
+	color: var(--ikun-teal-400);
+}
+.vp-doc .demo-link .k-link--info {
+	color: var(--ikun-gray-400);
+}
+.vp-doc .demo-link .k-link--error {
+	color: var(--ikun-rose-400);
+}
+.vp-doc .demo-link .k-link--underline__none {
+	text-decoration: none;
 }
 </style>

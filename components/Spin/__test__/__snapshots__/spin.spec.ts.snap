@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KSpin > options: background 1`] = `"<div class=\\"w-full h-200px flex justify-center items-center\\" style=\\"overflow: hidden; position: relative;\\"><button id=\\"spin_bg\\">Spin</button><div style=\\"background-color: red; top: 0px; left: 0px; width: 100%; height: 100%;\\" class=\\"k-mask--base \\"><div class=\\"\\"><div class=\\"k-spin--spinner\\"><div class=\\"k-spin--spinner__rotating\\"><div role=\\"\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  \\"><div class=\\"i-carbon-circle-dash k-icon-transition text-ikun-main\\" style=\\"width: 24px; height: 24px;\\"></div></div></div> <p class=\\"k-spin--text\\">loading...</p></div></div></div></div>"`;
+exports[`Test: KSpin > options: background 1`] = `"<div class=\\"w-full h-200px flex justify-center items-center\\" style=\\"overflow: hidden; position: relative;\\"><button id=\\"spin_bg\\">Spin</button><div style=\\"background-color: red; top: 0px; left: 0px; width: 100%; height: 100%;\\" class=\\"k-mask--base\\"><div class=\\"\\"><div class=\\"k-spin--spinner\\"><div class=\\"k-spin--spinner__rotating\\"><span class=\\"k-icon--base k-icon-transition i-carbon-circle-dash text-ikun-main\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span></div> <p class=\\"k-spin--text\\">loading...</p></div></div></div></div>"`;
 
 exports[`Test: KSpin > options: fullScreen 1`] = `
 <body
@@ -20,7 +20,7 @@ exports[`Test: KSpin > options: fullScreen 1`] = `
     </div>
   </div>
   <div
-    class="k-mask--base "
+    class="k-mask--base"
     style="top: 0px; left: 0px; width: 100%; height: 100%; position: fixed;"
   >
     <div
@@ -32,16 +32,12 @@ exports[`Test: KSpin > options: fullScreen 1`] = `
         <div
           class="k-spin--spinner__rotating"
         >
-          <div
+          <span
             aria-hidden="true"
-            class="k-icon--base k-icon--base__dark  "
+            class="k-icon--base k-icon-transition i-carbon-circle-dash text-ikun-main"
             role=""
-          >
-            <div
-              class="i-carbon-circle-dash k-icon-transition text-ikun-main"
-              style="width: 24px; height: 24px;"
-            />
-          </div>
+            style="width: 24px; height: 24px;"
+          />
         </div>
          
         <p
@@ -57,10 +53,10 @@ exports[`Test: KSpin > options: fullScreen 1`] = `
 </body>
 `;
 
-exports[`Test: KSpin > options: rotating 1`] = `"<div class=\\"w-full h-200px flex justify-center items-center\\"><button id=\\"spin_rotate\\">Spin</button><div style=\\"top: 0px; left: 0px; width: 100%; height: 100%;\\" class=\\"k-mask--base \\"><div class=\\"\\"><div class=\\"k-spin--spinner\\"><div class=\\"\\"><div role=\\"\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  \\"><div class=\\"i-carbon-circle-dash k-icon-transition text-ikun-main\\" style=\\"width: 24px; height: 24px;\\"></div></div></div> <p class=\\"k-spin--text\\">loading...</p></div></div></div></div>"`;
+exports[`Test: KSpin > options: rotating 1`] = `"<div class=\\"w-full h-200px flex justify-center items-center\\"><button id=\\"spin_rotate\\">Spin</button><div class=\\"k-mask--base\\" style=\\"top: 0px; left: 0px; width: 100%; height: 100%;\\"><div class=\\"\\"><div class=\\"k-spin--spinner\\"><div><span class=\\"k-icon--base k-icon-transition i-carbon-circle-dash text-ikun-main\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span></div> <p class=\\"k-spin--text\\">loading...</p></div></div></div></div>"`;
 
-exports[`Test: KSpin > options: show 1`] = `"<div class=\\"w-full h-200px flex justify-center items-center\\"><button id=\\"spin_show\\">Spin</button><div style=\\"top: 0px; left: 0px; width: 100%; height: 100%;\\" class=\\"k-mask--base \\"><div class=\\"\\"><div class=\\"k-spin--spinner\\"><div class=\\"k-spin--spinner__rotating\\"><div role=\\"\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  \\"><div class=\\"i-carbon-circle-dash k-icon-transition text-ikun-main\\" style=\\"width: 24px; height: 24px;\\"></div></div></div> <p class=\\"k-spin--text\\">loading...</p></div></div></div></div>"`;
+exports[`Test: KSpin > options: show 1`] = `"<div class=\\"w-full h-200px flex justify-center items-center\\"><button id=\\"spin_show\\">Spin</button><div class=\\"k-mask--base\\" style=\\"top: 0px; left: 0px; width: 100%; height: 100%;\\"><div class=\\"\\"><div class=\\"k-spin--spinner\\"><div class=\\"k-spin--spinner__rotating\\"><span class=\\"k-icon--base k-icon-transition i-carbon-circle-dash text-ikun-main\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span></div> <p class=\\"k-spin--text\\">loading...</p></div></div></div></div>"`;
 
-exports[`Test: KSpin > options: spinner 1`] = `"<div class=\\"w-full h-200px flex justify-center items-center\\"><button id=\\"spin_spinner\\">Spin</button><div style=\\"top: 0px; left: 0px; width: 100%; height: 100%;\\" class=\\"k-mask--base \\"><div class=\\"\\"><div class=\\"k-spin--spinner\\"><div class=\\"k-spin--spinner__rotating\\"><div role=\\"\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  \\"><div class=\\"custom spinner k-icon-transition text-ikun-main\\" style=\\"width: 24px; height: 24px;\\"></div></div></div> <p class=\\"k-spin--text\\">loading...</p></div></div></div></div>"`;
+exports[`Test: KSpin > options: spinner 1`] = `"<div class=\\"w-full h-200px flex justify-center items-center\\"><button id=\\"spin_spinner\\">Spin</button><div class=\\"k-mask--base\\" style=\\"top: 0px; left: 0px; width: 100%; height: 100%;\\"><div class=\\"\\"><div class=\\"k-spin--spinner\\"><div class=\\"k-spin--spinner__rotating\\"><span class=\\"k-icon--base k-icon-transition custom spinner text-ikun-main\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span></div> <p class=\\"k-spin--text\\">loading...</p></div></div></div></div>"`;
 
-exports[`Test: KSpin > options: text 1`] = `"<div class=\\"w-full h-200px flex justify-center items-center\\"><button id=\\"spin_text\\">Spin</button><div style=\\"top: 0px; left: 0px; width: 100%; height: 100%;\\" class=\\"k-mask--base \\"><div class=\\"\\"><div class=\\"k-spin--spinner\\"><div class=\\"k-spin--spinner__rotating\\"><div role=\\"\\" aria-hidden=\\"true\\" class=\\"k-icon--base k-icon--base__dark  \\"><div class=\\"i-carbon-circle-dash k-icon-transition text-ikun-main\\" style=\\"width: 24px; height: 24px;\\"></div></div></div> <p class=\\"k-spin--text\\">多看一眼就会爆炸！</p></div></div></div></div>"`;
+exports[`Test: KSpin > options: text 1`] = `"<div class=\\"w-full h-200px flex justify-center items-center\\"><button id=\\"spin_text\\">Spin</button><div class=\\"k-mask--base\\" style=\\"top: 0px; left: 0px; width: 100%; height: 100%;\\"><div class=\\"\\"><div class=\\"k-spin--spinner\\"><div class=\\"k-spin--spinner__rotating\\"><span class=\\"k-icon--base k-icon-transition i-carbon-circle-dash text-ikun-main\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span></div> <p class=\\"k-spin--text\\">多看一眼就会爆炸！</p></div></div></div></div>"`;

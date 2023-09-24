@@ -29,19 +29,19 @@ npm install @ikun-ui/drawer
 
 Open the `drawer` by setting the `value` attribute
 
-<demo src="../../../../example/drawer/basic.svelte" github="Drawer"></demo>
+<demo src="drawer/basic.svelte" github="Drawer"></demo>
 
 ## Custom header
 
 Implement custom header through slots
 
-<demo src="../../../../example/drawer/custom.svelte" github="Drawer"></demo>
+<demo src="drawer/custom.svelte" github="Drawer"></demo>
 
 ## Left or right
 
 You can choose to open from the `right` or `left`
 
-<demo src="../../../../example/drawer/placement.svelte" github="Drawer"></demo>
+<demo src="drawer/placement.svelte" github="Drawer"></demo>
 
 ## Drawer Props
 

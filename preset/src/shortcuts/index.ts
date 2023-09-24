@@ -1,35 +1,43 @@
 import type { Theme } from '@unocss/preset-uno';
 import type { UserShortcuts } from 'unocss';
-import { baseShortcuts } from './base';
-import { commonShortcuts } from './common';
-import { iconShortcuts } from './icon';
-import { alertShortcuts } from './alert';
-import { avatarShortcuts } from './avatar';
-import { badgeShortcuts } from './badge';
-import { breadcrumbShortcuts } from './breadcrumb';
-import { breadcrumbItemShortcuts } from './breadcrumb-item';
-import { buttonShortcuts } from './button';
-import { buttonGroupShortcuts } from './button-group';
-import { collapseShortcuts } from './collapse';
-import { checkboxShortcuts } from './checkbox';
-import { drawerShortcuts } from './drawer';
-import { maskShortcuts } from './mask';
-import { eyeDropperShortcuts } from './eye-dropper';
-import { inputShortcuts } from './input';
-import { popoverShortcuts } from './popover';
-import { radioShortcuts } from './radio';
-import { modalShortcuts } from './modal';
-import { tagShortcuts } from './tag';
-import { notificationShortcuts } from './notification';
-import { switchShortcuts } from './swtich';
-import { selectShortcuts } from './select';
-import { msgBoxShortcuts } from './message-box';
+import { baseShortcuts } from './src/base';
+import { commonShortcuts } from './src/common';
+import { iconShortcuts } from './src/icon';
+import { alertShortcuts } from './src/alert';
+import { avatarShortcuts } from './src/avatar';
+import { badgeShortcuts } from './src/badge';
+import { breadcrumbShortcuts } from './src/breadcrumb';
+import { breadcrumbItemShortcuts } from './src/breadcrumb-item';
+import { buttonShortcuts } from './src/button';
+import { buttonGroupShortcuts } from './src/button-group';
+import { collapseShortcuts } from './src/collapse';
+import { checkboxShortcuts } from './src/checkbox';
+import { dividerShortcuts } from './src/divider';
+import { drawerShortcuts } from './src/drawer';
+import { maskShortcuts } from './src/mask';
+import { eyeDropperShortcuts } from './src/eye-dropper';
+import { inputShortcuts } from './src/input';
+import { popoverShortcuts } from './src/popover';
+import { radioShortcuts } from './src/radio';
+import { rateShortcuts } from './src/rate';
+import { modalShortcuts } from './src/modal';
+import { tagShortcuts } from './src/tag';
+import { notificationShortcuts } from './src/notification';
+import { switchShortcuts } from './src/swtich';
+import { selectShortcuts } from './src/select';
+import { msgBoxShortcuts } from './src/message-box';
+import { spinShortcuts } from './src/spin';
+import { backtopShortcuts } from './src/backtop';
+import { sliderShortcuts } from './src/slider';
+import { progressShortcuts } from './src/progress';
+import { linkShortcuts } from './src/link';
+import { layoutShortcuts } from './src/layout';
+import { gridShortcuts } from './src/grid';
+import { createColSizeClsByNum, getColCls } from '../rules/src/grid';
+import { popconfirmShortcuts } from './src/popconfirm';
+import { contextmenuShortcuts } from './src/contextmenu';
 import { formShortcuts } from './form';
-import { spinShortcuts } from './spin';
-import { backtopShortcuts } from './backtop';
-import { sliderShortcuts } from './slider';
-import { progressShortcuts } from './progress';
-export default [
+export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
 	// icon
@@ -52,6 +60,8 @@ export default [
 	collapseShortcuts,
 	// checkbox
 	checkboxShortcuts,
+	// divider
+	dividerShortcuts,
 	// drawer
 	drawerShortcuts,
 	// mask
@@ -64,6 +74,8 @@ export default [
 	popoverShortcuts,
 	// radio
 	radioShortcuts,
+	// rate
+	rateShortcuts,
 	// modal
 	modalShortcuts,
 	// tag
@@ -85,10 +97,23 @@ export default [
 	// slider
 	sliderShortcuts,
 	// progress
-	progressShortcuts
+	progressShortcuts,
+	// link
+	linkShortcuts,
+	// layout
+	layoutShortcuts,
+	// grid
+	gridShortcuts,
+	// popconfirm
+	popconfirmShortcuts,
+	// contextmenu
+	contextmenuShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
+	// shortcuts
+	const comList = Object.keys(baseShortcuts);
+	const baseList = Object.keys(commonShortcuts);
 	const iconList = Object.keys(iconShortcuts);
 	const alertList = Object.keys(alertShortcuts);
 	const avatarList = Object.keys(avatarShortcuts);
@@ -99,12 +124,14 @@ export function getSafeList() {
 	const buttonGroupList = Object.keys(buttonGroupShortcuts);
 	const collapseList = Object.keys(collapseShortcuts);
 	const checkboxList = Object.keys(checkboxShortcuts);
+	const dividerList = Object.keys(dividerShortcuts);
 	const drawerList = Object.keys(drawerShortcuts);
 	const inputList = Object.keys(inputShortcuts);
 	const maskList = Object.keys(maskShortcuts);
 	const eyeDropperList = Object.keys(eyeDropperShortcuts);
 	const popoverList = Object.keys(popoverShortcuts);
 	const radioList = Object.keys(radioShortcuts);
+	const rateList = Object.keys(rateShortcuts);
 	const modalList = Object.keys(modalShortcuts);
 	const tagList = Object.keys(tagShortcuts);
 	const notificationList = Object.keys(notificationShortcuts);
@@ -116,7 +143,15 @@ export function getSafeList() {
 	const backtopList = Object.keys(backtopShortcuts);
 	const sliderList = Object.keys(sliderShortcuts);
 	const progressList = Object.keys(progressShortcuts);
-	return iconList
+	const linkList = Object.keys(linkShortcuts);
+	const layoutList = Object.keys(layoutShortcuts);
+	const gridList = Object.keys(gridShortcuts);
+	const popconfirmList = Object.keys(popconfirmShortcuts);
+	const contextmenuList = Object.keys(contextmenuShortcuts);
+
+	let res = iconList
+		.concat(comList)
+		.concat(baseList)
 		.concat(msgBoxList)
 		.concat(selectList)
 		.concat(switchList)
@@ -125,6 +160,7 @@ export function getSafeList() {
 		.concat(modalList)
 		.concat(popoverList)
 		.concat(radioList)
+		.concat(rateList)
 		.concat(drawerList)
 		.concat(inputList)
 		.concat(maskList)
@@ -142,35 +178,54 @@ export function getSafeList() {
 		.concat(spinList)
 		.concat(backtopList)
 		.concat(sliderList)
-		.concat(progressList);
+		.concat(progressList)
+		.concat(linkList)
+		.concat(layoutList)
+		.concat(gridList)
+		.concat(popconfirmList)
+		.concat(dividerList)
+		.concat(contextmenuList);
+
+	// rules
+	const colSizeRules = Object.keys(createColSizeClsByNum());
+	const colRules = Object.keys(getColCls());
+	res = res.concat(colSizeRules).concat(colRules);
+	return res;
 }
 
-export { baseShortcuts } from './base';
-export { commonShortcuts } from './common';
-export { iconShortcuts } from './icon';
-export { alertShortcuts } from './alert';
-export { avatarShortcuts } from './avatar';
-export { badgeShortcuts } from './badge';
-export { breadcrumbShortcuts } from './breadcrumb';
-export { breadcrumbItemShortcuts } from './breadcrumb-item';
-export { buttonShortcuts } from './button';
-export { buttonGroupShortcuts } from './button-group';
-export { collapseShortcuts } from './collapse';
-export { checkboxShortcuts } from './checkbox';
-export { drawerShortcuts } from './drawer';
-export { maskShortcuts } from './mask';
-export { eyeDropperShortcuts } from './eye-dropper';
-export { inputShortcuts } from './input';
-export { popoverShortcuts } from './popover';
-export { radioShortcuts } from './radio';
-export { modalShortcuts } from './modal';
-export { tagShortcuts } from './tag';
-export { notificationShortcuts } from './notification';
-export { switchShortcuts } from './swtich';
-export { selectShortcuts } from './select';
-export { msgBoxShortcuts } from './message-box';
+export { baseShortcuts } from './src/base';
+export { commonShortcuts } from './src/common';
+export { iconShortcuts } from './src/icon';
+export { alertShortcuts } from './src/alert';
+export { avatarShortcuts } from './src/avatar';
+export { badgeShortcuts } from './src/badge';
+export { breadcrumbShortcuts } from './src/breadcrumb';
+export { breadcrumbItemShortcuts } from './src/breadcrumb-item';
+export { buttonShortcuts } from './src/button';
+export { buttonGroupShortcuts } from './src/button-group';
+export { collapseShortcuts } from './src/collapse';
+export { checkboxShortcuts } from './src/checkbox';
+export { dividerShortcuts } from './src/divider';
+export { drawerShortcuts } from './src/drawer';
+export { maskShortcuts } from './src/mask';
+export { eyeDropperShortcuts } from './src/eye-dropper';
+export { inputShortcuts } from './src/input';
+export { popoverShortcuts } from './src/popover';
+export { radioShortcuts } from './src/radio';
+export { rateShortcuts } from './src/rate';
+export { modalShortcuts } from './src/modal';
+export { tagShortcuts } from './src/tag';
+export { notificationShortcuts } from './src/notification';
+export { switchShortcuts } from './src/swtich';
+export { selectShortcuts } from './src/select';
+export { msgBoxShortcuts } from './src/message-box';
+export { spinShortcuts } from './src/spin';
+export { backtopShortcuts } from './src/backtop';
+export { sliderShortcuts } from './src/slider';
+export { progressShortcuts } from './src/progress';
+export { linkShortcuts } from './src/link';
+export { layoutShortcuts } from './src/layout';
+export { gridShortcuts } from './src/grid';
+export { popconfirmShortcuts } from './src/popconfirm';
+export { contextmenuShortcuts } from './src/contextmenu';
 export { formShortcuts } from './form';
-export { spinShortcuts } from './spin';
-export { backtopShortcuts } from './backtop';
-export { sliderShortcuts } from './slider';
-export { progressShortcuts } from './progress';

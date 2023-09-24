@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { KIcon } from '@ikun-ui/icon';
-	import { fly, type FlyParams, fade } from 'svelte/transition';
+	import { fly, type FlyParams } from 'svelte/transition';
 	import { tick } from 'svelte';
 	import { isFunction, isString } from 'baiwusanyu-utils';
 	import type { NotifyPlacement, NotifyType } from './types';
@@ -9,8 +9,8 @@
 	type IKunUncertainFunction<T = any> = () => T | void;
 	// right-top left-top right-bottom left-bottom center
 	export let placement: NotifyPlacement = 'right-top';
-	export let attrs = {};
-	export let cls: ClassValue = '';
+	export let attrs: Record<string, string> = {};
+	export let cls: ClassValue = undefined;
 	export let close = false;
 	// info warning error success
 	export let type: NotifyType | null = null;
@@ -98,14 +98,14 @@
 		onClose && onClose();
 	};
 
-	$: cnames = clsx(cls);
+	$: cnames = clsx('k-notification--base k-notification--base__dark', cls);
 </script>
 
 {#if show}
 	<div
-		class="k-notification--base k-notification--base__dark {cnames}"
+		class={cnames}
 		bind:this={notificationRef}
-		out:fade={{ duration: 200 }}
+		out:fly={flyAnimate.in}
 		in:fly={flyAnimate.in}
 		{...attrs}
 		style="top: {y}; left: {x}"

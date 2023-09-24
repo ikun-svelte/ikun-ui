@@ -29,25 +29,25 @@ npm install @ikun-ui/avatar
 
 Use `size` and `radius` prop to set avatar's size and radius.
 
-<demo src="../../../../example/avatar/basic.svelte"  github='Avatar'></demo>
+<demo src="avatar/basic.svelte"  github='Avatar'></demo>
 
 ## Types
 
 It supports images, Icons, or characters.
 
-<demo src="../../../../example/avatar/types.svelte" github='Avatar'></demo>
+<demo src="avatar/types.svelte" github='Avatar'></demo>
 
 ## Fallback
 
 fallback when image load error.
 
-<demo src="../../../../example/avatar/fallback.svelte" github='Avatar'></demo>
+<demo src="avatar/fallback.svelte" github='Avatar'></demo>
 
 ## Fit Container
 
 Set how the image fit its container for an image avatar, same as [object-fit <span class="i-carbon-link text-12px" />](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit).
 
-<demo src="../../../../example/avatar/fit-container.svelte" github='Avatar'></demo>
+<demo src="avatar/fit-container.svelte" github='Avatar'></demo>
 
 ## Avatar Props
 

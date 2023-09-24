@@ -1,34 +1,115 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, getContext, tick } from 'svelte';
 	import { clsx, type ClassValue } from 'clsx';
-	import { getPrefixCls } from '@ikun-ui/utils';
+	import { getPrefixCls, collapseWrapperKey } from '@ikun-ui/utils';
 
 	export let title = '';
 	export let content = '';
-	export let attrs = {};
-	export let cls: ClassValue = '';
+	export let attrs: Record<string, string> = {};
+	export let cls: ClassValue = undefined;
 	export let show = false;
+	export let showClose = true;
+	export let uid: string = '';
 
 	const dispatch = createEventDispatcher();
 	let showInner = show;
+
 	const showContent = () => {
-		showInner = !showInner;
-		dispatch('change', showInner);
+		const showCur = !showInner;
+		if (showCur) {
+			showInner = !showInner;
+			setAnimateOpen(() => {
+				dispatch('change', showInner);
+			});
+			if (collapseContext) {
+				collapseContext.closeCollapse(uid);
+			}
+		} else {
+			setAnimateClose(() => {
+				showInner = !showInner;
+				dispatch('change', showInner);
+			});
+		}
 	};
-	$: if (show) showInner = true;
-	else showInner = false;
+
+	const closeCollapse = () => {
+		setAnimateClose(() => {
+			showInner = false;
+		});
+	};
+
+	const collapseContext = getContext<{
+		setCollapseMap: (key: string, cb: () => void) => void;
+		closeCollapse: (key: string) => void;
+	}>(collapseWrapperKey);
+	if (collapseContext && uid) {
+		collapseContext.setCollapseMap(uid, closeCollapse);
+	}
+
+	$: if (show) {
+		showInner = true;
+		setAnimateOpen();
+	} else {
+		setAnimateClose(() => {
+			showInner = false;
+		});
+	}
+
+	let contentRef: HTMLElement | null = null;
+	let opacity = 0;
+	let contentCls = '';
+	const setAnimateOpen = async (cb?: () => void) => {
+		await tick();
+		if (contentRef) {
+			const h = contentRef.clientHeight;
+			contentRef.style.height = '0';
+			contentRef.style.transition = 'height 0.3s linear';
+			contentCls = cnamesContent;
+			await tick();
+			setTimeout(() => {
+				contentRef && (contentRef.style.height = `${h}px`);
+				opacity = 1;
+
+				cb && cb();
+			}, 0);
+		}
+	};
+
+	const setAnimateClose = (cb: () => void) => {
+		if (contentRef) {
+			contentRef && (contentRef.style.height = '0');
+			opacity = 0;
+			contentCls = '';
+			setTimeout(() => {
+				cb && cb();
+			}, 300);
+		}
+	};
 
 	// class
 	const prefixCls = getPrefixCls('collapse');
-	$: clsInner = clsx(`${prefixCls}`, `${prefixCls}--base`, cls);
+	$: clsInner = clsx(
+		{
+			[`${prefixCls}--base`]: !collapseContext,
+			[`${prefixCls}--base--wrapper`]: collapseContext
+		},
+		cls
+	);
 	$: cnames = clsx(`${prefixCls}--title`, `${prefixCls}--title__dark`, {
-		[`${prefixCls}--title__show`]: showInner
+		[`${prefixCls}--title__active`]: showInner && collapseContext
 	});
 
 	$: cnamesLine = clsx(`${prefixCls}--line`);
+
 	$: cnamesContent = clsx(`${prefixCls}--content`);
+
+	$: cnamesTitleIcon = clsx({
+		'i-carbon-chevron-right': true,
+		['rotate-90']: showInner,
+		[`${prefixCls}--title__active`]: showInner && collapseContext
+	});
 </script>
 
 <div class={clsInner} {...attrs}>
@@ -36,16 +117,18 @@
 		<slot name="title">
 			{title}
 		</slot>
-		<KIcon icon="i-carbon-chevron-right {showInner ? 'rotate-90' : ''}" />
+		<slot name="closeIcon">
+			{#if showClose}
+				<KIcon icon={cnamesTitleIcon} />
+			{/if}
+		</slot>
 	</div>
 	{#if showInner}
-		<div
-			class={cnamesContent}
-			out:fly={{ y: -30, duration: 300 }}
-			in:fly={{ y: -30, duration: 300 }}
-		>
+		<div class={contentCls} bind:this={contentRef} style:opacity in:fly={{ y: -30, duration: 300 }}>
 			<div class={cnamesLine} />
-			<slot name="content">{content}</slot>
+			<slot name="content">
+				{content}
+			</slot>
 		</div>
 	{/if}
 </div>

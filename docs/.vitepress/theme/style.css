@@ -11,6 +11,8 @@
 	--vp-c-brand: #ff7707;
 	--vp-c-brand-light: #f68b32;
 	--vp-c-brand-lighter: #f8a153;
+	--vp-c-brand-1: #ff7707;
+	--vp-c-brand-2: #f8a153;
 	--vp-c-brand-lightest: #f6ad75;
 	--vp-c-brand-dark: #ff7707;
 	--vp-c-brand-darker: #f6a462;
@@ -87,6 +89,7 @@ html ::-webkit-scrollbar-track-piece {
 
 html ::-webkit-scrollbar {
 	width: 8px;
+	height: 8px;
 }
 
 html ::-webkit-scrollbar-thumb {

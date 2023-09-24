@@ -5,7 +5,7 @@ import KTooltipTrigger from './tooltip.trigger.svelte';
 import KTooltipSlots from './tooltip.slots.svelte';
 
 let host: HTMLElement;
-
+// TODO E2E test
 const initHost = () => {
 	host = document.createElement('div');
 	host.setAttribute('id', 'host');

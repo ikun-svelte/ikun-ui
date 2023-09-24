@@ -3,10 +3,16 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { log, setGlobalPrefix, extend, deepClone } from 'baiwusanyu-utils';
-import { kebabToPascal } from '@ikun-ui/utils';
 import ora from 'ora';
-//@ts-ignore
 import { runCommand } from './utils.js';
+
+const kebabToPascal = (name) => {
+	return name
+		.split('-')
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join('');
+};
+
 const require = createRequire(import.meta.url);
 
 const args = process.argv;
@@ -103,7 +109,7 @@ async function writeTsConfig(baseDir) {
     "strict": true,
     "declaration": true
   },
-  "include": ["src/**/*.ts", "src/**/*.svelte"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.svelte"],
   "exclude": ["node_modules/*", "**/*.spec.ts"]
 }
   `;
@@ -118,9 +124,7 @@ async function writePkgJson(baseDir, originalCompName) {
   "name": "@ikun-ui/${originalCompName}",
   "version": "${version}",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "svelte": "dist/index.js",
+  "main": "./src/index.ts",
   "types": "src/index.ts",
   "keywords": [
     "svelte",
@@ -139,30 +143,41 @@ async function writePkgJson(baseDir, originalCompName) {
     "publish:npm": "pnpm publish --no-git-checks --access public"
   },
   "publishConfig": {
-    "access": "public"
+	"access": "public",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"svelte": "dist/index.js",
+	"types": "src/index.ts"
   },
   "dependencies": {
     "@ikun-ui/icon": "workspace:*",
     "@ikun-ui/utils": "workspace:*",
-		"clsx": "^2.0.0",
+	"clsx": "^2.0.0",
     ${getDeps('baiwusanyu-utils')}
-  }
+  },
+  "devDependencies": {
+	"@tsconfig/svelte": "^5.0.0",
+	"svelte-strip": "^2.0.0",
+	"tslib": "^2.6.1",
+	"typescript": "^5.1.6"
+	}
 }
   `;
 	write(file, pkgContent);
 }
 
 async function writeComponent(baseDir, originalCompName) {
+	const propsName = `K${originalCompName.replace(/^\w/, (char) => char.toUpperCase())}Props`;
 	const file = `${baseDir}/index.svelte`;
 	const svelteContent = `<script lang="ts">
   import { getPrefixCls } from '@ikun-ui/utils';
-	import clsx from 'clsx';
-
-  export let cls: string = '';
-  export let attrs: Record<string, string> = {};
-
+	import { clsx } from 'clsx';
+  import type { ${propsName} } from "./types";
+  
+  export let cls: ${propsName}["cls"] = undefined;
+  export let attrs: ${propsName}["attrs"] = {};
+ 
   const prefixCls = getPrefixCls('${originalCompName}');
-
   $: cnames = clsx(prefixCls, {
     [\`$\{prefixCls}--base\`]: true
   }, cls);
@@ -184,10 +199,12 @@ export default ${compName};`;
 }
 
 async function writeTypeDTs(baseDir, compName) {
+	const imp = "import type { ClassValue } from 'clsx';";
 	const file = `${baseDir}/types.d.ts`;
 	const typeDtsContent = `/// <reference types="svelte" />
+${imp}
 export type K${compName}Props = {
-  cls: string,
+  cls: ClassValue,
   attrs: Record<string, string>
 }`;
 	write(file, typeDtsContent);

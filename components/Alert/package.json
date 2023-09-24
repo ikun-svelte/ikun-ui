@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/alert",
-	"version": "0.0.9-beta.5",
+	"version": "0.0.9-beta.9",
 	"type": "module",
 	"main": "./src/index.ts",
 	"types": "src/index.ts",
@@ -30,13 +30,13 @@
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.14",
+		"baiwusanyu-utils": "^1.0.16",
 		"clsx": "^2.0.0"
 	},
 	"devDependencies": {
-		"@tsconfig/svelte": "^5.0.0",
-		"svelte-strip": "^2.0.0",
-		"tslib": "^2.6.1",
-		"typescript": "^5.1.6"
+		"@tsconfig/svelte": "^5.0.2",
+		"svelte-strip": "^3.0.1",
+		"tslib": "^2.6.2",
+		"typescript": "^5.2.2"
 	}
 }

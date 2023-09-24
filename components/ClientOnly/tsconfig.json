@@ -9,6 +9,6 @@
 			"@ikun-ui/utils": ["../../utils/index.ts"]
 		}
 	},
-	"include": ["src/**/*.ts", "src/**/*.svelte"],
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.svelte"],
 	"exclude": ["node_modules/*", "**/*.spec.ts"]
 }

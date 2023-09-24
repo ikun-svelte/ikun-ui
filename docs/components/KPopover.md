@@ -27,19 +27,19 @@ npm install @ikun-ui/popover
 
 ## Basic usage
 
-<demo src="../../../../example/popover/basic.svelte" github="Popover"></demo>
+<demo src="popover/basic.svelte" github="Popover"></demo>
 
 ## Different placement
 
 Specify different display positions through the `placement` attribute
 
-<demo src="../../../../example/popover/placement.svelte" github="Popover"></demo>
+<demo src="popover/placement.svelte" github="Popover"></demo>
 
 ## Different triggers
 
 Specify different trigger methods through the `trigger` attribute
 
-<demo src="../../../../example/popover/trigger.svelte" github="Popover"></demo>
+<demo src="popover/trigger.svelte" github="Popover"></demo>
 
 ## Popover Props
 
@@ -47,8 +47,15 @@ Specify different trigger methods through the `trigger` attribute
 | --------- | ------------------------------------- | ------- | --------------------------- |
 | placement | `'top' / 'left' / 'right' / 'bottom'` | `top`   | Where the `popover` appears |
 | trigger   | `'manual' / 'click' / 'hover'`        | `hover` | How popovers are triggered  |
+| disabled  | `boolean`                             | `false` | Disabled the popover        |
 | cls       | `string`                              | `-`     | Additional class            |
 | attrs     | `Record<string, string>`              | `{}`    | Additional attributes       |
+
+## Popover Events
+
+| Name   | Description                                       | Type                          |
+| ------ | ------------------------------------------------- | ----------------------------- |
+| change | Triggered when the popover display status changes | `(value: CustomEvent)=> void` |
 
 ## Popover Slots
 

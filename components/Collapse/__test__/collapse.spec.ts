@@ -3,6 +3,7 @@ import { afterEach, expect, test, describe, beforeEach, vi } from 'vitest';
 import KCollapse from '../src/index.svelte';
 import KCollapseContent from './collapse.content.test.svelte';
 import KCollapseTitle from './collapse.title.test.svelte';
+import KCollapseCloseIcon from './collapse.close.test.svelte';
 let host: HTMLElement;
 
 const initHost = () => {
@@ -12,9 +13,11 @@ const initHost = () => {
 };
 beforeEach(() => {
 	initHost();
+	vi.useFakeTimers();
 });
 afterEach(() => {
 	host.remove();
+	vi.restoreAllMocks();
 });
 
 describe('Test: KCollapse', () => {
@@ -29,6 +32,19 @@ describe('Test: KCollapse', () => {
 		const titleEl = host.children[0].children[0];
 		expect(titleEl.getAttribute('class')).toBe('k-collapse--title k-collapse--title__dark');
 		expect(titleEl.textContent).toBe('title-content ');
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: showClose', async () => {
+		const instance = new KCollapse({
+			target: host,
+			props: {
+				title: 'title-content',
+				showClose: false
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect(host.innerHTML.includes('k-icon--bas')).not.toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -78,15 +94,17 @@ describe('Test: KCollapse', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host.children[0].children.length).toBe(1);
-		const triggerEl = host.children[0].children[0];
+		const triggerEl = host.children[0].children[0].children[0];
 		triggerEl.dispatchEvent(new window.Event('click', { bubbles: true }));
 		await tick();
+		await vi.advanceTimersByTimeAsync(300);
 		expect(host.children[0].children.length).toBe(2);
 		expect(mockFn).toBeCalledTimes(1);
 		expect(show).toBeTruthy();
 		triggerEl.dispatchEvent(new window.Event('click', { bubbles: true }));
 		instance.$set({ show });
 		await tick();
+		await vi.advanceTimersByTimeAsync(300);
 		expect(mockFn).toBeCalledTimes(2);
 		expect(show).not.toBeTruthy();
 	});
@@ -96,7 +114,7 @@ describe('Test: KCollapse', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(document.getElementById('custom_title'));
+		expect(document.getElementById('custom_title')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -105,7 +123,16 @@ describe('Test: KCollapse', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(document.getElementById('custom_content'));
+		expect(document.getElementById('custom_content')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slot: closeIcon', async () => {
+		const instance = new KCollapseCloseIcon({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		expect(host.innerHTML.includes('🍓 closeIcon')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 });

@@ -27,19 +27,19 @@ npm install @ikun-ui/select
 
 ## Basic usage
 
-<demo src="../../../../example/select/basic.svelte" github="Select"></demo>
+<demo src="select/basic.svelte" github="Select"></demo>
 
 ## Prefix icon and suffix icon select
 
 Set the prefix through the icon attribute
 
-<demo src="../../../../example/select/prefix.svelte" github="Select"></demo>
+<demo src="select/prefix.svelte" github="Select"></demo>
 
 ## Disabled select
 
 Disable the select through the disabled attribute
 
-<demo src="../../../../example/select/disabled.svelte" github="Select"></demo>
+<demo src="select/disabled.svelte" github="Select"></demo>
 
 ## Select Props
 

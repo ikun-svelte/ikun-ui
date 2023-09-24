@@ -27,31 +27,31 @@ npm install @ikun-ui/switch
 
 ## Basic usage
 
-<demo src="../../../../example/switch/basic.svelte" github="Switch"></demo>
+<demo src="switch/basic.svelte" github="Switch"></demo>
 
 ## Disabled switch
 
 Use `disabled` attribute to determine whether a switch is disabled.
 
-<demo src="../../../../example/switch/disabled.svelte" github="Switch"></demo>
+<demo src="switch/disabled.svelte" github="Switch"></demo>
 
 ## Loading switch
 
 Use `disabled` attribute to determine whether a switch is loading.
 
-<demo src="../../../../example/switch/loading.svelte" github="Switch"></demo>
+<demo src="switch/loading.svelte" github="Switch"></demo>
 
 ## Custom color switch
 
-<demo src="../../../../example/switch/color.svelte" github="Switch"></demo>
+<demo src="switch/color.svelte" github="Switch"></demo>
 
 ## Custom switch value
 
-<demo src="../../../../example/switch/value.svelte" github="Switch"></demo>
+<demo src="switch/value.svelte" github="Switch"></demo>
 
 ## Custom switch render
 
-<demo src="../../../../example/switch/render.svelte" github="Switch"></demo>
+<demo src="switch/render.svelte" github="Switch"></demo>
 
 ## Switch Props
 
@@ -60,7 +60,7 @@ Use `disabled` attribute to determine whether a switch is loading.
 | value          | `boolean`                   | `false` | Binding value                |
 | unCheckedValue | `string / number / boolean` | `false` | UnChecked state switch value |
 | checkedValue   | `string / number / boolean` | `true`  | Checked state switch value   |
-| disabled       | `boolean`                   | `-`     | Disabled the switch          |
+| disabled       | `boolean`                   | `false` | Disabled the switch          |
 | loading        | `boolean`                   | `-`     | Loading state switch         |
 | unCheckedColor | `string`                    | `-`     | unChecked state switch color |
 | checkedColor   | `string`                    | `-`     | Checked state switch color   |
