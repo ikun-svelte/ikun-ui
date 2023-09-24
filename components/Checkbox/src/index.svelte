@@ -2,7 +2,7 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
-	import type { FormContext } from '@ikun-ui/utils';
+	import type { FormContext } from '@ikun-ui/form';
 	import { clsx } from 'clsx';
 	import { checkboxGroupKey, getPrefixCls } from '@ikun-ui/utils';
 	import type { checkboxGroupCtx } from '@ikun-ui/checkbox-group';

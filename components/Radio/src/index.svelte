@@ -2,7 +2,7 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import { clsx } from 'clsx';
-	import type { FormContext } from '@ikun-ui/utils';
+	import type { FormContext } from '@ikun-ui/form';
 	import type { KRadioProps } from './types';
 	import { radioGroupKey } from '@ikun-ui/utils';
 	import type { RadioGroupCtx } from '@ikun-ui/radio-group';

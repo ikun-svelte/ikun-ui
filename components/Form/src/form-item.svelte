@@ -1,13 +1,18 @@
 <script lang="ts">
 	import { getContext, setContext } from 'svelte';
-	import type { IKunFormInstance, FormContext } from '@ikun-ui/utils';
 	import { getFormItemPath } from './helper';
-	import { safeParse, type BaseSchema, type Issue } from 'valibot';
-	export let label: string = '';
-	export let field: string = '';
-	export let initialValue: string | undefined;
-	export let rules: BaseSchema | undefined = void 0;
-	export let required: boolean = false;
+	import { safeParse, type Issue } from 'valibot';
+	import type { KFormItemProps, IKunFormInstance, FormContext } from './types';
+	import { getPrefixCls } from '@ikun-ui/utils';
+	import { clsx } from 'clsx';
+	export let cls: KFormItemProps['cls'] = undefined;
+	export let attrs: KFormItemProps['attrs'] = {};
+	export let field: KFormItemProps['field'] = '';
+	export let label: KFormItemProps['label'] = '';
+	export let initialValue: KFormItemProps['initialValue'] = undefined;
+	export let rules: KFormItemProps['rules'] = undefined;
+	export let required: KFormItemProps['required'] = false;
+
 	let errorMessage = '';
 	// Set the component instance from the component context
 	const form: IKunFormInstance = getContext('Form');
@@ -68,25 +73,31 @@
 	};
 	// record Context to form.contexts
 	form.setContext(currentPath, currentContext as FormContext);
-
 	// setContexts for nested component.
 	setContext('FormContext', currentContext);
+
+	// class
+	const prefixCls = getPrefixCls('row-item');
+	$: cnames = clsx(prefixCls, cls);
+	$: lableCls = clsx(`${prefixCls}-label`);
+	$: contentCls = clsx(`${prefixCls}-content`);
+	$: errorMsgCls = clsx(`${prefixCls}__error_msg`);
 </script>
 
-<div class="k-form-item">
+<div class={cnames} {...$$restProps} {...attrs}>
 	{#if $$slots.label}
-		<div class="k-form-item-label">
+		<div class={lableCls}>
 			<slot name="label" />
 		</div>
 	{/if}
 	{#if !$$slots.label && label}
-		<div class="k-form-item-label">
+		<div class={lableCls}>
 			{label}
 		</div>
 	{/if}
-	<div class="k-form-item-content">
+	<div class={contentCls}>
 		<slot />
-		<div class="k-form-item-error-message">
+		<div class={errorMsgCls}>
 			{errorMessage}
 		</div>
 	</div>

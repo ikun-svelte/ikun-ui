@@ -4,7 +4,7 @@
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	import { KButton } from '@ikun-ui/button';
-	import type { FormContext } from '@ikun-ui/utils';
+	import type { FormContext } from '@ikun-ui/form';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import clsx from 'clsx';
 	import { isObject } from 'baiwusanyu-utils';

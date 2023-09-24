@@ -1,4 +1,4 @@
-import type { Contexts, FormContext, IKunFormInstance } from '@ikun-ui/utils';
+import type { Contexts, FormContext, IKunFormInstance } from './types';
 import { get, writable } from 'svelte/store';
 import _ from 'lodash';
 export const createForm: () => IKunFormInstance = () => {

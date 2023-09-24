@@ -3,7 +3,7 @@
 	import { createEventDispatcher, getContext, onMount } from 'svelte';
 	import type { SwitchValueType } from './types';
 	import { clsx, type ClassValue } from 'clsx';
-	import type { FormContext } from '@ikun-ui/utils';
+	import type { FormContext } from '@ikun-ui/form';
 
 	export let value: SwitchValueType = false;
 	export let disabled: boolean = false;

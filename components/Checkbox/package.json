@@ -30,6 +30,7 @@
 	"dependencies": {
 		"@ikun-ui/checkbox-group": "workspace:*",
 		"@ikun-ui/icon": "workspace:*",
+		"@ikun-ui/form": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.16",
 		"clsx": "^2.0.0"

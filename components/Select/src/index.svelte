@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher, getContext } from 'svelte';
-	import type { FormContext } from '@ikun-ui/utils';
+	import type { FormContext } from '@ikun-ui/form';
 	import { clsx, type ClassValue } from 'clsx';
 
 	export let iconPrefix = '';
