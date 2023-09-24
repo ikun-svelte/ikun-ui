@@ -11,5 +11,6 @@ export {
 	radioGroupKey,
 	rowKey,
 	contextmenuKey,
-	formKey
+	formKey,
+	formItemKey
 } from './symbol-key';

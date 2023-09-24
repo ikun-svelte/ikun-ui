@@ -3,7 +3,7 @@
 	import { getFormItemPath } from './helper';
 	import { safeParse, type Issue } from 'valibot';
 	import type { KFormItemProps, IKunFormInstance, FormContext } from './types';
-	import { getPrefixCls } from '@ikun-ui/utils';
+	import { formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	export let cls: KFormItemProps['cls'] = undefined;
 	export let attrs: KFormItemProps['attrs'] = {};
@@ -15,10 +15,10 @@
 
 	let errorMessage = '';
 	// Set the component instance from the component context
-	const form: IKunFormInstance = getContext('Form');
+	const form: IKunFormInstance = getContext(formKey);
 	// Get the form component context from the
 	// component context (nested use of form-item.svelte)
-	const formContext: FormContext = getContext('FormContext');
+	const formContext: FormContext = getContext(formItemKey);
 	// Set path according to `formContext.path` and `field`
 	const currentPath = getFormItemPath(formContext?.path || '', field);
 	// Set form component context
@@ -74,7 +74,7 @@
 	// record Context to form.contexts
 	form.setContext(currentPath, currentContext as FormContext);
 	// setContexts for nested component.
-	setContext('FormContext', currentContext);
+	setContext(formItemKey, currentContext);
 
 	// class
 	const prefixCls = getPrefixCls('row-item');

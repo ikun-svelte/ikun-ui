@@ -4,7 +4,7 @@
 	import { KIcon } from '@ikun-ui/icon';
 	import type { FormContext } from '@ikun-ui/form';
 	import { clsx } from 'clsx';
-	import { checkboxGroupKey, getPrefixCls } from '@ikun-ui/utils';
+	import { checkboxGroupKey, formItemKey, getPrefixCls } from '@ikun-ui/utils';
 	import type { checkboxGroupCtx } from '@ikun-ui/checkbox-group';
 	import type { KCheckboxProps } from './types';
 	export let disabled: KCheckboxProps['disabled'] = false;
@@ -14,7 +14,7 @@
 	export let label: KCheckboxProps['label'] = '';
 	export let uid: KCheckboxProps['uid'] = '';
 	export let indeterminate: KCheckboxProps['indeterminate'] = false;
-	const formContext: FormContext = getContext('FormContext');
+	const formContext: FormContext = getContext(formItemKey);
 	// updateValue
 	const dispatch = createEventDispatcher();
 

@@ -7,4 +7,4 @@ export { Form as KForm };
 export { FormItem as KFormItem };
 export { createForm as createKFormInstance };
 
-export * from './types';
+export type { IKunFormInstance, FormContext } from './types';

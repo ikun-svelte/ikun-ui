@@ -4,7 +4,7 @@
 	import { clsx } from 'clsx';
 	import type { FormContext } from '@ikun-ui/form';
 	import type { KRadioProps } from './types';
-	import { radioGroupKey } from '@ikun-ui/utils';
+	import { formItemKey, radioGroupKey } from '@ikun-ui/utils';
 	import type { RadioGroupCtx } from '@ikun-ui/radio-group';
 	export let disabled: KRadioProps['disabled'] = false;
 	export let value: KRadioProps['value'] = false;
@@ -13,7 +13,7 @@
 	export let label: KRadioProps['label'] = '';
 
 	export let uid: KRadioProps['uid'] = '';
-	const formContext: FormContext = getContext('FormContext');
+	const formContext: FormContext = getContext(formItemKey);
 	// updateValue
 	const dispatch = createEventDispatcher();
 

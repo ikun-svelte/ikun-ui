@@ -3,6 +3,7 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import type { FormContext } from '@ikun-ui/form';
 	import { clsx, type ClassValue } from 'clsx';
+	import { formItemKey } from '@ikun-ui/utils';
 
 	export let iconPrefix = '';
 	export let iconSuffix = '';
@@ -11,7 +12,7 @@
 	export let placeholder = '';
 	export let disabled = false;
 	export let attrs: Record<string, string> = {};
-	const formContext: FormContext = getContext('FormContext');
+	const formContext: FormContext = getContext(formItemKey);
 	// updateValue
 	const dispatch = createEventDispatcher();
 	const handleSelect = (e: Event) => {

@@ -4,6 +4,7 @@
 	import type { SwitchValueType } from './types';
 	import { clsx, type ClassValue } from 'clsx';
 	import type { FormContext } from '@ikun-ui/form';
+	import { formItemKey } from '@ikun-ui/utils';
 
 	export let value: SwitchValueType = false;
 	export let disabled: boolean = false;
@@ -15,7 +16,7 @@
 
 	export let checkedColor = '';
 	export let unCheckedColor = '';
-	const formContext: FormContext = getContext('FormContext');
+	const formContext: FormContext = getContext(formItemKey);
 	const dispatch = createEventDispatcher();
 	$: innerState = value === checkedValue;
 	/**
