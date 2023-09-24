@@ -77,7 +77,7 @@
 	setContext(formItemKey, currentContext);
 
 	// class
-	const prefixCls = getPrefixCls('row-item');
+	const prefixCls = getPrefixCls('form-item');
 	$: cnames = clsx(prefixCls, cls);
 	$: lableCls = clsx(`${prefixCls}-label`);
 	$: contentCls = clsx(`${prefixCls}-content`);
