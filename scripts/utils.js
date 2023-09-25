@@ -78,29 +78,38 @@ export async function runTask(buildCommand, root, action, userOptions) {
 		});
 	}
 	const pkgList = getPkgPath(targetFile, rootDir);
-	for (let i = 0; i < pkgList.length; i++) {
-		const packageJsonPath = `${rootDir.replaceAll('\\', '/')}/${pkgList[i]}`;
-		try {
-			const packageJsonData = fs.readFileSync(packageJsonPath, 'utf8');
-			const packageJson = JSON.parse(packageJsonData);
-			if (packageJson.scripts && packageJson.scripts.build) {
-				try {
-					await runCommand(
-						buildCommand,
-						packageJsonPath.replaceAll('package.json', ''),
-						userOptions
-					);
-					log('success', `${action} ${packageJson.name} complete`);
-				} catch (error) {
-					log('error', `${action} error at ${packageJson.name}`, error);
-					log('error', error);
+
+	const runCommands = pkgList.map((item) => {
+		// eslint-disable-next-line no-async-promise-executor
+		return new Promise(async (resolve, reject) => {
+			const packageJsonPath = path.join(rootDir, item);
+			try {
+				const packageJsonData = fs.readFileSync(packageJsonPath, 'utf8');
+				const packageJson = JSON.parse(packageJsonData);
+				if (packageJson.scripts && packageJson.scripts.build) {
+					try {
+						await runCommand(
+							buildCommand,
+							packageJsonPath.replaceAll('package.json', ''),
+							userOptions
+						);
+						resolve();
+						log('success', `${action} ${packageJson.name} complete`);
+					} catch (error) {
+						log('error', `${action} error at ${packageJson.name}`, error);
+						log('error', error);
+						reject();
+					}
 				}
+			} catch (error) {
+				log('error', `Error reading or parsing package.json at ${packageJsonPath}`);
+				log('error', error);
+				reject();
+			} finally {
+				taskRunnerState.value = false;
 			}
-		} catch (error) {
-			log('error', `Error reading or parsing package.json at ${packageJsonPath}`);
-			log('error', error);
-		} finally {
-			taskRunnerState.value = false;
-		}
-	}
+		});
+	});
+
+	await Promise.allSettled(runCommands);
 }
