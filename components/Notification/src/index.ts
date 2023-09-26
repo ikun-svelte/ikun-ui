@@ -67,7 +67,7 @@ function mountNotify<T, C>(options: NotifyOptions<T, C>, evt: Record<string, any
 			show: false,
 			index,
 			onClose() {
-				unmountNotify(options.placement || 'right-top', NotificationInst, ANIMATION_DURATION);
+				NotifyFn.clear(NotificationInst);
 				evt.onClose && evt.onClose();
 			}
 		}
@@ -86,25 +86,22 @@ function mountNotify<T, C>(options: NotifyOptions<T, C>, evt: Record<string, any
 
 async function autoUnmountNotify<T, C>(options: NotifyOptions<T, C>, inst: NotifyComponent) {
 	if (options.autoClose) {
-		await durationUnmountNotify(options.placement || 'right-top', inst, options.duration || 0);
+		await durationUnmountNotify(inst, options.duration || 0);
 	}
 }
 
-async function durationUnmountNotify(
-	placement: NotifyPlacement,
-	inst: NotifyComponent,
-	duration: number
-) {
-	setTimeout(() => {
-		unmountNotify(placement, inst, ANIMATION_DURATION);
+async function durationUnmountNotify(inst: NotifyComponent, duration: number) {
+	inst.__notify_durationUnmountTimer = setTimeout(() => {
+		NotifyFn.clear(inst);
 	}, duration);
 }
 
-function unmountNotify(placement: NotifyPlacement, inst: NotifyComponent, duration: number) {
+function unmountNotify(inst: NotifyComponent, duration: number) {
 	inst.$set({ show: false });
-	notifyMap[placement].splice(inst.__notify_index, 1);
-	updatedNotifyByIndex(placement);
-	setTimeout(() => {
+
+	clearTimeout(inst.__notify_durationUnmountTimer);
+	clearTimeout(inst.__notify_unmountTimer);
+	inst.__notify_unmountTimer = setTimeout(() => {
 		inst.$destroy();
 	}, duration);
 }
@@ -146,17 +143,17 @@ NotifyFn.success = <T, C>(options: NotifyOptions<T, C> = {}) => {
 };
 
 NotifyFn.clear = (inst: NotifyComponent) => {
-	unmountNotify(inst.__notify_placment, inst, ANIMATION_DURATION);
+	notifyMap[inst.__notify_placment as NotifyPlacement].splice(inst.__notify_index, 1);
+	updatedNotifyByIndex(inst.__notify_placment);
+
+	unmountNotify(inst, ANIMATION_DURATION);
 };
 
 NotifyFn.clearAll = () => {
 	Object.keys(notifyMap).forEach((instArr) => {
 		notifyMap[instArr as NotifyPlacement].forEach((inst: NotifyComponent | undefined) => {
 			if (inst) {
-				inst.$set({ show: false });
-				setTimeout(() => {
-					inst.$destroy();
-				}, ANIMATION_DURATION);
+				unmountNotify(inst, ANIMATION_DURATION);
 			}
 		});
 		// array clear
