@@ -3,7 +3,11 @@ import type { NotifyOptions, NotifyPlacement } from './types';
 import { jsonClone } from 'baiwusanyu-utils';
 export * from './types';
 
-export declare type NotifyComponent = InstanceType<typeof Notification>;
+export declare type NotifyComponent = InstanceType<typeof Notification> & {
+	__notify_index: number;
+	__notify_placement: NotifyPlacement;
+	__notify_evt: Pick<NotifyOptions<undefined, undefined>, 'onClose'>;
+};
 
 const ANIMATION_DURATION = 300;
 const defaultNotifyOptions: NotifyOptions<undefined, undefined> = {
@@ -14,13 +18,14 @@ const defaultNotifyOptions: NotifyOptions<undefined, undefined> = {
 	offset: 0
 };
 
+let nid = 0;
 const notifyMap = {
-	'right-top': [] as ReturnType<typeof NotifyFn>[],
-	center: [] as ReturnType<typeof NotifyFn>[],
-	'left-bottom': [] as ReturnType<typeof NotifyFn>[],
-	'right-bottom': [] as ReturnType<typeof NotifyFn>[],
-	'left-top': [] as ReturnType<typeof NotifyFn>[]
-};
+	'right-top': [] as NotifyComponent[],
+	center: [] as NotifyComponent[],
+	'left-bottom': [] as NotifyComponent[],
+	'right-bottom': [] as NotifyComponent[],
+	'left-top': [] as NotifyComponent[]
+} as const;
 
 const resolveNotifyOptions = <T, C>(options: NotifyOptions<T, C>) => {
 	const evt = {
@@ -42,7 +47,6 @@ const resolveNotifyOptions = <T, C>(options: NotifyOptions<T, C>) => {
 
 function mountNotify<T, C>(options: NotifyOptions<T, C>, evt: Record<string, any>) {
 	const notifyArray = notifyMap[options.placement || 'right-top'];
-	let index = 0;
 	if (!notifyArray) {
 		console.error(
 			'Notify Component Options Error: ' +
@@ -56,7 +60,6 @@ function mountNotify<T, C>(options: NotifyOptions<T, C>, evt: Record<string, any
 	Reflect.deleteProperty(finalProps, 'autoClose');
 	Reflect.deleteProperty(finalProps, 'target');
 
-	index = notifyArray.length;
 	const NotificationInst = new Notification({
 		target: options.target || document.body,
 		props: {
@@ -65,15 +68,15 @@ function mountNotify<T, C>(options: NotifyOptions<T, C>, evt: Record<string, any
 			title: options.title,
 			content: options.content,
 			show: false,
-			index,
+			index: notifyArray.length,
 			onClose() {
 				NotifyFn.clear(NotificationInst);
-				evt.onClose && evt.onClose();
 			}
 		}
-	});
-	NotificationInst.__notify_index = index;
-	NotificationInst.__notify_placment = options.placement;
+	}) as NotifyComponent;
+	NotificationInst.__notify_index = nid++;
+	NotificationInst.__notify_placement = options.placement!;
+	NotificationInst.__notify_evt = evt;
 
 	NotificationInst.$set({ show: true });
 	// auto close
@@ -97,11 +100,12 @@ async function durationUnmountNotify(inst: NotifyComponent, duration: number) {
 }
 
 function unmountNotify(inst: NotifyComponent, duration: number) {
-	inst.$set({ show: false });
-
 	clearTimeout(inst.__notify_durationUnmountTimer);
-	clearTimeout(inst.__notify_unmountTimer);
-	inst.__notify_unmountTimer = setTimeout(() => {
+
+	inst.$set({ show: false });
+	inst.__notify_evt.onClose && inst.__notify_evt.onClose();
+
+	setTimeout(() => {
 		inst.$destroy();
 	}, duration);
 }
@@ -109,7 +113,6 @@ function unmountNotify(inst: NotifyComponent, duration: number) {
 function updatedNotifyByIndex(placement: NotifyPlacement) {
 	notifyMap[placement].forEach((inst: NotifyComponent | undefined, index) => {
 		inst && inst.$set({ index });
-		inst && (inst.__notify_index = index);
 	});
 }
 
@@ -143,10 +146,15 @@ NotifyFn.success = <T, C>(options: NotifyOptions<T, C> = {}) => {
 };
 
 NotifyFn.clear = (inst: NotifyComponent) => {
-	notifyMap[inst.__notify_placment as NotifyPlacement].splice(inst.__notify_index, 1);
-	updatedNotifyByIndex(inst.__notify_placment);
+	const index = notifyMap[inst.__notify_placement].findIndex(
+		(notify) => notify!.__notify_index === inst.__notify_index
+	);
+	if (index !== -1) {
+		notifyMap[inst.__notify_placement].splice(index, 1);
+		updatedNotifyByIndex(inst.__notify_placement);
 
-	unmountNotify(inst, ANIMATION_DURATION);
+		unmountNotify(inst, ANIMATION_DURATION);
+	}
 };
 
 NotifyFn.clearAll = () => {
