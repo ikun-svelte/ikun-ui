@@ -22,9 +22,11 @@
 </script>
 
 <div class={cardCls} {...$$restProps} {...attrs}>
-	<div class={headerCls}>
-		<slot name="header">{title}</slot>
-	</div>
+	{#if title || $$slots.header}
+		<div class={headerCls}>
+			<slot name="header">{title}</slot>
+		</div>
+	{/if}
 	<div class={bodyCls}>
 		<slot />
 	</div>
