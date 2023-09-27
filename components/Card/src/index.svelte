@@ -14,6 +14,7 @@
 		`${prefixCls}__dark`,
 		`${prefixCls}--shadow__${shadow}`,
 		`${prefixCls}--shadow__${shadow}__dark`,
+		`${prefixCls}--transition`,
 		cls
 	);
 	$: headerCls = clsx(`${prefixCls}--header`);

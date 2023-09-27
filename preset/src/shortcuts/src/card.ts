@@ -1,7 +1,9 @@
 export const cardShortcuts = {
-	'k-card': 'rounded bg-ikun-white b-1px b-solid b-ikun-bd-base text-ikun-tx-base',
+	'k-card': 'rounded bg-ikun-white b-1px b-solid b-ikun-bd-base text-ikun-tx-base overflow-hidden',
 	'k-card--header': 'p2 b-b-1px b-b-solid b-b-color-inherit',
 	'k-card--body': 'p2',
+
+	'k-card--transition': 'k-card--transition-timer',
 
 	// shadow
 	'k-card--shadow__always': 'k-card--shadow',
