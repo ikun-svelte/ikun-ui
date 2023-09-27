@@ -3,6 +3,7 @@ import type { Theme } from '@unocss/preset-uno';
 import { getColCls, getColBreakPointRules } from './src/grid';
 import { inputRules } from './src/input';
 import { buttonRules } from './src/button';
+import { cardRules } from './src/card';
 import { iconRules } from './src/icon';
 import { notifyRules } from './src/notify';
 import { switchRules } from './src/switch';
@@ -15,6 +16,7 @@ declare type dynamicRulesFunc = (...args: any[]) => Array<RegExp | ((...args: an
 export const defaultRules = {
 	...inputRules,
 	...buttonRules,
+	...cardRules,
 	...iconRules,
 	...notifyRules,
 	...switchRules,

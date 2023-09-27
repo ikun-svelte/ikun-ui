@@ -10,6 +10,7 @@ import { breadcrumbShortcuts } from './src/breadcrumb';
 import { breadcrumbItemShortcuts } from './src/breadcrumb-item';
 import { buttonShortcuts } from './src/button';
 import { buttonGroupShortcuts } from './src/button-group';
+import { cardShortcuts } from './src/card';
 import { collapseShortcuts } from './src/collapse';
 import { checkboxShortcuts } from './src/checkbox';
 import { dividerShortcuts } from './src/divider';
@@ -59,6 +60,8 @@ export const defaultShortcuts = [
 	collapseShortcuts,
 	// checkbox
 	checkboxShortcuts,
+	// card
+	cardShortcuts,
 	// divider
 	dividerShortcuts,
 	// drawer
@@ -119,6 +122,7 @@ export function getSafeList() {
 	const breadcrumbItemList = Object.keys(breadcrumbItemShortcuts);
 	const buttonList = Object.keys(buttonShortcuts);
 	const buttonGroupList = Object.keys(buttonGroupShortcuts);
+	const cardList = Object.keys(cardShortcuts);
 	const collapseList = Object.keys(collapseShortcuts);
 	const checkboxList = Object.keys(checkboxShortcuts);
 	const dividerList = Object.keys(dividerShortcuts);
@@ -168,6 +172,7 @@ export function getSafeList() {
 		.concat(breadcrumbItemList)
 		.concat(buttonList)
 		.concat(buttonGroupList)
+		.concat(cardList)
 		.concat(collapseList)
 		.concat(checkboxList)
 		.concat(spinList)
@@ -198,6 +203,7 @@ export { breadcrumbShortcuts } from './src/breadcrumb';
 export { breadcrumbItemShortcuts } from './src/breadcrumb-item';
 export { buttonShortcuts } from './src/button';
 export { buttonGroupShortcuts } from './src/button-group';
+export { cardShortcuts } from './src/card';
 export { collapseShortcuts } from './src/collapse';
 export { checkboxShortcuts } from './src/checkbox';
 export { dividerShortcuts } from './src/divider';
