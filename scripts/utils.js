@@ -71,6 +71,7 @@ function runTaskPool(list, limit, asyncHandle) {
 		});
 	};
 	let listCopy = [].concat(list);
+	limit = listCopy.length >= limit ? limit : listCopy.length;
 	while (limit--) {
 		recursion(listCopy);
 	}
