@@ -1,0 +1,4 @@
+html,
+body {
+  --at-apply: p0 m0 min-h-100vh bg-ikun-white dark:bg-ikun-black;
+}
