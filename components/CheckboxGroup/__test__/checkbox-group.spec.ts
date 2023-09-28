@@ -1,3 +1,4 @@
+import { tick } from 'svelte';
 import { afterEach, expect, test, describe, beforeEach } from 'vitest';
 import KCheckboxGroup from '../src';
 import KGroupBase from './group.base.svelte';
@@ -7,7 +8,8 @@ import KGroupBaseDisabled from './group.base.disabled.svelte';
 import KGroupChangeDisabled from './group.change.disabled.svelte';
 import KGroupTriggerDisabled from './group.trigger.disabled.svelte';
 import KGroupModelDisabled from './group.model.disabled.svelte';
-import { tick } from 'svelte';
+import KGroupSize from './group.size.svelte';
+
 let host: HTMLElement;
 
 const initHost = () => {
@@ -32,6 +34,21 @@ describe('Test: KCheckboxGroup', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect((host as HTMLElement)!.innerHTML.includes('k-checkbox-group--test')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: size', async () => {
+		const instance = new KGroupSize({
+			target: host
+		});
+		await tick();
+		expect(instance).toBeTruthy();
+		const smEls = host.querySelector('#group-sm');
+		expect(smEls.querySelectorAll('.k-checkbox--sm').length).toBe(3);
+		const mdEls = host.querySelector('#group-md');
+		expect(mdEls.querySelectorAll('.k-checkbox--md').length).toBe(5);
+		const lgEls = host.querySelector('#group-lg');
+		expect(lgEls.querySelectorAll('.k-checkbox--lg').length).toBe(2);
 		expect(host.innerHTML).matchSnapshot();
 	});
 

@@ -37,10 +37,16 @@ Set the `disabled` attribute.
 
 <demo src="checkbox/disabled.svelte" github="Checkbox"></demo>
 
+## Sizes
+
+Add `size` attribute to change the size of Checkbox. It supports `sm`, `md` and `lg`.
+
+<demo src="checkbox/sizes.svelte" github="Checkbox"></demo>
+
 ## Checkbox group
 
 It is used for multiple checkboxes which are bound in one group, and indicates whether one option is selected by checking if it is checked.  
-Bind an array of string or number type to the `checkbox-group` component and pass the checkbox component as a slot.
+Bind an array of string or number type to the `checkboxGroup` component and pass the checkbox component as a slot.
 At the same time, `uid` must be passed to the `checkbox` component to mark its uniqueness.
 
 <demo src="checkbox/group.svelte" github="CheckboxGroup"></demo>
@@ -53,15 +59,16 @@ The `indeterminate` property can help you to achieve a 'check all' effect.
 
 ## Checkbox Props
 
-| Name          | Type                     | Default | Description                                                                                   |
-| ------------- | ------------------------ | ------- | --------------------------------------------------------------------------------------------- |
-| label         | `string`                 | `-`     | Label of the `checkbox`                                                                       |
-| disabled      | `boolean`                | `false` | Whether the `checkbox` is disabled                                                            |
-| value         | `boolean`                | `false` | Binding value                                                                                 |
-| uid           | `string`                 | `-`     | The unique value of the `checkbox` component, must be passed when wrapped by `checkbox-group` |
-| indeterminate | `boolean`                | `false` | Determine whether it is an intermediate state                                                 |
-| cls           | `string`                 | `-`     | Additional class                                                                              |
-| attrs         | `Record<string, string>` | `{}`    | Additional attributes                                                                         |
+| Name          | Type                     | Default | Description                                                                                  |
+| ------------- | ------------------------ | ------- | -------------------------------------------------------------------------------------------- |
+| label         | `string`                 | `-`     | Label of the `checkbox`                                                                      |
+| value         | `boolean`                | `false` | Binding value                                                                                |
+| uid           | `string`                 | `-`     | The unique value of the `checkbox` component, must be passed when wrapped by `checkboxGroup` |
+| size          | `sm \| md \|lg`          | `md`    | size of `checkbox`.                                                                          |
+| disabled      | `boolean`                | `false` | Whether the `checkbox` is disabled                                                           |
+| indeterminate | `boolean`                | `false` | Determine whether it is an intermediate state                                                |
+| cls           | `string`                 | `-`     | Additional class                                                                             |
+| attrs         | `Record<string, string>` | `{}`    | Additional attributes                                                                        |
 
 ## Checkbox Events
 
@@ -79,8 +86,9 @@ The `indeterminate` property can help you to achieve a 'check all' effect.
 
 | Name     | Type                      | Default | Description                                                                              |
 | -------- | ------------------------- | ------- | ---------------------------------------------------------------------------------------- |
-| disabled | `boolean`                 | `false` | Whether the `checkbox-group` is disabled                                                 |
 | value    | `Array<string \| number>` | `-`     | Binding value,Its elements must be consistent with the `uid` of the `checkbox` component |
+| size     | `sm \| md \|lg`           | `md`    | size of `checkbox`                                                                       |
+| disabled | `boolean`                 | `false` | Whether the `checkboxGroup` is disabled                                                  |
 | cls      | `string`                  | `-`     | Additional class                                                                         |
 | attrs    | `Record<string, string>`  | `{}`    | Additional attributes                                                                    |
 
