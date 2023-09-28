@@ -317,4 +317,29 @@ describe('Test: KRate', () => {
 		expect(stars[3].children[0].style.background).toBe('rgb(255, 0, 240)');
 		expect(host.innerHTML).matchSnapshot();
 	});
+
+	test('props: size', async () => {
+		const instance = new KRate({
+			target: host,
+			props: {
+				size: 'sm'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect(host.innerHTML.includes('k-rate--sm')).toBeTruthy();
+		expect(host.querySelectorAll('.k-rate--item--sm').length).toBe(5);
+		expect(host.innerHTML).matchSnapshot();
+
+		instance.$set({ size: 'md' });
+		await tick();
+		expect(host.innerHTML.includes('k-rate--md')).toBeTruthy();
+		expect(host.querySelectorAll('.k-rate--item--md').length).toBe(5);
+		expect(host.innerHTML).matchSnapshot();
+
+		instance.$set({ size: 'lg' });
+		await tick();
+		expect(host.innerHTML.includes('k-rate--lg')).toBeTruthy();
+		expect(host.querySelectorAll('.k-rate--item--lg').length).toBe(5);
+		expect(host.innerHTML).matchSnapshot();
+	});
 });
