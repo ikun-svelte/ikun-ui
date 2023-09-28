@@ -37,6 +37,12 @@ Set the `disabled` attribute.
 
 <demo src="radio/disabled.svelte" github="Radio"></demo>
 
+## Sizes
+
+Add `size` attribute to change the size of Radio. It supports `sm`, `md` and `lg`.
+
+<demo src="radio/sizes.svelte" github="Radio"></demo>
+
 ## Radio group
 
 In fact, more often we use `radioGroup` to implement radio selection.
