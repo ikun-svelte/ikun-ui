@@ -73,7 +73,7 @@ function mountNotify<T, C>(options: NotifyOptions<T, C>, evt: Record<string, any
 				NotifyFn.clear(NotificationInst);
 			}
 		}
-	}) as NotifyComponent;
+	}) as unknown as NotifyComponent;
 	NotificationInst.__notify_index = nid++;
 	NotificationInst.__notify_placement = options.placement!;
 	NotificationInst.__notify_evt = evt;
