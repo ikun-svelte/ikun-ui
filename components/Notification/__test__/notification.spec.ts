@@ -172,7 +172,7 @@ describe('Test: KNotify', () => {
 
 	test('options: onClose', async () => {
 		const mockFn = vi.fn();
-		KNotify({
+		const inst = KNotify({
 			target: host,
 			onClose: mockFn
 		});
@@ -180,7 +180,12 @@ describe('Test: KNotify', () => {
 		const btn = host.children[0].children[0].children[0];
 		btn.dispatchEvent(new window.Event('click', { bubbles: true }));
 		await tick();
-		expect(mockFn).toBeCalled();
+		KNotify.clear(inst!);
+		KNotify.clear(inst!);
+		KNotify.clear(inst!);
+		KNotify.clear(inst!);
+		await tick();
+		expect(mockFn).toHaveBeenCalledTimes(1);
 	});
 
 	test('options: duration', async () => {
