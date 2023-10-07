@@ -74,6 +74,26 @@ describe('Test: KRadio', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: size', async () => {
+		const instance = new KRadio({
+			target: host,
+			props: {
+				size: 'lg'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-radio--lg')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+		instance.$set({ size: 'md' });
+		await tick();
+		expect((host as HTMLElement)!.innerHTML.includes('k-radio--md')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+		instance.$set({ size: 'sm' });
+		await tick();
+		expect((host as HTMLElement)!.innerHTML.includes('k-radio--sm')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('props: disabled', async () => {
 		const instance = new KRadio({
 			target: host,
