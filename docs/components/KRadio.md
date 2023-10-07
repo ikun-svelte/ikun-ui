@@ -73,7 +73,7 @@ In fact, more often we use `radioGroup` to implement radio selection.
 | -------- | ------------------------ | ------- | ------------------------------------------------------------------------------------- |
 | disabled | `boolean`                | `false` | Whether the `radioGroup` is disabled                                                  |
 | value    | `string \| number`       | `-`     | Binding value,Its elements must be consistent with the `uid` of the `radio` component |
-| size     | `sm \| md \|lg`          | `md`    | size of `radio`.                                                                      |
+| size     | `sm \| md \| lg`          | `md`    | size of `radio`.                                                                      |
 | cls      | `string`                 | `-`     | Additional class                                                                      |
 | attrs    | `Record<string, string>` | `{}`    | Additional attributes                                                                 |
 
