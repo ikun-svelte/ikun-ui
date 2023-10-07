@@ -5,8 +5,9 @@
 	import { createEventDispatcher, setContext } from 'svelte';
 	import { jsonClone } from 'baiwusanyu-utils';
 
-	export let disabled: KCheckboxGroupProps['disabled'] = false;
 	export let value: KCheckboxGroupProps['value'] = [];
+	export let size: KCheckboxGroupProps['size'] = 'md';
+	export let disabled: KCheckboxGroupProps['disabled'] = false;
 	export let cls: KCheckboxGroupProps['cls'] = undefined;
 	export let attrs: KCheckboxGroupProps['attrs'] = {};
 	// updateValue
@@ -83,6 +84,8 @@
 	setContext(checkboxGroupKey, {
 		// Passed to the checkbox component to register the checkbox in the context
 		registerCheckbox,
+		// Passed to the checkbox component to set the size during initialization
+		size,
 		// Passed to the checkbox component to set the disable during initialization
 		disabled,
 		// Passed to the checkbox component to update the valueInner of checkboxGroup
