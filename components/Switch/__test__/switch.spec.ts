@@ -33,7 +33,7 @@ describe('Test: KSwitch', () => {
 			value: false
 		});
 		await tick();
-		expect(host.innerHTML.includes('k-switch__un_checked')).toBe(true);
+		expect(host.innerHTML.includes('k-switch__unchecked')).toBe(true);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -57,7 +57,7 @@ describe('Test: KSwitch', () => {
 				checkedValue: '微笑'
 			});
 		});
-		const switchElm = host.getElementsByTagName('div')[0];
+		const switchElm = host.getElementsByTagName('span')[0];
 		switchElm.click();
 		await tick();
 		expect(value).toBe('哭泣');
@@ -120,6 +120,32 @@ describe('Test: KSwitch', () => {
 		});
 		await tick();
 		expect(host.innerHTML.includes('#1314')).toBe(true);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: size', async () => {
+		const instance = new KSwitch({
+			target: host,
+			props: {
+				size: 'sm'
+			}
+		});
+		await tick();
+		expect(instance).toBeTruthy();
+		expect(host.innerHTML.includes('k-switch--sm')).toBeTruthy();
+		expect(host.innerHTML.includes('k-switch-circle--sm')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+
+		instance.$set({ size: 'md' });
+		await tick();
+		expect(host.innerHTML.includes('k-switch--md')).toBeTruthy();
+		expect(host.innerHTML.includes('k-switch-circle--md')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+
+		instance.$set({ size: 'lg' });
+		await tick();
+		expect(host.innerHTML.includes('k-switch--lg')).toBeTruthy();
+		expect(host.innerHTML.includes('k-switch-circle--lg')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
