@@ -87,7 +87,7 @@ The `indeterminate` property can help you to achieve a 'check all' effect.
 | Name     | Type                      | Default | Description                                                                              |
 | -------- | ------------------------- | ------- | ---------------------------------------------------------------------------------------- |
 | value    | `Array<string \| number>` | `-`     | Binding value,Its elements must be consistent with the `uid` of the `checkbox` component |
-| size     | `sm \| md \|lg`           | `md`    | size of `checkbox`                                                                       |
+| size     | `sm \| md \| lg`           | `md`    | size of `checkbox`                                                                       |
 | disabled | `boolean`                 | `false` | Whether the `checkboxGroup` is disabled                                                  |
 | cls      | `string`                  | `-`     | Additional class                                                                         |
 | attrs    | `Record<string, string>`  | `{}`    | Additional attributes                                                                    |
