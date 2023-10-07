@@ -24,12 +24,12 @@
 	export let readonlyVoidIcon: KRateProps['readonlyVoidIcon'] = 'k-rate--readonly-icon';
 	export let readonlyVoidColor: KRateProps['readonlyVoidColor'] = 'var(--ikun-light-700)';
 	export let clearable: KRateProps['clearable'] = false;
+	export let size: KRateProps['size'] = 'md';
 	export let cls: KRateProps['cls'] = undefined;
 	export let attrs: KRateProps['attrs'] = {};
 
 	const dispatch = createEventDispatcher();
 
-	const iconSize = '18px';
 	const maxNumbers = Array.from({ length: max }, (_, i) => i + 1);
 
 	$: currentValue = value;
@@ -151,13 +151,14 @@
 	const prefixCls = getPrefixCls('rate');
 	$: baseCls = clsx(
 		prefixCls,
+		`${prefixCls}--${size}`,
 		{
 			[`${prefixCls}--readonly`]: readonly,
 			[`${prefixCls}--disabled`]: disabled
 		},
 		cls
 	);
-	$: itemCls = clsx(`${prefixCls}--item`, {
+	$: itemCls = clsx(`${prefixCls}--item`, `${prefixCls}--item--${size}`, {
 		[`${prefixCls}--item__not-readonly`]: !readonly,
 		[`${prefixCls}--item__disabled`]: disabled
 	});
@@ -175,26 +176,18 @@
 		>
 			{#if !showDecimalIcon(item)}
 				{#if item <= currentValue}
-					<KIcon
-						icon={activeIcon}
-						width={iconSize}
-						height={iconSize}
-						style="background: {activeColor};"
+					<KIcon icon={activeIcon} width="100%" height="100%" style="background: {activeColor};"
 					></KIcon>
 				{:else}
 					<KIcon
 						icon={readonly ? readonlyVoidIcon : voidIcon}
-						width={iconSize}
-						height={iconSize}
+						width="100%"
+						height="100%"
 						style="background: {readonly ? readonlyVoidColor : voidColor}"
 					></KIcon>
 				{/if}
 			{:else}
-				<KIcon
-					icon={decimalIcon}
-					width={iconSize}
-					height={iconSize}
-					style="background: {decimalBackground}"
+				<KIcon icon={decimalIcon} width="100%" height="100%" style="background: {decimalBackground}"
 				></KIcon>
 			{/if}
 		</span>

@@ -73,6 +73,12 @@ Use attribute `readonly` to make the component read-only. Add `readonlyVoidIcon`
 
 <demo src="rate/readonly.svelte" github='Rate'></demo>
 
+## Sizes
+
+Add `size` attribute to change the size of Rate. It supports `sm`, `md` and `lg`.
+
+<demo src="rate/sizes.svelte" github="Rate"></demo>
+
 ## Rate Props
 
 | Name              | Type                                | Default                   | Description                                                                                     |
@@ -94,6 +100,7 @@ Use attribute `readonly` to make the component read-only. Add `readonlyVoidIcon`
 | readonlyVoidIcon  | `string`                            | `'k-rate--readonly-icon'` | readonly void icon, alias `i-carbon-star-filled` to `k-rate--readonly-icon`.                    |
 | readonlyVoidColor | `string`                            | `'var(--ikun-light-700)'` | readonly void icon color.                                                                       |
 | clearable         | `boolean`                           | `false`                   | whether value can be reset to `0`.                                                              |
+| size              | `sm \| md \|lg`                     | `md`                      | size of `rate`.                                                                                 |
 | cls               | `string`                            | `-`                       | Additional class                                                                                |
 | attrs             | `Record<string, string>`            | `{}`                      | Additional attributes                                                                           |
 

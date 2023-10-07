@@ -1,5 +1,6 @@
 /// <reference types="svelte" />
 import { ClassValue } from 'clsx';
+import type { IKunSize } from '@ikun-ui/utils';
 
 export type KRateProps = {
 	max: number;
@@ -19,6 +20,7 @@ export type KRateProps = {
 	readonlyVoidIcon: string;
 	readonlyVoidColor: string;
 	clearable: boolean;
+	size: IKunSize;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
