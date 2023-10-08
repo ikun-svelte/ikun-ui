@@ -39,7 +39,7 @@ npm install @ikun-ui/infinite
 | hasMore       | `boolean`                | `true`  | Tells you if there are more items to load. |
 | horizontal    | `boolean`                | `false` | Changing orientation.                      |
 | reverse       | `boolean`                | `false` | Revese scroll direction                    |
-| cls           | `string`                 | `''`    | Additional class for                       |
+| cls           | `string`                 | `''`    | Additional class for component             |
 | attrs         | `Record<string, string>` | `{}`    | Additional attributes                      |
 
 ## Infinite Events

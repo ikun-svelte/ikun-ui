@@ -50,7 +50,7 @@ Some common combination examples are given below
 | Name      | Type                     | Default | Description                                                            |
 | --------- | ------------------------ | ------- | ---------------------------------------------------------------------- |
 | direction | `vertical \| horizontal` | `-`     | vertical when nested with `KHeader` or `KFooter`; horizontal otherwise |
-| cls       | `string`                 | `'-'`   | Additional class for                                                   |
+| cls       | `string`                 | `'-'`   | Additional class for component                                         |
 | attrs     | `Record<string, string>` | `{}`    | Additional attributes                                                  |
 
 ## KContainer Slots
@@ -63,10 +63,10 @@ Some common combination examples are given below
 
 ## KMain Props
 
-| Name  | Type                     | Default | Description           |
-| ----- | ------------------------ | ------- | --------------------- |
-| cls   | `string`                 | `'-'`   | Additional class for  |
-| attrs | `Record<string, string>` | `{}`    | Additional attributes |
+| Name  | Type                     | Default | Description                    |
+| ----- | ------------------------ | ------- | ------------------------------ |
+| cls   | `string`                 | `'-'`   | Additional class for component |
+| attrs | `Record<string, string>` | `{}`    | Additional attributes          |
 
 ## KMain Slots
 
@@ -76,11 +76,11 @@ Some common combination examples are given below
 
 ## KFooter Props
 
-| Name   | Type                     | Default | Description           |
-| ------ | ------------------------ | ------- | --------------------- |
-| heigth | `string`                 | `'-'`   | Heigth of `footer`    |
-| cls    | `string`                 | `'-'`   | Additional class for  |
-| attrs  | `Record<string, string>` | `{}`    | Additional attributes |
+| Name   | Type                     | Default | Description                    |
+| ------ | ------------------------ | ------- | ------------------------------ |
+| heigth | `string`                 | `'-'`   | Heigth of `footer`             |
+| cls    | `string`                 | `'-'`   | Additional class for component |
+| attrs  | `Record<string, string>` | `{}`    | Additional attributes          |
 
 ## KFooter Slots
 
@@ -90,11 +90,11 @@ Some common combination examples are given below
 
 ## KHeader Props
 
-| Name   | Type                     | Default | Description           |
-| ------ | ------------------------ | ------- | --------------------- |
-| heigth | `string`                 | `'-'`   | Heigth of `header`    |
-| cls    | `string`                 | `'-'`   | Additional class for  |
-| attrs  | `Record<string, string>` | `{}`    | Additional attributes |
+| Name   | Type                     | Default | Description                    |
+| ------ | ------------------------ | ------- | ------------------------------ |
+| heigth | `string`                 | `'-'`   | Heigth of `header`             |
+| cls    | `string`                 | `'-'`   | Additional class for component |
+| attrs  | `Record<string, string>` | `{}`    | Additional attributes          |
 
 ## KHeader Slots
 
@@ -104,11 +104,11 @@ Some common combination examples are given below
 
 ## KAside Props
 
-| Name  | Type                     | Default | Description           |
-| ----- | ------------------------ | ------- | --------------------- |
-| width | `string`                 | `'-'`   | Width of `aside`      |
-| cls   | `string`                 | `'-'`   | Additional class for  |
-| attrs | `Record<string, string>` | `{}`    | Additional attributes |
+| Name  | Type                     | Default | Description                    |
+| ----- | ------------------------ | ------- | ------------------------------ |
+| width | `string`                 | `'-'`   | Width of `aside`               |
+| cls   | `string`                 | `'-'`   | Additional class for component |
+| attrs | `Record<string, string>` | `{}`    | Additional attributes          |
 
 ## KAside Slots
 
