@@ -12,15 +12,15 @@ Placeholder hints for empty states.
 ::: code-group
 
 ```bash [pnpm]
-pnpm add @ikun-ui/avatar
+pnpm add @ikun-ui/empty
 ```
 
 ```bash [yarn]
-yarn add @ikun-ui/avatar
+yarn add @ikun-ui/empty
 ```
 
 ```bash [npm]
-npm install @ikun-ui/avatar
+npm install @ikun-ui/empty
 ```
 
 :::
