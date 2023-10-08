@@ -1,4 +1,8 @@
 html,
 body {
-  --at-apply: p0 m0 min-h-100vh bg-ikun-white dark:bg-ikun-black;
+	--at-apply: p0 m0 min-h-100vh bg-ikun-white;
+}
+html.dark,
+.dark body {
+	--at-apply: bg-ikun-black;
 }

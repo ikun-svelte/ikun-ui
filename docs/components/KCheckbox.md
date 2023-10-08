@@ -64,7 +64,7 @@ The `indeterminate` property can help you to achieve a 'check all' effect.
 | label         | `string`                 | `-`     | Label of the `checkbox`                                                                      |
 | value         | `boolean`                | `false` | Binding value                                                                                |
 | uid           | `string`                 | `-`     | The unique value of the `checkbox` component, must be passed when wrapped by `checkboxGroup` |
-| size          | `sm \| md \| lg`          | `md`    | size of `checkbox`.                                                                          |
+| size          | `sm \| md \| lg`         | `md`    | size of `checkbox`.                                                                          |
 | disabled      | `boolean`                | `false` | Whether the `checkbox` is disabled                                                           |
 | indeterminate | `boolean`                | `false` | Determine whether it is an intermediate state                                                |
 | cls           | `string`                 | `-`     | Additional class                                                                             |
@@ -87,7 +87,7 @@ The `indeterminate` property can help you to achieve a 'check all' effect.
 | Name     | Type                      | Default | Description                                                                              |
 | -------- | ------------------------- | ------- | ---------------------------------------------------------------------------------------- |
 | value    | `Array<string \| number>` | `-`     | Binding value,Its elements must be consistent with the `uid` of the `checkbox` component |
-| size     | `sm \| md \| lg`           | `md`    | size of `checkbox`                                                                       |
+| size     | `sm \| md \| lg`          | `md`    | size of `checkbox`                                                                       |
 | disabled | `boolean`                 | `false` | Whether the `checkboxGroup` is disabled                                                  |
 | cls      | `string`                  | `-`     | Additional class                                                                         |
 | attrs    | `Record<string, string>`  | `{}`    | Additional attributes                                                                    |

@@ -72,7 +72,7 @@ Besides the `title` attribute, you can add a `description` attribute to help you
 | icon        | `string`                                 | `''`             | The class name of the icon, following the unocss standard. |
 | closable    | `boolean`                                | `true`           | whether alert can be dismissed.                            |
 | closeIcon   | `string`                                 | `i-carbon-close` | customized close icon.                                     |
-| cls         | `string`                                 | `''`             | Additional class for                                       |
+| cls         | `string`                                 | `''`             | Additional class for component                             |
 | attrs       | `any`                                    | `{}`             | Additional attributes                                      |
 
 ## Alert Events
