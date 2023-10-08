@@ -36,7 +36,7 @@ import { gridShortcuts } from './src/grid';
 import { createColSizeClsByNum, getColCls } from '../rules/src/grid';
 import { popconfirmShortcuts } from './src/popconfirm';
 import { contextmenuShortcuts } from './src/contextmenu';
-import { emptyShortcuts } from './src/empty'
+import { emptyShortcuts } from './src/empty';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
