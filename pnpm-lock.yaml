@@ -1443,6 +1443,9 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
+      svelte-virtual-scroll-list:
+        specifier: ^1.3.0
+        version: 1.3.0(svelte@3.59.2)
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.2
@@ -6846,6 +6849,14 @@ packages:
       - sugarss
     dev: true
 
+  /svelte-virtual-scroll-list@1.3.0(svelte@3.59.2):
+    resolution: {integrity: sha512-rkU993mMsTboFRlygExhYeLJwysaFxyzfTsAfOtDklGIyd0wB31eZtYSAHAcz/WaZCEwjn+GKXfx5jM1xUv3GQ==}
+    peerDependencies:
+      svelte: '>=3.5.0'
+    dependencies:
+      svelte: 3.59.2
+    dev: false
+
   /svelte2tsx@0.6.19(svelte@4.2.0)(typescript@5.2.2):
     resolution: {integrity: sha512-h3b5OtcO8zyVL/RiB2zsDwCopeo/UH+887uyhgb2mjnewOFwiTxu+4IGuVwrrlyuh2onM2ktfUemNrNmQwXONQ==}
     peerDependencies:
@@ -6861,7 +6872,6 @@ packages:
   /svelte@3.59.2:
     resolution: {integrity: sha512-vzSyuGr3eEoAtT/A6bmajosJZIUWySzY2CzB3w2pgPvnkUjGqlDnsNnA0PMO+mMAhuyMul6C2uuZzY6ELSkzyA==}
     engines: {node: '>= 8'}
-    dev: true
 
   /svelte@4.2.0:
     resolution: {integrity: sha512-kVsdPjDbLrv74SmLSUzAsBGquMs4MPgWGkGLpH+PjOYnFOziAvENVzgJmyOCV2gntxE32aNm8/sqNKD6LbIpeQ==}

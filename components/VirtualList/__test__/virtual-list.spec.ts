@@ -24,10 +24,7 @@ describe('Test: KVirtualList', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(
-			(host as HTMLElement)!.innerHTML.includes('k-virtual-list--test')
-		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-virtual-list--test')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
-})
-	
+});
