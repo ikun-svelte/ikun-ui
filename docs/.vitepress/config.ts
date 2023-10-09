@@ -95,6 +95,10 @@ const components = [
 				link: '/components/KBadge'
 			},
 			{
+				text: 'Card',
+				link: '/components/KCard'
+			},
+			{
 				text: 'Collapse',
 				link: '/components/KCollapse'
 			},
