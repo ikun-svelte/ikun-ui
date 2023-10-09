@@ -73,6 +73,26 @@ describe('Test: KCheckBox', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: size', async () => {
+		const instance = new KCheckBox({
+			target: host,
+			props: {
+				size: 'lg'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-checkbox--lg')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+		instance.$set({ size: 'md' });
+		await tick();
+		expect((host as HTMLElement)!.innerHTML.includes('k-checkbox--md')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+		instance.$set({ size: 'sm' });
+		await tick();
+		expect((host as HTMLElement)!.innerHTML.includes('k-checkbox--sm')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('props: disabled', async () => {
 		const instance = new KCheckBox({
 			target: host,

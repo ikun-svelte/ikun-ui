@@ -37,6 +37,7 @@ import { gridShortcuts } from './src/grid';
 import { createColSizeClsByNum, getColCls } from '../rules/src/grid';
 import { popconfirmShortcuts } from './src/popconfirm';
 import { contextmenuShortcuts } from './src/contextmenu';
+import { emptyShortcuts } from './src/empty';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -107,7 +108,9 @@ export const defaultShortcuts = [
 	// popconfirm
 	popconfirmShortcuts,
 	// contextmenu
-	contextmenuShortcuts
+	contextmenuShortcuts,
+	// empty
+	emptyShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -148,7 +151,7 @@ export function getSafeList() {
 	const gridList = Object.keys(gridShortcuts);
 	const popconfirmList = Object.keys(popconfirmShortcuts);
 	const contextmenuList = Object.keys(contextmenuShortcuts);
-
+	const emptyList = Object.keys(emptyShortcuts);
 	let res = iconList
 		.concat(comList)
 		.concat(baseList)
@@ -184,6 +187,7 @@ export function getSafeList() {
 		.concat(gridList)
 		.concat(popconfirmList)
 		.concat(dividerList)
+		.concat(emptyList)
 		.concat(contextmenuList);
 
 	// rules
@@ -229,3 +233,4 @@ export { layoutShortcuts } from './src/layout';
 export { gridShortcuts } from './src/grid';
 export { popconfirmShortcuts } from './src/popconfirm';
 export { contextmenuShortcuts } from './src/contextmenu';
+export { emptyShortcuts } from './src/empty';

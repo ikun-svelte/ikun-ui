@@ -47,7 +47,7 @@ Render custom content via slots.
 | target     | `string`                 | `-`        | Scroll target element `id`                           |
 | easing     | `string`                 | `quartOut` | Animation during back to top(TODO)                   |
 | duration   | `number`                 | `500`      | Time spent back to top.                              |
-| cls        | `string`                 | `''`       | Additional class for                                 |
+| cls        | `string`                 | `''`       | Additional class for component                       |
 | attrs      | `Record<string, string>` | `{}`       | Additional attributes                                |
 
 ## Backtop Events

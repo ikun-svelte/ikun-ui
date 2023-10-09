@@ -54,7 +54,7 @@ Use the `type` attribute to define Tag's type. In addition, the `bgColor` and `t
 | border    | `boolean`                                            | `false`          | whether Tag has a border                                  |
 | closable  | `boolean`                                            | `false`          | whether Tag can be removed                                |
 | closeIcon | `string`                                             | `i-carbon-close` | The class name of the icon, following the unocss standard |
-| cls       | `string`                                             | `-`              | Additional class for                                      |
+| cls       | `string`                                             | `-`              | Additional class for component                            |
 | attrs     | `Record<string, string>`                             | `{}`             | Additional attributes                                     |
 
 ## Tag Events

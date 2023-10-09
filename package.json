@@ -3,7 +3,7 @@
 	"description": "🐔 A Svelte.js based UnoCSS UI library that allows you to make websites",
 	"packageManager": "pnpm@8.7.5",
 	"type": "module",
-	"version": "0.0.9-beta.9",
+	"version": "0.0.9",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -69,7 +69,7 @@
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "esno scripts/new-component.js"
+		"create:new:comp": "esno scripts/new-component.js empty"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
@@ -122,6 +122,7 @@
 		"baiwusanyu-utils": "^1.0.16",
 		"clsx": "^2.0.0",
 		"@ikun-ui/infinite": "workspace:*",
+		"@ikun-ui/empty": "workspace:*",
 		"@ikun-ui/card": "workspace:*"
 	},
 	"devDependencies": {

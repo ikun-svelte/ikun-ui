@@ -107,4 +107,7 @@ const handleCopy = () => {
 .vp-doc .demo-link .k-link--underline__none {
 	text-decoration: none;
 }
+.vp-doc .demo-empty p {
+	margin: 0 !important;
+}
 </style>

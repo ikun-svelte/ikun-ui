@@ -4,10 +4,12 @@
 	import { clsx } from 'clsx';
 	import { createEventDispatcher, setContext } from 'svelte';
 
+	export let value: KRadioGroupProps['value'] = '';
+	export let size: KRadioGroupProps['size'] = 'md';
+	export let disabled: KRadioGroupProps['disabled'] = false;
 	export let cls: KRadioGroupProps['cls'] = undefined;
 	export let attrs: KRadioGroupProps['attrs'] = {};
-	export let disabled: KRadioGroupProps['disabled'] = false;
-	export let value: KRadioGroupProps['value'] = '';
+
 	// updateValue
 	const dispatch = createEventDispatcher();
 	const radioMap: radioMapType = new Map();
@@ -68,6 +70,8 @@
 	setContext(radioGroupKey, {
 		// Passed to the radio component to register the radio in the context
 		registerRadio,
+		// Passed to the radio component to set the size during initialization
+		size,
 		// Passed to the radio component to set the disable during initialization
 		disabled,
 		// Passed to the radio component to update the valueInner of radioGroup

@@ -1,4 +1,4 @@
-import { defineConfig, HeadConfig } from 'vitepress';
+import { defineConfig, HeadConfig, DefaultTheme } from 'vitepress';
 import { applyPlugins } from './plugins/code';
 
 const guides = [
@@ -105,6 +105,10 @@ const components = [
 			{
 				text: 'Ellipsis',
 				link: '/components/KEllipsis'
+			},
+			{
+				text: 'Empty',
+				link: '/components/KEmpty'
 			},
 			{
 				text: 'Infinite',
@@ -257,7 +261,7 @@ const nav = [
 	{ text: 'Guide', items: guides },
 	{ text: 'Components', items: components },
 	{ text: 'Theme', items: theme }
-];
+] as DefaultTheme.NavItem[];
 export default defineConfig({
 	title: 'ikun-ui',
 	description: 'Documentation site for ikun-ui',

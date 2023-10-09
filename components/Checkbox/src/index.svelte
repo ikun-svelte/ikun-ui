@@ -6,13 +6,16 @@
 	import { checkboxGroupKey, getPrefixCls } from '@ikun-ui/utils';
 	import type { checkboxGroupCtx } from '@ikun-ui/checkbox-group';
 	import type { KCheckboxProps } from './types';
-	export let disabled: KCheckboxProps['disabled'] = false;
+
+	export let label: KCheckboxProps['label'] = '';
 	export let value: KCheckboxProps['value'] = false;
+	export let uid: KCheckboxProps['uid'] = '';
+	export let size: KCheckboxProps['size'] = 'md';
+	export let disabled: KCheckboxProps['disabled'] = false;
+	export let indeterminate: KCheckboxProps['indeterminate'] = false;
 	export let cls: KCheckboxProps['cls'] = undefined;
 	export let attrs: KCheckboxProps['attrs'] = {};
-	export let label: KCheckboxProps['label'] = '';
-	export let uid: KCheckboxProps['uid'] = '';
-	export let indeterminate: KCheckboxProps['indeterminate'] = false;
+
 	const dispatch = createEventDispatcher();
 
 	$: isIndeterminate = indeterminate;
@@ -25,6 +28,12 @@
 	let classChecking = '';
 
 	$: isDisabled = (ctx && ctx.disabled) || disabled;
+	$: sizeInner = ctx && ctx.size ? ctx.size : size;
+	enum ECheckboxSize {
+		'lg' = 16,
+		'md' = 14,
+		'sm' = 12
+	}
 
 	/**
 	 * Click the `checkbox` to update the binding value
@@ -91,6 +100,7 @@
 	$: cnames = clsx(
 		`${prefixCls}--base`,
 		`${prefixCls}--base__dark`,
+		`${prefixCls}--${sizeInner}`,
 		{
 			[`k-cur-disabled`]: isDisabled
 		},
@@ -122,11 +132,21 @@
 	<div class={boxCls}>
 		{#if valueInner && !isIndeterminate}
 			<div out:fade={{ duration: 200 }} in:fade={{ duration: 200 }}>
-				<KIcon icon="i-carbon-checkmark" color="!text-white" width="16px" height="16px" />
+				<KIcon
+					icon="i-carbon-checkmark"
+					color="!text-white"
+					width={ECheckboxSize[sizeInner]}
+					height={ECheckboxSize[sizeInner]}
+				/>
 			</div>
 		{/if}
 		{#if isIndeterminate}
-			<KIcon icon="i-carbon-subtract" color="!text-white" width="16px" height="16px" />
+			<KIcon
+				icon="i-carbon-subtract"
+				color="!text-white"
+				width={ECheckboxSize[sizeInner]}
+				height={ECheckboxSize[sizeInner]}
+			/>
 		{/if}
 	</div>
 	<slot>

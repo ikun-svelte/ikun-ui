@@ -16,6 +16,14 @@ export const rateShortcuts: Record<string, string> = {
 	// text
 	'k-rate--text': 'ml-6px text-10px line-height-none',
 
+	// size
+	'k-rate--sm': 'h-24px',
+	'k-rate--md': 'h-32px',
+	'k-rate--lg': 'h-40px',
+	'k-rate--item--sm': 'w-14px h-14px',
+	'k-rate--item--md': 'w-18px h-18px',
+	'k-rate--item--lg': 'w-22px h-22px',
+
 	// fixed https://github.com/ikun-svelte/ikun-ui/issues/250
 	// default icons
 	'k-rate--void-icon': 'i-carbon-star',
