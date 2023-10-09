@@ -123,6 +123,7 @@
 		"clsx": "^2.0.0",
 		"@ikun-ui/infinite": "workspace:*",
 		"@ikun-ui/empty": "workspace:*",
+		"@ikun-ui/card": "workspace:*",
 		"@ikun-ui/virtual-list": "workspace:*"
 	},
 	"devDependencies": {

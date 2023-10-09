@@ -16,5 +16,9 @@ export function setMainColor(rules: Record<string, any>, themeColorRGB: string) 
 	rules['k-btn-shadow--main'] = {
 		'box-shadow': `0 0 0 2px rgba(${themeColorRGB},0.5)`
 	};
+
+	// card shadow dark mode
+	rules['k-card-shadow__dark'] = { 'box-shadow': `0 0 12px rgb(${themeColorRGB}, 0.5)` };
+
 	return rules;
 }

@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KCard > props: cls 1`] = `"<div class=\\"k-card k-card__dark k-card--shadow__always k-card--shadow__always__dark k-card--transition k-card--test\\"> <div class=\\"k-card--body\\"></div></div>"`;
+
+exports[`Test: KCard > props: shadow 1`] = `"<div class=\\"k-card k-card__dark k-card--shadow__always k-card--shadow__always__dark k-card--transition\\"> <div class=\\"k-card--body\\"></div></div>"`;
+
+exports[`Test: KCard > props: shadow 2`] = `"<div class=\\"k-card k-card__dark k-card--shadow__hover k-card--shadow__hover__dark k-card--transition\\"> <div class=\\"k-card--body\\"></div></div>"`;
+
+exports[`Test: KCard > props: shadow 3`] = `"<div class=\\"k-card k-card__dark k-card--shadow__never k-card--shadow__never__dark k-card--transition\\"> <div class=\\"k-card--body\\"></div></div>"`;
+
+exports[`Test: KCard > props: title 1`] = `"<div class=\\"k-card k-card__dark k-card--shadow__always k-card--shadow__always__dark k-card--transition\\"><div class=\\"k-card--header\\">IKun UI</div> <div class=\\"k-card--body\\"></div></div>"`;
+
+exports[`Test: KCard > slots: default 1`] = `"<div class=\\"k-card k-card__dark k-card--shadow__always k-card--shadow__always__dark k-card--transition\\"> <div class=\\"k-card--body\\"><div class=\\"k-card--default-slot\\">IKun UI</div></div></div>"`;
+
+exports[`Test: KCard > slots: header 1`] = `"<div class=\\"k-card k-card__dark k-card--shadow__always k-card--shadow__always__dark k-card--transition\\"><div class=\\"k-card--header\\"><div class=\\"k-card--header-slot\\" slot=\\"header\\">IKun UI</div></div> <div class=\\"k-card--body\\"></div></div>"`;
