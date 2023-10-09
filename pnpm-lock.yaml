@@ -511,8 +511,8 @@ importers:
         specifier: ^5.0.2
         version: 5.0.2
       svelte-strip:
-        specifier: ^3.0.1
-        version: 3.0.1(postcss@8.4.29)(svelte@4.2.0)
+        specifier: ^2.0.0
+        version: 2.0.0(postcss@8.4.29)(svelte@3.59.2)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2

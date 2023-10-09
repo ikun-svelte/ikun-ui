@@ -69,7 +69,7 @@
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "esno scripts/new-component.js empty"
+		"create:new:comp": "esno scripts/new-component.js card"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
