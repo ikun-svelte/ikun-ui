@@ -1,19 +1,20 @@
-<script>
+<script lang="ts">
   import {afterUpdate, createEventDispatcher, onDestroy, onMount} from "svelte"
+  import type { KVirtualListOptions } from "./types";
 
-  export let horizontal = false
-  export let uniqueKey
+  export let horizontal: KVirtualListOptions['isHorizontal'] = false
+  export let uniqueKey: string = ''
   export let type = "item"
 
-  let resizeObserver
-  let itemDiv
-  let previousSize
+  let resizeObserver: null | InstanceType<typeof ResizeObserver> = null
+  let itemDiv: null | HTMLElement = null
+  let previousSize: number
 
   const dispatch = createEventDispatcher()
   const shapeKey = horizontal ? "offsetWidth" : "offsetHeight"
 
   onMount(() => {
-    if (typeof ResizeObserver !== "undefined") {
+    if (typeof ResizeObserver !== "undefined" && itemDiv) {
       resizeObserver = new ResizeObserver(dispatchSizeChange)
       resizeObserver.observe(itemDiv)
     }
