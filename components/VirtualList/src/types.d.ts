@@ -3,10 +3,6 @@ import type { ClassValue } from 'clsx';
 export type KVirtualListProps = {
 	cls: ClassValue;
 	attrs: Record<string, string>;
-	options: KVirtualListOptions;
-};
-
-export interface KVirtualListOptions {
 	/**
 	 * Source for list
 	 */
@@ -20,40 +16,40 @@ export interface KVirtualListOptions {
 	 * Count of rendered items
 	 * @default 30
 	 */
-	keeps?: number;
+	keeps: number;
 	/**
 	 * Estimate size of each item, needs for smooth scrollbar
 	 * @default 50
 	 */
-	estimateSize?: number;
+	estimateSize: number;
 	/**
 	 * Scroll direction
 	 * @default false
 	 */
-	isHorizontal?: boolean;
+	isHorizontal: boolean;
 	/**
 	 * Let virtual list using global document to scroll through the list
 	 * @default false
 	 */
-	pageMode?: boolean;
+	pageMode: boolean;
 	/**
 	 * scroll position start index
 	 * @default 0
 	 */
-	start?: number;
+	start: number;
 	/**
 	 * scroll position offset
 	 * @default 0
 	 */
-	offset?: number;
+	offset: number;
 	/**
 	 * The threshold to emit `top` event, attention to multiple calls.
 	 * @default 0
 	 */
-	topThreshold?: number;
+	topThreshold: number;
 	/**
 	 * The threshold to emit `bottom` event, attention to multiple calls.
 	 * @default 0
 	 */
-	bottomThreshold?: number;
-}
+	bottomThreshold: number;
+};
