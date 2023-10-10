@@ -3,7 +3,7 @@
 	"description": "🐔 A Svelte.js based UnoCSS UI library that allows you to make websites",
 	"packageManager": "pnpm@8.7.5",
 	"type": "module",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -74,7 +74,7 @@
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
 		"svelte": "^4.0.0",
-		"unocss": "^0.54.1"
+		"unocss": "^0.56.5"
 	},
 	"dependencies": {
 		"@ikun-ui/alert": "workspace:*",
@@ -163,7 +163,7 @@
 		"tslib": "^2.6.2",
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2",
-		"unocss": "^0.55.7",
+		"unocss": "^0.56.5",
 		"vite": "^4.4.9",
 		"vitest": "^0.34.4"
 	},
