@@ -20,48 +20,44 @@
 	export let data: KVirtualListProps['data'];
 	/**
 	 * Count of rendered items
-	 * TODO: unit test 渲染数量
 	 * TODO: unit test 滚动渲染
+	 * TODO: unit test 不同的item寬高
 	 * @type {number}
 	 */
 	export let keeps: KVirtualListProps['keeps'] = 30;
 	/**
 	 * Estimate size of each item, needs for smooth scrollbar
-	 * TODO: unit test
 	 * @type {number}
 	 */
-	export let estimateSize: KVirtualListProps['estimateSize'] = 50;
+	export let estimateSize: KVirtualListProps['estimateSize'] = 10;
 	/**
 	 * Scroll direction
-	 * TODO: unit test
 	 * @type {boolean}
 	 */
 	export let isHorizontal: KVirtualListProps['isHorizontal'] = false;
 	/**
 	 * scroll position start index
-	 * TODO: unit test
+	 * TODO: (設置為最大值會白屏)
+	 * TODO: e2e test
 	 */
 	export let start: KVirtualListProps['start'] = 0;
 	/**
 	 * scroll position offset
-	 * TODO: unit test
+	 * TODO: e2e test
 	 */
 	export let offset: KVirtualListProps['offset'] = 0;
 	/**
 	 * Let virtual list using global document to scroll through the list
-	 * TODO: unit test
 	 * @type {boolean}
 	 */
 	export let pageMode: KVirtualListProps['pageMode'] = false;
 	/**
 	 * The threshold to emit `top` event, attention to multiple calls.
-	 * TODO: unit test
 	 * @type {number}
 	 */
 	export let topThreshold: KVirtualListProps['topThreshold'] = 0;
 	/**
 	 * The threshold to emit `bottom` event, attention to multiple calls.
-	 * TODO: unit test
 	 * @type {number}
 	 */
 	export let bottomThreshold: KVirtualListProps['bottomThreshold'] = 0;
@@ -267,10 +263,10 @@
 		dispatch('scroll', { event, range: virtual.getRange() });
 
 		if (virtual.isFront() && !!data.length && offset - topThreshold <= 0) {
-			// TODO: unit test
+			// TODO: e2e test
 			dispatch('top');
 		} else if (virtual.isBehind() && offset + clientSize + bottomThreshold >= scrollSize) {
-			// TODO: unit test
+			// TODO: e2e test
 			dispatch('bottom');
 		}
 	}
@@ -295,10 +291,13 @@
 	$: cnames = clsx(
 		prefixCls,
 		{
-			[`${prefixCls}--base`]: true
+			[`${prefixCls}--base`]: isHorizontal
 		},
 		cls
 	);
+	$: wrapperCls = clsx(	{
+		[`${prefixCls}--wrapper`]: isHorizontal
+	})
 </script>
 
 <div
@@ -315,7 +314,7 @@
 			<slot name="header" />
 		</Item>
 	{/if}
-	<div style:padding={paddingStyle}>
+	<div style:padding={paddingStyle} class="{wrapperCls}">
 		{#each displayItems as dataItem, dataIndex (dataItem[key])}
 			<Item
 				on:resize={onItemResized}
