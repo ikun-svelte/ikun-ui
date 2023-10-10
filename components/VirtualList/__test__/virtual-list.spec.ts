@@ -1,15 +1,15 @@
-import { afterEach, expect, test, describe, beforeEach, vi } from "vitest";
+import { afterEach, expect, test, describe, beforeEach, vi } from 'vitest';
 import KVirtualList from '../src';
 
 let host: HTMLElement;
-const dataList: any = []
-for (let i = 0; i < 1000; i++){
-	dataList.push({id: i, label: `this is item ${i}`})
+const dataList: any = [];
+for (let i = 0; i < 1000; i++) {
+	dataList.push({ id: i, label: `this is item ${i}` });
 }
 const initHost = () => {
 	host = document.createElement('div');
 	host.setAttribute('id', 'host');
-	host.style.height = '50px'
+	host.style.height = '50px';
 	host.style.overflow = 'auto';
 	document.body.appendChild(host);
 };
@@ -23,7 +23,6 @@ afterEach(() => {
 });
 
 describe('Test: KVirtualList', () => {
-
 	vi.mock('svelte', async () => {
 		const actual = (await vi.importActual('svelte')) as object;
 		return {
@@ -33,7 +32,7 @@ describe('Test: KVirtualList', () => {
 			// @ts-ignore
 			onDestroy: (await import('svelte/internal')).onDestroy,
 			// @ts-ignore
-			afterUpdate: (await import('svelte/internal')).afterUpdate,
+			afterUpdate: (await import('svelte/internal')).afterUpdate
 		};
 	});
 

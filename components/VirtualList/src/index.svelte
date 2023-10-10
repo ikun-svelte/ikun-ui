@@ -38,7 +38,7 @@
 	/**
 	 * scroll position start index
 	 * TODO: (設置為最大值會白屏)
-	 * TODO: e2e test
+	 * TODO: (pageMode 时 定位不准确)
 	 */
 	export let start: KVirtualListProps['start'] = 0;
 	/**
@@ -295,9 +295,9 @@
 		},
 		cls
 	);
-	$: wrapperCls = clsx(	{
+	$: wrapperCls = clsx({
 		[`${prefixCls}--wrapper`]: isHorizontal
-	})
+	});
 </script>
 
 <div
@@ -314,7 +314,7 @@
 			<slot name="header" />
 		</Item>
 	{/if}
-	<div style:padding={paddingStyle} class="{wrapperCls}">
+	<div style:padding={paddingStyle} class={wrapperCls}>
 		{#each displayItems as dataItem, dataIndex (dataItem[key])}
 			<Item
 				on:resize={onItemResized}

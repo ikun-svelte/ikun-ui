@@ -38,7 +38,7 @@ import { createColSizeClsByNum, getColCls } from '../rules/src/grid';
 import { popconfirmShortcuts } from './src/popconfirm';
 import { contextmenuShortcuts } from './src/contextmenu';
 import { emptyShortcuts } from './src/empty';
-import { virtualListShortcuts } from './src/virtual-list'
+import { virtualListShortcuts } from './src/virtual-list';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -113,7 +113,7 @@ export const defaultShortcuts = [
 	// empty
 	emptyShortcuts,
 	// virtualList
-	virtualListShortcuts,
+	virtualListShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -239,4 +239,4 @@ export { gridShortcuts } from './src/grid';
 export { popconfirmShortcuts } from './src/popconfirm';
 export { contextmenuShortcuts } from './src/contextmenu';
 export { emptyShortcuts } from './src/empty';
-export { virtualListShortcuts } from './src/virtual-list'
+export { virtualListShortcuts } from './src/virtual-list';
