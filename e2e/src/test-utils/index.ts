@@ -87,7 +87,7 @@ export async function untilUpdated(
 	poll: () => (string | Nil) | Promise<string | Nil>,
 	expected: string
 ) {
-	const maxTries = 200;
+	const maxTries = 50;
 	for (let tries = 0; tries < maxTries; tries++) {
 		const actual = (await poll()) ?? '';
 		if (actual.includes(expected) || tries === maxTries - 1) {

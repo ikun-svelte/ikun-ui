@@ -30,14 +30,13 @@ describe('k-virtual-list e2e test', () => {
 	test(
 		'props: offset',
 		createBrowserCtxEnvironment(async (browserCtx) => {
-			const container = await browserCtx.page!.waitForSelector('#k_v_list_offset', {state: 'visible'})
+			const container = await browserCtx.page!.locator('#k_v_list_offset');
 			await untilUpdated(async () => {
 				await browserCtx.page!.waitForTimeout(100);
 				const scrollTop = await container!.evaluate((el) => {
 					return el.scrollTop;
 				});
-				console.log(scrollTop)
-				return scrollTop + ''
+				return scrollTop + '';
 			}, '100');
 		})
 	);
