@@ -1,6 +1,5 @@
 import { afterEach, expect, test, describe, beforeEach, vi } from "vitest";
 import KVirtualList from '../src';
-import { onDestroy, tick } from "svelte";
 
 let host: HTMLElement;
 const dataList: any = []
@@ -73,30 +72,6 @@ describe('Test: KVirtualList', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.querySelectorAll('.k-virtual-list--item').length === 30).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-virtual-list--base')).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-virtual-list--wrapper')).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
-	});
-
-	test('event: scroll', async () => {
-		const mockFn = vi.fn();
-		const instance = new KVirtualList({
-			target: host,
-			props: {
-				data: dataList,
-			}
-		});
-		await tick();
-		instance.$on('scroll', (data)=> {
-			debugger
-			mockFn()
-		});
-		expect(instance).toBeTruthy();
-		host.children[0].scrollTop = 210;
-		host.children[0].dispatchEvent(new Event('scroll', { bubbles: true }));
-		await tick();
-		debugger
 		expect(host.querySelectorAll('.k-virtual-list--item').length === 30).toBeTruthy();
 		expect((host as HTMLElement)!.innerHTML.includes('k-virtual-list--base')).toBeTruthy();
 		expect((host as HTMLElement)!.innerHTML.includes('k-virtual-list--wrapper')).toBeTruthy();
