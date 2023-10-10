@@ -74,7 +74,7 @@
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
 		"svelte": "^4.0.0",
-		"unocss": "^0.54.1"
+		"unocss": "^0.55.7"
 	},
 	"dependencies": {
 		"@ikun-ui/alert": "workspace:*",
