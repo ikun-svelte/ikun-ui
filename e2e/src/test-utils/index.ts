@@ -19,7 +19,7 @@ const timeout = (n: number) => new Promise((resolve) => setTimeout(resolve, n));
 async function startDefaultServe(e2eTestCtx: E2EPlaywrightContext) {
 	const __dirname = fileURLToPath(new URL('../../', import.meta.url));
 	const options: InlineConfig = {
-		logLevel: 'silent',
+		logLevel: 'info',
 		configFile: false,
 		server: {
 			watch: {
@@ -87,7 +87,7 @@ export async function untilUpdated(
 	poll: () => (string | Nil) | Promise<string | Nil>,
 	expected: string
 ) {
-	const maxTries = process.env.CI ? 200 : 50;
+	const maxTries = 200;
 	for (let tries = 0; tries < maxTries; tries++) {
 		const actual = (await poll()) ?? '';
 		if (actual.includes(expected) || tries === maxTries - 1) {

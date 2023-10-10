@@ -1,5 +1,7 @@
 <script>
-	import KVirtualListTest from '../component/KVirtualList/KVirtualList.test.svelte';
+	import KVirtualListStart from '../component/KVirtualList/KVirtualListStart.test.svelte';
+    import KVirtualListOffset from '../component/KVirtualList/KVirtualListOffset.test.svelte';
 </script>
 
-<KVirtualListTest />
+<KVirtualListStart />
+<KVirtualListOffset />

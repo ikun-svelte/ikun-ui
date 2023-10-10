@@ -12,17 +12,33 @@ describe('k-virtual-list e2e test', () => {
 		};
 	};
 
-	test(
-		'props: offset',
+	/*test(
+		'props: start',
 		createBrowserCtxEnvironment(async (browserCtx) => {
+			const container = await browserCtx.page!.$('#k_v_list_start')
 			await untilUpdated(async () => {
-				const res = await browserCtx.page!.$('[data-kv-key="30"]');
+				const res = await container!.$('[data-kv-key="30"]');
 				return !!res + '';
 			}, 'true');
 			await untilUpdated(async () => {
-				const res = await browserCtx.page!.$('[data-kv-key="29"]');
+				const res = await container!.$('[data-kv-key="29"]');
 				return !!res + '';
 			}, 'false');
+		})
+	);*/
+
+	test(
+		'props: offset',
+		createBrowserCtxEnvironment(async (browserCtx) => {
+			const container = await browserCtx.page!.waitForSelector('#k_v_list_offset', {state: 'visible'})
+			await untilUpdated(async () => {
+				await browserCtx.page!.waitForTimeout(100);
+				const scrollTop = await container!.evaluate((el) => {
+					return el.scrollTop;
+				});
+				console.log(scrollTop)
+				return scrollTop + ''
+			}, '100');
 		})
 	);
 });

@@ -38,7 +38,7 @@
 	/**
 	 * scroll position start index
 	 * TODO: (設置為最大值會白屏)
-	 * TODO: (pageMode 时 定位不准确)
+	 * TODO: (pageMode 时定位不准确)
 	 */
 	export let start: KVirtualListProps['start'] = 0;
 	/**

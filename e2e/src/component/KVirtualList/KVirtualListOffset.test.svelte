@@ -4,24 +4,13 @@
 	for (let i = 0; i < 100; i++) {
 		dataList.push({ id: i, label: `this is item ${i}` });
 	}
-	const handle = () => {
-		// debugger
-	};
-	const handleTop = () => {
-		// debugger
-	};
-	const handleBottom = () => {
-		// debugger
-	};
 </script>
 
 <div class="h-200px">
 	<KVirtualList
 		data={dataList}
-		on:scroll={handle}
-		on:top={handleTop}
-		on:bottom={handleBottom}
-		start={30}
+		offset={100}
+		id="k_v_list_offset"
 		key="id"
 		let:data
 	>
