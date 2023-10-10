@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/message-box",
-	"version": "0.0.9",
+	"version": "0.0.10-beta.0",
 	"type": "module",
 	"main": "./src/index.ts",
 	"types": "src/index.ts",
