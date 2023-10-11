@@ -20,8 +20,6 @@
 	export let data: KVirtualListProps['data'];
 	/**
 	 * Count of rendered items
-	 * TODO: unit test 滚动渲染
-	 * TODO: unit test 不同的item寬高
 	 * @type {number}
 	 */
 	export let keeps: KVirtualListProps['keeps'] = 30;
@@ -43,7 +41,6 @@
 	export let start: KVirtualListProps['start'] = 0;
 	/**
 	 * scroll position offset
-	 * TODO: e2e test
 	 */
 	export let offset: KVirtualListProps['offset'] = 0;
 	/**
@@ -83,7 +80,6 @@
 
 	/**
 	 * @type {(id: number) => number}
-	 * TODO: unit test
 	 */
 	export function getSize(id: number) {
 		return virtual.sizes.get(id);
@@ -92,7 +88,6 @@
 	/**
 	 * Count of items
 	 * @type {() => number}
-	 * TODO: unit test
 	 */
 	export function getSizes() {
 		return virtual.sizes.size;
@@ -100,7 +95,6 @@
 
 	/**
 	 * @type {() => number}
-	 * TODO: unit test
 	 */
 	export function getOffset() {
 		if (pageMode && isBrowser()) {
@@ -112,7 +106,6 @@
 
 	/**
 	 * @type {() => number}
-	 * TODO: unit test
 	 */
 	export function getClientSize() {
 		const key = isHorizontal ? 'clientWidth' : 'clientHeight';
@@ -125,7 +118,6 @@
 
 	/**
 	 * @type {() => number}
-	 * TODO: unit test
 	 */
 	export function getScrollSize() {
 		const key = isHorizontal ? 'scrollWidth' : 'scrollHeight';
@@ -138,7 +130,6 @@
 
 	/**
 	 * @type {() => void}
-	 * TODO: unit test
 	 */
 	export function updatePageModeFront() {
 		if (root && isBrowser()) {
@@ -155,7 +146,6 @@
 
 	/**
 	 * @type {(offset: number) => void}
-	 * TODO: unit test
 	 */
 	export function scrollToOffset(offset: number) {
 		if (!isBrowser()) return;
@@ -169,7 +159,6 @@
 
 	/**
 	 * @type {(index: number) => void}
-	 * TODO: unit test
 	 */
 	export function scrollToIndex(index: number) {
 		if (index >= data.length - 1) {
@@ -182,7 +171,6 @@
 
 	/**
 	 * @type {() => void}
-	 * TODO: unit test
 	 */
 	export function scrollToBottom() {
 		if (shepherd) {
@@ -259,14 +247,11 @@
 	}
 
 	function emitEvent(offset: number, clientSize: number, scrollSize: number, event: Event) {
-		// TODO: unit test
 		dispatch('scroll', { event, range: virtual.getRange() });
 
 		if (virtual.isFront() && !!data.length && offset - topThreshold <= 0) {
-			// TODO: e2e test
 			dispatch('top');
 		} else if (virtual.isBehind() && offset + clientSize + bottomThreshold >= scrollSize) {
-			// TODO: e2e test
 			dispatch('bottom');
 		}
 	}
@@ -309,7 +294,6 @@
 	style="overflow-y: auto; height: inherit"
 >
 	{#if $$slots.header}
-		<!-- TODO: unit test -->
 		<Item on:resize={onItemResized} type="slot" uniqueKey="header">
 			<slot name="header" />
 		</Item>
@@ -322,13 +306,11 @@
 				horizontal={isHorizontal}
 				type="item"
 			>
-				<!-- TODO: unit test -->
 				<slot data={dataItem} index={dataIndex} />
 			</Item>
 		{/each}
 	</div>
 	{#if $$slots.footer}
-		<!-- TODO: unit test -->
 		<Item on:resize={onItemResized} type="slot" uniqueKey="footer">
 			<slot name="footer" />
 		</Item>

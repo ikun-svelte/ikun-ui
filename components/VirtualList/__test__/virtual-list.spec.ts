@@ -1,6 +1,5 @@
 import { afterEach, expect, test, describe, beforeEach, vi } from 'vitest';
 import KVirtualList from '../src';
-
 let host: HTMLElement;
 const dataList: any = [];
 for (let i = 0; i < 1000; i++) {

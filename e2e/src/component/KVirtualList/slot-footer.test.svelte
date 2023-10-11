@@ -6,18 +6,11 @@
 	}
 </script>
 
-<div class="h-200px">
-	<KVirtualList
-		data={dataList}
-		offset={100}
-		id="k_v_list_offset"
-		key="id"
-		let:data
-	>
-		<div slot="header">This is a header set via slot</div>
+<div class="h-100px" id="k_v_list_slot_footer">
+	<KVirtualList data={dataList} key="id" let:data>
+		<div slot="footer">This is a footer set via slot</div>
 		<div>
 			{data.label}
 		</div>
-		<div slot="footer">This is a footer set via slot</div>
 	</KVirtualList>
 </div>
