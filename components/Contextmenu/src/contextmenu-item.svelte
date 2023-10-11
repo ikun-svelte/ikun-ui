@@ -20,7 +20,9 @@
 		prefixCls,
 		{
 			[`${prefixCls}--base`]: !disabled && !divider,
+			[`${prefixCls}--base__dark`]: !disabled && !divider,
 			[`${prefixCls}__disabled`]: disabled && !divider,
+			[`${prefixCls}__disabled__dark`]: disabled && !divider,
 			[`${prefixCls}__divider`]: divider
 		},
 		cls
