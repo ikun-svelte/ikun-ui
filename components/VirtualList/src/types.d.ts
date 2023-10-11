@@ -28,11 +28,6 @@ export type KVirtualListProps = {
 	 */
 	isHorizontal: boolean;
 	/**
-	 * Let virtual list using global document to scroll through the list
-	 * @default false
-	 */
-	pageMode: boolean;
-	/**
 	 * scroll position start index
 	 * @default 0
 	 */

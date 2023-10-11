@@ -35,19 +35,12 @@
 	export let isHorizontal: KVirtualListProps['isHorizontal'] = false;
 	/**
 	 * scroll position start index
-	 * TODO: (設置為最大值會白屏)
-	 * TODO: (pageMode 时定位不准确)
 	 */
 	export let start: KVirtualListProps['start'] = 0;
 	/**
 	 * scroll position offset
 	 */
 	export let offset: KVirtualListProps['offset'] = 0;
-	/**
-	 * Let virtual list using global document to scroll through the list
-	 * @type {boolean}
-	 */
-	export let pageMode: KVirtualListProps['pageMode'] = false;
 	/**
 	 * The threshold to emit `top` event, attention to multiple calls.
 	 * @type {number}
@@ -97,11 +90,7 @@
 	 * @type {() => number}
 	 */
 	export function getOffset() {
-		if (pageMode && isBrowser()) {
-			return document.documentElement[directionKey] || document.body[directionKey];
-		} else {
-			return root ? Math.ceil(root[directionKey]) : 0;
-		}
+		return root ? Math.ceil(root[directionKey]) : 0;
 	}
 
 	/**
@@ -109,11 +98,7 @@
 	 */
 	export function getClientSize() {
 		const key = isHorizontal ? 'clientWidth' : 'clientHeight';
-		if (pageMode && isBrowser()) {
-			return document.documentElement[key] || document.body[key];
-		} else {
-			return root ? Math.ceil(root[key]) : 0;
-		}
+		return root ? Math.ceil(root[key]) : 0;
 	}
 
 	/**
@@ -121,11 +106,7 @@
 	 */
 	export function getScrollSize() {
 		const key = isHorizontal ? 'scrollWidth' : 'scrollHeight';
-		if (pageMode && isBrowser()) {
-			return document.documentElement[key] || document.body[key];
-		} else {
-			return root ? Math.ceil(root[key]) : 0;
-		}
+		return root ? Math.ceil(root[key]) : 0;
 	}
 
 	/**
@@ -149,10 +130,7 @@
 	 */
 	export function scrollToOffset(offset: number) {
 		if (!isBrowser()) return;
-		if (pageMode) {
-			document.body[directionKey] = offset;
-			document.documentElement[directionKey] = offset;
-		} else if (root) {
+		if (root) {
 			root[directionKey] = offset;
 		}
 	}
@@ -194,21 +172,10 @@
 		} else if (offset) {
 			scrollToOffset(offset);
 		}
-
-		if (pageMode) {
-			updatePageModeFront();
-
-			document.addEventListener('scroll', onScroll, {
-				passive: false
-			});
-		}
 	});
 
 	onDestroy(() => {
 		virtual.destroy();
-		if (pageMode && isBrowser()) {
-			document.removeEventListener('scroll', onScroll);
-		}
 	});
 
 	function getUniqueIdFromDataSources() {

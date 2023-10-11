@@ -9,7 +9,6 @@ A simple virtual list, useful when rendering large amounts of data.
 
 > The code implementation of `KVirtualList` comes from [svelte-virtual-scroll-list <span class="i-carbon-link text-12px" />](https://github.com/v1ack/svelte-virtual-scroll-list)
 
-
 ## Install
 
 ::: code-group
@@ -67,7 +66,6 @@ KVirtualList provides some APIs, such as `scrollToBottom`.
 | keeps           | `number`                     | `30`    | Count of rendered items                                            |
 | estimateSize    | `number`                     | `50`    | Estimate size of each item, needs for smooth scrollbar.            |
 | isHorizontal    | `boolean`                    | `false` | Scroll direction.                                                  |
-| pageMode        | `boolean`                    | `false` | Let virtual list using global document to scroll through the list  |
 | start           | `number`                     | `0`     | Scroll position start index                                        |
 | offset          | `number`                     | `0`     | Scroll position offset                                             |
 | topThreshold    | `number`                     | `0`     | The threshold to emit `top` event, attention to multiple calls.    |
@@ -102,14 +100,13 @@ declare interface VRange {
 
 ## VirtualList Api
 
-| method              | arguments              | description                                                                                                           |
-|---------------------|------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| scrollToBottom      | `none`                 | Scroll list to bottom                                                                                                 |
-| scrollToIndex       | `index: number`        | Set scroll position to a designated index                                                                             |
-| scrollToOffset      | `offset: number`       | Set scroll position to a designated offset                                                                            |
-| getSize             | `id: typeof props.key` | Get the designated item size                                                                                          |
-| getSizes            | `none`                 | Get the total number of stored (rendered) items                                                                       |
-| getOffset           | `none`                 | Get current scroll offset                                                                                             |
-| getClientSize       | `none`                 | Get wrapper element client viewport size (width or height)                                                            |
-| getScrollSize       | `none`                 | Get all scroll size (scrollHeight or scrollWidth)                                                                     |
-| updatePageModeFront | `none`                 | When using page mode and virtual list root element offsetTop or offsetLeft change, you need call this method manually |
+| method         | arguments              | description                                                |
+| -------------- | ---------------------- | ---------------------------------------------------------- |
+| scrollToBottom | `none`                 | Scroll list to bottom                                      |
+| scrollToIndex  | `index: number`        | Set scroll position to a designated index                  |
+| scrollToOffset | `offset: number`       | Set scroll position to a designated offset                 |
+| getSize        | `id: typeof props.key` | Get the designated item size                               |
+| getSizes       | `none`                 | Get the total number of stored (rendered) items            |
+| getOffset      | `none`                 | Get current scroll offset                                  |
+| getClientSize  | `none`                 | Get wrapper element client viewport size (width or height) |
+| getScrollSize  | `none`                 | Get all scroll size (scrollHeight or scrollWidth)          |
