@@ -38,6 +38,7 @@ import { createColSizeClsByNum, getColCls } from '../rules/src/grid';
 import { popconfirmShortcuts } from './src/popconfirm';
 import { contextmenuShortcuts } from './src/contextmenu';
 import { emptyShortcuts } from './src/empty';
+import { virtualListShortcuts } from './src/virtual-list';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -110,7 +111,9 @@ export const defaultShortcuts = [
 	// contextmenu
 	contextmenuShortcuts,
 	// empty
-	emptyShortcuts
+	emptyShortcuts,
+	// virtualList
+	virtualListShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -152,6 +155,7 @@ export function getSafeList() {
 	const popconfirmList = Object.keys(popconfirmShortcuts);
 	const contextmenuList = Object.keys(contextmenuShortcuts);
 	const emptyList = Object.keys(emptyShortcuts);
+	const virtualList = Object.keys(virtualListShortcuts);
 	let res = iconList
 		.concat(comList)
 		.concat(baseList)
@@ -188,7 +192,8 @@ export function getSafeList() {
 		.concat(popconfirmList)
 		.concat(dividerList)
 		.concat(emptyList)
-		.concat(contextmenuList);
+		.concat(contextmenuList)
+		.concat(virtualList);
 
 	// rules
 	const colSizeRules = Object.keys(createColSizeClsByNum());
@@ -234,3 +239,4 @@ export { gridShortcuts } from './src/grid';
 export { popconfirmShortcuts } from './src/popconfirm';
 export { contextmenuShortcuts } from './src/contextmenu';
 export { emptyShortcuts } from './src/empty';
+export { virtualListShortcuts } from './src/virtual-list';

@@ -41,3 +41,4 @@ export * from '@ikun-ui/contextmenu';
 export * from '@ikun-ui/infinite';
 export * from '@ikun-ui/divider';
 export * from '@ikun-ui/empty';
+export * from '@ikun-ui/virtual-list';

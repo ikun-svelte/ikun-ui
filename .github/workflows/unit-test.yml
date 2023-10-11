@@ -1,4 +1,4 @@
-name: 🌈 Unit Test
+name: 🌈 Unit & E2E Test
 
 on:
   push:
@@ -32,4 +32,10 @@ jobs:
         run: pnpm run build
 
       - name: Unit Test
-        run: pnpm run test
+        run: pnpm run test:unit
+
+      - name: Install Playwright
+        run: pnpm exec playwright install
+
+      - name: E2E Test
+        run: pnpm run test:e2e

@@ -35,8 +35,14 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: unit test
-        run: pnpm run test
+      - name: Unit Test
+        run: pnpm run test:unit
+
+      - name: Install Playwright
+        run: pnpm exec playwright install
+
+      - name: E2E Test
+        run: pnpm run test:e2e
 
       - name: Set npmrc for components
         run: |
