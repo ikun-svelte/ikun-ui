@@ -129,6 +129,10 @@ const components = [
 			{
 				text: 'Tooltip',
 				link: '/components/KTooltip'
+			},
+			{
+				text: 'VirtualList',
+				link: '/components/KVirtualList'
 			}
 		]
 	},
