@@ -97,7 +97,8 @@
 	$: cnames = clsx(
 		prefixCls,
 		{
-			[`${prefixCls}--base`]: true
+			[`${prefixCls}--base`]: true,
+			[`${prefixCls}--base__dark`]: true
 		},
 		cls
 	);

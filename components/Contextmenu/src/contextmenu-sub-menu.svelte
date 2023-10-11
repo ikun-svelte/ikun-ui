@@ -50,13 +50,20 @@
 		prefixCls,
 		{
 			[`${prefixCls}--base`]: true,
-			[`${prefixCls}__disabled`]: disabled
+			[`${prefixCls}--base__dark`]: true,
+			[`${prefixCls}__disabled`]: disabled,
+			[`${prefixCls}__disabled__dark`]: disabled
 		},
 		cls
 	);
 
 	$: itemCls = clsx({
-		[`${prefixCls}-item`]: true
+		[`${prefixCls}-item`]: true,
+		[`${prefixCls}-item__dark`]: true
+	});
+
+	$: iconCls = clsx({
+		[`${prefixCls}__icon`]: true
 	});
 </script>
 
@@ -68,7 +75,7 @@
 	{...attrs}
 >
 	<span>{title}</span>
-	<KIcon icon="i-carbon-chevron-right" width="auto" height="auto"></KIcon>
+	<KIcon icon="i-carbon-chevron-right" width="auto" height="auto" cls={iconCls}></KIcon>
 	{#if show}
 		<div
 			class={itemCls}

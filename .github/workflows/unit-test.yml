@@ -35,7 +35,7 @@ jobs:
         run: pnpm run test:unit
 
       - name: Install Playwright
-        run: pnpm exec playwright install
+        run: pnpm install --filter "@ikun-ui/e2e" playwright-chromium
 
       - name: E2E Test
         run: pnpm run test:e2e
