@@ -53,6 +53,13 @@ Use `disabled` attribute to determine whether a switch is loading.
 
 <demo src="switch/render.svelte" github="Switch"></demo>
 
+## Sizes
+
+Use the `size` property to control the switch size.
+It supports enumerations such as `md`, `sm`, and `lg`.
+
+<demo src="switch/sizes.svelte" github="Switch"></demo>
+
 ## Switch Props
 
 | Name           | Type                        | Default | Description                  |
@@ -60,10 +67,11 @@ Use `disabled` attribute to determine whether a switch is loading.
 | value          | `boolean`                   | `false` | Binding value                |
 | unCheckedValue | `string / number / boolean` | `false` | UnChecked state switch value |
 | checkedValue   | `string / number / boolean` | `true`  | Checked state switch value   |
-| disabled       | `boolean`                   | `false` | Disabled the switch          |
-| loading        | `boolean`                   | `-`     | Loading state switch         |
 | unCheckedColor | `string`                    | `-`     | unChecked state switch color |
 | checkedColor   | `string`                    | `-`     | Checked state switch color   |
+| size           | `sm \| md \| lg`            | `md`    | size of switch               |
+| loading        | `boolean`                   | `-`     | Loading state switch         |
+| disabled       | `boolean`                   | `false` | Disabled the switch          |
 | cls            | `string`                    | `-`     | Additional class             |
 | attrs          | `Record<string, string>`    | `{}`    | Additional attributes        |
 

@@ -106,7 +106,7 @@ Use the `to` attribute to set a specific url that you can click to jump to.
 | plain    | `boolean`                                            | `false`    | Determine whether it's a plain button                     |
 | ghost    | `boolean`                                            | `false`    | Determine whether it's a ghost button                     |
 | disabled | `boolean`                                            | `false`    | Disable the button                                        |
-| cls      | `string`                                             | `-`        | Additional class for                                      |
+| cls      | `string`                                             | `-`        | Additional class for component                            |
 | attrs    | `Record<string, string>`                             | `{}`       | Additional attributes                                     |
 
 ## Button Events
@@ -130,5 +130,5 @@ Use the `to` attribute to set a specific url that you can click to jump to.
 | iconSize | `number`                                             | `-`     | The icon size of the buttons. It will cover button iconSize.        |
 | isBorder | `boolean`                                            | `false` | Border style buttons. If true, will override the button's isBorder. |
 | disabled | `boolean`                                            | `false` | Disable buttons. If true, will override the button's disabled.      |
-| cls      | `string`                                             | `-`     | Additional class for                                                |
+| cls      | `string`                                             | `-`     | Additional class for component                                      |
 | attrs    | `Record<string, string>`                             | `{}`    | Additional attributes                                               |

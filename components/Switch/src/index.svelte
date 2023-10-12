@@ -1,21 +1,23 @@
 <script lang="ts">
+	import type { KSwitchProps } from './types';
 	import { KIcon } from '@ikun-ui/icon';
+	import { clsx } from 'clsx';
+	import { getPrefixCls } from '@ikun-ui/utils';
 	import { createEventDispatcher, getContext, onMount } from 'svelte';
-	import type { SwitchValueType } from './types';
-	import { clsx, type ClassValue } from 'clsx';
 	import type { FormContext } from '@ikun-ui/form';
 	import { formItemKey } from '@ikun-ui/utils';
 
-	export let value: SwitchValueType = false;
-	export let disabled: boolean = false;
-	export let cls: ClassValue = undefined;
-	export let attrs: Record<string, string> = {};
-	export let loading: boolean = false;
-	export let checkedValue: SwitchValueType = true;
-	export let unCheckedValue: SwitchValueType = false;
+	export let value: KSwitchProps['value'] = false;
+	export let checkedValue: KSwitchProps['checkedValue'] = true;
+	export let unCheckedValue: KSwitchProps['unCheckedValue'] = false;
+	export let checkedColor: KSwitchProps['checkedColor'] = '';
+	export let unCheckedColor: KSwitchProps['unCheckedColor'] = '';
+	export let size: KSwitchProps['size'] = 'md';
+	export let loading: KSwitchProps['loading'] = false;
+	export let disabled: KSwitchProps['disabled'] = false;
+	export let cls: KSwitchProps['cls'] = undefined;
+	export let attrs: KSwitchProps['attrs'] = {};
 
-	export let checkedColor = '';
-	export let unCheckedColor = '';
 	const formContext: FormContext = getContext(formItemKey);
 	const dispatch = createEventDispatcher();
 	$: innerState = value === checkedValue;
@@ -23,8 +25,8 @@
 	 * change state method
 	 */
 	let changeData: {
-		newVal: SwitchValueType;
-		oldVal: SwitchValueType;
+		newVal: KSwitchProps['value'];
+		oldVal: KSwitchProps['value'];
 	};
 	const emitChangeEvt = (): void => {
 		changeData = innerState
@@ -46,7 +48,7 @@
 	let switchCircleRef: null | HTMLElement = null;
 	const changeClass = (checked: boolean) => {
 		return new Promise((resolve) => {
-			switching = 'k-switch-tra';
+			switching = `${prefixCls}-tra`;
 			if (switchCircleRef) {
 				const circleWidth = switchCircleRef.getClientRects()[0]?.width;
 				switchCircleRef.style.right = checked ? '1px' : `calc(100% - ${circleWidth}px - 1px)`;
@@ -99,31 +101,40 @@
 	};
 	onMount(init);
 
-	$: cnames = clsx(
-		'k-switch--base',
-		innerState ? ['k-switch__checked', checkedColor] : ['k-switch__un_checked', unCheckedColor],
+	const prefixCls = getPrefixCls('switch');
+	$: switchCls = clsx(
+		`${prefixCls}`,
+		`${prefixCls}--base`,
+		`${prefixCls}--${size}`,
+		innerState
+			? [`${prefixCls}__checked`, checkedColor]
+			: [`${prefixCls}__unchecked`, unCheckedColor],
 		{
-			'k-switch__disabled': disabled || loading
+			[`${prefixCls}__disabled`]: disabled || loading
 		},
 		switching,
 		cls
 	);
+	$: loadingCls = clsx(`${prefixCls}-loading`, `${prefixCls}-loading__dark`);
+	$: circleCls = clsx(`${prefixCls}-circle`, `${prefixCls}-circle--${size}`);
+	$: unCheckedTxCls = clsx(`${prefixCls}-tx__unchecked`, `${prefixCls}-tx__unchecked--${size}`);
+	$: checkedTxCls = clsx(`${prefixCls}-tx__checked`, `${prefixCls}-tx__checked--${size}`);
 </script>
 
-<div class={cnames} aria-hidden="true" {...attrs} on:click={handleClick}>
+<div class={switchCls} aria-hidden="true" {...$$restProps} {...attrs} on:click={handleClick}>
 	{#if !innerState}
-		<div class="k-switch-tx__un_checked">
+		<span class={unCheckedTxCls}>
 			<slot name="unCheckedRender" state={innerState} />
-		</div>
+		</span>
 	{/if}
-	<div class="k-switch-circle" bind:this={switchCircleRef}>
+	<span class={circleCls} bind:this={switchCircleRef}>
 		{#if loading}
-			<KIcon icon="i-carbon-circle-dash" cls="k-switch-loading k-switch-loading__dark" />
+			<KIcon cls={loadingCls} icon="i-carbon-circle-dash" />
 		{/if}
-	</div>
+	</span>
 	{#if innerState}
-		<div class="k-switch-tx__checked">
+		<span class={checkedTxCls}>
 			<slot name="checkedRender" state={innerState} />
-		</div>
+		</span>
 	{/if}
 </div>

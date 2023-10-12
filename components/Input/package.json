@@ -1,9 +1,10 @@
 {
 	"name": "@ikun-ui/input",
-	"version": "0.0.9-beta.9",
+	"version": "0.0.10",
 	"type": "module",
 	"main": "./src/index.ts",
 	"types": "src/index.ts",
+	"svelte": "dist/index.js",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -28,8 +29,8 @@
 		"types": "src/index.ts"
 	},
 	"dependencies": {
-		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/button": "workspace:*",
+		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"@ikun-ui/form": "workspace:*",
 		"baiwusanyu-utils": "^1.0.16",

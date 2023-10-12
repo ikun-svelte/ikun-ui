@@ -1,6 +1,7 @@
 export * from '@ikun-ui/badge';
 export * from '@ikun-ui/button';
 export * from '@ikun-ui/button-group';
+export * from '@ikun-ui/card';
 export * from '@ikun-ui/checkbox';
 export * from '@ikun-ui/checkbox-group';
 export * from '@ikun-ui/collapse';
@@ -39,4 +40,6 @@ export * from '@ikun-ui/popconfirm';
 export * from '@ikun-ui/contextmenu';
 export * from '@ikun-ui/infinite';
 export * from '@ikun-ui/divider';
+export * from '@ikun-ui/empty';
+export * from '@ikun-ui/virtual-list';
 export * from '@ikun-ui/form';

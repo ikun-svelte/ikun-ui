@@ -60,7 +60,7 @@ Set how the image fit its container for an image avatar, same as [object-fit <sp
 | fit    | `fill` / `contain` / `cover` / `none` / `scale-down` | `cover` | set how the image fit its container for an image avatar.   |
 | size   | `string` / `number`                                  | `50px`  | avatar size, the default unit is `px`.                     |
 | radius | `string` / `number`                                  | `4px`   | avatar radius, the default unit is `px`.                   |
-| cls    | `string`                                             | `''`    | Additional class for                                       |
+| cls    | `string`                                             | `''`    | Additional class for component                             |
 | attrs  | `Record<string, string>`                             | `{}`    | Additional attributes                                      |
 
 ## Avatar Events

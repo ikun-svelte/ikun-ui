@@ -85,7 +85,7 @@ Sometimes you don't want to close popconfirm immediately, but want to decide whe
 | placement      | `'top' \| 'left' \| 'right' \| 'bottom'`         | `top`     | Where the `popover` appears                                                                                        |
 | trigger        | `'manual' \| 'click' \| 'hover'`                 | `hover`   | How popovers are triggered                                                                                         |
 | asyncClose     | `boolean`                                        | `false`   | When its value is true, clicking the button will not close `popconfirm`, and the user needs to control it himself. |
-| cls            | `string`                                         | `''`      | Additional class for                                                                                               |
+| cls            | `string`                                         | `''`      | Additional class for component                                                                                     |
 | attrs          | `Record<string, string>`                         | `{}`      | Additional attributes                                                                                              |
 
 ## Popconfirm Events

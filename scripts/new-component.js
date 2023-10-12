@@ -126,6 +126,7 @@ async function writePkgJson(baseDir, originalCompName) {
   "type": "module",
   "main": "./src/index.ts",
   "types": "src/index.ts",
+  "svelte": "dist/index.js",
   "keywords": [
     "svelte",
     "svelte3",

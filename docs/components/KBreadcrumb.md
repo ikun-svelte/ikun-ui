@@ -43,7 +43,7 @@ Set `separatorIcon` to use `KIcon` as the separator, it will cover `separator`.
 | ------------- | ------------------------ | ------- | ---------------------------------------------------------- |
 | separator     | `string`                 | `/`     | separator character                                        |
 | separatorIcon | `string`                 | `''`    | The class name of the icon, following the unocss standard. |
-| cls           | `string`                 | `''`    | Additional class for                                       |
+| cls           | `string`                 | `''`    | Additional class for component                             |
 | attrs         | `Record<string, string>` | `{}`    | Additional attributes                                      |
 
 ## Breadcrumb Slots
@@ -57,7 +57,7 @@ Set `separatorIcon` to use `KIcon` as the separator, it will cover `separator`.
 | Name  | Type                     | Default | Description                                                                                                                                                |
 | ----- | ------------------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | href  | `string`                 | `''`    | The URL that the hyperlink points to, same as [href <span class="i-carbon-link text-12px" />](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) |
-| cls   | `string`                 | `''`    | Additional class for                                                                                                                                       |
+| cls   | `string`                 | `''`    | Additional class for component                                                                                                                             |
 | attrs | `Record<string, string>` | `{}`    | Additional attributes                                                                                                                                      |
 
 ## BreadcrumbItem Slots

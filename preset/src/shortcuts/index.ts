@@ -10,6 +10,7 @@ import { breadcrumbShortcuts } from './src/breadcrumb';
 import { breadcrumbItemShortcuts } from './src/breadcrumb-item';
 import { buttonShortcuts } from './src/button';
 import { buttonGroupShortcuts } from './src/button-group';
+import { cardShortcuts } from './src/card';
 import { collapseShortcuts } from './src/collapse';
 import { checkboxShortcuts } from './src/checkbox';
 import { dividerShortcuts } from './src/divider';
@@ -36,6 +37,8 @@ import { gridShortcuts } from './src/grid';
 import { createColSizeClsByNum, getColCls } from '../rules/src/grid';
 import { popconfirmShortcuts } from './src/popconfirm';
 import { contextmenuShortcuts } from './src/contextmenu';
+import { emptyShortcuts } from './src/empty';
+import { virtualListShortcuts } from './src/virtual-list';
 import { formShortcuts } from './form';
 export const defaultShortcuts = [
 	baseShortcuts,
@@ -60,6 +63,8 @@ export const defaultShortcuts = [
 	collapseShortcuts,
 	// checkbox
 	checkboxShortcuts,
+	// card
+	cardShortcuts,
 	// divider
 	dividerShortcuts,
 	// drawer
@@ -107,7 +112,11 @@ export const defaultShortcuts = [
 	// popconfirm
 	popconfirmShortcuts,
 	// contextmenu
-	contextmenuShortcuts
+	contextmenuShortcuts,
+	// empty
+	emptyShortcuts,
+	// virtualList
+	virtualListShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -122,6 +131,7 @@ export function getSafeList() {
 	const breadcrumbItemList = Object.keys(breadcrumbItemShortcuts);
 	const buttonList = Object.keys(buttonShortcuts);
 	const buttonGroupList = Object.keys(buttonGroupShortcuts);
+	const cardList = Object.keys(cardShortcuts);
 	const collapseList = Object.keys(collapseShortcuts);
 	const checkboxList = Object.keys(checkboxShortcuts);
 	const dividerList = Object.keys(dividerShortcuts);
@@ -148,7 +158,8 @@ export function getSafeList() {
 	const gridList = Object.keys(gridShortcuts);
 	const popconfirmList = Object.keys(popconfirmShortcuts);
 	const contextmenuList = Object.keys(contextmenuShortcuts);
-
+	const emptyList = Object.keys(emptyShortcuts);
+	const virtualList = Object.keys(virtualListShortcuts);
 	let res = iconList
 		.concat(comList)
 		.concat(baseList)
@@ -172,6 +183,7 @@ export function getSafeList() {
 		.concat(breadcrumbItemList)
 		.concat(buttonList)
 		.concat(buttonGroupList)
+		.concat(cardList)
 		.concat(collapseList)
 		.concat(checkboxList)
 		.concat(formList)
@@ -184,7 +196,9 @@ export function getSafeList() {
 		.concat(gridList)
 		.concat(popconfirmList)
 		.concat(dividerList)
-		.concat(contextmenuList);
+		.concat(emptyList)
+		.concat(contextmenuList)
+		.concat(virtualList);
 
 	// rules
 	const colSizeRules = Object.keys(createColSizeClsByNum());
@@ -203,6 +217,7 @@ export { breadcrumbShortcuts } from './src/breadcrumb';
 export { breadcrumbItemShortcuts } from './src/breadcrumb-item';
 export { buttonShortcuts } from './src/button';
 export { buttonGroupShortcuts } from './src/button-group';
+export { cardShortcuts } from './src/card';
 export { collapseShortcuts } from './src/collapse';
 export { checkboxShortcuts } from './src/checkbox';
 export { dividerShortcuts } from './src/divider';
@@ -228,4 +243,6 @@ export { layoutShortcuts } from './src/layout';
 export { gridShortcuts } from './src/grid';
 export { popconfirmShortcuts } from './src/popconfirm';
 export { contextmenuShortcuts } from './src/contextmenu';
+export { emptyShortcuts } from './src/empty';
+export { virtualListShortcuts } from './src/virtual-list';
 export { formShortcuts } from './form';

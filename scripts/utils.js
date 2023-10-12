@@ -1,8 +1,9 @@
 import shell from 'shelljs';
-import { log, setGlobalPrefix } from 'baiwusanyu-utils';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import fg from 'fast-glob';
+import { log, setGlobalPrefix } from 'baiwusanyu-utils';
+
 export async function runCommand(command, dir, userOptions) {
 	return new Promise((resolve, reject) => {
 		try {
@@ -62,10 +63,53 @@ class TaskRunnerState {
 	}
 }
 
-export async function runTask(buildCommand, root, action, userOptions) {
+function runTaskPool(list, limit, asyncHandle) {
+	let recursion = (arr) => {
+		return asyncHandle(arr.shift()).then(() => {
+			if (arr.length !== 0) return recursion(arr);
+			else return 'finish';
+		});
+	};
+	let listCopy = [].concat(list);
+	limit = listCopy.length >= limit ? limit : listCopy.length;
+	while (limit--) {
+		recursion(listCopy);
+	}
+}
+
+function runTaskCommand({ rootDir, pkgPath, buildCommand, userOptions, action, taskRunnerState }) {
+	return new Promise((resolve, reject) => {
+		const packageJsonPath = path.join(rootDir, pkgPath);
+		try {
+			const packageJsonData = fs.readFileSync(packageJsonPath, 'utf8');
+			const packageJson = JSON.parse(packageJsonData);
+			if (packageJson.scripts && packageJson.scripts.build) {
+				runCommand(buildCommand, packageJsonPath.replaceAll('package.json', ''), userOptions)
+					.then(() => {
+						log('success', `${action} ${packageJson.name} complete`);
+						resolve();
+					})
+					.catch((error) => {
+						log('error', `${action} error at ${packageJson.name}`, error);
+						log('error', error);
+						reject();
+					});
+			}
+		} catch (error) {
+			log('error', `Error reading or parsing package.json at ${packageJsonPath}`);
+			log('error', error);
+			reject();
+		} finally {
+			taskRunnerState.value = false;
+		}
+	});
+}
+
+export function runTask(buildCommand, root, action, userOptions) {
 	const taskRunnerState = new TaskRunnerState();
 	if (taskRunnerState.value) return;
 	taskRunnerState.value = true;
+
 	// set log prefix
 	setGlobalPrefix('[ikun-ui]: ');
 	const rootDir = path.resolve(root);
@@ -78,38 +122,16 @@ export async function runTask(buildCommand, root, action, userOptions) {
 		});
 	}
 	const pkgList = getPkgPath(targetFile, rootDir);
-
-	const runCommands = pkgList.map((item) => {
-		// eslint-disable-next-line no-async-promise-executor
-		return new Promise(async (resolve, reject) => {
-			const packageJsonPath = path.join(rootDir, item);
-			try {
-				const packageJsonData = fs.readFileSync(packageJsonPath, 'utf8');
-				const packageJson = JSON.parse(packageJsonData);
-				if (packageJson.scripts && packageJson.scripts.build) {
-					try {
-						await runCommand(
-							buildCommand,
-							packageJsonPath.replaceAll('package.json', ''),
-							userOptions
-						);
-						resolve();
-						log('success', `${action} ${packageJson.name} complete`);
-					} catch (error) {
-						log('error', `${action} error at ${packageJson.name}`, error);
-						log('error', error);
-						reject();
-					}
-				}
-			} catch (error) {
-				log('error', `Error reading or parsing package.json at ${packageJsonPath}`);
-				log('error', error);
-				reject();
-			} finally {
-				taskRunnerState.value = false;
-			}
-		});
+	const buildComponentList = pkgList.map((m) => {
+		return {
+			rootDir,
+			buildCommand,
+			userOptions,
+			action,
+			taskRunnerState,
+			pkgPath: m
+		};
 	});
 
-	await Promise.allSettled(runCommands);
+	runTaskPool(buildComponentList, 5, runTaskCommand);
 }

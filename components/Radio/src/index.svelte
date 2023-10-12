@@ -1,18 +1,19 @@
 <script lang="ts">
+	import type { KRadioProps } from './types';
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
+	import type { RadioGroupCtx } from '@ikun-ui/radio-group';
+	import { getPrefixCls, formItemKey, radioGroupKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import type { FormContext } from '@ikun-ui/form';
-	import type { KRadioProps } from './types';
-	import { formItemKey, radioGroupKey } from '@ikun-ui/utils';
-	import type { RadioGroupCtx } from '@ikun-ui/radio-group';
-	export let disabled: KRadioProps['disabled'] = false;
 	export let value: KRadioProps['value'] = false;
+	export let label: KRadioProps['label'] = '';
+	export let uid: KRadioProps['uid'] = '';
+	export let size: KRadioProps['size'] = 'md';
+	export let disabled: KRadioProps['disabled'] = false;
 	export let cls: KRadioProps['cls'] = undefined;
 	export let attrs: KRadioProps['attrs'] = {};
-	export let label: KRadioProps['label'] = '';
 
-	export let uid: KRadioProps['uid'] = '';
 	const formContext: FormContext = getContext(formItemKey);
 	// updateValue
 	const dispatch = createEventDispatcher();
@@ -26,6 +27,13 @@
 
 	let classChecking = '';
 	$: isDisabled = (ctx && ctx.disabled) || disabled;
+	$: sizeInner = ctx && ctx.size ? ctx.size : size;
+	enum ERadioSize {
+		'lg' = 16,
+		'md' = 14,
+		'sm' = 12
+	}
+
 	const handleUpdateValue = () => {
 		if (isDisabled) return;
 		if (valueInner) return;
@@ -75,16 +83,24 @@
 	}
 	doRegisterRadio();
 
-	$: cnames = clsx('k-radio--base k-radio--base__dark', { 'k-cur-disabled': isDisabled }, cls);
+	const prefixCls = getPrefixCls('radio');
+	$: cnames = clsx(
+		prefixCls,
+		`${prefixCls}--base`,
+		`${prefixCls}--base__dark`,
+		`${prefixCls}--${sizeInner}`,
+		{ 'k-cur-disabled': isDisabled },
+		cls
+	);
 	$: radioboxCls = clsx(
-		'k-radio--box',
+		`${prefixCls}--box`,
 		{
-			'k-radio__selected': valueInner && !isDisabled,
-			'k-radio--box__disabled': isDisabled
+			[`${prefixCls}__selected`]: valueInner && !isDisabled,
+			[`${prefixCls}--box__disabled`]: isDisabled
 		},
 		classChecking
 	);
-	$: labelCls = clsx('k-radio--label', {
+	$: labelCls = clsx(`${prefixCls}--label`, {
 		'text-ikun-main': valueInner && !isDisabled
 	});
 </script>
@@ -99,7 +115,12 @@
 	/>
 	<div class={radioboxCls}>
 		{#if valueInner}
-			<KIcon icon="i-carbon:radio-button-checked" color="!text-white" width="16px" height="16px" />
+			<KIcon
+				icon="i-carbon:radio-button-checked"
+				color="!text-white"
+				width={ERadioSize[sizeInner]}
+				height={ERadioSize[sizeInner]}
+			/>
 		{/if}
 	</div>
 	<slot>

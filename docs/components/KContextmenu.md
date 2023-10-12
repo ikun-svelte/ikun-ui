@@ -52,11 +52,11 @@ Use `KContextmenuSubMenu` to create a sub menu
 
 ## Contextmenu Props
 
-| Name     | Type                     | Default | Description             |
-| -------- | ------------------------ | ------- | ----------------------- |
-| disabled | `boolean`                | `false` | Disable the contextmenu |
-| cls      | `string`                 | `''`    | Additional class for    |
-| attrs    | `Record<string, string>` | `{}`    | Additional attributes   |
+| Name     | Type                     | Default | Description                    |
+| -------- | ------------------------ | ------- | ------------------------------ |
+| disabled | `boolean`                | `false` | Disable the contextmenu        |
+| cls      | `string`                 | `''`    | Additional class for component |
+| attrs    | `Record<string, string>` | `{}`    | Additional attributes          |
 
 ## Contextmenu Events
 
@@ -73,12 +73,12 @@ Use `KContextmenuSubMenu` to create a sub menu
 
 ## Contextmenu Item Props
 
-| Name     | Type                     | Default | Description                  |
-| -------- | ------------------------ | ------- | ---------------------------- |
-| divider  | `boolean`                | `false` | Shown as dividing line       |
-| disabled | `boolean`                | `false` | Disable the contextmenu item |
-| cls      | `string`                 | `''`    | Additional class for         |
-| attrs    | `Record<string, string>` | `{}`    | Additional attributes        |
+| Name     | Type                     | Default | Description                    |
+| -------- | ------------------------ | ------- | ------------------------------ |
+| divider  | `boolean`                | `false` | Shown as dividing line         |
+| disabled | `boolean`                | `false` | Disable the contextmenu item   |
+| cls      | `string`                 | `''`    | Additional class for component |
+| attrs    | `Record<string, string>` | `{}`    | Additional attributes          |
 
 ## Contextmenu Item Slots
 
@@ -88,12 +88,12 @@ Use `KContextmenuSubMenu` to create a sub menu
 
 ## Contextmenu Sub Menu Props
 
-| Name     | Type                     | Default | Description                  |
-| -------- | ------------------------ | ------- | ---------------------------- |
-| title    | `string`                 | `-`     | The title of the submenu     |
-| disabled | `boolean`                | `false` | Disable the contextmenu item |
-| cls      | `string`                 | `''`    | Additional class for         |
-| attrs    | `Record<string, string>` | `{}`    | Additional attributes        |
+| Name     | Type                     | Default | Description                    |
+| -------- | ------------------------ | ------- | ------------------------------ |
+| title    | `string`                 | `-`     | The title of the submenu       |
+| disabled | `boolean`                | `false` | Disable the contextmenu item   |
+| cls      | `string`                 | `''`    | Additional class for component |
+| attrs    | `Record<string, string>` | `{}`    | Additional attributes          |
 
 ## Contextmenu Sub Menu Slots
 

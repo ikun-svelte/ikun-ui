@@ -1,4 +1,7 @@
 name: 🌈 Unit Test
+env:
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 # Skip downloading during yarn install
+  PLAYWRIGHT_BROWSERS_PATH: 0 # Places binaries to node_modules/@playwright/test
 
 on:
   push:
@@ -12,24 +15,36 @@ on:
   workflow_dispatch:
 
 jobs:
-  unit-test:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node: [18.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+      fail-fast: false
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - name: Setup PNPM
+        run: corepack enable
 
-      - name: Setup Node.js
+      - name: Set node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 18.x
           cache: pnpm
 
-      - name: Install
-        run: pnpm install --no-frozen-lockfile
+      - name: Setup
+        run: npm i -g @antfu/ni
+
+      - name: Setup dependencies
+        run: nci
 
       - name: Build
-        run: pnpm run build
+        run: nr build
 
       - name: Unit Test
-        run: pnpm run test
+        run: nr test:unit

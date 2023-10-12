@@ -60,5 +60,5 @@ See [caniuse <span class="i-carbon-link text-12px" />](https://caniuse.com/?sear
 | lineClamp | `number \| null`                | `null`  | Maximum lines.                                                 |
 | num       | `number`                        | `5`     | Number of characters to omit.                                  |
 | placement | `'left' \| 'right' \| 'center'` | `right` | Ellipsis display position.                                     |
-| cls       | `string`                        | `''`    | Additional class for                                           |
+| cls       | `string`                        | `''`    | Additional class for component                                 |
 | attrs     | `Record<string, string>`        | `{}`    | Additional attributes                                          |

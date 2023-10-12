@@ -66,7 +66,7 @@ Use the attribute isDot. It is a Boolean.
 | isDot | `boolean`                                            | `false` | if a little dot is displayed.                                               |
 | show  | `boolean`                                            | `true`  | show badge.                                                                 |
 | type  | `primary` / `success` / `error` / `warning` / `info` | `error` | badge type.                                                                 |
-| cls   | `string`                                             | `''`    | Additional class for                                                        |
+| cls   | `string`                                             | `''`    | Additional class for component                                              |
 | attrs | `Record<string, string>`                             | `{}`    | Additional attributes                                                       |
 
 ## Badge Slots

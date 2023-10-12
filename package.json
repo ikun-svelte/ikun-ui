@@ -3,7 +3,7 @@
 	"description": "🐔 A Svelte.js based UnoCSS UI library that allows you to make websites",
 	"packageManager": "pnpm@8.7.5",
 	"type": "module",
-	"version": "0.0.9-beta.9",
+	"version": "0.0.10",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -55,8 +55,8 @@
 		"watch": "esno scripts/watch.js",
 		"build#docs": "pnpm run --filter @ikun-ui/docs docs:build",
 		"preview:docs": "pnpm run --filter @ikun-ui/docs docs:preview",
-		"test": "npm run test:unit",
-		"test:integration": "playwright test",
+		"test": "pnpm run test:unit && pnpm run test:e2e",
+		"test:e2e": "pnpm run --filter @ikun-ui/e2e test",
 		"test:unit": "vitest",
 		"test:update": "vitest -u",
 		"test:coverage": "vitest --coverage",
@@ -69,12 +69,12 @@
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "esno scripts/new-component.js"
+		"create:new:comp": "esno scripts/new-component.js virtual-list"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
 		"svelte": "^4.0.0",
-		"unocss": "^0.54.1"
+		"unocss": "^0.56.5"
 	},
 	"dependencies": {
 		"@ikun-ui/alert": "workspace:*",
@@ -122,10 +122,12 @@
 		"@ikun-ui/divider": "workspace:*",
 		"baiwusanyu-utils": "^1.0.16",
 		"clsx": "^2.0.0",
-		"@ikun-ui/infinite": "workspace:*"
+		"@ikun-ui/infinite": "workspace:*",
+		"@ikun-ui/empty": "workspace:*",
+		"@ikun-ui/card": "workspace:*",
+		"@ikun-ui/virtual-list": "workspace:*"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.38.0",
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/kit": "^1.25.0",
 		"@sveltejs/package": "^2.2.2",
@@ -161,9 +163,10 @@
 		"tslib": "^2.6.2",
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2",
-		"unocss": "^0.55.7",
+		"unocss": "^0.56.5",
 		"vite": "^4.4.9",
-		"vitest": "^0.34.4"
+		"vitest": "^0.34.4",
+		"playwright-chromium": "^1.36.2"
 	},
 	"lint-staged": {
 		"*.{svelte,js,ts,jsx,tsx,json}": [

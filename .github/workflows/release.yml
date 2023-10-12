@@ -9,21 +9,23 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
+      - name: Setup PNPM
+        run: corepack enable
 
       - name: Set node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
           cache: pnpm
 
+      - name: Setup
+        run: npm i -g @antfu/ni
+
       - name: Install
-        run: pnpm install --no-frozen-lockfile
+        run: nci
 
       - name: Set Timezone
         run: |
@@ -32,11 +34,17 @@ jobs:
           date
         shell: bash
 
-      - name: Build
-        run: pnpm run build
+      - name: Playwright install
+        run: npx playwright install
 
-      - name: unit test
-        run: pnpm run test
+      - name: Build
+        run: nr build
+
+      - name: Unit Test
+        run: nr test:unit
+
+      - name: E2E Test
+        run: nr test:e2e
 
       - name: Set npmrc for components
         run: |
@@ -62,7 +70,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to npm
-        run: pnpm run publish:script
+        run: nr publish:script
 
       - run: npx changelogithub
         continue-on-error: true
