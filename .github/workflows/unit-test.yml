@@ -47,6 +47,9 @@ jobs:
       - name: Playwright install
         run: npx playwright install
 
+      - name: Clear Playwright Cache
+        run: npx playwright clear
+
       - name: Build
         run: pnpm run build
 
