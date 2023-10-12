@@ -24,15 +24,22 @@ jobs:
   unit-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - name: Install pnpm
+        if: ${{ matrix.node_version != 14 }}
+        uses: pnpm/action-setup@v2
 
-      - name: Setup Node.js
+      - name: Install pnpm 8 (node 14)
+        if: ${{ matrix.node_version == 14 }}
+        run: npm install -g @pnpm/exe@next-8
+
+      - name: Set node version to ${{ matrix.node_version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 18
-          cache: pnpm
+          node-version: ${{ matrix.node_version }}
+          cache: "pnpm"
 
       - name: Install
         run: pnpm install --no-frozen-lockfile
