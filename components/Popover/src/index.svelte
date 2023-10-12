@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createPopperActions, type PopperOptions } from 'svelte-popperjs';
-	import { fade } from 'svelte/transition';
+	import { scale } from 'svelte/transition';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import type { KPopoverProps } from './types';
@@ -29,6 +29,12 @@
 				name: 'flip',
 				options: {
 					fallbackPlacements: ['top', 'right', 'bottom', 'left']
+				}
+			},
+			{
+				name: 'computeStyles',
+				options: {
+					gpuAcceleration: false // true by default
 				}
 			},
 			{
@@ -134,8 +140,8 @@
 	{#if isShow}
 		<div
 			class={cnames}
-			out:fade={{ duration: 200 }}
-			in:fade={{ duration: 200 }}
+			out:scale={{ duration: 200, start: 0.3, opacity: 0 }}
+			in:scale={{ duration: 200, start: 0.3, opacity: 0 }}
 			data-popper-placement
 			aria-hidden="true"
 			{...attrs}
@@ -179,10 +185,18 @@
 		left: calc(50% - 4px);
 	}
 
+	:global(.dark [data-popper-arrow-top]::after) {
+		--at-apply: k-popover-arrow-shadow__top__dark;
+	}
+
 	[data-popper-arrow-bottom] {
 		top: -4px;
 		position: absolute;
 		left: calc(50% - 4px);
+	}
+
+	:global(.dark [data-popper-arrow-bottom]::after) {
+		--at-apply: k-popover-arrow-shadow__bottom__dark;
 	}
 
 	[data-popper-arrow-right] {
@@ -191,9 +205,17 @@
 		left: -4px;
 	}
 
+	:global(.dark [data-popper-arrow-right]::after) {
+		--at-apply: k-popover-arrow-shadow__right__dark;
+	}
+
 	[data-popper-arrow-left] {
 		top: calc(50% - 4px);
 		position: absolute;
 		right: 4px;
+	}
+
+	:global(.dark [data-popper-arrow-left]::after) {
+		--at-apply: k-popover-arrow-shadow__left__dark;
 	}
 </style>
