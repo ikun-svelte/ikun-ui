@@ -46,5 +46,5 @@ jobs:
       - name: Build
         run: nr build
 
-      - name: Unit Test
-        run: nr test:unit
+      - name: E2E Test
+        run: nr test:e2e
