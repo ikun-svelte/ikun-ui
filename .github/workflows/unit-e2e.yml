@@ -1,7 +1,4 @@
-name: 🌈 Unit Test
-env:
-  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 # Skip downloading during yarn install
-  PLAYWRIGHT_BROWSERS_PATH: 0 # Places binaries to node_modules/@playwright/test
+name: 🌈 E2E Test
 
 on:
   push:
@@ -11,8 +8,6 @@ on:
   pull_request:
     branches:
       - main
-
-  workflow_dispatch:
 
 jobs:
   test:
@@ -26,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Setup PNPM
         run: corepack enable
@@ -40,11 +35,14 @@ jobs:
       - name: Setup
         run: npm i -g @antfu/ni
 
-      - name: Setup dependencies
+      - name: Install
         run: nci
+
+      - name: Playwright install
+        run: npx playwright install
 
       - name: Build
         run: nr build
 
-      - name: Unit Test
-        run: nr test:unit
+      - name: E2E Test
+        run: nr test:e2e

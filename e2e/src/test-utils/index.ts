@@ -22,7 +22,7 @@ async function startDefaultServe(e2eTestCtx: E2EPlaywrightContext) {
 		logLevel: 'info',
 		configFile: false,
 		server: {
-			port: 8009,
+			port: 3000,
 			watch: {
 				// During tests we edit the files too fast and sometimes chokidar
 				// misses change events, so enforce polling for consistency
