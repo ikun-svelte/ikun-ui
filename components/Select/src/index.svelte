@@ -1,15 +1,17 @@
 <script lang="ts">
 	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher } from 'svelte';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import { getPrefixCls } from '@ikun-ui/utils';
+	import type { KSelectProps } from './types';
 
-	export let iconPrefix = '';
-	export let iconSuffix = '';
-	export let value = '';
-	export let cls: ClassValue = undefined;
-	export let placeholder = '';
-	export let disabled = false;
-	export let attrs: Record<string, string> = {};
+	export let iconPrefix: KSelectProps['iconPrefix'] = '';
+	export let iconSuffix: KSelectProps['iconSuffix'] = '';
+	export let value: KSelectProps['value'] = '';
+	export let cls: KSelectProps['cls'] = undefined;
+	export let placeholder: KSelectProps['placeholder'] = '';
+	export let disabled: KSelectProps['disabled'] = false;
+	export let attrs: KSelectProps['attrs'] = {};
 	// updateValue
 	const dispatch = createEventDispatcher();
 	const handleSelect = (e: Event) => {
@@ -17,22 +19,30 @@
 		dispatch('updateValue', (e.target as HTMLSelectElement).value);
 	};
 
+	// class names
+	const prefixCls = getPrefixCls('select');
 	$: cnames = clsx(
-		'k-select--base k-select--base__dark k-select__hover k-select__focus',
+		`${prefixCls}--base`,
+		`${prefixCls}--base__dark`,
+		`${prefixCls}__hover`,
+		`${prefixCls}__focus`,
 		{
-			'k-select--base__disabled__dark': disabled
+			[`${prefixCls}--base__disabled__dark`]: disabled
 		},
 		cls
 	);
-	$: selectCls = clsx('k-select--inner', 'k-select--inner__dark', {
-		'k-select--base__disabled k-select--base__disabled__dark': disabled
+	$: selectCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__dark`, {
+		[`${prefixCls}--base__disabled`]: disabled,
+		[`${prefixCls}--base__disabled__dark`]: disabled
 	});
+	const prefixIconCls = `${prefixCls}--prefix`;
+	const suffixIconCls = `${prefixCls}--suffix`;
 </script>
 
 <div {...attrs} class={cnames}>
 	<slot name="prefix">
 		{#if iconPrefix}
-			<KIcon icon={iconPrefix} cls="k-select--prefix" />
+			<KIcon icon={iconPrefix} cls={prefixIconCls} />
 		{/if}
 	</slot>
 	<select bind:value {disabled} on:change={handleSelect} class={selectCls}>
@@ -45,7 +55,7 @@
 	</select>
 	<slot name="suffix">
 		{#if iconSuffix}
-			<KIcon icon={iconSuffix} cls="k-select--suffix" />
+			<KIcon icon={iconSuffix} cls={suffixIconCls} />
 		{/if}
 	</slot>
 </div>
