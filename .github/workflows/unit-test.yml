@@ -1,14 +1,5 @@
 name: 🌈 Unit & E2E Test
 
-env:
-  # 7 GiB by default on GitHub, setting to 6 GiB
-  # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
-  NODE_OPTIONS: --max-old-space-size=6144
-  # install playwright binary manually (because pnpm only runs install script once)
-  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
-  # Vitest auto retry on flaky segfault
-  VITEST_SEGFAULT_RETRY: 3
-
 on:
   push:
     branches:
@@ -21,40 +12,39 @@ on:
   workflow_dispatch:
 
 jobs:
-  unit-test:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node: [18.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+      fail-fast: false
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        if: ${{ matrix.node_version != 14 }}
-        uses: pnpm/action-setup@v2
-
-      - name: Install pnpm 8 (node 14)
-        if: ${{ matrix.node_version == 14 }}
-        run: npm install -g @pnpm/exe@next-8
-
-      - name: Set node version to ${{ matrix.node_version }}
+      - name: Set node
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node_version }}
-          cache: "pnpm"
+          node-version: 18.x
+          cache: pnpm
+
+      - name: Setup
+        run: npm i -g @antfu/ni
 
       - name: Install
-        run: pnpm install --no-frozen-lockfile
+        run: nci
 
       - name: Playwright install
         run: npx playwright install
 
-      - name: Clear Playwright Cache
-        run: npx playwright clear
-
       - name: Build
-        run: pnpm run build
+        run: nr build
 
       - name: Unit Test
-        run: pnpm run test:unit
+        run: nr test:unit
 
       - name: E2E Test
-        run: pnpm run test:e2e
+        run: nr test:e2e
