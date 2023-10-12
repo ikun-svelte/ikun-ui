@@ -40,14 +40,8 @@ jobs:
       - name: Setup
         run: npm i -g @antfu/ni
 
-      - name: Install dependencies
-        run: |
-          npx playwright install-deps
-
       - name: Setup dependencies
-        run: |
-          pnpm install
-          npx playwright install
+        run: nci
 
       - name: Build
         run: nr build
