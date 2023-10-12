@@ -1,4 +1,4 @@
-name: 🌈 Unit & E2E Test
+name: 🌈 Unit Test
 env:
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 # Skip downloading during yarn install
   PLAYWRIGHT_BROWSERS_PATH: 0 # Places binaries to node_modules/@playwright/test
