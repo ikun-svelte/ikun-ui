@@ -12,6 +12,7 @@
 	export let attrs: KPopoverProps['attrs'] = {};
 	export let disabled: KPopoverProps['disabled'] = false;
 	export let cls: KPopoverProps['cls'] = undefined;
+	export let containerWidth = 'fit-content'
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
 	const dispatch = createEventDispatcher();
@@ -126,7 +127,7 @@
 	);
 </script>
 
-<div style="width: fit-content">
+<div style:width="{containerWidth}">
 	<div
 		aria-hidden="true"
 		use:popperRef

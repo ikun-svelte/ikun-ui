@@ -1312,9 +1312,9 @@ importers:
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon
-      '@ikun-ui/input':
+      '@ikun-ui/popover':
         specifier: workspace:*
-        version: link:../Input
+        version: link:../Popover
       '@ikun-ui/utils':
         specifier: workspace:*
         version: link:../../utils

@@ -3,6 +3,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { clsx } from 'clsx';
 	import { getPrefixCls } from '@ikun-ui/utils';
+	import { KPopover } from '@ikun-ui/popover';
 	import type { KSelectProps } from './types';
 
 	export let iconPrefix: KSelectProps['iconPrefix'] = '';
@@ -37,25 +38,47 @@
 	});
 	const prefixIconCls = `${prefixCls}--prefix`;
 	const suffixIconCls = `${prefixCls}--suffix`;
+
+	// TODO popover 最小宽度与 输入框一致
 </script>
 
-<div {...attrs} class={cnames}>
+<KPopover
+		trigger="click"
+		placement="bottom" cls="w-full"
+		containerWidth="initial">
+	<div {...attrs} class={cnames} slot="triggerEl">
 	<slot name="prefix">
 		{#if iconPrefix}
 			<KIcon icon={iconPrefix} cls={prefixIconCls} />
 		{/if}
 	</slot>
-	<select bind:value {disabled} on:change={handleSelect} class={selectCls}>
+	<!--<select bind:value {disabled} on:change={handleSelect} class={selectCls}>
 		{#if placeholder}
 			<option value="" disabled hidden>
 				{placeholder}
 			</option>
 		{/if}
 		<slot />
-	</select>
+	</select>-->
+	<input
+			class="k-select--inner"
+			readonly
+			{value}
+			{disabled}
+			{placeholder}
+	/>
 	<slot name="suffix">
 		{#if iconSuffix}
 			<KIcon icon={iconSuffix} cls={suffixIconCls} />
 		{/if}
 	</slot>
 </div>
+	<div slot="contentEl">
+		  <slot/>
+	</div>
+</KPopover>
+<style>
+	.k-select--inner{
+		--at-apply: w-full h-full;
+	}
+</style>
