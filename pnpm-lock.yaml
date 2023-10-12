@@ -222,6 +222,9 @@ importers:
       ora:
         specifier: ^7.0.1
         version: 7.0.1
+      playwright-chromium:
+        specifier: ^1.36.2
+        version: 1.38.1
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -1605,9 +1608,6 @@ importers:
       '@iconify-json/carbon':
         specifier: ^1.1.21
         version: 1.1.21
-      '@ikun-ui/core':
-        specifier: workspace:*
-        version: link:..
       '@ikun-ui/preset':
         specifier: workspace:*
         version: link:../preset
@@ -1635,9 +1635,6 @@ importers:
       eslint-plugin-svelte:
         specifier: ^2.34.0
         version: 2.34.0(eslint@8.51.0)(svelte@4.2.1)
-      playwright-chromium:
-        specifier: ^1.36.2
-        version: 1.38.1
       prettier:
         specifier: ^3.0.3
         version: 3.0.3

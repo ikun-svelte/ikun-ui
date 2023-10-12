@@ -164,7 +164,8 @@
 		"typescript": "^5.2.2",
 		"unocss": "^0.56.5",
 		"vite": "^4.4.9",
-		"vitest": "^0.34.4"
+		"vitest": "^0.34.4",
+		"playwright-chromium": "^1.36.2"
 	},
 	"lint-staged": {
 		"*.{svelte,js,ts,jsx,tsx,json}": [

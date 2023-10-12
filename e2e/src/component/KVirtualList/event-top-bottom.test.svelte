@@ -1,5 +1,5 @@
 <script>
-	import { KVirtualList } from '@ikun-ui/core';
+	import { KVirtualList } from '@ikun-ui/virtual-list';
 	let dataList = [];
 	for (let i = 0; i < 100; i++) {
 		dataList.push({ id: i, label: `this is item ${i}` });
