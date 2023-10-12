@@ -12,30 +12,42 @@ on:
   workflow_dispatch:
 
 jobs:
-  unit-test:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node: [18.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+      fail-fast: false
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - name: Setup PNPM
+        run: corepack enable
 
-      - name: Setup Node.js
+      - name: Set node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 18.x
           cache: pnpm
 
+      - name: Setup
+        run: npm i -g @antfu/ni
+
       - name: Install
-        run: pnpm install --no-frozen-lockfile
+        run: nci
+
+      - name: Playwright install
+        run: npx playwright install
 
       - name: Build
-        run: pnpm run build
+        run: nr build
 
       - name: Unit Test
-        run: pnpm run test:unit
-
-      - name: Install Playwright
-        run: pnpm install --filter "@ikun-ui/e2e" playwright-chromium
+        run: nr test:unit
 
       - name: E2E Test
-        run: pnpm run test:e2e
+        run: nr test:e2e
