@@ -46,7 +46,7 @@ jobs:
 
       - name: Setup dependencies
         run: |
-          nci
+          pnpm install
           npx playwright install
 
       - name: Build
