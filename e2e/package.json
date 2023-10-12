@@ -22,6 +22,7 @@
 	"devDependencies": {
 		"@iconify-json/carbon": "^1.1.21",
 		"@ikun-ui/preset": "workspace:*",
+		"@ikun-ui/core": "workspace:*",
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/kit": "^1.25.2",
 		"@sveltejs/package": "^2.2.2",
