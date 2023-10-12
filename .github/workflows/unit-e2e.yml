@@ -1,7 +1,4 @@
 name: 🌈 E2E Test
-env:
-  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 # Skip downloading during yarn install
-  PLAYWRIGHT_BROWSERS_PATH: 0 # Places binaries to node_modules/@playwright/test
 
 on:
   push:
@@ -40,14 +37,14 @@ jobs:
       - name: Setup
         run: npm i -g @antfu/ni
 
-      - name: Setup dependencies
+      - name: Install
         run: nci
-
-      - name: Build
-        run: nr build
 
       - name: Playwright install
         run: npx playwright install
+
+      - name: Build
+        run: nr build
 
       - name: E2E Test
         run: nr test:e2e
