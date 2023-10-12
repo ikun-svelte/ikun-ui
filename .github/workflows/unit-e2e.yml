@@ -46,5 +46,8 @@ jobs:
       - name: Build
         run: nr build
 
+      - name: Playwright install
+        run: npx playwright install
+
       - name: E2E Test
         run: nr test:e2e
