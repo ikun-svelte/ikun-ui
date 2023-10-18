@@ -124,8 +124,8 @@ async function writePkgJson(baseDir, originalCompName) {
   "name": "@ikun-ui/${originalCompName}",
   "version": "${version}",
   "type": "module",
-  "main": "./src/index.ts",
-  "types": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "svelte": "dist/index.js",
   "keywords": [
     "svelte",
@@ -137,6 +137,10 @@ async function writePkgJson(baseDir, originalCompName) {
     "svelte-kit",
     "dx"
   ],
+ "files": [
+  "dist",
+  "package.json"
+ ],
   "scripts": {
     "build": "npm run build:js && npm run build:svelte",
     "build:js": "tsc -p . --outDir dist/ --rootDir src/",
@@ -148,7 +152,7 @@ async function writePkgJson(baseDir, originalCompName) {
 	"main": "dist/index.js",
 	"module": "dist/index.js",
 	"svelte": "dist/index.js",
-	"types": "src/index.ts"
+	"types": "dist/index.d.ts"
   },
   "dependencies": {
     "@ikun-ui/icon": "workspace:*",
