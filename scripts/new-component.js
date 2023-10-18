@@ -124,8 +124,8 @@ async function writePkgJson(baseDir, originalCompName) {
   "name": "@ikun-ui/${originalCompName}",
   "version": "${version}",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.ts",
+  "types": "src/index.d.ts",
   "svelte": "dist/index.js",
   "keywords": [
     "svelte",

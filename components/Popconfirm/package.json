@@ -2,8 +2,8 @@
 	"name": "@ikun-ui/popconfirm",
 	"version": "0.0.11",
 	"type": "module",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"main": "src/index.ts",
+	"types": "src/index.d.ts",
 	"svelte": "dist/index.js",
 	"keywords": [
 		"svelte",
