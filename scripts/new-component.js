@@ -126,7 +126,7 @@ async function writePkgJson(baseDir, originalCompName) {
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.d.ts",
-  "svelte": "dist/index.js",
+  "svelte": "src/index.ts",
   "keywords": [
     "svelte",
     "svelte3",
@@ -145,7 +145,8 @@ async function writePkgJson(baseDir, originalCompName) {
     "build": "npm run build:js && npm run build:svelte",
     "build:js": "tsc -p . --outDir dist/ --rootDir src/",
     "build:svelte": "svelte-strip strip src/ dist",
-    "publish:npm": "pnpm publish --no-git-checks --access public"
+    "publish:pre": "node ../../scripts/pre-publish.js",
+    "publish:npm": "pnpm run publish:pre && pnpm publish --no-git-checks --access public"
   },
   "publishConfig": {
 	"access": "public",
