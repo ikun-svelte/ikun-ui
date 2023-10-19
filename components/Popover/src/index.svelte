@@ -12,7 +12,12 @@
 	export let attrs: KPopoverProps['attrs'] = {};
 	export let disabled: KPopoverProps['disabled'] = false;
 	export let cls: KPopoverProps['cls'] = undefined;
-	export let containerWidth = 'fit-content'
+	export let clsTrigger: KPopoverProps['cls'] = undefined;
+
+	/**
+	 * @internal
+	 */
+	export let width:KPopoverProps['cls'] = undefined;
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
 	const dispatch = createEventDispatcher();
@@ -125,20 +130,23 @@
 		`${prefixCls}--base__dark`,
 		cls
 	);
+
+	$: triggerCls = clsx('flex', clsTrigger)
 </script>
 
-<div style:width="{containerWidth}">
-	<div
+
+<div
 		aria-hidden="true"
 		use:popperRef
 		on:click={handleClick}
+		class="{triggerCls}"
+		style:width="{width}"
 		on:mouseenter={handleMouseenter}
-		on:mouseleave={handleMouseleave}
-	>
+		on:mouseleave={handleMouseleave}>
 		<slot name="triggerEl" />
 	</div>
 
-	{#if isShow}
+{#if isShow}
 		<div
 			class={cnames}
 			out:scale={{ duration: 200, start: 0.3, opacity: 0 }}
@@ -162,7 +170,7 @@
 			/>
 		</div>
 	{/if}
-</div>
+
 
 <style>
 	[k-popover-arrow]::after {
