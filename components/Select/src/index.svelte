@@ -23,15 +23,17 @@
 
 	// updateValue
 	const dispatch = createEventDispatcher();
+	let popoverRef: any = null
 	const handleSelect = (e: CustomEvent) => {
 		if (disabled) return;
 		dispatch('updateValue', e.detail);
+		popoverRef.updateShow(false)
 	};
 
+	// set popover's trigger and content dom width
 	let inputSelectRef: HTMLInputElement | null = null
 	let popoverWidth:undefined | string = undefined
 	let triggerWidth:undefined | string = undefined
-	// set popover's trigger and content dom width
 	const setPopoverW = () => {
 		if(inputSelectRef){
 			const { width } = inputSelectRef.getBoundingClientRect();
@@ -40,11 +42,9 @@
 			popoverWidth = `${width}px`
 		}
 	}
-
 	onMount(() => {
 		setPopoverW()
 	})
-
 
 	// class names
 	const prefixCls = getPrefixCls('select');
@@ -70,7 +70,6 @@
 	// TODO 禁用
 	// TODO 选项高亮
 	// TODO 支持绑定对象
-	// TODO 点击后关闭
 	// TODO 自定义内容渲染
 	// TODO 前置图标插槽
 	// TODO 后置图标插槽
@@ -88,6 +87,7 @@
 
 <KPopover
 		trigger="click"
+		bind:this={popoverRef}
 		clsTrigger={clsTrigger}
 		width={triggerWidth}
 		placement="bottom">
