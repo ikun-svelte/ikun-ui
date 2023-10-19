@@ -52,7 +52,6 @@
 		"build-lib": "tsup --config tsup.config.ts",
 		"build:utils": "pnpm run --filter @ikun-ui/utils build",
 		"build:components": "esno scripts/build.js",
-		"watch": "esno scripts/watch.js",
 		"build#docs": "pnpm run --filter @ikun-ui/docs docs:build",
 		"preview:docs": "pnpm run --filter @ikun-ui/docs docs:preview",
 		"test": "pnpm run test:unit && pnpm run test:e2e",
