@@ -2,6 +2,7 @@ import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
 import KSelect from '../src';
 import KSelectValue from './select.value.svelte';
+import KSelectValueObj from './select.object.svelte';
 import KSelectSlots from './select.slots.svelte';
 
 let host: HTMLElement;
@@ -25,9 +26,21 @@ describe('Test: KSelect', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const selectElm = host.getElementsByTagName('select')[0] as HTMLSelectElement;
+		const selectElm = host.getElementsByTagName('input')[0] as HTMLSelectElement;
 		expect(selectElm).not.toBeNull();
 		expect(selectElm.value).toBe('Normal');
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: value & object', async () => {
+		const instance = new KSelectValueObj({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const selectElm = host.getElementsByTagName('input')[0] as HTMLSelectElement;
+		expect(selectElm).not.toBeNull();
+		expect(selectElm.value).toBe('foo8');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -55,8 +68,7 @@ describe('Test: KSelect', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const firstOptionElm = host.getElementsByTagName('option')[0] as HTMLOptionElement;
-		expect(firstOptionElm.innerHTML.includes('绣面芙蓉一笑开')).toBeTruthy();
+		expect(host.innerHTML.includes('placeholder="绣面芙蓉一笑开"')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 

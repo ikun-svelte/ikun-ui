@@ -71,7 +71,6 @@
 
 	let isEnter = false;
 	const handleMouseenter = () => {
-		debugger;
 		if (trigger === 'hover') {
 			isEnter = true;
 			updateShow(true);
