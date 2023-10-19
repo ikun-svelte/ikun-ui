@@ -31,7 +31,3 @@ Thanks to everyone who has already contributed to ikun-ui !
 - [svelte](https://github.com/sveltejs/svelte)
 - [unocss](https://github.com/unocss/unocss)
 - [onu-ui](https://github.com/onu-ui/onu-ui)
-
-* 🎯 组件子包目前DEV必须重新打包才能生效
-* 🎯 svelte-strip 和 tsc 打包速度太慢
-* 🎯(准备转向 svelte-kit 的 lib 模板，寻求一种能够dev无序重新构建，无多余内容分包，构建速度快的方式)
