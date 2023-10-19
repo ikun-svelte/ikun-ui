@@ -12,12 +12,12 @@
 	export let attrs: KPopoverProps['attrs'] = {};
 	export let disabled: KPopoverProps['disabled'] = false;
 	export let cls: KPopoverProps['cls'] = undefined;
-	export let clsTrigger: KPopoverProps['cls'] = undefined;
+	export let clsTrigger: KPopoverProps['clsTrigger'] = undefined;
 
 	/**
 	 * @internal
 	 */
-	export let width:KPopoverProps['cls'] = undefined;
+	export let width: KPopoverProps['width'] = undefined;
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
 	const dispatch = createEventDispatcher();
@@ -71,6 +71,7 @@
 
 	let isEnter = false;
 	const handleMouseenter = () => {
+		debugger;
 		if (trigger === 'hover') {
 			isEnter = true;
 			updateShow(true);
@@ -131,46 +132,45 @@
 		cls
 	);
 
-	$: triggerCls = clsx('flex', clsTrigger)
+	$: triggerCls = clsx('flex', clsTrigger);
 </script>
 
-
 <div
-		aria-hidden="true"
-		use:popperRef
-		on:click={handleClick}
-		class="{triggerCls}"
-		style:width="{width}"
-		on:mouseenter={handleMouseenter}
-		on:mouseleave={handleMouseleave}>
-		<slot name="triggerEl" />
-	</div>
+	aria-hidden="true"
+	use:popperRef
+	on:click={handleClick}
+	class={triggerCls}
+	style:width
+	on:mouseenter={handleMouseenter}
+	on:mouseleave={handleMouseleave}
+>
+	<slot name="triggerEl" />
+</div>
 
 {#if isShow}
+	<div
+		class={cnames}
+		out:scale={{ duration: 200, start: 0.3, opacity: 0 }}
+		in:scale={{ duration: 200, start: 0.3, opacity: 0 }}
+		data-popper-placement
+		aria-hidden="true"
+		{...attrs}
+		on:mouseenter={handleMouseenter}
+		on:mouseleave={handleMouseleave}
+		use:clickOutside
+		use:popperContent
+	>
+		<slot name="contentEl" />
 		<div
-			class={cnames}
-			out:scale={{ duration: 200, start: 0.3, opacity: 0 }}
-			in:scale={{ duration: 200, start: 0.3, opacity: 0 }}
-			data-popper-placement
-			aria-hidden="true"
-			{...attrs}
-			on:mouseenter={handleMouseenter}
-			on:mouseleave={handleMouseleave}
-			use:clickOutside
-			use:popperContent
-		>
-			<slot name="contentEl" />
-			<div
-				{...{ 'k-popover-arrow': true }}
-				data-popper-arrow-bottom
-				data-popper-arrow-top
-				data-popper-arrow-right
-				data-popper-arrow-left
-				bind:this={arrowRef}
-			/>
-		</div>
-	{/if}
-
+			{...{ 'k-popover-arrow': true }}
+			data-popper-arrow-bottom
+			data-popper-arrow-top
+			data-popper-arrow-right
+			data-popper-arrow-left
+			bind:this={arrowRef}
+		/>
+	</div>
+{/if}
 
 <style>
 	[k-popover-arrow]::after {

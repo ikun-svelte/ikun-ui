@@ -7,5 +7,7 @@ export type KPopoverProps = {
 	trigger: IKunTrigger;
 	disabled: boolean;
 	cls: ClassValue;
+	clsTrigger: ClassValue;
+	width: string | null | undefined;
 	attrs: Record<string, string>;
 };

@@ -28,7 +28,7 @@ describe('Test: KPopover', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const Elm = host.children[0].getElementsByTagName('div')[0];
+		const Elm = host.children[0];
 		Elm.dispatchEvent(
 			new MouseEvent('mouseenter', {
 				cancelable: true
@@ -47,7 +47,7 @@ describe('Test: KPopover', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const Elm = host.children[0].getElementsByTagName('div')[0];
+		const Elm = host.children[0];
 		Elm.dispatchEvent(
 			new MouseEvent('mouseenter', {
 				cancelable: true
@@ -66,7 +66,7 @@ describe('Test: KPopover', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const Elm = host.children[0].getElementsByTagName('div')[0];
+		const Elm = host.children[0];
 		Elm.click();
 		vi.runAllTimers();
 		await tick();
@@ -80,7 +80,7 @@ describe('Test: KPopover', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const Elm = host.children[0].getElementsByTagName('div')[0];
+		const Elm = host.children[0];
 		Elm.dispatchEvent(
 			new MouseEvent('mouseenter', {
 				cancelable: true
@@ -106,7 +106,7 @@ describe('Test: KPopover', () => {
 			mockFn();
 		});
 		await tick();
-		const Elm = host.children[0].getElementsByTagName('div')[0];
+		const Elm = host.children[0];
 		Elm.dispatchEvent(
 			new MouseEvent('mouseenter', {
 				cancelable: true

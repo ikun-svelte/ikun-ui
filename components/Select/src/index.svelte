@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { KIcon } from '@ikun-ui/icon';
-	import { createEventDispatcher, onMount } from "svelte";
+	import { createEventDispatcher, onMount } from 'svelte';
 	import { clsx } from 'clsx';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { KPopover } from '@ikun-ui/popover';
@@ -16,35 +16,34 @@
 	export let disabled: KSelectProps['disabled'] = false;
 	export let attrs: KSelectProps['attrs'] = {};
 
-
-	export let labelKey:string = 'label'
-	export let valueKey:string = 'value'
-	export let dataList:Array<Record<string, any>> = []
+	export let labelKey: string = 'label';
+	export let valueKey: string = 'value';
+	export let dataList: Array<Record<string, any>> = [];
 
 	// updateValue
 	const dispatch = createEventDispatcher();
-	let popoverRef: any = null
+	let popoverRef: any = null;
 	const handleSelect = (e: CustomEvent) => {
 		if (disabled) return;
 		dispatch('updateValue', e.detail);
-		popoverRef.updateShow(false)
+		popoverRef.updateShow(false);
 	};
 
 	// set popover's trigger and content dom width
-	let inputSelectRef: HTMLElement | null = null
-	let popoverWidth:undefined | string = undefined
-	let triggerWidth:undefined | string = undefined
+	let inputSelectRef: HTMLElement | null = null;
+	let popoverWidth: undefined | string = undefined;
+	let triggerWidth: undefined | string = undefined;
 	const setPopoverW = () => {
-		if(inputSelectRef){
+		if (inputSelectRef) {
 			const { width } = inputSelectRef.getBoundingClientRect();
 			const { marginRight, marginLeft } = window.getComputedStyle(inputSelectRef);
-			triggerWidth = `${width + parseInt(marginRight, 10) + parseInt(marginLeft, 10)}px`
-			popoverWidth = `${width}px`
+			triggerWidth = `${width + parseInt(marginRight, 10) + parseInt(marginLeft, 10)}px`;
+			popoverWidth = `${width}px`;
 		}
-	}
+	};
 	onMount(() => {
-		setPopoverW()
-	})
+		setPopoverW();
+	});
 
 	// class names
 	const prefixCls = getPrefixCls('select');
@@ -65,7 +64,6 @@
 	const prefixIconCls = `${prefixCls}--prefix`;
 	const suffixIconCls = `${prefixCls}--suffix`;
 
-
 	// TODO 选项禁用
 	// TODO 禁用
 	// TODO 选项高亮
@@ -81,44 +79,37 @@
 	// ⭕TODO 选项分组
 	// ⭕TODO 基础多选
 	// ⭕TODO 多选最大显示
+
 	// ⭕TODO 选项筛选
 	// ⭕TODO 远程搜索
 </script>
 
 <KPopover
-		trigger="click"
-		bind:this={popoverRef}
-		clsTrigger={clsTrigger}
-		width={triggerWidth}
-		placement="bottom">
+	trigger="click"
+	bind:this={popoverRef}
+	{clsTrigger}
+	width={triggerWidth}
+	placement="bottom"
+>
 	<div {...attrs} class={cnames} slot="triggerEl" bind:this={inputSelectRef}>
 		<slot name="prefix">
 			{#if iconPrefix}
 				<KIcon icon={iconPrefix} cls={prefixIconCls} />
 			{/if}
 		</slot>
-		<input
-				class={selectCls}
-				readonly
-				{value}
-				{disabled}
-				{placeholder}/>
+		<input class={selectCls} readonly {value} {disabled} {placeholder} />
 		<slot name="suffix">
 			{#if iconSuffix}
 				<KIcon icon={iconSuffix} cls={suffixIconCls} />
 			{/if}
 		</slot>
-  </div>
-	<div slot="contentEl" style:width="{popoverWidth}">
+	</div>
+	<div slot="contentEl" style:width={popoverWidth}>
 		{#if $$slots.default}
-			<slot/>
+			<slot />
 		{:else}
 			{#each dataList as item}
-				<KOption
-					label="{item[labelKey]}"
-					value="{item[valueKey]}"
-					on:click={handleSelect}>
-				</KOption>
+				<KOption label={item[labelKey]} value={item[valueKey]} on:click={handleSelect}></KOption>
 			{/each}
 		{/if}
 	</div>
