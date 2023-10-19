@@ -36,33 +36,6 @@ export async function runCommand(command, dir, userOptions) {
 	});
 }
 
-/**
- * Avoid excessive execution of 'watch.js'.
- */
-class TaskRunnerState {
-	/**@type {boolean}`*/
-	_value;
-	/**@type {TaskRunnerState | null} */
-	static instance = null;
-	constructor() {
-		if (TaskRunnerState.instance) {
-			return TaskRunnerState.instance;
-		}
-		this._value = false;
-		TaskRunnerState.instance = this;
-	}
-	get value() {
-		return this._value;
-	}
-	/**
-	 * @param {boolean} val
-	 * @returns {void}
-	 */
-	set value(val) {
-		this._value = val;
-	}
-}
-
 function runTaskPool(list, limit, asyncHandle) {
 	let recursion = (arr) => {
 		return asyncHandle(arr.shift()).then(() => {
@@ -77,7 +50,7 @@ function runTaskPool(list, limit, asyncHandle) {
 	}
 }
 
-function runTaskCommand({ rootDir, pkgPath, buildCommand, userOptions, action, taskRunnerState }) {
+function runTaskCommand({ rootDir, pkgPath, buildCommand, userOptions, action }) {
 	return new Promise((resolve, reject) => {
 		const packageJsonPath = path.join(rootDir, pkgPath);
 		try {
@@ -99,17 +72,11 @@ function runTaskCommand({ rootDir, pkgPath, buildCommand, userOptions, action, t
 			log('error', `Error reading or parsing package.json at ${packageJsonPath}`);
 			log('error', error);
 			reject();
-		} finally {
-			taskRunnerState.value = false;
 		}
 	});
 }
 
 export function runTask(buildCommand, root, action, userOptions) {
-	const taskRunnerState = new TaskRunnerState();
-	if (taskRunnerState.value) return;
-	taskRunnerState.value = true;
-
 	// set log prefix
 	setGlobalPrefix('[ikun-ui]: ');
 	const rootDir = path.resolve(root);
@@ -128,7 +95,6 @@ export function runTask(buildCommand, root, action, userOptions) {
 			buildCommand,
 			userOptions,
 			action,
-			taskRunnerState,
 			pkgPath: m
 		};
 	});

@@ -3,7 +3,7 @@
 	"description": "🐔 A Svelte.js based UnoCSS UI library that allows you to make websites",
 	"packageManager": "pnpm@8.7.5",
 	"type": "module",
-	"version": "0.0.10",
+	"version": "0.0.13-beta.0",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -52,7 +52,6 @@
 		"build-lib": "tsup --config tsup.config.ts",
 		"build:utils": "pnpm run --filter @ikun-ui/utils build",
 		"build:components": "esno scripts/build.js",
-		"watch": "esno scripts/watch.js",
 		"build#docs": "pnpm run --filter @ikun-ui/docs docs:build",
 		"preview:docs": "pnpm run --filter @ikun-ui/docs docs:preview",
 		"test": "pnpm run test:unit && pnpm run test:e2e",
@@ -164,6 +163,7 @@
 		"typescript": "^5.2.2",
 		"unocss": "^0.56.5",
 		"vite": "^4.4.9",
+		"fs-extra": "11.1.1",
 		"vitest": "^0.34.4",
 		"playwright-chromium": "^1.36.2"
 	},

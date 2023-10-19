@@ -1,7 +1,7 @@
 export const inputShortcuts: Record<string, string> = {
 	// input
 	'k-input': 'relative fi',
-	'k-input--base': 'w-full relative fi k-border border-ikun-bd-base box-border',
+	'k-input--base': 'w-full relative fi k-border border-ikun-bd-base box-border overflow-hidden',
 	'k-input--inner': 'outline-none w-full flex-auto border-none text-size-inherit',
 	'k-input--inner__textarea': 'p-2 rounded',
 	'k-input--icon': 'op50',
