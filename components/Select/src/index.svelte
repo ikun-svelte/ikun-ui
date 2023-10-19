@@ -31,7 +31,7 @@
 	};
 
 	// set popover's trigger and content dom width
-	let inputSelectRef: HTMLInputElement | null = null
+	let inputSelectRef: HTMLElement | null = null
 	let popoverWidth:undefined | string = undefined
 	let triggerWidth:undefined | string = undefined
 	const setPopoverW = () => {
