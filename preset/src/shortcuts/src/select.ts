@@ -7,6 +7,9 @@ export const selectShortcuts: Record<string, string> = {
 	'k-select--prefix': 'mr-0.4em text-1.1em op50',
 	'k-select--suffix': 'ml-0.4em text-1.1em op50',
 	'k-select--inner': 'w-full flex-auto !outline-none border-transparent text-base',
+	// option ikun:50:bg-ikun-main
+	'k-select--option': 'rounded pl-2 py-1 box-border cursor-pointer',
+	'k-select--option__hover': 'hover:bg-ikun-main hover:text-white',
 	// dark
 	'k-select--inner__dark': 'dark:bg-ikun-dark-300',
 	'k-select--base__disabled__dark': 'dark:bg-ikun-dark',

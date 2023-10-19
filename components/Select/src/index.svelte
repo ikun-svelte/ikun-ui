@@ -4,6 +4,7 @@
 	import { clsx } from 'clsx';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { KPopover } from '@ikun-ui/popover';
+	import KOption from './option.svelte';
 	import type { KSelectProps } from './types';
 
 	export let iconPrefix: KSelectProps['iconPrefix'] = '';
@@ -14,11 +15,17 @@
 	export let placeholder: KSelectProps['placeholder'] = '';
 	export let disabled: KSelectProps['disabled'] = false;
 	export let attrs: KSelectProps['attrs'] = {};
+
+
+	export let labelKey:string = 'label'
+	export let valueKey:string = 'value'
+	export let dataList:Array<Record<string, any>> = []
+
 	// updateValue
 	const dispatch = createEventDispatcher();
-	const handleSelect = (e: Event) => {
+	const handleSelect = (e: CustomEvent) => {
 		if (disabled) return;
-		dispatch('updateValue', (e.target as HTMLSelectElement).value);
+		dispatch('updateValue', e.detail);
 	};
 
 	let inputSelectRef: HTMLInputElement | null = null
@@ -59,6 +66,24 @@
 	const suffixIconCls = `${prefixCls}--suffix`;
 
 
+	// TODO 选项禁用
+	// TODO 禁用
+	// TODO 选项高亮
+	// TODO 支持绑定对象
+	// TODO 点击后关闭
+	// TODO 自定义内容渲染
+	// TODO 前置图标插槽
+	// TODO 后置图标插槽
+	// TODO 展开图标动画
+	// TODO 可清除
+	// TODO 最大高度
+	// TODO 虚拟列表
+
+	// ⭕TODO 选项分组
+	// ⭕TODO 基础多选
+	// ⭕TODO 多选最大显示
+	// ⭕TODO 选项筛选
+	// ⭕TODO 远程搜索
 </script>
 
 <KPopover
@@ -72,14 +97,6 @@
 				<KIcon icon={iconPrefix} cls={prefixIconCls} />
 			{/if}
 		</slot>
-	<!--<select bind:value {disabled} on:change={handleSelect} class={selectCls}>
-		{#if placeholder}
-			<option value="" disabled hidden>
-				{placeholder}
-			</option>
-		{/if}
-		<slot />
-	</select>-->
 		<input
 				class={selectCls}
 				readonly
@@ -93,6 +110,16 @@
 		</slot>
   </div>
 	<div slot="contentEl" style:width="{popoverWidth}">
-		  <slot/>
+		{#if $$slots.default}
+			<slot/>
+		{:else}
+			{#each dataList as item}
+				<KOption
+					label="{item[labelKey]}"
+					value="{item[valueKey]}"
+					on:click={handleSelect}>
+				</KOption>
+			{/each}
+		{/if}
 	</div>
 </KPopover>
