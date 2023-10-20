@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { KIcon } from '@ikun-ui/icon';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { KVirtualList } from '@ikun-ui/virtual-list';
+	import { createEventDispatcher, onMount, tick } from 'svelte';
 	import { clsx } from 'clsx';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { KPopover } from '@ikun-ui/popover';
 	import KOption from './option.svelte';
 	import type { KSelectProps } from './types';
-	import {isObject, isString} from "baiwusanyu-utils";
+	import { isObject, isString } from 'baiwusanyu-utils';
 
 	export let iconPrefix: KSelectProps['iconPrefix'] = '';
 	export let iconSuffix: KSelectProps['iconSuffix'] = '';
@@ -20,8 +21,8 @@
 	export let labelKey: string = 'label';
 	export let valueKey: string = 'value';
 	export let dataList: Array<Record<string, any>> = [];
-	export let maxHeight: string = '250px';
-	export let clearable: boolean = false
+	export let maxHeight: number = 250;
+	export let clearable: boolean = false;
 
 	// updateValue
 	const dispatch = createEventDispatcher();
@@ -49,33 +50,65 @@
 	});
 
 	const getLabel = (item: KSelectProps['value']) => {
-		if(isObject(item)){
-			const label = item[labelKey as keyof typeof item] || ''
-			return label.toString()
+		if (isObject(item)) {
+			const label = item[labelKey as keyof typeof item] || '';
+			return label.toString();
 		}
-		return item.toString()
-	}
+		return item.toString();
+	};
 	const isActive = (item: KSelectProps['value']) => {
-		if(isObject(item)){
-			return item[valueKey as keyof typeof item] === value[valueKey as keyof typeof value]
+		if (isObject(item)) {
+			return item[valueKey as keyof typeof item] === value[valueKey as keyof typeof value];
 		}
-		return item  === value
-	}
+		return item === value;
+	};
 
 	// clear value
-	let isShowClear = false
+	let isShowClear = false;
 	const showClearIcon = (show: boolean) => {
-		getLabel(value) && (isShowClear = show)
-	}
-	const handleClear = (e: MouseEvent) => {
-		e.stopPropagation()
-		handleAnimation()
-		if(isObject(value)){
-			handleSelect({})
-		} else if(isString(value)){
-			handleSelect('')
+		if (show) {
+			getLabel(value) && (isShowClear = show);
 		} else {
-			handleSelect(undefined)
+			isShowClear = show;
+		}
+	};
+	const handleClear = (e: MouseEvent) => {
+		e.stopPropagation();
+		handleAnimation();
+		if (isObject(value)) {
+			handleSelect({});
+		} else if (isString(value)) {
+			handleSelect('');
+		} else {
+			handleSelect(undefined);
+		}
+	};
+
+	function onOpen(e: CustomEvent) {
+		handleExpend(e);
+		if (e.detail) {
+			setVList();
+		}
+	}
+
+	// expend icon
+	let expendIcon = 'i-carbon-chevron-down ';
+	function handleExpend(e: CustomEvent) {
+		expendIcon = e.detail ? 'i-carbon-chevron-down rotate-180' : 'i-carbon-chevron-down';
+	}
+
+	let popoverModalRef: HTMLElement | null = null;
+	let heightInner = 'initial';
+	async function setVList() {
+		await tick();
+		if (popoverModalRef) {
+			const container = popoverModalRef.childNodes[0];
+			if (container) {
+				const { height } = (container as HTMLElement).getBoundingClientRect();
+				if (height > maxHeight) {
+					heightInner = `${maxHeight}px`;
+				}
+			}
 		}
 	}
 
@@ -97,10 +130,7 @@
 	});
 	const prefixIconCls = `${prefixCls}--prefix`;
 	const suffixIconCls = `${prefixCls}--suffix`;
-	const clearIconCls = clsx(
-			`${prefixCls}--clear`,
-			`${prefixCls}--clear__hover`,
-	)
+	const selectIconCls = clsx(`${prefixCls}--icon`);
 
 	// clear icon animation
 	let animationCls = '';
@@ -109,14 +139,14 @@
 		setTimeout(() => {
 			animationCls = '';
 		}, 300);
-	};
+	}
 
 	// TODO 禁用 unit test
 	// TODO 自定义内容渲染
-	// TODO 展开图标动画
 	// TODO 可清除 unit test
-	// TODO 虚拟列表
+	// TODO 虚拟列表 unit test
 	// TODO 展开定位
+	// TODO 宽度
 
 	// ⭕TODO 选项分组
 	// ⭕TODO 基础多选
@@ -133,63 +163,77 @@
 	bind:this={popoverRef}
 	{clsTrigger}
 	cls="px-0"
+	on:change={onOpen}
 	width={triggerWidth}
 	placement="bottom"
 >
-	<div {...attrs}
-		 class={cnames}
-		 slot="triggerEl"
-		 aria-hidden="true"
-		 on:mouseenter={()=> showClearIcon(true)}
-		 on:mouseleave={()=> showClearIcon(false)}
-		 bind:this={inputSelectRef}>
+	<div
+		{...attrs}
+		class={cnames}
+		slot="triggerEl"
+		aria-hidden="true"
+		on:mouseenter={() => showClearIcon(true)}
+		on:mouseleave={() => showClearIcon(false)}
+		bind:this={inputSelectRef}
+	>
 		<slot name="prefix">
 			{#if iconPrefix}
-				<KIcon icon={iconPrefix} cls={prefixIconCls} width="auto" height="auto"/>
+				<KIcon icon={iconPrefix} cls={prefixIconCls} width="auto" height="auto" />
 			{/if}
 		</slot>
 		<input class={selectCls} readonly value={getLabel(value)} {disabled} {placeholder} />
 		<slot name="suffix">
 			{#if iconSuffix}
-				<KIcon icon={iconSuffix} cls={suffixIconCls} width="auto" height="auto"/>
+				<KIcon icon={iconSuffix} cls={suffixIconCls} width="auto" height="auto" />
 			{/if}
 		</slot>
 		{#if clearable && isShowClear}
-			<div on:click={handleClear} aria-hidden="true" class="{animationCls}">
-				<KIcon icon='i-carbon-close-outline'
-					   cls="{clearIconCls}"
-					   width="auto"
-					   height="auto"/>
+			<div on:click={handleClear} aria-hidden="true" class={animationCls}>
+				<KIcon icon="i-carbon-close-outline" cls={selectIconCls} width="16px" height="16px" />
 			</div>
+		{:else}
+			<KIcon icon={expendIcon} cls={selectIconCls} width="16px" height="16px" />
 		{/if}
 	</div>
-	<div slot="contentEl"
-		 class="ikun-scroll-bar"
-		 style:overflow-y="auto"
-		 style:width={popoverWidth}
-		 style:max-height="{maxHeight}">
+	<div
+		slot="contentEl"
+		class="ikun-scroll-bar"
+		bind:this={popoverModalRef}
+		style:overflow-y="auto"
+		style:width={popoverWidth}
+		style:height={heightInner}
+		style:max-height={`${maxHeight}px`}
+	>
 		{#if $$slots.default}
 			<slot />
 		{:else}
-			{#each dataList as item (item[valueKey] || item)}
+			<!--{#each dataList as item (item[valueKey] || item)}
 				<KOption label={getLabel(item)}
 						 isActive={isActive(item)}
 						 on:click={() => handleSelect(item)}>
 				</KOption>
-			{/each}
+			{/each}-->
+			<KVirtualList data={dataList} key={valueKey} let:data cls="ikun-scroll-bar">
+				<KOption
+					label={getLabel(data)}
+					isActive={isActive(data)}
+					on:click={() => handleSelect(data)}
+				></KOption>
+			</KVirtualList>
 		{/if}
 	</div>
 </KPopover>
+
 <style>
-	.ikun-scroll-bar::-webkit-scrollbar-track-piece {
+	:global(.ikun-scroll-bar::-webkit-scrollbar-track-piece) {
 		background: transparent;
 	}
 
-	.ikun-scroll-bar::-webkit-scrollbar {
+	:global(.ikun-scroll-bar::-webkit-scrollbar) {
 		width: 6px;
 	}
 
-	.ikun-scroll-bar::-webkit-scrollbar-thumb {
+	:global(.ikun-scroll-bar::-webkit-scrollbar-thumb) {
 		background: var(--ikun-light-800);
 		border-radius: 20px;
 	}
