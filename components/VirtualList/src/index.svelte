@@ -131,9 +131,6 @@
 	export function scrollToOffset(offset: number) {
 		if (!isBrowser()) return;
 		if (root) {
-			if(offset === 5800){
-				debugger
-			}
 			root[directionKey] = offset;
 		}
 	}
@@ -146,7 +143,6 @@
 			scrollToBottom();
 		} else {
 			const offset = virtual.getOffset(index);
-			console.log('scrollToOffset', offset)
 			scrollToOffset(offset);
 		}
 	}
@@ -197,7 +193,6 @@
 
 	function onRangeChanged(_range: VRange) {
 		range = _range;
-		console.log(range)
 		paddingStyle = paddingStyle = isHorizontal
 			? `0px ${range.padBehind}px 0px ${range.padFront}px`
 			: `${range.padFront}px 0px ${range.padBehind}px`;

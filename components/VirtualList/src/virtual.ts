@@ -292,7 +292,6 @@ export default class {
 
 	// setting to a new range and rerender
 	updateRange(start: number, end: number) {
-		debugger
 		if (this.range) {
 			this.range.start = start;
 			this.range.end = end;

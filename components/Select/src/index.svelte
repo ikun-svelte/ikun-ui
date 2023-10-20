@@ -100,7 +100,7 @@
 
 	// set virtual list height and locate item
 	let popoverModalRef: HTMLElement | null = null;
-	let vListRef: HTMLElement | null = null;
+	let vListRef: any = null;
 	let heightInner = 'initial';
 	async function setVList() {
 		await tick();
@@ -120,8 +120,8 @@
 	async function locateItem(){
 		for(let i = 0; i < dataList.length; i++){
 			if(isActive(dataList[i]) ){
-				console.log('##########locateItem', i)
-				vListRef.scrollToIndex(i);
+				vListRef && vListRef.scrollToIndex(30);
+				vListRef && vListRef.scrollToIndex(i - 5);
 				break;
 			}
 		}
@@ -225,10 +225,10 @@
 			<slot />
 		{:else}
 			<KVirtualList data={dataList}
-										key={key}
-										bind:this={vListRef}
-										let:data
-										cls="ikun-scroll-bar">
+						  key={key}
+						  bind:this={vListRef}
+						  let:data
+						  cls="ikun-scroll-bar">
 				<KOption
 					label={getLabel(data)}
 					isActive={isActive(data)}
