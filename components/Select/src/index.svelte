@@ -20,6 +20,7 @@
 
 	export let labelKey: string = 'label';
 	export let valueKey: string = 'value';
+	export let key: string = 'id';
 	export let dataList: Array<Record<string, any>> = [];
 	export let maxHeight: number = 250;
 	export let clearable: boolean = false;
@@ -97,20 +98,35 @@
 		expendIcon = e.detail ? 'i-carbon-chevron-down rotate-180' : 'i-carbon-chevron-down';
 	}
 
+	// set virtual list height and locate item
 	let popoverModalRef: HTMLElement | null = null;
+	let vListRef: HTMLElement | null = null;
 	let heightInner = 'initial';
 	async function setVList() {
 		await tick();
 		if (popoverModalRef) {
 			const container = popoverModalRef.childNodes[0];
 			if (container) {
-				const { height } = (container as HTMLElement).getBoundingClientRect();
+				const { height } = (container as HTMLElement).children[0].getBoundingClientRect()
 				if (height > maxHeight) {
 					heightInner = `${maxHeight}px`;
+					await tick()
+					vListRef && locateItem()
 				}
 			}
 		}
 	}
+
+	async function locateItem(){
+		for(let i = 0; i < dataList.length; i++){
+			if(isActive(dataList[i]) ){
+				console.log('##########locateItem', i)
+				vListRef.scrollToIndex(i);
+				break;
+			}
+		}
+	}
+
 
 	// class names
 	const prefixCls = getPrefixCls('select');
@@ -142,11 +158,12 @@
 	}
 
 	// TODO 禁用 unit test
-	// TODO 自定义内容渲染
+	// TODO 自定义内容渲染 🎯 unit test
 	// TODO 可清除 unit test
 	// TODO 虚拟列表 unit test
-	// TODO 展开定位
-	// TODO 宽度
+	// TODO 展开定位 🎯 unit test
+	// TODO string[] 和 number[] 支持 virtual list
+	// TODO 宽度 🎯 unit test
 
 	// ⭕TODO 选项分组
 	// ⭕TODO 基础多选
@@ -207,13 +224,11 @@
 		{#if $$slots.default}
 			<slot />
 		{:else}
-			<!--{#each dataList as item (item[valueKey] || item)}
-				<KOption label={getLabel(item)}
-						 isActive={isActive(item)}
-						 on:click={() => handleSelect(item)}>
-				</KOption>
-			{/each}-->
-			<KVirtualList data={dataList} key={valueKey} let:data cls="ikun-scroll-bar">
+			<KVirtualList data={dataList}
+										key={key}
+										bind:this={vListRef}
+										let:data
+										cls="ikun-scroll-bar">
 				<KOption
 					label={getLabel(data)}
 					isActive={isActive(data)}
