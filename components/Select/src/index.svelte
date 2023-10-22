@@ -107,26 +107,24 @@
 		if (popoverModalRef) {
 			const container = popoverModalRef.childNodes[0];
 			if (container) {
-				const { height } = (container as HTMLElement).children[0].getBoundingClientRect()
+				const { height } = (container as HTMLElement).children[0].getBoundingClientRect();
 				if (height > maxHeight) {
 					heightInner = `${maxHeight}px`;
-					await tick()
-					vListRef && locateItem()
+					await tick();
+					vListRef && locateItem();
 				}
 			}
 		}
 	}
 
-	async function locateItem(){
-		for(let i = 0; i < dataList.length; i++){
-			if(isActive(dataList[i]) ){
-				vListRef && vListRef.scrollToIndex(30);
-				vListRef && vListRef.scrollToIndex(i - 5);
+	async function locateItem() {
+		for (let i = 0; i < dataList.length; i++) {
+			if (isActive(dataList[i])) {
+				vListRef && vListRef.scrollToIndex(i - 3);
 				break;
 			}
 		}
 	}
-
 
 	// class names
 	const prefixCls = getPrefixCls('select');
@@ -161,8 +159,8 @@
 	// TODO 自定义内容渲染 🎯 unit test
 	// TODO 可清除 unit test
 	// TODO 虚拟列表 unit test
-	// TODO 展开定位 🎯 unit test
-	// TODO string[] 和 number[] 支持 virtual list
+	// TODO 展开定位 unit test
+	// TODO 🎯 string[] 和 number[] 支持 virtual list
 	// TODO 宽度 🎯 unit test
 
 	// ⭕TODO 选项分组
@@ -224,11 +222,14 @@
 		{#if $$slots.default}
 			<slot />
 		{:else}
-			<KVirtualList data={dataList}
-						  key={key}
-						  bind:this={vListRef}
-						  let:data
-						  cls="ikun-scroll-bar">
+			<KVirtualList
+				data={dataList}
+				{key}
+				bind:this={vListRef}
+				estimateSize={30}
+				let:data
+				cls="ikun-scroll-bar"
+			>
 				<KOption
 					label={getLabel(data)}
 					isActive={isActive(data)}
