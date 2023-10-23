@@ -11,6 +11,7 @@
 	export let trigger: KPopoverProps['trigger'] = 'hover';
 	export let attrs: KPopoverProps['attrs'] = {};
 	export let disabled: KPopoverProps['disabled'] = false;
+	export let arrow: KPopoverProps['arrow'] = true;
 	export let cls: KPopoverProps['cls'] = undefined;
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
@@ -151,14 +152,16 @@
 			use:popperContent
 		>
 			<slot name="contentEl" />
-			<div
-				{...{ 'k-popover-arrow': true }}
-				data-popper-arrow-bottom
-				data-popper-arrow-top
-				data-popper-arrow-right
-				data-popper-arrow-left
-				bind:this={arrowRef}
-			/>
+			{#if arrow}
+				<div
+					{...{ 'k-popover-arrow': true }}
+					data-popper-arrow-bottom
+					data-popper-arrow-top
+					data-popper-arrow-right
+					data-popper-arrow-left
+					bind:this={arrowRef}
+				/>
+			{/if}
 		</div>
 	{/if}
 </div>
