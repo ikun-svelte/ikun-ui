@@ -25,29 +25,29 @@
 	export let maxHeight: number = 250;
 	export let clearable: boolean = false;
 
-	let valueType:'o' | 'n' | 's' = 'o'
-	const wrapperData = <T>(v: T) => {
-		if(isString(v)){
-			valueType = "s"
+	let valueType: 'o' | 'n' | 's' = 'o';
+	const wrapperData = <T,>(v: T) => {
+		if (isString(v)) {
+			valueType = 's';
 			return {
 				[labelKey]: v,
 				[valueKey]: v,
-				[key]: v,
-			}
+				[key]: v
+			};
 		}
-		if(isNumber(v)){
-			valueType = "n"
+		if (isNumber(v)) {
+			valueType = 'n';
 			return {
 				[labelKey]: v,
 				[valueKey]: v,
-				[key]: v,
-			}
+				[key]: v
+			};
 		}
-		return v
-	}
-	let dataListInner = dataList.map(wrapperData)
+		return v;
+	};
+	let dataListInner = dataList.map(wrapperData);
 	$: {
-		dataListInner = dataList.map(wrapperData)
+		dataListInner = dataList.map(wrapperData);
 	}
 
 	// updateValue
@@ -55,11 +55,12 @@
 	let popoverRef: any = null;
 	const handleSelect = (data: KSelectProps['value'] | null) => {
 		if (disabled) return;
-		if(data && (valueType === 'n' || valueType === 's')){
+		if (data && (valueType === 'n' || valueType === 's')) {
 			dispatch('updateValue', data[valueKey as keyof typeof data]);
-		} else if(
+		} else if (
 			(!data && (valueType === 'n' || valueType === 's')) ||
-			(valueType === 'o' && isObject(data))){
+			(valueType === 'o' && isObject(data))
+		) {
 			dispatch('updateValue', data);
 		}
 		popoverRef.updateShow(false);
@@ -71,7 +72,7 @@
 	let triggerWidth: undefined | string = undefined;
 	const setPopoverW = () => {
 		if (inputSelectRef) {
-			const { width:inputSelectRefWidth } = inputSelectRef.getBoundingClientRect();
+			const { width: inputSelectRefWidth } = inputSelectRef.getBoundingClientRect();
 			triggerWidth = `${inputSelectRefWidth}px`;
 			popoverWidth = fitInputWidth ? `${inputSelectRefWidth}px` : undefined;
 		}
@@ -97,6 +98,7 @@
 	// clear value
 	let isShowClear = false;
 	const showClearIcon = (show: boolean) => {
+		if (disabled) return;
 		if (show) {
 			getLabel(value) && (isShowClear = show);
 		} else {
@@ -158,19 +160,21 @@
 
 	// class names
 	const prefixCls = getPrefixCls('select');
-	$: cnames = clsx(
-		`${prefixCls}--base`,
-		`${prefixCls}--base__dark`,
-		`${prefixCls}__hover`,
-		`${prefixCls}__focus`,
-		{
-			[`${prefixCls}--base__disabled__dark`]: disabled
-		},
-	);
-	$: selectCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__dark`, {
+	$: cnames = clsx(`${prefixCls}--base`, `${prefixCls}__hover`, `${prefixCls}__focus`, {
 		[`${prefixCls}--base__disabled`]: disabled,
+		[`${prefixCls}--base__dark`]: !disabled,
 		[`${prefixCls}--base__disabled__dark`]: disabled
 	});
+	$: selectCls = clsx(
+		`
+	${prefixCls}--inner`,
+		{
+			[`${prefixCls}--inner__dark`]: !disabled,
+			[`${prefixCls}--base__disabled`]: disabled,
+			[`${prefixCls}--base__disabled__dark`]: disabled,
+			[`${prefixCls}--inner__disabled__dark`]: disabled
+		}
+	);
 	const prefixIconCls = `${prefixCls}--prefix`;
 	const suffixIconCls = `${prefixCls}--suffix`;
 	const selectIconCls = clsx(`${prefixCls}--icon`);
@@ -198,16 +202,15 @@
 
 	// ⭕TODO 选项筛选
 	// ⭕TODO 远程搜索
-
-	// ⭕ TODO dark mode
 </script>
 
 <KPopover
 	trigger="click"
 	bind:this={popoverRef}
+	{disabled}
 	clsTrigger={cls}
 	cls="px-0"
-	arrow="{false}"
+	arrow={false}
 	on:change={onOpen}
 	width={triggerWidth}
 	placement="bottom"
@@ -262,14 +265,10 @@
 					{fitInputWidth}
 					label={getLabel(data)}
 					isActive={isActive(data)}
-					on:click={() => handleSelect(data)}>
-				</KOption>
-				{:else }
-				<slot data={data}
-							onSelect={handleSelect}
-							label={getLabel(data)}
-							isActive={isActive(data)}>
-				</slot>
+					on:click={() => handleSelect(data)}
+				></KOption>
+			{:else}
+				<slot {data} onSelect={handleSelect} label={getLabel(data)} isActive={isActive(data)} />
 			{/if}
 		</KVirtualList>
 	</div>
