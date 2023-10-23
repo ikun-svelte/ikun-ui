@@ -14,9 +14,11 @@ const initHost = () => {
 };
 beforeEach(() => {
 	initHost();
+	vi.useFakeTimers();
 });
 afterEach(() => {
 	host.remove();
+	vi.useRealTimers();
 });
 
 describe('Test: KSelect', () => {
@@ -82,14 +84,19 @@ describe('Test: KSelect', () => {
 		expect(instance).toBeTruthy();
 		await tick();
 		expect(host.innerHTML.includes('k-select--base__disabled')).toBeTruthy();
+		expect(host.innerHTML.includes('k-select--base__disabled__dark')).toBeTruthy();
+		expect(host.innerHTML.includes('k-select--inner__disabled__dark')).toBeTruthy();
 		instance.$set({
 			disabled: false
 		});
 		await tick();
 		expect(host.innerHTML.includes('k-select--base__disabled')).not.toBeTruthy();
+		expect(host.innerHTML.includes('k-select--base__disabled__dark')).not.toBeTruthy();
+		expect(host.innerHTML.includes('k-select--inner__disabled__dark')).not.toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	// TODO: e2e
 	test('event: should trigger updateValue event', async () => {
 		const mockFn = vi.fn();
 		const instance = new KSelect({
@@ -103,7 +110,10 @@ describe('Test: KSelect', () => {
 			mockFn();
 		});
 		await tick();
-		const selectElm = host.getElementsByTagName('select')[0] as HTMLSelectElement;
+		const selectElm = host.querySelector('input')
+		selectElm.click()
+		vi.runAllTimers();
+		await tick();
 		selectElm.dispatchEvent(new Event('change'));
 		await tick();
 		expect(mockFn).toBeCalled();
@@ -122,8 +132,9 @@ describe('Test: KSelect', () => {
 			mockFn();
 		});
 		await tick();
-		const selectElm = host.getElementsByTagName('select')[0] as HTMLSelectElement;
-		selectElm.dispatchEvent(new Event('change'));
+		const selectElm = host.querySelector('[slot="triggerEl"]')
+		selectElm.click()
+		vi.runAllTimers();
 		await tick();
 		expect(mockFn).not.toBeCalled();
 	});
