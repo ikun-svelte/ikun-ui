@@ -7,7 +7,7 @@
 	import { KPopover } from '@ikun-ui/popover';
 	import KOption from './option.svelte';
 	import type { KSelectProps } from './types';
-	import { isObject, isString } from 'baiwusanyu-utils';
+	import { isObject, isString, isNumber } from 'baiwusanyu-utils';
 
 	export let iconPrefix: KSelectProps['iconPrefix'] = '';
 	export let iconSuffix: KSelectProps['iconSuffix'] = '';
@@ -25,12 +25,43 @@
 	export let maxHeight: number = 250;
 	export let clearable: boolean = false;
 
+	let valueType:'o' | 'n' | 's' = 'o'
+	const wrapperData = <T>(v: T) => {
+		if(isString(v)){
+			valueType = "s"
+			return {
+				[labelKey]: v,
+				[valueKey]: v,
+				[key]: v,
+			}
+		}
+		if(isNumber(v)){
+			valueType = "n"
+			return {
+				[labelKey]: v,
+				[valueKey]: v,
+				[key]: v,
+			}
+		}
+		return v
+	}
+	let dataListInner = dataList.map(wrapperData)
+	$: {
+		dataListInner = dataList.map(wrapperData)
+	}
+
 	// updateValue
 	const dispatch = createEventDispatcher();
 	let popoverRef: any = null;
-	const handleSelect = (data: KSelectProps['value'] | undefined) => {
+	const handleSelect = (data: KSelectProps['value'] | null) => {
 		if (disabled) return;
-		dispatch('updateValue', data);
+		if(data && (valueType === 'n' || valueType === 's')){
+			dispatch('updateValue', data[valueKey as keyof typeof data]);
+		} else if(
+			(!data && (valueType === 'n' || valueType === 's')) ||
+			(valueType === 'o' && isObject(data))){
+			dispatch('updateValue', data);
+		}
 		popoverRef.updateShow(false);
 	};
 
@@ -55,13 +86,13 @@
 			const label = item[labelKey as keyof typeof item] || '';
 			return label.toString();
 		}
-		return item.toString();
+		return item as string;
 	};
 	const isActive = (item: KSelectProps['value']) => {
-		if (isObject(item)) {
+		if (valueType === 'o') {
 			return item[valueKey as keyof typeof item] === value[valueKey as keyof typeof value];
 		}
-		return item === value;
+		return item[valueKey as keyof typeof item] === value;
 	};
 
 	// clear value
@@ -76,12 +107,12 @@
 	const handleClear = (e: MouseEvent) => {
 		e.stopPropagation();
 		handleAnimation();
-		if (isObject(value)) {
+		if (valueType === 'o') {
 			handleSelect({});
-		} else if (isString(value)) {
+		} else if (valueType === 's') {
 			handleSelect('');
 		} else {
-			handleSelect(undefined);
+			handleSelect(null);
 		}
 	};
 
@@ -118,8 +149,8 @@
 	}
 
 	async function locateItem() {
-		for (let i = 0; i < dataList.length; i++) {
-			if (isActive(dataList[i])) {
+		for (let i = 0; i < dataListInner.length; i++) {
+			if (isActive(dataListInner[i])) {
 				vListRef && vListRef.scrollToIndex(i - 3);
 				break;
 			}
@@ -156,11 +187,11 @@
 	}
 
 	// TODO 禁用 unit test
-	// TODO 自定义内容渲染 🎯 unit test
+	// TODO 自定义内容渲染  unit test
 	// TODO 可清除 unit test
 	// TODO 虚拟列表 unit test
 	// TODO 展开定位 unit test
-	// TODO 🎯 string[] 和 number[] 支持 virtual list
+	// TODO string[] 和 number[] 支持 virtual list unit test
 	// TODO 宽度 🎯 unit test
 
 	// ⭕TODO 选项分组
@@ -219,24 +250,28 @@
 		style:height={heightInner}
 		style:max-height={`${maxHeight}px`}
 	>
-		{#if $$slots.default}
-			<slot />
-		{:else}
-			<KVirtualList
-				data={dataList}
-				{key}
-				bind:this={vListRef}
-				estimateSize={30}
-				let:data
-				cls="ikun-scroll-bar"
-			>
+		<KVirtualList
+			data={dataListInner}
+			{key}
+			bind:this={vListRef}
+			estimateSize={30}
+			let:data
+			cls="ikun-scroll-bar"
+		>
+			{#if !$$slots.default}
 				<KOption
 					label={getLabel(data)}
 					isActive={isActive(data)}
-					on:click={() => handleSelect(data)}
-				></KOption>
-			</KVirtualList>
-		{/if}
+					on:click={() => handleSelect(data)}>
+				</KOption>
+				{:else }
+				<slot data={data}
+							onSelect={handleSelect}
+							label={getLabel(data)}
+							isActive={isActive(data)}>
+				</slot>
+			{/if}
+		</KVirtualList>
 	</div>
 </KPopover>
 
