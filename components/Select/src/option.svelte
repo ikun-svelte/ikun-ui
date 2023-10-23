@@ -9,6 +9,7 @@
   export let disabled: KSelectProps['disabled'] = false;
   export let isActive: KSelectProps['isActive'] = false;
   export let attrs: KSelectProps['attrs'] = {};
+  export let fitInputWidth: boolean = false;
   const dispatch = createEventDispatcher();
   const handleClick = () => {
     if (disabled) return;
@@ -23,7 +24,9 @@
     `${prefixCls}__dark`,
     `${prefixCls}__hover`,
     {
-      [`${prefixCls}--base__disabled__dark`]: disabled
+      [`${prefixCls}--base__disabled__dark`]: disabled,
+      [`${prefixCls}__fit`]: fitInputWidth,
+
     },
     cls
   );

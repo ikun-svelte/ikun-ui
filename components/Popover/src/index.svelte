@@ -13,6 +13,7 @@
 	export let disabled: KPopoverProps['disabled'] = false;
 	export let cls: KPopoverProps['cls'] = undefined;
 	export let clsTrigger: KPopoverProps['clsTrigger'] = undefined;
+	export let arrow: KPopoverProps['arrow'] = true;
 
 	/**
 	 * @internal
@@ -160,6 +161,7 @@
 		use:popperContent
 	>
 		<slot name="contentEl" />
+		{#if arrow}
 		<div
 			{...{ 'k-popover-arrow': true }}
 			data-popper-arrow-bottom
@@ -168,6 +170,7 @@
 			data-popper-arrow-left
 			bind:this={arrowRef}
 		/>
+		{/if}
 	</div>
 {/if}
 

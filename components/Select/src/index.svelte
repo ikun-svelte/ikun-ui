@@ -13,13 +13,13 @@
 	export let iconSuffix: KSelectProps['iconSuffix'] = '';
 	export let value: KSelectProps['value'] = '';
 	export let cls: KSelectProps['cls'] = undefined;
-	export let clsTrigger: KSelectProps['cls'] = undefined;
 	export let placeholder: KSelectProps['placeholder'] = '';
 	export let disabled: KSelectProps['disabled'] = false;
 	export let attrs: KSelectProps['attrs'] = {};
 
 	export let labelKey: string = 'label';
 	export let valueKey: string = 'value';
+	export let fitInputWidth: boolean = false;
 	export let key: string = 'id';
 	export let dataList: Array<Record<string, any>> = [];
 	export let maxHeight: number = 250;
@@ -71,10 +71,9 @@
 	let triggerWidth: undefined | string = undefined;
 	const setPopoverW = () => {
 		if (inputSelectRef) {
-			const { width } = inputSelectRef.getBoundingClientRect();
-			const { marginRight, marginLeft } = window.getComputedStyle(inputSelectRef);
-			triggerWidth = `${width + parseInt(marginRight, 10) + parseInt(marginLeft, 10)}px`;
-			popoverWidth = `${width}px`;
+			const { width:inputSelectRefWidth } = inputSelectRef.getBoundingClientRect();
+			triggerWidth = `${inputSelectRefWidth}px`;
+			popoverWidth = fitInputWidth ? `${inputSelectRefWidth}px` : undefined;
 		}
 	};
 	onMount(() => {
@@ -167,7 +166,6 @@
 		{
 			[`${prefixCls}--base__disabled__dark`]: disabled
 		},
-		cls
 	);
 	$: selectCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__dark`, {
 		[`${prefixCls}--base__disabled`]: disabled,
@@ -192,7 +190,7 @@
 	// TODO 虚拟列表 unit test
 	// TODO 展开定位 unit test
 	// TODO string[] 和 number[] 支持 virtual list unit test
-	// TODO 宽度 🎯 unit test
+	// TODO fitInputWidth 宽度(超宽省略号，觸發寬度) unit test
 
 	// ⭕TODO 选项分组
 	// ⭕TODO 基础多选
@@ -207,8 +205,9 @@
 <KPopover
 	trigger="click"
 	bind:this={popoverRef}
-	{clsTrigger}
+	clsTrigger={cls}
 	cls="px-0"
+	arrow="{false}"
 	on:change={onOpen}
 	width={triggerWidth}
 	placement="bottom"
@@ -243,10 +242,10 @@
 	</div>
 	<div
 		slot="contentEl"
-		class="ikun-scroll-bar"
 		bind:this={popoverModalRef}
 		style:overflow-y="auto"
 		style:width={popoverWidth}
+		style:min-width={triggerWidth}
 		style:height={heightInner}
 		style:max-height={`${maxHeight}px`}
 	>
@@ -260,6 +259,7 @@
 		>
 			{#if !$$slots.default}
 				<KOption
+					{fitInputWidth}
 					label={getLabel(data)}
 					isActive={isActive(data)}
 					on:click={() => handleSelect(data)}>

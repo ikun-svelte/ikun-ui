@@ -6,6 +6,7 @@ export type KPopoverProps = {
 	placement: IKunPlacement;
 	trigger: IKunTrigger;
 	disabled: boolean;
+	arrow: boolean;
 	cls: ClassValue;
 	clsTrigger: ClassValue;
 	width: string | null | undefined;

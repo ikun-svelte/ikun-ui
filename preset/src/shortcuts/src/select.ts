@@ -12,7 +12,8 @@ export const selectShortcuts: Record<string, string> = {
 	// option ikun:50:bg-ikun-main
 	'k-select--option': 'rounded mx-2 pl-2 py-1 box-border cursor-pointer text-ikun-tx-base',
 	'k-select--option__hover': 'hover:ikun:80:bg-ikun-main hover:text-white',
-	'k-select--option__active': 'text-ikun-main font-600 ',
+	'k-select--option__active': 'text-ikun-main',
+	'k-select--option__fit': 'text-ellipsis overflow-hidden',
 	// dark
 	'k-select--inner__dark': 'dark:bg-ikun-dark-300',
 	'k-select--base__disabled__dark': 'dark:bg-ikun-dark',
