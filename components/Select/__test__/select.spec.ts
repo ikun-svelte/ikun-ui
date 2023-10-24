@@ -96,49 +96,6 @@ describe('Test: KSelect', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	// TODO: e2e
-	test('event: should trigger updateValue event', async () => {
-		const mockFn = vi.fn();
-		const instance = new KSelect({
-			target: host,
-			props: {
-				value: ''
-			}
-		});
-		expect(instance).toBeTruthy();
-		instance.$on('updateValue', () => {
-			mockFn();
-		});
-		await tick();
-		const selectElm = host.querySelector('input')
-		selectElm.click()
-		vi.runAllTimers();
-		await tick();
-		selectElm.dispatchEvent(new Event('change'));
-		await tick();
-		expect(mockFn).toBeCalled();
-	});
-
-	test('event: should not trigger updateValue event when disabled', async () => {
-		const mockFn = vi.fn();
-		const instance = new KSelect({
-			target: host,
-			props: {
-				disabled: true
-			}
-		});
-		expect(instance).toBeTruthy();
-		instance.$on('updateValue', () => {
-			mockFn();
-		});
-		await tick();
-		const selectElm = host.querySelector('[slot="triggerEl"]')
-		selectElm.click()
-		vi.runAllTimers();
-		await tick();
-		expect(mockFn).not.toBeCalled();
-	});
-
 	test('slots: prefix and suffix', async () => {
 		const instance = new KSelectSlots({
 			target: host

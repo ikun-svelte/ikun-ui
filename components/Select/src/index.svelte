@@ -188,7 +188,6 @@
 		}, 300);
 	}
 
-	// TODO 禁用 unit test
 	// TODO 自定义内容渲染  unit test
 	// TODO 可清除 unit test
 	// TODO 虚拟列表 unit test

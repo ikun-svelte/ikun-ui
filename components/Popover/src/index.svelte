@@ -140,6 +140,7 @@
 	on:click={handleClick}
 	class={triggerCls}
 	style:width
+	data-popover-trigger
 	on:mouseenter={handleMouseenter}
 	on:mouseleave={handleMouseleave}
 >
