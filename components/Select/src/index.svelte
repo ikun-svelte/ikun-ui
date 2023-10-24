@@ -189,7 +189,6 @@
 	}
 
 	// TODO 自定义内容渲染  unit test
-	// TODO 可清除 unit test
 	// TODO 虚拟列表 unit test
 	// TODO 展开定位 unit test
 	// TODO string[] 和 number[] 支持 virtual list unit test
@@ -235,7 +234,7 @@
 			{/if}
 		</slot>
 		{#if clearable && isShowClear}
-			<div on:click={handleClear} aria-hidden="true" class={animationCls}>
+			<div on:click={handleClear} aria-hidden="true" class={animationCls} data-k-select-clear>
 				<KIcon icon="i-carbon-close-outline" cls={selectIconCls} width="16px" height="16px" />
 			</div>
 		{:else}

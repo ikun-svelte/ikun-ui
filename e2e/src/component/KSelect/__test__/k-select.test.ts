@@ -13,6 +13,29 @@ describe('k-select e2e test', () => {
 	};
 
 	test(
+		'props: clearable',
+		createBrowserCtxEnvironment(async (browserCtx) => {
+			const container = await browserCtx.page!.$('#k_select_clearable_container');
+
+			await untilUpdated(async () => {
+				const result = await container!.$('#k_select_clearable_value');
+				return result?.textContent()
+			}, '200');
+
+			await untilUpdated(async () => {
+				const trigger =  await container!.$('[data-popover-trigger]')
+				trigger?.click()
+				await browserCtx.page!.waitForTimeout(200);
+				const clearBtn =  await container!.$('[data-k-select-clear]')
+				clearBtn?.click()
+				await browserCtx.page!.waitForTimeout(200);
+				const result = await container!.$('#k_select_clearable_value');
+				return result?.textContent();
+			}, 'undefined');
+		})
+	);
+
+	test(
 		'event: should trigger updateValue event',
 		createBrowserCtxEnvironment(async (browserCtx) => {
 			const container = await browserCtx.page!.$('#k_select_updated_container');
