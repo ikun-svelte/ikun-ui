@@ -42,7 +42,7 @@ describe('k-select e2e test', () => {
 			 await untilUpdated(async () => {
 			 	const trigger =  await container!.$('[data-popover-trigger]')
 				 trigger?.click()
-			 	await browserCtx.page!.waitForTimeout(200);
+			 	await browserCtx.page!.waitForTimeout(300);
 				const content = await container?.innerHTML()
 			 	return (content || '').includes('contentEl') + '';
 			 }, 'true');
@@ -56,7 +56,7 @@ describe('k-select e2e test', () => {
 				const contentEl = await container!.$('[data-kv-key="203"]')
 				const option = await contentEl!.$('option')
 				option?.dispatchEvent('click', { bubbles: true });
-				await browserCtx.page!.waitForTimeout(200);
+				await browserCtx.page!.waitForTimeout(300);
 				const result = await container!.$('#k_select_updated_value');
 				return result?.textContent();
 			}, '203');
