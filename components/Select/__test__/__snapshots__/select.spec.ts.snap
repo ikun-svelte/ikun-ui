@@ -1,26 +1,26 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Test: KSelect > props: disabled 1`] = `
-"<div aria-hidden=\\"true\\" class=\\"flex\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"
+"<div aria-hidden=\\"true\\" class=\\"flex\\" data-popover-trigger=\\"\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"
 	k-select--inner k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"\\">  <span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down  k-select--icon\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 16px; height: 16px;\\"></span></div></div> "
 `;
 
 exports[`Test: KSelect > props: iconPrefix and iconSuffix 1`] = `
-"<div aria-hidden=\\"true\\" class=\\"flex\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-logo-svelte k-select--prefix\\" role=\\"\\" aria-hidden=\\"true\\"></span> <input class=\\"
+"<div aria-hidden=\\"true\\" class=\\"flex\\" data-popover-trigger=\\"\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-logo-svelte k-select--prefix\\" role=\\"\\" aria-hidden=\\"true\\"></span> <input class=\\"
 	k-select--inner k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"\\"> <span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-search k-select--suffix\\" role=\\"\\" aria-hidden=\\"true\\"></span> <span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down  k-select--icon\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 16px; height: 16px;\\"></span></div></div> "
 `;
 
 exports[`Test: KSelect > props: placeholder 1`] = `
-"<div aria-hidden=\\"true\\" class=\\"flex\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"
+"<div aria-hidden=\\"true\\" class=\\"flex\\" data-popover-trigger=\\"\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"
 	k-select--inner k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"绣面芙蓉一笑开\\">  <span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down  k-select--icon\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 16px; height: 16px;\\"></span></div></div> "
 `;
 
 exports[`Test: KSelect > props: value & object 1`] = `
-"<div aria-hidden=\\"true\\" class=\\"flex mx-2\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select--base__disabled k-select--base__disabled__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"
+"<div aria-hidden=\\"true\\" class=\\"flex mx-2\\" data-popover-trigger=\\"\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select--base__disabled k-select--base__disabled__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"
 	k-select--inner k-select--base__disabled k-select--base__disabled__dark k-select--inner__disabled__dark\\" readonly=\\"\\" disabled=\\"\\" placeholder=\\"please select\\">  <span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down  k-select--icon\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 16px; height: 16px;\\"></span></div></div> "
 `;
 
 exports[`Test: KSelect > props: value 1`] = `
-"<div aria-hidden=\\"true\\" class=\\"flex\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"
+"<div aria-hidden=\\"true\\" class=\\"flex\\" data-popover-trigger=\\"\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"
 	k-select--inner k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"\\">  <span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down  k-select--icon\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 16px; height: 16px;\\"></span></div></div> "
 `;
