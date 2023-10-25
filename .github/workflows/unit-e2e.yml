@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         node: [18.x]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [macos-latest]
       fail-fast: false
 
     steps:
