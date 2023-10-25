@@ -5,8 +5,8 @@ export const selectShortcuts: Record<string, string> = {
 	'k-select__hover': 'hover:border-ikun-main',
 	'k-select__focus': 'focus-within:border-ikun-main focus-within:k-input-shadow',
 	'k-select--prefix': 'mr-0.4em text-1em op50',
-	'k-select--suffix': 'ml-0.4em text-1em op50',
-	'k-select--icon': 'ml-0.4em op50 k-icon-transition',
+	'k-select--suffix': 'mx-0.4em text-1em op50',
+	'k-select--icon': 'op50 k-icon-transition',
 	'k-select--inner': 'w-full flex-auto !outline-none border-transparent text-size-inherit',
 	'k-select--clear__animate': 'animate-ikun-checking-main',
 	// option ikun:50:bg-ikun-main

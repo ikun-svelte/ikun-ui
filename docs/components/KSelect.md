@@ -31,42 +31,59 @@ npm install @ikun-ui/select
 
 ## Prefix icon and suffix icon select
 
-Set the prefix through the icon attribute
+Set the prefix through the `icon` attribute
 
 <demo src="select/prefix.svelte" github="Select"></demo>
 
 ## Disabled select
 
-Disable the select through the disabled attribute
+Disable the select through the `disabled` attribute
 
 <demo src="select/disabled.svelte" github="Select"></demo>
 
 ## Clearable select
 
+Clear the select value through the `clearable` attribute
+
+<demo src="select/clearable.svelte" github="Select"></demo>
+
 ## Binding Object
+
+`k-select` supports binding objects,
+but you need to set the `labelKey` attribute and `key` attribute
+
+<demo src="select/object.svelte" github="Select"></demo>
 
 ## Custom Render
 
+Through `slots` you can customize `option` rendering
+
+<demo src="select/custom.svelte" github="Select"></demo>
+
 ## Virtual Render
+
+`k-select` is implemented based on virtual lists to support high-performance rendering
+
+<demo src="select/virtual.svelte" github="Select"></demo>
 
 ## Select Props
 
-| Name          | Type                                                 | Default   | Description                                                                                                         |
-| ------------- | ---------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------- |
-| value         | `string \| number \| Record<string, any>`            | `-`       | Binding value                                                                                                       |
-| dataList      | `string[] \| number[] \| Array<Record<string, any>>` | `[]`      | Render list data                                                                                                    |
-| iconPrefix    | `string`                                             | `-`       | The class name of the prefix icon, following the unocss standard                                                    |
-| iconSuffix    | `string`                                             | `-`       | The class name of the suffix icon, following the unocss standard                                                    |
-| placeholder   | `string`                                             | `'Please select value'`        | Select's placeholder                                                                                                |
-| maxHeight     | `number`                                             | `250`     | Display scroll bars above this height                                                                               |
-| labelKey      | `string`                                             | `'label'` | Required when `value` is an object, specify the field of "label"                                                    |
-| valueKey      | `string`                                             | `'value'` | When `value` is an object, specify the field of "value"                                                             |
-| key           | `string`                                             | `'id'`    | Required when `value` is an object. It is the unique identifier of the object. It will be used in the virtual list. |
-| disabled      | `boolean`                                            | `false`   | Disable the Select                                                                                                  |
-| clearable     | `boolean`                                            | `false`   | Decide if it can be cleared                                                                                         |
-| fitInputWidth | `boolean`                                            | `true`    | Determine whether the width of the option is limited to be consistent with the selection box                        |
-| cls           | `string`                                             | `-`       | Additional class                                                                                                    |
-| attrs         | `Record<string, string>`                             | `{}`      | Additional attributes                                                                                               |
+| Name          | Type                                                 | Default                 | Description                                                                                                         |
+| ------------- | ---------------------------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| value         | `string \| number \| Record<string, any>`            | `-`                     | Binding value                                                                                                       |
+| dataList      | `string[] \| number[] \| Array<Record<string, any>>` | `[]`                    | Render list data                                                                                                    |
+| iconPrefix    | `string`                                             | `-`                     | The class name of the prefix icon, following the unocss standard                                                    |
+| iconSuffix    | `string`                                             | `-`                     | The class name of the suffix icon, following the unocss standard                                                    |
+| placeholder   | `string`                                             | `'Please select value'` | Select's placeholder                                                                                                |
+| maxHeight     | `number`                                             | `250`                   | Display scroll bars above this height                                                                               |
+| labelKey      | `string`                                             | `'label'`               | Required when `value` is an object, specify the field of "label"                                                    |
+| valueKey      | `string`                                             | `'value'`               | When `value` is an object, specify the field of "value"                                                             |
+| key           | `string`                                             | `'id'`                  | Required when `value` is an object. It is the unique identifier of the object. It will be used in the virtual list. |
+| disabled      | `boolean`                                            | `false`                 | Disable the Select                                                                                                  |
+| clearable     | `boolean`                                            | `false`                 | Decide if it can be cleared                                                                                         |
+| fitInputWidth | `boolean`                                            | `true`                  | Determine whether the width of the option is limited to be consistent with the selection box                        |
+| cls           | `string`                                             | `-`                     | Additional class                                                                                                    |
+| attrs         | `Record<string, string>`                             | `{}`                    | Additional attributes                                                                                               |
 
 ## Select Events
 

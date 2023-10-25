@@ -16,14 +16,13 @@
 	export let placeholder: KSelectProps['placeholder'] = 'Please select value';
 	export let disabled: KSelectProps['disabled'] = false;
 	export let attrs: KSelectProps['attrs'] = {};
-
-	export let labelKey: string = 'label';
-	export let valueKey: string = 'value';
-	export let key: string = 'id';
-	export let fitInputWidth: boolean = true;
-	export let dataList: Array<Record<string, any>> = [];
-	export let maxHeight: number = 250;
-	export let clearable: boolean = false;
+	export let labelKey: KSelectProps['labelKey'] = 'label';
+	export let valueKey: KSelectProps['valueKey'] = 'value';
+	export let key: KSelectProps['key'] = 'id';
+	export let fitInputWidth: KSelectProps['fitInputWidth'] = true;
+	export let dataList: KSelectProps['dataList'] = [];
+	export let maxHeight: KSelectProps['maxHeight'] = 250;
+	export let clearable: KSelectProps['clearable'] = false;
 
 	let valueType: 'o' | 'n' | 's' = 'o';
 	const wrapperData = <T,>(v: T) => {
@@ -248,7 +247,7 @@
 			data={dataListInner}
 			{key}
 			bind:this={vListRef}
-			estimateSize={30}
+			estimateSize={dataListInner.length}
 			let:data
 			cls="ikun-scroll-bar"
 		>
