@@ -9,6 +9,7 @@
 <KSelect
   {value}
   on:updateValue={onSelect}
+  clearable
   dataList={['Tiny', 'Small', 'Normal', 'Large', 'Huge']}
 ></KSelect>
 <p class="px-2">{value}</p>

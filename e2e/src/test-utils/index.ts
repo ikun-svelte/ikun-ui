@@ -48,7 +48,7 @@ async function startDefaultServe(e2eTestCtx: E2EPlaywrightContext) {
 			command: 'serve',
 			mode: 'development'
 		},
-		undefined,
+		`${__dirname}/vite.config.ts`,
 		__dirname
 	);
 
@@ -62,7 +62,7 @@ async function startDefaultServe(e2eTestCtx: E2EPlaywrightContext) {
 	}`;
 }
 
-export async function createBrowserContext() {
+export async function createBrowserContext(url: string) {
 	const e2eBrowserCtx: E2EPlaywrightContext = {
 		browser: undefined,
 		browserCtx: undefined,
@@ -73,7 +73,7 @@ export async function createBrowserContext() {
 	e2eBrowserCtx.browserCtx = await e2eBrowserCtx.browser.newContext();
 	e2eBrowserCtx.page = await e2eBrowserCtx.browserCtx.newPage();
 	await startDefaultServe(e2eBrowserCtx);
-	await e2eBrowserCtx.page?.goto(e2eBrowserCtx.viteTestUrl!);
+	await e2eBrowserCtx.page?.goto(`${e2eBrowserCtx.viteTestUrl!}/${url}`);
 	return e2eBrowserCtx;
 }
 

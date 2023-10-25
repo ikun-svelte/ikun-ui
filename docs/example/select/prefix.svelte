@@ -6,15 +6,12 @@
     }
 
 </script>
-<KSelect placeholder="Please input value"
-        iconSuffix="i-carbon-search"
-        iconPrefix="i-carbon-logo-svelte"
-        on:updateValue={onSelect}
-        {value}
-        cls="mx-2">
-    <option>foo</option>
-    <option>bar</option>
-    <option>head</option>
-</KSelect>
+<KSelect
+  {value}
+  iconSuffix="i-carbon-search"
+  iconPrefix="i-carbon-logo-svelte"
+  on:updateValue={onSelect}
+  dataList={['Tiny', 'Small', 'Normal', 'Large', 'Huge']}
+></KSelect>
 <p class="px-2">{value}</p>
 
