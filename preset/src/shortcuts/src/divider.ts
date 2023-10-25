@@ -7,21 +7,21 @@ export const dividerShortcuts = {
 	'k-divider--vertical': 'infi w-0 h-1rem mx1 v-mid b-1px scale-x-50%',
 
 	// horizontal border style
-	'k-divider--horizontal-dotted':
+	'k-divider--horizontal__dotted':
 		'before:k-divider--vertical__dotted after:k-divider--vertical__dotted',
-	'k-divider--horizontal-dashed':
+	'k-divider--horizontal__dashed':
 		'before:k-divider--vertical__dashed after:k-divider--vertical__dashed',
-	'k-divider--horizontal-solid':
+	'k-divider--horizontal__solid':
 		'before:k-divider--vertical__solid after:k-divider--vertical__solid',
-	'k-divider--horizontal-double':
+	'k-divider--horizontal__double':
 		'before:k-divider--vertical__double after:k-divider--vertical__double',
-	'k-divider--horizontal-groove':
+	'k-divider--horizontal__groove':
 		'before:k-divider--vertical__groove after:k-divider--vertical__groove',
-	'k-divider--horizontal-ridge':
+	'k-divider--horizontal__ridge':
 		'before:k-divider--vertical__ridge after:k-divider--vertical__ridge',
-	'k-divider--horizontal-inset':
+	'k-divider--horizontal__inset':
 		'before:k-divider--vertical__inset after:k-divider--vertical__inset',
-	'k-divider--horizontal-outset':
+	'k-divider--horizontal__outset':
 		'before:k-divider--vertical__outset after:k-divider--vertical__outset',
 
 	// vertical border style
