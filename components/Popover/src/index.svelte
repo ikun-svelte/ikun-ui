@@ -17,7 +17,7 @@
 	/**
 	 * @internal
 	 */
-	export let width: KPopoverProps['width'] = undefined;
+	export let width: KPopoverProps['width'] = 'fit-content';
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
 	const dispatch = createEventDispatcher();

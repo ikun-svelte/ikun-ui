@@ -68,7 +68,7 @@
 	// set popover's trigger and content dom width
 	let inputSelectRef: HTMLElement | null = null;
 	let popoverWidth: undefined | string = undefined;
-	let triggerWidth: undefined | string = undefined;
+	let triggerWidth: undefined | string = 'initial';
 	const setPopoverW = () => {
 		if (inputSelectRef) {
 			const { width: inputSelectRefWidth } = inputSelectRef.getBoundingClientRect();
@@ -150,7 +150,7 @@
 
 	async function locateItem() {
 		for (let i = 0; i < dataListInner.length; i++) {
-			if (isActive(dataListInner[i])) {
+			if (isActive(dataListInner[i] as KSelectProps['value'])) {
 				vListRef && vListRef.scrollToIndex(i - 3);
 				break;
 			}
@@ -159,11 +159,17 @@
 
 	// class names
 	const prefixCls = getPrefixCls('select');
-	$: cnames = clsx(`${prefixCls}--base`, `${prefixCls}__hover`, `${prefixCls}__focus`, {
-		[`${prefixCls}--base__disabled`]: disabled,
-		[`${prefixCls}--base__dark`]: !disabled,
-		[`${prefixCls}--base__disabled__dark`]: disabled
-	});
+	$: cnames = clsx(
+		`${prefixCls}--base`,
+		`${prefixCls}__hover`,
+		`${prefixCls}__focus`,
+		{
+			[`${prefixCls}--base__disabled`]: disabled,
+			[`${prefixCls}--base__dark`]: !disabled,
+			[`${prefixCls}--base__disabled__dark`]: disabled
+		},
+		cls
+	);
 	$: selectCls = clsx(
 		`
 	${prefixCls}--inner`,
