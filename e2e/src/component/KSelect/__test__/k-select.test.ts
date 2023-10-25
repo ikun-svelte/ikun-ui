@@ -24,7 +24,7 @@ describe('k-select e2e test', () => {
 			await untilUpdated(async () => {
 				const trigger = await container!.locator('[data-popover-trigger]');
 				trigger?.click();
-				await browserCtx.page!.waitForTimeout(300);
+				await browserCtx.page!.waitForTimeout(500);
 				const content = await container?.innerHTML();
 				return (content || '').includes('contentEl') + '';
 			}, 'true');
