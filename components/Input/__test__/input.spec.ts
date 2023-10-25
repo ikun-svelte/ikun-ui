@@ -632,12 +632,12 @@ describe('Test: KInput', () => {
 		});
 		expect(instance).toBeTruthy();
 		const inputElm = host.querySelector('input');
-		expect(host.querySelector('.k-input--clearable')).toBeNull();
+		expect(host.querySelector('.k-input--clear-icon')).toBeNull();
 		instance.$set({ value: 'ikun-ui' });
 		await fireEvent.focus(inputElm);
 		await tick();
-		expect(host.querySelector('.k-input--clearable')).toBeTruthy();
-		const clearElm = host.querySelector('.k-input--clearable');
+		expect(host.querySelector('.k-input--clear-icon')).toBeTruthy();
+		const clearElm = host.querySelector('.k-input--clear-icon');
 		clearElm.click();
 		await tick();
 		expect(inputElm?.value).toBe('');

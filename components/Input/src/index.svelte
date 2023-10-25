@@ -33,7 +33,7 @@
 	 * @internal
 	 */
 	export let errorMsg: KInputProps['errorMsg'] = '';
-	export let clearable: KInputProps['clearable'] = true;
+	export let clearable: KInputProps['clearable'] = false;
 
 	const dispatch = createEventDispatcher();
 
@@ -52,6 +52,12 @@
 	const onChange = (e: Event) => {
 		if (disabled) return;
 		dispatch('change', e);
+	};
+
+	const onClear = () => {
+		if (disabled) return;
+		value = '';
+		dispatch('updateValue', value);
 	};
 
 	const onEnter = (e: KeyboardEvent) => {
@@ -175,6 +181,7 @@
 	$: errorMsgCls = clsx(`${prefixCls}__msg__error`);
 	$: prependCls = clsx(`${prefixCls}--prepend`, `${prefixCls}--prepend__${size}`);
 	$: appendgCls = clsx(`${prefixCls}--append`, `${prefixCls}--append__${size}`);
+	$: clearCls = clsx(`${prefixCls}--clear-icon`);
 </script>
 
 {#if type !== 'textarea'}
@@ -215,15 +222,7 @@
 			/>
 
 			{#if clearable && !disabled && value}
-				<div
-					class={`${prefixCls}--clearable`}
-					role="button"
-					aria-hidden="true"
-					on:click={() => {
-						value = '';
-						dispatch('updateValue', value);
-					}}
-				>
+				<div class={clearCls} role="button" aria-hidden="true" on:click={onClear}>
 					<KIcon btn icon="i-carbon:close-outline" cls="{iconCls} ml-1" />
 				</div>
 			{/if}
