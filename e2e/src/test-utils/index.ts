@@ -16,11 +16,12 @@ export interface E2EPlaywrightContext {
 
 const timeout = (n: number) => new Promise((resolve) => setTimeout(resolve, n));
 
-async function startDefaultServe(e2eTestCtx: E2EPlaywrightContext) {
+async function startDefaultServe(e2eTestCtx: E2EPlaywrightContext, base: string) {
 	const __dirname = fileURLToPath(new URL('../../', import.meta.url));
 	const options: InlineConfig = {
 		logLevel: 'info',
 		configFile: false,
+		base,
 		server: {
 			port: 3000,
 			watch: {
@@ -48,7 +49,7 @@ async function startDefaultServe(e2eTestCtx: E2EPlaywrightContext) {
 			command: 'serve',
 			mode: 'development'
 		},
-		undefined,
+		`${__dirname}/e2e/vite.config.ts`,
 		__dirname
 	);
 
@@ -62,7 +63,7 @@ async function startDefaultServe(e2eTestCtx: E2EPlaywrightContext) {
 	}`;
 }
 
-export async function createBrowserContext() {
+export async function createBrowserContext(base: string) {
 	const e2eBrowserCtx: E2EPlaywrightContext = {
 		browser: undefined,
 		browserCtx: undefined,
@@ -72,7 +73,7 @@ export async function createBrowserContext() {
 	e2eBrowserCtx.browser = await chromium.launch();
 	e2eBrowserCtx.browserCtx = await e2eBrowserCtx.browser.newContext();
 	e2eBrowserCtx.page = await e2eBrowserCtx.browserCtx.newPage();
-	await startDefaultServe(e2eBrowserCtx);
+	await startDefaultServe(e2eBrowserCtx, base);
 	await e2eBrowserCtx.page?.goto(e2eBrowserCtx.viteTestUrl!);
 	return e2eBrowserCtx;
 }

@@ -9,7 +9,6 @@ describe('ikun-ui e2e test', () => {
 		return async () => {
 			if (!browserCtx) {
 				browserCtx = await createBrowserContext('/virtual-list');
-				// browserCtx.page.goto('/virtual-list')
 			}
 			await testRunner(browserCtx!);
 		};
