@@ -13,14 +13,14 @@
 	export let iconSuffix: KSelectProps['iconSuffix'] = '';
 	export let value: KSelectProps['value'] = '';
 	export let cls: KSelectProps['cls'] = undefined;
-	export let placeholder: KSelectProps['placeholder'] = '';
+	export let placeholder: KSelectProps['placeholder'] = 'Please select value';
 	export let disabled: KSelectProps['disabled'] = false;
 	export let attrs: KSelectProps['attrs'] = {};
 
 	export let labelKey: string = 'label';
 	export let valueKey: string = 'value';
-	export let fitInputWidth: boolean = false;
 	export let key: string = 'id';
+	export let fitInputWidth: boolean = true;
 	export let dataList: Array<Record<string, any>> = [];
 	export let maxHeight: number = 250;
 	export let clearable: boolean = false;
