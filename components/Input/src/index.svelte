@@ -33,6 +33,7 @@
 	 * @internal
 	 */
 	export let errorMsg: KInputProps['errorMsg'] = '';
+	export let clearable: KInputProps['clearable'] = true;
 
 	const dispatch = createEventDispatcher();
 
@@ -212,11 +213,20 @@
 				{placeholder}
 				{...attrs}
 			/>
-			<slot name="suffix">
-				{#if iconSuffix}
-					<KIcon cls={suffixIconCls} icon={iconSuffix} />
-				{/if}
-			</slot>
+
+			{#if clearable && !disabled && value}
+				<div
+					class={`${prefixCls}--clearable`}
+					role="button"
+					aria-hidden="true"
+					on:click={() => {
+						value = '';
+						dispatch('updateValue', value);
+					}}
+				>
+					<KIcon btn icon="i-carbon:close-outline" cls="{iconCls} ml-1" />
+				</div>
+			{/if}
 
 			{#if isPassword === 'password' && type === 'password'}
 				<div
@@ -245,6 +255,12 @@
 					{errorMsg}
 				</span>
 			{/if}
+
+			<slot name="suffix">
+				{#if iconSuffix}
+					<KIcon cls={suffixIconCls} icon={iconSuffix} />
+				{/if}
+			</slot>
 		</div>
 		{#if $$slots.append || append}
 			<KButton
