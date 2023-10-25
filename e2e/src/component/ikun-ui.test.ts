@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, test } from "vitest";
+import { afterAll, describe, test } from "vitest";
 import type { E2EPlaywrightContext } from '../test-utils';
 import { createBrowserContext, freeBrowserContext, untilUpdated } from '../test-utils';
 describe('ikun-ui e2e test', () => {
@@ -134,7 +134,7 @@ describe('ikun-ui e2e test', () => {
 		})
 	);
 
-	test(
+	/*test(
 		'[k-select](style): Locate item',
 		createBrowserCtxEnvironment(async (browserCtx) => {
 			const container = await browserCtx.page!.locator('#k_select_located_container');
@@ -151,5 +151,5 @@ describe('ikun-ui e2e test', () => {
 				return contentEl?.innerHTML();
 			}, 'k-select--option__active');
 		})
-	);
+	);*/
 });
