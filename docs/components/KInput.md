@@ -41,6 +41,12 @@ Disable the input through the `disabled` attribute
 
 <demo src="input/disabled.svelte" github="Input"></demo>
 
+## Clearable
+
+Make the Input clearable with the `clearable` attribute.
+
+<demo src="input/clearable.svelte" github="Input"></demo>
+
 ## Password input
 
 Enable the password input box and pass the `type` as `password`.
@@ -90,6 +96,7 @@ An options object can be provided to `autosize` to specify the minimum and maxim
 | prepend             | `string`                                         | `-`     | The class name of the prepend button, following the unocss standard            |
 | placeholder         | `string`                                         | `false` | Input's placeholder                                                            |
 | disabled            | `boolean`                                        | `false` | Disable the Input                                                              |
+| clearable           | `boolean`                                        | `false` | whether to show clear button, only works when type is not 'textarea'           |
 | search              | `boolean`                                        | `false` | Enable `search` callback                                                       |
 | useCompositionInput | `boolean`                                        | `false` | Bind value will be updated after the composition input ends                    |
 | rows                | `number`                                         | `3`     | number of rows of `textarea`, only works when type is 'textarea'               |
