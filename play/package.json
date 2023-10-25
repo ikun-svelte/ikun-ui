@@ -50,7 +50,8 @@
 		"tslib": "^2.6.2",
 		"typescript": "^5.2.2",
 		"vite": "^4.4.11",
-		"vitest": "^0.34.6"
+		"vitest": "^0.34.6",
+		"vite-plugin-inspect": "^0.7.40"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
