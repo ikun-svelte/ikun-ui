@@ -49,7 +49,7 @@ async function startDefaultServe(e2eTestCtx: E2EPlaywrightContext, base: string)
 			command: 'serve',
 			mode: 'development'
 		},
-		`${__dirname}/e2e/vite.config.ts`,
+		`${__dirname}/vite.config.ts`,
 		__dirname
 	);
 
