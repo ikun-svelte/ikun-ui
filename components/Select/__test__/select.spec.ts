@@ -10,6 +10,7 @@ import KSelectDisabled from './select.disabled.svelte';
 import KSelectCustom from './select.custom.svelte';
 import KSelectString from './select.string.svelte';
 import KSelectNumber from './select.number.svelte';
+import KSelectFit from './select.fit.svelte';
 let host: HTMLElement;
 
 const initHost = () => {
@@ -80,7 +81,7 @@ describe('Test: KSelect', () => {
 	});
 
 	test('props: fitInputWidth', async () => {
-		const instance = new KSelectNumber({
+		const instance = new KSelectFit({
 			target: host
 		});
 		expect(instance).toBeTruthy();

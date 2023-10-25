@@ -134,9 +134,9 @@ describe('ikun-ui e2e test', () => {
 	test(
 		'[k-select](style): Locate item',
 		createBrowserCtxEnvironment(async (browserCtx) => {
-			const container = await browserCtx.page!.$('#k_select_located_container');
+			const container = await browserCtx.page!.locator('#k_select_located_container');
 			await untilUpdated(async () => {
-				const trigger = await container!.$('[data-popover-trigger]');
+				const trigger = await container!.locator('[data-popover-trigger]');
 				trigger?.click();
 				await browserCtx.page!.waitForTimeout(300);
 				const content = await container?.innerHTML();
@@ -144,7 +144,7 @@ describe('ikun-ui e2e test', () => {
 			}, 'true');
 
 			await untilUpdated(async () => {
-				const contentEl = await container!.$('[data-kv-key="200"]');
+				const contentEl = await container!.locator('[data-kv-key="200"]');
 				return contentEl?.innerHTML();
 			}, 'k-select--option__active');
 		})
