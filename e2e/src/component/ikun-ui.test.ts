@@ -1,4 +1,4 @@
-import { beforeAll, describe, test } from 'vitest';
+import { afterAll, beforeAll, describe, test } from "vitest";
 import type { E2EPlaywrightContext } from '../test-utils';
 import { createBrowserContext, freeBrowserContext, untilUpdated } from '../test-utils';
 describe('ikun-ui e2e test', () => {
@@ -13,9 +13,10 @@ describe('ikun-ui e2e test', () => {
 			await testRunner(browserCtx!);
 		};
 	};
-	beforeAll(() => {
+	afterAll(() => {
 		browserCtx && freeBrowserContext(browserCtx);
 	});
+
 	test(
 		'[k-virtual-list](props): start',
 		createBrowserCtxEnvironment(async (browserCtx) => {
