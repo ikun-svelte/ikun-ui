@@ -11,11 +11,10 @@
   }
 
 </script>
-<div id="k_select_disabled_container">
+<div id="k_select_located_container">
   <KSelect placeholder="Please select value"
            on:updateValue={onSelect}
            clearable
-           disabled
            dataList="{dataList}"
            labelKey="label"
            valueKey="value"
@@ -24,6 +23,5 @@
            {value}
            cls="mx-200px">
   </KSelect>
-  <span id="k_select_disabled_value">{value.value}</span>
 </div>
 
