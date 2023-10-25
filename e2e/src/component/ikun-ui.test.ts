@@ -19,15 +19,17 @@ describe('ikun-ui e2e test', () => {
 	test(
 		'[k-virtual-list](props): start',
 		createBrowserCtxEnvironment(async (browserCtx) => {
-			const container = await browserCtx.page!.$('#k_v_list_start');
+			const container = await browserCtx.page!.locator('#k_v_list_start');
 			await untilUpdated(async () => {
-				const res = await container!.$('[data-kv-key="30"]');
-				return !!res + '';
-			}, 'true');
+				const optionEl = await container!.locator('[data-kv-key="30"]');
+				const res = await optionEl.count()
+				return `${res}`;
+			}, '1');
 			await untilUpdated(async () => {
-				const res = await container!.$('[data-kv-key="29"]');
-				return !!res + '';
-			}, 'false');
+				const optionEl = await container!.locator('[data-kv-key="29"]');
+				const res = await optionEl.count()
+				return `${res}`;
+			}, '0');
 		})
 	);
 
