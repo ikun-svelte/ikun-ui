@@ -16,12 +16,11 @@ export interface E2EPlaywrightContext {
 
 const timeout = (n: number) => new Promise((resolve) => setTimeout(resolve, n));
 
-async function startDefaultServe(e2eTestCtx: E2EPlaywrightContext, base: string) {
+async function startDefaultServe(e2eTestCtx: E2EPlaywrightContext) {
 	const __dirname = fileURLToPath(new URL('../../', import.meta.url));
 	const options: InlineConfig = {
 		logLevel: 'info',
 		configFile: false,
-		base,
 		server: {
 			port: 3000,
 			watch: {
@@ -63,7 +62,7 @@ async function startDefaultServe(e2eTestCtx: E2EPlaywrightContext, base: string)
 	}`;
 }
 
-export async function createBrowserContext(base: string) {
+export async function createBrowserContext(url: string) {
 	const e2eBrowserCtx: E2EPlaywrightContext = {
 		browser: undefined,
 		browserCtx: undefined,
@@ -73,8 +72,8 @@ export async function createBrowserContext(base: string) {
 	e2eBrowserCtx.browser = await chromium.launch();
 	e2eBrowserCtx.browserCtx = await e2eBrowserCtx.browser.newContext();
 	e2eBrowserCtx.page = await e2eBrowserCtx.browserCtx.newPage();
-	await startDefaultServe(e2eBrowserCtx, base);
-	await e2eBrowserCtx.page?.goto(e2eBrowserCtx.viteTestUrl!);
+	await startDefaultServe(e2eBrowserCtx);
+	await e2eBrowserCtx.page?.goto(`${e2eBrowserCtx.viteTestUrl!}/${url}`);
 	return e2eBrowserCtx;
 }
 
