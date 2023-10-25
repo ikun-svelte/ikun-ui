@@ -4,7 +4,7 @@
 
 <div class="px-10px">
 	<span>apple</span>
-	<KDivider direction="vertical" borderStyle="b-red"></KDivider>
+	<KDivider direction="vertical" borderColor="b-red"></KDivider>
 	<span>banana</span>
 	<KDivider direction="vertical" borderStyle="dashed"></KDivider>
 	<span>orange</span>
