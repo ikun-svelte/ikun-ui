@@ -20,8 +20,7 @@
            valueKey="value"
            key="id"
            fitInputWidth
-           {value}
-           cls="mx-200px">
+           {value}>
   </KSelect>
 </div>
 

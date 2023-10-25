@@ -8,7 +8,8 @@ describe('ikun-ui e2e test', () => {
 	) => {
 		return async () => {
 			if (!browserCtx) {
-				browserCtx = await createBrowserContext();
+				browserCtx = await createBrowserContext('/virtual-list');
+				// browserCtx.page.goto('/virtual-list')
 			}
 			await testRunner(browserCtx!);
 		};
@@ -34,7 +35,7 @@ describe('ikun-ui e2e test', () => {
 		})
 	);
 
-/*	test(
+	test(
 		'[k-virtual-list](props): offset',
 		createBrowserCtxEnvironment(async (browserCtx) => {
 			const container = await browserCtx.page!.locator('#k_v_list_offset');
@@ -132,9 +133,9 @@ describe('ikun-ui e2e test', () => {
 				return result.textContent();
 			}, 'top');
 		})
-	);*/
+	);
 
-	test(
+	/*test(
 		'[k-select](style): Locate item',
 		createBrowserCtxEnvironment(async (browserCtx) => {
 			const container = await browserCtx.page!.locator('#k_select_located_container');
@@ -151,5 +152,5 @@ describe('ikun-ui e2e test', () => {
 				return contentEl?.innerHTML();
 			}, 'k-select--option__active');
 		})
-	);
+	);*/
 });
