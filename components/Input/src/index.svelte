@@ -33,6 +33,7 @@
 	 * @internal
 	 */
 	export let errorMsg: KInputProps['errorMsg'] = '';
+	export let clearable: KInputProps['clearable'] = false;
 
 	const dispatch = createEventDispatcher();
 
@@ -51,6 +52,12 @@
 	const onChange = (e: Event) => {
 		if (disabled) return;
 		dispatch('change', e);
+	};
+
+	const onClear = () => {
+		if (disabled) return;
+		value = '';
+		dispatch('updateValue', value);
 	};
 
 	const onEnter = (e: KeyboardEvent) => {
@@ -174,6 +181,7 @@
 	$: errorMsgCls = clsx(`${prefixCls}__msg__error`);
 	$: prependCls = clsx(`${prefixCls}--prepend`, `${prefixCls}--prepend__${size}`);
 	$: appendgCls = clsx(`${prefixCls}--append`, `${prefixCls}--append__${size}`);
+	$: clearCls = clsx(`${prefixCls}--clear-icon`);
 </script>
 
 {#if type !== 'textarea'}
@@ -212,11 +220,12 @@
 				{placeholder}
 				{...attrs}
 			/>
-			<slot name="suffix">
-				{#if iconSuffix}
-					<KIcon cls={suffixIconCls} icon={iconSuffix} />
-				{/if}
-			</slot>
+
+			{#if clearable && !disabled && value}
+				<div class={clearCls} role="button" aria-hidden="true" on:click={onClear}>
+					<KIcon btn icon="i-carbon:close-outline" cls="{iconCls} ml-1" />
+				</div>
+			{/if}
 
 			{#if isPassword === 'password' && type === 'password'}
 				<div
@@ -245,6 +254,12 @@
 					{errorMsg}
 				</span>
 			{/if}
+
+			<slot name="suffix">
+				{#if iconSuffix}
+					<KIcon cls={suffixIconCls} icon={iconSuffix} />
+				{/if}
+			</slot>
 		</div>
 		{#if $$slots.append || append}
 			<KButton

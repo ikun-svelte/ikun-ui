@@ -31,8 +31,12 @@ export const inputShortcuts: Record<string, string> = {
 	'k-input--icon__lg': '!w-24px !h-24px',
 
 	'k-input__disabled': 'k-bg-disabled k-cur-disabled',
-	'k-input__hover': 'hover:border-ikun-main',
-	'k-input__focus': 'focus-within:border-ikun-main focus-within:k-input-shadow',
+	'k-input__hover': 'hover:border-ikun-main [&:hover>.k-input--clear-icon]:block',
+	'k-input__focus':
+		'focus-within:border-ikun-main focus-within:k-input-shadow [&:focus-within>.k-input--clear-icon]:block',
+
+	// clear
+	'k-input--clear-icon': 'hidden',
 
 	// error
 	'k-input__error': 'border-ikun-error k-input-shadow--error',
