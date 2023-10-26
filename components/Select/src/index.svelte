@@ -7,7 +7,7 @@
 	import { KPopover } from '@ikun-ui/popover';
 	import KOption from './option.svelte';
 	import type { KSelectProps } from './types';
-	import { isObject, isString, isNumber } from 'baiwusanyu-utils';
+	import { isObject, isString, isNumber, debounce } from 'baiwusanyu-utils';
 
 	export let iconPrefix: KSelectProps['iconPrefix'] = '';
 	export let iconSuffix: KSelectProps['iconSuffix'] = '';
@@ -24,8 +24,10 @@
 	export let maxHeight: KSelectProps['maxHeight'] = 250;
 	export let clearable: KSelectProps['clearable'] = false;
 
+	export let remote: undefined | ((cb:(data: KSelectProps['dataList']) => void) => void) = undefined
+
 	let valueType: 'o' | 'n' | 's' = 'o';
-	const wrapperData = <T,>(v: T) => {
+	const wrapperData = (v: KSelectProps['value']) => {
 		if (isString(v)) {
 			valueType = 's';
 			return {
@@ -44,9 +46,9 @@
 		}
 		return v;
 	};
-	let dataListInner = dataList.map(wrapperData);
+	let dataListInner = dataList.map(wrapperData) as Record<string, any>[];
 	$: {
-		dataListInner = dataList.map(wrapperData);
+		dataListInner = dataList.map(wrapperData) as Record<string, any>[];
 	}
 
 	// updateValue
@@ -116,10 +118,18 @@
 		}
 	};
 
-	function onOpen(e: CustomEvent) {
+	let isDisabledPopover = disabled || !!remote
+	$: {
+		isDisabledPopover = disabled || !!remote
+	}
+
+	 async function onOpen(e: CustomEvent) {
 		handleExpend(e);
-		if (e.detail) {
+		if (e.detail && dataListInner.length > 0) {
 			setVList();
+		}  else if(!e.detail && remote){
+			// reset remote popover disabled
+			isDisabledPopover = true
 		}
 	}
 
@@ -157,6 +167,29 @@
 		}
 	}
 
+	// remote search
+	// TODO: 选择双向绑定
+	let text = 'no data'
+	const remoteSearch = debounce(async () => {
+		dataListInner = []
+		isDisabledPopover = false
+		heightInner = 'initial'
+		await tick()
+		popoverRef.updateShow(true);
+		text = 'loading'
+		try {
+			if(remote){
+				remote((data: KSelectProps['dataList']) => {
+					dataListInner = data.map(wrapperData) as Record<string, any>[];
+					text = 'no data'
+					setVList()
+				})
+			}
+		} catch (e){
+			text = 'no data'
+		}
+	}, 300)
+
 	// class names
 	const prefixCls = getPrefixCls('select');
 	$: cnames = clsx(
@@ -183,6 +216,7 @@
 	const prefixIconCls = `${prefixCls}--prefix`;
 	const suffixIconCls = `${prefixCls}--suffix`;
 	const selectIconCls = clsx(`${prefixCls}--icon`);
+	const noDataCls = clsx(`${prefixCls}--tx__empty`);
 
 	// clear icon animation
 	let animationCls = '';
@@ -198,13 +232,13 @@
 	// ⭕TODO 多选最大显示
 
 	// ⭕TODO 选项筛选
-	// ⭕TODO 远程搜索
+	// ⭕TODO 远程搜索 unit test
 </script>
 
 <KPopover
 	trigger="click"
 	bind:this={popoverRef}
-	{disabled}
+	disabled={isDisabledPopover}
 	clsTrigger={cls}
 	cls="px-0"
 	arrow={false}
@@ -226,7 +260,13 @@
 				<KIcon icon={iconPrefix} cls={prefixIconCls} width="auto" height="auto" />
 			{/if}
 		</slot>
-		<input class={selectCls} readonly value={getLabel(value)} {disabled} {placeholder} />
+
+		<input class={selectCls}
+					 readonly={!remote}
+					 on:input={remoteSearch}
+					 value={getLabel(value)}
+					 {disabled} {placeholder} />
+
 		<slot name="suffix">
 			{#if iconSuffix}
 				<KIcon icon={iconSuffix} cls={suffixIconCls} width="auto" height="auto" />
@@ -249,25 +289,31 @@
 		style:height={heightInner}
 		style:max-height={`${maxHeight}px`}
 	>
-		<KVirtualList
-			data={dataListInner}
-			{key}
-			bind:this={vListRef}
-			estimateSize={dataListInner.length}
-			let:data
-			cls="ikun-scroll-bar"
-		>
-			{#if !$$slots.default}
-				<KOption
-					{fitInputWidth}
-					label={getLabel(data)}
-					isActive={isActive(data)}
-					on:click={() => handleSelect(data)}
-				></KOption>
-			{:else}
-				<slot {data} onSelect={handleSelect} label={getLabel(data)} isActive={isActive(data)} />
-			{/if}
-		</KVirtualList>
+	{#if dataListInner.length > 0}
+			<KVirtualList
+				data={dataListInner}
+				{key}
+				bind:this={vListRef}
+				estimateSize={dataListInner.length}
+				let:data
+				cls="ikun-scroll-bar"
+			>
+				{#if !$$slots.default}
+					<KOption
+						{fitInputWidth}
+						label={getLabel(data)}
+						isActive={isActive(data)}
+						on:click={() => handleSelect(data)}
+					></KOption>
+				{:else}
+					<slot {data} onSelect={handleSelect} label={getLabel(data)} isActive={isActive(data)} />
+				{/if}
+			</KVirtualList>
+		{:else }
+			<p class="{noDataCls}">
+				{ text }
+			</p>
+		{/if}
 	</div>
 </KPopover>
 

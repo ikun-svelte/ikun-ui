@@ -21,7 +21,7 @@
 		}
 		return document.body;
 	};
-	const updatedPosition = () => {
+	export const updatedPosition = () => {
 		const parentEl = getParentEle();
 		const containerDomRect = target
 			? target.getBoundingClientRect()

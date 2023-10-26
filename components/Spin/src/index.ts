@@ -11,21 +11,22 @@ const mountSpin = <T>(options: SpinOptions<T>, target: HTMLElement) => {
 	});
 };
 
-const SpinFn = <T>(node: HTMLElement, options: SpinOptions<T>) => {
+const SpinFn = <T>(node: HTMLElement, options: SpinOptions<T>, setInstance?: (inst: Spin) => void) => {
 	const { show, fullScreen } = options;
 	const finalOption = options;
 	Reflect.deleteProperty(finalOption, 'fullScreen');
-	let SpinInst: Spin;
+	let spinInst: Spin
 	const initSpin = () => {
-		SpinInst = mountSpin<T>(finalOption, fullScreen ? document.body : node);
+		spinInst = mountSpin<T>(finalOption, fullScreen ? document.body : node);
+		setInstance && setInstance(spinInst)
 	};
 	if (show) {
 		initSpin();
 	}
 	return {
 		update<T>(options: SpinOptions<T>) {
-			if (SpinInst) {
-				SpinInst.$set({ show: options.show });
+			if (spinInst) {
+				spinInst.$set({ show: options.show });
 			} else {
 				initSpin();
 			}
@@ -33,4 +34,26 @@ const SpinFn = <T>(node: HTMLElement, options: SpinOptions<T>) => {
 	};
 };
 
+
 export const KSpin = SpinFn;
+
+/**
+ * @internal
+ */
+export const useKSpin = () => {
+	let SpinInst: Spin
+	function getSpinInst(inst: Spin){
+		return inst
+	}
+
+	function setSpinInst(inst: Spin){
+		SpinInst = inst
+	}
+
+	return {
+		KSpin: <T>(node: HTMLElement, options: SpinOptions<T>) => SpinFn(node, options, setSpinInst),
+		getSpinInst: () => {
+			return getSpinInst(SpinInst)
+		}
+	}
+};
