@@ -232,6 +232,11 @@
 		virtual.handleSlotSizeChange();
 	}
 
+	let oData = data
+	$:if(oData !== data){
+		handleDataSourcesChange();
+		oData = data
+	}
 	$: handleDataSourcesChange();
 
 	async function handleDataSourcesChange() {

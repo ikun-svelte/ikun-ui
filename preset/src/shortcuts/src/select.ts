@@ -9,6 +9,7 @@ export const selectShortcuts: Record<string, string> = {
 	'k-select--icon': 'op50 k-icon-transition',
 	'k-select--inner': 'w-full flex-auto !outline-none border-transparent text-size-inherit',
 	'k-select--clear__animate': 'animate-ikun-checking-main',
+	'k-select--tx__empty': 'w-full text-center text-ikun-tx-gr',
 	// option ikun:50:bg-ikun-main
 	'k-select--option': 'rounded mx-2 pl-2 py-1 box-border cursor-pointer text-ikun-tx-base',
 	'k-select--option__hover': 'hover:ikun:80:bg-ikun-main hover:text-white',

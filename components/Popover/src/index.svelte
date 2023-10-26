@@ -84,7 +84,7 @@
 	};
 
 	export function updateShow(show: boolean) {
-		if (disabled) return;
+		if (disabled && show) return;
 		setTimeout(
 			async () => {
 				if (isEnter) {
@@ -132,6 +132,13 @@
 	);
 
 	$: triggerCls = clsx('flex', clsTrigger);
+
+	/**
+	 * @internal
+	 */
+	function onAnimationEnd() {
+		dispatch('animateEnd');
+	}
 </script>
 
 <div
@@ -152,6 +159,7 @@
 		class={cnames}
 		out:scale={{ duration: 200, start: 0.3, opacity: 0 }}
 		in:scale={{ duration: 200, start: 0.3, opacity: 0 }}
+		on:animationend={onAnimationEnd}
 		data-popper-placement
 		aria-hidden="true"
 		{...attrs}
