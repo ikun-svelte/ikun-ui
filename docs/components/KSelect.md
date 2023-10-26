@@ -66,6 +66,12 @@ Through `slots` you can customize `option` rendering
 
 <demo src="select/virtual.svelte" github="Select"></demo>
 
+## Remote Search
+
+`k-select` provides basic remote search capabilities
+
+<demo src="select/remote.svelte" github="Select"></demo>
+
 ## Select Props
 
 | Name          | Type                                                 | Default                 | Description                                                                                                         |
