@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { browser } from '$app/environment'
+	import { BROWSER } from 'esm-env';
 </script>
-{#if browser}
-	<slot></slot>
+
+{#if BROWSER}
+	<slot />
 {/if}

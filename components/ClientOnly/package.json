@@ -36,7 +36,8 @@
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.16"
+		"baiwusanyu-utils": "^1.0.16",
+		"esm-env": "^1.0.0"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.2",
