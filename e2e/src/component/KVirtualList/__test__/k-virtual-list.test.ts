@@ -1,4 +1,4 @@
-import { afterAll, describe, test } from "vitest";
+import { afterAll, describe, test } from 'vitest';
 import type { E2EPlaywrightContext } from '../../../test-utils';
 import { createBrowserContext, freeBrowserContext, untilUpdated } from '../../../test-utils';
 describe('k-virtual-list e2e test', () => {
@@ -24,13 +24,13 @@ describe('k-virtual-list e2e test', () => {
 			await untilUpdated(async () => {
 				const optionEl = await container!.locator('[data-kv-key="30"]');
 				await browserCtx.page!.waitForTimeout(500);
-				const res = await optionEl.count()
+				const res = await optionEl.count();
 				return `${res}`;
 			}, '1');
 			await untilUpdated(async () => {
 				const optionEl = await container!.locator('[data-kv-key="29"]');
 				await browserCtx.page!.waitForTimeout(500);
-				const res = await optionEl.count()
+				const res = await optionEl.count();
 				return `${res}`;
 			}, '0');
 		})

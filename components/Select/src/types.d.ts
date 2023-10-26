@@ -16,6 +16,7 @@ export type KSelectProps = {
 	clearable: boolean;
 	cls: ClassValue;
 	attrs: Record<string, string>;
+	remote?: (params: string, cb: (data: KSelectProps['dataList']) => void) => void;
 	// option
 	isActive: boolean;
 	label: string;
