@@ -23,8 +23,7 @@
 	export let dataList: KSelectProps['dataList'] = [];
 	export let maxHeight: KSelectProps['maxHeight'] = 250;
 	export let clearable: KSelectProps['clearable'] = false;
-
-	export let remote: undefined | ((cb:(data: KSelectProps['dataList']) => void) => void) = undefined
+	export let remote: KSelectProps['remote']= undefined
 
 	let valueType: 'o' | 'n' | 's' = 'o';
 	const wrapperData = (v: KSelectProps['value']) => {
@@ -168,9 +167,8 @@
 	}
 
 	// remote search
-	// TODO: 选择双向绑定
 	let text = 'no data'
-	const remoteSearch = debounce(async () => {
+	const remoteSearch = debounce(async (e) => {
 		dataListInner = []
 		isDisabledPopover = false
 		heightInner = 'initial'
@@ -179,10 +177,10 @@
 		text = 'loading'
 		try {
 			if(remote){
-				remote((data: KSelectProps['dataList']) => {
+				remote(e.target.value, (data: KSelectProps['dataList']) => {
 					dataListInner = data.map(wrapperData) as Record<string, any>[];
 					text = 'no data'
-					setVList()
+					dataListInner.length > 0 && setVList()
 				})
 			}
 		} catch (e){
@@ -232,7 +230,6 @@
 	// ⭕TODO 多选最大显示
 
 	// ⭕TODO 选项筛选
-	// ⭕TODO 远程搜索 unit test
 </script>
 
 <KPopover

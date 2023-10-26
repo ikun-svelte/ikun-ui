@@ -1,4 +1,4 @@
-import { afterAll, describe, test } from "vitest";
+import { afterAll, describe, test } from 'vitest';
 import type { E2EPlaywrightContext } from '../../../test-utils';
 import { createBrowserContext, freeBrowserContext, untilUpdated } from '../../../test-utils';
 describe('k-select e2e test', () => {

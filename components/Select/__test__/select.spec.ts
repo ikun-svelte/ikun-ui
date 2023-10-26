@@ -11,6 +11,7 @@ import KSelectCustom from './select.custom.svelte';
 import KSelectString from './select.string.svelte';
 import KSelectNumber from './select.number.svelte';
 import KSelectFit from './select.fit.svelte';
+import KSelectRemote from './select.remote.svelte';
 let host: HTMLElement;
 
 const initHost = () => {
@@ -93,6 +94,40 @@ describe('Test: KSelect', () => {
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('k-select--option__fit')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: remote', async () => {
+		const instance = new KSelectRemote({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+
+		const triggerEl = host.querySelector('[data-popover-trigger]');
+		(triggerEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const contentEl = host.querySelector('[slot="contentEl"]');
+		const valueEl = host.querySelector('#k_select_remote');
+		expect(valueEl?.innerHTML).toBe(
+			'{"label":"Connecticut","value":"Connecticut","id":"Connecticut"}'
+		);
+		expect(contentEl).not.toBeTruthy();
+		const inputEl = triggerEl?.querySelector('input');
+		inputEl.value = 'ikun';
+		inputEl.dispatchEvent(new Event('input', { cancelable: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(400);
+		expect(host.innerHTML.includes('no data')).toBeTruthy();
+		inputEl.value = 'Alabama';
+		inputEl.dispatchEvent(new Event('input', { cancelable: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(400);
+		const optionEl = host?.querySelectorAll('.k-virtual-list--item')[0].children[0];
+		(optionEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(400);
+		expect(valueEl?.innerHTML).toBe('{"label":"Alabama","value":"Alabama","id":"Alabama"}');
 	});
 
 	test('props: clearable', async () => {
