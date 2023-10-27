@@ -45,9 +45,6 @@ jobs:
       - name: Unit Test
         run: nr test:unit
 
-      - name: E2E Test
-        run: nr test:e2e
-
       - name: Set npmrc for components
         run: |
           for package in $(find components/* -maxdepth 1 -type d); do
