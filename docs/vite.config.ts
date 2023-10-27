@@ -9,11 +9,12 @@ export default defineConfig({
 		{
 			name: 'compatible:svelte:kit',
 			post: 'pre',
+			enforce: 'pre',
 			resolveId(id: string) {
-				if (id === '$app/environment') return '\0$app/environment';
+				if (id === 'esm-env') return '\0esm-env';
 			},
 			load(id: string) {
-				if (id === '\0$app/environment') return 'export const browser = true';
+				if (id === '\0esm-env') return 'export const BROWSER = true';
 			}
 		} as Plugin
 	],
