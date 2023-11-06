@@ -14,10 +14,17 @@
   let pagerTotal = Number((total / pageSize).toFixed())
   let arr: number[] = []
   arr.length = Number(pagerCount)
-  let isShowNextExpand = currentPage < (pagerTotal - pagerCount)
-  let isShowPrevExpand = currentPage > pagerCount
 
-   debugger
+  let isShowNextExpand = currentPage < (pagerTotal - pagerCount)
+  $:{
+    isShowNextExpand = currentPage < (pagerTotal - pagerCount)
+  }
+
+  let isShowPrevExpand = currentPage > pagerCount
+  $:{
+    isShowPrevExpand = currentPage > pagerCount
+  }
+
 
   const handleNext = () => {
     currentPage++
@@ -29,6 +36,13 @@
     currentPage <= 0 && (currentPage = 1)
   }
 
+
+
+
+
+
+
+
   const prefixCls = getPrefixCls('pagination');
   const pagerCls = getPrefixCls('pagination--pager');
   $: cnames = clsx(prefixCls, {}, cls);
@@ -38,7 +52,7 @@
   <li class={pagerCls} on:click={handlePrev} aria-hidden="true">
     prev
   </li>
-  {#if isShowNextExpand}
+  {#if isShowPrevExpand}
     <li class={pagerCls} aria-hidden="true">
       ...
     </li>
@@ -50,7 +64,7 @@
     </PagerComp>
    {/each}
 
-  {#if isShowPrevExpand}
+  {#if isShowNextExpand}
     <li class={pagerCls} aria-hidden="true">
       ...
     </li>
@@ -60,3 +74,4 @@
       next
    </li>
 </ul>
+{currentPage}
