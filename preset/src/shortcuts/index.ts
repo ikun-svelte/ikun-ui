@@ -39,6 +39,7 @@ import { popconfirmShortcuts } from './src/popconfirm';
 import { contextmenuShortcuts } from './src/contextmenu';
 import { emptyShortcuts } from './src/empty';
 import { virtualListShortcuts } from './src/virtual-list';
+import { pageShortcuts } from "./src/pagination";
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -113,7 +114,9 @@ export const defaultShortcuts = [
 	// empty
 	emptyShortcuts,
 	// virtualList
-	virtualListShortcuts
+	virtualListShortcuts,
+	// pageShortcuts
+	pageShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -156,6 +159,7 @@ export function getSafeList() {
 	const contextmenuList = Object.keys(contextmenuShortcuts);
 	const emptyList = Object.keys(emptyShortcuts);
 	const virtualList = Object.keys(virtualListShortcuts);
+	const pageList = Object.keys(pageShortcuts);
 	let res = iconList
 		.concat(comList)
 		.concat(baseList)
@@ -193,7 +197,8 @@ export function getSafeList() {
 		.concat(dividerList)
 		.concat(emptyList)
 		.concat(contextmenuList)
-		.concat(virtualList);
+		.concat(virtualList)
+		.concat(pageList);
 
 	// rules
 	const colSizeRules = Object.keys(createColSizeClsByNum());
@@ -240,3 +245,4 @@ export { popconfirmShortcuts } from './src/popconfirm';
 export { contextmenuShortcuts } from './src/contextmenu';
 export { emptyShortcuts } from './src/empty';
 export { virtualListShortcuts } from './src/virtual-list';
+export { pageShortcuts } from "./src/pagination";
