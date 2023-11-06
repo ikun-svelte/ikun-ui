@@ -1,18 +1,18 @@
 /// <reference types="svelte" />
 import type { ClassValue } from 'clsx';
 export type KPaginationProps = {
-  cls: ClassValue,
-  attrs: Record<string, string>
-  total: number
-  pagerCount: number
-  pageSize: number
-  currentPage: number
+	cls: ClassValue;
+	attrs: Record<string, string>;
+	total: number;
+	pagerCount: number;
+	pageSize: number;
+	currentPage: number;
 
-  // pager
-  index: number
-  isActive: boolean
-  isBg: boolean
-}
+	// pager
+	index: number;
+	isActive: boolean;
+	isBg: boolean;
+};
 // TODO: props: size -- three size
 // TODO: props: bg -- background
 // TODO: props: layout --

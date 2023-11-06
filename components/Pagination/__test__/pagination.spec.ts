@@ -24,10 +24,7 @@ describe('Test: KPagination', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(
-			(host as HTMLElement)!.innerHTML.includes('k-pagination--test')
-		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-pagination--test')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
-})
-	
+});

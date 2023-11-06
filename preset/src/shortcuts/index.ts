@@ -39,7 +39,7 @@ import { popconfirmShortcuts } from './src/popconfirm';
 import { contextmenuShortcuts } from './src/contextmenu';
 import { emptyShortcuts } from './src/empty';
 import { virtualListShortcuts } from './src/virtual-list';
-import { pageShortcuts } from "./src/pagination";
+import { pageShortcuts } from './src/pagination';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -245,4 +245,4 @@ export { popconfirmShortcuts } from './src/popconfirm';
 export { contextmenuShortcuts } from './src/contextmenu';
 export { emptyShortcuts } from './src/empty';
 export { virtualListShortcuts } from './src/virtual-list';
-export { pageShortcuts } from "./src/pagination";
+export { pageShortcuts } from './src/pagination';
