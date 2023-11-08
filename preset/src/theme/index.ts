@@ -55,7 +55,8 @@ export const defaultTheme = {
 		'ikun-success-500': 'var(--ikun-green-500)',
 		'ikun-tx-base': 'var(--ikun-slate-900)',
 		'ikun-tx-gr': 'var(--ikun-zinc-400)',
-		'ikun-bd-base': 'var(--ikun-zinc-300)'
+		'ikun-bd-base': 'var(--ikun-zinc-300)',
+		'ikun-bg-gr': 'var(--ikun-slate-100)'
 	},
 	fontFamily: {
 		sans: 'Avenir, Helvetica, Arial, sans-serif'

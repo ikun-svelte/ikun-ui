@@ -1,146 +1,184 @@
 <script lang="ts">
-  import { getPrefixCls } from '@ikun-ui/utils';
+	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-  import type { KPaginationProps } from "./types";
-  import PagerComp from './pager.svelte'
+	import type { KPaginationProps } from './types';
+	import PagerComp from './pager.svelte';
+	import { createEventDispatcher } from 'svelte';
 
-  export let cls: KPaginationProps["cls"] = undefined;
-  export let attrs: KPaginationProps["attrs"] = {};
+	export let cls: KPaginationProps['cls'] = undefined;
+	export let attrs: KPaginationProps['attrs'] = {};
+	export let size: KPaginationProps['size'] = 'md';
+	export let isBg: KPaginationProps['isBg'] = false;
+	export let disabled: KPaginationProps['disabled'] = false;
+	// TODO: 这四个都应该动态
+	export let total: KPaginationProps['total'] = 0;
+	export let pagerCount: KPaginationProps['pagerCount'] = 7;
+	export let pageSize: KPaginationProps['pageSize'] = 10;
+	export let currentPage: KPaginationProps['currentPage'] = 1;
 
-  // 这四个都应该动态
-  export let total: KPaginationProps["total"] = 0
-  export let pagerCount: KPaginationProps["pagerCount"] = 7
-  export let pageSize: KPaginationProps["pageSize"] = 10
-  export let currentPage: KPaginationProps["currentPage"] = 1
+	const dispatch = createEventDispatcher();
+	$: isEven = pagerCount % 2 === 0;
+	// total pages
+	$: pagerTotal = Number((total / pageSize).toFixed());
+	$: isShowAll = pagerCount >= pagerTotal;
+	// Exclude the first and last pages,
+	// and the pager displayed in the middle
+	$: midPagerCount = pagerCount - 2;
+	// Median of pagerCount
+	$: mid = Number((pagerCount / 2).toFixed());
+	// The number of pagers displayed before and after
+	// the pager corresponding to the median
+	$: offset = Math.floor(midPagerCount / 2);
+	$: currentPageInner = currentPage > pagerTotal ? pagerTotal : currentPage < 0 ? 1 : currentPage;
+	let isShowNextExpand = false;
+	let isShowPrevExpand = false;
+	//TODO: refactor
+	function updatedExpend() {
+		isShowNextExpand = currentPageInner <= pagerTotal - (isEven ? mid + 1 : mid);
+		isShowPrevExpand = currentPageInner > mid;
+	}
+	$: {
+		!isShowAll && (isShowNextExpand = currentPageInner <= pagerTotal - (isEven ? mid + 1 : mid));
+		!isShowAll && (isShowPrevExpand = currentPageInner > mid);
+	}
 
-  $:isEven = pagerCount % 2 === 0
-  // total pages
-  $:pagerTotal = Number((total / pageSize).toFixed())
-  $:isShowAll = pagerCount >= pagerTotal
-  // Exclude the first and last pages,
-  // and the pager displayed in the middle
-  $:midPagerCount = pagerCount - 2
-  // Median of pagerCount
-  $:mid = Number((pagerCount / 2).toFixed())
-  // The number of pagers displayed before and after
-  // the pager corresponding to the median
-  $:offset = Math.floor(midPagerCount / 2)
-  $: currentPageInner = currentPage > pagerTotal ? pagerTotal : currentPage < 0 ? 1 : currentPage
-  let isShowNextExpand = false
-  let isShowPrevExpand = false
-  //TODO: refactor
-  function updatedExpend(){
-      isShowNextExpand = (currentPageInner <= (pagerTotal - (isEven ? mid + 1 : mid)))
-      isShowPrevExpand = currentPageInner > mid;
-  }
-  $:{
-    !isShowAll && (isShowNextExpand = (currentPageInner <= (pagerTotal - (isEven ? mid + 1 : mid))))
-    !isShowAll && (isShowPrevExpand = currentPageInner > mid)
-  }
+	let arr: number[] = [];
+	function fillList(start: number, end: number) {
+		arr = [];
+		for (let i = start; i <= end; i++) {
+			arr.push(i);
+		}
+	}
+	$: if (!isShowAll) {
+		updatedList();
+		if (!isShowNextExpand) {
+			fillList(pagerTotal - midPagerCount, pagerTotal - 1);
+		}
+		if (!isShowPrevExpand) {
+			fillList(2, midPagerCount + 1);
+		}
+	} else {
+		fillList(2, pagerTotal - 1);
+	}
 
-  let arr: number[] = []
-  function fillList(start: number, end: number){
-    arr = []
-    for (let i = start ; i <= end; i++) {
-      arr.push(i)
-    }
-  }
-  $:if(!isShowAll){
-    updatedList();
-    if(!isShowNextExpand){
-      fillList(pagerTotal - midPagerCount, pagerTotal - 1)
-    }
-    if(!isShowPrevExpand){
-      fillList(2, midPagerCount + 1)
-    }
-  } else {
-    fillList(2, pagerTotal - 1)
-  }
+	function getStartEnd() {
+		let end = currentPageInner + offset;
+		let start = currentPageInner - (isEven ? offset - 1 : offset);
+		return [start, end];
+	}
+	function updatedList() {
+		if (isShowPrevExpand && isShowNextExpand) {
+			const [start, end] = getStartEnd();
+			fillList(start, end);
+		}
+	}
 
-  function getStartEnd(){
-      let end = currentPageInner + offset
-      let start = currentPageInner - (isEven ? offset - 1 : offset)
-      return [start, end]
-  }
-  function updatedList(){
-    if(isShowPrevExpand && isShowNextExpand){
-      const [start, end] = getStartEnd()
-      fillList(start, end)
-    }
-  }
-  const handleNext = () => {
-    // compute current page
-    currentPageInner++
-    // limit current page
-    currentPageInner >= pagerTotal && (currentPageInner = pagerTotal);
-    if(!isShowAll){
-      updatedExpend();
-      updatedList();
-      if(!isShowNextExpand){
-        fillList(pagerTotal - midPagerCount, pagerTotal - 1)
-      }
-    }
-  }
-  const handlePrev = () => {
-      // compute current page
-    currentPageInner--
-      // limit current page
-    currentPageInner <= 0 && (currentPageInner = 1);
-    if(!isShowAll){
-      updatedExpend();
-      updatedList();
-      if(!isShowPrevExpand){
-        fillList(2, midPagerCount + 1)
-      }
-    }
-  }
-  // TODO: 偶数next测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-  // TODO: 奇数next测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-  // TODO: 偶数prev测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-  // TODO: 奇数prev测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-  // TODO: 奇数showAll = true 测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-  // TODO: 偶数showAll = true 测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
+	function limitCurrentPage() {
+		currentPageInner >= pagerTotal && (currentPageInner = pagerTotal);
+		currentPageInner <= 0 && (currentPageInner = 1);
+		dispatch('currentChange', currentPageInner);
+	}
 
+	function jumpTo(e: CustomEvent) {
+		currentPageInner = e.detail;
+		limitCurrentPage();
+		if (!isShowAll) {
+			updatedExpend();
+			updatedList();
+			if (!isShowNextExpand) {
+				fillList(pagerTotal - midPagerCount, pagerTotal - 1);
+			}
+			if (!isShowPrevExpand) {
+				fillList(2, midPagerCount + 1);
+			}
+		}
+	}
 
+	const handleNext = (step = 1) => {
+		// compute current page
+		currentPageInner = currentPageInner + step;
+		limitCurrentPage();
+		if (!isShowAll) {
+			updatedExpend();
+			updatedList();
+			if (!isShowNextExpand) {
+				fillList(pagerTotal - midPagerCount, pagerTotal - 1);
+			}
+		}
+	};
+	const handlePrev = (step = 1) => {
+		// compute current page
+		currentPageInner = currentPageInner - step;
+		limitCurrentPage();
+		if (!isShowAll) {
+			updatedExpend();
+			updatedList();
+			if (!isShowPrevExpand) {
+				fillList(2, midPagerCount + 1);
+			}
+		}
+	};
+	// TODO: 偶数next测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
+	// TODO: 奇数next测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
+	// TODO: 偶数prev测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
+	// TODO: 奇数prev测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
+	// TODO: 奇数showAll = true 测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
+	// TODO: 偶数showAll = true 测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
+	// TODO: 点击三点测试
+	// TODO: 点击 pager测试
 
-
-
-  const prefixCls = getPrefixCls('pagination');
-  const pagerCls = getPrefixCls('pagination--pager');
-  $: cnames = clsx(prefixCls, {}, cls);
+	const prefixCls = getPrefixCls('pagination');
+	$: cnames = clsx(prefixCls, {}, cls);
 </script>
 
 <ul class={cnames} {...$$restProps} {...attrs}>
-  <li class={pagerCls} on:click={handlePrev} aria-hidden="true">
-    prev
-  </li>
-  <PagerComp index={1}
-             isActive="{1 === currentPageInner}">
-  </PagerComp>
-  {#if isShowPrevExpand}
-    <li class={pagerCls} aria-hidden="true">
-      ...
-    </li>
-  {/if}
+	<PagerComp index={'<'} {isBg} {size} {disabled} on:click={() => handlePrev(1)}></PagerComp>
 
-  {#each arr as item}
-    <PagerComp index={item}
-               isActive="{item === currentPageInner}">
-    </PagerComp>
-   {/each}
+	<PagerComp
+		index={1}
+		{isBg}
+		{size}
+		{disabled}
+		on:click={jumpTo}
+		isActive={1 === currentPageInner}
+	></PagerComp>
+	{#if isShowPrevExpand}
+		<PagerComp
+			index={'...'}
+			{isBg}
+			{size}
+			on:click={() => handlePrev(pagerCount)}
+			{disabled}
+		></PagerComp>
+	{/if}
 
-  {#if isShowNextExpand}
-    <li class={pagerCls} aria-hidden="true">
-      ...
-    </li>
-  {/if}
-  <PagerComp index={pagerTotal}
-             isActive="{pagerTotal === currentPageInner}">
-  </PagerComp>
-   <li class={pagerCls} on:click={handleNext} aria-hidden="true">
-      next
-   </li>
+	{#each arr as item}
+		<PagerComp
+			index={item}
+			{isBg}
+			{size}
+			{disabled}
+			on:click={jumpTo}
+			isActive={item === currentPageInner}
+		></PagerComp>
+	{/each}
+
+	{#if isShowNextExpand}
+		<PagerComp
+			index={'...'}
+			{isBg}
+			{size}
+			on:click={() => handleNext(pagerCount)}
+			{disabled}
+		></PagerComp>
+	{/if}
+	<PagerComp
+		index={pagerTotal}
+		{size}
+		{isBg}
+		{disabled}
+		on:click={jumpTo}
+		isActive={pagerTotal === currentPageInner}
+	></PagerComp>
+	<PagerComp index={'>'} {size} {isBg} {disabled} on:click={() => handleNext(1)}></PagerComp>
 </ul>
-{currentPageInner}
-{arr}
-{isShowAll}
