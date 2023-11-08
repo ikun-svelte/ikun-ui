@@ -10,6 +10,10 @@
 	export let size: KPaginationProps['size'] = 'md';
 	export let isBg: KPaginationProps['isBg'] = false;
 	export let disabled: KPaginationProps['disabled'] = false;
+	export let prevText: KPaginationProps['prevText'] = '';
+	export let prevIcon: KPaginationProps['prevIcon'] = '';
+	export let nextText: KPaginationProps['nextText'] = '';
+	export let nextIcon: KPaginationProps['nextIcon'] = '';
 	// TODO: 这四个都应该动态
 	export let total: KPaginationProps['total'] = 0;
 	export let pagerCount: KPaginationProps['pagerCount'] = 7;
@@ -126,29 +130,30 @@
 	// TODO: 偶数showAll = true 测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
 	// TODO: 点击三点测试
 	// TODO: 点击 pager测试
+	// TODO: nextIcon、nextText 測試
+	// TODO: prevIcon、prevText 測試
+	// TODO: ... hover 測試
 
 	const prefixCls = getPrefixCls('pagination');
 	$: cnames = clsx(prefixCls, {}, cls);
 </script>
 
 <ul class={cnames} {...$$restProps} {...attrs}>
-	<PagerComp index={'<'} {isBg} {size} {disabled} on:click={() => handlePrev(1)}></PagerComp>
-
 	<PagerComp
-		index={1}
+		index={'<'}
+		text={prevText}
+		icon={prevIcon}
+		type="prev"
 		{isBg}
 		{size}
 		{disabled}
-		on:click={jumpTo}
-		isActive={1 === currentPageInner}
+		on:click={() => handlePrev(1)}
+	></PagerComp>
+
+	<PagerComp index={1} {isBg} {size} {disabled} on:click={jumpTo} isActive={1 === currentPageInner}
 	></PagerComp>
 	{#if isShowPrevExpand}
-		<PagerComp
-			index={'...'}
-			{isBg}
-			{size}
-			on:click={() => handlePrev(pagerCount)}
-			{disabled}
+		<PagerComp type="prevPoint" {isBg} {size} on:click={() => handlePrev(pagerCount)} {disabled}
 		></PagerComp>
 	{/if}
 
@@ -164,12 +169,7 @@
 	{/each}
 
 	{#if isShowNextExpand}
-		<PagerComp
-			index={'...'}
-			{isBg}
-			{size}
-			on:click={() => handleNext(pagerCount)}
-			{disabled}
+		<PagerComp type="nextPoint" {isBg} {size} on:click={() => handleNext(pagerCount)} {disabled}
 		></PagerComp>
 	{/if}
 	<PagerComp
@@ -180,5 +180,13 @@
 		on:click={jumpTo}
 		isActive={pagerTotal === currentPageInner}
 	></PagerComp>
-	<PagerComp index={'>'} {size} {isBg} {disabled} on:click={() => handleNext(1)}></PagerComp>
+	<PagerComp
+		text={nextText}
+		icon={nextIcon}
+		type="next"
+		{size}
+		{isBg}
+		{disabled}
+		on:click={() => handleNext(1)}
+	></PagerComp>
 </ul>
