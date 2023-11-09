@@ -24,11 +24,11 @@ export const inputShortcuts: Record<string, string> = {
 	// size
 	'k-input__sm': 'h-22px px-1.5 text-12px',
 	'k-input__md': 'h-30px px-2.5 text-14px',
-	'k-input__lg': 'h-38px px-3.5 text-16px',
+	'k-input__lg': 'h-38px px-2.5 text-16px',
 
 	'k-input--icon__sm': '!w-12px !h-12px',
-	'k-input--icon__md': '!w-20px !h-20px',
-	'k-input--icon__lg': '!w-24px !h-24px',
+	'k-input--icon__md': '!w-16px !h-16px',
+	'k-input--icon__lg': '!w-20px !h-20px',
 
 	'k-input__disabled': 'k-bg-disabled k-cur-disabled',
 	'k-input__hover': 'hover:border-ikun-main [&:hover>.k-input--clear-icon]:block',

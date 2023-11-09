@@ -2,6 +2,7 @@
 import { ClassValue } from 'clsx';
 
 export type KSelectProps = {
+	size: 'sm' | 'md' | 'lg';
 	iconPrefix: string;
 	iconSuffix: string;
 	value: string | number | Record<string, any>;
