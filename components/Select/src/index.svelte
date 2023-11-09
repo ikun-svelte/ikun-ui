@@ -23,8 +23,8 @@
 	export let dataList: KSelectProps['dataList'] = [];
 	export let maxHeight: KSelectProps['maxHeight'] = 250;
 	export let clearable: KSelectProps['clearable'] = false;
-	export let remote: KSelectProps['remote']= undefined
-
+	export let remote: KSelectProps['remote'] = undefined;
+	export let size: KSelectProps['size'] = 'md';
 	let valueType: 'o' | 'n' | 's' = 'o';
 	const wrapperData = (v: KSelectProps['value']) => {
 		if (isString(v)) {
@@ -107,7 +107,6 @@
 	};
 	const handleClear = (e: MouseEvent) => {
 		e.stopPropagation();
-		handleAnimation();
 		if (valueType === 'o') {
 			handleSelect({});
 		} else if (valueType === 's') {
@@ -117,18 +116,18 @@
 		}
 	};
 
-	let isDisabledPopover = disabled || !!remote
+	let isDisabledPopover = disabled || !!remote;
 	$: {
-		isDisabledPopover = disabled || !!remote
+		isDisabledPopover = disabled || !!remote;
 	}
 
-	 async function onOpen(e: CustomEvent) {
+	async function onOpen(e: CustomEvent) {
 		handleExpend(e);
 		if (e.detail && dataListInner.length > 0) {
 			setVList();
-		}  else if(!e.detail && remote){
+		} else if (!e.detail && remote) {
 			// reset remote popover disabled
-			isDisabledPopover = true
+			isDisabledPopover = true;
 		}
 	}
 
@@ -167,26 +166,26 @@
 	}
 
 	// remote search
-	let text = 'no data'
+	let text = 'no data';
 	const remoteSearch = debounce(async (e) => {
-		dataListInner = []
-		isDisabledPopover = false
-		heightInner = 'initial'
-		await tick()
+		dataListInner = [];
+		isDisabledPopover = false;
+		heightInner = 'initial';
+		await tick();
 		popoverRef.updateShow(true);
-		text = 'loading'
+		text = 'loading';
 		try {
-			if(remote){
+			if (remote) {
 				remote(e.target.value, (data: KSelectProps['dataList']) => {
 					dataListInner = data.map(wrapperData) as Record<string, any>[];
-					text = 'no data'
-					dataListInner.length > 0 && setVList()
-				})
+					text = 'no data';
+					dataListInner.length > 0 && setVList();
+				});
 			}
-		} catch (e){
-			text = 'no data'
+		} catch (e) {
+			text = 'no data';
 		}
-	}, 300)
+	}, 300);
 
 	// class names
 	const prefixCls = getPrefixCls('select');
@@ -194,6 +193,7 @@
 		`${prefixCls}--base`,
 		`${prefixCls}__hover`,
 		`${prefixCls}__focus`,
+		`${prefixCls}__${size}`,
 		{
 			[`${prefixCls}--base__disabled`]: disabled,
 			[`${prefixCls}--base__dark`]: !disabled,
@@ -201,29 +201,16 @@
 		},
 		cls
 	);
-	$: selectCls = clsx(
-		`
-	${prefixCls}--inner`,
-		{
-			[`${prefixCls}--inner__dark`]: !disabled,
-			[`${prefixCls}--base__disabled`]: disabled,
-			[`${prefixCls}--base__disabled__dark`]: disabled,
-			[`${prefixCls}--inner__disabled__dark`]: disabled
-		}
-	);
-	const prefixIconCls = `${prefixCls}--prefix`;
-	const suffixIconCls = `${prefixCls}--suffix`;
-	const selectIconCls = clsx(`${prefixCls}--icon`);
+	$: selectCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__${size}`, {
+		[`${prefixCls}--inner__dark`]: !disabled,
+		[`${prefixCls}--base__disabled`]: disabled,
+		[`${prefixCls}--base__disabled__dark`]: disabled,
+		[`${prefixCls}--inner__disabled__dark`]: disabled
+	});
+	const prefixIconCls = clsx(`${prefixCls}--prefix`, `${prefixCls}--icon__${size}`);
+	const suffixIconCls = clsx(`${prefixCls}--suffix`, `${prefixCls}--icon__${size}`);
+	const selectIconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${size}`);
 	const noDataCls = clsx(`${prefixCls}--tx__empty`);
-
-	// clear icon animation
-	let animationCls = '';
-	function handleAnimation() {
-		animationCls = `${prefixCls}--clear__animate rounded-full`;
-		setTimeout(() => {
-			animationCls = '';
-		}, 300);
-	}
 
 	// ⭕TODO 选项分组
 	// ⭕TODO 基础多选
@@ -254,27 +241,36 @@
 	>
 		<slot name="prefix">
 			{#if iconPrefix}
-				<KIcon icon={iconPrefix} cls={prefixIconCls} width="auto" height="auto" />
+				<i>
+					<KIcon icon={iconPrefix} cls={prefixIconCls} width="auto" height="auto" />
+				</i>
 			{/if}
 		</slot>
 
-		<input class={selectCls}
-					 readonly={!remote}
-					 on:input={remoteSearch}
-					 value={getLabel(value)}
-					 {disabled} {placeholder} />
+		<input
+			class={selectCls}
+			readonly={!remote}
+			on:input={remoteSearch}
+			value={getLabel(value)}
+			{disabled}
+			{placeholder}
+		/>
 
 		<slot name="suffix">
 			{#if iconSuffix}
-				<KIcon icon={iconSuffix} cls={suffixIconCls} width="auto" height="auto" />
+				<i>
+					<KIcon icon={iconSuffix} cls={suffixIconCls} width="auto" height="auto" />
+				</i>
 			{/if}
 		</slot>
 		{#if clearable && isShowClear}
-			<div on:click={handleClear} aria-hidden="true" class={animationCls} data-k-select-clear>
-				<KIcon icon="i-carbon-close-outline" cls={selectIconCls} width="16px" height="16px" />
-			</div>
+			<i data-k-select-clear aria-hidden="true" on:click={handleClear}>
+				<KIcon icon="i-carbon-close-outline" cls={selectIconCls} width="auto" height="auto" />
+			</i>
 		{:else}
-			<KIcon icon={expendIcon} cls={selectIconCls} width="16px" height="16px" />
+			<i>
+				<KIcon icon={expendIcon} cls={selectIconCls} width="auto" height="auto" />
+			</i>
 		{/if}
 	</div>
 	<div
@@ -286,7 +282,7 @@
 		style:height={heightInner}
 		style:max-height={`${maxHeight}px`}
 	>
-	{#if dataListInner.length > 0}
+		{#if dataListInner.length > 0}
 			<KVirtualList
 				data={dataListInner}
 				{key}
@@ -306,9 +302,9 @@
 					<slot {data} onSelect={handleSelect} label={getLabel(data)} isActive={isActive(data)} />
 				{/if}
 			</KVirtualList>
-		{:else }
-			<p class="{noDataCls}">
-				{ text }
+		{:else}
+			<p class={noDataCls}>
+				{text}
 			</p>
 		{/if}
 	</div>

@@ -81,6 +81,36 @@ describe('Test: KSelect', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: size', async () => {
+		const instanceSm = new KSelect({
+			target: host,
+			props: {
+				size: 'sm'
+			}
+		});
+		const instanceMd = new KSelect({
+			target: host,
+			props: {
+				size: 'md'
+			}
+		});
+		const instanceLg = new KSelect({
+			target: host,
+			props: {
+				size: 'lg'
+			}
+		});
+		expect(instanceSm).toBeTruthy();
+		expect(instanceMd).toBeTruthy();
+		expect(instanceLg).toBeTruthy();
+		await tick();
+		const selectElms = document.querySelectorAll('.k-select--base');
+		expect(selectElms[0].className.includes('k-select__sm')).toBeTruthy();
+		expect(selectElms[1].className.includes('k-select__md')).toBeTruthy();
+		expect(selectElms[2].className.includes('k-select__lg')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('props: fitInputWidth', async () => {
 		const instance = new KSelectFit({
 			target: host

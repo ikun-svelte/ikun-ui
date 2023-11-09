@@ -72,6 +72,12 @@ Through `slots` you can customize `option` rendering
 
 <demo src="select/remote.svelte" github="Select"></demo>
 
+## Sizes
+
+Add `size` attribute to change the size of Select. It supports `sm`, `md` and `lg`.
+
+<demo src="select/sizes.svelte" github="Select"></demo>
+
 ## Select Props
 
 | Name          | Type                                                 | Default                 | Description                                                                                                         |
@@ -88,6 +94,7 @@ Through `slots` you can customize `option` rendering
 | disabled      | `boolean`                                            | `false`                 | Disable the Select                                                                                                  |
 | clearable     | `boolean`                                            | `false`                 | Decide if it can be cleared                                                                                         |
 | fitInputWidth | `boolean`                                            | `true`                  | Determine whether the width of the option is limited to be consistent with the selection box                        |
+| size          | `sm \| md \|lg`                                      | `md`                    | size of Select.                                                                                                     |
 | cls           | `string`                                             | `-`                     | Additional class                                                                                                    |
 | attrs         | `Record<string, string>`                             | `{}`                    | Additional attributes                                                                                               |
 
