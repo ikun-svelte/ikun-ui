@@ -133,6 +133,8 @@
 	// TODO: nextIcon、nextText 測試
 	// TODO: prevIcon、prevText 測試
 	// TODO: ... hover 測試
+	// TODO: size 測試
+	// TODO: bg 測試
 
 	const prefixCls = getPrefixCls('pagination');
 	$: cnames = clsx(prefixCls, {}, cls);

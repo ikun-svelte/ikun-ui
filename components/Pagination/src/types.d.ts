@@ -23,9 +23,9 @@ export type KPaginationProps = {
 	icon: string;
 	type?: 'next' | 'prev' | 'prevPoint' | 'nextPoint';
 };
-// TODO: props: size -- three size
-// 🎯 TODO: props: bg -- background
-// TODO: props: layout --
+// 🚧 TODO: props: size -- three size
+// 🚧 TODO: props: bg -- background
+// TODO: props: layout -- jumper、size、total、pager
 // 🤡 TODO: props: disabled
 
 // 🚧 TODO: props: total -- 总条数
