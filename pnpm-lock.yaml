@@ -101,6 +101,9 @@ importers:
       '@ikun-ui/notify':
         specifier: workspace:*
         version: link:components/Notification
+      '@ikun-ui/pagination':
+        specifier: workspace:*
+        version: link:components/Pagination
       '@ikun-ui/popconfirm':
         specifier: workspace:*
         version: link:components/Popconfirm
@@ -1138,6 +1141,40 @@ importers:
       svelte-strip:
         specifier: ^3.0.1
         version: 3.0.1(postcss@8.4.31)(svelte@4.2.2)
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
+  components/Pagination:
+    dependencies:
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@ikun-ui/input':
+        specifier: workspace:*
+        version: link:../Input
+      '@ikun-ui/select':
+        specifier: workspace:*
+        version: link:../Select
+      '@ikun-ui/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      baiwusanyu-utils:
+        specifier: ^1.0.16
+        version: 1.0.16(ansi-colors@4.1.3)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: ^5.0.2
+        version: 5.0.2
+      svelte-strip:
+        specifier: ^2.0.0
+        version: 2.0.0(postcss@8.4.31)(svelte@3.59.2)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3460,7 +3497,7 @@ packages:
     dev: true
 
   /buffer-crc32@0.2.13:
-    resolution: {integrity: sha1-DTM+PwDqxQqhRUq9MO+MKl2ackI=}
+    resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
     dev: true
 
   /buffer-from@1.1.2:
@@ -4053,7 +4090,7 @@ packages:
     dev: true
 
   /es6-promise@3.3.1:
-    resolution: {integrity: sha1-oIzd6EzNvzTQJ6FFG8kdS80ophM=}
+    resolution: {integrity: sha512-SOp9Phqvqn7jtEUxPWdWfWoLmyt2VaJ6MpvP9Comy1MceMXqE6bxvaTu4iaxpYYPzhny28Lc+M87/c2cPK6lDg==}
     dev: true
 
   /esbuild@0.18.20:
@@ -6192,7 +6229,7 @@ packages:
     dev: true
 
   /sander@0.5.1:
-    resolution: {integrity: sha1-dB4kXiMfB8r7b98PEzrfohalAq0=}
+    resolution: {integrity: sha512-3lVqBir7WuKDHGrKRDn/1Ye3kwpXaDOMsiRP1wd6wpZW56gJhsbp5RqQpA6JG/P+pkXizygnr1dKR8vzWaVsfA==}
     dependencies:
       es6-promise: 3.3.1
       graceful-fs: 4.2.11

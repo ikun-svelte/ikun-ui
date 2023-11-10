@@ -68,7 +68,7 @@
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "esno scripts/new-component.js virtual-list"
+		"create:new:comp": "esno scripts/new-component.js pagination"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
@@ -123,7 +123,8 @@
 		"@ikun-ui/infinite": "workspace:*",
 		"@ikun-ui/empty": "workspace:*",
 		"@ikun-ui/card": "workspace:*",
-		"@ikun-ui/virtual-list": "workspace:*"
+		"@ikun-ui/virtual-list": "workspace:*",
+		"@ikun-ui/pagination": "workspace:*"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",

@@ -33,6 +33,10 @@
 	 * @internal
 	 */
 	export let errorMsg: KInputProps['errorMsg'] = '';
+	/**
+	 * @internal
+	 */
+	export let center: KInputProps['center'] = false;
 	export let clearable: KInputProps['clearable'] = false;
 
 	const dispatch = createEventDispatcher();
@@ -216,6 +220,7 @@
 				on:keydown={onEnter}
 				on:compositionstart={onCompositionStart}
 				on:compositionend={onCompositionEnd}
+				style:text-align={center ? 'center' : undefined}
 				type={isPassword}
 				{placeholder}
 				{...attrs}
