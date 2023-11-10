@@ -1153,6 +1153,12 @@ importers:
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon
+      '@ikun-ui/input':
+        specifier: workspace:*
+        version: link:../Input
+      '@ikun-ui/select':
+        specifier: workspace:*
+        version: link:../Select
       '@ikun-ui/utils':
         specifier: workspace:*
         version: link:../../utils
@@ -3491,7 +3497,7 @@ packages:
     dev: true
 
   /buffer-crc32@0.2.13:
-    resolution: {integrity: sha1-DTM+PwDqxQqhRUq9MO+MKl2ackI=}
+    resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
     dev: true
 
   /buffer-from@1.1.2:

@@ -13,7 +13,7 @@
 	export let disabled: KPaginationProps['disabled'] = false;
 	export let infinite: KPaginationProps['infinite'] = false;
 	$: pagerTotal = Number((total / pageSize).toFixed());
-	$: value = `${currentPage}`;
+	$: value = `${currentPage > pagerTotal && !infinite ? pagerTotal : currentPage < 0 ? 1 : currentPage}`;
 	const dispatch = createEventDispatcher();
 	const handleGoto = (e: CustomEvent) => {
 		dispatch('goto', e.detail.target.value);
@@ -21,19 +21,27 @@
 
 	const handleInput = debounce(async (e: CustomEvent) => {
 		value = e.detail;
-		if (!/^\d+$/.test(value)) {
-			value = ``;
-			await tick();
-			value = `${currentPage}`;
-		} else {
-			if (Number(value) < 1) {
-				value = `1`;
-			}
-			if (Number(value) > pagerTotal && !infinite) {
-				value = `${pagerTotal}`;
+		if(value){
+			if (!/^\d+$/.test(value)) {
+				await tick();
+				value = `${currentPage}`;
+			} else {
+				if (Number(value) < 1) {
+					value = `1`;
+				}
+				if (Number(value) > pagerTotal && !infinite) {
+					value = `${pagerTotal}`;
+				}
 			}
 		}
+
 	}, 300);
+
+	const handleChange = (e: CustomEvent) => {
+		if(!e.detail.target.value){
+			value = `1`;
+		}
+	}
 
 	const prefixCls = getPrefixCls('pagination-jumper');
 	$: cnames = clsx(prefixCls, {
@@ -48,6 +56,7 @@
 		{size}
 		{value}
 		{disabled}
+		on:change={handleChange}
 		on:enter={handleGoto}
 		on:input={handleInput}
 		center
