@@ -27,5 +27,4 @@ export type KPaginationProps = {
 	pageSizes: number[];
 	pageSizesWidth: number;
 };
-
-// TODO: jumper 空字符串优化
+// TODO: dark mode
