@@ -65,10 +65,6 @@ const components = [
 				link: '/components/KInput'
 			},
 			{
-				text: 'Pagination',
-				link: '/components/KPagination'
-			},
-			{
 				text: 'Radio',
 				link: '/components/KRadio'
 			},
@@ -121,6 +117,10 @@ const components = [
 			{
 				text: 'Tag',
 				link: '/components/KTag'
+			},
+			{
+				text: 'Pagination',
+				link: '/components/KPagination'
 			},
 			{
 				text: 'Progress',
