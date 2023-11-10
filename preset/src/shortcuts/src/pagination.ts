@@ -5,7 +5,7 @@ export const pageShortcuts: Record<string, string> = {
 	'k-pagination-jumper': 'fi mx-1',
 	'k-pagination-sizes': 'mx-1',
 	'k-pagination-pager':
-		'text-ikun-tx-base cursor-pointer list-none rounded fcc mx-1 px-1 box-border select-none',
+		'text-ikun-tx-base cursor-pointer list-none rounded fcc mx-1 px-1 box-border select-none !mt-0',
 	'k-pagination-pager__sm': 'min-w-26px h-26px leading-26px text-sm',
 	'k-pagination-pager__md': 'min-w-32px h-32px leading-32px',
 	'k-pagination-pager__lg': 'min-w-38px h-38px leading-38px text-lg',
