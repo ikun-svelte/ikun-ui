@@ -1,10 +1,12 @@
 <script lang="ts">
+	import type { KPaginationProps } from './types';
+	import { createEventDispatcher } from 'svelte';
+	import KPaginationComp from './pagination.svelte';
+	import KJumperComp from './jumper.svelte';
+	import KSizeComp from './sizes.svelte';
+	import KTotalComp from './total.svelte';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KPaginationProps } from './types';
-	import PagerComp from './pager.svelte';
-	import { createEventDispatcher } from 'svelte';
-
 	export let cls: KPaginationProps['cls'] = undefined;
 	export let attrs: KPaginationProps['attrs'] = {};
 	export let size: KPaginationProps['size'] = 'md';
@@ -14,181 +16,71 @@
 	export let prevIcon: KPaginationProps['prevIcon'] = '';
 	export let nextText: KPaginationProps['nextText'] = '';
 	export let nextIcon: KPaginationProps['nextIcon'] = '';
-	// TODO: 这四个都应该动态
 	export let total: KPaginationProps['total'] = 0;
 	export let pagerCount: KPaginationProps['pagerCount'] = 7;
 	export let pageSize: KPaginationProps['pageSize'] = 10;
 	export let currentPage: KPaginationProps['currentPage'] = 1;
+	// layout
+	export let layout: KPaginationProps['layout'] = ['pager'];
+	// sizes
+	export let pageSizes: KPaginationProps['pageSizes'] = [10, 20, 30, 40, 50, 100];
+	export let pageSizesWidth: KPaginationProps['pageSizesWidth'] = 100;
+
+	const composeDict = {
+		pager: KPaginationComp,
+		jumper: KJumperComp,
+		sizes: KSizeComp,
+		total: KTotalComp
+	};
+
+	let composeRef = {
+		pager: null,
+		jumper: null,
+		sizes: null,
+		total: null
+	} as any;
 
 	const dispatch = createEventDispatcher();
-	$: isEven = pagerCount % 2 === 0;
-	// total pages
-	$: pagerTotal = Number((total / pageSize).toFixed());
-	$: isShowAll = pagerCount >= pagerTotal;
-	// Exclude the first and last pages,
-	// and the pager displayed in the middle
-	$: midPagerCount = pagerCount - 2;
-	// Median of pagerCount
-	$: mid = Number((pagerCount / 2).toFixed());
-	// The number of pagers displayed before and after
-	// the pager corresponding to the median
-	$: offset = Math.floor(midPagerCount / 2);
-	$: currentPageInner = currentPage > pagerTotal ? pagerTotal : currentPage < 0 ? 1 : currentPage;
-	let isShowNextExpand = false;
-	let isShowPrevExpand = false;
-	//TODO: refactor
-	function updatedExpend() {
-		isShowNextExpand = currentPageInner <= pagerTotal - (isEven ? mid + 1 : mid);
-		isShowPrevExpand = currentPageInner > mid;
-	}
-	$: {
-		!isShowAll && (isShowNextExpand = currentPageInner <= pagerTotal - (isEven ? mid + 1 : mid));
-		!isShowAll && (isShowPrevExpand = currentPageInner > mid);
-	}
-
-	let arr: number[] = [];
-	function fillList(start: number, end: number) {
-		arr = [];
-		for (let i = start; i <= end; i++) {
-			arr.push(i);
-		}
-	}
-	$: if (!isShowAll) {
-		updatedList();
-		if (!isShowNextExpand) {
-			fillList(pagerTotal - midPagerCount, pagerTotal - 1);
-		}
-		if (!isShowPrevExpand) {
-			fillList(2, midPagerCount + 1);
-		}
-	} else {
-		fillList(2, pagerTotal - 1);
-	}
-
-	function getStartEnd() {
-		let end = currentPageInner + offset;
-		let start = currentPageInner - (isEven ? offset - 1 : offset);
-		return [start, end];
-	}
-	function updatedList() {
-		if (isShowPrevExpand && isShowNextExpand) {
-			const [start, end] = getStartEnd();
-			fillList(start, end);
-		}
-	}
-
-	function limitCurrentPage() {
-		currentPageInner >= pagerTotal && (currentPageInner = pagerTotal);
-		currentPageInner <= 0 && (currentPageInner = 1);
-		dispatch('currentChange', currentPageInner);
-	}
-
-	function jumpTo(e: CustomEvent) {
-		currentPageInner = e.detail;
-		limitCurrentPage();
-		if (!isShowAll) {
-			updatedExpend();
-			updatedList();
-			if (!isShowNextExpand) {
-				fillList(pagerTotal - midPagerCount, pagerTotal - 1);
-			}
-			if (!isShowPrevExpand) {
-				fillList(2, midPagerCount + 1);
-			}
-		}
-	}
-
-	const handleNext = (step = 1) => {
-		// compute current page
-		currentPageInner = currentPageInner + step;
-		limitCurrentPage();
-		if (!isShowAll) {
-			updatedExpend();
-			updatedList();
-			if (!isShowNextExpand) {
-				fillList(pagerTotal - midPagerCount, pagerTotal - 1);
-			}
-		}
+	const handleCurrentChange = (e: CustomEvent) => {
+		dispatch('currentChange', e.detail);
 	};
-	const handlePrev = (step = 1) => {
-		// compute current page
-		currentPageInner = currentPageInner - step;
-		limitCurrentPage();
-		if (!isShowAll) {
-			updatedExpend();
-			updatedList();
-			if (!isShowPrevExpand) {
-				fillList(2, midPagerCount + 1);
-			}
-		}
-	};
-	// TODO: 偶数next测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-	// TODO: 奇数next测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-	// TODO: 偶数prev测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-	// TODO: 奇数prev测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-	// TODO: 奇数showAll = true 测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-	// TODO: 偶数showAll = true 测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-	// TODO: 点击三点测试
-	// TODO: 点击 pager测试
-	// TODO: nextIcon、nextText 測試
-	// TODO: prevIcon、prevText 測試
-	// TODO: ... hover 測試
-	// TODO: size 測試
-	// TODO: bg 測試
 
-	const prefixCls = getPrefixCls('pagination');
-	$: cnames = clsx(prefixCls, {}, cls);
+	const handleSizeChange = (e: CustomEvent) => {
+		dispatch('sizeChange', e.detail);
+	};
+
+	const handleGoto = (e: CustomEvent) => {
+		composeRef.pager.jumpTo(e);
+	};
+
+	const prefixCls = getPrefixCls('pagination-container');
+	$: cnames = clsx(prefixCls);
 </script>
 
-<ul class={cnames} {...$$restProps} {...attrs}>
-	<PagerComp
-		index={'<'}
-		text={prevText}
-		icon={prevIcon}
-		type="prev"
-		{isBg}
-		{size}
-		{disabled}
-		on:click={() => handlePrev(1)}
-	></PagerComp>
-
-	<PagerComp index={1} {isBg} {size} {disabled} on:click={jumpTo} isActive={1 === currentPageInner}
-	></PagerComp>
-	{#if isShowPrevExpand}
-		<PagerComp type="prevPoint" {isBg} {size} on:click={() => handlePrev(pagerCount)} {disabled}
-		></PagerComp>
-	{/if}
-
-	{#each arr as item}
-		<PagerComp
-			index={item}
-			{isBg}
+<div class={cnames}>
+	{#each layout as compNames (compNames)}
+		<svelte:component
+			this={composeDict[compNames]}
+			bind:this={composeRef[compNames]}
+			on:currentChange={handleCurrentChange}
+			on:sizeChange={handleSizeChange}
+			on:goto={handleGoto}
+			{pageSizes}
+			{pageSizesWidth}
+			{cls}
+			{attrs}
+			{...$$restProps}
 			{size}
+			{isBg}
 			{disabled}
-			on:click={jumpTo}
-			isActive={item === currentPageInner}
-		></PagerComp>
+			{prevText}
+			{prevIcon}
+			{nextText}
+			{nextIcon}
+			{total}
+			{pagerCount}
+			{pageSize}
+			{currentPage}
+		></svelte:component>
 	{/each}
-
-	{#if isShowNextExpand}
-		<PagerComp type="nextPoint" {isBg} {size} on:click={() => handleNext(pagerCount)} {disabled}
-		></PagerComp>
-	{/if}
-	<PagerComp
-		index={pagerTotal}
-		{size}
-		{isBg}
-		{disabled}
-		on:click={jumpTo}
-		isActive={pagerTotal === currentPageInner}
-	></PagerComp>
-	<PagerComp
-		text={nextText}
-		icon={nextIcon}
-		type="next"
-		{size}
-		{isBg}
-		{disabled}
-		on:click={() => handleNext(1)}
-	></PagerComp>
-</ul>
+</div>

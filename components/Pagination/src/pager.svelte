@@ -26,7 +26,7 @@
 		}
 	};
 
-	const prefixCls = getPrefixCls('pagination--pager');
+	const prefixCls = getPrefixCls('pagination-pager');
 	$: cnames = clsx(prefixCls, `${prefixCls}__${size}`, {
 		[`${prefixCls}__active`]: isActive && !isBg,
 		[`${prefixCls}__bg`]: !isActive && isBg && !disabled,
