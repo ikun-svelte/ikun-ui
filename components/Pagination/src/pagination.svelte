@@ -32,8 +32,18 @@
 	// The number of pagers displayed before and after
 	// the pager corresponding to the median
 	$: offset = Math.floor(midPagerCount / 2);
-	$: currentPageInner =
-		currentPage > pagerTotal && !infinite ? pagerTotal : currentPage < 0 ? 1 : currentPage;
+
+	let currentPageInner = 1;
+	$: if (currentPage > pagerTotal && !infinite) {
+		currentPageInner = pagerTotal <= 0 ? 1 : pagerTotal;
+	} else {
+		if (currentPage <= 0) {
+			currentPageInner = 1;
+		} else {
+			currentPageInner = currentPage;
+		}
+	}
+
 	$: isShowNextExpand = !isShowAll;
 	$: isShowPrevExpand = !isShowAll;
 	//TODO: refactor
@@ -214,7 +224,7 @@
 		></KPagerComp>
 	{/if}
 
-	{#if !infinite}
+	{#if !infinite && pagerTotal > 1}
 		<KPagerComp
 			index={pagerTotal}
 			{size}
