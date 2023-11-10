@@ -11,6 +11,7 @@ export type KPaginationProps = {
 	prevIcon: string;
 	nextText: string;
 	nextIcon: string;
+	infinite: boolean;
 	layout: Array<'jumper' | 'sizes' | 'total' | 'pager'>;
 	// common
 	disabled: boolean;
@@ -27,4 +28,4 @@ export type KPaginationProps = {
 	pageSizesWidth: number;
 };
 
-// TODO: props: infinite -- 无限翻页
+// TODO: jumper 空字符串优化

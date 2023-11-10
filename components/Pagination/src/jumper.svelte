@@ -11,7 +11,7 @@
 	export let size: KPaginationProps['size'] = 'md';
 	export let currentPage: KPaginationProps['currentPage'] = 1;
 	export let disabled: KPaginationProps['disabled'] = false;
-
+	export let infinite: KPaginationProps['infinite'] = false;
 	$: pagerTotal = Number((total / pageSize).toFixed());
 	$: value = `${currentPage}`;
 	const dispatch = createEventDispatcher();
@@ -29,7 +29,7 @@
 			if (Number(value) < 1) {
 				value = `1`;
 			}
-			if (Number(value) > pagerTotal) {
+			if (Number(value) > pagerTotal && !infinite) {
 				value = `${pagerTotal}`;
 			}
 		}

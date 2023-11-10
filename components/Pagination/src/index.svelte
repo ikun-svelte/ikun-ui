@@ -20,6 +20,7 @@
 	export let pagerCount: KPaginationProps['pagerCount'] = 7;
 	export let pageSize: KPaginationProps['pageSize'] = 10;
 	export let currentPage: KPaginationProps['currentPage'] = 1;
+	export let infinite: KPaginationProps['infinite'] = false;
 	// layout
 	export let layout: KPaginationProps['layout'] = ['pager'];
 	// sizes
@@ -30,7 +31,7 @@
 		pager: KPaginationComp,
 		jumper: KJumperComp,
 		sizes: KSizeComp,
-		total: KTotalComp
+		total: !infinite ? KTotalComp : undefined
 	};
 
 	let composeRef = {
@@ -65,6 +66,7 @@
 			on:currentChange={handleCurrentChange}
 			on:sizeChange={handleSizeChange}
 			on:goto={handleGoto}
+			{infinite}
 			{pageSizes}
 			{pageSizesWidth}
 			{cls}

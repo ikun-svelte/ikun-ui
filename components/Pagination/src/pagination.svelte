@@ -18,12 +18,12 @@
 	export let pagerCount: KPaginationProps['pagerCount'] = 7;
 	export let pageSize: KPaginationProps['pageSize'] = 10;
 	export let currentPage: KPaginationProps['currentPage'] = 1;
-
+	export let infinite: KPaginationProps['infinite'] = false;
 	const dispatch = createEventDispatcher();
 	$: isEven = pagerCount % 2 === 0;
 	// total pages
 	$: pagerTotal = Number((total / pageSize).toFixed());
-	$: isShowAll = pagerCount >= pagerTotal;
+	$: isShowAll = infinite || pagerCount >= pagerTotal;
 	// Exclude the first and last pages,
 	// and the pager displayed in the middle
 	$: midPagerCount = pagerCount - 2;
@@ -32,9 +32,10 @@
 	// The number of pagers displayed before and after
 	// the pager corresponding to the median
 	$: offset = Math.floor(midPagerCount / 2);
-	$: currentPageInner = currentPage > pagerTotal ? pagerTotal : currentPage < 0 ? 1 : currentPage;
-	let isShowNextExpand = false;
-	let isShowPrevExpand = false;
+	$: currentPageInner =
+		currentPage > pagerTotal && !infinite ? pagerTotal : currentPage < 0 ? 1 : currentPage;
+	$: isShowNextExpand = !isShowAll;
+	$: isShowPrevExpand = !isShowAll;
 	//TODO: refactor
 	function updatedExpend() {
 		isShowNextExpand = currentPageInner <= pagerTotal - (isEven ? mid + 1 : mid);
@@ -52,16 +53,21 @@
 			arr.push(i);
 		}
 	}
-	$: if (!isShowAll) {
-		updatedList();
-		if (!isShowNextExpand) {
-			fillList(pagerTotal - midPagerCount, pagerTotal - 1);
-		}
-		if (!isShowPrevExpand) {
-			fillList(2, midPagerCount + 1);
-		}
+	// init
+	$: if (isShowAll && infinite) {
+		updatedListInfinite();
 	} else {
-		fillList(2, pagerTotal - 1);
+		if (!isShowAll) {
+			updatedList();
+			if (!isShowNextExpand) {
+				fillList(pagerTotal - midPagerCount, pagerTotal - 1);
+			}
+			if (!isShowPrevExpand) {
+				fillList(2, midPagerCount + 1);
+			}
+		} else {
+			fillList(2, pagerTotal - 1);
+		}
 	}
 
 	function getStartEnd() {
@@ -77,23 +83,35 @@
 	}
 
 	function limitCurrentPage() {
-		currentPageInner >= pagerTotal && (currentPageInner = pagerTotal);
+		!infinite && currentPageInner >= pagerTotal && (currentPageInner = pagerTotal);
 		currentPageInner <= 0 && (currentPageInner = 1);
 		dispatch('currentChange', currentPageInner);
+	}
+
+	function updatedListInfinite() {
+		if (currentPageInner > pagerCount) {
+			fillList(currentPageInner - offset - 1, currentPageInner + offset + 1);
+		} else {
+			fillList(1, pagerCount);
+		}
 	}
 
 	export function jumpTo(e: CustomEvent) {
 		currentPageInner = Number(e.detail);
 		limitCurrentPage();
-		if (!isShowAll) {
-			updatedExpend();
-			updatedList();
-			if (!isShowNextExpand) {
-				fillList(pagerTotal - midPagerCount, pagerTotal - 1);
+		if (!infinite) {
+			if (!isShowAll) {
+				updatedExpend();
+				updatedList();
+				if (!isShowNextExpand) {
+					fillList(pagerTotal - midPagerCount, pagerTotal - 1);
+				}
+				if (!isShowPrevExpand) {
+					fillList(2, midPagerCount + 1);
+				}
 			}
-			if (!isShowPrevExpand) {
-				fillList(2, midPagerCount + 1);
-			}
+		} else {
+			updatedListInfinite();
 		}
 	}
 
@@ -101,24 +119,32 @@
 		// compute current page
 		currentPageInner = currentPageInner + step;
 		limitCurrentPage();
-		if (!isShowAll) {
-			updatedExpend();
-			updatedList();
-			if (!isShowNextExpand) {
-				fillList(pagerTotal - midPagerCount, pagerTotal - 1);
+		if (!infinite) {
+			if (!isShowAll) {
+				updatedExpend();
+				updatedList();
+				if (!isShowNextExpand) {
+					fillList(pagerTotal - midPagerCount, pagerTotal - 1);
+				}
 			}
+		} else {
+			updatedListInfinite();
 		}
 	};
 	const handlePrev = (step = 1) => {
 		// compute current page
 		currentPageInner = currentPageInner - step;
 		limitCurrentPage();
-		if (!isShowAll) {
-			updatedExpend();
-			updatedList();
-			if (!isShowPrevExpand) {
-				fillList(2, midPagerCount + 1);
+		if (!infinite) {
+			if (!isShowAll) {
+				updatedExpend();
+				updatedList();
+				if (!isShowPrevExpand) {
+					fillList(2, midPagerCount + 1);
+				}
 			}
+		} else {
+			updatedListInfinite();
 		}
 	};
 	// TODO: 偶数next测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
@@ -157,9 +183,16 @@
 		{disabled}
 		on:click={() => handlePrev(1)}
 	></KPagerComp>
-
-	<KPagerComp index={1} {isBg} {size} {disabled} on:click={jumpTo} isActive={1 === currentPageInner}
-	></KPagerComp>
+	{#if !infinite}
+		<KPagerComp
+			index={1}
+			{isBg}
+			{size}
+			{disabled}
+			on:click={jumpTo}
+			isActive={1 === currentPageInner}
+		></KPagerComp>
+	{/if}
 	{#if isShowPrevExpand}
 		<KPagerComp type="prevPoint" {isBg} {size} on:click={() => handlePrev(pagerCount)} {disabled}
 		></KPagerComp>
@@ -180,14 +213,17 @@
 		<KPagerComp type="nextPoint" {isBg} {size} on:click={() => handleNext(pagerCount)} {disabled}
 		></KPagerComp>
 	{/if}
-	<KPagerComp
-		index={pagerTotal}
-		{size}
-		{isBg}
-		{disabled}
-		on:click={jumpTo}
-		isActive={pagerTotal === currentPageInner}
-	></KPagerComp>
+
+	{#if !infinite}
+		<KPagerComp
+			index={pagerTotal}
+			{size}
+			{isBg}
+			{disabled}
+			on:click={jumpTo}
+			isActive={pagerTotal === currentPageInner}
+		></KPagerComp>
+	{/if}
 	<KPagerComp
 		text={nextText}
 		icon={nextIcon}
