@@ -8,6 +8,9 @@
 	export let pageSize: KPaginationProps['pageSize'] = 10;
 	export let size: KPaginationProps['size'] = 'md';
 	export let pageSizesWidth: KPaginationProps['pageSizesWidth'] = 100;
+	export let total: KPaginationProps['total'] = 0;
+	export let infinite: KPaginationProps['infinite'] = false;
+	export let currentPage: KPaginationProps['currentPage'] = 1;
 	export let pageSizes: KPaginationProps['pageSizes'] = [10, 20, 30, 40, 50, 100];
 	$: value = { label: `${pageSize}/page`, value: pageSize, id: pageSize };
 	let pageSizesList = [] as Record<string, any>[];
@@ -24,7 +27,21 @@
 	const dispatch = createEventDispatcher();
 	const onSelect = (e: CustomEvent) => {
 		value = e.detail;
-		dispatch('sizeChange', e.detail.value);
+		let currentPageFixed = currentPage;
+		let pagerTotalCur = Number((total / e.detail.value).toFixed());
+		if (currentPage > pagerTotalCur && !infinite) {
+			currentPageFixed = pagerTotalCur <= 0 ? 1 : pagerTotalCur;
+		} else {
+			if (currentPage <= 0) {
+				currentPageFixed = 1;
+			} else {
+				currentPageFixed = currentPage;
+			}
+		}
+		dispatch('sizeChange', {
+			currentPage: currentPageFixed,
+			size: e.detail.value
+		});
 	};
 
 	$: psWidth = size === 'lg' && pageSizesWidth === 100 ? 120 : pageSizesWidth;

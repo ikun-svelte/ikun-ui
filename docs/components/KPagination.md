@@ -41,8 +41,8 @@ Use the `layout` attribute to enable related display controls
 
 <demo src="pagination/layout.svelte"  github='Pagination'></demo>
 
-
 ## Disabled Pagination
+
 Use `disabled` attribute to determine whether a pagination is disabled.
 
 <demo src="pagination/disabled.svelte"  github='Pagination'></demo>
@@ -60,7 +60,8 @@ Use the size property to control the pagination size. It supports enumerations s
 <demo src="pagination/size.svelte"  github='Pagination'></demo>
 
 ## Infinite Paging
-For scenarios like search engines where there is no total number of pages,   
+
+For scenarios like search engines where there is no total number of pages,  
 you can use infinite paging
 
 <demo src="pagination/infinite.svelte"  github='Pagination'></demo>
@@ -68,7 +69,7 @@ you can use infinite paging
 ## Pagination Props
 
 | Name        | Type                                               | Default                     | Description                                                                          |
-| ----------- | -------------------------------------------------- | --------------------------- |--------------------------------------------------------------------------------------|
+| ----------- | -------------------------------------------------- | --------------------------- | ------------------------------------------------------------------------------------ |
 | total       | `number`                                           | `0`                         | Total number of data items.                                                          |
 | pagerCount  | `number`                                           | `7`                         | Number of pagers. Pagination collapses when the total page count exceeds this value. |
 | pageSize    | `number`                                           | `10`                        | Item count of each page.                                                             |
