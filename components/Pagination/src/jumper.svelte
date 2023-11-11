@@ -34,7 +34,15 @@
 		if (value) {
 			if (!/^\d+$/.test(value)) {
 				await tick();
-				value = `${currentPage}`;
+				if (currentPage > pagerTotal && !infinite) {
+					value = `${pagerTotal <= 0 ? 1 : pagerTotal}`;
+				} else {
+					if (currentPage <= 0) {
+						value = '1';
+					} else {
+						value = `${currentPage}`;
+					}
+				}
 			} else {
 				if (Number(value) < 1) {
 					value = `1`;

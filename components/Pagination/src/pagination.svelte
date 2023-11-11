@@ -157,27 +157,7 @@
 			updatedListInfinite();
 		}
 	};
-	// TODO: 偶数next测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-	// TODO: 奇数next测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-	// TODO: 偶数prev测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-	// TODO: 奇数prev测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-	// TODO: 奇数showAll = true 测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-	// TODO: 偶数showAll = true 测试(高亮、pager数量, ...显示，pager内容正确, 点击变化)
-	// TODO: 点击三点测试
-	// TODO: 点击 pager测试
-	// TODO: nextIcon、nextText 測試
-	// TODO: prevIcon、prevText 測試
-	// TODO: ... hover 測試
-	// TODO: size 測試
-	// TODO: bg 測試
-	// TODO: layout 測試
-	// TODO: jumper 输入限制测试測試
-	// TODO: jumper 跳转 测试
-	// TODO: total 显示测试
-	// TODO: sizes 组件测试 变化pageSize
-	// TODO: sizes 组件测试 根据变化pageSize 修改当前页，超过最大页数就为最大页数
-	// TODO: sizes 组件测试 事件
-	// TODO: 禁用 组件测试 事件
+
 	const prefixCls = getPrefixCls('pagination');
 	$: cnames = clsx(prefixCls, {}, cls);
 </script>
@@ -188,6 +168,7 @@
 		text={prevText}
 		icon={prevIcon}
 		type="prev"
+		data-k-page-prev
 		{isBg}
 		{size}
 		{disabled}
@@ -196,6 +177,7 @@
 	{#if !infinite}
 		<KPagerComp
 			index={1}
+			data-k-page-first
 			{isBg}
 			{size}
 			{disabled}
@@ -204,7 +186,13 @@
 		></KPagerComp>
 	{/if}
 	{#if isShowPrevExpand}
-		<KPagerComp type="prevPoint" {isBg} {size} on:click={() => handlePrev(pagerCount)} {disabled}
+		<KPagerComp
+			type="prevPoint"
+			{isBg}
+			data-k-page-prev-exp
+			{size}
+			on:click={() => handlePrev(pagerCount)}
+			{disabled}
 		></KPagerComp>
 	{/if}
 
@@ -213,6 +201,7 @@
 			index={item}
 			{isBg}
 			{size}
+			data-k-page-center={item}
 			{disabled}
 			on:click={jumpTo}
 			isActive={item === currentPageInner}
@@ -220,7 +209,13 @@
 	{/each}
 
 	{#if isShowNextExpand}
-		<KPagerComp type="nextPoint" {isBg} {size} on:click={() => handleNext(pagerCount)} {disabled}
+		<KPagerComp
+			type="nextPoint"
+			data-k-page-next-exp
+			{isBg}
+			{size}
+			on:click={() => handleNext(pagerCount)}
+			{disabled}
 		></KPagerComp>
 	{/if}
 
@@ -230,6 +225,7 @@
 			{size}
 			{isBg}
 			{disabled}
+			data-k-page-last
 			on:click={jumpTo}
 			isActive={pagerTotal === currentPageInner}
 		></KPagerComp>
@@ -238,6 +234,7 @@
 		text={nextText}
 		icon={nextIcon}
 		type="next"
+		data-k-page-next
 		{size}
 		{isBg}
 		{disabled}
