@@ -232,7 +232,7 @@ describe('Test: KPagination', () => {
 			props: {
 				total: 200,
 				pageSize: size,
-				currentPage: 6,
+				currentPage: 20,
 				layout: ['pager', 'sizes']
 			}
 		});
@@ -261,7 +261,7 @@ describe('Test: KPagination', () => {
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 
-		expect(value).toBe(6);
+		expect(value).toBe(20);
 		expect(size).toBe(10);
 	});
 

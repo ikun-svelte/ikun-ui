@@ -12,8 +12,6 @@
 	export let infinite: KPaginationProps['infinite'] = false;
 	export let currentPage: KPaginationProps['currentPage'] = 1;
 	export let pageSizes: KPaginationProps['pageSizes'] = [10, 20, 30, 40, 50, 100];
-	// total pages
-	$: pagerTotal = Number((total / pageSize).toFixed());
 	$: value = { label: `${pageSize}/page`, value: pageSize, id: pageSize };
 	let pageSizesList = [] as Record<string, any>[];
 	$: {
@@ -30,8 +28,9 @@
 	const onSelect = (e: CustomEvent) => {
 		value = e.detail;
 		let currentPageFixed = currentPage;
-		if (currentPage > pagerTotal && !infinite) {
-			currentPageFixed = pagerTotal <= 0 ? 1 : pagerTotal;
+		let pagerTotalCur = Number((total / e.detail.value).toFixed());
+		if (currentPage > pagerTotalCur && !infinite) {
+			currentPageFixed = pagerTotalCur <= 0 ? 1 : pagerTotalCur;
 		} else {
 			if (currentPage <= 0) {
 				currentPageFixed = 1;
