@@ -6,7 +6,7 @@
 	export let size: KPaginationProps['size'] = 'md';
 	export let disabled: KPaginationProps['disabled'] = false;
 	const prefixCls = getPrefixCls('pagination-total');
-	$: cnames = clsx(prefixCls, {
+	$: cnames = clsx(prefixCls, `${prefixCls}__dark`, {
 		[`${prefixCls}__${size}`]: true,
 		[`${prefixCls}__disabled`]: disabled
 	});

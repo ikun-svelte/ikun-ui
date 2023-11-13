@@ -10,7 +10,7 @@ exports[`Test: KInput > props: clearable 1`] = `"<div class=\\"k-input\\"> <div 
 
 exports[`Test: KInput > props: cls 1`] = `"<div class=\\"k-input ikun\\"> <div class=\\"k-input--base k-input__md k-input__dark k-input__hover k-input__focus k-input__rounded\\"> <input class=\\"k-input--inner k-input--inner__dark\\" type=\\"text\\" placeholder=\\"\\">     </div> </div> "`;
 
-exports[`Test: KInput > props: disabled 1`] = `"<div class=\\"k-input\\"> <div class=\\"k-input--base k-input__md k-input__dark k-input__disabled k-input__disabled__dark k-input__hover k-input__focus k-input__rounded\\"> <input class=\\"k-input--inner k-input--inner__dark k-input__disabled k-input__disabled__dark\\" disabled=\\"\\" type=\\"text\\" placeholder=\\"\\">     </div> </div> "`;
+exports[`Test: KInput > props: disabled 1`] = `"<div class=\\"k-input\\"> <div class=\\"k-input--base k-input__md k-input__dark k-input__disabled k-input__disabled__dark k-input__hover k-input__focus k-input__rounded\\"> <input class=\\"k-input--inner k-input__disabled k-input__disabled__dark\\" disabled=\\"\\" type=\\"text\\" placeholder=\\"\\">     </div> </div> "`;
 
 exports[`Test: KInput > props: iconPrefix 1`] = `"<div class=\\"k-input\\"> <div class=\\"k-input--base k-input__md k-input__dark k-input__hover k-input__focus k-input__rounded\\"><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-logo-svelte k-input--icon k-input--icon__md k-input--prefix-icon\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span> <input class=\\"k-input--inner k-input--inner__dark\\" type=\\"text\\" placeholder=\\"\\">     </div> </div> "`;
 

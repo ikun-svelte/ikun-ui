@@ -173,8 +173,8 @@
 		{
 			[`${prefixCls}--inner__textarea`]: type === 'textarea'
 		},
-		`${prefixCls}--inner__dark`,
 		{
+			[`${prefixCls}--inner__dark`]: !disabled,
 			[`${prefixCls}__disabled`]: disabled,
 			[`${prefixCls}__disabled__dark`]: disabled
 		}

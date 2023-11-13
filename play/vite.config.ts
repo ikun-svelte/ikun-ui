@@ -7,5 +7,8 @@ export default defineConfig({
 	plugins: [sveltekit(), Unocss(), Inspect()],
 	test: {
 		include: ['components/**/*.{test,spec}.{js,ts}']
+	},
+	server: {
+		port: 8001
 	}
 });

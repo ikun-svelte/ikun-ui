@@ -2,7 +2,7 @@ export const pageShortcuts: Record<string, string> = {
 	// page
 	'k-pagination': 'fi p0 m0',
 	'k-pagination-container': 'fi',
-	'k-pagination-jumper': 'fi mx-1',
+	'k-pagination-jumper': 'fi mx-1 text-ikun-tx-base',
 	'k-pagination-sizes': 'mx-1',
 	'k-pagination-pager':
 		'text-ikun-tx-base cursor-pointer list-none rounded fcc mx-1 px-1 box-border select-none !mt-0',
@@ -23,5 +23,9 @@ export const pageShortcuts: Record<string, string> = {
 	'k-pagination-total__md': 'h-32px leading-32px',
 	'k-pagination-total__lg': 'h-38px leading-38px text-lg',
 	// dark
-	'k-pagination__dark': 'dark:bg-ikun-light-700'
+	'k-pagination-jumper__dark': 'dark:text-white',
+	'k-pagination-total__dark': 'dark:text-white',
+	'k-pagination-pager__dark': 'dark:text-white',
+	'k-pagination-pager__bg__dark': 'dark:(bg-ikun-dark-300 text-white)',
+	'k-pagination-pager__disabled__bg__dark': 'dark:bg-ikun-dark-300'
 };
