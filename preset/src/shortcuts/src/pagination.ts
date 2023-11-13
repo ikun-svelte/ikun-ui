@@ -18,14 +18,17 @@ export const pageShortcuts: Record<string, string> = {
 	'k-pagination-sizes__disabled': 'k-cur-disabled text-ikun-tx-gr',
 	'k-pagination-total__disabled': 'k-cur-disabled text-ikun-tx-gr',
 	'k-pagination-pager__disabled__bg': 'k-bg-disabled',
+	'k-pagination-pager__disabled__bg__active': 'ikun:40:bg-ikun-main',
 	'k-pagination-total': 'text-ikun-tx-base mx-1',
 	'k-pagination-total__sm': 'h-26px leading-26px text-sm',
 	'k-pagination-total__md': 'h-32px leading-32px',
 	'k-pagination-total__lg': 'h-38px leading-38px text-lg',
 	// dark
-	'k-pagination-jumper__dark': 'dark:text-white',
-	'k-pagination-total__dark': 'dark:text-white',
-	'k-pagination-pager__dark': 'dark:text-white',
-	'k-pagination-pager__bg__dark': 'dark:(bg-ikun-dark-300 text-white)',
-	'k-pagination-pager__disabled__bg__dark': 'dark:bg-ikun-dark-300'
+	'k-pagination-jumper__dark': 'dark:text-ikun-white',
+	'k-pagination-total__dark': 'dark:text-ikun-white',
+	'k-pagination-pager__dark': 'dark:text-ikun-white',
+	'k-pagination-pager__dark__hover': 'dark:hover:(text-ikun-main [&>span]:text-ikun-main)',
+	'k-pagination-pager__bg__dark': 'dark:(bg-ikun-dark-300 text-ikun-white)',
+	'k-pagination-pager__disabled__bg__dark': 'dark:bg-ikun-dark-300',
+	'k-pagination-pager__disabled__dark': 'dark:([&>span]:text-ikun-tx-gr)'
 };
