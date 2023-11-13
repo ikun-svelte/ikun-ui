@@ -26,6 +26,8 @@ export const pageShortcuts: Record<string, string> = {
 	'k-pagination-jumper__dark': 'dark:text-ikun-white',
 	'k-pagination-total__dark': 'dark:text-ikun-white',
 	'k-pagination-pager__dark': 'dark:text-ikun-white',
+	'k-pagination-pager__dark__hover': 'dark:hover:(text-ikun-main [&>span]:text-ikun-main)',
 	'k-pagination-pager__bg__dark': 'dark:(bg-ikun-dark-300 text-ikun-white)',
-	'k-pagination-pager__disabled__bg__dark': 'dark:bg-ikun-dark-300'
+	'k-pagination-pager__disabled__bg__dark': 'dark:bg-ikun-dark-300',
+	'k-pagination-pager__disabled__dark': 'dark:([&>span]:text-ikun-tx-gr)'
 };

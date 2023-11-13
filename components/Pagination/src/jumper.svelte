@@ -61,7 +61,8 @@
 	};
 
 	const prefixCls = getPrefixCls('pagination-jumper');
-	$: cnames = clsx(prefixCls, `${prefixCls}__dark`, {
+	$: cnames = clsx(prefixCls, {
+		[`${prefixCls}__dark`]: !disabled,
 		[`${prefixCls}__${size}`]: true,
 		[`${prefixCls}__disabled`]: disabled
 	});

@@ -29,18 +29,21 @@
 	const prefixCls = getPrefixCls('pagination-pager');
 	$: cnames = clsx(prefixCls, `${prefixCls}__${size}`, {
 		[`${prefixCls}__active`]: isActive && !isBg,
-		[`${prefixCls}__dark`]: !isActive && !isBg,
+		[`${prefixCls}__dark`]: !isActive && !isBg && !disabled,
 		[`${prefixCls}__bg`]: !isActive && isBg && !disabled,
 		[`${prefixCls}__bg__dark`]: !isActive && isBg && !disabled,
 		[`${prefixCls}__hover`]: !(isActive && isBg) && !disabled,
+		[`${prefixCls}__dark__hover`]: !(isActive && isBg) && !disabled,
 		[`${prefixCls}__bg__active`]: isActive && isBg,
 		[`${prefixCls}__disabled`]: disabled,
 		[`${prefixCls}__disabled__bg`]: isBg && disabled,
-		[`${prefixCls}__disabled__bg__dark`]: !isActive && isBg && disabled
+		[`${prefixCls}__disabled__bg__dark`]: !isActive && isBg && disabled,
+		[`${prefixCls}__disabled__dark`]: !isActive && disabled
 	});
 	let prevPointIcon = 'i-carbon-overflow-menu-horizontal';
 	let nextPointIcon = prevPointIcon;
 	const handleEnter = () => {
+		if (disabled) return;
 		if (type === 'prevPoint') {
 			prevPointIcon = 'i-carbon-page-first';
 		}
