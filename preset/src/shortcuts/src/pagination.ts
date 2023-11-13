@@ -18,6 +18,7 @@ export const pageShortcuts: Record<string, string> = {
 	'k-pagination-sizes__disabled': 'k-cur-disabled text-ikun-tx-gr',
 	'k-pagination-total__disabled': 'k-cur-disabled text-ikun-tx-gr',
 	'k-pagination-pager__disabled__bg': 'k-bg-disabled',
+	'k-pagination-pager__disabled__bg__active': 'ikun:40:bg-ikun-main',
 	'k-pagination-total': 'text-ikun-tx-base mx-1',
 	'k-pagination-total__sm': 'h-26px leading-26px text-sm',
 	'k-pagination-total__md': 'h-32px leading-32px',

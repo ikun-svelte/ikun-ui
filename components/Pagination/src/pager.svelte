@@ -36,7 +36,8 @@
 		[`${prefixCls}__dark__hover`]: !(isActive && isBg) && !disabled,
 		[`${prefixCls}__bg__active`]: isActive && isBg,
 		[`${prefixCls}__disabled`]: disabled,
-		[`${prefixCls}__disabled__bg`]: isBg && disabled,
+		[`${prefixCls}__disabled__bg`]: isBg && disabled && !isActive,
+		[`${prefixCls}__disabled__bg__active`]: isBg && disabled && isActive,
 		[`${prefixCls}__disabled__bg__dark`]: !isActive && isBg && disabled,
 		[`${prefixCls}__disabled__dark`]: !isActive && disabled
 	});
