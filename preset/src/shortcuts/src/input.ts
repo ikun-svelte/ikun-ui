@@ -45,6 +45,6 @@ export const inputShortcuts: Record<string, string> = {
 
 	// dark
 	'k-input__dark': 'dark:bg-ikun-dark-300',
-	'k-input--inner__dark': 'dark:(bg-ikun-dark-300 text-white)',
-	'k-input__disabled__dark': 'dark:(bg-ikun-dark text-white)'
+	'k-input--inner__dark': 'dark:(bg-ikun-dark-300 text-ikun-white)',
+	'k-input__disabled__dark': 'dark:(bg-ikun-dark text-ikun-white)'
 };

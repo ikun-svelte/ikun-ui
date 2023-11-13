@@ -27,9 +27,9 @@ export const selectShortcuts: Record<string, string> = {
 	'k-select--option__active': 'text-ikun-main',
 	'k-select--option__fit': 'text-ellipsis overflow-hidden',
 	// dark
-	'k-select--inner__dark': 'dark:bg-ikun-dark-300 dark:text-white',
-	'k-select--inner__disabled__dark': 'dark:bg-ikun-dark dark:text-white',
+	'k-select--inner__dark': 'dark:bg-ikun-dark-300 dark:text-ikun-white',
+	'k-select--inner__disabled__dark': 'dark:bg-ikun-dark dark:text-ikun-white',
 	'k-select--base__dark': 'dark:bg-ikun-dark-300 ',
-	'k-select--base__disabled__dark': 'dark:bg-ikun-dark dark:text-white',
-	'k-select--option__dark': 'dark:text-white'
+	'k-select--base__disabled__dark': 'dark:bg-ikun-dark dark:text-ikun-white',
+	'k-select--option__dark': 'dark:text-ikun-white'
 };
