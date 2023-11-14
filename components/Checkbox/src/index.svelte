@@ -16,7 +16,6 @@
 	export let indeterminate: KCheckboxProps['indeterminate'] = false;
 	export let cls: KCheckboxProps['cls'] = undefined;
 	export let attrs: KCheckboxProps['attrs'] = {};
-	const formContext: FormContext = getContext(formItemKey);
 	// updateValue
 	const dispatch = createEventDispatcher();
 
@@ -31,15 +30,16 @@
 
 	$: isDisabled = (ctx && ctx.disabled) || disabled;
 	$: sizeInner = ctx && ctx.size ? ctx.size : size;
-	enum ECheckboxSize {
-		'lg' = 16,
-		'md' = 14,
-		'sm' = 12
+	const KCheckboxSize = {
+		'lg': '16',
+		'md': '14',
+		'sm': '12'
 	}
 
 	/**
 	 * Click the `checkbox` to update the binding value
 	 */
+	const formContext: FormContext = getContext(formItemKey);
 	const handleUpdateValue = () => {
 		if (isDisabled) return;
 		doUpdatedValue(!valueInner, true);
@@ -143,8 +143,8 @@
 				<KIcon
 					icon="i-carbon-checkmark"
 					color="!text-white"
-					width={ECheckboxSize[sizeInner]}
-					height={ECheckboxSize[sizeInner]}
+					width={KCheckboxSize[sizeInner]}
+					height={KCheckboxSize[sizeInner]}
 				/>
 			</div>
 		{/if}
@@ -152,8 +152,8 @@
 			<KIcon
 				icon="i-carbon-subtract"
 				color="!text-white"
-				width={ECheckboxSize[sizeInner]}
-				height={ECheckboxSize[sizeInner]}
+				width={KCheckboxSize[sizeInner]}
+				height={KCheckboxSize[sizeInner]}
 			/>
 		{/if}
 	</div>
