@@ -8,21 +8,9 @@
 </script>
 
 <div class="fac my-10px">
-	<KSelect
-		cls="w-200px"
-		size="sm"
-		clearable
-		{value}
-		dataList={list}
-		on:updateValue={onSelect}
+	<KSelect cls="w-200px" size="sm" clearable {value} dataList={list} on:updateValue={onSelect}
 	></KSelect>
-	<KSelect
-		cls="w-200px"
-		size="md"
-		clearable
-		{value}
-		dataList={list}
-		on:updateValue={onSelect}
+	<KSelect cls="w-200px" size="md" clearable {value} dataList={list} on:updateValue={onSelect}
 	></KSelect>
 	<KSelect
 		cls="w-200px"

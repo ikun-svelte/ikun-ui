@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { KInputProps } from './types';
-	import { createEventDispatcher, onMount, tick } from 'svelte';
+	import { createEventDispatcher, onMount, tick, getContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	import { KButton } from '@ikun-ui/button';
-	import { getPrefixCls } from '@ikun-ui/utils';
+	import type { FormContext } from '@ikun-ui/form';
+	import { formItemKey, getPrefixCls } from '@ikun-ui/utils';
 	import clsx from 'clsx';
 	import { isObject } from 'baiwusanyu-utils';
 	import type { CSSObject } from 'unocss';
@@ -39,12 +40,14 @@
 	export let center: KInputProps['center'] = false;
 	export let clearable: KInputProps['clearable'] = false;
 
+	const formContext: FormContext = getContext(formItemKey);
 	const dispatch = createEventDispatcher();
 
 	const onInput = (e: Event) => {
 		if (disabled) return;
 		const { value: inputValue } = e.target as HTMLInputElement;
 		dispatch('input', inputValue, e);
+		formContext?.updateField(inputValue);
 		if (!useCompositionInput || !isComposing) {
 			value = inputValue;
 			if (useCompositionInput && !isComposing) {
@@ -56,6 +59,7 @@
 	const onChange = (e: Event) => {
 		if (disabled) return;
 		dispatch('change', e);
+		formContext?.updateField((e?.target as HTMLInputElement)?.value);
 	};
 
 	const onClear = () => {
@@ -74,6 +78,10 @@
 			}
 		} else dispatch('keydown', e);
 	};
+	//initial field
+	formContext?.initialField(value);
+	// when filed change,dom value will change.
+	formContext?.subscribe((_value: any) => (value = _value));
 
 	let isComposing = false;
 	const onCompositionStart = (e: CompositionEvent) => {

@@ -10,5 +10,7 @@ export {
 	checkboxGroupKey,
 	radioGroupKey,
 	rowKey,
-	contextmenuKey
+	contextmenuKey,
+	formKey,
+	formItemKey
 } from './symbol-key';

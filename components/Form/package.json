@@ -1,10 +1,9 @@
 {
-	"name": "@ikun-ui/radio",
-	"version": "0.0.13-beta.3",
+	"name": "@ikun-ui/form",
+	"version": "0.0.9-beta.9",
 	"type": "module",
-	"main": "src/index.ts",
-	"types": "src/index.d.ts",
-	"svelte": "src/index.ts",
+	"main": "./src/index.ts",
+	"types": "src/index.ts",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -15,31 +14,27 @@
 		"svelte-kit",
 		"dx"
 	],
-	"files": [
-		"dist",
-		"package.json"
-	],
 	"scripts": {
 		"build": "npm run build:js && npm run build:svelte",
 		"build:js": "tsc -p . --outDir dist/ --rootDir src/",
 		"build:svelte": "svelte-strip strip src/ dist",
-		"publish:pre": "node ../../scripts/pre-publish.js",
-		"publish:npm": "pnpm run publish:pre && pnpm publish --no-git-checks --access public"
+		"publish:npm": "pnpm publish --no-git-checks --access public"
 	},
 	"publishConfig": {
 		"access": "public",
 		"main": "dist/index.js",
 		"module": "dist/index.js",
 		"svelte": "dist/index.js",
-		"types": "dist/index.d.ts"
+		"types": "src/index.ts"
 	},
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
-		"@ikun-ui/radio-group": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"@ikun-ui/form": "workspace:*",
+		"@types/lodash": "^4.14.197",
 		"baiwusanyu-utils": "^1.0.16",
-		"clsx": "^2.0.0"
+		"clsx": "^2.0.0",
+		"lodash": "^4.17.21",
+		"valibot": "^0.13.1"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.2",

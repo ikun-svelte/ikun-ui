@@ -211,12 +211,19 @@
 	const suffixIconCls = clsx(`${prefixCls}--suffix`, `${prefixCls}--icon__${size}`);
 	const selectIconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${size}`);
 	const noDataCls = clsx(`${prefixCls}--tx__empty`);
-
+	/*//initial field
+  formContext?.initialField(value);
+  // when filed change,dom value will change.
+  formContext?.subscribe((val: any) => {
+    value = val;
+  });*/
 	// ⭕TODO 选项分组
 	// ⭕TODO 基础多选
 	// ⭕TODO 多选最大显示
 
 	// ⭕TODO 选项筛选
+
+	// ⭕TODO kForm
 </script>
 
 <KPopover

@@ -2,8 +2,9 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
+	import type { FormContext } from '@ikun-ui/form';
 	import { clsx } from 'clsx';
-	import { checkboxGroupKey, getPrefixCls } from '@ikun-ui/utils';
+	import { checkboxGroupKey, formItemKey, getPrefixCls } from '@ikun-ui/utils';
 	import type { checkboxGroupCtx } from '@ikun-ui/checkbox-group';
 	import type { KCheckboxProps } from './types';
 
@@ -15,7 +16,8 @@
 	export let indeterminate: KCheckboxProps['indeterminate'] = false;
 	export let cls: KCheckboxProps['cls'] = undefined;
 	export let attrs: KCheckboxProps['attrs'] = {};
-
+	const formContext: FormContext = getContext(formItemKey);
+	// updateValue
 	const dispatch = createEventDispatcher();
 
 	$: isIndeterminate = indeterminate;
@@ -44,7 +46,13 @@
 		isIndeterminate = false;
 		// Being in a checkbox group does not trigger it
 		!ctx && dispatch('updateValue', valueInner);
+		formContext?.updateField(!valueInner);
 	};
+
+	// when filed change,dom value will change.
+	formContext?.subscribe((value: any) => (valueInner = value));
+	//initial field
+	formContext?.initialField(value);
 
 	/**
 	 * Set checkbox value

@@ -93,6 +93,7 @@
 		"@ikun-ui/ellipsis": "workspace:*",
 		"@ikun-ui/eye-dropper": "workspace:*",
 		"@ikun-ui/grid": "workspace:*",
+		"@ikun-ui/form": "workspace:*",
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/input": "workspace:*",
 		"@ikun-ui/layout": "workspace:*",
