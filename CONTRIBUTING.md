@@ -25,10 +25,10 @@ We use [Github issues](https://github.com/ikun-svelte/ikun-ui/issues) for bug re
 ## Sending a pull request
 
 1. Fork [the repository](https://github.com/ikun-svelte/ikun-ui)，and create your branch from `main`. For new feature, please submit your changes directly to the `feature` branch. Other changes should go against `main` branch.
-2. Use `pnpm install` install the dependencies
-3. Run `pnpm run build` to build all components, presets, utils
-4. Please run `pnpm run play` to debug the component, and `pnpm run dev:docs` to debug the documentation site
-5. Modify according to your needs, whether it is to modify presets or components, you need to manually run `pnpm run build` in the corresponding directory after modification. Additionally, you can use `pnpm run watch` for automatic building of your changes.
+2. Use `pnpm install` to install the dependencies.
+3. Run `pnpm run dev` to pre build all components, presets, utils.
+4. Please run `pnpm run play` to debug the component, and `pnpm run dev:docs` to debug the documentation site.
+5. Modify according to your needs.
 6. Make changes to the codebase. Please add tests if applicable.
 7. Make sure the test suite passes with `pnpm run test`.
 8. Commit your changes, adhering to the [Commit Guidelines](#commit-guidelines).

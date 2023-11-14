@@ -13,8 +13,8 @@ export const contextmenuShortcuts: Record<string, string> = {
 
 	// dark
 	'k-contextmenu--base__dark': 'dark:bg-ikun-dark-300',
-	'k-contextmenu-item--base__dark': 'dark:text-white',
-	'k-contextmenu-sub-menu--base__dark': 'dark:text-white',
+	'k-contextmenu-item--base__dark': 'dark:text-ikun-white',
+	'k-contextmenu-sub-menu--base__dark': 'dark:text-ikun-white',
 	'k-contextmenu-sub-menu-item__dark': 'k-contextmenu--base__dark',
 	'k-contextmenu-item__disabled__dark': 'ikun:40:bg-ikun-main',
 	'k-contextmenu-sub-menu__disable__dark': 'k-contextmenu-item__disabled__dark'

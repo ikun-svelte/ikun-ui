@@ -11,6 +11,7 @@ export type KInputProps = {
 	append: string;
 	prepend: string;
 	isError: boolean;
+	center: boolean;
 	search: boolean;
 	errorMsg: string;
 	cls: ClassValue;
@@ -19,4 +20,5 @@ export type KInputProps = {
 	type: 'text' | 'password' | 'textarea';
 	autosize: boolean | { minRows?: number; maxRows?: number };
 	rows: number;
+	clearable: boolean;
 };

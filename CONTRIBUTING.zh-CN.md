@@ -24,9 +24,9 @@
 
 1. Fork [此仓库](https://github.com/ikun-svelte/ikun-ui)，从 `main` 创建分支。新功能实现请发 pull request 到 `feature` 分支。其他更改发到 `main` 分支。
 2. 使用 `pnpm install` 安装依赖。
-3. 运行 `pnpm run build` 对所有组件、预设、utils进行构建
-4. 调试组件请运行 `pnpm run play` ，调试文档站点请运行 `pnpm run dev:docs`
-5. 根据你的需求进行修改，无论是修改预设还是组件，修改后都需要手动的到对应目录下运行 `pnpm run build`。你也可以运行`pnpm run watch`自动构建你的更改。
+3. 运行 `pnpm run dev` 对所有组件、预设、utils进行构建。
+4. 调试组件请运行 `pnpm run play` ，调试文档站点请运行 `pnpm run dev:docs`。
+5. 根据你的需求进行修改。
 6. 对代码库进行更改。如果适用的话，请确保写了相应的测试。
 7. 确认执行 `pnpm run test` 后所有的测试都是通过的。
 8. 提交 git commit, 请同时遵守 [Commit 规范](#commit-指南)。

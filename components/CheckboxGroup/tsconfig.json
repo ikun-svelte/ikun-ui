@@ -5,6 +5,7 @@
 		"noImplicitAny": true,
 		"strict": true,
 		"declaration": true,
+		"sourceMap": false,
 		"paths": {
 			"@ikun-ui/utils": ["../../utils/index.ts"]
 		}

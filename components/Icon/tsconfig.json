@@ -4,6 +4,7 @@
 		"noImplicitAny": true,
 		"strict": true,
 		"declaration": true,
+		"sourceMap": false,
 		"lib": ["dom"]
 	},
 	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.svelte"],

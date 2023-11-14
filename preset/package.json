@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/preset",
-	"version": "0.0.10",
+	"version": "0.0.13-beta.3",
 	"sideEffects": false,
 	"exports": {
 		".": {

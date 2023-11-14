@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config';
 
-const timeout = process.env.CI ? 50000 : 30000;
+const timeout = process.env.CI ? 100000 : 50000;
 export default defineConfig({
 	test: {
 		include: ['./src/**/*.test.[tj]s'],

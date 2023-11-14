@@ -2,8 +2,16 @@ import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
 import KSelect from '../src';
 import KSelectValue from './select.value.svelte';
+import KSelectValueObj from './select.object.svelte';
 import KSelectSlots from './select.slots.svelte';
-
+import KSelectClearable from './select.clearable.svelte';
+import KSelectUpdated from './select.updated.svelte';
+import KSelectDisabled from './select.disabled.svelte';
+import KSelectCustom from './select.custom.svelte';
+import KSelectString from './select.string.svelte';
+import KSelectNumber from './select.number.svelte';
+import KSelectFit from './select.fit.svelte';
+import KSelectRemote from './select.remote.svelte';
 let host: HTMLElement;
 
 const initHost = () => {
@@ -13,9 +21,11 @@ const initHost = () => {
 };
 beforeEach(() => {
 	initHost();
+	vi.useFakeTimers();
 });
 afterEach(() => {
 	host.remove();
+	vi.useRealTimers();
 });
 
 describe('Test: KSelect', () => {
@@ -25,9 +35,21 @@ describe('Test: KSelect', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const selectElm = host.getElementsByTagName('select')[0] as HTMLSelectElement;
+		const selectElm = host.getElementsByTagName('input')[0] as HTMLInputElement;
 		expect(selectElm).not.toBeNull();
 		expect(selectElm.value).toBe('Normal');
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: value & object', async () => {
+		const instance = new KSelectValueObj({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const selectElm = host.getElementsByTagName('input')[0] as HTMLInputElement;
+		expect(selectElm).not.toBeNull();
+		expect(selectElm.value).toBe('foo8');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -55,8 +77,149 @@ describe('Test: KSelect', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const firstOptionElm = host.getElementsByTagName('option')[0] as HTMLOptionElement;
-		expect(firstOptionElm.innerHTML.includes('绣面芙蓉一笑开')).toBeTruthy();
+		expect(host.innerHTML.includes('placeholder="绣面芙蓉一笑开"')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: size', async () => {
+		const instanceSm = new KSelect({
+			target: host,
+			props: {
+				size: 'sm'
+			}
+		});
+		const instanceMd = new KSelect({
+			target: host,
+			props: {
+				size: 'md'
+			}
+		});
+		const instanceLg = new KSelect({
+			target: host,
+			props: {
+				size: 'lg'
+			}
+		});
+		expect(instanceSm).toBeTruthy();
+		expect(instanceMd).toBeTruthy();
+		expect(instanceLg).toBeTruthy();
+		await tick();
+		const selectElms = document.querySelectorAll('.k-select--base');
+		expect(selectElms[0].className.includes('k-select__sm')).toBeTruthy();
+		expect(selectElms[1].className.includes('k-select__md')).toBeTruthy();
+		expect(selectElms[2].className.includes('k-select__lg')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: fitInputWidth', async () => {
+		const instance = new KSelectFit({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+
+		const triggerEl = host.querySelector('[data-popover-trigger]');
+		(triggerEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML.includes('k-select--option__fit')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: remote', async () => {
+		const instance = new KSelectRemote({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+
+		const triggerEl = host.querySelector('[data-popover-trigger]');
+		(triggerEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const contentEl = host.querySelector('[slot="contentEl"]');
+		const valueEl = host.querySelector('#k_select_remote');
+		expect(valueEl?.innerHTML).toBe(
+			'{"label":"Connecticut","value":"Connecticut","id":"Connecticut"}'
+		);
+		expect(contentEl).not.toBeTruthy();
+		const inputEl = triggerEl?.querySelector('input');
+		inputEl.value = 'ikun';
+		inputEl.dispatchEvent(new Event('input', { cancelable: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(400);
+		expect(host.innerHTML.includes('no data')).toBeTruthy();
+		inputEl.value = 'Alabama';
+		inputEl.dispatchEvent(new Event('input', { cancelable: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(400);
+		const optionEl = host?.querySelectorAll('.k-virtual-list--item')[0].children[0];
+		(optionEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(400);
+		expect(valueEl?.innerHTML).toBe('{"label":"Alabama","value":"Alabama","id":"Alabama"}');
+	});
+
+	test('props: clearable', async () => {
+		const instance = new KSelectClearable({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+
+		const triggerEl = host.querySelector('[slot="triggerEl"]');
+		const valueE = document.getElementById('k_select_clear_value');
+		expect(valueE?.innerHTML).toBe('200');
+		(triggerEl as HTMLElement)?.dispatchEvent(new Event('mouseenter', { cancelable: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const clearEl = host.querySelector('[data-k-select-clear]');
+		(clearEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(valueE?.innerHTML).toBe('undefined');
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: dataList as number[]', async () => {
+		const instance = new KSelectNumber({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+
+		const triggerEl = host.querySelector('[data-popover-trigger]');
+		const valueE = document.getElementById('k_select_number');
+		expect(valueE?.innerHTML).toBe('1');
+		(triggerEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const itemEl = host.querySelector('[data-kv-key="5"]')?.children[0];
+		(itemEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(valueE?.innerHTML).toBe('5');
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: dataList as string[]', async () => {
+		const instance = new KSelectString({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+
+		const triggerEl = host.querySelector('[data-popover-trigger]');
+		const valueE = document.getElementById('k_select_string');
+		expect(valueE?.innerHTML).toBe('Normal');
+		(triggerEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const itemEl = host.querySelector('[data-kv-key="Huge"]')?.children[0];
+		(itemEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(valueE?.innerHTML).toBe('Huge');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -70,50 +233,16 @@ describe('Test: KSelect', () => {
 		expect(instance).toBeTruthy();
 		await tick();
 		expect(host.innerHTML.includes('k-select--base__disabled')).toBeTruthy();
+		expect(host.innerHTML.includes('k-select--base__disabled__dark')).toBeTruthy();
+		expect(host.innerHTML.includes('k-select--inner__disabled__dark')).toBeTruthy();
 		instance.$set({
 			disabled: false
 		});
 		await tick();
 		expect(host.innerHTML.includes('k-select--base__disabled')).not.toBeTruthy();
+		expect(host.innerHTML.includes('k-select--base__disabled__dark')).not.toBeTruthy();
+		expect(host.innerHTML.includes('k-select--inner__disabled__dark')).not.toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
-	});
-
-	test('event: should trigger updateValue event', async () => {
-		const mockFn = vi.fn();
-		const instance = new KSelect({
-			target: host,
-			props: {
-				value: ''
-			}
-		});
-		expect(instance).toBeTruthy();
-		instance.$on('updateValue', () => {
-			mockFn();
-		});
-		await tick();
-		const selectElm = host.getElementsByTagName('select')[0] as HTMLSelectElement;
-		selectElm.dispatchEvent(new Event('change'));
-		await tick();
-		expect(mockFn).toBeCalled();
-	});
-
-	test('event: should not trigger updateValue event when disabled', async () => {
-		const mockFn = vi.fn();
-		const instance = new KSelect({
-			target: host,
-			props: {
-				disabled: true
-			}
-		});
-		expect(instance).toBeTruthy();
-		instance.$on('updateValue', () => {
-			mockFn();
-		});
-		await tick();
-		const selectElm = host.getElementsByTagName('select')[0] as HTMLSelectElement;
-		selectElm.dispatchEvent(new Event('change'));
-		await tick();
-		expect(mockFn).not.toBeCalled();
 	});
 
 	test('slots: prefix and suffix', async () => {
@@ -125,5 +254,59 @@ describe('Test: KSelect', () => {
 		const suffixElm = host.getElementsByClassName('suffix')[0];
 		expect(prefixElm).toBeTruthy();
 		expect(suffixElm).toBeTruthy();
+	});
+
+	test('slots: custom render', async () => {
+		const instance = new KSelectCustom({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+
+		const triggerEl = host.querySelector('[data-popover-trigger]');
+		(triggerEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML.includes('<button>Normal true</button>')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('event: should trigger updateValue event', async () => {
+		const instance = new KSelectUpdated({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+
+		const triggerEl = host.querySelector('[data-popover-trigger]');
+		const valueE = document.getElementById('k_select_updated_value');
+		expect(valueE?.innerHTML).toBe('200');
+		(triggerEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const itemEl = host.querySelector('[data-kv-key="4"]')?.children[0];
+		(itemEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(valueE?.innerHTML).toBe('4');
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('event: should not trigger updateValue event when disabled', async () => {
+		const instance = new KSelectDisabled({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+
+		const triggerEl = host.querySelector('[data-popover-trigger]');
+		const valueE = document.getElementById('k_select_disabled_value');
+		expect(valueE?.innerHTML).toBe('200');
+		(triggerEl as HTMLElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const itemEl = host.querySelector('[data-kv-key="4"]');
+		expect(itemEl).not.toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
 	});
 });

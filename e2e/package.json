@@ -3,7 +3,7 @@
 	"version": "0.0.2",
 	"scripts": {
 		"dev": "vite dev",
-		"test": "vitest"
+		"test": "vitest --watch=false"
 	},
 	"exports": {
 		".": {

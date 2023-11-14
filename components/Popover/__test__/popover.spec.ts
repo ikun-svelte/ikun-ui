@@ -5,6 +5,7 @@ import KPopoverTrigger from './popover.trigger.svelte';
 import KPopoverSlots from './popover.slots.svelte';
 import KPopoverDisabled from './popover.disabled.svelte';
 import KPopoverChange from './popover.change.svelte';
+import KPopoverArrow from './popover.arrow.svelte';
 let host: HTMLElement;
 
 const initHost = () => {
@@ -28,7 +29,7 @@ describe('Test: KPopover', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const Elm = host.children[0].getElementsByTagName('div')[0];
+		const Elm = host.children[0];
 		Elm.dispatchEvent(
 			new MouseEvent('mouseenter', {
 				cancelable: true
@@ -47,7 +48,7 @@ describe('Test: KPopover', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const Elm = host.children[0].getElementsByTagName('div')[0];
+		const Elm = host.children[0];
 		Elm.dispatchEvent(
 			new MouseEvent('mouseenter', {
 				cancelable: true
@@ -60,13 +61,32 @@ describe('Test: KPopover', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: arrow', async () => {
+		const instance = new KPopoverArrow({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const Elm = host.children[0];
+		Elm.dispatchEvent(
+			new MouseEvent('mouseenter', {
+				cancelable: true
+			})
+		);
+		vi.runAllTimers();
+		await tick();
+		expect(host.innerHTML.includes('有美一人，清扬婉兮')).toBeTruthy();
+		expect(host.innerHTML.includes('data-popper-arrow-bottom')).not.toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('props: trigger', async () => {
 		const instance = new KPopoverTrigger({
 			target: host
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const Elm = host.children[0].getElementsByTagName('div')[0];
+		const Elm = host.children[0];
 		Elm.click();
 		vi.runAllTimers();
 		await tick();
@@ -80,7 +100,7 @@ describe('Test: KPopover', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const Elm = host.children[0].getElementsByTagName('div')[0];
+		const Elm = host.children[0];
 		Elm.dispatchEvent(
 			new MouseEvent('mouseenter', {
 				cancelable: true
@@ -106,7 +126,7 @@ describe('Test: KPopover', () => {
 			mockFn();
 		});
 		await tick();
-		const Elm = host.children[0].getElementsByTagName('div')[0];
+		const Elm = host.children[0];
 		Elm.dispatchEvent(
 			new MouseEvent('mouseenter', {
 				cancelable: true

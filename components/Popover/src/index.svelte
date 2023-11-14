@@ -11,7 +11,13 @@
 	export let trigger: KPopoverProps['trigger'] = 'hover';
 	export let attrs: KPopoverProps['attrs'] = {};
 	export let disabled: KPopoverProps['disabled'] = false;
+	export let arrow: KPopoverProps['arrow'] = true;
 	export let cls: KPopoverProps['cls'] = undefined;
+	export let clsTrigger: KPopoverProps['clsTrigger'] = undefined;
+	/**
+	 * @internal
+	 */
+	export let width: KPopoverProps['width'] = 'fit-content';
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
 	const dispatch = createEventDispatcher();
@@ -78,7 +84,7 @@
 	};
 
 	export function updateShow(show: boolean) {
-		if (disabled) return;
+		if (disabled && show) return;
 		setTimeout(
 			async () => {
 				if (isEnter) {
@@ -124,33 +130,46 @@
 		`${prefixCls}--base__dark`,
 		cls
 	);
+
+	$: triggerCls = clsx('flex', clsTrigger);
+
+	/**
+	 * @internal
+	 */
+	function onAnimationEnd() {
+		dispatch('animateEnd');
+	}
 </script>
 
-<div style="width: fit-content">
+<div
+	aria-hidden="true"
+	use:popperRef
+	on:click={handleClick}
+	class={triggerCls}
+	style:width
+	data-popover-trigger
+	on:mouseenter={handleMouseenter}
+	on:mouseleave={handleMouseleave}
+>
+	<slot name="triggerEl" />
+</div>
+
+{#if isShow}
 	<div
+		class={cnames}
+		out:scale={{ duration: 200, start: 0.3, opacity: 0 }}
+		in:scale={{ duration: 200, start: 0.3, opacity: 0 }}
+		on:animationend={onAnimationEnd}
+		data-popper-placement
 		aria-hidden="true"
-		use:popperRef
-		on:click={handleClick}
+		{...attrs}
 		on:mouseenter={handleMouseenter}
 		on:mouseleave={handleMouseleave}
+		use:clickOutside
+		use:popperContent
 	>
-		<slot name="triggerEl" />
-	</div>
-
-	{#if isShow}
-		<div
-			class={cnames}
-			out:scale={{ duration: 200, start: 0.3, opacity: 0 }}
-			in:scale={{ duration: 200, start: 0.3, opacity: 0 }}
-			data-popper-placement
-			aria-hidden="true"
-			{...attrs}
-			on:mouseenter={handleMouseenter}
-			on:mouseleave={handleMouseleave}
-			use:clickOutside
-			use:popperContent
-		>
-			<slot name="contentEl" />
+		<slot name="contentEl" />
+		{#if arrow}
 			<div
 				{...{ 'k-popover-arrow': true }}
 				data-popper-arrow-bottom
@@ -159,9 +178,9 @@
 				data-popper-arrow-left
 				bind:this={arrowRef}
 			/>
-		</div>
-	{/if}
-</div>
+		{/if}
+	</div>
+{/if}
 
 <style>
 	[k-popover-arrow]::after {

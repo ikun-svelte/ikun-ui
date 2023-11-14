@@ -3,7 +3,7 @@
 	"description": "🐔 A Svelte.js based UnoCSS UI library that allows you to make websites",
 	"packageManager": "pnpm@8.7.5",
 	"type": "module",
-	"version": "0.0.10",
+	"version": "0.0.13-beta.3",
 	"keywords": [
 		"svelte",
 		"svelte3",
@@ -52,14 +52,13 @@
 		"build-lib": "tsup --config tsup.config.ts",
 		"build:utils": "pnpm run --filter @ikun-ui/utils build",
 		"build:components": "esno scripts/build.js",
-		"watch": "esno scripts/watch.js",
 		"build#docs": "pnpm run --filter @ikun-ui/docs docs:build",
 		"preview:docs": "pnpm run --filter @ikun-ui/docs docs:preview",
 		"test": "pnpm run test:unit && pnpm run test:e2e",
 		"test:e2e": "pnpm run --filter @ikun-ui/e2e test",
-		"test:unit": "vitest",
-		"test:update": "vitest -u",
-		"test:coverage": "vitest --coverage",
+		"test:unit": "vitest --watch=false",
+		"test:update": "vitest -u --watch=false",
+		"test:coverage": "vitest --coverage --watch=false",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"release": "bumpp package.json components/*/package.json preset/package.json utils/package.json --commit --push --tag",
@@ -69,7 +68,7 @@
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "esno scripts/new-component.js virtual-list"
+		"create:new:comp": "esno scripts/new-component.js pagination"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
@@ -125,7 +124,8 @@
 		"@ikun-ui/infinite": "workspace:*",
 		"@ikun-ui/empty": "workspace:*",
 		"@ikun-ui/card": "workspace:*",
-		"@ikun-ui/virtual-list": "workspace:*"
+		"@ikun-ui/virtual-list": "workspace:*",
+		"@ikun-ui/pagination": "workspace:*"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",
@@ -165,6 +165,7 @@
 		"typescript": "^5.2.2",
 		"unocss": "^0.56.5",
 		"vite": "^4.4.9",
+		"fs-extra": "11.1.1",
 		"vitest": "^0.34.4",
 		"playwright-chromium": "^1.36.2"
 	},

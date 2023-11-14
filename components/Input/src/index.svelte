@@ -34,6 +34,11 @@
 	 * @internal
 	 */
 	export let errorMsg: KInputProps['errorMsg'] = '';
+	/**
+	 * @internal
+	 */
+	export let center: KInputProps['center'] = false;
+	export let clearable: KInputProps['clearable'] = false;
 
 	const formContext: FormContext = getContext(formItemKey);
 	const dispatch = createEventDispatcher();
@@ -55,6 +60,12 @@
 		if (disabled) return;
 		dispatch('change', e);
 		formContext?.updateField((e?.target as HTMLInputElement)?.value);
+	};
+
+	const onClear = () => {
+		if (disabled) return;
+		value = '';
+		dispatch('updateValue', value);
 	};
 
 	const onEnter = (e: KeyboardEvent) => {
@@ -170,8 +181,8 @@
 		{
 			[`${prefixCls}--inner__textarea`]: type === 'textarea'
 		},
-		`${prefixCls}--inner__dark`,
 		{
+			[`${prefixCls}--inner__dark`]: !disabled,
 			[`${prefixCls}__disabled`]: disabled,
 			[`${prefixCls}__disabled__dark`]: disabled
 		}
@@ -182,6 +193,7 @@
 	$: errorMsgCls = clsx(`${prefixCls}__msg__error`);
 	$: prependCls = clsx(`${prefixCls}--prepend`, `${prefixCls}--prepend__${size}`);
 	$: appendgCls = clsx(`${prefixCls}--append`, `${prefixCls}--append__${size}`);
+	$: clearCls = clsx(`${prefixCls}--clear-icon`);
 </script>
 
 {#if type !== 'textarea'}
@@ -216,15 +228,17 @@
 				on:keydown={onEnter}
 				on:compositionstart={onCompositionStart}
 				on:compositionend={onCompositionEnd}
+				style:text-align={center ? 'center' : undefined}
 				type={isPassword}
 				{placeholder}
 				{...attrs}
 			/>
-			<slot name="suffix">
-				{#if iconSuffix}
-					<KIcon cls={suffixIconCls} icon={iconSuffix} />
-				{/if}
-			</slot>
+
+			{#if clearable && !disabled && value}
+				<div class={clearCls} role="button" aria-hidden="true" on:click={onClear}>
+					<KIcon btn icon="i-carbon:close-outline" cls="{iconCls} ml-1" />
+				</div>
+			{/if}
 
 			{#if isPassword === 'password' && type === 'password'}
 				<div
@@ -253,6 +267,12 @@
 					{errorMsg}
 				</span>
 			{/if}
+
+			<slot name="suffix">
+				{#if iconSuffix}
+					<KIcon cls={suffixIconCls} icon={iconSuffix} />
+				{/if}
+			</slot>
 		</div>
 		{#if $$slots.append || append}
 			<KButton

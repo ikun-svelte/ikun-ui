@@ -119,6 +119,10 @@ const components = [
 				link: '/components/KTag'
 			},
 			{
+				text: 'Pagination',
+				link: '/components/KPagination'
+			},
+			{
 				text: 'Progress',
 				link: '/components/KProgress'
 			},
