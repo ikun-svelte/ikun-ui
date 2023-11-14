@@ -4,112 +4,112 @@ exports[`Test: KSelect > event: should not trigger updateValue event when disabl
 
 exports[`Test: KSelect > event: should trigger updateValue event 1`] = `
 "<div aria-hidden=\\"true\\" class=\\"flex mx-200px\\" data-popover-trigger=\\"\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select__md k-select--base__dark mx-200px\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"k-select--inner k-select--inner__md k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"Please select value\\">  <i><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down k-select--icon k-select--icon__md\\" role=\\"\\" aria-hidden=\\"true\\"></span></i></div></div> <div class=\\"k-popover--base k-popover--base__bottom k-popover--base__bottom__dark k-popover--base__dark px-0 svelte-13arsd0\\" data-popper-placement=\\"\\" aria-hidden=\\"true\\" style=\\"position: fixed; left: 0px; top: 8px; margin: 0px; animation: __svelte_3896445108_0 200ms linear 0ms 1 both, __svelte_1936640108_0 200ms linear 0ms 1 both;\\" data-popper-reference-hidden=\\"\\" data-popper-escaped=\\"\\"><div slot=\\"contentEl\\" style=\\"overflow-y: auto; min-width: initial; max-height: 250px;\\"><div class=\\"k-virtual-list ikun-scroll-bar\\" style=\\"overflow-y: auto; height: inherit;\\"> <div class=\\"\\" style=\\"padding: 0px 0px 235000px;\\"><div class=\\"k-virtual-list--item\\" data-kv-key=\\"0\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    0 item
-  \\">0 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"1\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    1 item
-  \\">1 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"2\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    2 item
-  \\">2 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"3\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    3 item
-  \\">3 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"4\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    4 item
-  \\">4 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"5\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    5 item
-  \\">5 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"6\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    6 item
-  \\">6 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"7\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    7 item
-  \\">7 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"8\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    8 item
-  \\">8 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"9\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    9 item
-  \\">9 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"10\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    10 item
-  \\">10 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"11\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    11 item
-  \\">11 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"12\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    12 item
-  \\">12 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"13\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    13 item
-  \\">13 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"14\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    14 item
-  \\">14 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"15\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    15 item
-  \\">15 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"16\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    16 item
-  \\">16 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"17\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    17 item
-  \\">17 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"18\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    18 item
-  \\">18 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"19\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    19 item
-  \\">19 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"20\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    20 item
-  \\">20 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"21\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    21 item
-  \\">21 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"22\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    22 item
-  \\">22 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"23\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    23 item
-  \\">23 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"24\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    24 item
-  \\">24 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"25\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    25 item
-  \\">25 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"26\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    26 item
-  \\">26 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"27\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    27 item
-  \\">27 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"28\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    28 item
-  \\">28 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"29\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    29 item
-  \\">29 item</option> </div></div>  <div class=\\"shepherd\\" style=\\"width: 100%; height: 0px;\\"></div></div></div> </div> <span id=\\"k_select_updated_value\\">4</span>"
+		0 item
+	\\">0 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"1\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		1 item
+	\\">1 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"2\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		2 item
+	\\">2 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"3\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		3 item
+	\\">3 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"4\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		4 item
+	\\">4 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"5\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		5 item
+	\\">5 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"6\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		6 item
+	\\">6 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"7\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		7 item
+	\\">7 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"8\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		8 item
+	\\">8 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"9\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		9 item
+	\\">9 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"10\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		10 item
+	\\">10 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"11\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		11 item
+	\\">11 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"12\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		12 item
+	\\">12 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"13\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		13 item
+	\\">13 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"14\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		14 item
+	\\">14 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"15\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		15 item
+	\\">15 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"16\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		16 item
+	\\">16 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"17\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		17 item
+	\\">17 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"18\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		18 item
+	\\">18 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"19\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		19 item
+	\\">19 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"20\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		20 item
+	\\">20 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"21\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		21 item
+	\\">21 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"22\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		22 item
+	\\">22 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"23\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		23 item
+	\\">23 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"24\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		24 item
+	\\">24 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"25\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		25 item
+	\\">25 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"26\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		26 item
+	\\">26 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"27\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		27 item
+	\\">27 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"28\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		28 item
+	\\">28 item</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"29\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		29 item
+	\\">29 item</option> </div></div>  <div class=\\"shepherd\\" style=\\"width: 100%; height: 0px;\\"></div></div></div> </div> <span id=\\"k_select_updated_value\\">4</span>"
 `;
 
 exports[`Test: KSelect > props: clearable 1`] = `"<div aria-hidden=\\"true\\" class=\\"flex mx-200px\\" data-popover-trigger=\\"\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select__md k-select--base__dark mx-200px\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"k-select--inner k-select--inner__md k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"Please select value\\">  <i data-k-select-clear=\\"\\" aria-hidden=\\"true\\"><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-close-outline k-select--icon k-select--icon__md\\" role=\\"\\" aria-hidden=\\"true\\"></span></i></div></div>  <span id=\\"k_select_clear_value\\">undefined</span>"`;
 
 exports[`Test: KSelect > props: dataList as number[] 1`] = `
 "<div aria-hidden=\\"true\\" class=\\"flex\\" data-popover-trigger=\\"\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select__md k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"k-select--inner k-select--inner__md k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"Please select value\\">  <i><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down k-select--icon k-select--icon__md\\" role=\\"\\" aria-hidden=\\"true\\"></span></i></div></div> <div class=\\"k-popover--base k-popover--base__bottom k-popover--base__bottom__dark k-popover--base__dark px-0 svelte-13arsd0\\" data-popper-placement=\\"\\" aria-hidden=\\"true\\" style=\\"position: fixed; left: 0px; top: 8px; margin: 0px; animation: __svelte_3896445108_0 200ms linear 0ms 1 both, __svelte_1936640108_0 200ms linear 0ms 1 both;\\" data-popper-reference-hidden=\\"\\" data-popper-escaped=\\"\\"><div slot=\\"contentEl\\" style=\\"overflow-y: auto; min-width: initial; max-height: 250px;\\"><div class=\\"k-virtual-list ikun-scroll-bar\\" style=\\"overflow-y: auto; height: inherit;\\"> <div class=\\"\\" style=\\"padding: 0px 0px 0px;\\"><div class=\\"k-virtual-list--item\\" data-kv-key=\\"1\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit k-select--option__active\\" value=\\"
-    1
-  \\">1</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"2\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    2
-  \\">2</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"3\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    3
-  \\">3</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"4\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    4
-  \\">4</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"5\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    5
-  \\">5</option> </div></div>  <div class=\\"shepherd\\" style=\\"width: 100%; height: 0px;\\"></div></div></div> </div> <span id=\\"k_select_number\\">5</span>"
+		1
+	\\">1</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"2\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		2
+	\\">2</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"3\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		3
+	\\">3</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"4\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		4
+	\\">4</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"5\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		5
+	\\">5</option> </div></div>  <div class=\\"shepherd\\" style=\\"width: 100%; height: 0px;\\"></div></div></div> </div> <span id=\\"k_select_number\\">5</span>"
 `;
 
 exports[`Test: KSelect > props: dataList as string[] 1`] = `
 "<div aria-hidden=\\"true\\" class=\\"flex\\" data-popover-trigger=\\"\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select__md k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"k-select--inner k-select--inner__md k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"Please select value\\">  <i><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down k-select--icon k-select--icon__md\\" role=\\"\\" aria-hidden=\\"true\\"></span></i></div></div> <div class=\\"k-popover--base k-popover--base__bottom k-popover--base__bottom__dark k-popover--base__dark px-0 svelte-13arsd0\\" data-popper-placement=\\"\\" aria-hidden=\\"true\\" style=\\"position: fixed; left: 0px; top: 8px; margin: 0px; animation: __svelte_3896445108_0 200ms linear 0ms 1 both, __svelte_1936640108_0 200ms linear 0ms 1 both;\\" data-popper-reference-hidden=\\"\\" data-popper-escaped=\\"\\"><div slot=\\"contentEl\\" style=\\"overflow-y: auto; min-width: initial; max-height: 250px;\\"><div class=\\"k-virtual-list ikun-scroll-bar\\" style=\\"overflow-y: auto; height: inherit;\\"> <div class=\\"\\" style=\\"padding: 0px 0px 0px;\\"><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Tiny\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    Tiny
-  \\">Tiny</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Small\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    Small
-  \\">Small</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Normal\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit k-select--option__active\\" value=\\"
-    Normal
-  \\">Normal</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Large\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    Large
-  \\">Large</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Huge\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    Huge
-  \\">Huge</option> </div></div>  <div class=\\"shepherd\\" style=\\"width: 100%; height: 0px;\\"></div></div></div> </div> <span id=\\"k_select_string\\">Huge</span>"
+		Tiny
+	\\">Tiny</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Small\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		Small
+	\\">Small</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Normal\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit k-select--option__active\\" value=\\"
+		Normal
+	\\">Normal</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Large\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		Large
+	\\">Large</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Huge\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		Huge
+	\\">Huge</option> </div></div>  <div class=\\"shepherd\\" style=\\"width: 100%; height: 0px;\\"></div></div></div> </div> <span id=\\"k_select_string\\">Huge</span>"
 `;
 
 exports[`Test: KSelect > props: disabled 1`] = `"<div aria-hidden=\\"true\\" class=\\"flex\\" data-popover-trigger=\\"\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select__md k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"k-select--inner k-select--inner__md k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"Please select value\\">  <i><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down  k-select--icon k-select--icon__md\\" role=\\"\\" aria-hidden=\\"true\\"></span></i></div></div> "`;
 
 exports[`Test: KSelect > props: fitInputWidth 1`] = `
 "<div aria-hidden=\\"true\\" class=\\"flex\\" data-popover-trigger=\\"\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select__md k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"k-select--inner k-select--inner__md k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"Please select value\\">  <i><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down rotate-180 k-select--icon k-select--icon__md\\" role=\\"\\" aria-hidden=\\"true\\"></span></i></div></div> <div class=\\"k-popover--base k-popover--base__bottom k-popover--base__bottom__dark k-popover--base__dark px-0 svelte-13arsd0\\" data-popper-placement=\\"bottom\\" aria-hidden=\\"true\\" style=\\"position: fixed; left: 0px; top: 8px; margin: 0px; animation: __svelte_3896445108_0 200ms linear 0ms 1 both;\\" data-popper-reference-hidden=\\"\\" data-popper-escaped=\\"\\"><div slot=\\"contentEl\\" style=\\"overflow-y: auto; min-width: initial; max-height: 250px;\\"><div class=\\"k-virtual-list ikun-scroll-bar\\" style=\\"overflow-y: auto; height: inherit;\\"> <div class=\\"\\" style=\\"padding: 0px 0px 0px;\\"><div class=\\"k-virtual-list--item\\" data-kv-key=\\"TinyTinyTinyTinyTinyTinyTTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyiny\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    TinyTinyTinyTinyTinyTinyTTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyiny
-  \\">TinyTinyTinyTinyTinyTinyTTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyiny</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Small\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    Small
-  \\">Small</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Normal\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit k-select--option__active\\" value=\\"
-    Normal
-  \\">Normal</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Large\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    Large
-  \\">Large</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Huge\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
-    Huge
-  \\">Huge</option> </div></div>  <div class=\\"shepherd\\" style=\\"width: 100%; height: 0px;\\"></div></div></div> </div> <span id=\\"k_select_string\\">Normal</span>"
+		TinyTinyTinyTinyTinyTinyTTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyiny
+	\\">TinyTinyTinyTinyTinyTinyTTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyTinyiny</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Small\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		Small
+	\\">Small</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Normal\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit k-select--option__active\\" value=\\"
+		Normal
+	\\">Normal</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Large\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		Large
+	\\">Large</option> </div><div class=\\"k-virtual-list--item\\" data-kv-key=\\"Huge\\"><option class=\\"k-select--option k-select--option__dark k-select--option__hover k-select--option__fit \\" value=\\"
+		Huge
+	\\">Huge</option> </div></div>  <div class=\\"shepherd\\" style=\\"width: 100%; height: 0px;\\"></div></div></div> </div> <span id=\\"k_select_string\\">Normal</span>"
 `;
 
 exports[`Test: KSelect > props: iconPrefix and iconSuffix 1`] = `"<div aria-hidden=\\"true\\" class=\\"flex\\" data-popover-trigger=\\"\\"><div class=\\"k-select--base k-select__hover k-select__focus k-select__md k-select--base__dark\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"><i><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-logo-svelte k-select--prefix k-select--icon__md\\" role=\\"\\" aria-hidden=\\"true\\"></span></i> <input class=\\"k-select--inner k-select--inner__md k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"Please select value\\"> <i><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-search k-select--suffix k-select--icon__md\\" role=\\"\\" aria-hidden=\\"true\\"></span></i> <i><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down  k-select--icon k-select--icon__md\\" role=\\"\\" aria-hidden=\\"true\\"></span></i></div></div> "`;
