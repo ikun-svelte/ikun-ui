@@ -77,3 +77,11 @@ export type FormContext = {
 // TODO: KFormItem props -- show-message 是否显示校验错误信息
 // TODO: KFormItem slot -- label 标签位置显示的内容
 // TODO: KFormItem slot -- error 验证错误信息的显示内容
+
+export interface KFormRule = {
+
+}
+
+export interface KFormRules = {
+
+}
