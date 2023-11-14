@@ -40,6 +40,7 @@ import { contextmenuShortcuts } from './src/contextmenu';
 import { emptyShortcuts } from './src/empty';
 import { virtualListShortcuts } from './src/virtual-list';
 import { pageShortcuts } from './src/pagination';
+import { IKUN_SAFE_LIST } from '../utils/constant';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -161,6 +162,7 @@ export function getSafeList() {
 	const virtualList = Object.keys(virtualListShortcuts);
 	const pageList = Object.keys(pageShortcuts);
 	let res = iconList
+		.concat(IKUN_SAFE_LIST)
 		.concat(comList)
 		.concat(baseList)
 		.concat(msgBoxList)
