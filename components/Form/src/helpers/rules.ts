@@ -3,21 +3,15 @@
 // ⭕TODO: 校验顺序按照 rules 顺序
 // ⭕TODO: validator
 // ⭕TODO: validator 后 require max min 将失效
-// TODO: trigger
 import { getValueByPath } from './fields'
 import { isArray, isNumber, isString } from "baiwusanyu-utils";
+import type { KFormRule, KFormRules } from "../types";
 
-export interface KFormRule  {
-  max?: number
-  min?: number
-  required?: boolean
-  validator?: ( value: any, callback: any) => void
-  msg?: string
-  trigger?: 'change' | 'blur'
-}
-
-export type KFormRules = Record<string, KFormRule[]>
-
+/**
+ * 校验整个表单
+ * @param rules
+ * @param target
+ */
 export function doValidate(
   rules: KFormRules,
   target: Record<string, any>){
@@ -41,6 +35,32 @@ export function doValidate(
   }
 }
 
+/**
+ * 校验某个字段
+ */
+export function doValidateField(
+  rules: KFormRules | undefined,
+  path: string,
+  value: unknown){
+  if(rules){
+    const fieldRule = rules[path]
+    for(let i = 0; i < fieldRule.length; i++){
+      const ruleOption = fieldRule[i]
+      if(ruleOption.validator){
+        ruleOption.validator(value, (msg: string) => {
+          if(msg){
+            throw new Error(msg)
+          }
+        })
+      } else {
+        validateRequired(ruleOption, value, path)
+        validateMin(ruleOption, value, path)
+        validateMax(ruleOption, value, path)
+      }
+    }
+  }
+}
+
 function validateRequired(
   rule: KFormRule,
   value: any,
@@ -48,7 +68,7 @@ function validateRequired(
 ){
   if(rule.required){
     if(!value && value !== 0){
-      throw new Error(rule.msg || `${field} cannot be empty`)
+      throw new Error(rule.msg || `${field} is required`)
     }
   }
 }

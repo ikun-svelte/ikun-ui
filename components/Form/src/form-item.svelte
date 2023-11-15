@@ -1,21 +1,20 @@
 <script lang="ts">
 	import { getContext, setContext } from 'svelte';
-	import { getFormItemPath } from './helper';
-	import { safeParse, type Issue } from 'valibot';
+	// import { getFormItemPath } from './helpers/helper';
+	// import { safeParse, type Issue } from 'valibot';
 	import type { KFormItemProps, IKunFormInstance, FormContext } from './types';
-	import { formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
+	import { formItemKey, getPrefixCls, formKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	export let cls: KFormItemProps['cls'] = undefined;
 	export let attrs: KFormItemProps['attrs'] = {};
 	export let field: KFormItemProps['field'] = '';
 	export let label: KFormItemProps['label'] = '';
-	export let initialValue: KFormItemProps['initialValue'] = undefined;
-	export let rules: KFormItemProps['rules'] = undefined;
-	export let required: KFormItemProps['required'] = false;
+	export let labelWidth: KFormItemProps['labelWidth'] = undefined;
+	export let showMsg: KFormItemProps['showMsg'] = true;
 
-	let errorMessage = '';
+	let errorMsg = '';
 	// Set the component instance from the component context
-	const form: IKunFormInstance = getContext(formKey);
+	/*const form: IKunFormInstance = getContext(formKey);
 	// Get the form component context from the
 	// component context (nested use of form-item.svelte)
 	const formContext: FormContext = getContext(formItemKey);
@@ -74,7 +73,23 @@
 	// record Context to form.contexts
 	form.setContext(currentPath, currentContext as FormContext);
 	// setContexts for nested component.
-	setContext(formItemKey, currentContext);
+	setContext(formItemKey, currentContext);*/
+	function showErrorMsg(msg: string){
+		errorMsg = msg
+	}
+	const form = getContext(formKey);
+
+	const formContext = getContext(formItemKey);
+	// nested KFormItem
+	if(field){
+		if(formContext){
+			setContext(formItemKey, `${formContext}&${field}`);
+			form.__formItemShowMsg[field] = showErrorMsg
+		} else {
+			setContext(formItemKey, field);
+			form.__formItemShowMsg[field] = showErrorMsg
+		}
+	}
 
 	// class
 	const prefixCls = getPrefixCls('form-item');
@@ -85,20 +100,19 @@
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
-	{#if $$slots.label}
-		<div class={lableCls}>
-			<slot name="label" />
-		</div>
-	{/if}
-	{#if !$$slots.label && label}
-		<div class={lableCls}>
+	<div class={lableCls}>
+		<slot name="label">
 			{label}
-		</div>
-	{/if}
+		</slot>
+	</div>
 	<div class={contentCls}>
 		<slot />
-		<div class={errorMsgCls}>
-			{errorMessage}
-		</div>
+		{#if errorMsg && showMsg}
+			<div class={errorMsgCls}>
+				<slot name="error">
+					{errorMsg}
+				</slot>
+			</div>
+		{/if}
 	</div>
 </div>
