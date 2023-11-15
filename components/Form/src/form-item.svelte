@@ -84,10 +84,10 @@
 	if(field){
 		if(formContext){
 			setContext(formItemKey, `${formContext}&${field}`);
-			form.__formItemShowMsg[field] = showErrorMsg
+			form.__showMsgMap[field] = showErrorMsg
 		} else {
 			setContext(formItemKey, field);
-			form.__formItemShowMsg[field] = showErrorMsg
+			form.__showMsgMap[field] = showErrorMsg
 		}
 	}
 

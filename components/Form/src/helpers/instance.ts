@@ -1,9 +1,8 @@
 import type { Contexts, FormContext, KFormRules } from "../types";
-import { get, writable } from 'svelte/store';
 import type { IKunSize } from "@ikun-ui/utils";
 import { jsonClone } from "baiwusanyu-utils";
 import { getValueByPath, setValueByPath } from "./fields";
-import { doValidateField } from "./rules";
+import { doValidate, doValidateField } from "./rules";
 
 declare type showMsg = (msg: string) => void
 interface IKunFormInstanceOption {
@@ -14,10 +13,26 @@ interface IKunFormInstanceOption {
 }
 interface IKunFormInstance {
 	__default_value: any
-	__formItemShowMsg: Record<string, showMsg>
+	__showMsgMap: Record<string, showMsg>
+	__updateMap: Record<string, ()=>void>
 	getValueByPath: typeof getValueByPath
 	setValueByPath: typeof setValueByPath
 }
+
+export type Value = any;
+export type Values = Record<string, Value>;
+export interface ValidateError {
+	message?: string;
+	fieldValue?: Value;
+	field?: string;
+}
+
+export type ValidateFieldsError = Record<string, ValidateError[]>;
+type FormValidateCallback = (
+	isValid: boolean,
+	invalidFields?: ValidateFieldsError
+) => void
+
 export const createForm = (option: IKunFormInstanceOption):IKunFormInstance => {
 	const instance = {
 		/**
@@ -40,7 +55,14 @@ export const createForm = (option: IKunFormInstanceOption):IKunFormInstance => {
 		 * @internal
 		 */
 		__rules: option.rules || undefined,
-		__formItemShowMsg: {},
+		/**
+		 * @internal
+		 */
+		__showMsgMap: {},
+		/**
+		 * @internal
+		 */
+		__updateMap: {},
 		/**
 		 * @internal
 		 */
@@ -56,9 +78,9 @@ export const createForm = (option: IKunFormInstanceOption):IKunFormInstance => {
 			path: string,
 			value: unknown) {
 			let errorMsg = ''
-			const showMsg = this.__formItemShowMsg[path as keyof typeof this.__formItemShowMsg] as showMsg
+			const showMsg = this.__showMsgMap[path as keyof typeof this.__showMsgMap] as showMsg
 			try {
-				doValidateField( this.__rules, path, value)
+				doValidateField(this.__rules, path, value)
 			} catch (e: any) {
 				errorMsg = e.message
 				showMsg && showMsg(errorMsg)
@@ -67,14 +89,38 @@ export const createForm = (option: IKunFormInstanceOption):IKunFormInstance => {
 					// update
 					this.__value = setValueByPath(path, this.__value, value)
 					showMsg && showMsg(errorMsg)
-					console.log(this.__value)
+				}
+			}
+		},
+		/**
+		 * @internal
+		 */
+		setEntireForm (
+			values?: any,
+			isValidate= false) {
+			for (const key in this.__showMsgMap){
+				// clear validate
+				if(Object.hasOwnProperty.call(this.__showMsgMap, key)){
+					const showMsg = this.__showMsgMap[key as keyof typeof this.__showMsgMap] as showMsg
+					showMsg('')
+				}
+
+				// get update dom value fn
+				if(Object.hasOwnProperty.call(this.__updateMap, key)){
+					const updateDom = this.__updateMap[key as keyof typeof this.__updateMap] as ()=> void
+					updateDom()
+				}
+
+				// called by setForm & validate field
+				if(isValidate && isValidate && Object.hasOwnProperty.call(values, key)){
+					this.updateField(key, values[key])
 				}
 			}
 		},
 		/**
 		 * @public
 		 */
-		validate () {
+		validate (callback: FormValidateCallback) {
 
 		},
 		/**
@@ -89,7 +135,8 @@ export const createForm = (option: IKunFormInstanceOption):IKunFormInstance => {
 		 * @public
 		 */
 		resetFields ()  {
-
+			this.__value = this.__default_value
+			this.setEntireForm()
 		},
 		/**
 		 * @public
@@ -100,8 +147,9 @@ export const createForm = (option: IKunFormInstanceOption):IKunFormInstance => {
 		/**
 		 * @public
 		 */
-		setForm ()  {
-
+		setForm (values: any, isValidate: boolean)  {
+			this.__value = values
+			this.setEntireForm(values, isValidate)
 		},
 		/**
 		 * @public

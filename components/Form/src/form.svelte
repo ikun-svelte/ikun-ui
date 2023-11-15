@@ -29,16 +29,15 @@
 	}
 
 	export function resetFields(){
-
+		formInst && formInst.resetFields()
 	}
 
 	export function clearValidate(){
 
 	}
 
-	// need updated
-	export function setForm(){
-
+	export function setForm(value: any, isValidate = false){
+		formInst && formInst.setForm(value, isValidate)
 	}
 
 	// need updated

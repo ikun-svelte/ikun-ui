@@ -41,16 +41,21 @@
 
 	const formContext = getContext(formItemKey) as string;
 	const formInstance = getContext(formKey);
-	console.log(formInstance)
 	let field: string | undefined = ''
 	// initial field
-	function initField(){
+	function setField(init = false){
 		if(formContext && formInstance){
 			field = formContext.split('&').pop()
-			value = formInstance.getValueByPath(field, formInstance.__default_value)
+			value = formInstance.getValueByPath(
+				field,
+				init ? formInstance.__default_value: formInstance.__value
+			)
 		}
 	}
-	initField()
+	setField(true)
+	if(formContext && formInstance){
+		formInstance.__updateMap[field] = setField
+	}
 
 	const dispatch = createEventDispatcher();
 	const onInput = (e: Event) => {
