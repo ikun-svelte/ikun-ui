@@ -8,3 +8,4 @@ export { FormItem as KFormItem };
 export { createForm as createKFormInstance };
 
 export type { IKunFormInstance, FormContext } from './types';
+export  * from 'valibot'

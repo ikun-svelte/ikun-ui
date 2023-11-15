@@ -59,7 +59,7 @@ export type FormContext = {
 // TODO: 由 KFrom 和 KFormItem 两个字段组成
 // TODO: 无障碍
 
-// TODO: KFormItem props -- value 表单对象
+// TODO: KFormItem props -- initValue 表单初始值对象
 // TODO: KFormItem props -- disabled 表单禁用
 // TODO: KFormItem props -- rules 表单规则
 // TODO: KFormItem props -- size 表单尺寸
@@ -77,11 +77,3 @@ export type FormContext = {
 // TODO: KFormItem props -- show-message 是否显示校验错误信息
 // TODO: KFormItem slot -- label 标签位置显示的内容
 // TODO: KFormItem slot -- error 验证错误信息的显示内容
-
-export interface KFormRule = {
-
-}
-
-export interface KFormRules = {
-
-}

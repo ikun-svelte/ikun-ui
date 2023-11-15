@@ -133,12 +133,3 @@ export const walkContexts = (
  * @returns
  */
 export const getContextsPath = (path: string) => path + '.__this__';
-
-
-export const getValueByPath = (path: string | string[]) => {
-
-}
-
-export const setValueByPath = (path: string | string[]) => {
-
-}
