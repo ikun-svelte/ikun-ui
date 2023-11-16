@@ -9,6 +9,7 @@
 	import { isObject } from 'baiwusanyu-utils';
 	import type { CSSObject } from 'unocss';
 	import { compTextareaH } from './compute-textarea-h';
+	import type { IKunFormInstance } from "@ikun-ui/form";
 
 	export let size: KInputProps['size'] = 'md';
 	export let value: KInputProps['value'] = '';
@@ -40,9 +41,10 @@
 	export let clearable: KInputProps['clearable'] = false;
 
 	const formContext = getContext(formItemKey) as string;
-	const formInstance = getContext(formKey);
+	const formInstance = getContext(formKey) as IKunFormInstance;
 	let field: string | undefined = ''
 	// initial field
+	// 在 KFormItem 上下文中就根据表单值初始化 KInput 值
 	function setField(init = false){
 		if(formContext && formInstance){
 			field = formContext.split('&').pop()
@@ -53,6 +55,7 @@
 		}
 	}
 	setField(true)
+	// 注册事件，KForm 能够设置 KInput 值
 	if(formContext && formInstance){
 		formInstance.__updateMap[field] = setField
 	}
@@ -62,7 +65,7 @@
 		if (disabled) return;
 		const { value: inputValue } = e.target as HTMLInputElement;
 		dispatch('input', inputValue, e);
-		formInstance?.updateField(field, inputValue);
+		formInstance && formInstance?.updateField(field!, inputValue);
 		if (!useCompositionInput || !isComposing) {
 			value = inputValue;
 			if (useCompositionInput && !isComposing) {
@@ -74,7 +77,7 @@
 	const onChange = (e: Event) => {
 		if (disabled) return;
 		dispatch('change', e);
-		formInstance?.updateField(field, (e?.target as HTMLInputElement)?.value)
+		formInstance && formInstance?.updateField(field!, (e?.target as HTMLInputElement)?.value)
 	};
 
 	const onClear = () => {

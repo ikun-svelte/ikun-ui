@@ -1,40 +1,16 @@
-import type { Contexts, FormContext, KFormRules } from "../types";
-import type { IKunSize } from "@ikun-ui/utils";
-import { jsonClone } from "baiwusanyu-utils";
-import { getValueByPath, setValueByPath } from "./fields";
-import { doValidate, doValidateField } from "./rules";
+import type {
+	IKunFormInstanceOption,
+	ShowMsg,
+	IKunFormInstance,
+	FormValidateCallback
+} from '../types';
+import { jsonClone } from 'baiwusanyu-utils';
+import { getValueByPath, setValueByPath } from './fields';
+import { doValidate, doValidateField } from './rules';
+import type { ValidateError } from '../types';
 
-declare type showMsg = (msg: string) => void
-interface IKunFormInstanceOption {
-	initValue: any;
-	rules?: KFormRules;
-	size: IKunSize
-	disabled: boolean
-}
-interface IKunFormInstance {
-	__default_value: any
-	__showMsgMap: Record<string, showMsg>
-	__updateMap: Record<string, ()=>void>
-	getValueByPath: typeof getValueByPath
-	setValueByPath: typeof setValueByPath
-}
-
-export type Value = any;
-export type Values = Record<string, Value>;
-export interface ValidateError {
-	message?: string;
-	fieldValue?: Value;
-	field?: string;
-}
-
-export type ValidateFieldsError = Record<string, ValidateError[]>;
-type FormValidateCallback = (
-	isValid: boolean,
-	invalidFields?: ValidateFieldsError
-) => void
-
-export const createForm = (option: IKunFormInstanceOption):IKunFormInstance => {
-	const instance = {
+export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => {
+	return {
 		/**
 		 * @internal
 		 */
@@ -50,7 +26,11 @@ export const createForm = (option: IKunFormInstanceOption):IKunFormInstance => {
 		/**
 		 * @internal
 		 */
-		__size: option.disabled,
+		__manual_validate: option.manualValidate,
+		/**
+		 * @internal
+		 */
+		__size: option.size,
 		/**
 		 * @internal
 		 */
@@ -68,95 +48,108 @@ export const createForm = (option: IKunFormInstanceOption):IKunFormInstance => {
 		 */
 		getValueByPath,
 		/**
+		 * 更新特定字段
+		 * 它应该在各个表单组件（例如KInput）中值更新时被调用
+		 * @param path 字段路径
+		 * @param value 值
+		 * @param isSetEntireForm 是否来自 isSetEntireForm 调用
 		 * @internal
 		 */
-		setValueByPath,
-		/**
-		 * @internal
-		 */
-		updateField(
-			path: string,
-			value: unknown) {
-			let errorMsg = ''
-			const showMsg = this.__showMsgMap[path as keyof typeof this.__showMsgMap] as showMsg
+		updateField(path: string, value: unknown, isSetEntireForm = false) {
+			let errorMsg = '';
+			const showMsg = this.__showMsgMap[path as keyof typeof this.__showMsgMap] as ShowMsg;
 			try {
-				doValidateField(this.__rules, path, value)
+				// 校验字段
+				if (!this.__manual_validate || isSetEntireForm) {
+					doValidateField(this.__rules, path, value);
+				}
 			} catch (e: any) {
-				errorMsg = e.message
-				showMsg && showMsg(errorMsg)
+				// 显示校验信息
+				errorMsg = e.message;
+				showMsg && showMsg(errorMsg);
 			} finally {
-				if(!errorMsg){
+				if (!errorMsg) {
 					// update
-					this.__value = setValueByPath(path, this.__value, value)
-					showMsg && showMsg(errorMsg)
+					this.__value = setValueByPath(path, this.__value, value);
+					showMsg && showMsg(errorMsg);
 				}
 			}
 		},
 		/**
+		 * 清空 KFormItem 的错误信息
+		 * @param key 字段记录，它能够映射到对应 KFormItem 的 showErrorMsg
 		 * @internal
 		 */
-		setEntireForm (
-			values?: any,
-			isValidate= false) {
-			for (const key in this.__showMsgMap){
+		clearErrorMsg(key: string) {
+			if (Object.hasOwnProperty.call(this.__showMsgMap, key)) {
+				const showMsg = this.__showMsgMap[key as keyof typeof this.__showMsgMap] as ShowMsg;
+				showMsg('');
+			}
+		},
+		/**
+		 * 设置整个表单对象值
+		 * @param values
+		 * @param isValidate
+		 * @internal
+		 */
+		setEntireForm(values?: any, isValidate = false) {
+			for (const key in this.__showMsgMap) {
 				// clear validate
-				if(Object.hasOwnProperty.call(this.__showMsgMap, key)){
-					const showMsg = this.__showMsgMap[key as keyof typeof this.__showMsgMap] as showMsg
-					showMsg('')
-				}
+				this.clearErrorMsg(key);
 
 				// get update dom value fn
-				if(Object.hasOwnProperty.call(this.__updateMap, key)){
-					const updateDom = this.__updateMap[key as keyof typeof this.__updateMap] as ()=> void
-					updateDom()
+				if (Object.hasOwnProperty.call(this.__updateMap, key)) {
+					const updateDom = this.__updateMap[key as keyof typeof this.__updateMap] as () => void;
+					updateDom();
 				}
 
 				// called by setForm & validate field
-				if(isValidate && isValidate && Object.hasOwnProperty.call(values, key)){
-					this.updateField(key, values[key])
+				if (isValidate && values && Object.hasOwnProperty.call(values, key)) {
+					this.updateField(key, values[key], true);
 				}
 			}
 		},
 		/**
 		 * @public
 		 */
-		validate (callback: FormValidateCallback) {
-
+		validate(callback: FormValidateCallback) {
+			const errorMsgArr: ValidateError[] = [];
+			if (this.__rules) {
+				doValidate(this.__rules, this.__value, errorMsgArr);
+			}
+			callback(this.__value, errorMsgArr.length === 0, errorMsgArr);
 		},
 		/**
 		 * @public
 		 */
-		validateField (
-			path: string | string[]
-		) {
-
+		validateField(path: string | string[]) {},
+		/**
+		 * @public
+		 */
+		resetFields() {
+			this.__value = this.__default_value;
+			this.setEntireForm();
 		},
 		/**
 		 * @public
 		 */
-		resetFields ()  {
-			this.__value = this.__default_value
-			this.setEntireForm()
+		clearValidate() {},
+		/**
+		 * @public
+		 */
+		setForm(values: any, isValidate: boolean) {
+			this.__value = values;
+			this.setEntireForm(values, isValidate);
 		},
 		/**
 		 * @public
 		 */
-		clearValidate ()  {
-
+		getForm() {
+			return this.__value;
 		},
 		/**
 		 * @public
 		 */
-		setForm (values: any, isValidate: boolean)  {
-			this.__value = values
-			this.setEntireForm(values, isValidate)
-		},
-		/**
-		 * @public
-		 */
-		setFields ()  {
-
-		}
-	}
-	return instance
+		setFields() {}
+	};
 };

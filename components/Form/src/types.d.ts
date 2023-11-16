@@ -1,52 +1,51 @@
 /// <reference types="svelte" />
 import { ClassValue } from 'clsx';
-import { IKunSize } from "@ikun-ui/utils";
+import { IKunSize } from '@ikun-ui/utils';
 
+export declare type ShowMsg = (msg: string) => void;
+export interface IKunFormInstanceOption {
+	initValue: any;
+	rules?: KFormRules;
+	size: IKunSize;
+	disabled: boolean;
+	manualValidate: boolean;
+}
+export interface IKunFormInstance {
+	__default_value: any;
+	__value: any;
+	__disabled: boolean;
+	__manual_validate: boolean;
+	__size: IKunSize;
+	__rules?: KFormRules;
+	__showMsgMap: Record<string, showMsg>;
+	__updateMap: Record<string, () => void>;
+	getValueByPath: typeof getValueByPath;
+	updateField(path: string, value: unknown, isSetEntireForm?: boolean): void;
+	setEntireForm(values?: any, isValidate?: boolean): void;
+	clearErrorMsg(key: string): void;
+	// public
+	validate(callback: FormValidateCallback): void;
+	validateField(path: string | string[]): void;
+	resetFields(): void;
+	clearValidate(): void;
+	setForm(values: any, isValidate: boolean): void;
+	getForm(): void;
+	setFields(): void;
+}
 
-export type IKunUpdateField = (value?: any) => void;
-export type Contexts = {
-	[key: string]: Contexts;
-} & {
-	__this__: FormContext;
-};
-export type IKunFormInstance = {
-	//record Field value
-	values: any;
-	//record Field Contexts
-	contexts: Contexts;
-	//get Field Values
-	submit: () => void;
-	//validate all Field value
-	validateValues: () => boolean;
-	//get specific Field value
-	getValue: (path: string) => any;
-	//set specific Field value
-	setValue: (path: string, value: any) => void;
-	//set all Field value
-	setValues: (values: any) => void;
-	//record specific contexts into IKunFormInstance.contexts
-	setContext: (path: string, context: FormContext) => void;
-	//reset Field Values using field contexts inititalValue
-	resetValue: (path: string) => void;
-	//reset all Field Values
-	resetValues: () => void;
-	//subscribe specific Field change ,callback will be called when change
-	subscribe: (path: string, callback: (values: any) => void) => void;
-	//subscribe all Field change,callback will be called when change
-	subscribes: (callback: (values: any) => void) => void;
-};
+export type Value = any;
+export type Values = Record<string, Value>;
+export interface ValidateError {
+	message?: string;
+	fieldValue?: Value;
+	field?: string;
+}
 
-export type FormContext = {
-	form: IKunFormInstance;
-	path: string;
-	__FormContext__: true;
-	initialValue: any;
-	validateField: () => Issue[];
-	updateField: IKunUpdateField;
-	subscribe: (value?: any) => void;
-	initialField: (value?: any) => void;
-	resetField: () => void;
-};
+export type FormValidateCallback = (
+	data: any,
+	isValid: boolean,
+	invalidFields?: ValidateError[]
+) => void;
 // ⭕TODO: 由 KFrom 和 KFormItem 两个字段组成
 // TODO: 无障碍
 
@@ -54,16 +53,15 @@ export type FormContext = {
 // TODO: KFormItem props -- disabled 表单禁用
 // TODO: KFormItem props -- rules 表单规则
 // TODO: KFormItem props -- size 表单尺寸
-// TODO: KFormItem props -- manualValidate 不自动触发校验
+// ⭕TODO: KFormItem props -- manualValidate 不自动触发校验
 // TODO: KFormItem event -- validate 任一表单项被校验后触发 (prop: FormItemProp, isValid: boolean, message: string) => void
 // ⭕TODO: KFormItem slot -- default 自定义默认内容 FormItem
 
-// 🎯TODO: KFormItem Api -- validate 对整个表单的内容进行验证。 接收一个回调函数，或返回 Promise。
+// ⭕TODO: KFormItem Api -- validate 对整个表单的内容进行验证。 接收一个回调函数，或返回 Promise。
 // TODO: KFormItem Api -- validateField 验证具体的某个字段。
 // ⭕TODO: KFormItem Api -- resetFields 重置该表单项，将其值重置为初始值，并移除校验结果
 // TODO: KFormItem Api -- clearValidate 清理某个字段的表单验证信息。
 // ⭕TODO: KFormItem Api -- setForm 设置表单对象值,并清理校验信息, 可选触发校验
-// TODO: KFormItem Api -- setFields 设置表单对象值
 // TODO: KFormItem Api -- setFields 设置表单对象值
 // TODO: KFormItem Api -- getForm 获取表单对象，请确保校验全部通过再调用
 
@@ -75,12 +73,12 @@ export type FormContext = {
 // ⭕TODO: KFormItem slot -- label 标签位置显示的内容
 // ⭕TODO: KFormItem slot -- error 验证错误信息的显示内容
 
-
 export type KFormProps = {
 	initValue: any;
 	rules?: KFormRules;
-	size: IKunSize
-	disabled: boolean
+	size: IKunSize;
+	disabled: boolean;
+	manualValidate: boolean;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
@@ -90,16 +88,16 @@ export type KFormItemProps = {
 	field: string;
 	cls: ClassValue;
 	attrs: Record<string, string>;
-	labelWidth?: number
-	showMsg: boolean
+	labelWidth?: number;
+	showMsg: boolean;
 };
 
-export interface KFormRule  {
-	max?: number
-	min?: number
-	required?: boolean
-	validator?: ( value: any, callback: any) => void
-	msg?: string
+export interface KFormRule {
+	max?: number;
+	min?: number;
+	required?: boolean;
+	validator?: (value: any, callback: any) => void;
+	msg?: string;
 }
 
-export type KFormRules = Record<string, KFormRule[]>
+export type KFormRules = Record<string, KFormRule[]>;
