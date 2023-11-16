@@ -6,19 +6,23 @@ export declare type ShowMsg = (msg: string) => void;
 export interface IKunFormInstanceOption {
 	initValue: any;
 	rules?: KFormRules;
-	size: IKunSize;
-	disabled: boolean;
 	manualValidate: boolean;
+	dynamicProps: {
+		size: KFormProps['size']
+		disabled: KFormProps['disabled']
+		labelAlign: KFormProps['labelAlign']
+		labelPosition: KFormProps['labelPosition']
+		labelWidth: KFormProps['labelWidth']
+	}
 }
 export interface IKunFormInstance {
 	__default_value: any;
 	__value: any;
-	__disabled: boolean;
 	__manual_validate: boolean;
-	__size: IKunSize;
 	__rules?: KFormRules;
 	__showMsgMap: Record<string, showMsg>;
 	__updateMap: Record<string, () => void>;
+	__getProp: Record<string, (props: Record<any, any>) => void>;
 	getValueByPath: typeof getValueByPath;
 	updateField(path: string, value: unknown, isValidate?: boolean): void;
 	setEntireForm(values?: any, isValidate?: boolean): void;
@@ -52,26 +56,31 @@ export type FormValidateCallback = (
 // TODO: 字段变化，这些都是不合法的
 
 
-// ⭕TODO: KFormItem props -- initValue 表单初始值对象
-// TODO: KFormItem props -- disabled 表单禁用
-// TODO: KFormItem props -- rules 表单规则
-// TODO: KFormItem props -- size 表单尺寸
-// ⭕TODO: KFormItem props -- manualValidate 不自动触发校验
-// TODO: KFormItem event -- validate 任一表单项被校验后触发 (prop: FormItemProp, isValid: boolean, message: string) => void
-// ⭕TODO: KFormItem slot -- default 自定义默认内容 FormItem
+// TODO: KForm props -- label-width 标签宽度(可动态)
+// TODO: KForm props -- labelAlign 标签对其(可动态)
+// TODO: KForm props -- disabled 表单禁用(可动态)
+// TODO: KForm props -- size 表单尺寸(可动态)
+// 🎯TODO: KForm props -- labelPosition label 位置(可动态)
 
-// ⭕TODO: KFormItem Api -- validate 对整个表单的内容进行验证。 接收一个回调函数，或返回 Promise。
-// ⭕TODO: KFormItem Api -- validateField 验证具体的某个字段。
-// ⭕TODO: KFormItem Api -- resetFields 重置该表单项，将其值重置为初始值，并移除校验结果
-// ⭕TODO: KFormItem Api -- clearValidate 清理某个字段的表单验证信息。（输入和validate重新校验）
-// ⭕TODO: KFormItem Api -- setForm 设置表单对象值,并清理校验信息, 可选触发校验(请保证表单对象数据结构与初始值一致)
-// ⭕TODO: KFormItem Api -- setFields 设置表单对象值(生层次对象,整个替换的话，会递归校验符合规则的子对象字段)
-// ⭕TODO: KFormItem Api -- getForm 获取表单对象，请确保校验全部通过再调用
+// ⭕TODO: KForm props -- initValue 表单初始值对象
+// ⭕TODO: KForm props -- rules 表单规则
+// ⭕TODO: KForm props -- manualValidate 不自动触发校验
+// TODO: KForm event -- validate 任一表单项被校验后触发 (prop: FormItemProp, isValid: boolean, message: string) => void
+// ⭕TODO: KForm slot -- default 自定义默认内容 FormItem
+
+// ⭕TODO: KForm Api -- validate 对整个表单的内容进行验证。 接收一个回调函数，或返回 Promise。
+// ⭕TODO: KForm Api -- validateField 验证具体的某个字段。
+// ⭕TODO: KForm Api -- resetFields 重置该表单项，将其值重置为初始值，并移除校验结果
+// ⭕TODO: KForm Api -- clearValidate 清理某个字段的表单验证信息。（输入和validate重新校验）
+// ⭕TODO: KForm Api -- setForm 设置表单对象值,并清理校验信息, 可选触发校验(请保证表单对象数据结构与初始值一致)
+// ⭕TODO: KForm Api -- setFields 设置表单对象值(生层次对象,整个替换的话，会递归校验符合规则的子对象字段)
+// ⭕TODO: KForm Api -- getForm 获取表单对象，请确保校验全部通过再调用
 
 // ⭕TODO: KFormItem 可以嵌套使用
 // ⭕TODO: KFormItem props -- field    value 的键名。 它可以是一个属性的值(如 a.b.0 或 [a', 'b', '0'])
 // ⭕TODO: KFormItem props -- label   标签文本
-// TODO: KFormItem props -- label-width 标签宽度
+// ⭕TODO: KFormItem props -- label-width 标签宽度
+// TODO: KFormItem props -- labelAlign 标签对其
 // ⭕TODO: KFormItem props -- showMsg 是否显示校验错误信息
 // ⭕TODO: KFormItem slot -- label 标签位置显示的内容
 // ⭕TODO: KFormItem slot -- error 验证错误信息的显示内容
@@ -82,6 +91,9 @@ export type KFormProps = {
 	size: IKunSize;
 	disabled: boolean;
 	manualValidate: boolean;
+	labelWidth?: number;
+	labelPosition: 'left' | 'top'
+	labelAlign: 'left' | 'right' | 'center'
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
@@ -92,6 +104,7 @@ export type KFormItemProps = {
 	cls: ClassValue;
 	attrs: Record<string, string>;
 	labelWidth?: number;
+	labelAlign: 'left' | 'right' | 'center'
 	showMsg: boolean;
 };
 

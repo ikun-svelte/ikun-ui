@@ -22,15 +22,7 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		/**
 		 * @internal
 		 */
-		__disabled: option.disabled,
-		/**
-		 * @internal
-		 */
 		__manual_validate: option.manualValidate,
-		/**
-		 * @internal
-		 */
-		__size: option.size,
 		/**
 		 * @internal
 		 */
@@ -43,6 +35,10 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		 * @internal
 		 */
 		__updateMap: {},
+		/**
+		 * @internal
+		 */
+		__getProp: {},
 		/**
 		 * @internal
 		 */

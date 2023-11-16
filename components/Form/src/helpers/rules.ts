@@ -4,7 +4,7 @@
 // ⭕TODO: validator
 // ⭕TODO: validator 后 require max min 将失效
 import { getValueByPath } from './fields';
-import { extend, isArray, isNumber, isObject, isString } from "baiwusanyu-utils";
+import { isArray, isNumber, isObject, isString } from "baiwusanyu-utils";
 import type { KFormRule, KFormRules, ValidateError } from '../types';
 
 /**

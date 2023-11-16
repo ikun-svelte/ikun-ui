@@ -2,7 +2,7 @@
 	import { createForm } from './helpers/instance';
 	import { setContext } from 'svelte';
 	import { formKey, getPrefixCls } from "@ikun-ui/utils";
-	import type { FormValidateCallback, KFormProps } from "./types";
+	import type { FormValidateCallback, IKunFormInstanceOption, KFormProps } from "./types";
 	import { clsx } from "clsx";
 
 	export let cls: KFormProps['cls'] = undefined;
@@ -11,16 +11,36 @@
 	export let size: KFormProps['size'] = 'md';
 	export let disabled: KFormProps['disabled'] = false;
 	export let manualValidate: KFormProps['manualValidate'] = false;
+	export let labelAlign: KFormProps['labelAlign'] = 'right';
+	export let labelPosition: KFormProps['labelPosition'] = 'left';
+	export let labelWidth: KFormProps['labelWidth'] = undefined;
 	export let initValue: KFormProps['initValue'] = {};
 
 	const formInst = createForm({
-		size,
-		disabled,
 		rules,
 		initValue,
-		manualValidate
-	})
+		manualValidate,
+		dynamicProps: {
+			size,
+			disabled,
+			labelAlign,
+			labelPosition,
+			labelWidth
+		}
+	} as IKunFormInstanceOption)
 	setContext(formKey, formInst);
+
+	$: {
+		for (const key in formInst.__getProp){
+			formInst.__getProp[key]({
+				size,
+				disabled,
+				labelAlign,
+				labelPosition,
+				labelWidth
+			})
+		}
+	}
 
 	export function validateForm(callback: FormValidateCallback){
 		formInst && formInst.validateForm(callback)

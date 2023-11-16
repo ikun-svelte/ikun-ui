@@ -8,6 +8,7 @@
 	export let field: KFormItemProps['field'] = '';
 	export let label: KFormItemProps['label'] = '';
 	export let labelWidth: KFormItemProps['labelWidth'] = undefined;
+	export let labelAlign: KFormItemProps['labelAlign'] = 'center';
 	export let showMsg: KFormItemProps['showMsg'] = true;
 
 	let errorMsg = '';
@@ -30,14 +31,21 @@
 
 	// class
 	const prefixCls = getPrefixCls('form-item');
-	$: cnames = clsx(prefixCls, cls);
-	$: lableCls = clsx(`${prefixCls}-label`);
+	$: cnames = clsx(
+		prefixCls,
+		cls
+	);
+	$: lableCls = clsx(
+		`${prefixCls}-label`,
+		`${prefixCls}-label__${labelAlign}`,
+	);
 	$: contentCls = clsx(`${prefixCls}-content`);
-	$: errorMsgCls = clsx(`${prefixCls}__error_msg`);
+	$: errorMsgCls = clsx(`${prefixCls}-msg_error`);
+	$: labelWidthInner = labelWidth ? `${labelWidth}px` : undefined
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
-	<div class={lableCls}>
+	<div class={lableCls} style:width={labelWidthInner}>
 		<slot name="label">
 			{label}
 		</slot>

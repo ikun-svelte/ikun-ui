@@ -58,6 +58,7 @@
 	// Register event, KForm can set KInput value
 	if(formContext && formInstance){
 		formInstance.__updateMap[field] = setField
+		// TODO: size、disabled
 	}
 
 	const dispatch = createEventDispatcher();
