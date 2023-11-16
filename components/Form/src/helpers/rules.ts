@@ -4,7 +4,7 @@
 // ⭕TODO: validator
 // ⭕TODO: validator 后 require max min 将失效
 import { getValueByPath } from './fields';
-import { isArray, isNumber, isString } from 'baiwusanyu-utils';
+import { extend, isArray, isNumber, isObject, isString } from "baiwusanyu-utils";
 import type { KFormRule, KFormRules, ValidateError } from '../types';
 
 /**
@@ -139,6 +139,22 @@ function validateMax(rule: KFormRule, value: any, field: string, errors?: Valida
 				});
 			if (!errors) {
 				throw new Error(msg);
+			}
+		}
+	}
+}
+
+export function traverseObjects(
+	obj: any ,
+	cb: (key: string, value: any) => void,
+	parentKey = ''
+){
+	if(isObject(obj)){
+		for(const key in obj){
+			if(isObject(obj[key])){
+				traverseObjects(obj[key], cb, key)
+			} else {
+				cb(`${parentKey}.${key}`, obj[key])
 			}
 		}
 	}

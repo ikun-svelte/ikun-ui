@@ -22,20 +22,20 @@
 	})
 	setContext(formKey, formInst);
 
-	export function validate(callback: FormValidateCallback){
-		formInst && formInst.validate(callback)
+	export function validateForm(callback: FormValidateCallback){
+		formInst && formInst.validateForm(callback)
 	}
 
-	export function validateField(){
-
+	export function validateField(path: string){
+		formInst && formInst.validateField(path)
 	}
 
-	export function resetFields(){
-		formInst && formInst.resetFields()
+	export function resetForm(){
+		formInst && formInst.resetForm()
 	}
 
-	export function clearValidate(){
-
+	export function clearValidateField(path: string){
+		formInst && formInst.clearValidateField(path)
 	}
 
 	export function setForm(value: any, isValidate = false){
@@ -43,8 +43,12 @@
 	}
 
 
-	export function setFields(){
+	export function setFields(path: string, value: any, isValidate = false){
+		formInst && formInst.setFields(path, value, isValidate)
+	}
 
+	export function getForm<T>(){
+		return formInst && formInst.getForm<T>()
 	}
 
 	// class
@@ -52,6 +56,6 @@
 	$: cnames = clsx(prefixCls, cls);
 </script>
 
-<div class={cnames} {...$$restProps} {...attrs}>
+<form class={cnames} {...$$restProps} {...attrs}>
 	<slot />
-</div>
+</form>

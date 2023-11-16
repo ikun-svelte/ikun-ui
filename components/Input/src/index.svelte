@@ -43,8 +43,8 @@
 	const formContext = getContext(formItemKey) as string;
 	const formInstance = getContext(formKey) as IKunFormInstance;
 	let field: string | undefined = ''
-	// initial field
-	// 在 KFormItem 上下文中就根据表单值初始化 KInput 值
+	// Initialize the KInput value based
+	// on the form value in the KFormItem context
 	function setField(init = false){
 		if(formContext && formInstance){
 			field = formContext.split('&').pop()
@@ -55,7 +55,7 @@
 		}
 	}
 	setField(true)
-	// 注册事件，KForm 能够设置 KInput 值
+	// Register event, KForm can set KInput value
 	if(formContext && formInstance){
 		formInstance.__updateMap[field] = setField
 	}

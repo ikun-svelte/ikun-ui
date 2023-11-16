@@ -4,9 +4,9 @@ import type {
 	IKunFormInstance,
 	FormValidateCallback
 } from '../types';
-import { jsonClone } from 'baiwusanyu-utils';
+import { jsonClone } from "baiwusanyu-utils";
 import { getValueByPath, setValueByPath } from './fields';
-import { doValidate, doValidateField } from './rules';
+import { doValidate, doValidateField, traverseObjects } from "./rules";
 import type { ValidateError } from '../types';
 
 export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => {
@@ -48,108 +48,147 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		 */
 		getValueByPath,
 		/**
-		 * 更新特定字段
-		 * 它应该在各个表单组件（例如KInput）中值更新时被调用
-		 * @param path 字段路径
-		 * @param value 值
-		 * @param isSetEntireForm 是否来自 isSetEntireForm 调用
+		 * Update specific fields
+		 * It should be called when the value is updated in each form component
+		 * (such as KInput)
 		 * @internal
+		 * @param path field path
+		 * @param value
+		 * @param isValidate Whether to Validate form fields
 		 */
-		updateField(path: string, value: unknown, isSetEntireForm = false) {
+		updateField(path: string, value: unknown, isValidate = false) {
 			let errorMsg = '';
-			const showMsg = this.__showMsgMap[path as keyof typeof this.__showMsgMap] as ShowMsg;
+			this.updateErrorMsg(path, '')
 			try {
-				// 校验字段
-				if (!this.__manual_validate || isSetEntireForm) {
+				// validate form fields
+				if (!this.__manual_validate || isValidate) {
 					doValidateField(this.__rules, path, value);
 				}
 			} catch (e: any) {
-				// 显示校验信息
+				// show verification error message
 				errorMsg = e.message;
-				showMsg && showMsg(errorMsg);
+				this.updateErrorMsg(path, errorMsg)
 			} finally {
-				if (!errorMsg) {
-					// update
-					this.__value = setValueByPath(path, this.__value, value);
-					showMsg && showMsg(errorMsg);
-				}
+				// update
+				this.__value = setValueByPath(path, this.__value, value);
 			}
 		},
 		/**
-		 * 清空 KFormItem 的错误信息
-		 * @param key 字段记录，它能够映射到对应 KFormItem 的 showErrorMsg
+		 * Clear the error message of KFormItem
 		 * @internal
+		 * @param key Field record,
+		 * which can be mapped to the showErrorMsg method of the corresponding KFormItem
+		 * @param msg error message
 		 */
-		clearErrorMsg(key: string) {
+		updateErrorMsg(key: string, msg: string) {
 			if (Object.hasOwnProperty.call(this.__showMsgMap, key)) {
 				const showMsg = this.__showMsgMap[key as keyof typeof this.__showMsgMap] as ShowMsg;
-				showMsg('');
+				showMsg(msg);
 			}
 		},
 		/**
-		 * 设置整个表单对象值
-		 * @param values
-		 * @param isValidate
+		 * Update the value displayed in a form component
+		 * (such as KInput)
 		 * @internal
+		 * @param key
+		 */
+		updateDomText(key: string) {
+			if (Object.hasOwnProperty.call(this.__updateMap, key)) {
+				const updateDom = this.__updateMap[key as keyof typeof this.__updateMap] as () => void;
+				updateDom();
+			}
+		},
+		/**
+		 * Set the entire form object value
+		 * @internal
+		 * @param values
+		 * @param isValidate Whether to Validate form fields
 		 */
 		setEntireForm(values?: any, isValidate = false) {
 			for (const key in this.__showMsgMap) {
 				// clear validate
-				this.clearErrorMsg(key);
-
+				this.updateErrorMsg(key, '');
 				// get update dom value fn
-				if (Object.hasOwnProperty.call(this.__updateMap, key)) {
-					const updateDom = this.__updateMap[key as keyof typeof this.__updateMap] as () => void;
-					updateDom();
-				}
-
+				this.updateDomText(key)
 				// called by setForm & validate field
-				if (isValidate && values && Object.hasOwnProperty.call(values, key)) {
-					this.updateField(key, values[key], true);
+				if (isValidate && values) {
+					this.updateField(key, this.getValueByPath(key, values), true);
 				}
 			}
 		},
 		/**
+		 * Validate the entire form object
 		 * @public
+		 * @param callback
 		 */
-		validate(callback: FormValidateCallback) {
+		validateForm(callback: FormValidateCallback) {
 			const errorMsgArr: ValidateError[] = [];
 			if (this.__rules) {
 				doValidate(this.__rules, this.__value, errorMsgArr);
 			}
+			// update error message
+			errorMsgArr.forEach(error => {
+				this.updateErrorMsg(error.field!, error.message!)
+			})
 			callback(this.__value, errorMsgArr.length === 0, errorMsgArr);
 		},
 		/**
+		 * Validate the specific fields
 		 * @public
+		 * @param path field path
 		 */
-		validateField(path: string | string[]) {},
+		validateField(path: string) {
+			const resolveValue = this.getValueByPath(path)
+			this.updateField(path, resolveValue, true )
+		},
 		/**
+		 * Reset the entire form to default values and clear validation
 		 * @public
 		 */
-		resetFields() {
+		resetForm() {
 			this.__value = this.__default_value;
 			this.setEntireForm();
 		},
 		/**
+		 * Clear verification information of specific field
 		 * @public
+		 * @param path field path
 		 */
-		clearValidate() {},
+		clearValidateField(path: string) {
+			this.updateErrorMsg(path, '');
+		},
 		/**
+		 * Set the entire form object value
 		 * @public
+		 * @param values
+		 * @param isValidate Whether to Validate form fields
 		 */
 		setForm(values: any, isValidate: boolean) {
 			this.__value = values;
 			this.setEntireForm(values, isValidate);
 		},
 		/**
+		 * get the entire form object value
 		 * @public
 		 */
-		getForm() {
-			return this.__value;
+		getForm<T>() {
+			return this.__value as T;
 		},
 		/**
+		 * Set form field value
 		 * @public
+		 * @param path field path
+		 * @param value
+		 * @param isValidate Whether to Validate form fields
 		 */
-		setFields() {}
+		setFields(path: string, value: any, isValidate: boolean) {
+			this.updateField(path, value, isValidate )
+			this.updateDomText(path)
+			// If it is a value object, verify its fields
+			traverseObjects(value, (key, val) => {
+				this.updateField(key, val, isValidate)
+				this.updateDomText(key)
+			}, path)
+		}
 	};
 };
