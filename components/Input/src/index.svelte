@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { KInputProps } from './types';
 	import { createEventDispatcher, onMount, tick, getContext } from 'svelte';
-	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	import { KButton } from '@ikun-ui/button';
 	import { formItemKey, formKey, getPrefixCls } from "@ikun-ui/utils";
@@ -39,17 +38,19 @@
 	 */
 	export let center: KInputProps['center'] = false;
 	export let clearable: KInputProps['clearable'] = false;
-
+	/*********************** KForm logic start ************************/
 	let disabledFrom = false
 	$:disabledInner = disabledFrom || disabled
 	let sizeFrom = ''
 	$:sizeInner = sizeFrom || size
+	let isErrorForm = false
+	$:isErrorInner = isErrorForm || isError
 	const formContext = getContext(formItemKey) as string;
 	const formInstance = getContext(formKey) as IKunFormInstance;
 	let field: string | undefined = ''
 	// Initialize the KInput value based
 	// on the form value in the KFormItem context
-	function setField(init = false){
+	function formUpdateField(init = false){
 		field = formContext.split('&').pop()
 		value = formInstance.getValueByPath(
 			field,
@@ -61,16 +62,19 @@
 		sizeFrom = props.size
 	}
 
+	function fromFieldError(error: boolean){
+		isErrorForm = error
+	}
+
 	// Register event, KForm can set KInput value
 	if(formContext && formInstance){
-		setField(true)
+		formUpdateField(true)
 		formPropsChangeCb(formInstance.__dynamicProps)
-
-		formInstance.__updateMap[field] = setField
-		// size、disabled
-		// register props change callback
+		formInstance.__updateMap[field] = formUpdateField
+		formInstance.__errorCompEvtMap[field] = fromFieldError
 		formInstance.__propHandleEvtMap.push(formPropsChangeCb)
 	}
+	/*********************** KForm logic end ************************/
 
 	const dispatch = createEventDispatcher();
 	const onInput = (e: Event) => {
@@ -193,9 +197,9 @@
 			[`${prefixCls}__disabled__dark`]: disabledInner
 		},
 		{
-			[`${prefixCls}__error`]: isError,
-			[`${prefixCls}__hover`]: !isError,
-			[`${prefixCls}__focus`]: !isError
+			[`${prefixCls}__error`]: isErrorInner,
+			[`${prefixCls}__hover`]: !isErrorInner,
+			[`${prefixCls}__focus`]: !isErrorInner
 		},
 		{
 			[`${prefixCls}__rounded`]: !$$slots.append && !append && !$$slots.prepend && !prepend,
@@ -289,11 +293,12 @@
 					<KIcon btn icon="i-carbon-view" cls="{iconCls} ml-1" />
 				</div>
 			{/if}
-			{#if isError}
+			<!--TODO: KMessageBox-->
+			<!-- {#if isError}
 				<span class={errorMsgCls} transition:fade={{ duration: 200 }}>
 					{errorMsg}
 				</span>
-			{/if}
+			{/if} -->
 
 			<slot name="suffix">
 				{#if iconSuffix}

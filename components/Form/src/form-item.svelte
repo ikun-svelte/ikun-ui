@@ -3,6 +3,7 @@
 	import type { IKunFormInstance, KFormItemProps, KFormProps } from "./types";
 	import { formItemKey, getPrefixCls, formKey } from "@ikun-ui/utils";
 	import { clsx } from 'clsx';
+	import { fly } from 'svelte/transition';
 	export let cls: KFormItemProps['cls'] = undefined;
 	export let attrs: KFormItemProps['attrs'] = {};
 	export let field: KFormItemProps['field'] = '';
@@ -31,6 +32,7 @@
 		labelWidth = props.labelWidth
 	}
 	// nested KFormItem
+	let isRequired = false
 	if(field){
 		let resolveField = field
 		if(formContext){
@@ -41,43 +43,56 @@
 			setContext(formItemKey, resolveField);
 			formInstance.__showMsgMap[field] = showErrorMsg
 		}
-
-		if(formInstance){
-			formPropsChangeCb(formInstance.__dynamicProps)
-			// register props change callback
-			formInstance.__propHandleEvtMap.push(formPropsChangeCb)
+		const rules = formInstance.__rules || {}
+		if(rules){
+			isRequired = (rules[field] || []).some(v => v.required)
 		}
+	}
+	if(formInstance){
+		formPropsChangeCb(formInstance.__dynamicProps)
+		// register props change callback
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb)
 	}
 
 
 	// class
 	const prefixCls = getPrefixCls('form-item');
 	$: cnames = clsx(
+		 prefixCls,
 		`${prefixCls}__${labelPosition}`,
 		cls
 	);
 	$: lableCls = clsx(
 		`${prefixCls}-label`,
 		`${prefixCls}-label__${labelAlign}`,
+		`${prefixCls}-label__${labelPosition}`,
+		`${prefixCls}-label__${size}`,
 		{
 			[`${prefixCls}-label__disabled`]: disabled
 		}
 	);
+	$: startCls = clsx(`${prefixCls}-star`);
 	$: contentCls = clsx(`${prefixCls}-content`);
 	$: errorMsgCls = clsx(`${prefixCls}-msg_error`);
 	$: labelWidthInner = labelWidth ? `${labelWidth}px` : undefined
 </script>
 
-<div class={cnames} {...$$restProps} {...attrs}>
-	<div class={lableCls} style:width={labelWidthInner}>
-		<slot name="label">
-			{label}
-		</slot>
-	</div>
+<div class={cnames} {...$$restProps} {...attrs} >
+	{#if !(!$$slots.label && !label && labelPosition === 'vertical') }
+		<div class={lableCls} style:width={labelWidthInner}>
+			{#if isRequired}
+				<span class={startCls}>*</span>
+			{/if}
+			<slot name="label">
+				<span>{label}</span>
+			</slot>
+		</div>
+	{/if}
 	<div class={contentCls}>
 		<slot />
 		{#if errorMsg && showMsg}
-			<div class={errorMsgCls}>
+			<div class={errorMsgCls}
+					 transition:fly={{ y: -3, duration: 300 }}>
 				<slot name="error">
 					{errorMsg}
 				</slot>

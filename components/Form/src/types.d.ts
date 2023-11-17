@@ -23,6 +23,7 @@ export interface IKunFormInstance {
 	__rules?: KFormRules;
 	__showMsgMap: Record<string, showMsg>;
 	__updateMap: Record<string, () => void>;
+	__errorCompEvtMap: Record<string, (isError: boolean) => void>;
 	__propHandleEvtMap: Array<(props: Record<any, any>) => void>;
 	__dynamicProps: IKunFormDynamicProps
 	getValueByPath: typeof getValueByPath;
@@ -59,7 +60,7 @@ export type FormValidateCallback = (
 
 
 // ⭕TODO: KForm props -- label-width 标签宽度(可动态)
-// TODO: KForm props -- labelAlign 标签对其(可动态)
+// ⭕TODO: KForm props -- labelAlign 标签对其(可动态)
 // ⭕TODO: KForm props -- disabled 表单禁用(可动态)
 // ⭕TODO: KForm props -- size 表单尺寸(可动态)
 // 🎯TODO: KForm props -- labelPosition label 位置(可动态)
@@ -82,7 +83,7 @@ export type FormValidateCallback = (
 // ⭕TODO: KFormItem props -- field    value 的键名。 它可以是一个属性的值(如 a.b.0 或 [a', 'b', '0'])
 // ⭕TODO: KFormItem props -- label   标签文本
 // ⭕TODO: KFormItem props -- label-width 标签宽度
-// TODO: KFormItem props -- labelAlign 标签对其
+// ⭕TODO: KFormItem props -- labelAlign 标签对其
 // ⭕TODO: KFormItem props -- showMsg 是否显示校验错误信息
 // ⭕TODO: KFormItem slot -- label 标签位置显示的内容
 // ⭕TODO: KFormItem slot -- error 验证错误信息的显示内容
@@ -101,7 +102,7 @@ export type KFormProps = {
 };
 
 export type KFormItemProps = {
-	label: string;
+	label: string | undefined;
 	field: string;
 	cls: ClassValue;
 	attrs: Record<string, string>;

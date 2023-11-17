@@ -38,6 +38,10 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		/**
 		 * @internal
 		 */
+		__errorCompEvtMap: {},
+		/**
+		 * @internal
+		 */
 		__propHandleEvtMap: [],
 		/**
 		 * @internal
@@ -84,6 +88,7 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 			if (Object.hasOwnProperty.call(this.__showMsgMap, key)) {
 				const showMsg = this.__showMsgMap[key as keyof typeof this.__showMsgMap] as ShowMsg;
 				showMsg(msg);
+				this.__errorCompEvtMap[key](!!msg)
 			}
 		},
 		/**
@@ -138,7 +143,7 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		 * @param path field path
 		 */
 		validateField(path: string) {
-			const resolveValue = this.getValueByPath(path)
+			const resolveValue = this.getValueByPath(path, this.__value)
 			this.updateField(path, resolveValue, true )
 		},
 		/**
