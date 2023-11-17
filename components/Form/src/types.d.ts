@@ -63,7 +63,7 @@ export type FormValidateCallback = (
 // ⭕TODO: KForm props -- labelAlign 标签对其(可动态)
 // ⭕TODO: KForm props -- disabled 表单禁用(可动态)
 // ⭕TODO: KForm props -- size 表单尺寸(可动态)
-// 🎯TODO: KForm props -- labelPosition label 位置(可动态)
+// ⭕TODO: KForm props -- labelPosition label 位置(可动态)
 
 // ⭕TODO: KForm props -- initValue 表单初始值对象
 // ⭕TODO: KForm props -- rules 表单规则
@@ -88,6 +88,13 @@ export type FormValidateCallback = (
 // ⭕TODO: KFormItem slot -- label 标签位置显示的内容
 // ⭕TODO: KFormItem slot -- error 验证错误信息的显示内容
 
+// ⭕TODO: KInput 支持
+// TODO: KCheckbox 支持
+// TODO: KSwitch  支持
+// TODO: KRadio 支持
+// TODO: KRate 支持
+// TODO: KSelect 支持
+// TODO: KSlider 支持
 export type KFormProps = {
 	initValue: any;
 	rules?: KFormRules;
