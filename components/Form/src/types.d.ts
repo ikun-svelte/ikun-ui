@@ -3,17 +3,18 @@ import { ClassValue } from 'clsx';
 import { IKunSize } from '@ikun-ui/utils';
 
 export declare type ShowMsg = (msg: string) => void;
+export interface IKunFormDynamicProps {
+	size: KFormProps['size']
+	disabled: KFormProps['disabled']
+	labelAlign: KFormProps['labelAlign']
+	labelPosition: KFormProps['labelPosition']
+	labelWidth: KFormProps['labelWidth']
+}
 export interface IKunFormInstanceOption {
 	initValue: any;
 	rules?: KFormRules;
 	manualValidate: boolean;
-	dynamicProps: {
-		size: KFormProps['size']
-		disabled: KFormProps['disabled']
-		labelAlign: KFormProps['labelAlign']
-		labelPosition: KFormProps['labelPosition']
-		labelWidth: KFormProps['labelWidth']
-	}
+	dynamicProps: IKunFormDynamicProps
 }
 export interface IKunFormInstance {
 	__default_value: any;
@@ -22,7 +23,8 @@ export interface IKunFormInstance {
 	__rules?: KFormRules;
 	__showMsgMap: Record<string, showMsg>;
 	__updateMap: Record<string, () => void>;
-	__getProp: Record<string, (props: Record<any, any>) => void>;
+	__propHandleEvtMap: Array<(props: Record<any, any>) => void>;
+	__dynamicProps: IKunFormDynamicProps
 	getValueByPath: typeof getValueByPath;
 	updateField(path: string, value: unknown, isValidate?: boolean): void;
 	setEntireForm(values?: any, isValidate?: boolean): void;
@@ -56,10 +58,10 @@ export type FormValidateCallback = (
 // TODO: 字段变化，这些都是不合法的
 
 
-// TODO: KForm props -- label-width 标签宽度(可动态)
+// ⭕TODO: KForm props -- label-width 标签宽度(可动态)
 // TODO: KForm props -- labelAlign 标签对其(可动态)
-// TODO: KForm props -- disabled 表单禁用(可动态)
-// TODO: KForm props -- size 表单尺寸(可动态)
+// ⭕TODO: KForm props -- disabled 表单禁用(可动态)
+// ⭕TODO: KForm props -- size 表单尺寸(可动态)
 // 🎯TODO: KForm props -- labelPosition label 位置(可动态)
 
 // ⭕TODO: KForm props -- initValue 表单初始值对象
@@ -92,7 +94,7 @@ export type KFormProps = {
 	disabled: boolean;
 	manualValidate: boolean;
 	labelWidth?: number;
-	labelPosition: 'left' | 'top'
+	labelPosition: 'horizontal' | 'vertical'
 	labelAlign: 'left' | 'right' | 'center'
 	cls: ClassValue;
 	attrs: Record<string, string>;
@@ -103,8 +105,6 @@ export type KFormItemProps = {
 	field: string;
 	cls: ClassValue;
 	attrs: Record<string, string>;
-	labelWidth?: number;
-	labelAlign: 'left' | 'right' | 'center'
 	showMsg: boolean;
 };
 

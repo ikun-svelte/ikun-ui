@@ -38,7 +38,11 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		/**
 		 * @internal
 		 */
-		__getProp: {},
+		__propHandleEvtMap: [],
+		/**
+		 * @internal
+		 */
+		__dynamicProps: option.dynamicProps,
 		/**
 		 * @internal
 		 */

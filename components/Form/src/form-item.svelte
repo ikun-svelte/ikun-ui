@@ -1,43 +1,67 @@
 <script lang="ts">
 	import { getContext, setContext } from 'svelte';
-	import type { IKunFormInstance, KFormItemProps } from "./types";
-	import { formItemKey, getPrefixCls, formKey } from '@ikun-ui/utils';
+	import type { IKunFormInstance, KFormItemProps, KFormProps } from "./types";
+	import { formItemKey, getPrefixCls, formKey } from "@ikun-ui/utils";
 	import { clsx } from 'clsx';
 	export let cls: KFormItemProps['cls'] = undefined;
 	export let attrs: KFormItemProps['attrs'] = {};
 	export let field: KFormItemProps['field'] = '';
 	export let label: KFormItemProps['label'] = '';
-	export let labelWidth: KFormItemProps['labelWidth'] = undefined;
-	export let labelAlign: KFormItemProps['labelAlign'] = 'center';
 	export let showMsg: KFormItemProps['showMsg'] = true;
 
 	let errorMsg = '';
 	function showErrorMsg(msg: string){
 		errorMsg = msg
 	}
-	const form = getContext(formKey) as IKunFormInstance;
+	const formInstance = getContext(formKey) as IKunFormInstance;
 
 	const formContext = getContext(formItemKey);
+	let disabled:KFormProps['disabled'] = false
+	let size:KFormProps['size'] = 'md'
+	let labelPosition:KFormProps['labelPosition'] = 'horizontal'
+	let labelAlign:KFormProps['labelAlign'] = 'right'
+	let labelWidth:KFormProps['labelWidth'] = undefined
+
+	function formPropsChangeCb(props: Record<any, any>) {
+		size = props.size
+		labelPosition = props.labelPosition
+
+		disabled = props.disabled
+		labelAlign = props.labelAlign
+		labelWidth = props.labelWidth
+	}
 	// nested KFormItem
 	if(field){
+		let resolveField = field
 		if(formContext){
-			setContext(formItemKey, `${formContext}&${field}`);
-			form.__showMsgMap[field] = showErrorMsg
+			resolveField = `${formContext}&${field}`
+			setContext(formItemKey, resolveField);
+			formInstance.__showMsgMap[field] = showErrorMsg
 		} else {
-			setContext(formItemKey, field);
-			form.__showMsgMap[field] = showErrorMsg
+			setContext(formItemKey, resolveField);
+			formInstance.__showMsgMap[field] = showErrorMsg
+		}
+
+		if(formInstance){
+			formPropsChangeCb(formInstance.__dynamicProps)
+			// register props change callback
+			formInstance.__propHandleEvtMap.push(formPropsChangeCb)
 		}
 	}
+
 
 	// class
 	const prefixCls = getPrefixCls('form-item');
 	$: cnames = clsx(
-		prefixCls,
+		`${prefixCls}__${labelPosition}`,
 		cls
 	);
 	$: lableCls = clsx(
 		`${prefixCls}-label`,
 		`${prefixCls}-label__${labelAlign}`,
+		{
+			[`${prefixCls}-label__disabled`]: disabled
+		}
 	);
 	$: contentCls = clsx(`${prefixCls}-content`);
 	$: errorMsgCls = clsx(`${prefixCls}-msg_error`);

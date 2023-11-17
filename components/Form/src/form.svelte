@@ -12,7 +12,7 @@
 	export let disabled: KFormProps['disabled'] = false;
 	export let manualValidate: KFormProps['manualValidate'] = false;
 	export let labelAlign: KFormProps['labelAlign'] = 'right';
-	export let labelPosition: KFormProps['labelPosition'] = 'left';
+	export let labelPosition: KFormProps['labelPosition'] = 'horizontal';
 	export let labelWidth: KFormProps['labelWidth'] = undefined;
 	export let initValue: KFormProps['initValue'] = {};
 
@@ -30,16 +30,17 @@
 	} as IKunFormInstanceOption)
 	setContext(formKey, formInst);
 
+	// props 变化 ,更新 KFormItem、KInput
 	$: {
-		for (const key in formInst.__getProp){
-			formInst.__getProp[key]({
+		formInst.__propHandleEvtMap.forEach(cb => {
+			cb({
 				size,
 				disabled,
 				labelAlign,
 				labelPosition,
 				labelWidth
 			})
-		}
+		})
 	}
 
 	export function validateForm(callback: FormValidateCallback){
