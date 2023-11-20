@@ -4,17 +4,17 @@ import { IKunSize } from '@ikun-ui/utils';
 
 export declare type ShowMsg = (msg: string) => void;
 export interface IKunFormDynamicProps {
-	size: KFormProps['size']
-	disabled: KFormProps['disabled']
-	labelAlign: KFormProps['labelAlign']
-	labelPosition: KFormProps['labelPosition']
-	labelWidth: KFormProps['labelWidth']
+	size: KFormProps['size'];
+	disabled: KFormProps['disabled'];
+	labelAlign: KFormProps['labelAlign'];
+	labelPosition: KFormProps['labelPosition'];
+	labelWidth: KFormProps['labelWidth'];
 }
 export interface IKunFormInstanceOption {
 	initValue: any;
 	rules?: KFormRules;
 	manualValidate: boolean;
-	dynamicProps: IKunFormDynamicProps
+	dynamicProps: IKunFormDynamicProps;
 }
 export interface IKunFormInstance {
 	__default_value: any;
@@ -25,7 +25,7 @@ export interface IKunFormInstance {
 	__updateMap: Record<string, () => void>;
 	__errorCompEvtMap: Record<string, (isError: boolean) => void>;
 	__propHandleEvtMap: Array<(props: Record<any, any>) => void>;
-	__dynamicProps: IKunFormDynamicProps
+	__dynamicProps: IKunFormDynamicProps;
 	getValueByPath: typeof getValueByPath;
 	updateField(path: string, value: unknown, isValidate?: boolean): void;
 	setEntireForm(values?: any, isValidate?: boolean): void;
@@ -57,7 +57,6 @@ export type FormValidateCallback = (
 // ⭕TODO: 由 KFrom 和 KFormItem 两个字段组成
 // TODO: 无障碍
 // TODO: 字段变化，这些都是不合法的
-
 
 // ⭕TODO: KForm props -- label-width 标签宽度(可动态)
 // ⭕TODO: KForm props -- labelAlign 标签对其(可动态)
@@ -92,7 +91,7 @@ export type FormValidateCallback = (
 // TODO: KCheckbox 支持
 // ⭕TODO: KSwitch  支持
 // TODO: KRadio 支持
-// TODO: KRate 支持
+// ⭕TODO: KRate 支持
 // TODO: KSelect 支持
 // TODO: KSlider 支持
 export type KFormProps = {
@@ -102,8 +101,8 @@ export type KFormProps = {
 	disabled: boolean;
 	manualValidate: boolean;
 	labelWidth?: number;
-	labelPosition: 'horizontal' | 'vertical'
-	labelAlign: 'left' | 'right' | 'center'
+	labelPosition: 'horizontal' | 'vertical';
+	labelAlign: 'left' | 'right' | 'center';
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
