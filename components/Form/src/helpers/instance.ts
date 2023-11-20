@@ -4,9 +4,9 @@ import type {
 	IKunFormInstance,
 	FormValidateCallback
 } from '../types';
-import { jsonClone } from "baiwusanyu-utils";
+import { jsonClone } from 'baiwusanyu-utils';
 import { getValueByPath, setValueByPath } from './fields';
-import { doValidate, doValidateField, traverseObjects } from "./rules";
+import { doValidate, doValidateField, traverseObjects } from './rules';
 import type { ValidateError } from '../types';
 
 export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => {
@@ -62,7 +62,7 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		 */
 		updateField(path: string, value: unknown, isValidate = false) {
 			let errorMsg = '';
-			this.updateErrorMsg(path, '')
+			this.updateErrorMsg(path, '');
 			try {
 				// validate form fields
 				if (!this.__manual_validate || isValidate) {
@@ -71,7 +71,7 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 			} catch (e: any) {
 				// show verification error message
 				errorMsg = e.message;
-				this.updateErrorMsg(path, errorMsg)
+				this.updateErrorMsg(path, errorMsg);
 			} finally {
 				// update
 				this.__value = setValueByPath(path, this.__value, value);
@@ -88,8 +88,8 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 			if (Object.hasOwnProperty.call(this.__showMsgMap, key)) {
 				const showMsg = this.__showMsgMap[key as keyof typeof this.__showMsgMap] as ShowMsg;
 				showMsg(msg);
-				if(this.__errorCompEvtMap[key]) {
-					this.__errorCompEvtMap[key](!!msg)
+				if (this.__errorCompEvtMap[key]) {
+					this.__errorCompEvtMap[key](!!msg);
 				}
 			}
 		},
@@ -116,7 +116,7 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 				// clear validate
 				this.updateErrorMsg(key, '');
 				// get update dom value fn
-				this.updateDomText(key)
+				this.updateDomText(key);
 				// called by setForm & validate field
 				if (isValidate && values) {
 					this.updateField(key, this.getValueByPath(key, values), true);
@@ -134,9 +134,9 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 				doValidate(this.__rules, this.__value, errorMsgArr);
 			}
 			// update error message
-			errorMsgArr.forEach(error => {
-				this.updateErrorMsg(error.field!, error.message!)
-			})
+			errorMsgArr.forEach((error) => {
+				this.updateErrorMsg(error.field!, error.message!);
+			});
 			callback(this.__value, errorMsgArr.length === 0, errorMsgArr);
 		},
 		/**
@@ -145,8 +145,8 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		 * @param path field path
 		 */
 		validateField(path: string) {
-			const resolveValue = this.getValueByPath(path, this.__value)
-			this.updateField(path, resolveValue, true )
+			const resolveValue = this.getValueByPath(path, this.__value);
+			this.updateField(path, resolveValue, true);
 		},
 		/**
 		 * Reset the entire form to default values and clear validation
@@ -189,13 +189,17 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		 * @param isValidate Whether to Validate form fields
 		 */
 		setFields(path: string, value: any, isValidate: boolean) {
-			this.updateField(path, value, isValidate )
-			this.updateDomText(path)
+			this.updateField(path, value, isValidate);
+			this.updateDomText(path);
 			// If it is a value object, verify its fields
-			traverseObjects(value, (key, val) => {
-				this.updateField(key, val, isValidate)
-				this.updateDomText(key)
-			}, path)
+			traverseObjects(
+				value,
+				(key, val) => {
+					this.updateField(key, val, isValidate);
+					this.updateDomText(key);
+				},
+				path
+			);
 		}
 	};
 };

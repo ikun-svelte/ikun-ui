@@ -13,5 +13,5 @@ export const formShortcuts: Record<string, string> = {
 	'k-form-item-label': 'min-w-80px mr-2 text-sm text-ikun-tx-base break-all',
 	'k-form-item-content': 'pr',
 	'k-form-item-msg_error': 'text-ikun-error text-12px line-height-none pa -bottom-14px left-0',
-	'k-form-item-label__disabled':'k-cur-disabled text-ikun-tx-gr'
+	'k-form-item-label__disabled': 'k-cur-disabled text-ikun-tx-gr'
 };
