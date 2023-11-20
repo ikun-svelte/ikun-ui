@@ -2,9 +2,9 @@
 	import type { KSwitchProps } from './types';
 	import { KIcon } from '@ikun-ui/icon';
 	import { clsx } from 'clsx';
-	import { getPrefixCls } from '@ikun-ui/utils';
+	import { formKey, getPrefixCls } from "@ikun-ui/utils";
 	import { createEventDispatcher, getContext, onMount } from 'svelte';
-	import type { FormContext } from '@ikun-ui/form';
+	import type { IKunFormInstance } from "@ikun-ui/form";
 	import { formItemKey } from '@ikun-ui/utils';
 
 	export let value: KSwitchProps['value'] = false;
@@ -18,8 +18,40 @@
 	export let cls: KSwitchProps['cls'] = undefined;
 	export let attrs: KSwitchProps['attrs'] = {};
 
-	const formContext: FormContext = getContext(formItemKey);
 	const dispatch = createEventDispatcher();
+
+	/*********************** KForm logic start ************************/
+	let disabledFrom = false
+	$:disabledInner = disabledFrom || disabled
+	let sizeFrom = ''
+	$:sizeInner = sizeFrom || size
+
+	const formContext = getContext(formItemKey) as string;
+	const formInstance = getContext(formKey) as IKunFormInstance;
+	let field: string | undefined = ''
+	// Initialize the KSwitch value based
+	// on the form value in the KFormItem context
+	function formUpdateField(init = false){
+		field = formContext.split('&').pop()
+		value = formInstance.getValueByPath(
+			field,
+			init ? formInstance.__default_value: formInstance.__value
+		)
+	}
+	function formPropsChangeCb(props: Record<any, any>) {
+		disabledFrom = props.disabled
+		sizeFrom = props.size
+	}
+
+	// Register event, KForm can set KInput value
+	if(formContext && formInstance){
+		formUpdateField(true)
+		formPropsChangeCb(formInstance.__dynamicProps)
+		formInstance.__updateMap[field] = formUpdateField
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb)
+	}
+	/*********************** KForm logic end ************************/
+
 	$: innerState = value === checkedValue;
 	/**
 	 * change state method
@@ -66,7 +98,10 @@
 		emitChangeEvt();
 		dispatch('updateValue', changeData.newVal);
 		isUpdateModel = true;
-		formContext?.updateField(changeData.newVal);
+		if(formInstance){
+			formInstance.updateField(field!, changeData.newVal);
+			value = changeData.newVal
+		}
 		await changeClass(changeData.newVal === checkedValue);
 	};
 
@@ -81,7 +116,7 @@
 	 * @param {Event} e - event obejct
 	 */
 	const handleClick = async (e?: Event) => {
-		if (disabled || loading) return;
+		if (disabledInner || loading) return;
 		await switchState();
 		dispatch('click', e);
 	};
@@ -90,14 +125,6 @@
 	 */
 	const init = async () => {
 		await changeClass(innerState);
-		//initial field
-		formContext?.initialField(unCheckedValue);
-		// when filed change,dom value will change.
-		formContext?.subscribe(async (_value: any) => {
-			if (value === _value) return;
-			value = _value;
-			await changeClass(_value === checkedValue);
-		});
 	};
 	onMount(init);
 
@@ -105,20 +132,20 @@
 	$: switchCls = clsx(
 		`${prefixCls}`,
 		`${prefixCls}--base`,
-		`${prefixCls}--${size}`,
+		`${prefixCls}--${sizeInner}`,
 		innerState
 			? [`${prefixCls}__checked`, checkedColor]
 			: [`${prefixCls}__unchecked`, unCheckedColor],
 		{
-			[`${prefixCls}__disabled`]: disabled || loading
+			[`${prefixCls}__disabled`]: disabledInner || loading
 		},
 		switching,
 		cls
 	);
 	$: loadingCls = clsx(`${prefixCls}-loading`, `${prefixCls}-loading__dark`);
-	$: circleCls = clsx(`${prefixCls}-circle`, `${prefixCls}-circle--${size}`);
-	$: unCheckedTxCls = clsx(`${prefixCls}-tx__unchecked`, `${prefixCls}-tx__unchecked--${size}`);
-	$: checkedTxCls = clsx(`${prefixCls}-tx__checked`, `${prefixCls}-tx__checked--${size}`);
+	$: circleCls = clsx(`${prefixCls}-circle`, `${prefixCls}-circle--${sizeInner}`);
+	$: unCheckedTxCls = clsx(`${prefixCls}-tx__unchecked`, `${prefixCls}-tx__unchecked--${sizeInner}`);
+	$: checkedTxCls = clsx(`${prefixCls}-tx__checked`, `${prefixCls}-tx__checked--${sizeInner}`);
 </script>
 
 <div class={switchCls} aria-hidden="true" {...$$restProps} {...attrs} on:click={handleClick}>

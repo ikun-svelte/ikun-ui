@@ -88,7 +88,9 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 			if (Object.hasOwnProperty.call(this.__showMsgMap, key)) {
 				const showMsg = this.__showMsgMap[key as keyof typeof this.__showMsgMap] as ShowMsg;
 				showMsg(msg);
-				this.__errorCompEvtMap[key](!!msg)
+				if(this.__errorCompEvtMap[key]) {
+					this.__errorCompEvtMap[key](!!msg)
+				}
 			}
 		},
 		/**

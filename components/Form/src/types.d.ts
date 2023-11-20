@@ -90,7 +90,7 @@ export type FormValidateCallback = (
 
 // ⭕TODO: KInput 支持
 // TODO: KCheckbox 支持
-// TODO: KSwitch  支持
+// ⭕TODO: KSwitch  支持
 // TODO: KRadio 支持
 // TODO: KRate 支持
 // TODO: KSelect 支持
