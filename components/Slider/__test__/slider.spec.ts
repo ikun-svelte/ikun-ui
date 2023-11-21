@@ -87,6 +87,42 @@ describe('Test: KSlider', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: size', async () => {
+		const instanceSM = new KSlider({
+			target: host,
+			props: {
+				size: 'sm'
+			}
+		});
+		const instanceMD = new KSlider({
+			target: host,
+			props: {
+				size: 'md'
+			}
+		});
+		const instanceLG = new KSlider({
+			target: host,
+			props: {
+				size: 'lg'
+			}
+		});
+		expect(instanceSM).toBeTruthy();
+		expect(instanceMD).toBeTruthy();
+		expect(instanceLG).toBeTruthy();
+		await tick();
+
+		expect(host.innerHTML.includes('k-slider--button__sm')).toBe(true);
+		expect(host.innerHTML.includes('k-slider--button__md')).toBe(true);
+		expect(host.innerHTML.includes('k-slider--button__lg')).toBe(true);
+		expect(host.innerHTML.includes('k-slider--button__wrapper__sm')).toBe(true);
+		expect(host.innerHTML.includes('k-slider--button__wrapper__md')).toBe(true);
+		expect(host.innerHTML.includes('k-slider--button__wrapper__lg')).toBe(true);
+		expect(host.innerHTML.includes('k-slider__sm')).toBe(true);
+		expect(host.innerHTML.includes('k-slider__md')).toBe(true);
+		expect(host.innerHTML.includes('k-slider__lg')).toBe(true);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('props: cls', async () => {
 		const instance = new KSlider({
 			target: host,
