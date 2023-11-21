@@ -1,104 +1,102 @@
 <script lang="ts">
 	import { getContext, setContext } from 'svelte';
-	import { getFormItemPath } from './helper';
-	import { safeParse, type Issue } from 'valibot';
-	import type { KFormItemProps, IKunFormInstance, FormContext } from './types';
-	import { formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
+	import type { IKunFormInstance, KFormItemProps, KFormProps } from "./types";
+	import { formItemKey, getPrefixCls, formKey } from "@ikun-ui/utils";
 	import { clsx } from 'clsx';
+	import { fly } from 'svelte/transition';
 	export let cls: KFormItemProps['cls'] = undefined;
 	export let attrs: KFormItemProps['attrs'] = {};
 	export let field: KFormItemProps['field'] = '';
 	export let label: KFormItemProps['label'] = '';
-	export let initialValue: KFormItemProps['initialValue'] = undefined;
-	export let rules: KFormItemProps['rules'] = undefined;
-	export let required: KFormItemProps['required'] = false;
+	export let showMsg: KFormItemProps['showMsg'] = true;
 
-	let errorMessage = '';
-	// Set the component instance from the component context
-	const form: IKunFormInstance = getContext(formKey);
-	// Get the form component context from the
-	// component context (nested use of form-item.svelte)
-	const formContext: FormContext = getContext(formItemKey);
-	// Set path according to `formContext.path` and `field`
-	const currentPath = getFormItemPath(formContext?.path || '', field);
-	// Set form component context
-	const currentContext: FormContext = {
-		form,
-		__FormContext__: true,
-		initialValue: undefined,
-		path: currentPath,
-		updateField: (value: any) => {
-			// It will be called when the value of the component changes,
-			// and the related value will be updated to the corresponding field of the form instance
-			form.setValue(currentPath, value);
-		},
-		validateField: () => {
-			const value = form.getValue(currentPath);
-			const errors: Issue[] = [];
-			if (required && !value)
-				errors.push({
-					validation: 'custom',
-					origin: 'value',
-					reason: 'any',
-					message: `${currentPath} is required`,
-					input: value
-				});
-			if (rules) {
-				const result = safeParse(rules, value);
-				if (!result.success) errors.push(...result.issues);
-			}
-			if (errors[0]) errorMessage = errors[0].message;
-			return errors;
-		},
-		initialField: (initialValueFromComponent: any) => {
-			// get initValue ,initialValue is entered by the user, so initialValue is preferred.
-			const initValue = initialValue !== undefined ? initialValue : initialValueFromComponent;
-			// save this initValue, it will used in form.resetValues.
-			currentContext.initialValue = initValue;
-			form.setValue(currentPath, initValue);
-		},
-		// The subscription method will be called in the component
-		// and register related callback functions
-		subscribe: (callback: (value: any) => void) => {
-			// Register the callback function of the component to
-			// the form instance according to the currentPath
-			form.subscribe(currentPath, (value: any) => {
-				callback(value);
-			});
-		},
-		resetField: () => {
-			errorMessage = '';
-			form.setValue(currentPath, currentContext.initialValue);
+	let errorMsg = '';
+	function showErrorMsg(msg: string){
+		errorMsg = msg
+	}
+	const formInstance = getContext(formKey) as IKunFormInstance;
+
+	const formContext = getContext(formItemKey);
+	let disabled:KFormProps['disabled'] = false
+	let size:KFormProps['size'] = 'md'
+	let labelPosition:KFormProps['labelPosition'] = 'horizontal'
+	let labelAlign:KFormProps['labelAlign'] = 'right'
+	let labelWidth:KFormProps['labelWidth'] = undefined
+
+	function formPropsChangeCb(props: Record<any, any>) {
+		size = props.size
+		labelPosition = props.labelPosition
+
+		disabled = props.disabled
+		labelAlign = props.labelAlign
+		labelWidth = props.labelWidth
+	}
+	// nested KFormItem
+	let isRequired = false
+	if(field){
+		let resolveField = field
+		if(formContext){
+			resolveField = `${formContext}&${field}`
+			setContext(formItemKey, resolveField);
+			formInstance.__showMsgMap[field] = showErrorMsg
+		} else {
+			setContext(formItemKey, resolveField);
+			formInstance.__showMsgMap[field] = showErrorMsg
 		}
-	};
-	// record Context to form.contexts
-	form.setContext(currentPath, currentContext as FormContext);
-	// setContexts for nested component.
-	setContext(formItemKey, currentContext);
+		const rules = formInstance.__rules || {}
+		if(rules){
+			isRequired = (rules[field] || []).some(v => v.required)
+		}
+	}
+	if(formInstance){
+		formPropsChangeCb(formInstance.__dynamicProps)
+		// register props change callback
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb)
+	}
+
 
 	// class
 	const prefixCls = getPrefixCls('form-item');
-	$: cnames = clsx(prefixCls, cls);
-	$: lableCls = clsx(`${prefixCls}-label`);
+	$: cnames = clsx(
+		 prefixCls,
+		`${prefixCls}__${labelPosition}`,
+		cls
+	);
+	$: lableCls = clsx(
+		`${prefixCls}-label`,
+		`${prefixCls}-label__${labelAlign}`,
+		`${prefixCls}-label__${labelPosition}`,
+		`${prefixCls}-label__${size}`,
+		{
+			[`${prefixCls}-label__disabled`]: disabled
+		}
+	);
+	$: startCls = clsx(`${prefixCls}-star`);
 	$: contentCls = clsx(`${prefixCls}-content`);
-	$: errorMsgCls = clsx(`${prefixCls}__error_msg`);
+	$: errorMsgCls = clsx(`${prefixCls}-msg_error`);
+	$: labelWidthInner = labelWidth ? `${labelWidth}px` : undefined
 </script>
 
-<div class={cnames} {...$$restProps} {...attrs}>
-	{#if $$slots.label}
-		<div class={lableCls}>
-			<slot name="label" />
-		</div>
-	{/if}
-	{#if !$$slots.label && label}
-		<div class={lableCls}>
-			{label}
+<div class={cnames} {...$$restProps} {...attrs} >
+	{#if !(!$$slots.label && !label && labelPosition === 'vertical') }
+		<div class={lableCls} style:width={labelWidthInner}>
+			{#if isRequired}
+				<span class={startCls}>*</span>
+			{/if}
+			<slot name="label">
+				<span>{label}</span>
+			</slot>
 		</div>
 	{/if}
 	<div class={contentCls}>
 		<slot />
-		<div class={errorMsgCls}>
-			{errorMessage}
-		</div>
+		{#if errorMsg && showMsg}
+			<div class={errorMsgCls}
+					 transition:fly={{ y: -3, duration: 300 }}>
+				<slot name="error">
+					{errorMsg}
+				</slot>
+			</div>
+		{/if}
 	</div>
 </div>

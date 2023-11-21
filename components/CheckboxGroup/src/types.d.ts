@@ -13,6 +13,7 @@ export type KCheckboxGroupProps = {
 export interface checkboxMapItem {
 	doUpdatedValue: (v: boolean, inner?: boolean) => void;
 	setDisabled: (v: boolean) => void;
+	setSizes: (v: IKunSize) =>void
 }
 
 export type checkboxMapType = Map<string, checkboxMapItem>;

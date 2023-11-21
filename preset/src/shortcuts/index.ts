@@ -41,7 +41,7 @@ import { emptyShortcuts } from './src/empty';
 import { virtualListShortcuts } from './src/virtual-list';
 import { pageShortcuts } from './src/pagination';
 import { IKUN_SAFE_LIST } from '../utils/constant';
-import { formShortcuts } from './form';
+import { formShortcuts } from './src/form';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -253,4 +253,4 @@ export { contextmenuShortcuts } from './src/contextmenu';
 export { emptyShortcuts } from './src/empty';
 export { virtualListShortcuts } from './src/virtual-list';
 export { pageShortcuts } from './src/pagination';
-export { formShortcuts } from './form';
+export { formShortcuts } from './src/form';

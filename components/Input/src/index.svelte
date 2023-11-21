@@ -1,15 +1,14 @@
 <script lang="ts">
 	import type { KInputProps } from './types';
 	import { createEventDispatcher, onMount, tick, getContext } from 'svelte';
-	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	import { KButton } from '@ikun-ui/button';
-	import type { FormContext } from '@ikun-ui/form';
-	import { formItemKey, getPrefixCls } from '@ikun-ui/utils';
+	import { formItemKey, formKey, getPrefixCls } from "@ikun-ui/utils";
 	import clsx from 'clsx';
 	import { isObject } from 'baiwusanyu-utils';
 	import type { CSSObject } from 'unocss';
 	import { compTextareaH } from './compute-textarea-h';
+	import type { IKunFormInstance } from "@ikun-ui/form";
 
 	export let size: KInputProps['size'] = 'md';
 	export let value: KInputProps['value'] = '';
@@ -39,15 +38,50 @@
 	 */
 	export let center: KInputProps['center'] = false;
 	export let clearable: KInputProps['clearable'] = false;
+	/*********************** KForm logic start ************************/
+	let disabledFrom = false
+	$:disabledInner = disabledFrom || disabled
+	let sizeFrom = ''
+	$:sizeInner = sizeFrom || size
+	let isErrorForm = false
+	$:isErrorInner = isErrorForm || isError
+	const formContext = getContext(formItemKey) as string;
+	const formInstance = getContext(formKey) as IKunFormInstance;
+	let field: string | undefined = ''
+	// Initialize the KInput value based
+	// on the form value in the KFormItem context
+	function formUpdateField(init = false){
+		field = formContext.split('&').pop()
+		value = formInstance.getValueByPath(
+			field,
+			init ? formInstance.__default_value: formInstance.__value
+		)
+	}
+	function formPropsChangeCb(props: Record<any, any>) {
+		disabledFrom = props.disabled
+		sizeFrom = props.size
+	}
 
-	const formContext: FormContext = getContext(formItemKey);
+	function fromFieldError(error: boolean){
+		isErrorForm = error
+	}
+
+	// Register event, KForm can set KInput value
+	if(formContext && formInstance){
+		formUpdateField(true)
+		formPropsChangeCb(formInstance.__dynamicProps)
+		formInstance.__updateMap[field] = formUpdateField
+		formInstance.__errorCompEvtMap[field] = fromFieldError
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb)
+	}
+	/*********************** KForm logic end ************************/
+
 	const dispatch = createEventDispatcher();
-
 	const onInput = (e: Event) => {
-		if (disabled) return;
+		if (disabledInner) return;
 		const { value: inputValue } = e.target as HTMLInputElement;
 		dispatch('input', inputValue, e);
-		formContext?.updateField(inputValue);
+		formInstance && formInstance?.updateField(field!, inputValue);
 		if (!useCompositionInput || !isComposing) {
 			value = inputValue;
 			if (useCompositionInput && !isComposing) {
@@ -57,19 +91,19 @@
 	};
 
 	const onChange = (e: Event) => {
-		if (disabled) return;
+		if (disabledInner) return;
 		dispatch('change', e);
-		formContext?.updateField((e?.target as HTMLInputElement)?.value);
+		formInstance && formInstance?.updateField(field!, (e?.target as HTMLInputElement)?.value)
 	};
 
 	const onClear = () => {
-		if (disabled) return;
+		if (disabledInner) return;
 		value = '';
 		dispatch('updateValue', value);
 	};
 
 	const onEnter = (e: KeyboardEvent) => {
-		if (disabled) return;
+		if (disabledInner) return;
 		if (e.key === 'Enter') {
 			if (search) {
 				dispatch('search', (e.target as HTMLInputElement)!.value);
@@ -78,20 +112,17 @@
 			}
 		} else dispatch('keydown', e);
 	};
-	//initial field
-	formContext?.initialField(value);
-	// when filed change,dom value will change.
-	formContext?.subscribe((_value: any) => (value = _value));
+
 
 	let isComposing = false;
 	const onCompositionStart = (e: CompositionEvent) => {
-		if (disabled) return;
+		if (disabledInner) return;
 		dispatch('compositionstart', e);
 		isComposing = true;
 	};
 
 	const onCompositionEnd = (e: CompositionEvent) => {
-		if (disabled) return;
+		if (disabledInner) return;
 		dispatch('compositionend', e);
 
 		if (!isComposing) {
@@ -105,7 +136,7 @@
 
 	let inputRef: null | HTMLInputElement | HTMLTextAreaElement = null;
 	const handlePrependClick = () => {
-		if (disabled) return;
+		if (disabledInner) return;
 		if (search) {
 			inputRef && dispatch('search', inputRef.value);
 		} else {
@@ -114,7 +145,7 @@
 	};
 
 	const handleAppendClick = () => {
-		if (disabled) return;
+		if (disabledInner) return;
 		if (search) {
 			inputRef && dispatch('search', inputRef.value);
 		} else {
@@ -158,17 +189,17 @@
 	$: inputWrapperCls = clsx(
 		`${prefixCls}--base`,
 		{
-			[`${prefixCls}__${size}`]: !(type === 'textarea')
+			[`${prefixCls}__${sizeInner}`]: !(type === 'textarea')
 		},
 		`${prefixCls}__dark`,
 		{
-			[`${prefixCls}__disabled`]: disabled,
-			[`${prefixCls}__disabled__dark`]: disabled
+			[`${prefixCls}__disabled`]: disabledInner,
+			[`${prefixCls}__disabled__dark`]: disabledInner
 		},
 		{
-			[`${prefixCls}__error`]: isError,
-			[`${prefixCls}__hover`]: !isError,
-			[`${prefixCls}__focus`]: !isError
+			[`${prefixCls}__error`]: isErrorInner,
+			[`${prefixCls}__hover`]: !isErrorInner,
+			[`${prefixCls}__focus`]: !isErrorInner
 		},
 		{
 			[`${prefixCls}__rounded`]: !$$slots.append && !append && !$$slots.prepend && !prepend,
@@ -182,17 +213,17 @@
 			[`${prefixCls}--inner__textarea`]: type === 'textarea'
 		},
 		{
-			[`${prefixCls}--inner__dark`]: !disabled,
-			[`${prefixCls}__disabled`]: disabled,
-			[`${prefixCls}__disabled__dark`]: disabled
+			[`${prefixCls}--inner__dark`]: !disabledInner,
+			[`${prefixCls}__disabled`]: disabledInner,
+			[`${prefixCls}__disabled__dark`]: disabledInner
 		}
 	);
-	$: iconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${size}`);
+	$: iconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${sizeInner}`);
 	$: prefixIconCls = clsx(iconCls, `${prefixCls}--prefix-icon`);
 	$: suffixIconCls = clsx(iconCls, `${prefixCls}--suffix-icon`);
 	$: errorMsgCls = clsx(`${prefixCls}__msg__error`);
-	$: prependCls = clsx(`${prefixCls}--prepend`, `${prefixCls}--prepend__${size}`);
-	$: appendgCls = clsx(`${prefixCls}--append`, `${prefixCls}--append__${size}`);
+	$: prependCls = clsx(`${prefixCls}--prepend`, `${prefixCls}--prepend__${sizeInner}`);
+	$: appendgCls = clsx(`${prefixCls}--append`, `${prefixCls}--append__${sizeInner}`);
 	$: clearCls = clsx(`${prefixCls}--clear-icon`);
 </script>
 
@@ -205,7 +236,7 @@
 				type="main"
 				icon={prepend}
 				on:click={handlePrependClick}
-				{disabled}
+				disabled={disabledInner}
 			>
 				{#if $$slots.prepend}
 					<slot name="prepend" />
@@ -221,7 +252,7 @@
 			<input
 				class={inputCls}
 				{value}
-				{disabled}
+				disabled={disabledInner}
 				bind:this={inputRef}
 				on:input={onInput}
 				on:change={onChange}
@@ -234,7 +265,7 @@
 				{...attrs}
 			/>
 
-			{#if clearable && !disabled && value}
+			{#if clearable && !disabledInner && value}
 				<div class={clearCls} role="button" aria-hidden="true" on:click={onClear}>
 					<KIcon btn icon="i-carbon:close-outline" cls="{iconCls} ml-1" />
 				</div>
@@ -262,11 +293,12 @@
 					<KIcon btn icon="i-carbon-view" cls="{iconCls} ml-1" />
 				</div>
 			{/if}
-			{#if isError}
+			<!--TODO: KMessageBox-->
+			<!-- {#if isError}
 				<span class={errorMsgCls} transition:fade={{ duration: 200 }}>
 					{errorMsg}
 				</span>
-			{/if}
+			{/if} -->
 
 			<slot name="suffix">
 				{#if iconSuffix}
@@ -281,7 +313,7 @@
 				type="main"
 				icon={append}
 				on:click={handleAppendClick}
-				{disabled}
+				disabled={disabledInner}
 			>
 				{#if $$slots.append}
 					<slot name="append" />
@@ -297,7 +329,7 @@
 			<textarea
 				class={inputCls}
 				{value}
-				{disabled}
+				disabled={disabledInner}
 				bind:this={inputRef}
 				on:input={onInput}
 				on:change={onChange}
