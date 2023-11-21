@@ -1,8 +1,9 @@
 /// <reference types="svelte" />
 import type { ClassValue } from 'clsx';
+import { IKunSize } from "@ikun-ui/utils";
 
 export type KInputProps = {
-	size: 'sm' | 'md' | 'lg';
+	size: IKunSize;
 	value: string;
 	placeholder: string;
 	disabled: boolean;

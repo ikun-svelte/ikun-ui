@@ -29,7 +29,7 @@ describe('Test: KSlider', () => {
 		await tick();
 		const sliderBarElm = host.getElementsByClassName('k-slider--bar')[0] as HTMLDivElement;
 		const sliderButtonWrapperElm = host.getElementsByClassName(
-			'k-slider--button-wrapper'
+			'k-slider--button__wrapper'
 		)[0] as HTMLDivElement;
 		expect(Number.parseFloat(sliderBarElm.style.width)).toBe(value);
 		expect(Number.parseFloat(sliderButtonWrapperElm.style.left)).toBe(value);
@@ -50,7 +50,7 @@ describe('Test: KSlider', () => {
 		await tick();
 		const sliderBarElm = host.getElementsByClassName('k-slider--bar')[0] as HTMLDivElement;
 		const sliderButtonWrapperElm = host.getElementsByClassName(
-			'k-slider--button-wrapper'
+			'k-slider--button__wrapper'
 		)[0] as HTMLDivElement;
 		expect(Number.parseFloat(sliderBarElm.style.width)).toBe(0);
 		expect(Number.parseFloat(sliderButtonWrapperElm.style.left)).toBe(0);
@@ -84,6 +84,42 @@ describe('Test: KSlider', () => {
 		});
 		await tick();
 		expect(host.innerHTML.includes('k-cur-disabled')).toBe(false);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: size', async () => {
+		const instanceSM = new KSlider({
+			target: host,
+			props: {
+				size: 'sm'
+			}
+		});
+		const instanceMD = new KSlider({
+			target: host,
+			props: {
+				size: 'md'
+			}
+		});
+		const instanceLG = new KSlider({
+			target: host,
+			props: {
+				size: 'lg'
+			}
+		});
+		expect(instanceSM).toBeTruthy();
+		expect(instanceMD).toBeTruthy();
+		expect(instanceLG).toBeTruthy();
+		await tick();
+
+		expect(host.innerHTML.includes('k-slider--button__sm')).toBe(true);
+		expect(host.innerHTML.includes('k-slider--button__md')).toBe(true);
+		expect(host.innerHTML.includes('k-slider--button__lg')).toBe(true);
+		expect(host.innerHTML.includes('k-slider--button__wrapper__sm')).toBe(true);
+		expect(host.innerHTML.includes('k-slider--button__wrapper__md')).toBe(true);
+		expect(host.innerHTML.includes('k-slider--button__wrapper__lg')).toBe(true);
+		expect(host.innerHTML.includes('k-slider__sm')).toBe(true);
+		expect(host.innerHTML.includes('k-slider__md')).toBe(true);
+		expect(host.innerHTML.includes('k-slider__lg')).toBe(true);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -130,7 +166,7 @@ describe('Test: KSlider', () => {
 			changeEvent();
 		});
 		const sliderButtonWrapperElm = host.getElementsByClassName(
-			' k-slider--button-wrapper'
+			' k-slider--button__wrapper'
 		)[0] as HTMLDivElement;
 		sliderButtonWrapperElm.dispatchEvent(new Event('mousedown'));
 		window.dispatchEvent(new Event('mouseup'));
@@ -175,7 +211,7 @@ describe('Test: KSlider', () => {
 		instance.$on('change', event);
 		instance.$on('input', event);
 		const sliderButtonWrapperElm = host.getElementsByClassName(
-			' k-slider--button-wrapper'
+			' k-slider--button__wrapper'
 		)[0] as HTMLDivElement;
 		sliderButtonWrapperElm.dispatchEvent(new Event('mousedown'));
 		window.dispatchEvent(new Event('mouseup'));

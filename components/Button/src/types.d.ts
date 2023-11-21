@@ -1,10 +1,11 @@
 /// <reference types="svelte" />
 import type { IKunTypePro } from '@ikun-ui/utils';
 import type { ClassValue } from 'clsx';
+import { IKunSize } from "@ikun-ui/utils";
 
 export type KButtonProps = {
 	type: IKunTypePro | 'main';
-	size: 'sm' | 'md' | 'lg';
+	size: IKunSize;
 	icon: string;
 	iconSize: number | null;
 	to: HTMLAnchorElement['href'];
