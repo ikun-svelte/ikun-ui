@@ -2,8 +2,8 @@ import type {
 	IKunFormInstanceOption,
 	ShowMsg,
 	IKunFormInstance,
-	FormValidateCallback
-} from '../types';
+	FormValidateCallback, Value
+} from "../types";
 import { jsonClone } from 'baiwusanyu-utils';
 import { getValueByPath, setValueByPath } from './fields';
 import { doValidate, doValidateField, traverseObjects } from './rules';
@@ -23,6 +23,10 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		 * @internal
 		 */
 		__manual_validate: option.manualValidate,
+		/**
+		 * @internal
+		 */
+		__validateEmitEvt: option.validateEmitEvt,
 		/**
 		 * @internal
 		 */
@@ -75,6 +79,15 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 			} finally {
 				// update
 				this.__value = setValueByPath(path, this.__value, value);
+				this.__validateEmitEvt(
+					this.__value,
+					!!errorMsg,
+					[{
+						message: errorMsg,
+						fieldValue: value,
+						field: path,
+					}]
+				)
 			}
 		},
 		/**

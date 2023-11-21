@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { createForm } from './helpers/instance';
-	import { setContext } from 'svelte';
+	import { createEventDispatcher, setContext } from "svelte";
 	import { formKey, getPrefixCls } from "@ikun-ui/utils";
-	import type { FormValidateCallback, IKunFormInstanceOption, KFormProps } from "./types";
+	import type { FormValidateCallback, IKunFormInstanceOption, KFormProps, ValidateError } from "./types";
 	import { clsx } from "clsx";
 
 	export let cls: KFormProps['cls'] = undefined;
@@ -20,6 +20,7 @@
 		rules,
 		initValue,
 		manualValidate,
+		validateEmitEvt: handleValidateEvt,
 		dynamicProps: {
 			size,
 			disabled,
@@ -70,6 +71,18 @@
 
 	export function getForm<T>(){
 		return formInst && formInst.getForm<T>()
+	}
+
+	const dispatch = createEventDispatcher();
+	function handleValidateEvt(
+		data: any,
+		isValid: boolean,
+		invalidFields?: ValidateError[]){
+		dispatch('validate', {
+			data,
+			isValid,
+			invalidFields,
+		})
 	}
 
 	// class

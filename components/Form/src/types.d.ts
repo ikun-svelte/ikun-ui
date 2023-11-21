@@ -23,6 +23,7 @@ export interface IKunFormInstanceOption {
 	rules?: KFormRules;
 	manualValidate: boolean;
 	dynamicProps: IKunFormDynamicProps;
+	validateEmitEvt: FormValidateCallback;
 }
 export interface IKunFormInstance {
 	__default_value: any;
@@ -34,6 +35,7 @@ export interface IKunFormInstance {
 	__errorCompEvtMap: Record<string, (isError: boolean) => void>;
 	__propHandleEvtMap: Array<(props: Record<any, any>) => void>;
 	__dynamicProps: IKunFormDynamicProps;
+	__validateEmitEvt: FormValidateCallback;
 	getValueByPath: typeof getValueByPath;
 	updateField(path: string, value: unknown, isValidate?: boolean): void;
 	setEntireForm(values?: any, isValidate?: boolean): void;
@@ -77,7 +79,7 @@ export type FormValidateCallback = (
 // ⭕TODO: KForm props -- initValue 表单初始值对象
 // ⭕TODO: KForm props -- rules 表单规则
 // ⭕TODO: KForm props -- manualValidate 不自动触发校验
-// TODO: KForm event -- validate 任一表单项被校验后触发 (prop: FormItemProp, isValid: boolean, message: string) => void
+// ⭕TODO: KForm event -- validate 任一表单项被校验后触发 (prop: FormItemProp, isValid: boolean, message: string) => void(validate api 调用时不会被触发)
 // ⭕TODO: KForm slot -- default 自定义默认内容 FormItem
 
 // ⭕TODO: KForm Api -- validate 对整个表单的内容进行验证。 接收一个回调函数，或返回 Promise。
