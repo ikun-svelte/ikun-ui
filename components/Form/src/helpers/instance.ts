@@ -101,7 +101,8 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		 */
 		updateDomText(key: string) {
 			if (Object.hasOwnProperty.call(this.__itemCompMap, key)) {
-				const updateDom = this.__itemCompMap[key as keyof typeof this.__itemCompMap].update as () => void;
+				const updateDom = this.__itemCompMap[key as keyof typeof this.__itemCompMap]
+					.update as () => void;
 				updateDom();
 			}
 		},

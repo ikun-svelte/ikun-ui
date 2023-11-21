@@ -2,7 +2,14 @@
 import { ClassValue } from 'clsx';
 import { IKunSize } from '@ikun-ui/utils';
 
-export type KFormComponent = 'select' | 'switch' | 'input' | 'radio' | 'checkbox' | 'rate' | 'slider'
+export type KFormComponent =
+	| 'select'
+	| 'switch'
+	| 'input'
+	| 'radio'
+	| 'checkbox'
+	| 'rate'
+	| 'slider';
 export declare type ShowMsg = (msg: string) => void;
 export interface IKunFormDynamicProps {
 	size: KFormProps['size'];
@@ -23,7 +30,7 @@ export interface IKunFormInstance {
 	__manual_validate: boolean;
 	__rules?: KFormRules;
 	__showMsgMap: Record<string, showMsg>;
-	__itemCompMap: Record<string, {type: KFormComponent, update: () => void}>;
+	__itemCompMap: Record<string, { type: KFormComponent; update: () => void }>;
 	__errorCompEvtMap: Record<string, (isError: boolean) => void>;
 	__propHandleEvtMap: Array<(props: Record<any, any>) => void>;
 	__dynamicProps: IKunFormDynamicProps;
