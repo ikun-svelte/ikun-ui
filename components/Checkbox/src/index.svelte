@@ -2,9 +2,8 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
-	import type { FormContext } from '@ikun-ui/form';
 	import { clsx } from 'clsx';
-	import { checkboxGroupKey, formItemKey, getPrefixCls } from '@ikun-ui/utils';
+	import { checkboxGroupKey, getPrefixCls } from '@ikun-ui/utils';
 	import type { checkboxGroupCtx } from '@ikun-ui/checkbox-group';
 	import type { KCheckboxProps } from './types';
 
@@ -39,20 +38,14 @@
 	/**
 	 * Click the `checkbox` to update the binding value
 	 */
-	const formContext: FormContext = getContext(formItemKey);
 	const handleUpdateValue = () => {
 		if (isDisabled) return;
 		doUpdatedValue(!valueInner, true);
 		isIndeterminate = false;
 		// Being in a checkbox group does not trigger it
 		!ctx && dispatch('updateValue', valueInner);
-		formContext?.updateField(!valueInner);
 	};
 
-	// when filed change,dom value will change.
-	formContext?.subscribe((value: any) => (valueInner = value));
-	//initial field
-	formContext?.initialField(value);
 
 	/**
 	 * Set checkbox value
@@ -83,6 +76,10 @@
 		isDisabled = v;
 	}
 
+	function setSizes(v: KCheckboxProps['size']) {
+		sizeInner = v;
+	}
+
 	/**
 	 * Register checkbox
 	 */
@@ -97,7 +94,8 @@
 				// Expose the setDisabled method.
 				// When the disabled value bound to the `checkbox group` changes,
 				// the `checkbox` can be disabled synchronously.
-				setDisabled
+				setDisabled,
+				setSizes
 			});
 		}
 	}
