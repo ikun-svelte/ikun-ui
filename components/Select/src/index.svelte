@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { KIcon } from '@ikun-ui/icon';
 	import { KVirtualList } from '@ikun-ui/virtual-list';
-	import { createEventDispatcher, onMount, tick } from 'svelte';
+	import { createEventDispatcher, getContext, onMount, tick } from 'svelte';
 	import { clsx } from 'clsx';
-	import { getPrefixCls } from '@ikun-ui/utils';
+	import { formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
 	import { KPopover } from '@ikun-ui/popover';
 	import KOption from './option.svelte';
 	import type { KSelectProps } from './types';
 	import { isObject, isString, isNumber, debounce } from 'baiwusanyu-utils';
+	import type { IKunFormInstance } from '@ikun-ui/form';
 
 	export let iconPrefix: KSelectProps['iconPrefix'] = '';
 	export let iconSuffix: KSelectProps['iconSuffix'] = '';
@@ -25,6 +26,46 @@
 	export let clearable: KSelectProps['clearable'] = false;
 	export let remote: KSelectProps['remote'] = undefined;
 	export let size: KSelectProps['size'] = 'md';
+
+	/*********************** KForm logic start ************************/
+	let disabledFrom = false;
+	$: disabledInner = disabledFrom || disabled;
+	let sizeFrom = '';
+	$: sizeInner = sizeFrom || size;
+	let isErrorForm = false;
+	$: isErrorInner = isErrorForm;
+	const formContext = getContext(formItemKey) as string;
+	const formInstance = getContext(formKey) as IKunFormInstance;
+	let field: string | undefined = '';
+	// Initialize the KInput value based
+	// on the form value in the KFormItem context
+	function formUpdateField(init = false) {
+		field = formContext.split('&').pop();
+		value =
+			formInstance.getValueByPath(
+				field,
+				init ? formInstance.__default_value : formInstance.__value
+			) || '';
+	}
+	function formPropsChangeCb(props: Record<any, any>) {
+		disabledFrom = props.disabled;
+		sizeFrom = props.size;
+	}
+
+	function fromFieldError(error: boolean) {
+		isErrorForm = error;
+	}
+
+	// Register event, KForm can set KInput value
+	if (formContext && formInstance) {
+		formUpdateField(true);
+		formPropsChangeCb(formInstance.__dynamicProps);
+		formInstance.__updateMap[field] = formUpdateField;
+		formInstance.__errorCompEvtMap[field] = fromFieldError;
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb);
+	}
+	/*********************** KForm logic end ************************/
+
 	let valueType: 'o' | 'n' | 's' = 'o';
 	const wrapperData = (v: KSelectProps['value']) => {
 		if (isString(v)) {
@@ -53,15 +94,22 @@
 	// updateValue
 	const dispatch = createEventDispatcher();
 	let popoverRef: any = null;
-	const handleSelect = (data: KSelectProps['value'] | null) => {
-		if (disabled) return;
+	const handleSelect = async (data: KSelectProps['value'] | null) => {
+		if (disabledInner) return;
 		if (data && (valueType === 'n' || valueType === 's')) {
-			dispatch('updateValue', data[valueKey as keyof typeof data]);
+			const finalData = data[valueKey as keyof typeof data];
+			dispatch('updateValue', finalData);
+			formInstance && formInstance?.updateField(field!, finalData);
+			formInstance && (value = finalData);
+			await tick();
 		} else if (
 			(!data && (valueType === 'n' || valueType === 's')) ||
 			(valueType === 'o' && isObject(data))
 		) {
 			dispatch('updateValue', data);
+			formInstance && formInstance?.updateField(field!, data);
+			await tick();
+			formInstance && (value = data!);
 		}
 		popoverRef.updateShow(false);
 	};
@@ -98,7 +146,7 @@
 	// clear value
 	let isShowClear = false;
 	const showClearIcon = (show: boolean) => {
-		if (disabled) return;
+		if (disabledInner) return;
 		if (show) {
 			getLabel(value) && (isShowClear = show);
 		} else {
@@ -116,9 +164,9 @@
 		}
 	};
 
-	let isDisabledPopover = disabled || !!remote;
+	let isDisabledPopover = disabledInner || !!remote;
 	$: {
-		isDisabledPopover = disabled || !!remote;
+		isDisabledPopover = disabledInner || !!remote;
 	}
 
 	async function onOpen(e: CustomEvent) {
@@ -191,25 +239,28 @@
 	const prefixCls = getPrefixCls('select');
 	$: cnames = clsx(
 		`${prefixCls}--base`,
-		`${prefixCls}__hover`,
-		`${prefixCls}__focus`,
-		`${prefixCls}__${size}`,
+		`${prefixCls}__${sizeInner}`,
 		{
-			[`${prefixCls}--base__disabled`]: disabled,
-			[`${prefixCls}--base__dark`]: !disabled,
-			[`${prefixCls}--base__disabled__dark`]: disabled
+			[`${prefixCls}--base__disabled`]: disabledInner,
+			[`${prefixCls}--base__dark`]: !disabledInner,
+			[`${prefixCls}--base__disabled__dark`]: disabledInner
+		},
+		{
+			[`${prefixCls}__error`]: isErrorInner,
+			[`${prefixCls}__hover`]: !isErrorInner,
+			[`${prefixCls}__focus`]: !isErrorInner
 		},
 		cls
 	);
-	$: selectCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__${size}`, {
-		[`${prefixCls}--inner__dark`]: !disabled,
-		[`${prefixCls}--base__disabled`]: disabled,
-		[`${prefixCls}--base__disabled__dark`]: disabled,
-		[`${prefixCls}--inner__disabled__dark`]: disabled
+	$: selectCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__${sizeInner}`, {
+		[`${prefixCls}--inner__dark`]: !disabledInner,
+		[`${prefixCls}--base__disabled`]: disabledInner,
+		[`${prefixCls}--base__disabled__dark`]: disabledInner,
+		[`${prefixCls}--inner__disabled__dark`]: disabledInner
 	});
-	const prefixIconCls = clsx(`${prefixCls}--prefix`, `${prefixCls}--icon__${size}`);
-	const suffixIconCls = clsx(`${prefixCls}--suffix`, `${prefixCls}--icon__${size}`);
-	const selectIconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${size}`);
+	const prefixIconCls = clsx(`${prefixCls}--prefix`, `${prefixCls}--icon__${sizeInner}`);
+	const suffixIconCls = clsx(`${prefixCls}--suffix`, `${prefixCls}--icon__${sizeInner}`);
+	const selectIconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${sizeInner}`);
 	const noDataCls = clsx(`${prefixCls}--tx__empty`);
 	/*//initial field
   formContext?.initialField(value);
@@ -259,7 +310,7 @@
 			readonly={!remote}
 			on:input={remoteSearch}
 			value={getLabel(value)}
-			{disabled}
+			disabled={disabledInner}
 			{placeholder}
 		/>
 

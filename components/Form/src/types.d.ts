@@ -88,11 +88,11 @@ export type FormValidateCallback = (
 // ⭕TODO: KFormItem slot -- error 验证错误信息的显示内容
 
 // ⭕TODO: KInput 支持
-// TODO: KCheckbox 支持
+// ⭕TODO: KCheckbox 支持
 // ⭕TODO: KSwitch  支持
-// TODO: KRadio 支持
+// ⭕TODO: KRadio 支持
 // ⭕TODO: KRate 支持
-// TODO: KSelect 支持
+// ⭕TODO: KSelect 支持
 // TODO: KSlider 支持
 export type KFormProps = {
 	initValue: any;
