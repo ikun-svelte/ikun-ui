@@ -1,14 +1,17 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import type { KSliderProps } from "./types";
+	import { getPrefixCls } from "@ikun-ui/utils";
 
-	export let min: number = 0;
-	export let max: number = 100;
-	export let value: number = 0;
-	export let step: number = 1;
-	export let disabled: boolean = false;
-	export let attrs: Record<string, string> = {};
-	export let cls: ClassValue = undefined;
+	export let min: KSliderProps['min'] = 0;
+	export let max: KSliderProps['max'] = 100;
+	export let value: KSliderProps['value'] = 0;
+	export let step: KSliderProps['step'] = 1;
+	export let disabled: KSliderProps['disabled'] = false;
+	export let size: KSliderProps['size'] = 'md';
+	export let attrs: KSliderProps['attrs'] = {};
+	export let cls: KSliderProps['cls'] = undefined;
 
 	// current value
 	let isDragging: boolean = false;
@@ -96,23 +99,44 @@
 		window.removeEventListener('mouseup', onDragEnd);
 	};
 
-	$: cnames = clsx('k-slider--base', cls);
-	$: sliderRunwayCls = clsx('k-slider--runway', {
-		'k-cur-disabled': disabled
-	});
+	const prefixCls = getPrefixCls('slider');
+	$: cnames = clsx(
+		prefixCls,
+		cls
+	);
+	$: sliderRunwayCls = clsx(
+		`${prefixCls}--runway`,
+		{
+			'k-cur-disabled': disabled
+		}
+	);
+	$: sizeCls = clsx(
+		`${prefixCls}--base`,
+		`${prefixCls}__${size}`
+	);
+	const barCls = `${prefixCls}--bar`
+	$: btnCls = clsx(
+		`${prefixCls}--button`,
+		`${prefixCls}--button__${size}`
+	)
+	$: btnWrapperCls = clsx(
+		`${prefixCls}--button__wrapper`,
+		`${prefixCls}--button__wrapper__${size}`
+	)
+
 </script>
 
-<div class="w-full flex">
-	<div {...attrs} class={cnames}>
+<div class={cnames}>
+	<div {...attrs} class={sizeCls}>
 		<div
 			bind:this={sliderRunwayRef}
 			class={sliderRunwayCls}
 			aria-hidden="true"
 			on:mousedown={handleRunwayClick}
 		>
-			<div class="k-slider--bar" style="width: {percentage}; left: 0%"></div>
+			<div class={barCls} style="width: {percentage}; left: 0%"></div>
 			<div
-				class="k-slider--button-wrapper"
+				class={btnWrapperCls}
 				aria-hidden="true"
 				on:mousedown={handleMouseDown}
 				style:left={percentage}
@@ -120,7 +144,7 @@
 				{#if $$slots.buttonRender}
 					<slot name="buttonRender" />
 				{:else}
-					<div class="k-slider--button"></div>
+					<div class={btnCls}></div>
 				{/if}
 			</div>
 		</div>

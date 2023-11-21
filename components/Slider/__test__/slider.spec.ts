@@ -29,7 +29,7 @@ describe('Test: KSlider', () => {
 		await tick();
 		const sliderBarElm = host.getElementsByClassName('k-slider--bar')[0] as HTMLDivElement;
 		const sliderButtonWrapperElm = host.getElementsByClassName(
-			'k-slider--button-wrapper'
+			'k-slider--button__wrapper'
 		)[0] as HTMLDivElement;
 		expect(Number.parseFloat(sliderBarElm.style.width)).toBe(value);
 		expect(Number.parseFloat(sliderButtonWrapperElm.style.left)).toBe(value);
@@ -50,7 +50,7 @@ describe('Test: KSlider', () => {
 		await tick();
 		const sliderBarElm = host.getElementsByClassName('k-slider--bar')[0] as HTMLDivElement;
 		const sliderButtonWrapperElm = host.getElementsByClassName(
-			'k-slider--button-wrapper'
+			'k-slider--button__wrapper'
 		)[0] as HTMLDivElement;
 		expect(Number.parseFloat(sliderBarElm.style.width)).toBe(0);
 		expect(Number.parseFloat(sliderButtonWrapperElm.style.left)).toBe(0);
@@ -130,7 +130,7 @@ describe('Test: KSlider', () => {
 			changeEvent();
 		});
 		const sliderButtonWrapperElm = host.getElementsByClassName(
-			' k-slider--button-wrapper'
+			' k-slider--button__wrapper'
 		)[0] as HTMLDivElement;
 		sliderButtonWrapperElm.dispatchEvent(new Event('mousedown'));
 		window.dispatchEvent(new Event('mouseup'));
@@ -175,7 +175,7 @@ describe('Test: KSlider', () => {
 		instance.$on('change', event);
 		instance.$on('input', event);
 		const sliderButtonWrapperElm = host.getElementsByClassName(
-			' k-slider--button-wrapper'
+			' k-slider--button__wrapper'
 		)[0] as HTMLDivElement;
 		sliderButtonWrapperElm.dispatchEvent(new Event('mousedown'));
 		window.dispatchEvent(new Event('mouseup'));
