@@ -57,7 +57,10 @@
 	if (formContext && formInstance) {
 		formUpdateField(true);
 		formPropsChangeCb(formInstance.__dynamicProps);
-		formInstance.__updateMap[field] = formUpdateField;
+		formInstance.__itemCompMap[field] = {
+			update: formUpdateField,
+			type: 'rate'
+		};
 		formInstance.__propHandleEvtMap.push(formPropsChangeCb);
 	}
 	/*********************** KForm logic end ************************/

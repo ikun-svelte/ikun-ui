@@ -5,7 +5,7 @@
 // ⭕TODO: validator 后 require max min 将失效
 import { getValueByPath } from './fields';
 import { isArray, isNumber, isObject, isString } from 'baiwusanyu-utils';
-import type { KFormRule, KFormRules, ValidateError } from '../types';
+import type { KFormComponent, KFormRule, KFormRules, ValidateError } from "../types";
 
 /**
  * 校验整个表单
@@ -13,7 +13,8 @@ import type { KFormRule, KFormRules, ValidateError } from '../types';
 export function doValidate(
 	rules: KFormRules,
 	target: Record<string, any>,
-	errors: ValidateError[] = []
+	errors: ValidateError[] = [],
+	itemCompMap: Record<string, {type: KFormComponent, update: () => void}>
 ) {
 	for (const field in rules) {
 		const value = getValueByPath(field, target);
@@ -34,7 +35,9 @@ export function doValidate(
 					}
 				});
 			} else {
-				validateRequired(ruleOption, value, field, errors);
+				const type =  itemCompMap[field as keyof typeof itemCompMap].type
+				// switch does not require verification required
+				validateRequired(ruleOption, value, field, errors, type !== 'switch');
 				validateMin(ruleOption, value, field, errors);
 				validateMax(ruleOption, value, field, errors);
 			}
@@ -45,7 +48,12 @@ export function doValidate(
 /**
  * 校验某个字段
  */
-export function doValidateField(rules: KFormRules | undefined, path: string, value: unknown) {
+export function doValidateField(
+	rules: KFormRules | undefined,
+	path: string,
+	value: unknown,
+	itemCompMap: Record<string, {type: KFormComponent, update: () => void}>
+) {
 	if (rules) {
 		const fieldRule = rules[path];
 		for (let i = 0; i < fieldRule.length; i++) {
@@ -57,7 +65,9 @@ export function doValidateField(rules: KFormRules | undefined, path: string, val
 					}
 				});
 			} else {
-				validateRequired(ruleOption, value, path);
+				const type =  itemCompMap[path as keyof typeof itemCompMap].type
+				// switch does not require verification required
+				validateRequired(ruleOption, value, path, undefined, type !== 'switch');
 				validateMin(ruleOption, value, path);
 				validateMax(ruleOption, value, path);
 			}
@@ -66,8 +76,14 @@ export function doValidateField(rules: KFormRules | undefined, path: string, val
 }
 
 // TODO: unit test
-function validateRequired(rule: KFormRule, value: any, field: string, errors?: ValidateError[]) {
-	if (rule.required) {
+function validateRequired(
+	rule: KFormRule,
+	value: any,
+	field: string,
+	errors?: ValidateError[],
+	isValidate = true
+) {
+	if (rule.required && isValidate) {
 		if (!value && value !== 0) {
 			const msg = rule.msg || `${field} is required`;
 			errors &&

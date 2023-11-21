@@ -34,7 +34,7 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		/**
 		 * @internal
 		 */
-		__updateMap: {},
+		__itemCompMap: {},
 		/**
 		 * @internal
 		 */
@@ -66,7 +66,7 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 			try {
 				// validate form fields
 				if (!this.__manual_validate || isValidate) {
-					doValidateField(this.__rules, path, value);
+					doValidateField(this.__rules, path, value, this.__itemCompMap);
 				}
 			} catch (e: any) {
 				// show verification error message
@@ -100,8 +100,8 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		 * @param key
 		 */
 		updateDomText(key: string) {
-			if (Object.hasOwnProperty.call(this.__updateMap, key)) {
-				const updateDom = this.__updateMap[key as keyof typeof this.__updateMap] as () => void;
+			if (Object.hasOwnProperty.call(this.__itemCompMap, key)) {
+				const updateDom = this.__itemCompMap[key as keyof typeof this.__itemCompMap].update as () => void;
 				updateDom();
 			}
 		},
@@ -131,7 +131,7 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		validateForm(callback: FormValidateCallback) {
 			const errorMsgArr: ValidateError[] = [];
 			if (this.__rules) {
-				doValidate(this.__rules, this.__value, errorMsgArr);
+				doValidate(this.__rules, this.__value, errorMsgArr, this.__itemCompMap);
 			}
 			// update error message
 			errorMsgArr.forEach((error) => {

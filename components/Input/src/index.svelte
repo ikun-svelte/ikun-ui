@@ -70,7 +70,10 @@
 	if(formContext && formInstance){
 		formUpdateField(true)
 		formPropsChangeCb(formInstance.__dynamicProps)
-		formInstance.__updateMap[field] = formUpdateField
+		formInstance.__itemCompMap[field] = {
+			update: formUpdateField,
+			type: 'input'
+		};
 		formInstance.__errorCompEvtMap[field] = fromFieldError
 		formInstance.__propHandleEvtMap.push(formPropsChangeCb)
 	}
