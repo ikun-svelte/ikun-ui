@@ -122,3 +122,8 @@
 	{/if}
 	<slot />
 </svelte:element>
+<style>
+	:global(.k-button--base+.k-button--base){
+		--at-apply: ml-2;
+	}
+</style>
