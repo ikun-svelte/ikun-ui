@@ -3,9 +3,8 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import type { RadioGroupCtx } from '@ikun-ui/radio-group';
-	import { getPrefixCls, formItemKey, radioGroupKey } from '@ikun-ui/utils';
+	import { getPrefixCls, radioGroupKey, } from "@ikun-ui/utils";
 	import { clsx } from 'clsx';
-	import type { FormContext } from '@ikun-ui/form';
 	export let value: KRadioProps['value'] = false;
 	export let label: KRadioProps['label'] = '';
 	export let uid: KRadioProps['uid'] = '';
@@ -14,7 +13,6 @@
 	export let cls: KRadioProps['cls'] = undefined;
 	export let attrs: KRadioProps['attrs'] = {};
 
-	const formContext: FormContext = getContext(formItemKey);
 	// updateValue
 	const dispatch = createEventDispatcher();
 
@@ -28,7 +26,7 @@
 	let classChecking = '';
 	$: isDisabled = (ctx && ctx.disabled) || disabled;
 	$: sizeInner = ctx && ctx.size ? ctx.size : size;
-	enum ERadioSize {
+	enum KRadioSize {
 		'lg' = 16,
 		'md' = 14,
 		'sm' = 12
@@ -39,8 +37,6 @@
 		if (valueInner) return;
 
 		doUpdatedValue(!valueInner, true);
-		// When the component value changes, notify the form-item component
-		formContext?.updateField(!valueInner);
 
 		!ctx && dispatch('updateValue', !valueInner);
 	};
@@ -56,17 +52,13 @@
 			inner && ctx.updatedValueWhenRadioChange(v, uid);
 		}
 	};
-	//initial field
-	formContext?.initialField(value);
-	// when filed change,dom value will change.
-	// Triggered when form.setValues is called,
-	// set the value set by the form component to the radio component
-	formContext?.subscribe((value: any) => {
-		valueInner = value;
-	});
 
 	function setDisabled(v: boolean) {
 		isDisabled = v;
+	}
+
+	function setSizes(v: KRadioProps['size']) {
+		sizeInner = v;
 	}
 
 	/**
@@ -77,7 +69,8 @@
 			// Register checkbox
 			ctx.registerRadio(uid, {
 				doUpdatedValue,
-				setDisabled
+				setDisabled,
+				setSizes
 			});
 		}
 	}
@@ -118,8 +111,8 @@
 			<KIcon
 				icon="i-carbon:radio-button-checked"
 				color="!text-white"
-				width={ERadioSize[sizeInner]}
-				height={ERadioSize[sizeInner]}
+				width={KRadioSize[sizeInner]}
+				height={KRadioSize[sizeInner]}
 			/>
 		{/if}
 	</div>

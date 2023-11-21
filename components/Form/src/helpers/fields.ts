@@ -10,7 +10,7 @@ export const getValueByPath = (path: string | string[], target: Record<string, a
 		if (result && typeof result === 'object' && key in result) {
 			result = result[key];
 		} else {
-			console.error('[KFormItem]: The accessed field does not exist');
+			console.warn(`[KFormItem]: The accessed field "${key}" does not exist`);
 			return undefined;
 		}
 	}

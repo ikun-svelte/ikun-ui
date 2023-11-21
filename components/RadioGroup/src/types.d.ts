@@ -13,6 +13,7 @@ export type KRadioGroupProps = {
 export interface radioMapItem {
 	doUpdatedValue: (v: boolean, inner?: boolean) => void;
 	setDisabled: (v: boolean) => void;
+	setSizes: (v: IKunSize) =>void
 }
 
 export type radioMapType = Map<string, radioMapItem>;
