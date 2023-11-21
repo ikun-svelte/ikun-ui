@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { KCheckboxGroupProps, checkboxMapType, checkboxMapItem } from './types';
-	import { checkboxGroupKey, formItemKey, formKey, getPrefixCls } from "@ikun-ui/utils";
+	import { checkboxGroupKey, formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import { createEventDispatcher, getContext, setContext, tick } from "svelte";
+	import { createEventDispatcher, getContext, setContext, tick } from 'svelte';
 	import { jsonClone } from 'baiwusanyu-utils';
-	import type { IKunFormInstance } from "@ikun-ui/form";
+	import type { IKunFormInstance } from '@ikun-ui/form';
 
 	export let value: KCheckboxGroupProps['value'] = [];
 	export let size: KCheckboxGroupProps['size'] = 'md';
@@ -13,37 +13,36 @@
 	export let attrs: KCheckboxGroupProps['attrs'] = {};
 
 	/*********************** KForm logic start ************************/
-	let disabledFrom = false
-	$:disabledInnerForm = disabledFrom || disabled
-	let sizeFrom = ''
-	$:sizeInnerForm = sizeFrom || size
+	let disabledFrom = false;
+	$: disabledInnerForm = disabledFrom || disabled;
+	let sizeFrom = '';
+	$: sizeInnerForm = sizeFrom || size;
 	const formContext = getContext(formItemKey) as string;
 	const formInstance = getContext(formKey) as IKunFormInstance;
-	let field: string | undefined = ''
+	let field: string | undefined = '';
 	// Initialize the KInput value based
 	// on the form value in the KFormItem context
-	function formUpdateField(init = false){
-		field = formContext.split('&').pop()
+	function formUpdateField(init = false) {
+		field = formContext.split('&').pop();
 		value = formInstance.getValueByPath(
 			field,
-			init ? formInstance.__default_value: formInstance.__value
-		)
+			init ? formInstance.__default_value : formInstance.__value
+		);
 	}
 	function formPropsChangeCb(props: Record<any, any>) {
-		disabledFrom = props.disabled
-		sizeFrom = props.size
+		disabledFrom = props.disabled;
+		sizeFrom = props.size;
 	}
 
-
 	// Register event, KForm can set KInput value
-	if(formContext && formInstance){
-		formUpdateField(true)
-		formPropsChangeCb(formInstance.__dynamicProps)
+	if (formContext && formInstance) {
+		formUpdateField(true);
+		formPropsChangeCb(formInstance.__dynamicProps);
 		formInstance.__itemCompMap[field] = {
 			update: formUpdateField,
 			type: 'checkbox'
 		};
-		formInstance.__propHandleEvtMap.push(formPropsChangeCb)
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb);
 	}
 	/*********************** KForm logic end ************************/
 
@@ -67,20 +66,16 @@
 	}
 
 	// disable change synchronization checkbox disable status
-	let disabledInner = disabledInnerForm;
-	$: if (disabledInner !== disabledInnerForm) {
+	$: {
 		Array.from(checkboxMap.values()).forEach((m: checkboxMapItem) => {
 			m.setDisabled(disabledInnerForm);
 		});
-		disabledInner = disabledInnerForm;
 	}
 
-	let sizeInner = sizeInnerForm;
-	$: if (sizeInner !== sizeInnerForm) {
+	$: {
 		Array.from(checkboxMap.values()).forEach((m: checkboxMapItem) => {
 			m.setSizes(sizeInnerForm as KCheckboxGroupProps['size']);
 		});
-		sizeInner = sizeInnerForm;
 	}
 
 	// Register checkbox
@@ -124,10 +119,10 @@
 		}
 		valueInner = value;
 		dispatch('updateValue', finalValue);
-		if(formInstance){
+		if (formInstance) {
 			formInstance?.updateField(field!, finalValue);
-			await tick()
-			value = finalValue
+			await tick();
+			value = finalValue;
 		}
 	};
 
@@ -135,9 +130,9 @@
 		// Passed to the checkbox component to register the checkbox in the context
 		registerCheckbox,
 		// Passed to the checkbox component to set the size during initialization
-		size: sizeInnerForm,
+		size: sizeInnerForm || size,
 		// Passed to the checkbox component to set the disable during initialization
-		disabled: disabledInnerForm,
+		disabled: disabledInnerForm || disabled,
 		// Passed to the checkbox component to update the valueInner of checkboxGroup
 		updatedValueWhenCheckboxChange
 	});

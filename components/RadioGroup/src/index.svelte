@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { KRadioGroupProps, radioMapType, radioMapItem } from './types';
-	import { radioGroupKey, getPrefixCls, formItemKey, formKey } from "@ikun-ui/utils";
+	import { radioGroupKey, getPrefixCls, formItemKey, formKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import { createEventDispatcher, setContext, getContext, tick } from "svelte";
-	import type { IKunFormInstance } from "@ikun-ui/form";
+	import { createEventDispatcher, setContext, getContext, tick } from 'svelte';
+	import type { IKunFormInstance } from '@ikun-ui/form';
 	export let value: KRadioGroupProps['value'] = '';
 	export let size: KRadioGroupProps['size'] = 'md';
 	export let disabled: KRadioGroupProps['disabled'] = false;
@@ -11,37 +11,36 @@
 	export let attrs: KRadioGroupProps['attrs'] = {};
 
 	/*********************** KForm logic start ************************/
-	let disabledFrom = false
-	$:disabledInnerForm = disabledFrom || disabled
-	let sizeFrom = ''
-	$:sizeInnerForm = sizeFrom || size
+	let disabledFrom = false;
+	$: disabledInnerForm = disabledFrom || disabled;
+	let sizeFrom = '';
+	$: sizeInnerForm = sizeFrom || size;
 	const formContext = getContext(formItemKey) as string;
 	const formInstance = getContext(formKey) as IKunFormInstance;
-	let field: string | undefined = ''
+	let field: string | undefined = '';
 	// Initialize the KInput value based
 	// on the form value in the KFormItem context
-	function formUpdateField(init = false){
-		field = formContext.split('&').pop()
+	function formUpdateField(init = false) {
+		field = formContext.split('&').pop();
 		value = formInstance.getValueByPath(
 			field,
-			init ? formInstance.__default_value: formInstance.__value
-		)
+			init ? formInstance.__default_value : formInstance.__value
+		);
 	}
 	function formPropsChangeCb(props: Record<any, any>) {
-		disabledFrom = props.disabled
-		sizeFrom = props.size
+		disabledFrom = props.disabled;
+		sizeFrom = props.size;
 	}
 
-
 	// Register event, KForm can set KInput value
-	if(formContext && formInstance){
-		formUpdateField(true)
-		formPropsChangeCb(formInstance.__dynamicProps)
+	if (formContext && formInstance) {
+		formUpdateField(true);
+		formPropsChangeCb(formInstance.__dynamicProps);
 		formInstance.__itemCompMap[field] = {
 			update: formUpdateField,
 			type: 'radio'
 		};
-		formInstance.__propHandleEvtMap.push(formPropsChangeCb)
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb);
 	}
 	/*********************** KForm logic end ************************/
 
@@ -60,20 +59,16 @@
 	}
 
 	// disable change synchronization radio disable status
-	let disabledInner = disabledInnerForm;
-	$: if (disabledInner !== disabledInnerForm) {
+	$: {
 		Array.from(radioMap.values()).forEach((m: radioMapItem) => {
 			m.setDisabled(disabledInnerForm);
 		});
-		disabledInner = disabledInnerForm;
 	}
 
-	let sizeInner = sizeInnerForm;
-	$: if (sizeInner !== sizeInnerForm) {
+	$: {
 		Array.from(radioMap.values()).forEach((m: radioMapItem) => {
 			m.setSizes(sizeInnerForm as KRadioGroupProps['size']);
 		});
-		sizeInner = sizeInnerForm;
 	}
 
 	// Register radio
@@ -108,10 +103,10 @@
 	const updatedValueWhenRadioChange = async (status: boolean, uid: string | number) => {
 		valueInner = uid;
 		dispatch('updateValue', uid);
-		if(formInstance){
+		if (formInstance) {
 			formInstance?.updateField(field!, uid);
-			await tick()
-			value = uid
+			await tick();
+			value = uid;
 		}
 	};
 
@@ -119,9 +114,9 @@
 		// Passed to the radio component to register the radio in the context
 		registerRadio,
 		// Passed to the radio component to set the size during initialization
-		size: sizeInnerForm,
+		size: sizeInnerForm || size,
 		// Passed to the radio component to set the disable during initialization
-		disabled: disabledInnerForm,
+		disabled: disabledInnerForm || disabled,
 		// Passed to the radio component to update the valueInner of radioGroup
 		updatedValueWhenRadioChange
 	});

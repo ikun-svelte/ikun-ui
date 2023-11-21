@@ -242,7 +242,7 @@
 	const prefixCls = getPrefixCls('select');
 	$: cnames = clsx(
 		`${prefixCls}--base`,
-		`${prefixCls}__${sizeInner}`,
+		`${prefixCls}__${sizeInner || size}`,
 		{
 			[`${prefixCls}--base__disabled`]: disabledInner,
 			[`${prefixCls}--base__dark`]: !disabledInner,
@@ -255,15 +255,15 @@
 		},
 		cls
 	);
-	$: selectCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__${sizeInner}`, {
+	$: selectCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__${sizeInner || size}`, {
 		[`${prefixCls}--inner__dark`]: !disabledInner,
 		[`${prefixCls}--base__disabled`]: disabledInner,
 		[`${prefixCls}--base__disabled__dark`]: disabledInner,
 		[`${prefixCls}--inner__disabled__dark`]: disabledInner
 	});
-	const prefixIconCls = clsx(`${prefixCls}--prefix`, `${prefixCls}--icon__${sizeInner}`);
-	const suffixIconCls = clsx(`${prefixCls}--suffix`, `${prefixCls}--icon__${sizeInner}`);
-	const selectIconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${sizeInner}`);
+	const prefixIconCls = clsx(`${prefixCls}--prefix`, `${prefixCls}--icon__${sizeInner || size}`);
+	const suffixIconCls = clsx(`${prefixCls}--suffix`, `${prefixCls}--icon__${sizeInner || size}`);
+	const selectIconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${sizeInner || size}`);
 	const noDataCls = clsx(`${prefixCls}--tx__empty`);
 	/*//initial field
   formContext?.initialField(value);
