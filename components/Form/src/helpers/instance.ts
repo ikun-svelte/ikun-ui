@@ -2,7 +2,7 @@ import type {
 	IKunFormInstanceOption,
 	ShowMsg,
 	IKunFormInstance,
-	FormValidateCallback, Value
+	FormValidateCallback,
 } from "../types";
 import { jsonClone } from 'baiwusanyu-utils';
 import { getValueByPath, setValueByPath } from './fields';
