@@ -43,6 +43,10 @@ Use `disabled` attribute to determine whether a slider is disabled.
 
 <demo src="slider/render.svelte" github="Slider"></demo>
 
+## Sizes
+
+<demo src="slider/sizes.svelte" github="Slider"></demo>
+
 ## Slider Props
 
 | Name     | Type                     | Default | Description                |

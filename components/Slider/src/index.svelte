@@ -1,14 +1,17 @@
 <script lang="ts">
+	import type { KSliderProps } from './types';
 	import { createEventDispatcher } from 'svelte';
-	import { clsx, type ClassValue } from 'clsx';
+	import { getPrefixCls } from '@ikun-ui/utils';
+	import { clsx } from 'clsx';
 
-	export let min: number = 0;
-	export let max: number = 100;
-	export let value: number = 0;
-	export let step: number = 1;
-	export let disabled: boolean = false;
-	export let attrs: Record<string, string> = {};
-	export let cls: ClassValue = undefined;
+	export let size: KSliderProps['size'] = 'md';
+	export let min: KSliderProps['min'] = 0;
+	export let max: KSliderProps['max'] = 100;
+	export let value: KSliderProps['value'] = 0;
+	export let step: KSliderProps['step'] = 1;
+	export let disabled: KSliderProps['disabled'] = false;
+	export let attrs: KSliderProps['attrs'] = {};
+	export let cls: KSliderProps['cls'] = undefined;
 
 	// current value
 	let isDragging: boolean = false;
@@ -24,7 +27,7 @@
 	$: percentage = `${((value - min) / (max - min)) * 100}%`;
 
 	// element
-	let sliderRunwayRef: null | HTMLElement = null;
+	let runwayRef: null | HTMLElement = null;
 	// updateValue
 	const dispatch = createEventDispatcher();
 
@@ -32,8 +35,8 @@
 		if (disabled) return;
 		let newPercent = 0;
 		const clientX = event.clientX;
-		const sliderOffsetLeft = sliderRunwayRef!.getBoundingClientRect().left;
-		const sliderSize = sliderRunwayRef!.getBoundingClientRect().width;
+		const sliderOffsetLeft = runwayRef!.getBoundingClientRect().left;
+		const sliderSize = runwayRef!.getBoundingClientRect().width;
 		newPercent = ((clientX - sliderOffsetLeft) / sliderSize) * 100;
 		if (newPosition < 0 || newPosition > 100) return;
 		setPosition(newPercent);
@@ -79,10 +82,10 @@
 	};
 
 	const onDragging = (event: MouseEvent) => {
-		if (!isDragging || !sliderRunwayRef) return;
+		if (!isDragging || !runwayRef) return;
 		let diff: number;
 		const { clientX } = getClientXY(event);
-		const sliderWidth = sliderRunwayRef.getBoundingClientRect().width;
+		const sliderWidth = runwayRef.getBoundingClientRect().width;
 		diff = ((clientX - startX) / sliderWidth) * 100;
 		newPosition = startPosition + diff;
 		setPosition(newPosition);
@@ -96,33 +99,30 @@
 		window.removeEventListener('mouseup', onDragEnd);
 	};
 
-	$: cnames = clsx('k-slider--base', cls);
-	$: sliderRunwayCls = clsx('k-slider--runway', {
-		'k-cur-disabled': disabled
+	// class names
+	const prefixCls = getPrefixCls('slider');
+	$: baseCls = clsx(prefixCls, `${prefixCls}--base`, `${prefixCls}--${size}`, cls);
+	$: buttonWrapperCls = clsx(`${prefixCls}--button-wrapper`);
+	$: buttonCls = clsx(`${prefixCls}--button`, `${prefixCls}--button--${size}`);
+	$: runwayCls = clsx(`${prefixCls}--runway`, `${prefixCls}--runway--${size}`, {
+		[`${prefixCls}--runway__disabled`]: disabled
 	});
 </script>
 
-<div class="w-full flex">
-	<div {...attrs} class={cnames}>
+<div class={baseCls} {...$$restProps} {...attrs}>
+	<div bind:this={runwayRef} class={runwayCls} aria-hidden="true" on:mousedown={handleRunwayClick}>
 		<div
-			bind:this={sliderRunwayRef}
-			class={sliderRunwayCls}
+			class={buttonWrapperCls}
 			aria-hidden="true"
-			on:mousedown={handleRunwayClick}
+			on:mousedown={handleMouseDown}
+			style:left={percentage}
 		>
-			<div class="k-slider--bar" style="width: {percentage}; left: 0%"></div>
-			<div
-				class="k-slider--button-wrapper"
-				aria-hidden="true"
-				on:mousedown={handleMouseDown}
-				style:left={percentage}
-			>
-				{#if $$slots.buttonRender}
-					<slot name="buttonRender" />
-				{:else}
-					<div class="k-slider--button"></div>
-				{/if}
-			</div>
+			{#if $$slots.buttonRender}
+				<slot name="buttonRender" />
+			{:else}
+				<div class={buttonCls}></div>
+			{/if}
 		</div>
+		<div class="k-slider--bar" style="width: {percentage}; left: 0%"></div>
 	</div>
 </div>
