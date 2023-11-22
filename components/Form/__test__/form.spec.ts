@@ -663,34 +663,32 @@ describe('Test: KForm', () => {
   })
 
   test('api: KForm clearValidateField', async () => {
-
+    let value: any = {}
     const instance = render(KFormClearValidateField);
+    instance.component.$on('getRes', (data) => {
+      value = data.detail
+    });
     const btn = await screen.getByTestId('validate')
     await fireEvent.click(btn);
     await tick();
     await vi.advanceTimersByTimeAsync(300);
-    let res = await screen.findByText('KInput 3 ~5')
-    debugger
+    const res = await screen.findByText('KInput 3 ~5')
     expect(res).toBeTruthy()
-
+    expect(value).toMatchSnapshot()
     const btnClear = await screen.getByTestId('clearValidateField')
     await fireEvent.click(btnClear);
     await tick();
     await vi.advanceTimersByTimeAsync(300);
     await waitFor(() => {
-      debugger
-      expect(screen.findByText('KInput 3 ~5')).toHaveBeenCalledTimes(1)
+      // @ts-ignore
+      expect(document.body.innerHTML.includes('KInput 3 ~5')).not.toBeTruthy()
+      expect(value).toMatchSnapshot()
     })
-    debugger
-
-    expect(host.innerHTML.includes('KInput 3 ~5')).not.toBeTruthy()
 
     btn?.click()
     await tick();
-    expect(host.innerHTML.includes('KInput 3 ~5')).toBeTruthy()
-    debugger
-    // 值
-    // 清
-    // 值
+    // @ts-ignore
+    expect(document.body.innerHTML.includes('KInput 3 ~5')).toBeTruthy()
+    expect(value).toMatchSnapshot()
   })
 })

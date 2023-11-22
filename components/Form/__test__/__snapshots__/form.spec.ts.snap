@@ -1,5 +1,53 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Test: KForm > api: KForm clearValidateField 1`] = `
+{
+  "data": {
+    "KInput": "KInput",
+  },
+  "invalidFields": [
+    {
+      "field": "KInput",
+      "fieldValue": "KInput",
+      "message": "KInput 3 ~5",
+    },
+  ],
+  "isValid": false,
+}
+`;
+
+exports[`Test: KForm > api: KForm clearValidateField 2`] = `
+{
+  "data": {
+    "KInput": "KInput",
+  },
+  "invalidFields": [
+    {
+      "field": "KInput",
+      "fieldValue": "KInput",
+      "message": "KInput 3 ~5",
+    },
+  ],
+  "isValid": false,
+}
+`;
+
+exports[`Test: KForm > api: KForm clearValidateField 3`] = `
+{
+  "data": {
+    "KInput": "KInput",
+  },
+  "invalidFields": [
+    {
+      "field": "KInput",
+      "fieldValue": "KInput",
+      "message": "KInput 3 ~5",
+    },
+  ],
+  "isValid": false,
+}
+`;
+
 exports[`Test: KForm > api: KForm validateForm > {"data":{"KInput":"KInput","KSwitch":true,"KRate":null,"KRadio":"","KCheckbox":[],"KSelect":null,"KSelectString":""},"isValid":false,"invalidFields":[{"message":"KInput 3 ~5","fieldValue":"KInput","field":"KInput"},{"message":"KRate error","fieldValue":null,"field":"KRate"},{"message":"KRadio error","fieldValue":"","field":"KRadio"},{"message":"KRadio error","fieldValue":[],"field":"KCheckbox"},{"message":"KSelect error","fieldValue":null,"field":"KSelect"},{"message":"KSelectString custom error","fieldValue":"","field":"KSelectString"}]} 1`] = `
 {
   "data": {

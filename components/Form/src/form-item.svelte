@@ -94,7 +94,7 @@
 		<slot />
 		{#if errorMsg && showMsg}
 			<div class={errorMsgCls}
-					 transition:fly={{ y: -3, duration: 300 }}>
+					 in:fly={{ y: -3, duration: 300 }}>
 				<slot name="error">
 					{errorMsg}
 				</slot>
