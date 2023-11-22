@@ -77,6 +77,7 @@
 		"unocss": "^0.54.1"
 	},
 	"dependencies": {
+		"@ikun-ui/affix": "workspace:*",
 		"@ikun-ui/alert": "workspace:*",
 		"@ikun-ui/avatar": "workspace:*",
 		"@ikun-ui/backtop": "workspace:*",
