@@ -17,5 +17,5 @@ export const sliderShortcuts: Record<string, string> = {
 	'k-slider--button__wrapper__lg': 'h-30px -top-13px',
 	'k-slider--button__sm': 'h-14px w-14px',
 	'k-slider--button__md': 'h-20px w-20px',
-	'k-slider--button__lg': 'h-30px w-30px',
+	'k-slider--button__lg': 'h-30px w-30px'
 };
