@@ -4,7 +4,7 @@
 // ⭕TODO: validator
 // ⭕TODO: validator 后 require max min 将失效
 import { getValueByPath } from './fields';
-import { isArray, isNumber, isObject, isString } from 'baiwusanyu-utils';
+import { isArray, isEmptyObj, isNumber, isObject, isString } from "baiwusanyu-utils";
 import type { KFormComponent, KFormRule, KFormRules, ValidateError } from '../types';
 
 /**
@@ -35,7 +35,7 @@ export function doValidate(
 					}
 				});
 			} else {
-				const type = itemCompMap[field as keyof typeof itemCompMap].type;
+				const type = (itemCompMap[field as keyof typeof itemCompMap] || {}).type;
 				// switch does not require verification required
 				validateRequired(ruleOption, value, field, errors, type !== 'switch');
 				validateMin(ruleOption, value, field, errors);
@@ -65,7 +65,7 @@ export function doValidateField(
 					}
 				});
 			} else {
-				const type = itemCompMap[path as keyof typeof itemCompMap].type;
+				const type = (itemCompMap[path as keyof typeof itemCompMap] || {}).type;
 				// switch does not require verification required
 				validateRequired(ruleOption, value, path, undefined, type !== 'switch');
 				validateMin(ruleOption, value, path);
@@ -84,7 +84,7 @@ function validateRequired(
 	isValidate = true
 ) {
 	if (rule.required && isValidate) {
-		if (!value && value !== 0) {
+		if ((!value && value !== 0) || isEmptyObj(value) ||  JSON.stringify(value) === "[]") {
 			const msg = rule.msg || `${field} is required`;
 			errors &&
 				errors.push({

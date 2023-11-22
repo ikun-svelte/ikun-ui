@@ -64,7 +64,9 @@
 	);
 	$: lableCls = clsx(
 		`${prefixCls}-label`,
-		`${prefixCls}-label__${labelAlign}`,
+		{
+			[`${prefixCls}-label__${labelAlign}`]: labelPosition !== 'vertical'
+		},
 		`${prefixCls}-label__${labelPosition}`,
 		`${prefixCls}-label__${size}`,
 		{

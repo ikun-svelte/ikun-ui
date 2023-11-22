@@ -73,7 +73,7 @@
 	 * @param v disabled value
 	 */
 	function setDisabled(v: boolean) {
-		isDisabled = v;
+		isDisabled = v || disabled;
 	}
 
 	function setSizes(v: KCheckboxProps['size']) {

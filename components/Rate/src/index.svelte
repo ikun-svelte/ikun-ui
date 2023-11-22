@@ -175,16 +175,14 @@
 		}
 		if (clearable && value === currentValue) {
 			dispatch('updateValue', 0);
-			formInstance && formInstance?.updateField(field!, 0);
+			formInstance && formInstance?.updateField(field!, 0, !formInstance.__manual_validate);
 			value = 0;
 		} else {
 			dispatch('updateValue', currentValue);
-			formInstance && formInstance?.updateField(field!, currentValue);
+			formInstance && formInstance?.updateField(field!, currentValue, !formInstance.__manual_validate);
 			value = currentValue;
 		}
 	};
-	// TODO: Rate component can cancel rating
-	// TODO: Rate component can cancel rating(KFrom)
 
 	// class names
 	const prefixCls = getPrefixCls('rate');
@@ -205,7 +203,7 @@
 </script>
 
 <div class={baseCls} {...$$restProps} {...attrs}>
-	{#each maxNumbers as item}
+	{#each maxNumbers as item (item)}
 		<span
 			class={itemCls}
 			aria-hidden="true"

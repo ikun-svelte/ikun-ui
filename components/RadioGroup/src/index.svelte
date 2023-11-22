@@ -2,7 +2,7 @@
 	import type { KRadioGroupProps, radioMapType, radioMapItem } from './types';
 	import { radioGroupKey, getPrefixCls, formItemKey, formKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import { createEventDispatcher, setContext, getContext, tick } from 'svelte';
+	import { createEventDispatcher, setContext, getContext, tick, onMount } from "svelte";
 	import type { IKunFormInstance } from '@ikun-ui/form';
 	export let value: KRadioGroupProps['value'] = '';
 	export let size: KRadioGroupProps['size'] = 'md';
@@ -32,16 +32,19 @@
 		sizeFrom = props.size;
 	}
 
-	// Register event, KForm can set KInput value
-	if (formContext && formInstance) {
-		formUpdateField(true);
-		formPropsChangeCb(formInstance.__dynamicProps);
-		formInstance.__itemCompMap[field] = {
-			update: formUpdateField,
-			type: 'radio'
-		};
-		formInstance.__propHandleEvtMap.push(formPropsChangeCb);
-	}
+
+	onMount(() => {
+		// Register event, KForm can set KInput value
+		if (formContext && formInstance) {
+			formUpdateField(true);
+			formPropsChangeCb(formInstance.__dynamicProps);
+			formInstance.__itemCompMap[field] = {
+				update: formUpdateField,
+				type: 'radio'
+			};
+			formInstance.__propHandleEvtMap.push(formPropsChangeCb);
+		}
+	})
 	/*********************** KForm logic end ************************/
 
 	// updateValue
@@ -104,7 +107,7 @@
 		valueInner = uid;
 		dispatch('updateValue', uid);
 		if (formInstance) {
-			formInstance?.updateField(field!, uid);
+			formInstance?.updateField(field!, uid, !formInstance.__manual_validate);
 			await tick();
 			value = uid;
 		}

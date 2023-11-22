@@ -8,7 +8,6 @@
   import { KCheckbox } from '@ikun-ui/checkbox';
   import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
   import { KSelect } from '@ikun-ui/select'
-  import { onMount } from "svelte";
   const initValue = {
     KInput: 'KInput',
     KSwitch: true,
@@ -26,16 +25,12 @@
     {label: '何处得秋霜', value: '何处', id: '4'},
   ]
 
-  let currentValue = {}
-  onMount(() => {
-    if(KFormInst){
-      currentValue = KFormInst.getForm()
-    }
-  })
+  let disabled = true
 
 
 </script>
 <KForm {initValue}
+       {disabled}
        bind:this={KFormInst}>
   <KFormItem field="KInput" label="KInput">
     <KInput placeholder="Please input value">
@@ -77,7 +72,7 @@
       dataList={['Tiny', 'Small', 'Normal', 'Large', 'Huge']}
     ></KSelect>
   </KFormItem>
-  <KFormItem>
-    <span id="form_value">{JSON.stringify(currentValue)}</span>
-  </KFormItem>
 </KForm>
+
+<button on:click={()=> disabled = !disabled}></button>
+

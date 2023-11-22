@@ -65,8 +65,8 @@
 	}
 
 
-	export function setFields(path: string, value: any, isValidate = false){
-		formInst && formInst.setFields(path, value, isValidate)
+	export function setField(path: string, value: any, isValidate = false){
+		formInst && formInst.setField(path, value, isValidate)
 	}
 
 	export function getForm<T>(){

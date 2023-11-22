@@ -102,7 +102,7 @@
 		if (data && (valueType === 'n' || valueType === 's')) {
 			const finalData = data[valueKey as keyof typeof data];
 			dispatch('updateValue', finalData);
-			formInstance && formInstance?.updateField(field!, finalData);
+			formInstance && formInstance?.updateField(field!, finalData, !formInstance.__manual_validate);
 			formInstance && (value = finalData);
 			await tick();
 		} else if (
@@ -110,7 +110,7 @@
 			(valueType === 'o' && isObject(data))
 		) {
 			dispatch('updateValue', data);
-			formInstance && formInstance?.updateField(field!, data);
+			formInstance && formInstance?.updateField(field!, data, !formInstance.__manual_validate);
 			await tick();
 			formInstance && (value = data!);
 		}

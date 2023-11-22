@@ -8,15 +8,15 @@
   import { KCheckbox } from '@ikun-ui/checkbox';
   import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
   import { KSelect } from '@ikun-ui/select'
-  import { onMount } from "svelte";
+  import { createEventDispatcher } from "svelte";
   const initValue = {
     KInput: 'KInput',
     KSwitch: true,
-    KRate: 4,
-    KRadio: '3',
-    KCheckbox: ['2'],
-    KSelect: {label: '不知明镜里', value: '不知', id: '3'},
-    KSelectString: 'Huge'
+    KRate: null,
+    KRadio: '',
+    KCheckbox: [],
+    KSelect: null,
+    KSelectString: ''
   }
   let KFormInst: KForm | undefined = undefined
   const dataList = [
@@ -26,16 +26,71 @@
     {label: '何处得秋霜', value: '何处', id: '4'},
   ]
 
-  let currentValue = {}
-  onMount(() => {
+  const rules = {
+    KInput: [
+      { required: true, msg: 'KInput required'},
+      { min: 3, max: 5,  msg: 'KInput 3 ~5' },
+    ],
+    KSwitch: [
+      {
+        required: true,
+        msg: 'KSwitch error',
+      },
+    ],
+    KRate: [
+      {
+        required: true,
+        msg: 'KRate error',
+      },
+    ],
+    KRadio: [
+      {
+        required: true,
+        msg: 'KRadio error',
+      },
+    ],
+    KCheckbox: [
+      {
+        required: true,
+        msg: 'KRadio error',
+      },
+    ],
+    KSelect: [
+      {
+        required: true,
+        msg: 'KSelect error',
+      },
+    ],
+    KSelectString: [
+      {
+        required: true,
+        msg: 'KSelectString error',
+        validator: (value, callback) => {
+          if(!value){
+            callback('KSelectString custom error')
+          }
+        },
+      },
+    ],
+  }
+
+
+  const dispatch = createEventDispatcher();
+  const handleValidate = () => {
     if(KFormInst){
-      currentValue = KFormInst.getForm()
+      KFormInst.validateForm((data, isValid, invalidFields) => {
+        dispatch('getRes', {
+          data,
+          isValid,
+          invalidFields
+        })
+      })
     }
-  })
-
-
+  }
 </script>
 <KForm {initValue}
+       {rules}
+       labelWidth="120"
        bind:this={KFormInst}>
   <KFormItem field="KInput" label="KInput">
     <KInput placeholder="Please input value">
@@ -77,7 +132,5 @@
       dataList={['Tiny', 'Small', 'Normal', 'Large', 'Huge']}
     ></KSelect>
   </KFormItem>
-  <KFormItem>
-    <span id="form_value">{JSON.stringify(currentValue)}</span>
-  </KFormItem>
 </KForm>
+<button id='validate' on:click={handleValidate}>validate</button>

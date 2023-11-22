@@ -84,7 +84,7 @@
 		if (disabledInner) return;
 		const { value: inputValue } = e.target as HTMLInputElement;
 		dispatch('input', inputValue, e);
-		formInstance && formInstance?.updateField(field!, inputValue);
+		formInstance && formInstance?.updateField(field!, inputValue, !formInstance.__manual_validate);
 		if (!useCompositionInput || !isComposing) {
 			value = inputValue;
 			if (useCompositionInput && !isComposing) {
@@ -96,7 +96,11 @@
 	const onChange = (e: Event) => {
 		if (disabledInner) return;
 		dispatch('change', e);
-		formInstance && formInstance?.updateField(field!, (e?.target as HTMLInputElement)?.value)
+		formInstance && formInstance?.updateField(
+			field!,
+			(e?.target as HTMLInputElement)?.value,
+			!formInstance.__manual_validate
+		)
 	};
 
 	const onClear = () => {

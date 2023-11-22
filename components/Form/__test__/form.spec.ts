@@ -1,6 +1,19 @@
-
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import KFormInit from './fixture/init.svelte';
+import KFormLabelWidth from './fixture/labelWidth.svelte';
+import KFormLabelAlign from './fixture/labelAlign.svelte';
+import KFormLabelPosition from './fixture/labelPosition.svelte';
+import KFormDisabled from './fixture/disabled.svelte';
+import KFormSize from './fixture/size.svelte';
+import KFormManualValidate from './fixture/manualValidate.svelte';
+import KFormValidateForm from './fixture/validateForm.svelte';
+import KFormResetForm from './fixture/resetForm.svelte';
+import KFormGetForm from './fixture/getForm.svelte';
+import KFormSetForm from './fixture/setForm.svelte';
+import KFormSetField from './fixture/setField.svelte';
+import KFormClearValidateField from './fixture/clearValidateField.svelte';
+import { tick } from "svelte";
+import { fireEvent, screen, render, waitFor } from '@testing-library/svelte';
 
 let host: HTMLElement;
 
@@ -11,11 +24,12 @@ const initHost = () => {
 };
 beforeEach(() => {
   initHost();
+  vi.useFakeTimers();
 });
 afterEach(() => {
   host.remove();
+  vi.useRealTimers();
 });
-
 describe('Test: KForm', () => {
   vi.mock('svelte', async () => {
     const actual = (await vi.importActual('svelte')) as object;
@@ -26,13 +40,14 @@ describe('Test: KForm', () => {
     };
   });
 
-  test('props: initValue', async () => {
+  test('props: KForm initValue', async () => {
+    // TODO: slider test
     const instance = new KFormInit({
       target: host,
     });
     expect(instance).toBeTruthy();
-    const input = host.querySelector('.k-input--inner')
 
+    const input = host.querySelector('.k-input--inner')
     expect(input.value).toBe('KInput')
 
     expect(host.innerHTML.includes(`k-form-item-label__right`)).toBeTruthy();
@@ -65,4 +80,617 @@ describe('Test: KForm', () => {
     })
     expect(host.innerHTML).matchSnapshot();
   });
+
+  test('props: KForm labelWidth', async () => {
+    const instance = new KFormLabelWidth({
+      target: host,
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+    const labelEl = host.querySelector('.k-form-item-label')
+    expect(labelEl.style.width).toBe('200px')
+    const btnEl = host.querySelector('button')
+    btnEl?.click()
+    await tick()
+    expect(labelEl.style.width).toBe('100px')
+    expect(host.innerHTML).matchSnapshot();
+  })
+
+  test('props: KForm labelAlign', async () => {
+    const instance = new KFormLabelAlign({
+      target: host,
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+    expect(host.querySelector('.k-form-item-label__left')).toBeTruthy()
+
+    let btnEl = host.querySelector('#align_right')
+    btnEl?.click()
+    await tick()
+    expect(host.querySelector('.k-form-item-label__right')).toBeTruthy()
+
+    btnEl = host.querySelector('#align_center')
+    btnEl?.click()
+    await tick()
+    expect(host.querySelector('.k-form-item-label__center')).toBeTruthy()
+
+    btnEl = host.querySelector('#align_left')
+    btnEl?.click()
+    await tick()
+    expect(host.querySelector('.k-form-item-label__left')).toBeTruthy()
+  })
+
+  test('props: KForm labelPosition', async () => {
+    const instance = new KFormLabelPosition({
+      target: host,
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+    expect(host.querySelector('.k-form-item-label__right')).not.toBeTruthy()
+    expect(host.querySelector('.k-form-item-label__horizontal')).not.toBeTruthy()
+    expect(host.querySelector('.k-form-item-label__vertical')).toBeTruthy()
+    const btnEl = host.querySelector('button')
+    btnEl?.click()
+    await tick()
+    expect(host.querySelector('.k-form-item-label__right')).toBeTruthy()
+    expect(host.querySelector('.k-form-item-label__horizontal')).toBeTruthy()
+    expect(host.querySelector('.k-form-item-label__vertical')).not.toBeTruthy()
+  })
+
+  test('props: KForm disabled', async () => {
+    // TODO: slider test
+    const instance = new KFormDisabled({
+      target: host,
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+
+    expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(7)
+    expect(host.querySelector('.k-input__disabled')).toBeTruthy()
+    expect(host.querySelector('.k-switch__disabled')).toBeTruthy()
+    expect(host.querySelector('.k-rate--item__disabled')).toBeTruthy()
+    expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(4)
+    expect(host.querySelectorAll('.k-checkbox--box__disabled').length).toBe(4)
+    expect(host.querySelectorAll('.k-select--base__disabled').length).toBe(4)
+
+    const btnEl = host.querySelector('button')
+    btnEl?.click()
+    await tick()
+    expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(0)
+    expect(host.querySelector('.k-input__disabled')).not.toBeTruthy()
+    expect(host.querySelector('.k-switch__disabled')).not.toBeTruthy()
+    expect(host.querySelector('.k-rate--item__disabled')).not.toBeTruthy()
+    expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(1)
+    expect(host.querySelectorAll('.k-checkbox--box__disabled').length).toBe(1)
+    expect(host.querySelectorAll('.k-select--base__disabled').length).toBe(0)
+
+    btnEl?.click()
+    await tick()
+    expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(7)
+    expect(host.querySelector('.k-input__disabled')).toBeTruthy()
+    expect(host.querySelector('.k-switch__disabled')).toBeTruthy()
+    expect(host.querySelector('.k-rate--item__disabled')).toBeTruthy()
+    expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(4)
+    expect(host.querySelectorAll('.k-checkbox--box__disabled').length).toBe(4)
+    expect(host.querySelectorAll('.k-select--base__disabled').length).toBe(4)
+  })
+
+  test('props: KForm size', async () => {
+    // TODO: slider test
+    const instance = new KFormSize({
+      target: host,
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+
+    expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(7)
+    expect(host.querySelector('.k-input__sm')).toBeTruthy()
+    expect(host.querySelector('.k-switch--sm')).toBeTruthy()
+    expect(host.querySelector('.k-rate--sm')).toBeTruthy()
+    expect(host.querySelectorAll('.k-radio--sm').length).toBe(4)
+    expect(host.querySelectorAll('.k-checkbox--sm').length).toBe(4)
+    expect(host.querySelectorAll('.k-select__sm').length).toBe(2)
+
+    let btnEl = host.querySelector('#size_lg')
+    btnEl?.click()
+    await tick()
+    expect(host.querySelectorAll('.k-form-item-label__lg').length).toBe(7)
+    expect(host.querySelector('.k-input__lg')).toBeTruthy()
+    expect(host.querySelector('.k-switch--lg')).toBeTruthy()
+    expect(host.querySelector('.k-rate--lg')).toBeTruthy()
+    expect(host.querySelectorAll('.k-radio--lg').length).toBe(4)
+    expect(host.querySelectorAll('.k-checkbox--lg').length).toBe(4)
+    expect(host.querySelectorAll('.k-select__lg').length).toBe(2)
+
+    btnEl = host.querySelector('#size_md')
+    btnEl?.click()
+    await tick()
+    expect(host.querySelectorAll('.k-form-item-label__md').length).toBe(7)
+    expect(host.querySelector('.k-input__md')).toBeTruthy()
+    expect(host.querySelector('.k-switch--md')).toBeTruthy()
+    expect(host.querySelector('.k-rate--md')).toBeTruthy()
+    expect(host.querySelectorAll('.k-radio--md').length).toBe(4)
+    expect(host.querySelectorAll('.k-checkbox--md').length).toBe(4)
+    expect(host.querySelectorAll('.k-select__md').length).toBe(2)
+
+    btnEl = host.querySelector('#size_sm')
+    btnEl?.click()
+    await tick()
+    expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(7)
+    expect(host.querySelector('.k-input__sm')).toBeTruthy()
+    expect(host.querySelector('.k-switch--sm')).toBeTruthy()
+    expect(host.querySelector('.k-rate--sm')).toBeTruthy()
+    expect(host.querySelectorAll('.k-radio--sm').length).toBe(4)
+    expect(host.querySelectorAll('.k-checkbox--sm').length).toBe(4)
+    expect(host.querySelectorAll('.k-select__sm').length).toBe(2)
+
+  })
+
+  test('props: KForm manualValidate', async () => {
+    let value = {}
+    const instance = new KFormManualValidate({
+      target: host,
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+    instance.$on('getRes', (data) => {
+      value = data.detail
+    });
+    const inputEl = host.querySelector('.k-input--inner')
+    expect(inputEl.value).toBe('KInput')
+    await fireEvent.input(inputEl, { target: { value: '' } });
+    await tick();
+    expect(inputEl.value).toBe('')
+    expect(host.innerHTML.includes('k-form-item-msg_error')).not.toBeTruthy()
+    const btn = host.querySelector('#validate')
+    btn?.click()
+    await tick();
+    expect(host.innerHTML.includes('k-form-item-msg_error')).toBeTruthy()
+    expect(value).toMatchObject({
+      data: {
+        KInput: '',
+      },
+      isValid: false,
+      invalidFields: [
+        {
+          message: "Please input",
+          fieldValue:"",
+          field:"KInput",
+        }
+      ]
+    })
+  })
+
+  test('api: KForm validateForm', async () => {
+    // TODO: slider test
+    let value = {}
+    const instance = new KFormValidateForm({
+      target: host,
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+    instance.$on('getRes', (data) => {
+      value = data.detail
+    });
+    const btn = host.querySelector('#validate')
+    btn?.click()
+    await tick();
+    expect(host.querySelectorAll('.k-form-item-star').length).toBe(7)
+    expect(host.querySelectorAll('.k-form-item-msg_error').length).toBe(6)
+    expect(host.innerHTML.includes('KSelectString custom error')).toBeTruthy()
+    expect(value).toMatchSnapshot(JSON.stringify(value))
+  })
+
+  test('api: KForm resetForm', async () => {
+    // TODO: slider test
+    let value: any = {}
+    const initValue = {
+      KInput: 'KInput',
+      KSwitch: true,
+      KRate: null,
+      KRadio: '',
+      KCheckbox: [],
+      KSelect: null,
+      KSelectString: ''
+    }
+    const instance = new KFormResetForm({
+      target: host,
+      props: {
+        initValue
+      }
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+    instance.$on('getRes', (data) => {
+      value = data.detail
+    });
+    const btn = host.querySelector('#validate')
+    btn?.click()
+    await tick();
+    expect(value.data).toMatchObject(initValue)
+
+    const inputEl = host.querySelector('.k-input--inner')
+    await fireEvent.input(inputEl, { target: { value: 'test' } });
+
+    const switchEl = host.querySelector('.k-switch')
+    switchEl?.click()
+
+    const rateEl = host.querySelectorAll('.k-rate--item')[0]
+    rateEl?.click()
+
+    const radioEl = host.querySelectorAll('[type="radio"]')[0]
+    radioEl?.click()
+
+    const checkboxEl = host.querySelectorAll('[type="checkbox"]')[0]
+    checkboxEl?.click()
+
+    const triggerEl = host.querySelectorAll('[data-popover-trigger]')[0];
+    triggerEl.click()
+    await tick();
+    await vi.advanceTimersByTimeAsync(300);
+    const itemEl = host.querySelector('[data-kv-key="1"]')?.children[0];
+    itemEl?.click()
+
+    const triggerEl2 = host.querySelectorAll('[data-popover-trigger]')[1];
+    triggerEl2.click()
+    await tick();
+    await vi.advanceTimersByTimeAsync(300);
+    const itemEl2 = host.querySelector('[data-kv-key="Huge"]')?.children[0];
+    itemEl2?.click()
+
+    btn?.click()
+    await tick();
+
+    expect(value.data).toMatchObject({
+      KInput : "test",
+      KSwitch : false,
+      KRate : 0,
+      KRadio : "1",
+      KCheckbox: ["1"],
+      KSelect : {
+        label : "白发三千丈",
+        value : "白发",
+        id : "1",
+      },
+      KSelectString: "Huge"
+    })
+
+    const btnReset = host.querySelector('#reset')
+    btnReset?.click()
+    await tick();
+    await vi.advanceTimersByTimeAsync(300);
+    btn?.click()
+    await tick();
+    expect(value.data).toMatchObject(initValue)
+  })
+
+  test('api: KForm getForm', async () => {
+    // TODO: slider test
+    let value: any = {}
+    const initValue = {
+      KInput: 'KInput',
+      KSwitch: true,
+      KRate: null,
+      KRadio: '',
+      KCheckbox: [],
+      KSelect: null,
+      KSelectString: ''
+    }
+    const instance = new KFormGetForm({
+      target: host,
+      props: {
+        initValue
+      }
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+    instance.$on('getRes', (data) => {
+      value = data.detail
+    });
+    const btn = host.querySelector('#getForm')
+    btn?.click()
+    await tick();
+    expect(value).toMatchObject(initValue)
+
+    const inputEl = host.querySelector('.k-input--inner')
+    await fireEvent.input(inputEl, { target: { value: 'test' } });
+
+    const switchEl = host.querySelector('.k-switch')
+    switchEl?.click()
+
+    const rateEl = host.querySelectorAll('.k-rate--item')[0]
+    rateEl?.click()
+
+    const radioEl = host.querySelectorAll('[type="radio"]')[0]
+    radioEl?.click()
+
+    const checkboxEl = host.querySelectorAll('[type="checkbox"]')[0]
+    checkboxEl?.click()
+
+    const triggerEl = host.querySelectorAll('[data-popover-trigger]')[0];
+    triggerEl.click()
+    await tick();
+    await vi.advanceTimersByTimeAsync(300);
+    const itemEl = host.querySelector('[data-kv-key="1"]')?.children[0];
+    itemEl?.click()
+
+    const triggerEl2 = host.querySelectorAll('[data-popover-trigger]')[1];
+    triggerEl2.click()
+    await tick();
+    await vi.advanceTimersByTimeAsync(300);
+    const itemEl2 = host.querySelector('[data-kv-key="Huge"]')?.children[0];
+    itemEl2?.click()
+
+    btn?.click()
+    await tick();
+
+    expect(value).toMatchObject({
+      KInput : "test",
+      KSwitch : false,
+      KRate : 0,
+      KRadio : "1",
+      KCheckbox: ["1"],
+      KSelect : {
+        label : "白发三千丈",
+        value : "白发",
+        id : "1",
+      },
+      KSelectString: "Huge"
+    })
+  })
+
+  test('api: KForm setForm & isValidate is true', async () => {
+    // TODO: slider test
+    let value: any = {}
+    const initValue = {
+      KInput: 'KInput',
+      KSwitch: true,
+      KRate: null,
+      KRadio: '',
+      KCheckbox: [],
+      KSelect: null,
+      KSelectString: ''
+    }
+    const instance = new KFormSetForm({
+      target: host,
+      props: {
+        initValue,
+        isValidate: true
+      }
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+    instance.$on('getRes', (data) => {
+      value = data.detail
+    });
+    const btn = host.querySelector('#getForm')
+    btn?.click()
+    await tick();
+    expect(value).toMatchObject(initValue)
+
+    const btnSetForm = host.querySelector('#setForm')
+    btnSetForm?.click()
+    await tick();
+    expect(host.innerHTML.includes('KInput 3 ~5')).toBeTruthy()
+
+
+    const input = host.querySelector('.k-input--inner')
+    expect(input.value).toBe('KInput change')
+
+    expect(host.querySelectorAll('.k-rate--active-icon').length === 1).toBeTruthy();
+
+    expect(host.querySelectorAll('.k-switch__unchecked').length === 1).toBeTruthy();
+
+    expect(host.querySelectorAll('.k-radio__selected').length === 1).toBeTruthy();
+    expect(host.querySelectorAll('.k-radio')[0].innerHTML.includes('k-radio__selected')).toBeTruthy();
+
+    expect(host.querySelectorAll('.i-carbon-checkmark').length === 1).toBeTruthy();
+    expect(host.querySelectorAll('.k-checkbox--base')[0].innerHTML.includes('i-carbon-checkmark')).toBeTruthy();
+
+    const selectInput = host.querySelectorAll('.k-select--inner')
+    expect(selectInput[0].value).toBe('白发三千丈')
+    expect(selectInput[1].value).toBe('Huge')
+
+    btn?.click()
+    await tick();
+    expect(value).toMatchObject({
+      KInput: 'KInput change',
+      KSwitch: false,
+      KRate: {
+        sub: 1
+      },
+      KRadio: '1',
+      KCheckbox: ['1'],
+      KSelect : {
+        label : "白发三千丈",
+        value : "白发",
+        id : "1",
+      },
+      KSelectString: "Huge"
+    })
+
+  })
+
+  test('api: KForm setForm & isValidate is false', async () => {
+    // TODO: slider test
+    let value: any = {}
+    const initValue = {
+      KInput: 'KInput',
+      KSwitch: true,
+      KRate: null,
+      KRadio: '',
+      KCheckbox: [],
+      KSelect: null,
+      KSelectString: ''
+    }
+    const instance = new KFormSetForm({
+      target: host,
+      props: {
+        initValue,
+        isValidate: false
+      }
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+    instance.$on('getRes', (data) => {
+      value = data.detail
+    });
+    const btn = host.querySelector('#getForm')
+    btn?.click()
+    await tick();
+    expect(value).toMatchObject(initValue)
+
+    const btnSetForm = host.querySelector('#setForm')
+    btnSetForm?.click()
+    await tick();
+    expect(host.innerHTML.includes('KInput 3 ~5')).not.toBeTruthy()
+
+
+    const input = host.querySelector('.k-input--inner')
+    expect(input.value).toBe('KInput change')
+
+    expect(host.querySelectorAll('.k-rate--active-icon').length === 1).toBeTruthy();
+
+    expect(host.querySelectorAll('.k-switch__unchecked').length === 1).toBeTruthy();
+
+    expect(host.querySelectorAll('.k-radio__selected').length === 1).toBeTruthy();
+    expect(host.querySelectorAll('.k-radio')[0].innerHTML.includes('k-radio__selected')).toBeTruthy();
+
+    expect(host.querySelectorAll('.i-carbon-checkmark').length === 1).toBeTruthy();
+    expect(host.querySelectorAll('.k-checkbox--base')[0].innerHTML.includes('i-carbon-checkmark')).toBeTruthy();
+
+    const selectInput = host.querySelectorAll('.k-select--inner')
+    expect(selectInput[0].value).toBe('白发三千丈')
+    expect(selectInput[1].value).toBe('Huge')
+
+    btn?.click()
+    await tick();
+    expect(value).toMatchObject({
+      KInput: 'KInput change',
+      KSwitch: false,
+      KRate: {
+        sub: 1
+      },
+      KRadio: '1',
+      KCheckbox: ['1'],
+      KSelect : {
+        label : "白发三千丈",
+        value : "白发",
+        id : "1",
+      },
+      KSelectString: "Huge"
+    })
+
+  })
+
+  test('api: KForm setField & isValidate is true', async () => {
+
+    let value: any = {}
+    const initValue = {
+      KInput: 'KInput',
+    }
+    const instance = new KFormSetField({
+      target: host,
+      props: {
+        initValue,
+        isValidate: true
+      }
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+    instance.$on('getRes', (data) => {
+      value = data.detail
+    });
+    const btn = host.querySelector('#getForm')
+    btn?.click()
+    await tick();
+    expect(value).toMatchObject(initValue)
+
+    const btnSetForm = host.querySelector('#setField')
+    btnSetForm?.click()
+    await tick();
+    expect(host.innerHTML.includes('KInput 3 ~5')).toBeTruthy()
+
+
+    const input = host.querySelector('.k-input--inner')
+    expect(input.value).toBe('KInput change')
+
+    btn?.click()
+    await tick();
+    expect(value).toMatchObject({
+      KInput: 'KInput change',
+    })
+  })
+
+  test('api: KForm setField & isValidate is false', async () => {
+
+    let value: any = {}
+    const initValue = {
+      KInput: 'KInput',
+    }
+    const instance = new KFormSetField({
+      target: host,
+      props: {
+        initValue,
+        isValidate: false
+      }
+    });
+    expect(instance).toBeTruthy();
+    await tick()
+    instance.$on('getRes', (data) => {
+      value = data.detail
+    });
+    const btn = host.querySelector('#getForm')
+    btn?.click()
+    await tick();
+    expect(value).toMatchObject(initValue)
+
+    const btnSetForm = host.querySelector('#setField')
+    btnSetForm?.click()
+    await tick();
+    await vi.advanceTimersByTimeAsync(300);
+    expect(host.innerHTML.includes('KInput 3 ~5')).not.toBeTruthy()
+
+
+    const input = host.querySelector('.k-input--inner')
+    expect(input.value).toBe('KInput change')
+
+    btn?.click()
+    await tick();
+    expect(value).toMatchObject({
+      KInput: 'KInput change',
+    })
+  })
+
+  test('api: KForm clearValidateField', async () => {
+
+    const instance = render(KFormClearValidateField);
+    const btn = await screen.getByTestId('validate')
+    await fireEvent.click(btn);
+    await tick();
+    await vi.advanceTimersByTimeAsync(300);
+    let res = await screen.findByText('KInput 3 ~5')
+    debugger
+    expect(res).toBeTruthy()
+
+    const btnClear = await screen.getByTestId('clearValidateField')
+    await fireEvent.click(btnClear);
+    await tick();
+    await vi.advanceTimersByTimeAsync(300);
+    await waitFor(() => {
+      debugger
+      expect(screen.findByText('KInput 3 ~5')).toHaveBeenCalledTimes(1)
+    })
+    debugger
+
+    expect(host.innerHTML.includes('KInput 3 ~5')).not.toBeTruthy()
+
+    btn?.click()
+    await tick();
+    expect(host.innerHTML.includes('KInput 3 ~5')).toBeTruthy()
+    debugger
+    // 值
+    // 清
+    // 值
+  })
 })

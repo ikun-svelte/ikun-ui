@@ -69,7 +69,7 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 			this.updateErrorMsg(path, '');
 			try {
 				// validate form fields
-				if (!this.__manual_validate || isValidate) {
+				if (isValidate) {
 					doValidateField(this.__rules, path, value, this.__itemCompMap);
 				}
 			} catch (e: any) {
@@ -202,7 +202,7 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		 * @param value
 		 * @param isValidate Whether to Validate form fields
 		 */
-		setFields(path: string, value: any, isValidate: boolean) {
+		setField(path: string, value: any, isValidate: boolean) {
 			this.updateField(path, value, isValidate);
 			this.updateDomText(path);
 			// If it is a value object, verify its fields

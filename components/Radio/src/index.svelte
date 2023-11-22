@@ -54,7 +54,7 @@
 	};
 
 	function setDisabled(v: boolean) {
-		isDisabled = v;
+		isDisabled = v || disabled;
 	}
 
 	function setSizes(v: KRadioProps['size']) {

@@ -3,7 +3,7 @@
 	import { KIcon } from '@ikun-ui/icon';
 	import { clsx } from 'clsx';
 	import { formKey, getPrefixCls } from "@ikun-ui/utils";
-	import { createEventDispatcher, getContext, onMount } from 'svelte';
+	import { createEventDispatcher, getContext, onMount, tick } from "svelte";
 	import type { IKunFormInstance } from "@ikun-ui/form";
 	import { formItemKey } from '@ikun-ui/utils';
 
@@ -31,12 +31,17 @@
 	let field: string | undefined = ''
 	// Initialize the KSwitch value based
 	// on the form value in the KFormItem context
-	function formUpdateField(init = false){
+	async function formUpdateField(init = false){
+
 		field = formContext.split('&').pop()
 		value = formInstance.getValueByPath(
 			field,
 			init ? formInstance.__default_value: formInstance.__value
 		)
+		if(!init){
+			await tick()
+			await changeClass(value);
+		}
 	}
 	function formPropsChangeCb(props: Record<any, any>) {
 		disabledFrom = props.disabled
@@ -81,7 +86,7 @@
 	 */
 	let switching = '';
 	let switchCircleRef: null | HTMLElement = null;
-	const changeClass = (checked: boolean) => {
+	function changeClass(checked: boolean) {
 		return new Promise((resolve) => {
 			switching = `${prefixCls}-tra`;
 			if (switchCircleRef) {
@@ -102,7 +107,7 @@
 		dispatch('updateValue', changeData.newVal);
 		isUpdateModel = true;
 		if(formInstance){
-			formInstance.updateField(field!, changeData.newVal);
+			formInstance.updateField(field!, changeData.newVal, !formInstance.__manual_validate);
 			value = changeData.newVal
 		}
 		await changeClass(changeData.newVal === checkedValue);

@@ -2,7 +2,7 @@
 	import type { KCheckboxGroupProps, checkboxMapType, checkboxMapItem } from './types';
 	import { checkboxGroupKey, formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import { createEventDispatcher, getContext, setContext, tick } from 'svelte';
+	import { createEventDispatcher, getContext, onMount, setContext, tick } from "svelte";
 	import { jsonClone } from 'baiwusanyu-utils';
 	import type { IKunFormInstance } from '@ikun-ui/form';
 
@@ -33,17 +33,19 @@
 		disabledFrom = props.disabled;
 		sizeFrom = props.size;
 	}
+	onMount(()=>{
+		// Register event, KForm can set KInput value
+		if (formContext && formInstance) {
+			formUpdateField(true);
+			formPropsChangeCb(formInstance.__dynamicProps);
+			formInstance.__itemCompMap[field] = {
+				update: formUpdateField,
+				type: 'checkbox'
+			};
+			formInstance.__propHandleEvtMap.push(formPropsChangeCb);
+		}
+	})
 
-	// Register event, KForm can set KInput value
-	if (formContext && formInstance) {
-		formUpdateField(true);
-		formPropsChangeCb(formInstance.__dynamicProps);
-		formInstance.__itemCompMap[field] = {
-			update: formUpdateField,
-			type: 'checkbox'
-		};
-		formInstance.__propHandleEvtMap.push(formPropsChangeCb);
-	}
 	/*********************** KForm logic end ************************/
 
 	// updateValue
@@ -120,7 +122,7 @@
 		valueInner = value;
 		dispatch('updateValue', finalValue);
 		if (formInstance) {
-			formInstance?.updateField(field!, finalValue);
+			formInstance?.updateField(field!, finalValue, !formInstance.__manual_validate);
 			await tick();
 			value = finalValue;
 		}

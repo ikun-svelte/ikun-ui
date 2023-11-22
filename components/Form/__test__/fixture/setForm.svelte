@@ -8,15 +8,16 @@
   import { KCheckbox } from '@ikun-ui/checkbox';
   import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
   import { KSelect } from '@ikun-ui/select'
-  import { onMount } from "svelte";
-  const initValue = {
+  import { createEventDispatcher } from "svelte";
+  export let isValidate = true
+  export let initValue = {
     KInput: 'KInput',
     KSwitch: true,
-    KRate: 4,
-    KRadio: '3',
-    KCheckbox: ['2'],
-    KSelect: {label: '不知明镜里', value: '不知', id: '3'},
-    KSelectString: 'Huge'
+    KRate: null,
+    KRadio: '',
+    KCheckbox: [],
+    KSelect: null,
+    KSelectString: ''
   }
   let KFormInst: KForm | undefined = undefined
   const dataList = [
@@ -26,16 +27,92 @@
     {label: '何处得秋霜', value: '何处', id: '4'},
   ]
 
-  let currentValue = {}
-  onMount(() => {
-    if(KFormInst){
-      currentValue = KFormInst.getForm()
-    }
-  })
+  const rules = {
+    KInput: [
+      { required: true, msg: 'KInput required'},
+      { min: 3, max: 5,  msg: 'KInput 3 ~5' },
+    ],
+    KSwitch: [
+      {
+        required: true,
+        msg: 'KSwitch error',
+      },
+    ],
+    KRate: [
+      {
+        required: true,
+        msg: 'KRate error',
+      },
+    ],
+    'KRate.sub': [
+      {
+        required: true,
+        msg: 'KRate error',
+      },
+    ],
+    KRadio: [
+      {
+        required: true,
+        msg: 'KRadio error',
+      },
+    ],
+    KCheckbox: [
+      {
+        required: true,
+        msg: 'KRadio error',
+      },
+    ],
+    KSelect: [
+      {
+        required: true,
+        msg: 'KSelect error',
+      },
+    ],
+    KSelectString: [
+      {
+        required: true,
+        msg: 'KSelectString error',
+        validator: (value: any, callback: any) => {
+          if(!value){
+            callback('KSelectString custom error')
+          }
+        },
+      },
+    ],
+  }
 
+
+  const dispatch = createEventDispatcher();
+  const handleSetForm = () => {
+    if(KFormInst){
+      KFormInst.setForm({
+        KInput: 'KInput change',
+        KSwitch: false,
+        KRate: {
+          sub: 1
+        },
+        KRadio: '1',
+        KCheckbox: ['1'],
+        KSelect : {
+          label : "白发三千丈",
+          value : "白发",
+          id : "1",
+        },
+        KSelectString: "Huge"
+      }, isValidate)
+    }
+  }
+
+  const handleGetForm = () => {
+    if(KFormInst){
+      dispatch('getRes', KFormInst.getForm())
+    }
+  }
 
 </script>
 <KForm {initValue}
+       {rules}
+       labelWidth="120"
        bind:this={KFormInst}>
   <KFormItem field="KInput" label="KInput">
     <KInput placeholder="Please input value">
@@ -44,7 +121,7 @@
   <KFormItem field="KSwitch" label="KSwitch">
     <KSwitch />
   </KFormItem>
-  <KFormItem field="KRate" label="KRate">
+  <KFormItem field="KRate.sub" label="KRate">
     <KRate clearable/>
   </KFormItem>
   <KFormItem field="KRadio" label="KRadio">
@@ -77,7 +154,6 @@
       dataList={['Tiny', 'Small', 'Normal', 'Large', 'Huge']}
     ></KSelect>
   </KFormItem>
-  <KFormItem>
-    <span id="form_value">{JSON.stringify(currentValue)}</span>
-  </KFormItem>
 </KForm>
+<button id='setForm' on:click={handleSetForm}>setForm</button>
+<button id='getForm' on:click={handleGetForm}>getForm</button>
