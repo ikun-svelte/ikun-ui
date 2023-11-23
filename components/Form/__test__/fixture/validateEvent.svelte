@@ -52,7 +52,7 @@
 		KCheckbox: [
 			{
 				required: true,
-				msg: 'KRadio error'
+				msg: 'KCheckbox error'
 			}
 		],
 		KSelect: [
@@ -75,20 +75,12 @@
 	};
 
 	const dispatch = createEventDispatcher();
-	const handleValidate = () => {
-		if (KFormInst) {
-			KFormInst.validateForm((data, isValid, invalidFields) => {
-				dispatch('getRes', {
-					data,
-					isValid,
-					invalidFields
-				});
-			});
-		}
+	const handleValidate = (data) => {
+		dispatch('getRes', data);
 	};
 </script>
 
-<KForm {initValue} {rules} labelWidth={120} bind:this={KFormInst}>
+<KForm {initValue} {rules} labelWidth={120} on:validate={handleValidate} bind:this={KFormInst}>
 	<KFormItem field="KInput" label="KInput">
 		<KInput placeholder="Please input value"></KInput>
 	</KFormItem>
@@ -116,10 +108,10 @@
 	</KFormItem>
 
 	<KFormItem field="KSelect" label="KSelect">
-		<KSelect {dataList} labelKey="label" valueKey="value" key="id"></KSelect>
+		<KSelect clearable {dataList} labelKey="label" valueKey="value" key="id"></KSelect>
 	</KFormItem>
 	<KFormItem field="KSelectString" label="KSelectString">
-		<KSelect dataList={['Tiny', 'Small', 'Normal', 'Large', 'Huge']}></KSelect>
+		<KSelect clearable dataList={['Tiny', 'Small', 'Normal', 'Large', 'Huge']}></KSelect>
 	</KFormItem>
 </KForm>
 <button id="validate" on:click={handleValidate}>validate</button>
