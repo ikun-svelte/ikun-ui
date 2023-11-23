@@ -1,7 +1,6 @@
 import { isArray, isString } from 'baiwusanyu-utils';
 
 // a.b.0 or ['a', 'b', '0']
-// TODO: unit test
 export const getValueByPath = (path: string | string[], target: Record<string, any>) => {
 	const resolvePath = parsePath(path);
 	let result: any = target;
@@ -17,7 +16,6 @@ export const getValueByPath = (path: string | string[], target: Record<string, a
 	return result;
 };
 
-// TODO: unit test
 export const setValueByPath = (
 	path: string | string[],
 	target: Record<string, any>,
@@ -38,7 +36,6 @@ export const setValueByPath = (
 	return target;
 };
 
-// TODO: unit test
 export const parsePath = (path: string | string[]) => {
 	if (isArray(path)) return path as string[];
 	if (isString(path)) {

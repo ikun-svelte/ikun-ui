@@ -1,8 +1,3 @@
-// ⭕TODO: 支持简单的规则校验 require max min
-// ⭕TODO: max min 只对 string、number
-// ⭕TODO: 校验顺序按照 rules 顺序
-// ⭕TODO: validator
-// ⭕TODO: validator 后 require max min 将失效
 import { getValueByPath } from './fields';
 import { isArray, isEmptyObj, isNumber, isObject, isString } from "baiwusanyu-utils";
 import type { KFormComponent, KFormRule, KFormRules, ValidateError } from '../types';
@@ -75,7 +70,6 @@ export function doValidateField(
 	}
 }
 
-// TODO: unit test
 function validateRequired(
 	rule: KFormRule,
 	value: any,
@@ -99,7 +93,6 @@ function validateRequired(
 	}
 }
 
-// TODO: unit test
 function validateMin(rule: KFormRule, value: any, field: string, errors?: ValidateError[]) {
 	if (rule.min || rule.min === 0) {
 		if (isNumber(value) && value < rule.min) {
@@ -129,7 +122,6 @@ function validateMin(rule: KFormRule, value: any, field: string, errors?: Valida
 	}
 }
 
-// TODO: unit test
 function validateMax(rule: KFormRule, value: any, field: string, errors?: ValidateError[]) {
 	if (rule.max || rule.max === 0) {
 		if (isNumber(value) && value > rule.max) {
