@@ -16,3 +16,4 @@ export const radioGroupKey = KSymbolKey('checkboxGroup');
 
 export const rowKey = KSymbolKey('row');
 export const contextmenuKey = KSymbolKey('contextmenu');
+export const descriptionsKey = KSymbolKey('descriptions');
