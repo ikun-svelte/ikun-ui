@@ -66,7 +66,6 @@ export type FormValidateCallback = (
 ) => void;
 // TODO: 无障碍
 // TODO: submit
-// TODO: dark mode
 // TODO: KSlider 支持
 export type KFormProps = {
 	initValue: any;
