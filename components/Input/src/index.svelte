@@ -3,12 +3,12 @@
 	import { createEventDispatcher, onMount, tick, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import { KButton } from '@ikun-ui/button';
-	import { formItemKey, formKey, getPrefixCls } from "@ikun-ui/utils";
+	import { formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
 	import clsx from 'clsx';
 	import { isObject } from 'baiwusanyu-utils';
 	import type { CSSObject } from 'unocss';
 	import { compTextareaH } from './compute-textarea-h';
-	import type { IKunFormInstance } from "@ikun-ui/form";
+	import type { IKunFormInstance } from '@ikun-ui/form';
 
 	export let size: KInputProps['size'] = 'md';
 	export let value: KInputProps['value'] = '';
@@ -32,50 +32,46 @@
 	/**
 	 * @internal
 	 */
-	export let errorMsg: KInputProps['errorMsg'] = '';
-	/**
-	 * @internal
-	 */
 	export let center: KInputProps['center'] = false;
 	export let clearable: KInputProps['clearable'] = false;
 	/*********************** KForm logic start ************************/
-	let disabledFrom = false
-	$:disabledInner = disabledFrom || disabled
-	let sizeFrom = ''
-	$:sizeInner = sizeFrom || size
-	let isErrorForm = false
-	$:isErrorInner = isErrorForm || isError
+	let disabledFrom = false;
+	$: disabledInner = disabledFrom || disabled;
+	let sizeFrom = '';
+	$: sizeInner = sizeFrom || size;
+	let isErrorForm = false;
+	$: isErrorInner = isErrorForm || isError;
 	const formContext = getContext(formItemKey) as string;
 	const formInstance = getContext(formKey) as IKunFormInstance;
-	let field: string | undefined = ''
+	let field: string | undefined = '';
 	// Initialize the KInput value based
 	// on the form value in the KFormItem context
-	function formUpdateField(init = false){
-		field = formContext.split('&').pop()
+	function formUpdateField(init = false) {
+		field = formContext.split('&').pop();
 		value = formInstance.getValueByPath(
 			field,
-			init ? formInstance.__default_value: formInstance.__value
-		)
+			init ? formInstance.__default_value : formInstance.__value
+		);
 	}
 	function formPropsChangeCb(props: Record<any, any>) {
-		disabledFrom = props.disabled
-		sizeFrom = props.size
+		disabledFrom = props.disabled;
+		sizeFrom = props.size;
 	}
 
-	function fromFieldError(error: boolean){
-		isErrorForm = error
+	function fromFieldError(error: boolean) {
+		isErrorForm = error;
 	}
 
 	// Register event, KForm can set KInput value
-	if(formContext && formInstance){
-		formUpdateField(true)
-		formPropsChangeCb(formInstance.__dynamicProps)
+	if (formContext && formInstance) {
+		formUpdateField(true);
+		formPropsChangeCb(formInstance.__dynamicProps);
 		formInstance.__itemCompMap[field] = {
 			update: formUpdateField,
 			type: 'input'
 		};
-		formInstance.__errorCompEvtMap[field] = fromFieldError
-		formInstance.__propHandleEvtMap.push(formPropsChangeCb)
+		formInstance.__errorCompEvtMap[field] = fromFieldError;
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb);
 	}
 	/*********************** KForm logic end ************************/
 
@@ -96,11 +92,12 @@
 	const onChange = (e: Event) => {
 		if (disabledInner) return;
 		dispatch('change', e);
-		formInstance && formInstance?.updateField(
-			field!,
-			(e?.target as HTMLInputElement)?.value,
-			!formInstance.__manual_validate
-		)
+		formInstance &&
+			formInstance?.updateField(
+				field!,
+				(e?.target as HTMLInputElement)?.value,
+				!formInstance.__manual_validate
+			);
 	};
 
 	const onClear = () => {
@@ -119,7 +116,6 @@
 			}
 		} else dispatch('keydown', e);
 	};
-
 
 	let isComposing = false;
 	const onCompositionStart = (e: CompositionEvent) => {
@@ -228,7 +224,6 @@
 	$: iconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${sizeInner}`);
 	$: prefixIconCls = clsx(iconCls, `${prefixCls}--prefix-icon`);
 	$: suffixIconCls = clsx(iconCls, `${prefixCls}--suffix-icon`);
-	$: errorMsgCls = clsx(`${prefixCls}__msg__error`);
 	$: prependCls = clsx(`${prefixCls}--prepend`, `${prefixCls}--prepend__${sizeInner}`);
 	$: appendgCls = clsx(`${prefixCls}--append`, `${prefixCls}--append__${sizeInner}`);
 	$: clearCls = clsx(`${prefixCls}--clear-icon`);
@@ -300,12 +295,6 @@
 					<KIcon btn icon="i-carbon-view" cls="{iconCls} ml-1" />
 				</div>
 			{/if}
-			<!--TODO: KMessageBox-->
-			<!-- {#if isError}
-				<span class={errorMsgCls} transition:fade={{ duration: 200 }}>
-					{errorMsg}
-				</span>
-			{/if} -->
 
 			<slot name="suffix">
 				{#if iconSuffix}

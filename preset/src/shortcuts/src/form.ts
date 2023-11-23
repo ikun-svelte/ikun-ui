@@ -1,5 +1,5 @@
 export const formShortcuts: Record<string, string> = {
-	'k-form-item': 'mb-5',
+	'k-form-item': 'mb-6',
 	'k-form-item__horizontal': 'fi',
 	'k-form-item__vertical': 'flex flex-col',
 	'k-form-item-label__left': 'text-left',
@@ -13,7 +13,7 @@ export const formShortcuts: Record<string, string> = {
 	'k-form-item-label': 'text-sm text-ikun-tx-base break-all',
 	'k-form-item-label__ml': 'mr-3',
 	'k-form-item-content': 'pr fs flex-1',
-	'k-form-item-msg_error': 'text-ikun-error text-12px line-height-none pa -bottom-14px left-0',
+	'k-form-item-msg_error': 'text-ikun-error text-12px line-height-none pa -bottom-16px left-0',
 	'k-form-item-label__disabled': 'k-cur-disabled text-ikun-tx-gr',
 	// dark
 	'k-form-item-label__dark': 'dark:text-ikun-white'
