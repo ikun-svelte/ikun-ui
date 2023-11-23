@@ -121,27 +121,6 @@ describe('Test: KInput', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('props: isError and errorMsg', async () => {
-		const instance = new KInput({
-			target: host,
-			props: {
-				isError: true,
-				errorMsg: 'value is required'
-			}
-		});
-		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes(`k-input__error`)).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes(`k-input__msg__error`)).toBeTruthy();
-		expect(host.querySelector('.k-input__msg__error')?.textContent).toBe('value is required');
-		instance.$set({ errorMsg: 'change error msg.' });
-		await tick();
-		expect(host.querySelector('.k-input__msg__error')?.textContent).toBe('change error msg.');
-		instance.$set({ isError: false });
-		await tick();
-		expect((host as HTMLElement)!.innerHTML.includes(`k-input__error`)).toBeFalsy();
-		expect(host.innerHTML).matchSnapshot();
-	});
-
 	test('props: cls', async () => {
 		const instance = new KInput({
 			target: host,

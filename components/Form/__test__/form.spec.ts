@@ -22,7 +22,7 @@ import KFormValidateEventSefField from './fixture/validateEventSefField.svelte';
 import KFormValidateEventValidateField from './fixture/validateEventvalidateField.svelte';
 import { tick } from 'svelte';
 import { fireEvent, screen, render, waitFor } from '@testing-library/svelte';
-import { getValueByPath, parsePath, setValueByPath } from "../src/helpers/fields";
+import { getValueByPath, parsePath, setValueByPath } from '../src/helpers/fields';
 
 let host: HTMLElement;
 
@@ -913,60 +913,59 @@ describe('Test: KForm helper fields', () => {
 	const target = {
 		example: {
 			path: {
-				value: 'testValue',
-			},
-		},
+				value: 'testValue'
+			}
+		}
 	};
-	test('parsePath should return an array for string input', async ()=>{
+	test('parsePath should return an array for string input', async () => {
 		const path = 'example.path';
 		const result = parsePath(path);
-		expect(Array.isArray(result)).toBeTruthy()
-		expect(result).toMatchObject(['example', 'path'])
-	})
-	test('parsePath should return the input array unchanged', async ()=>{
+		expect(Array.isArray(result)).toBeTruthy();
+		expect(result).toMatchObject(['example', 'path']);
+	});
+	test('parsePath should return the input array unchanged', async () => {
 		const path = ['example', 'path'];
 		const result = parsePath(path);
-		expect(result === path).toBeTruthy()
-	})
-	test('parsePath should return an empty array for invalid input', async ()=>{
+		expect(result === path).toBeTruthy();
+	});
+	test('parsePath should return an empty array for invalid input', async () => {
 		const path = 123; // Invalid input
 		const result = parsePath(path as any);
-		expect(Array.isArray(result)).toBeTruthy()
-		expect(result.length === 0).toBeTruthy()
-	})
+		expect(Array.isArray(result)).toBeTruthy();
+		expect(result.length === 0).toBeTruthy();
+	});
 
-	test('getValueByPath should return the correct value for valid path', async ()=>{
-
+	test('getValueByPath should return the correct value for valid path', async () => {
 		const path = 'example.path.value';
 		const result = getValueByPath(path, target);
-		expect(result === 'testValue').toBeTruthy()
-	})
+		expect(result === 'testValue').toBeTruthy();
+	});
 
-	test('getValueByPath should return undefined for non-existent path', async ()=>{
+	test('getValueByPath should return undefined for non-existent path', async () => {
 		const path = 'nonExistent.path.value';
 		const result = getValueByPath(path, target);
-		expect(result === undefined).toBeTruthy()
-	})
+		expect(result === undefined).toBeTruthy();
+	});
 
-	test('getValueByPath should return undefined for invalid path', async ()=>{
+	test('getValueByPath should return undefined for invalid path', async () => {
 		const path = 123; // Invalid path
 		const result = getValueByPath(path as any, target);
-		expect(result === target).toBeTruthy()
-	})
+		expect(result === target).toBeTruthy();
+	});
 
 	test('setValueByPath should set the value at the correct path', () => {
 		const target = {
 			example: {
 				path: {
-					value: 'oldValue',
-				},
-			},
+					value: 'oldValue'
+				}
+			}
 		};
 
 		const path = 'example.path.value';
 		const newValue = 'newValue';
 		const result = setValueByPath(path, target, newValue);
-		expect(result.example.path.value === newValue).toBeTruthy()
+		expect(result.example.path.value === newValue).toBeTruthy();
 	});
 
 	test('setValueByPath should create intermediate objects if they do not exist', () => {
@@ -975,30 +974,30 @@ describe('Test: KForm helper fields', () => {
 		const path = 'example.path.value';
 		const newValue = 'newValue';
 		const result = setValueByPath(path, target, newValue);
-		expect(result.example.path.value === newValue).toBeTruthy()
+		expect(result.example.path.value === newValue).toBeTruthy();
 	});
 
 	test('setValueByPath should handle array indices correctly', () => {
 		const target = {
 			example: {
-				array: ['oldValue'],
-			},
+				array: ['oldValue']
+			}
 		};
 
 		const path = 'example.array';
 		const newValue = ['newValue'];
 		const result = setValueByPath(path, target, newValue);
-		expect(result.example.array === newValue).toBeTruthy()
+		expect(result.example.array === newValue).toBeTruthy();
 	});
 
 	test('setValueByPath should handle non-existent intermediate objects correctly', () => {
 		const target = {
-			example: {},
+			example: {}
 		};
 
 		const path = 'example.path.value';
 		const newValue = 'newValue';
 		const result = setValueByPath(path, target, newValue);
-		expect(result.example.path.value === newValue).toBeTruthy()
+		expect(result.example.path.value === newValue).toBeTruthy();
 	});
-})
+});

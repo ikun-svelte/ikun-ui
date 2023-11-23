@@ -1,5 +1,5 @@
 import { getValueByPath } from './fields';
-import { isArray, isEmptyObj, isNumber, isObject, isString } from "baiwusanyu-utils";
+import { isArray, isEmptyObj, isNumber, isObject, isString } from 'baiwusanyu-utils';
 import type { KFormComponent, KFormRule, KFormRules, ValidateError } from '../types';
 
 /**
@@ -78,7 +78,7 @@ function validateRequired(
 	isValidate = true
 ) {
 	if (rule.required && isValidate) {
-		if ((!value && value !== 0) || isEmptyObj(value) ||  JSON.stringify(value) === "[]") {
+		if ((!value && value !== 0) || isEmptyObj(value) || JSON.stringify(value) === '[]') {
 			const msg = rule.msg || `${field} is required`;
 			errors &&
 				errors.push({

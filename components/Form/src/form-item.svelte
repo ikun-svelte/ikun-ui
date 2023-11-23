@@ -9,7 +9,10 @@
 	export let field: KFormItemProps['field'] = '';
 	export let label: KFormItemProps['label'] = '';
 	export let showMsg: KFormItemProps['showMsg'] = true;
-
+	/**
+	 * @internal
+	 */
+	export let showLabel: boolean= true;
 	let errorMsg = '';
 	function showErrorMsg(msg: string) {
 		errorMsg = msg;
@@ -86,7 +89,7 @@
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
-	{#if !(!$$slots.label && !label && labelPosition === 'vertical')}
+	{#if !(!$$slots.label && !label && labelPosition === 'vertical') && showLabel}
 		<label class={lableCls}
 					 style:min-width={minWidthInner}
 					 style:width={labelWidthInner} >
