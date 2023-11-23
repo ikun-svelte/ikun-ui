@@ -50,7 +50,7 @@ export function doValidateField(
 	itemCompMap: Record<string, { type: KFormComponent; update: () => void }>
 ) {
 	if (rules) {
-		const fieldRule = rules[path];
+		const fieldRule = rules[path] || [];
 		for (let i = 0; i < fieldRule.length; i++) {
 			const ruleOption = fieldRule[i];
 			if (ruleOption.validator) {

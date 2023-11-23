@@ -56,9 +56,18 @@
 
 	// class
 	const prefixCls = getPrefixCls('form-item');
-	$: cnames = clsx(prefixCls, `${prefixCls}__${labelPosition}`, cls);
+	$: cnames = clsx(
+		{
+			[prefixCls]: !formContext
+		},
+		`${prefixCls}__${labelPosition}`,
+		cls
+	);
 	$: lableCls = clsx(
 		`${prefixCls}-label`,
+		{
+			[`${prefixCls}-label__ml`]: !formContext
+		},
 		`${prefixCls}-label__dark`,
 		{
 			[`${prefixCls}-label__${labelAlign}`]: labelPosition !== 'vertical'
@@ -72,19 +81,22 @@
 	$: startCls = clsx(`${prefixCls}-star`);
 	$: contentCls = clsx(`${prefixCls}-content`);
 	$: errorMsgCls = clsx(`${prefixCls}-msg_error`);
-	$: labelWidthInner = labelWidth ? `${labelWidth}px` : undefined;
+	$: labelWidthInner = !formContext && labelWidth ? `${labelWidth}px` : undefined;
+	$: minWidthInner = !formContext ? `80px` : undefined;
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
 	{#if !(!$$slots.label && !label && labelPosition === 'vertical')}
-		<div class={lableCls} style:width={labelWidthInner}>
-			{#if isRequired}
+		<label class={lableCls}
+					 style:min-width={minWidthInner}
+					 style:width={labelWidthInner} >
+			{#if isRequired && (label || $$slots.label)}
 				<span class={startCls}>*</span>
 			{/if}
 			<slot name="label">
-				<span>{label}</span>
+				{label}
 			</slot>
-		</div>
+		</label>
 	{/if}
 	<div class={contentCls}>
 		<slot />

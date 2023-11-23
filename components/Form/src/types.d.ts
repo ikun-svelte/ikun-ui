@@ -64,8 +64,6 @@ export type FormValidateCallback = (
 	isValid: boolean,
 	invalidFields?: ValidateError[]
 ) => void;
-// TODO: 无障碍
-// TODO: submit
 // TODO: KSlider 支持
 export type KFormProps = {
 	initValue: any;
