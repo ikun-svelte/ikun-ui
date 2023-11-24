@@ -14,7 +14,7 @@ export const descriptionsShortcuts = {
 	'k-descriptions--title--lg': 'text-18px',
 
 	// extra
-	'k-descriptions--extra': 'text-#333333',
+	'k-descriptions--extra': 'text-ikun-dark-200',
 
 	// body
 	'k-descriptions--body': 'grid',

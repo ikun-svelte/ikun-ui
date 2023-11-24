@@ -21,13 +21,15 @@
 		`${prefixCls}--${direction}`,
 		`${prefixCls}--${direction}--${size}`,
 		{
-			[`${prefixCls}--border`]: border
+			[`${prefixCls}--${direction}--border`]: border
 		},
-		cls,
-		'last:bg-red'
+		cls
 	);
-	$: labelCls = clsx(`${prefixCls}--label`);
-	$: spanCls = clsx(`${prefixCls}--span`);
+	$: labelCls = clsx(
+		`${prefixCls}--${direction}--label`,
+		`${prefixCls}--${direction}--label--${size}`
+	);
+	$: spanCls = clsx(`${prefixCls}--${direction}--span`);
 
 	// TODO props size
 	// TODO props label
