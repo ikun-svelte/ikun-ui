@@ -6,9 +6,6 @@
 	};
 </script>
 
-<KSelect
-	{value}
-	on:updateValue={onSelect}
-	dataList={['Tiny', 'Small', 'Normal', 'Large', 'Huge']}
+<KSelect {value} on:updateValue={onSelect} dataList={['Tiny', 'Small', 'Normal', 'Large', 'Huge']}
 ></KSelect>
 <span id="k_select_string">{value}</span>

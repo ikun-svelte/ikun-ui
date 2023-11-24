@@ -1,11 +1,11 @@
 <script lang="ts">
 	import type { KRateProps } from './types';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, getContext } from 'svelte';
 	import { clsx } from 'clsx';
 	import { isString } from 'baiwusanyu-utils';
-	import { getPrefixCls } from '@ikun-ui/utils';
+	import { formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
 	import { KIcon } from '@ikun-ui/icon';
-
+	import type { IKunFormInstance } from '@ikun-ui/form';
 	export let max: KRateProps['max'] = 5;
 	export let value: KRateProps['value'] = 0;
 	export let allowHalf: KRateProps['allowHalf'] = false;
@@ -31,6 +31,39 @@
 	const dispatch = createEventDispatcher();
 
 	const maxNumbers = Array.from({ length: max }, (_, i) => i + 1);
+	/*********************** KForm logic start ************************/
+	let disabledFrom = false;
+	$: disabledInner = disabledFrom || disabled;
+	let sizeFrom = '';
+	$: sizeInner = sizeFrom || size;
+	const formContext = getContext(formItemKey) as string;
+	const formInstance = getContext(formKey) as IKunFormInstance;
+	let field: string | undefined = '';
+	// Initialize the KInput value based
+	// on the form value in the KFormItem context
+	function formUpdateField(init = false) {
+		field = formContext.split('&').pop();
+		value = formInstance.getValueByPath(
+			field,
+			init ? formInstance.__default_value : formInstance.__value
+		);
+	}
+	function formPropsChangeCb(props: Record<any, any>) {
+		disabledFrom = props.disabled;
+		sizeFrom = props.size;
+	}
+
+	// Register event, KForm can set KInput value
+	if (formContext && formInstance) {
+		formUpdateField(true);
+		formPropsChangeCb(formInstance.__dynamicProps);
+		formInstance.__itemCompMap[field] = {
+			update: formUpdateField,
+			type: 'rate'
+		};
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb);
+	}
+	/*********************** KForm logic end ************************/
 
 	$: currentValue = value;
 
@@ -63,7 +96,7 @@
 		} else if (showScore) {
 			text = scoreTemplate.replace(
 				/\{\s*value\s*\}/g,
-				readonly || disabled ? `${value}` : `${currentValue}`
+				readonly || disabledInner ? `${value}` : `${currentValue}`
 			);
 		} else {
 			text = '';
@@ -80,7 +113,7 @@
 	$: {
 		showDecimalIcon = (item: number) => {
 			const showWhenReadonlyOrDisabled =
-				(readonly || disabled) && valueDecimal > 0 && item - 1 < value && item > value;
+				(readonly || disabledInner) && valueDecimal > 0 && item - 1 < value && item > value;
 			const showWhenAllowHalf =
 				allowHalf && pointerAtLeftHalf && item - 0.5 <= currentValue && item > currentValue;
 			return showWhenReadonlyOrDisabled || showWhenAllowHalf;
@@ -88,7 +121,7 @@
 	}
 
 	const setCurrentValue = (index: number, event: MouseEvent) => {
-		if (readonly || disabled) {
+		if (readonly || disabledInner) {
 			return;
 		}
 		if (allowHalf && event) {
@@ -102,7 +135,7 @@
 	};
 
 	const resetCurrentValue = () => {
-		if (readonly || disabled) {
+		if (readonly || disabledInner) {
 			return;
 		}
 		resetOrigin();
@@ -137,13 +170,17 @@
 	$: decimalBackground = `linear-gradient(to right, ${decimalActiveColor} 0%, ${decimalActiveColor} ${valueDecimal}%, ${readonlyVoidColor} ${valueDecimal}%, ${readonlyVoidColor} 100%);`;
 
 	const handleUpdateValue = () => {
-		if (readonly || disabled) {
+		if (readonly || disabledInner) {
 			return;
 		}
 		if (clearable && value === currentValue) {
 			dispatch('updateValue', 0);
+			formInstance && formInstance?.updateField(field!, 0, !formInstance.__manual_validate);
+			value = 0;
 		} else {
 			dispatch('updateValue', currentValue);
+			formInstance && formInstance?.updateField(field!, currentValue, !formInstance.__manual_validate);
+			value = currentValue;
 		}
 	};
 
@@ -151,22 +188,22 @@
 	const prefixCls = getPrefixCls('rate');
 	$: baseCls = clsx(
 		prefixCls,
-		`${prefixCls}--${size}`,
+		`${prefixCls}--${sizeInner}`,
 		{
 			[`${prefixCls}--readonly`]: readonly,
-			[`${prefixCls}--disabled`]: disabled
+			[`${prefixCls}--disabled`]: disabledInner
 		},
 		cls
 	);
-	$: itemCls = clsx(`${prefixCls}--item`, `${prefixCls}--item--${size}`, {
+	$: itemCls = clsx(`${prefixCls}--item`, `${prefixCls}--item--${sizeInner}`, {
 		[`${prefixCls}--item__not-readonly`]: !readonly,
-		[`${prefixCls}--item__disabled`]: disabled
+		[`${prefixCls}--item__disabled`]: disabledInner
 	});
 	$: textCls = clsx(`${prefixCls}--text`);
 </script>
 
 <div class={baseCls} {...$$restProps} {...attrs}>
-	{#each maxNumbers as item}
+	{#each maxNumbers as item (item)}
 		<span
 			class={itemCls}
 			aria-hidden="true"

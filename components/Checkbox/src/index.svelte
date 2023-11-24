@@ -15,7 +15,7 @@
 	export let indeterminate: KCheckboxProps['indeterminate'] = false;
 	export let cls: KCheckboxProps['cls'] = undefined;
 	export let attrs: KCheckboxProps['attrs'] = {};
-
+	// updateValue
 	const dispatch = createEventDispatcher();
 
 	$: isIndeterminate = indeterminate;
@@ -29,10 +29,10 @@
 
 	$: isDisabled = (ctx && ctx.disabled) || disabled;
 	$: sizeInner = ctx && ctx.size ? ctx.size : size;
-	enum ECheckboxSize {
-		'lg' = 16,
-		'md' = 14,
-		'sm' = 12
+	const KCheckboxSize = {
+		'lg': '16',
+		'md': '14',
+		'sm': '12'
 	}
 
 	/**
@@ -45,6 +45,7 @@
 		// Being in a checkbox group does not trigger it
 		!ctx && dispatch('updateValue', valueInner);
 	};
+
 
 	/**
 	 * Set checkbox value
@@ -72,7 +73,11 @@
 	 * @param v disabled value
 	 */
 	function setDisabled(v: boolean) {
-		isDisabled = v;
+		isDisabled = v || disabled;
+	}
+
+	function setSizes(v: KCheckboxProps['size']) {
+		sizeInner = v;
 	}
 
 	/**
@@ -89,7 +94,8 @@
 				// Expose the setDisabled method.
 				// When the disabled value bound to the `checkbox group` changes,
 				// the `checkbox` can be disabled synchronously.
-				setDisabled
+				setDisabled,
+				setSizes
 			});
 		}
 	}
@@ -135,8 +141,8 @@
 				<KIcon
 					icon="i-carbon-checkmark"
 					color="!text-white"
-					width={ECheckboxSize[sizeInner]}
-					height={ECheckboxSize[sizeInner]}
+					width={KCheckboxSize[sizeInner]}
+					height={KCheckboxSize[sizeInner]}
 				/>
 			</div>
 		{/if}
@@ -144,8 +150,8 @@
 			<KIcon
 				icon="i-carbon-subtract"
 				color="!text-white"
-				width={ECheckboxSize[sizeInner]}
-				height={ECheckboxSize[sizeInner]}
+				width={KCheckboxSize[sizeInner]}
+				height={KCheckboxSize[sizeInner]}
 			/>
 		{/if}
 	</div>

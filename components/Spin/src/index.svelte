@@ -4,7 +4,7 @@
 	import { isFunction, isString } from 'baiwusanyu-utils';
 	import { KClientOnly } from '@ikun-ui/client-only';
 	import { clsx, type ClassValue } from 'clsx';
-	import { onMount, tick } from "svelte";
+	import { onMount, tick } from 'svelte';
 
 	export let show: boolean = false;
 	export let text = '';
@@ -15,14 +15,14 @@
 	export let target = document.body;
 	export let rotating: boolean = true;
 
-	let maskRef:any = null
-	export async function updatedPosition(){
-		if(maskRef){
-			await tick()
-			maskRef.updatedPosition()
+	let maskRef: any = null;
+	export async function updatedPosition() {
+		if (maskRef) {
+			await tick();
+			maskRef.updatedPosition();
 		}
 	}
-	onMount(updatedPosition)
+	onMount(updatedPosition);
 	$: cnames = clsx(cls);
 </script>
 

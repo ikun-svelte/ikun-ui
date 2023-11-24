@@ -1,9 +1,11 @@
 <script lang="ts">
 	import type { KSwitchProps } from './types';
-	import { createEventDispatcher, onMount } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import { clsx } from 'clsx';
-	import { getPrefixCls } from '@ikun-ui/utils';
+	import { formKey, getPrefixCls } from "@ikun-ui/utils";
+	import { createEventDispatcher, getContext, onMount, tick } from "svelte";
+	import type { IKunFormInstance } from "@ikun-ui/form";
+	import { formItemKey } from '@ikun-ui/utils';
 
 	export let value: KSwitchProps['value'] = false;
 	export let checkedValue: KSwitchProps['checkedValue'] = true;
@@ -17,9 +19,50 @@
 	export let attrs: KSwitchProps['attrs'] = {};
 
 	const dispatch = createEventDispatcher();
+
+	/*********************** KForm logic start ************************/
+	let disabledFrom = false
+	$:disabledInner = disabledFrom || disabled
+	let sizeFrom = ''
+	$:sizeInner = sizeFrom || size
+
+	const formContext = getContext(formItemKey) as string;
+	const formInstance = getContext(formKey) as IKunFormInstance;
+	let field: string | undefined = ''
+	// Initialize the KSwitch value based
+	// on the form value in the KFormItem context
+	async function formUpdateField(init = false){
+
+		field = formContext.split('&').pop()
+		value = formInstance.getValueByPath(
+			field,
+			init ? formInstance.__default_value: formInstance.__value
+		)
+		if(!init){
+			await tick()
+			await changeClass(value);
+		}
+	}
+	function formPropsChangeCb(props: Record<any, any>) {
+		disabledFrom = props.disabled
+		sizeFrom = props.size
+	}
+
+	// Register event, KForm can set KInput value
+	if(formContext && formInstance){
+		formUpdateField(true)
+		formPropsChangeCb(formInstance.__dynamicProps)
+		formInstance.__itemCompMap[field] = {
+			update: formUpdateField,
+			type: 'switch'
+		}
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb)
+	}
+	/*********************** KForm logic end ************************/
+
 	$: innerState = value === checkedValue;
 	/**
-	 * 切换状态方法
+	 * change state method
 	 */
 	let changeData: {
 		newVal: KSwitchProps['value'];
@@ -39,11 +82,11 @@
 	};
 
 	/**
-	 * 设置动画样式类
+	 * set animation class
 	 */
 	let switching = '';
 	let switchCircleRef: null | HTMLElement = null;
-	const changeClass = (checked: boolean) => {
+	function changeClass(checked: boolean) {
 		return new Promise((resolve) => {
 			switching = `${prefixCls}-tra`;
 			if (switchCircleRef) {
@@ -59,10 +102,14 @@
 
 	let isUpdateModel = false;
 	const switchState = async () => {
-		// 切换状态
+		// switch state
 		emitChangeEvt();
 		dispatch('updateValue', changeData.newVal);
 		isUpdateModel = true;
+		if(formInstance){
+			formInstance.updateField(field!, changeData.newVal, !formInstance.__manual_validate);
+			value = changeData.newVal
+		}
 		await changeClass(changeData.newVal === checkedValue);
 	};
 
@@ -73,16 +120,16 @@
 		isUpdateModel = false;
 	}
 	/**
-	 * 点击方法
-	 * @param {Event} e - 事件对象
+	 * click method
+	 * @param {Event} e - event obejct
 	 */
 	const handleClick = async (e?: Event) => {
-		if (disabled || loading) return;
+		if (disabledInner || loading) return;
 		await switchState();
 		dispatch('click', e);
 	};
 	/**
-	 * 初始化方法
+	 * initial method
 	 */
 	const init = async () => {
 		await changeClass(innerState);
@@ -93,20 +140,20 @@
 	$: switchCls = clsx(
 		`${prefixCls}`,
 		`${prefixCls}--base`,
-		`${prefixCls}--${size}`,
+		`${prefixCls}--${sizeInner}`,
 		innerState
 			? [`${prefixCls}__checked`, checkedColor]
 			: [`${prefixCls}__unchecked`, unCheckedColor],
 		{
-			[`${prefixCls}__disabled`]: disabled || loading
+			[`${prefixCls}__disabled`]: disabledInner || loading
 		},
 		switching,
 		cls
 	);
 	$: loadingCls = clsx(`${prefixCls}-loading`, `${prefixCls}-loading__dark`);
-	$: circleCls = clsx(`${prefixCls}-circle`, `${prefixCls}-circle--${size}`);
-	$: unCheckedTxCls = clsx(`${prefixCls}-tx__unchecked`, `${prefixCls}-tx__unchecked--${size}`);
-	$: checkedTxCls = clsx(`${prefixCls}-tx__checked`, `${prefixCls}-tx__checked--${size}`);
+	$: circleCls = clsx(`${prefixCls}-circle`, `${prefixCls}-circle--${sizeInner}`);
+	$: unCheckedTxCls = clsx(`${prefixCls}-tx__unchecked`, `${prefixCls}-tx__unchecked--${sizeInner}`);
+	$: checkedTxCls = clsx(`${prefixCls}-tx__checked`, `${prefixCls}-tx__checked--${sizeInner}`);
 </script>
 
 <div class={switchCls} aria-hidden="true" {...$$restProps} {...attrs} on:click={handleClick}>
