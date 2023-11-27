@@ -1,9 +1,9 @@
 ---
-title: KAlert
+title: KForm
 lang: en-US
 ---
 
-# KAlert
+# KForm
 
 With form, you can collect, verify and submit data.
 
