@@ -171,7 +171,7 @@
 	},
 	"lint-staged": {
 		"*.{svelte,js,ts,jsx,tsx,json}": [
-			"prettier --write \\\"./**/*.{svelte,js,ts,jsx,tsx,json}\\\"",
+			"prettier --write ",
 			"eslint"
 		]
 	},

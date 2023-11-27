@@ -11,18 +11,8 @@
 </script>
 
 <div class="flex items-center">
-	<KRadio
-		value={value1}
-		label="The Last Leaf"
-		disabled
-		on:updateValue={handleUpdate1}
-		cls="mx-2"
+	<KRadio value={value1} label="The Last Leaf" disabled on:updateValue={handleUpdate1} cls="mx-2"
 	></KRadio>
-	<KRadio
-		value={value2}
-		label="Peter Pan"
-		disabled
-		on:updateValue={handleUpdate2}
-		cls="mx-2"
+	<KRadio value={value2} label="Peter Pan" disabled on:updateValue={handleUpdate2} cls="mx-2"
 	></KRadio>
 </div>

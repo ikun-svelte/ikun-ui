@@ -11,18 +11,8 @@
 </script>
 
 <div class="flex items-center">
-	<KCheckbox
-		value={value1}
-		label="The Last Leaf"
-		disabled
-		on:updateValue={handleUpdate1}
-		cls="mx-2"
+	<KCheckbox value={value1} label="The Last Leaf" disabled on:updateValue={handleUpdate1} cls="mx-2"
 	></KCheckbox>
-	<KCheckbox
-		label="Peter Pan"
-		disabled
-		on:updateValue={handleUpdate2}
-		value={value2}
-		cls="mx-2"
+	<KCheckbox label="Peter Pan" disabled on:updateValue={handleUpdate2} value={value2} cls="mx-2"
 	></KCheckbox>
 </div>
