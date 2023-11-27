@@ -29,31 +29,31 @@ npm install @ikun-ui/from
 
 Form contains three components, they are KFrom, KFromItem
 
-`<demo src="form/basic.svelte"  github='Form'></demo>`
+<demo src="form/basic.svelte"  github='Form'></demo>
 
 ## Alignment
 
 Label has three alignment methods and two position settings.
 
-`<demo src="form/align.svelte" github='Form'></demo>`
+<demo src="form/align.svelte" github='Form'></demo>
 
 ## Validation
 
 The following is a best practice for form validation
 
-`<demo src="form/validation.svelte" github='Form'></demo>`
+<demo src="form/validation.svelte" github='Form'></demo>
 
 ## Custom Validation Rules
 
 Support custom form verification functions by setting rules
 
-`<demo src="form/custom-rules.svelte" github='Form'></demo>`
+<demo src="form/custom-rules.svelte" github='Form'></demo>
 
 ## Size Control
 
 Form supports three sizes
 
-`<demo src="form/size.svelte" github='Form'></demo>`
+<demo src="form/size.svelte" github='Form'></demo>
 
 ## Form Props
 

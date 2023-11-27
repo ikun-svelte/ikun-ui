@@ -3,8 +3,9 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import { extend } from 'baiwusanyu-utils';
-	import { getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
+	import { getPrefixCls, ButtonGroupKey, formKey } from '@ikun-ui/utils';
 	import clsx from 'clsx';
+	import { type IKunFormInstance } from '@ikun-ui/form';
 
 	export let type: KButtonProps['type'] | '' = '';
 	export let size: KButtonProps['size'] | '' = '';
@@ -53,8 +54,9 @@
 	};
 
 	const dispatch = createEventDispatcher();
+	const formInstance = getContext(formKey) as IKunFormInstance;
 	const handleClick = (e: Event) => {
-		if (disabledInner) {
+		if (disabledInner || formInstance) {
 			e.preventDefault();
 		}
 		if (!to && !disabledInner) {
@@ -122,8 +124,12 @@
 	{/if}
 	<slot />
 </svelte:element>
+
 <style>
-	:global(.k-button--base+.k-button--base){
+	:global(.k-button--base + .k-button--base) {
 		--at-apply: ml-2;
+	}
+	:global(.k-button-group .k-button--base + .k-button--base) {
+		--at-apply: ml-0;
 	}
 </style>
