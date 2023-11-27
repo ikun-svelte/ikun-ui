@@ -5,10 +5,10 @@
 	import type { MsgBoxEmoType, ValidatorFn } from './types';
 	import { KButton } from '@ikun-ui/button';
 	import { KInput } from '@ikun-ui/input';
-	import { KForm, KFormItem } from "@ikun-ui/form";
+	import { KForm, KFormItem } from '@ikun-ui/form';
 	import type { IKunUncertainFunction } from '@ikun-ui/utils';
 	import { clsx, type ClassValue } from 'clsx';
-	import { getPrefixCls } from "@ikun-ui/utils";
+	import { getPrefixCls } from '@ikun-ui/utils';
 
 	export let show = false;
 	export let attrs: Record<string, string> = {};
@@ -37,58 +37,62 @@
 		onCancel && onCancel();
 	};
 
-
-	let KFormInst: KForm | undefined = undefined
+	let KFormInst: KForm | undefined = undefined;
 	let initValue = {
 		data: ''
-	}
+	};
 	const rules = {
-		data: [{
-			required: true,
-			validator: (value: string, callback: any) => {
-				if (!inputValidator) {
-					isError = false;
-					callback('')
-					return
-				}
-				if(!value && value !== 0){
-					isError = true;
-					callback('This is a required input box')
-					return;
-				}
-				// Validator
-				if (inputValidator && Object.prototype.toString.call(inputValidator) === '[object RegExp]') {
-					if ((inputValidator as unknown as RegExp).test(value)) {
+		data: [
+			{
+				required: true,
+				validator: (value: string, callback: any) => {
+					if (!inputValidator) {
 						isError = false;
-					} else {
-						isError = true;
-						callback(inputErrorMessage)
+						callback('');
+						return;
 					}
-					return;
-				}
+					if (!value) {
+						isError = true;
+						callback('This is a required input box');
+						return;
+					}
+					// Validator
+					if (
+						inputValidator &&
+						Object.prototype.toString.call(inputValidator) === '[object RegExp]'
+					) {
+						if ((inputValidator as unknown as RegExp).test(value)) {
+							isError = false;
+						} else {
+							isError = true;
+							callback(inputErrorMessage);
+						}
+						return;
+					}
 
-				if (inputValidator && isFunction(inputValidator)) {
-					if ((inputValidator as ValidatorFn)(value)) {
-						isError = false;
-					} else {
-						isError = true;
-						callback(inputErrorMessage)
+					if (inputValidator && isFunction(inputValidator)) {
+						if ((inputValidator as ValidatorFn)(value)) {
+							isError = false;
+						} else {
+							isError = true;
+							callback(inputErrorMessage);
+						}
+						return;
 					}
-					return;
 				}
 			}
-		}]
-	}
+		]
+	};
 
 	const handleConfirm = () => {
 		if (type === 'prompt') {
-			if(KFormInst){
+			if (KFormInst) {
 				KFormInst.validateForm((value, isValid) => {
-					if(isValid){
+					if (isValid) {
 						showInner = false;
 					}
 					onConfirm && onConfirm(!isError, value.data);
-				})
+				});
 			}
 		} else {
 			showInner = false;
@@ -100,14 +104,8 @@
 		`${prefixCls}--footer`,
 		layout === 'center' ? 'justify-center' : 'justify-end'
 	);
-	$: cancelBtnCls_ = clsx(
-		`${prefixCls}--footer--btn`,
-		cancelBtnCls)
-	;
-	$: confirmBtnCls_ = clsx(
-		`${prefixCls}--footer--btn`,
-		confirmBtnCls
-	);
+	$: cancelBtnCls_ = clsx(`${prefixCls}--footer--btn`, cancelBtnCls);
+	$: confirmBtnCls_ = clsx(`${prefixCls}--footer--btn`, confirmBtnCls);
 	$: formCls = clsx(`${prefixCls}--form`);
 	$: inputCls = clsx(`${prefixCls}--input`);
 </script>
@@ -141,17 +139,9 @@
 			{#if isString(content)}
 				{@html content}
 				{#if type === 'prompt'}
-					<KForm
-						{initValue}
-						{rules}
-						bind:this={KFormInst}
-					>
-						<KFormItem field="data"
-											 label=""
-											 cls={formCls}
-											 showLabel={false}>
-							<KInput placeholder={inputPlaceholder} cls={inputCls}>
-							</KInput>
+					<KForm {initValue} {rules} bind:this={KFormInst}>
+						<KFormItem field="data" label="" cls={formCls} showLabel={false}>
+							<KInput placeholder={inputPlaceholder} cls={inputCls}></KInput>
 						</KFormItem>
 					</KForm>
 				{/if}

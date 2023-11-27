@@ -166,7 +166,7 @@ export const createForm = (option: IKunFormInstanceOption): IKunFormInstance => 
 		 * @public
 		 */
 		resetForm() {
-			this.__value = this.__default_value;
+			this.__value = jsonClone(this.__default_value)
 			this.setEntireForm();
 		},
 		/**
