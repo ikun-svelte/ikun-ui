@@ -1,7 +1,7 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, describe, beforeEach } from 'vitest';
 import KDivider from '../src';
-import KDividerContent from './divider.content.slot.test.svelte';
+import KDividerContent from './fixture/divider.content.slot.test.svelte';
 
 let host: HTMLElement;
 

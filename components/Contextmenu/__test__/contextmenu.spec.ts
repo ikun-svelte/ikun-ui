@@ -1,12 +1,12 @@
 import { afterEach, expect, test, describe, beforeEach, vi } from 'vitest';
-import KContextmenuBase from './contextmenu.base.svelte';
-import KContextmenuDisabled from './contextmenu.disabled.svelte';
-import KContextmenuItemDisabled from './contextmenu.item.disabled.svelte';
-import KContextmenuItemDivider from './contextmenu.item.divider.svelte';
-import KContextmenuSub from './contextmenu.sub.svelte';
-import KContextmenuSubDisabled from './contextmenu.sub.disabled.svelte';
-import KContextmenuEvt from './contextmenu.event.contextmenu.svelte';
-import KContextmenuEvtChange from './contextmenu.event.change.svelte';
+import KContextmenuBase from './fixture/contextmenu.base.svelte';
+import KContextmenuDisabled from './fixture/contextmenu.disabled.svelte';
+import KContextmenuItemDisabled from './fixture/contextmenu.item.disabled.svelte';
+import KContextmenuItemDivider from './fixture/contextmenu.item.divider.svelte';
+import KContextmenuSub from './fixture/contextmenu.sub.svelte';
+import KContextmenuSubDisabled from './fixture/contextmenu.sub.disabled.svelte';
+import KContextmenuEvt from './fixture/contextmenu.event.contextmenu.svelte';
+import KContextmenuEvtChange from './fixture/contextmenu.event.change.svelte';
 import { tick } from 'svelte';
 
 let host: HTMLElement;

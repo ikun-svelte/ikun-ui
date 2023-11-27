@@ -1,8 +1,8 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
 import { KNotify, NotifyComponent } from '../src/index';
-import KNotifyContent from './notification.content.svelte';
-import KNotifyTitle from './notification.title.svelte';
+import KNotifyContent from './fixture/notification.content.svelte';
+import KNotifyTitle from './fixture/notification.title.svelte';
 
 let host: HTMLElement;
 const initHost = () => {
