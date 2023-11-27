@@ -12,7 +12,7 @@
 	/**
 	 * @internal
 	 */
-	export let showLabel: boolean= true;
+	export let showLabel: boolean = true;
 	let errorMsg = '';
 	function showErrorMsg(msg: string) {
 		errorMsg = msg;
@@ -90,9 +90,7 @@
 
 <div class={cnames} {...$$restProps} {...attrs}>
 	{#if !(!$$slots.label && !label && labelPosition === 'vertical') && showLabel}
-		<label class={lableCls}
-					 style:min-width={minWidthInner}
-					 style:width={labelWidthInner} >
+		<label class={lableCls} style:min-width={minWidthInner} style:width={labelWidthInner}>
 			{#if isRequired && (label || $$slots.label)}
 				<span class={startCls}>*</span>
 			{/if}

@@ -179,7 +179,8 @@
 			value = 0;
 		} else {
 			dispatch('updateValue', currentValue);
-			formInstance && formInstance?.updateField(field!, currentValue, !formInstance.__manual_validate);
+			formInstance &&
+				formInstance?.updateField(field!, currentValue, !formInstance.__manual_validate);
 			value = currentValue;
 		}
 	};

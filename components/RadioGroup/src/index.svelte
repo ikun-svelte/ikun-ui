@@ -2,7 +2,7 @@
 	import type { KRadioGroupProps, radioMapType, radioMapItem } from './types';
 	import { radioGroupKey, getPrefixCls, formItemKey, formKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import { createEventDispatcher, setContext, getContext, tick, onMount } from "svelte";
+	import { createEventDispatcher, setContext, getContext, tick, onMount } from 'svelte';
 	import type { IKunFormInstance } from '@ikun-ui/form';
 	export let value: KRadioGroupProps['value'] = '';
 	export let size: KRadioGroupProps['size'] = 'md';
@@ -32,7 +32,6 @@
 		sizeFrom = props.size;
 	}
 
-
 	onMount(() => {
 		// Register event, KForm can set KInput value
 		if (formContext && formInstance) {
@@ -44,7 +43,7 @@
 			};
 			formInstance.__propHandleEvtMap.push(formPropsChangeCb);
 		}
-	})
+	});
 	/*********************** KForm logic end ************************/
 
 	// updateValue

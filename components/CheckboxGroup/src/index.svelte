@@ -2,7 +2,7 @@
 	import type { KCheckboxGroupProps, checkboxMapType, checkboxMapItem } from './types';
 	import { checkboxGroupKey, formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import { createEventDispatcher, getContext, onMount, setContext, tick } from "svelte";
+	import { createEventDispatcher, getContext, onMount, setContext, tick } from 'svelte';
 	import { jsonClone } from 'baiwusanyu-utils';
 	import type { IKunFormInstance } from '@ikun-ui/form';
 
@@ -33,7 +33,7 @@
 		disabledFrom = props.disabled;
 		sizeFrom = props.size;
 	}
-	onMount(()=>{
+	onMount(() => {
 		// Register event, KForm can set KInput value
 		if (formContext && formInstance) {
 			formUpdateField(true);
@@ -44,7 +44,7 @@
 			};
 			formInstance.__propHandleEvtMap.push(formPropsChangeCb);
 		}
-	})
+	});
 
 	/*********************** KForm logic end ************************/
 

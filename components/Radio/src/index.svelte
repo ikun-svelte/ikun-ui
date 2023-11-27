@@ -3,7 +3,7 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import type { RadioGroupCtx } from '@ikun-ui/radio-group';
-	import { getPrefixCls, radioGroupKey, } from "@ikun-ui/utils";
+	import { getPrefixCls, radioGroupKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	export let value: KRadioProps['value'] = false;
 	export let label: KRadioProps['label'] = '';

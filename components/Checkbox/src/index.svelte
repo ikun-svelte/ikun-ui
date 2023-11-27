@@ -30,10 +30,10 @@
 	$: isDisabled = (ctx && ctx.disabled) || disabled;
 	$: sizeInner = ctx && ctx.size ? ctx.size : size;
 	const KCheckboxSize = {
-		'lg': '16',
-		'md': '14',
-		'sm': '12'
-	}
+		lg: '16',
+		md: '14',
+		sm: '12'
+	};
 
 	/**
 	 * Click the `checkbox` to update the binding value
@@ -45,7 +45,6 @@
 		// Being in a checkbox group does not trigger it
 		!ctx && dispatch('updateValue', valueInner);
 	};
-
 
 	/**
 	 * Set checkbox value

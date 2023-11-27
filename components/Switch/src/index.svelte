@@ -2,9 +2,9 @@
 	import type { KSwitchProps } from './types';
 	import { KIcon } from '@ikun-ui/icon';
 	import { clsx } from 'clsx';
-	import { formKey, getPrefixCls } from "@ikun-ui/utils";
-	import { createEventDispatcher, getContext, onMount, tick } from "svelte";
-	import type { IKunFormInstance } from "@ikun-ui/form";
+	import { formKey, getPrefixCls } from '@ikun-ui/utils';
+	import { createEventDispatcher, getContext, onMount, tick } from 'svelte';
+	import type { IKunFormInstance } from '@ikun-ui/form';
 	import { formItemKey } from '@ikun-ui/utils';
 
 	export let value: KSwitchProps['value'] = false;
@@ -21,42 +21,41 @@
 	const dispatch = createEventDispatcher();
 
 	/*********************** KForm logic start ************************/
-	let disabledFrom = false
-	$:disabledInner = disabledFrom || disabled
-	let sizeFrom = ''
-	$:sizeInner = sizeFrom || size
+	let disabledFrom = false;
+	$: disabledInner = disabledFrom || disabled;
+	let sizeFrom = '';
+	$: sizeInner = sizeFrom || size;
 
 	const formContext = getContext(formItemKey) as string;
 	const formInstance = getContext(formKey) as IKunFormInstance;
-	let field: string | undefined = ''
+	let field: string | undefined = '';
 	// Initialize the KSwitch value based
 	// on the form value in the KFormItem context
-	async function formUpdateField(init = false){
-
-		field = formContext.split('&').pop()
+	async function formUpdateField(init = false) {
+		field = formContext.split('&').pop();
 		value = formInstance.getValueByPath(
 			field,
-			init ? formInstance.__default_value: formInstance.__value
-		)
-		if(!init){
-			await tick()
+			init ? formInstance.__default_value : formInstance.__value
+		);
+		if (!init) {
+			await tick();
 			await changeClass(value);
 		}
 	}
 	function formPropsChangeCb(props: Record<any, any>) {
-		disabledFrom = props.disabled
-		sizeFrom = props.size
+		disabledFrom = props.disabled;
+		sizeFrom = props.size;
 	}
 
 	// Register event, KForm can set KInput value
-	if(formContext && formInstance){
-		formUpdateField(true)
-		formPropsChangeCb(formInstance.__dynamicProps)
+	if (formContext && formInstance) {
+		formUpdateField(true);
+		formPropsChangeCb(formInstance.__dynamicProps);
 		formInstance.__itemCompMap[field] = {
 			update: formUpdateField,
 			type: 'switch'
-		}
-		formInstance.__propHandleEvtMap.push(formPropsChangeCb)
+		};
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb);
 	}
 	/*********************** KForm logic end ************************/
 
@@ -98,7 +97,7 @@
 				resolve(true);
 			}, 300);
 		});
-	};
+	}
 
 	let isUpdateModel = false;
 	const switchState = async () => {
@@ -106,9 +105,9 @@
 		emitChangeEvt();
 		dispatch('updateValue', changeData.newVal);
 		isUpdateModel = true;
-		if(formInstance){
+		if (formInstance) {
 			formInstance.updateField(field!, changeData.newVal, !formInstance.__manual_validate);
-			value = changeData.newVal
+			value = changeData.newVal;
 		}
 		await changeClass(changeData.newVal === checkedValue);
 	};
@@ -152,7 +151,10 @@
 	);
 	$: loadingCls = clsx(`${prefixCls}-loading`, `${prefixCls}-loading__dark`);
 	$: circleCls = clsx(`${prefixCls}-circle`, `${prefixCls}-circle--${sizeInner}`);
-	$: unCheckedTxCls = clsx(`${prefixCls}-tx__unchecked`, `${prefixCls}-tx__unchecked--${sizeInner}`);
+	$: unCheckedTxCls = clsx(
+		`${prefixCls}-tx__unchecked`,
+		`${prefixCls}-tx__unchecked--${sizeInner}`
+	);
 	$: checkedTxCls = clsx(`${prefixCls}-tx__checked`, `${prefixCls}-tx__checked--${sizeInner}`);
 </script>
 

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { clsx } from 'clsx';
-	import type { KSliderProps } from "./types";
-	import { getPrefixCls } from "@ikun-ui/utils";
+	import type { KSliderProps } from './types';
+	import { getPrefixCls } from '@ikun-ui/utils';
 
 	export let min: KSliderProps['min'] = 0;
 	export let max: KSliderProps['max'] = 100;
@@ -100,30 +100,17 @@
 	};
 
 	const prefixCls = getPrefixCls('slider');
-	$: cnames = clsx(
-		prefixCls,
-		cls
-	);
-	$: sliderRunwayCls = clsx(
-		`${prefixCls}--runway`,
-		{
-			'k-cur-disabled': disabled
-		}
-	);
-	$: sizeCls = clsx(
-		`${prefixCls}--base`,
-		`${prefixCls}__${size}`
-	);
-	const barCls = `${prefixCls}--bar`
-	$: btnCls = clsx(
-		`${prefixCls}--button`,
-		`${prefixCls}--button__${size}`
-	)
+	$: cnames = clsx(prefixCls, cls);
+	$: sliderRunwayCls = clsx(`${prefixCls}--runway`, {
+		'k-cur-disabled': disabled
+	});
+	$: sizeCls = clsx(`${prefixCls}--base`, `${prefixCls}__${size}`);
+	const barCls = `${prefixCls}--bar`;
+	$: btnCls = clsx(`${prefixCls}--button`, `${prefixCls}--button__${size}`);
 	$: btnWrapperCls = clsx(
 		`${prefixCls}--button__wrapper`,
 		`${prefixCls}--button__wrapper__${size}`
-	)
-
+	);
 </script>
 
 <div class={cnames}>
