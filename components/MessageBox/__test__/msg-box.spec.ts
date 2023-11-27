@@ -1,8 +1,8 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
 import { KMsgBox } from '../src/index';
-import KMsgBoxTitle from './message-box.title.svelte';
-import KMsgBoxContent from './message-box.content.svelte';
+import KMsgBoxTitle from './fixture/message-box.title.svelte';
+import KMsgBoxContent from './fixture/message-box.content.svelte';
 
 let host: HTMLElement;
 const initHost = () => {

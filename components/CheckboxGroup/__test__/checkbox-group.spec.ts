@@ -1,14 +1,14 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, describe, beforeEach } from 'vitest';
 import KCheckboxGroup from '../src';
-import KGroupBase from './group.base.svelte';
-import KGroupChange from './group.change.svelte';
-import KGroupTrigger from './group.trigger.svelte';
-import KGroupBaseDisabled from './group.base.disabled.svelte';
-import KGroupChangeDisabled from './group.change.disabled.svelte';
-import KGroupTriggerDisabled from './group.trigger.disabled.svelte';
-import KGroupModelDisabled from './group.model.disabled.svelte';
-import KGroupSize from './group.size.svelte';
+import KGroupBase from './fixture/group.base.svelte';
+import KGroupChange from './fixture/group.change.svelte';
+import KGroupTrigger from './fixture/group.trigger.svelte';
+import KGroupBaseDisabled from './fixture/group.base.disabled.svelte';
+import KGroupChangeDisabled from './fixture/group.change.disabled.svelte';
+import KGroupTriggerDisabled from './fixture/group.trigger.disabled.svelte';
+import KGroupModelDisabled from './fixture/group.model.disabled.svelte';
+import KGroupSize from './fixture/group.size.svelte';
 
 let host: HTMLElement;
 

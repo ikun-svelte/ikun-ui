@@ -1,7 +1,7 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
 import { KModal } from '../src/index';
-import KModalSlotfrom from './modal.slot.svelte';
+import KModalSlotfrom from './fixture/modal.slot.svelte';
 
 let host: HTMLElement;
 const initHost = () => {

@@ -1,8 +1,8 @@
 import { tick } from 'svelte';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
-import KTooltipPlacement from './tooltip.placement.svelte';
-import KTooltipTrigger from './tooltip.trigger.svelte';
-import KTooltipSlots from './tooltip.slots.svelte';
+import KTooltipPlacement from './fixture/tooltip.placement.svelte';
+import KTooltipTrigger from './fixture/tooltip.trigger.svelte';
+import KTooltipSlots from './fixture/tooltip.slots.svelte';
 
 let host: HTMLElement;
 // TODO E2E test

@@ -2,9 +2,9 @@ import { tick } from 'svelte';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { fireEvent } from '@testing-library/svelte';
 import KInput from '../src';
-import KInputSlots from './input.slots.svelte';
-import KInputSlotsAppend from './input.slots.append.svelte';
-import KInputBindValueUpdate from './input.bind.value.update.svelte';
+import KInputSlots from './fixture/input.slots.svelte';
+import KInputSlotsAppend from './fixture/input.slots.append.svelte';
+import KInputBindValueUpdate from './fixture/input.bind.value.update.svelte';
 
 let host: HTMLElement;
 

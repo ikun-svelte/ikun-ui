@@ -1,17 +1,17 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
 import KSelect from '../src';
-import KSelectValue from './select.value.svelte';
-import KSelectValueObj from './select.object.svelte';
-import KSelectSlots from './select.slots.svelte';
-import KSelectClearable from './select.clearable.svelte';
-import KSelectUpdated from './select.updated.svelte';
-import KSelectDisabled from './select.disabled.svelte';
-import KSelectCustom from './select.custom.svelte';
-import KSelectString from './select.string.svelte';
-import KSelectNumber from './select.number.svelte';
-import KSelectFit from './select.fit.svelte';
-import KSelectRemote from './select.remote.svelte';
+import KSelectValue from './fixture/select.value.svelte';
+import KSelectValueObj from './fixture/select.object.svelte';
+import KSelectSlots from './fixture/select.slots.svelte';
+import KSelectClearable from './fixture/select.clearable.svelte';
+import KSelectUpdated from './fixture/select.updated.svelte';
+import KSelectDisabled from './fixture/select.disabled.svelte';
+import KSelectCustom from './fixture/select.custom.svelte';
+import KSelectString from './fixture/select.string.svelte';
+import KSelectNumber from './fixture/select.number.svelte';
+import KSelectFit from './fixture/select.fit.svelte';
+import KSelectRemote from './fixture/select.remote.svelte';
 let host: HTMLElement;
 
 const initHost = () => {
