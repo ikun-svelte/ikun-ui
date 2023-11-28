@@ -728,13 +728,13 @@ importers:
         specifier: ^5.0.2
         version: 5.0.2
       svelte-strip:
-        specifier: ^2.0.0
-        version: 2.0.0(@babel/core@7.23.3)(postcss@8.4.31)(svelte@3.59.2)
+        specifier: ^3.0.1
+        version: 3.0.1(@babel/core@7.23.3)(postcss@8.4.31)(svelte@4.2.7)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       typescript:
-        specifier: ^5.2.2
+        specifier: ^5.3.2
         version: 5.3.2
 
   components/DescriptionsItem:
@@ -756,13 +756,13 @@ importers:
         specifier: ^5.0.2
         version: 5.0.2
       svelte-strip:
-        specifier: ^2.0.0
-        version: 2.0.0(@babel/core@7.23.3)(postcss@8.4.31)(svelte@3.59.2)
+        specifier: ^3.0.1
+        version: 3.0.1(@babel/core@7.23.3)(postcss@8.4.31)(svelte@4.2.7)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       typescript:
-        specifier: ^5.2.2
+        specifier: ^5.3.2
         version: 5.3.2
 
   components/Divider:
@@ -5347,16 +5347,6 @@ packages:
       once: 1.4.0
     dev: true
 
-  /glob@9.3.5:
-    resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
-    engines: {node: '>=16 || 14 >=14.17'}
-    dependencies:
-      fs.realpath: 1.0.0
-      minimatch: 8.0.4
-      minipass: 4.2.8
-      path-scurry: 1.10.1
-    dev: true
-
   /globals@11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
     engines: {node: '>=4'}
@@ -6320,20 +6310,6 @@ packages:
       brace-expansion: 2.0.1
     dev: true
 
-  /minimatch@7.4.6:
-    resolution: {integrity: sha512-sBz8G/YjVniEz6lKPNpKxXwazJe4c19fEfV2GDMX6AjFz+MX9uDWIZW8XreVhkFW3fkIdTv/gxWr/Kks5FFAVw==}
-    engines: {node: '>=10'}
-    dependencies:
-      brace-expansion: 2.0.1
-    dev: true
-
-  /minimatch@8.0.4:
-    resolution: {integrity: sha512-W0Wvr9HyFXZRGIDgCicunpQ299OKXs9RgZfaukz4qAW/pJhcpUfupc9c+OObPOFueNy8VSrZgEmDtk6Kh4WzDA==}
-    engines: {node: '>=16 || 14 >=14.17'}
-    dependencies:
-      brace-expansion: 2.0.1
-    dev: true
-
   /minimatch@9.0.3:
     resolution: {integrity: sha512-RHiac9mvaRw0x3AYRgDC1CxAP7HTcNrrECeA8YYJeWnpo+2Q5CegtZjaotWTWxDG3UeGA1coE05iH1mPjT/2mg==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -6350,11 +6326,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       yallist: 4.0.0
-    dev: true
-
-  /minipass@4.2.8:
-    resolution: {integrity: sha512-fNzuVyifolSLFL4NzpF+wEF4qrgqaaKX0haXPQEdQ7NKAN+WecoKMHV09YcuL/DHxrUsYQOK3MiuDf7Ip2OXfQ==}
-    engines: {node: '>=8'}
     dev: true
 
   /minipass@5.0.0:
@@ -7621,55 +7592,6 @@ packages:
       '@popperjs/core': 2.11.8
       svelte: 4.2.7
 
-  /svelte-preprocess@5.1.1(@babel/core@7.23.3)(postcss@8.4.31)(svelte@3.59.2)(typescript@5.3.2):
-    resolution: {integrity: sha512-p/Dp4hmrBW5mrCCq29lEMFpIJT2FZsRlouxEc5qpbOmXRbaFs7clLs8oKPwD3xCFyZfv1bIhvOzpQkhMEVQdMw==}
-    engines: {node: '>= 14.10.0'}
-    requiresBuild: true
-    peerDependencies:
-      '@babel/core': ^7.10.2
-      coffeescript: ^2.5.1
-      less: ^3.11.3 || ^4.0.0
-      postcss: ^7 || ^8
-      postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0
-      pug: ^3.0.0
-      sass: ^1.26.8
-      stylus: ^0.55.0
-      sugarss: ^2.0.0 || ^3.0.0 || ^4.0.0
-      svelte: ^3.23.0 || ^4.0.0-next.0 || ^4.0.0 || ^5.0.0-next.0
-      typescript: '>=3.9.5 || ^4.0.0 || ^5.0.0'
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      coffeescript:
-        optional: true
-      less:
-        optional: true
-      postcss:
-        optional: true
-      postcss-load-config:
-        optional: true
-      pug:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@babel/core': 7.23.3
-      '@types/pug': 2.0.10
-      detect-indent: 6.1.0
-      magic-string: 0.27.0
-      postcss: 8.4.31
-      sorcery: 0.11.0
-      strip-indent: 3.0.0
-      svelte: 3.59.2
-      typescript: 5.3.2
-    dev: true
-
   /svelte-preprocess@5.1.1(@babel/core@7.23.3)(postcss@8.4.31)(svelte@4.2.7)(typescript@5.3.2):
     resolution: {integrity: sha512-p/Dp4hmrBW5mrCCq29lEMFpIJT2FZsRlouxEc5qpbOmXRbaFs7clLs8oKPwD3xCFyZfv1bIhvOzpQkhMEVQdMw==}
     engines: {node: '>= 14.10.0'}
@@ -7719,30 +7641,6 @@ packages:
       typescript: 5.3.2
     dev: true
 
-  /svelte-strip@2.0.0(@babel/core@7.23.3)(postcss@8.4.31)(svelte@3.59.2):
-    resolution: {integrity: sha512-RZ8swt0ddE22ebZvFpMhW/x9rLIAwCZtWWnb5oohQEYcyuxzvzXwxImjFQ8DINXXMbvw6PB/NfnzDmHqMVrdbw==}
-    hasBin: true
-    peerDependencies:
-      svelte: ^3.0.0
-    dependencies:
-      glob: 9.3.5
-      minimatch: 7.4.6
-      svelte: 3.59.2
-      svelte-preprocess: 5.1.1(@babel/core@7.23.3)(postcss@8.4.31)(svelte@3.59.2)(typescript@5.3.2)
-      typescript: 5.3.2
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@babel/core'
-      - coffeescript
-      - less
-      - postcss
-      - postcss-load-config
-      - pug
-      - sass
-      - stylus
-      - sugarss
-    dev: true
-
   /svelte-strip@3.0.1(@babel/core@7.23.3)(postcss@8.4.31)(svelte@4.2.7):
     resolution: {integrity: sha512-jTmQB1m7ThX+Pgg4gm0HzjW+i226mf9xOxP/JvPTTJH4v2cuQvSJCkHIkFO94XVR8jLfhVJt7RaqLAjeYVon0Q==}
     hasBin: true
@@ -7777,11 +7675,6 @@ packages:
       pascal-case: 3.1.2
       svelte: 4.2.7
       typescript: 5.3.2
-    dev: true
-
-  /svelte@3.59.2:
-    resolution: {integrity: sha512-vzSyuGr3eEoAtT/A6bmajosJZIUWySzY2CzB3w2pgPvnkUjGqlDnsNnA0PMO+mMAhuyMul6C2uuZzY6ELSkzyA==}
-    engines: {node: '>= 8'}
     dev: true
 
   /svelte@4.2.7:
