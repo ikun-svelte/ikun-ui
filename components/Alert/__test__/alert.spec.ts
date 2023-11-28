@@ -1,10 +1,10 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, describe, beforeEach, vi } from 'vitest';
 import KAlert from '../src';
-import KAlertTitle from './alert.title.test.svelte';
-import KAlertDescription from './alert.description.test.svelte';
-import KAlertIcon from './alert.icon.test.svelte';
-import KAlertClose from './alert.close.test.svelte';
+import KAlertTitle from './fixture/alert.title.test.svelte';
+import KAlertDescription from './fixture/alert.description.test.svelte';
+import KAlertIcon from './fixture/alert.icon.test.svelte';
+import KAlertClose from './fixture/alert.close.test.svelte';
 
 let host: HTMLElement;
 

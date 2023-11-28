@@ -15,12 +15,8 @@
 </div>
 
 <div class="flex items-center mt-3 flex-wrap">
-	<KButton icon="i-carbon-settings" type="info" round="20" cls="mx-2" size="lg">
-		settings
-	</KButton>
-	<KButton icon="i-carbon-logo-svelte" type="error" round="20" cls="mx-2" size="md">
-		svelte
-	</KButton>
+	<KButton icon="i-carbon-settings" type="info" round="20" cls="mx-2" size="lg">settings</KButton>
+	<KButton icon="i-carbon-logo-svelte" type="error" round="20" cls="mx-2" size="md">svelte</KButton>
 	<KButton icon="i-carbon-logo-wechat" type="success" round="20" cls="mx-2" size="sm">
 		wechat
 	</KButton>

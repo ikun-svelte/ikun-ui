@@ -1,9 +1,9 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, describe, beforeEach, vi } from 'vitest';
 import KCollapse from '../src/index.svelte';
-import KCollapseContent from './collapse.content.test.svelte';
-import KCollapseTitle from './collapse.title.test.svelte';
-import KCollapseCloseIcon from './collapse.close.test.svelte';
+import KCollapseContent from './fixture/collapse.content.test.svelte';
+import KCollapseTitle from './fixture/collapse.title.test.svelte';
+import KCollapseCloseIcon from './fixture/collapse.close.test.svelte';
 let host: HTMLElement;
 
 const initHost = () => {

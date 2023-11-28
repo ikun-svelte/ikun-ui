@@ -1,7 +1,7 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, describe, beforeEach } from 'vitest';
 import KTag from '../src/index.svelte';
-import KTagSlot from './tag.test.svelte';
+import KTagSlot from './fixture/tag.test.svelte';
 let host: HTMLElement;
 
 const initHost = () => {

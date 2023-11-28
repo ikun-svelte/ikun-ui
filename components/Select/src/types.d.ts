@@ -1,6 +1,6 @@
 /// <reference types="svelte" />
 import { ClassValue } from 'clsx';
-import { IKunSize } from "@ikun-ui/utils";
+import { IKunSize } from '@ikun-ui/utils';
 
 export type KSelectProps = {
 	size: IKunSize;

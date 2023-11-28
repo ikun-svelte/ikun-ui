@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
-	import { getPrefixCls } from "@ikun-ui/utils";
+	import { getPrefixCls } from '@ikun-ui/utils';
 	export let horizontal = false;
 	export let uniqueKey: string = '';
 	export let type = 'item';
@@ -35,6 +35,6 @@
 	const prefixCls = getPrefixCls('virtual-list--item');
 </script>
 
-<div bind:this={itemDiv} class="{prefixCls}" data-kv-key="{uniqueKey}">
+<div bind:this={itemDiv} class={prefixCls} data-kv-key={uniqueKey}>
 	<slot />
 </div>

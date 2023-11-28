@@ -1,7 +1,7 @@
 /// <reference types="svelte" />
 import type { IKunTypePro } from '@ikun-ui/utils';
 import type { ClassValue } from 'clsx';
-import { IKunSize } from "@ikun-ui/utils";
+import { IKunSize } from '@ikun-ui/utils';
 
 export type KButtonProps = {
 	type: IKunTypePro | 'main';

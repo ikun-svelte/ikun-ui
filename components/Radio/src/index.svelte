@@ -5,7 +5,6 @@
 	import type { RadioGroupCtx } from '@ikun-ui/radio-group';
 	import { getPrefixCls, radioGroupKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-
 	export let value: KRadioProps['value'] = false;
 	export let label: KRadioProps['label'] = '';
 	export let uid: KRadioProps['uid'] = '';
@@ -27,7 +26,7 @@
 	let classChecking = '';
 	$: isDisabled = (ctx && ctx.disabled) || disabled;
 	$: sizeInner = ctx && ctx.size ? ctx.size : size;
-	enum ERadioSize {
+	enum KRadioSize {
 		'lg' = 16,
 		'md' = 14,
 		'sm' = 12
@@ -38,6 +37,7 @@
 		if (valueInner) return;
 
 		doUpdatedValue(!valueInner, true);
+
 		!ctx && dispatch('updateValue', !valueInner);
 	};
 
@@ -54,7 +54,11 @@
 	};
 
 	function setDisabled(v: boolean) {
-		isDisabled = v;
+		isDisabled = v || disabled;
+	}
+
+	function setSizes(v: KRadioProps['size']) {
+		sizeInner = v;
 	}
 
 	/**
@@ -65,7 +69,8 @@
 			// Register checkbox
 			ctx.registerRadio(uid, {
 				doUpdatedValue,
-				setDisabled
+				setDisabled,
+				setSizes
 			});
 		}
 	}
@@ -106,8 +111,8 @@
 			<KIcon
 				icon="i-carbon:radio-button-checked"
 				color="!text-white"
-				width={ERadioSize[sizeInner]}
-				height={ERadioSize[sizeInner]}
+				width={KRadioSize[sizeInner]}
+				height={KRadioSize[sizeInner]}
 			/>
 		{/if}
 	</div>

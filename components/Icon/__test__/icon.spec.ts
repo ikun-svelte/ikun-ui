@@ -1,7 +1,7 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
 import KIcon from '../src/index.svelte';
-import KIconCustomizable from './customizable.icon.color.test.svelte';
+import KIconCustomizable from './fixture/customizable.icon.color.test.svelte';
 
 let host: HTMLElement;
 

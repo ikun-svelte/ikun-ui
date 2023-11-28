@@ -1,0 +1,148 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KForm > api: KForm clearValidateField 1`] = `
+{
+  "data": {
+    "KInput": "KInput",
+  },
+  "invalidFields": [
+    {
+      "field": "KInput",
+      "fieldValue": "KInput",
+      "message": "KInput 3 ~5",
+    },
+  ],
+  "isValid": false,
+}
+`;
+
+exports[`Test: KForm > api: KForm clearValidateField 2`] = `
+{
+  "data": {
+    "KInput": "KInput",
+  },
+  "invalidFields": [
+    {
+      "field": "KInput",
+      "fieldValue": "KInput",
+      "message": "KInput 3 ~5",
+    },
+  ],
+  "isValid": false,
+}
+`;
+
+exports[`Test: KForm > api: KForm clearValidateField 3`] = `
+{
+  "data": {
+    "KInput": "KInput",
+  },
+  "invalidFields": [
+    {
+      "field": "KInput",
+      "fieldValue": "KInput",
+      "message": "KInput 3 ~5",
+    },
+  ],
+  "isValid": false,
+}
+`;
+
+exports[`Test: KForm > api: KForm validateForm > {"data":{"KInput":"KInput","KSwitch":true,"KRate":null,"KRadio":"","KCheckbox":[],"KSelect":null,"KSelectString":""},"isValid":false,"invalidFields":[{"message":"KInput 3 ~5","fieldValue":"KInput","field":"KInput"},{"message":"KRate error","fieldValue":null,"field":"KRate"},{"message":"KRadio error","fieldValue":"","field":"KRadio"},{"message":"KRadio error","fieldValue":[],"field":"KCheckbox"},{"message":"KSelect error","fieldValue":null,"field":"KSelect"},{"message":"KSelectString custom error","fieldValue":"","field":"KSelectString"}]} 1`] = `
+{
+  "data": {
+    "KCheckbox": [],
+    "KInput": "KInput",
+    "KRadio": "",
+    "KRate": null,
+    "KSelect": null,
+    "KSelectString": "",
+    "KSwitch": true,
+  },
+  "invalidFields": [
+    {
+      "field": "KInput",
+      "fieldValue": "KInput",
+      "message": "KInput 3 ~5",
+    },
+    {
+      "field": "KRate",
+      "fieldValue": null,
+      "message": "KRate error",
+    },
+    {
+      "field": "KRadio",
+      "fieldValue": "",
+      "message": "KRadio error",
+    },
+    {
+      "field": "KCheckbox",
+      "fieldValue": [],
+      "message": "KRadio error",
+    },
+    {
+      "field": "KSelect",
+      "fieldValue": null,
+      "message": "KSelect error",
+    },
+    {
+      "field": "KSelectString",
+      "fieldValue": "",
+      "message": "KSelectString custom error",
+    },
+  ],
+  "isValid": false,
+}
+`;
+
+exports[`Test: KForm > events: KForm validate & api setField 1`] = `
+CustomEvent {
+  "isTrusted": false,
+}
+`;
+
+exports[`Test: KForm > events: KForm validate & api validateField 1`] = `
+CustomEvent {
+  "isTrusted": false,
+}
+`;
+
+exports[`Test: KForm > events: KForm validate & input interaction 1`] = `
+CustomEvent {
+  "isTrusted": false,
+}
+`;
+
+exports[`Test: KForm > events: KForm validate & input interaction 2`] = `
+CustomEvent {
+  "isTrusted": false,
+}
+`;
+
+exports[`Test: KForm > events: KForm validate & input interaction 3`] = `
+CustomEvent {
+  "isTrusted": false,
+}
+`;
+
+exports[`Test: KForm > events: KForm validate & input interaction 4`] = `
+CustomEvent {
+  "isTrusted": false,
+}
+`;
+
+exports[`Test: KForm > events: KForm validate & input interaction 5`] = `
+CustomEvent {
+  "isTrusted": false,
+}
+`;
+
+exports[`Test: KForm > props: KForm initValue 1`] = `"<form class=\\"k-form\\"><div class=\\"k-form-item k-form-item__horizontal\\"><label class=\\"k-form-item-label k-form-item-label__ml k-form-item-label__dark k-form-item-label__right k-form-item-label__horizontal k-form-item-label__md\\" style=\\"min-width: 80px;\\"> KInput</label> <div class=\\"k-form-item-content\\"><div class=\\"k-input\\"> <div class=\\"k-input--base k-input__md k-input__dark k-input__hover k-input__focus k-input__rounded\\"> <input class=\\"k-input--inner k-input--inner__dark\\" type=\\"text\\" placeholder=\\"Please input value\\">    </div> </div>  </div></div> <div class=\\"k-form-item k-form-item__horizontal\\"><label class=\\"k-form-item-label k-form-item-label__ml k-form-item-label__dark k-form-item-label__right k-form-item-label__horizontal k-form-item-label__md\\" style=\\"min-width: 80px;\\"> KSwitch</label> <div class=\\"k-form-item-content\\"><div class=\\"k-switch k-switch--base k-switch--md k-switch__checked k-switch-tra\\" aria-hidden=\\"true\\"> <span class=\\"k-switch-circle k-switch-circle--md\\" style=\\"right: 1px;\\"></span> <span class=\\"k-switch-tx__checked k-switch-tx__checked--md\\"></span></div> </div></div> <div class=\\"k-form-item k-form-item__horizontal\\"><label class=\\"k-form-item-label k-form-item-label__ml k-form-item-label__dark k-form-item-label__right k-form-item-label__horizontal k-form-item-label__md\\" style=\\"min-width: 80px;\\"> KRate</label> <div class=\\"k-form-item-content\\"><div class=\\"k-rate k-rate--md\\"><span class=\\"k-rate--item k-rate--item--md k-rate--item__not-readonly\\" aria-hidden=\\"true\\"><span class=\\"k-icon--base k-icon--base__dark k-icon-transition k-rate--active-icon\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 100%; height: 100%;\\"></span></span><span class=\\"k-rate--item k-rate--item--md k-rate--item__not-readonly\\" aria-hidden=\\"true\\"><span class=\\"k-icon--base k-icon--base__dark k-icon-transition k-rate--active-icon\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 100%; height: 100%;\\"></span></span><span class=\\"k-rate--item k-rate--item--md k-rate--item__not-readonly\\" aria-hidden=\\"true\\"><span class=\\"k-icon--base k-icon--base__dark k-icon-transition k-rate--active-icon\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 100%; height: 100%;\\"></span></span><span class=\\"k-rate--item k-rate--item--md k-rate--item__not-readonly\\" aria-hidden=\\"true\\"><span class=\\"k-icon--base k-icon--base__dark k-icon-transition k-rate--active-icon\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 100%; height: 100%;\\"></span></span><span class=\\"k-rate--item k-rate--item--md k-rate--item__not-readonly\\" aria-hidden=\\"true\\"><span class=\\"k-icon--base k-icon--base__dark k-icon-transition k-rate--void-icon\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 100%; height: 100%;\\"></span></span> </div> </div></div> <div class=\\"k-form-item k-form-item__horizontal\\"><label class=\\"k-form-item-label k-form-item-label__ml k-form-item-label__dark k-form-item-label__right k-form-item-label__horizontal k-form-item-label__md\\" style=\\"min-width: 80px;\\"> KRadio</label> <div class=\\"k-form-item-content\\"><div class=\\"k-radio-group k-radio-group--base\\"><label class=\\"k-radio k-radio--base k-radio--base__dark k-radio--md\\"><input type=\\"radio\\" value=\\"false\\" hidden=\\"\\"> <div class=\\"k-radio--box animate-ikun-checking\\"></div> KRadio 1</label> <label class=\\"k-radio k-radio--base k-radio--base__dark k-radio--md\\"><input type=\\"radio\\" value=\\"false\\" hidden=\\"\\"> <div class=\\"k-radio--box animate-ikun-checking\\"></div> KRadio 2</label> <label class=\\"k-radio k-radio--base k-radio--base__dark k-radio--md\\"><input type=\\"radio\\" value=\\"true\\" hidden=\\"\\"> <div class=\\"k-radio--box k-radio__selected animate-ikun-checking\\"><span class=\\"k-icon--base k-icon-transition i-carbon:radio-button-checked !text-white\\" role=\\"\\" aria-hidden=\\"true\\"></span></div> KRadio 3</label> <label class=\\"k-radio k-radio--base k-radio--base__dark k-radio--md k-cur-disabled\\"><input disabled=\\"\\" type=\\"radio\\" value=\\"false\\" hidden=\\"\\"> <div class=\\"k-radio--box k-radio--box__disabled animate-ikun-checking\\"></div> KRadio 4</label></div> </div></div> <div class=\\"k-form-item k-form-item__horizontal\\"><label class=\\"k-form-item-label k-form-item-label__ml k-form-item-label__dark k-form-item-label__right k-form-item-label__horizontal k-form-item-label__md\\" style=\\"min-width: 80px;\\"> KCheckbox</label> <div class=\\"k-form-item-content\\"><div class=\\"k-checkbox-group k-checkbox-group--base\\"><label class=\\"k-checkbox--base k-checkbox--base__dark k-checkbox--md\\"><input type=\\"checkbox\\" value=\\"false\\" hidden=\\"\\"> <div class=\\"k-checkbox--box animate-ikun-checking\\"> </div> KCheckbox 1</label> <label class=\\"k-checkbox--base k-checkbox--base__dark k-checkbox--md\\"><input type=\\"checkbox\\" value=\\"true\\" hidden=\\"\\"> <div class=\\"k-checkbox--box bg-ikun-main border-ikun-main animate-ikun-checking\\"><div style=\\"animation: __svelte_185617033_0 200ms linear 0ms 1 both;\\"><span class=\\"k-icon--base k-icon-transition i-carbon-checkmark !text-white\\" role=\\"\\" aria-hidden=\\"true\\"></span></div> </div> KCheckbox 2</label> <label class=\\"k-checkbox--base k-checkbox--base__dark k-checkbox--md\\"><input type=\\"checkbox\\" value=\\"false\\" hidden=\\"\\"> <div class=\\"k-checkbox--box animate-ikun-checking\\"> </div> KCheckbox 3</label> <label class=\\"k-checkbox--base k-checkbox--base__dark k-checkbox--md k-cur-disabled\\"><input disabled=\\"\\" type=\\"checkbox\\" value=\\"false\\" hidden=\\"\\"> <div class=\\"k-checkbox--box k-checkbox--box__disabled animate-ikun-checking\\"> </div> KCheckbox 4</label></div> </div></div> <div class=\\"k-form-item k-form-item__horizontal\\"><label class=\\"k-form-item-label k-form-item-label__ml k-form-item-label__dark k-form-item-label__right k-form-item-label__horizontal k-form-item-label__md\\" style=\\"min-width: 80px;\\"> KSelect</label> <div class=\\"k-form-item-content\\"><div aria-hidden=\\"true\\" class=\\"flex\\" data-popover-trigger=\\"\\" style=\\"width: 0px;\\"><div class=\\"k-select--base k-select__md k-select--base__dark k-select__hover k-select__focus\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"k-select--inner k-select--inner__md k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"Please select value\\">  <i><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down  k-select--icon k-select--icon__md\\" role=\\"\\" aria-hidden=\\"true\\"></span></i></div></div>  </div></div> <div class=\\"k-form-item k-form-item__horizontal\\"><label class=\\"k-form-item-label k-form-item-label__ml k-form-item-label__dark k-form-item-label__right k-form-item-label__horizontal k-form-item-label__md\\" style=\\"min-width: 80px;\\"> KSelectString</label> <div class=\\"k-form-item-content\\"><div aria-hidden=\\"true\\" class=\\"flex\\" data-popover-trigger=\\"\\" style=\\"width: 0px;\\"><div class=\\"k-select--base k-select__md k-select--base__dark k-select__hover k-select__focus\\" slot=\\"triggerEl\\" aria-hidden=\\"true\\"> <input class=\\"k-select--inner k-select--inner__md k-select--inner__dark\\" readonly=\\"\\" placeholder=\\"Please select value\\">  <i><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-chevron-down  k-select--icon k-select--icon__md\\" role=\\"\\" aria-hidden=\\"true\\"></span></i></div></div>  </div></div> <div class=\\"k-form-item k-form-item__horizontal\\"><label class=\\"k-form-item-label k-form-item-label__ml k-form-item-label__dark k-form-item-label__right k-form-item-label__horizontal k-form-item-label__md\\" style=\\"min-width: 80px;\\"> </label> <div class=\\"k-form-item-content\\"><span id=\\"form_value\\">{\\"KInput\\":\\"KInput\\",\\"KSwitch\\":true,\\"KRate\\":4,\\"KRadio\\":\\"3\\",\\"KCheckbox\\":[\\"2\\"],\\"KSelect\\":{\\"label\\":\\"不知明镜里\\",\\"value\\":\\"不知\\",\\"id\\":\\"3\\"},\\"KSelectString\\":\\"Huge\\"}</span> </div></div></form>"`;
+
+exports[`Test: KForm > props: KForm labelWidth 1`] = `"<form class=\\"k-form\\"><div class=\\"k-form-item k-form-item__horizontal\\"><label class=\\"k-form-item-label k-form-item-label__ml k-form-item-label__dark k-form-item-label__right k-form-item-label__horizontal k-form-item-label__md\\" style=\\"min-width: 80px; width: 100px;\\"> KInput</label> <div class=\\"k-form-item-content\\"><div class=\\"k-input\\"> <div class=\\"k-input--base k-input__md k-input__dark k-input__hover k-input__focus k-input__rounded\\"> <input class=\\"k-input--inner k-input--inner__dark\\" type=\\"text\\" placeholder=\\"Please input value\\">    </div> </div>  </div></div></form> <button></button>"`;
+
+exports[`Test: KForm > props: KFormItem label 1`] = `"<form class=\\"k-form\\"><div class=\\"k-form-item k-form-item__horizontal\\"><label class=\\"k-form-item-label k-form-item-label__ml k-form-item-label__dark k-form-item-label__right k-form-item-label__horizontal k-form-item-label__md\\" style=\\"min-width: 80px; width: 120px;\\"><span class=\\"k-form-item-star\\">*</span> KInput-Label</label> <div class=\\"k-form-item-content\\"><div class=\\"k-input\\"> <div class=\\"k-input--base k-input__md k-input__dark k-input__hover k-input__focus k-input__rounded\\"> <input class=\\"k-input--inner k-input--inner__dark\\" type=\\"text\\" placeholder=\\"Please input value\\">    </div> </div>  </div></div></form> <button id=\\"validate\\">validate</button>"`;
+
+exports[`Test: KForm > slots: KFormItem error 1`] = `"<form class=\\"k-form\\"><div class=\\"k-form-item k-form-item__horizontal\\"><label class=\\"k-form-item-label k-form-item-label__ml k-form-item-label__dark k-form-item-label__right k-form-item-label__horizontal k-form-item-label__md\\" style=\\"min-width: 80px; width: 120px;\\"><span class=\\"k-form-item-star\\">*</span> KInput-Label</label> <div class=\\"k-form-item-content\\"><div class=\\"k-input\\"> <div class=\\"k-input--base k-input__md k-input__dark k-input__error k-input__rounded\\"> <input class=\\"k-input--inner k-input--inner__dark\\" type=\\"text\\" placeholder=\\"Please input value\\">    </div> </div>  <div class=\\"k-form-item-msg_error\\" style=\\"animation: __svelte_4265771108_0 300ms linear 0ms 1 both;\\"><div slot=\\"error\\">Error-Slot</div></div></div></div></form> <button id=\\"validate\\">validate</button>"`;
+
+exports[`Test: KForm > slots: KFormItem label 1`] = `"<form class=\\"k-form\\"><div class=\\"k-form-item k-form-item__horizontal\\"><label class=\\"k-form-item-label k-form-item-label__ml k-form-item-label__dark k-form-item-label__right k-form-item-label__horizontal k-form-item-label__md\\" style=\\"min-width: 80px; width: 120px;\\"><span class=\\"k-form-item-star\\">*</span> <div slot=\\"label\\">KInput-Slot</div></label> <div class=\\"k-form-item-content\\"><div class=\\"k-input\\"> <div class=\\"k-input--base k-input__md k-input__dark k-input__hover k-input__focus k-input__rounded\\"> <input class=\\"k-input--inner k-input--inner__dark\\" type=\\"text\\" placeholder=\\"Please input value\\">    </div> </div>  </div></div></form> <button id=\\"validate\\">validate</button>"`;

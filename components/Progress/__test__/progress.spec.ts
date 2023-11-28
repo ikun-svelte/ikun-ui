@@ -1,7 +1,7 @@
 import { tick } from 'svelte';
 import { afterEach, beforeEach, describe, expect, test } from 'vitest';
 import KProgress from '../src';
-import KProgressSlots from './progress.slots.svelte';
+import KProgressSlots from './fixture/progress.slots.svelte';
 
 let host: HTMLElement;
 
