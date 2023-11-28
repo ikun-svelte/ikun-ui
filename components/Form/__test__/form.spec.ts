@@ -50,7 +50,6 @@ describe('Test: KForm', () => {
 	});
 
 	test('props: KForm initValue', async () => {
-		// TODO: slider test
 		const instance = new KFormInit({
 			target: host
 		});
@@ -77,6 +76,9 @@ describe('Test: KForm', () => {
 		expect(selectInput[0].value).toBe('不知明镜里');
 		expect(selectInput[1].value).toBe('Huge');
 
+		const sliderEl = host.querySelector('.k-slider--button__wrapper');
+		expect(sliderEl.style.left).toBe('43%');
+
 		const value = JSON.parse(host.querySelector('#form_value')?.innerHTML);
 		expect(value).toMatchObject({
 			KInput: 'KInput',
@@ -89,7 +91,8 @@ describe('Test: KForm', () => {
 				value: '不知',
 				id: '3'
 			},
-			KSelectString: 'Huge'
+			KSelectString: 'Huge',
+			slider: 43,
 		});
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -151,20 +154,20 @@ describe('Test: KForm', () => {
 	});
 
 	test('props: KForm disabled', async () => {
-		// TODO: slider test
 		const instance = new KFormDisabled({
 			target: host
 		});
 		expect(instance).toBeTruthy();
 		await tick();
 
-		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(7);
+		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(8);
 		expect(host.querySelector('.k-input__disabled')).toBeTruthy();
 		expect(host.querySelector('.k-switch__disabled')).toBeTruthy();
 		expect(host.querySelector('.k-rate--item__disabled')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--box__disabled').length).toBe(4);
 		expect(host.querySelectorAll('.k-select--base__disabled').length).toBe(4);
+		expect(host.querySelector('.k-slider .k-cur-disabled')).toBeTruthy();
 
 		const btnEl = host.querySelector('button');
 		btnEl?.click();
@@ -176,30 +179,33 @@ describe('Test: KForm', () => {
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(1);
 		expect(host.querySelectorAll('.k-checkbox--box__disabled').length).toBe(1);
 		expect(host.querySelectorAll('.k-select--base__disabled').length).toBe(0);
+		expect(host.querySelector('.k-slider .k-cur-disabled')).not.toBeTruthy();
 
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(7);
+		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(8);
 		expect(host.querySelector('.k-input__disabled')).toBeTruthy();
 		expect(host.querySelector('.k-switch__disabled')).toBeTruthy();
 		expect(host.querySelector('.k-rate--item__disabled')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--box__disabled').length).toBe(4);
 		expect(host.querySelectorAll('.k-select--base__disabled').length).toBe(4);
+		expect(host.querySelector('.k-slider .k-cur-disabled')).toBeTruthy();
 	});
 
 	test('props: KForm size', async () => {
-		// TODO: slider test
 		const instance = new KFormSize({
 			target: host
 		});
 		expect(instance).toBeTruthy();
 		await tick();
 
-		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(7);
+		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(8);
 		expect(host.querySelector('.k-input__sm')).toBeTruthy();
 		expect(host.querySelector('.k-switch--sm')).toBeTruthy();
 		expect(host.querySelector('.k-rate--sm')).toBeTruthy();
+		expect(host.querySelector('.k-slider--button__wrapper__sm')).toBeTruthy();
+		expect(host.querySelector('.k-slider--button__sm')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--sm').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--sm').length).toBe(4);
 		expect(host.querySelectorAll('.k-select__sm').length).toBe(2);
@@ -207,10 +213,12 @@ describe('Test: KForm', () => {
 		let btnEl = host.querySelector('#size_lg');
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__lg').length).toBe(7);
+		expect(host.querySelectorAll('.k-form-item-label__lg').length).toBe(8);
 		expect(host.querySelector('.k-input__lg')).toBeTruthy();
 		expect(host.querySelector('.k-switch--lg')).toBeTruthy();
 		expect(host.querySelector('.k-rate--lg')).toBeTruthy();
+		expect(host.querySelector('.k-slider--button__wrapper__lg')).toBeTruthy();
+		expect(host.querySelector('.k-slider--button__lg')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--lg').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--lg').length).toBe(4);
 		expect(host.querySelectorAll('.k-select__lg').length).toBe(2);
@@ -218,10 +226,12 @@ describe('Test: KForm', () => {
 		btnEl = host.querySelector('#size_md');
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__md').length).toBe(7);
+		expect(host.querySelectorAll('.k-form-item-label__md').length).toBe(8);
 		expect(host.querySelector('.k-input__md')).toBeTruthy();
 		expect(host.querySelector('.k-switch--md')).toBeTruthy();
 		expect(host.querySelector('.k-rate--md')).toBeTruthy();
+		expect(host.querySelector('.k-slider--button__wrapper__md')).toBeTruthy();
+		expect(host.querySelector('.k-slider--button__md')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--md').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--md').length).toBe(4);
 		expect(host.querySelectorAll('.k-select__md').length).toBe(2);
@@ -229,10 +239,12 @@ describe('Test: KForm', () => {
 		btnEl = host.querySelector('#size_sm');
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(7);
+		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(8);
 		expect(host.querySelector('.k-input__sm')).toBeTruthy();
 		expect(host.querySelector('.k-switch--sm')).toBeTruthy();
 		expect(host.querySelector('.k-rate--sm')).toBeTruthy();
+		expect(host.querySelector('.k-slider--button__wrapper__sm')).toBeTruthy();
+		expect(host.querySelector('.k-slider--button__sm')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--sm').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--sm').length).toBe(4);
 		expect(host.querySelectorAll('.k-select__sm').length).toBe(2);
@@ -410,7 +422,6 @@ describe('Test: KForm', () => {
 	});
 
 	test('api: KForm validateForm', async () => {
-		// TODO: slider test
 		let value = {};
 		const instance = new KFormValidateForm({
 			target: host
@@ -430,7 +441,6 @@ describe('Test: KForm', () => {
 	});
 
 	test('api: KForm resetForm', async () => {
-		// TODO: slider test
 		let value: any = {};
 		const initValue = {
 			KInput: 'KInput',
@@ -439,7 +449,8 @@ describe('Test: KForm', () => {
 			KRadio: '',
 			KCheckbox: [],
 			KSelect: null,
-			KSelectString: ''
+			KSelectString: '',
+			slider: 0
 		};
 		const instance = new KFormResetForm({
 			target: host,
@@ -500,7 +511,8 @@ describe('Test: KForm', () => {
 				value: '白发',
 				id: '1'
 			},
-			KSelectString: 'Huge'
+			KSelectString: 'Huge',
+			slider: 0
 		});
 
 		const btnReset = host.querySelector('#reset');
@@ -513,7 +525,6 @@ describe('Test: KForm', () => {
 	});
 
 	test('api: KForm getForm', async () => {
-		// TODO: slider test
 		let value: any = {};
 		const initValue = {
 			KInput: 'KInput',
@@ -588,7 +599,6 @@ describe('Test: KForm', () => {
 	});
 
 	test('api: KForm setForm & isValidate is true', async () => {
-		// TODO: slider test
 		let value: any = {};
 		const initValue = {
 			KInput: 'KInput',
@@ -662,7 +672,6 @@ describe('Test: KForm', () => {
 	});
 
 	test('api: KForm setForm & isValidate is false', async () => {
-		// TODO: slider test
 		let value: any = {};
 		const initValue = {
 			KInput: 'KInput',

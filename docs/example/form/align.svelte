@@ -10,6 +10,7 @@
 	import { KSelect } from '@ikun-ui/select';
 	import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
 	import { KRate } from '@ikun-ui/rate';
+	import { KSlider } from '@ikun-ui/slider';
 	const initValue = {
 		name: 'Ikun',
 		KInputs: {
@@ -22,7 +23,8 @@
 		KCheckbox: [],
 		KSelect: null,
 		KSelectString: '',
-		textarea: ''
+		textarea: '',
+		slider: 43
 	};
 	let KFormInst: KForm | undefined = undefined;
 	const handleValidate = () => {
@@ -108,6 +110,9 @@
 	</KFormItem>
 	<KFormItem field="textarea" label="textarea">
 		<KInput placeholder="Please input value" type="textarea" cls="w-240px" autosize></KInput>
+	</KFormItem>
+	<KFormItem field="slider" label="slider">
+		<KSlider cls="w-300px"></KSlider>
 	</KFormItem>
 	<KFormItem>
 		<KButton on:click={handleValidate}>Submit</KButton>
