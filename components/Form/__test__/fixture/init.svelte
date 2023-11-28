@@ -9,6 +9,7 @@
 	import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
 	import { KSelect } from '@ikun-ui/select';
 	import { onMount } from 'svelte';
+	import { KSlider } from "@ikun-ui/slider";
 	const initValue = {
 		KInput: 'KInput',
 		KSwitch: true,
@@ -16,7 +17,8 @@
 		KRadio: '3',
 		KCheckbox: ['2'],
 		KSelect: { label: '不知明镜里', value: '不知', id: '3' },
-		KSelectString: 'Huge'
+		KSelectString: 'Huge',
+		slider: 43,
 	};
 	let KFormInst: KForm | undefined = undefined;
 	const dataList = [
@@ -66,6 +68,9 @@
 	</KFormItem>
 	<KFormItem field="KSelectString" label="KSelectString">
 		<KSelect dataList={['Tiny', 'Small', 'Normal', 'Large', 'Huge']}></KSelect>
+	</KFormItem>
+	<KFormItem field="slider" label="slider">
+		<KSlider cls="w-300px"></KSlider>
 	</KFormItem>
 	<KFormItem>
 		<span id="form_value">{JSON.stringify(currentValue)}</span>
