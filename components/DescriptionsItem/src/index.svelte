@@ -35,6 +35,7 @@
 	const prefixCls = getPrefixCls('descriptions-item');
 	$: cnames = clsx(
 		prefixCls,
+		`${prefixCls}__dark`,
 		`${prefixCls}--${size}`,
 		`${prefixCls}__${direction}`,
 		`ikun-last:${prefixCls}--col-${colIndex}`,

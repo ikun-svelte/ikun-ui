@@ -9,7 +9,7 @@ export const descriptionsItemShortcuts = {
 	'k-descriptions-item--border':
 		'b-t-1px b-t-solid b-t-ikun-bd-base b-l-1px b-l-solid b-l-ikun-bd-base',
 
-	'k-descriptions-item--label': 'font-600 text-ikun-tx-base break-all flex-shrink-0 box-border',
+	'k-descriptions-item--label': 'font-600 break-all flex-shrink-0 box-border',
 
 	'k-descriptions-item--label__horizontal': 'h-100%',
 	'k-descriptions-item--label__horizontal--sm': 'pr-8px',
@@ -25,11 +25,14 @@ export const descriptionsItemShortcuts = {
 	'k-descriptions-item--label--md--border': '!px-11px !py-8px b-r-1px b-r-solid b-r-ikun-bd-base',
 	'k-descriptions-item--label--lg--border': '!px-15px !py-12px b-r-1px b-r-solid b-r-ikun-bd-base',
 
-	'k-descriptions-item--span': 'text-ikun-tx-base break-all flex-1 box-border',
+	'k-descriptions-item--span': 'break-all flex-1 box-border',
 
 	'k-descriptions-item--span__horizontal': '!b-t-none h-100%',
 
 	'k-descriptions-item--span--sm--border': '!px-7px !py-4px b-t-1px b-t-solid b-t-ikun-bd-base',
 	'k-descriptions-item--span--md--border': '!px-11px !py-8px b-t-1px b-t-solid b-t-ikun-bd-base',
-	'k-descriptions-item--span--lg--border': '!px-15px !py-12px b-t-1px b-t-solid b-t-ikun-bd-base'
+	'k-descriptions-item--span--lg--border': '!px-15px !py-12px b-t-1px b-t-solid b-t-ikun-bd-base',
+
+	// dark
+	'k-descriptions-item__dark': 'dark:text-ikun-white'
 };
