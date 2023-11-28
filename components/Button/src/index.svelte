@@ -3,7 +3,7 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import { extend } from 'baiwusanyu-utils';
-	import { getPrefixCls, ButtonGroupKey, formKey } from '@ikun-ui/utils';
+	import { getPrefixCls, buttonGroupKey, formKey } from '@ikun-ui/utils';
 	import clsx from 'clsx';
 	import { type IKunFormInstance } from '@ikun-ui/form';
 
@@ -28,7 +28,7 @@
 		'sm' = 12
 	}
 
-	const buttonGroupPropsInner = getContext<KButtonGroupPropsInner>(ButtonGroupKey) || {};
+	const buttonGroupPropsInner = getContext<KButtonGroupPropsInner>(buttonGroupKey) || {};
 	const typeInner = type || buttonGroupPropsInner?.type || 'primary';
 	const sizeInner = buttonGroupPropsInner?.size || size || 'md';
 	const isBorderInner = isBorder || buttonGroupPropsInner?.isBorder || ghost || false;

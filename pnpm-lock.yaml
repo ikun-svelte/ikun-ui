@@ -739,6 +739,9 @@ importers:
 
   components/DescriptionsItem:
     dependencies:
+      '@ikun-ui/descriptions':
+        specifier: workspace:*
+        version: link:../Descriptions
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon

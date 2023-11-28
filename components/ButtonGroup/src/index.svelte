@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { KButtonGroupProps } from './types';
-	import { getPrefixCls, ButtonGroupKey } from '@ikun-ui/utils';
+	import { getPrefixCls, buttonGroupKey } from '@ikun-ui/utils';
 	import { setContext } from 'svelte';
 	import clsx from 'clsx';
 
@@ -12,7 +12,7 @@
 	export let cls: KButtonGroupProps['cls'] = '';
 	export let attrs: KButtonGroupProps['attrs'] = {};
 
-	setContext(ButtonGroupKey, {
+	setContext(buttonGroupKey, {
 		type,
 		size,
 		iconSize,

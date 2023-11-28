@@ -1,8 +1,13 @@
 <script lang="ts">
-	import type { KDescriptionsProps } from './types';
-	import { descriptionsKey, getPrefixCls } from '@ikun-ui/utils';
-	import { clsx } from 'clsx';
 	import { setContext } from 'svelte';
+	import type { KDescriptionsCtx, KDescriptionsProps } from './types';
+	import {
+		descriptionsKey,
+		getPrefixCls,
+		type ReactiveContext,
+		reactiveContext
+	} from '@ikun-ui/utils';
+	import { clsx } from 'clsx';
 
 	export let title: KDescriptionsProps['title'] = '';
 	export let extra: KDescriptionsProps['extra'] = '';
@@ -13,20 +18,43 @@
 	export let cls: KDescriptionsProps['cls'] = undefined;
 	export let attrs: KDescriptionsProps['attrs'] = {};
 
-	setContext(descriptionsKey, {
-		border,
-		direction,
-		size
+	const ctxInstance = reactiveContext<KDescriptionsCtx>({
+		props: {
+			column,
+			border,
+			direction,
+			size
+		}
 	});
 
+	setContext<ReactiveContext<KDescriptionsCtx>>(descriptionsKey, ctxInstance);
+
+	$: {
+		ctxInstance.evtMap.forEach((cb) => {
+			cb({
+				column,
+				border,
+				direction,
+				size
+			});
+		});
+	}
+
 	const prefixCls = getPrefixCls('descriptions');
-	$: cnames = clsx(prefixCls, `${prefixCls}__dark`, cls);
+	$: cnames = clsx(prefixCls, `${prefixCls}--${size}`, `${prefixCls}__dark`, cls);
 	$: headerCls = clsx(`${prefixCls}--header`, `${prefixCls}--header--${size}`);
-	$: titleCls = clsx(`${prefixCls}--title`, `${prefixCls}--title--${size}`);
+	$: titleCls = clsx(`${prefixCls}--title`);
 	$: extraCls = clsx(`${prefixCls}--extra`);
-	$: bodyCls = clsx(`${prefixCls}--body`, `${prefixCls}--cols-${column}`, {
-		[`${prefixCls}--body-border`]: border
-	});
+	$: bodyCls = clsx(
+		`${prefixCls}--body`,
+		{
+			[`${prefixCls}--body--${size}`]: !border
+		},
+		`${prefixCls}--cols-${column}`,
+		{
+			[`${prefixCls}--body--border`]: border
+		}
+	);
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>

@@ -34,6 +34,7 @@
 		"types": "dist/index.d.ts"
 	},
 	"dependencies": {
+		"@ikun-ui/descriptions": "workspace:*",
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.16",

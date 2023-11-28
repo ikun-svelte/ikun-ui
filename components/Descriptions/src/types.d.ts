@@ -12,3 +12,10 @@ export type KDescriptionsProps = {
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
+
+export type KDescriptionsCtx = {
+	column: KDescriptionsProps['column'];
+	border: KDescriptionsProps['border'];
+	direction: KDescriptionsProps['direction'];
+	size: KDescriptionsProps['size'];
+};

@@ -45,6 +45,7 @@ import { formShortcuts } from './src/form';
 import { descriptionsShortcuts } from './src/descriptions';
 import { getDescriptionsGridColCls } from '../rules/src/descriptions';
 import { descriptionsItemShortcuts } from './src/descriptions-item';
+import { getDescriptionsItemGridColStartCls } from '../rules/src/descriptions-item';
 
 export const defaultShortcuts = [
 	baseShortcuts,
@@ -223,7 +224,12 @@ export function getSafeList() {
 	const colSizeRules = Object.keys(createColSizeClsByNum());
 	const colRules = Object.keys(getColCls());
 	const descriptionsRules = Object.keys(getDescriptionsGridColCls());
-	res = res.concat(colSizeRules).concat(colRules).concat(descriptionsRules);
+	const descriptionsItemRules = Object.keys(getDescriptionsItemGridColStartCls());
+	res = res
+		.concat(colSizeRules)
+		.concat(colRules)
+		.concat(descriptionsRules)
+		.concat(descriptionsItemRules);
 	return res;
 }
 

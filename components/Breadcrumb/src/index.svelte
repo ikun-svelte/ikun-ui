@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
-	import { getPrefixCls, BreadcrumbKey } from '@ikun-ui/utils';
+	import { getPrefixCls, breadcrumbKey } from '@ikun-ui/utils';
 	import { clsx, type ClassValue } from 'clsx';
 
 	export let separator: string = '/';
@@ -8,7 +8,7 @@
 	export let cls: ClassValue = undefined;
 	export let attrs: Record<string, string> = {};
 
-	setContext(BreadcrumbKey, {
+	setContext(breadcrumbKey, {
 		separator,
 		separatorIcon
 	});
