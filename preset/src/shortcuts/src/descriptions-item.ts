@@ -21,9 +21,12 @@ export const descriptionsItemShortcuts = {
 	'k-descriptions-item--label__vertical--md': 'pb-10px',
 	'k-descriptions-item--label__vertical--lg': 'pb-12px',
 
-	'k-descriptions-item--label--sm--border': '!px-7px !py-4px b-r-1px b-r-solid b-r-ikun-bd-base',
-	'k-descriptions-item--label--md--border': '!px-11px !py-8px b-r-1px b-r-solid b-r-ikun-bd-base',
-	'k-descriptions-item--label--lg--border': '!px-15px !py-12px b-r-1px b-r-solid b-r-ikun-bd-base',
+	'k-descriptions-item--label--sm--border':
+		'!px-7px !py-4px b-r-1px b-r-solid b-r-ikun-bd-base bg-ikun-light-700',
+	'k-descriptions-item--label--md--border':
+		'!px-11px !py-8px b-r-1px b-r-solid b-r-ikun-bd-base bg-ikun-light-700',
+	'k-descriptions-item--label--lg--border':
+		'!px-15px !py-12px b-r-1px b-r-solid b-r-ikun-bd-base bg-ikun-light-700',
 
 	'k-descriptions-item--content': 'break-all flex-1 box-border',
 

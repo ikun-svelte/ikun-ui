@@ -13,9 +13,14 @@ export type KDescriptionsProps = {
 	attrs: Record<string, string>;
 };
 
+export type DescriptionsItemLabelMap = Record<string, HTMLElement>;
+export type DescriptionsItemColGroup = number[][];
+
 export type KDescriptionsCtx = {
 	column: KDescriptionsProps['column'];
 	border: KDescriptionsProps['border'];
 	direction: KDescriptionsProps['direction'];
 	size: KDescriptionsProps['size'];
+	colLabelRefs: DescriptionsItemLabelMap;
+	colGroup: DescriptionsItemColGroup;
 };

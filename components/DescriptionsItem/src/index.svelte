@@ -16,19 +16,55 @@
 	let direction = ctx?.props?.direction || 'horizontal';
 	let size = ctx?.props?.size || 'md';
 
+	let colGridStart = 0;
+	let colGridPosition = 0;
+	let labelRef: HTMLElement | null = null;
+	if (ctx) {
+		ctxPropsChange(ctx.props);
+		ctx.evtMap.push(ctxPropsChange);
+		colGridPosition = ctx.evtMap.length;
+		colGridStart = ctx.evtMap.length % column;
+	}
+
 	function ctxPropsChange(props: KDescriptionsCtx) {
 		column = props.column;
 		border = props.border;
 		direction = props.direction;
 		size = props.size;
+		updateLabelWidth();
 	}
 
-	let colIndex = 0;
+	function updateLabelWidth() {
+		if (direction === 'horizontal' && border && ctx && labelRef) {
+			// get current label ref and width
+			ctx.props.colLabelRefs[colGridPosition] = labelRef;
 
-	if (ctx) {
-		ctxPropsChange(ctx.props);
-		ctx.evtMap.push(ctxPropsChange);
-		colIndex = ctx.evtMap.length % column;
+			const colGroupIndex = (colGridPosition - 1) % column;
+			console.log(colGroupIndex);
+			if (colGroupIndex >= 0) {
+				ctx.props.colGroup[colGroupIndex].push(colGridPosition);
+
+				// get max label width
+				let maxLabelWidth = 0;
+				ctx.props.colGroup[colGroupIndex].forEach((col) => {
+					maxLabelWidth =
+						maxLabelWidth > ctx.props.colLabelRefs[col].clientWidth
+							? maxLabelWidth
+							: ctx.props.colLabelRefs[col].clientWidth;
+				});
+
+				if (maxLabelWidth > 0) {
+					ctx.props.colGroup[colGroupIndex].forEach((col) => {
+						// border 2px
+						ctx.props.colLabelRefs[`${col}`].style.minWidth = maxLabelWidth + 2 + 'px';
+					});
+				}
+			}
+		}
+	}
+
+	$: if (direction === 'horizontal' && border && ctx && labelRef) {
+		updateLabelWidth();
 	}
 
 	const prefixCls = getPrefixCls('descriptions-item');
@@ -37,7 +73,7 @@
 		`${prefixCls}__dark`,
 		`${prefixCls}--${size}`,
 		`${prefixCls}__${direction}`,
-		`ikun-last:${prefixCls}--col-${colIndex}`,
+		`ikun-last:${prefixCls}--col-${colGridStart}`,
 		{
 			[`${prefixCls}--border`]: border
 		},
@@ -57,7 +93,7 @@
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
-	<label class={lableCls}>
+	<label bind:this={labelRef} class={lableCls}>
 		<slot name="label">
 			{label}
 		</slot>

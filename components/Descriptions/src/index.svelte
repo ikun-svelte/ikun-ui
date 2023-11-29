@@ -1,6 +1,11 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
-	import type { KDescriptionsCtx, KDescriptionsProps } from './types';
+	import type {
+		DescriptionsItemColGroup,
+		DescriptionsItemLabelMap,
+		KDescriptionsCtx,
+		KDescriptionsProps
+	} from './types';
 	import {
 		descriptionsKey,
 		getPrefixCls,
@@ -18,12 +23,16 @@
 	export let cls: KDescriptionsProps['cls'] = undefined;
 	export let attrs: KDescriptionsProps['attrs'] = {};
 
+	let colLabelRefs: DescriptionsItemLabelMap = {};
+	let colGroup: DescriptionsItemColGroup = new Array(column).fill([]);
 	const ctxInstance = reactiveContext<KDescriptionsCtx>({
 		props: {
 			column,
 			border,
 			direction,
-			size
+			size,
+			colLabelRefs,
+			colGroup
 		}
 	});
 
@@ -35,7 +44,9 @@
 				column,
 				border,
 				direction,
-				size
+				size,
+				colLabelRefs,
+				colGroup
 			});
 		});
 	}
