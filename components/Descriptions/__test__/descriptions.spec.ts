@@ -2,6 +2,8 @@ import { tick } from 'svelte';
 import { afterEach, expect, test, describe, beforeEach } from 'vitest';
 import KDescriptions from '../src';
 import KDescriptionsDirection from './fixture/descriptions.direction.svelte';
+import KDescriptionsTitle from './fixture/descriptions.title.svelte';
+import KDescriptionsExtra from './fixture/descriptions.extra.svelte';
 
 let host: HTMLElement;
 
@@ -123,6 +125,28 @@ describe('Test: KDescriptions', () => {
 		btnEl?.click();
 		await tick();
 		expect(host.querySelectorAll('.k-descriptions-item__vertical').length === 3).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slots: title', async () => {
+		const instance = new KDescriptionsTitle({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const titleEl = host.querySelector('#slot-title');
+		expect(titleEl.textContent).toBe('Ikun Descriptions Title');
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slots: extra', async () => {
+		const instance = new KDescriptionsExtra({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const extraEl = host.querySelector('#slot-extra');
+		expect(extraEl.textContent).toBe('Ikun Descriptions Extra');
 		expect(host.innerHTML).matchSnapshot();
 	});
 });
