@@ -40,7 +40,6 @@
 			ctx.props.colLabelRefs[colGridPosition] = labelRef;
 
 			const colGroupIndex = (colGridPosition - 1) % column;
-			console.log(colGroupIndex);
 			if (colGroupIndex >= 0) {
 				ctx.props.colGroup[colGroupIndex].push(colGridPosition);
 
