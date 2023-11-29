@@ -144,14 +144,6 @@
 	$: runwayCls = clsx(`${prefixCls}--runway`, `${prefixCls}--runway--${sizeInner}`, {
 		[`${prefixCls}--runway__disabled`]: disabledInner
 	});
-
-	// $: sizeCls = clsx(`${prefixCls}--base`, `${prefixCls}__${sizeInner}`);
-	// const barCls = `${prefixCls}--bar`;
-	// $: btnCls = clsx(`${prefixCls}--button`, `${prefixCls}--button__${sizeInner}`);
-	// $: btnWrapperCls = clsx(
-	// 	`${prefixCls}--button__wrapper`,
-	// 	`${prefixCls}--button__wrapper__${sizeInner}`
-	// );
 </script>
 
 <div class={baseCls} {...$$restProps} {...attrs}>
