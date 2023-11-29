@@ -6,7 +6,6 @@
 	import { clsx } from 'clsx';
 
 	export let label: KDescriptionsItemProps['label'] = '';
-	export let span: KDescriptionsItemProps['span'] = '';
 	export let cls: KDescriptionsItemProps['cls'] = undefined;
 	export let attrs: KDescriptionsItemProps['attrs'] = {};
 
@@ -52,8 +51,8 @@
 			[`${prefixCls}--label--${size}--border`]: border
 		}
 	);
-	$: spanCls = clsx(`${prefixCls}--span`, `${prefixCls}--span__${direction}`, {
-		[`${prefixCls}--span--${size}--border`]: border
+	$: contentCls = clsx(`${prefixCls}--content`, `${prefixCls}--content__${direction}`, {
+		[`${prefixCls}--content--${size}--border`]: border
 	});
 </script>
 
@@ -63,9 +62,7 @@
 			{label}
 		</slot>
 	</label>
-	<div class={spanCls}>
-		<slot>
-			{span}
-		</slot>
+	<div class={contentCls}>
+		<slot />
 	</div>
 </div>

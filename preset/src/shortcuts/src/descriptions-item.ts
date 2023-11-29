@@ -25,13 +25,14 @@ export const descriptionsItemShortcuts = {
 	'k-descriptions-item--label--md--border': '!px-11px !py-8px b-r-1px b-r-solid b-r-ikun-bd-base',
 	'k-descriptions-item--label--lg--border': '!px-15px !py-12px b-r-1px b-r-solid b-r-ikun-bd-base',
 
-	'k-descriptions-item--span': 'break-all flex-1 box-border',
+	'k-descriptions-item--content': 'break-all flex-1 box-border',
 
-	'k-descriptions-item--span__horizontal': '!b-t-none h-100%',
+	'k-descriptions-item--content__horizontal': '!b-t-none h-100%',
 
-	'k-descriptions-item--span--sm--border': '!px-7px !py-4px b-t-1px b-t-solid b-t-ikun-bd-base',
-	'k-descriptions-item--span--md--border': '!px-11px !py-8px b-t-1px b-t-solid b-t-ikun-bd-base',
-	'k-descriptions-item--span--lg--border': '!px-15px !py-12px b-t-1px b-t-solid b-t-ikun-bd-base',
+	'k-descriptions-item--content--sm--border': '!px-7px !py-4px b-t-1px b-t-solid b-t-ikun-bd-base',
+	'k-descriptions-item--content--md--border': '!px-11px !py-8px b-t-1px b-t-solid b-t-ikun-bd-base',
+	'k-descriptions-item--content--lg--border':
+		'!px-15px !py-12px b-t-1px b-t-solid b-t-ikun-bd-base',
 
 	// dark
 	'k-descriptions-item__dark': 'dark:text-ikun-white'
