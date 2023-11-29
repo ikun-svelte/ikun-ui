@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KDescriptionsItem > props: cls 1`] = `"<div class=\\"k-descriptions-item k-descriptions-item__dark k-descriptions-item--md k-descriptions-item__horizontal ikun-last:k-descriptions-item--col-0 k-descriptions-item--test\\"><label class=\\"k-descriptions-item--label k-descriptions-item--label__horizontal k-descriptions-item--label__horizontal--md\\"></label> <div class=\\"k-descriptions-item--span k-descriptions-item--span__horizontal\\"></div></div>"`;

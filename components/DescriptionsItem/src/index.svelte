@@ -12,10 +12,10 @@
 
 	const ctx = getContext<ReactiveContext<KDescriptionsCtx>>(descriptionsKey);
 
-	let column = ctx.props.column || 3;
-	let border = ctx.props.border || false;
-	let direction = ctx.props.direction || 'horizontal';
-	let size = ctx.props.size || 'md';
+	let column = ctx?.props?.column || 3;
+	let border = ctx?.props?.border || false;
+	let direction = ctx?.props?.direction || 'horizontal';
+	let size = ctx?.props?.size || 'md';
 
 	function ctxPropsChange(props: KDescriptionsCtx) {
 		column = props.column;
