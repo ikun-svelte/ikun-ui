@@ -41,6 +41,7 @@ import { emptyShortcuts } from './src/empty';
 import { virtualListShortcuts } from './src/virtual-list';
 import { pageShortcuts } from './src/pagination';
 import { IKUN_SAFE_LIST } from '../utils/constant';
+import { formShortcuts } from './src/form';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -94,6 +95,8 @@ export const defaultShortcuts = [
 	selectShortcuts,
 	// message box
 	msgBoxShortcuts,
+	// form fromItem
+	formShortcuts,
 	// spin
 	spinShortcuts,
 	// backtop
@@ -149,6 +152,7 @@ export function getSafeList() {
 	const switchList = Object.keys(switchShortcuts);
 	const selectList = Object.keys(selectShortcuts);
 	const msgBoxList = Object.keys(msgBoxShortcuts);
+	const formList = Object.keys(formShortcuts);
 	const spinList = Object.keys(spinShortcuts);
 	const backtopList = Object.keys(backtopShortcuts);
 	const sliderList = Object.keys(sliderShortcuts);
@@ -188,6 +192,7 @@ export function getSafeList() {
 		.concat(cardList)
 		.concat(collapseList)
 		.concat(checkboxList)
+		.concat(formList)
 		.concat(spinList)
 		.concat(backtopList)
 		.concat(sliderList)
@@ -248,3 +253,4 @@ export { contextmenuShortcuts } from './src/contextmenu';
 export { emptyShortcuts } from './src/empty';
 export { virtualListShortcuts } from './src/virtual-list';
 export { pageShortcuts } from './src/pagination';
+export { formShortcuts } from './src/form';

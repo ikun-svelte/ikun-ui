@@ -16,20 +16,8 @@
 	{currentPage}
 ></KPagination>
 
-<KPagination
-	total={50}
-	pagerCount={5}
-	cls="mb-2"
-	isBg
-	on:currentChange={handlePage}
-	{currentPage}
+<KPagination total={50} pagerCount={5} cls="mb-2" isBg on:currentChange={handlePage} {currentPage}
 ></KPagination>
 
-<KPagination
-	total={50}
-	pagerCount={5}
-	isBg
-	size="lg"
-	on:currentChange={handlePage}
-	{currentPage}
+<KPagination total={50} pagerCount={5} isBg size="lg" on:currentChange={handlePage} {currentPage}
 ></KPagination>

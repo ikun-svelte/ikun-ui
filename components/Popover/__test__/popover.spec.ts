@@ -1,11 +1,11 @@
 import { tick } from 'svelte';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
-import KPopoverPlacement from './popover.placement.svelte';
-import KPopoverTrigger from './popover.trigger.svelte';
-import KPopoverSlots from './popover.slots.svelte';
-import KPopoverDisabled from './popover.disabled.svelte';
-import KPopoverChange from './popover.change.svelte';
-import KPopoverArrow from './popover.arrow.svelte';
+import KPopoverPlacement from './fixture/popover.placement.svelte';
+import KPopoverTrigger from './fixture/popover.trigger.svelte';
+import KPopoverSlots from './fixture/popover.slots.svelte';
+import KPopoverDisabled from './fixture/popover.disabled.svelte';
+import KPopoverChange from './fixture/popover.change.svelte';
+import KPopoverArrow from './fixture/popover.arrow.svelte';
 let host: HTMLElement;
 
 const initHost = () => {

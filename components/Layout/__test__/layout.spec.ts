@@ -1,7 +1,7 @@
 import { afterEach, expect, test, describe, beforeEach } from 'vitest';
 import { KMain, KAside, KHeader, KFooter } from '../src';
-import KContainerSlot from './container.slot.svelte';
-import KContainerDirection from './container.direction.svelte';
+import KContainerSlot from './fixture/container.slot.svelte';
+import KContainerDirection from './fixture/container.direction.svelte';
 import { tick } from 'svelte';
 let host: HTMLElement;
 

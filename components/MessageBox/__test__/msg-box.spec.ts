@@ -1,8 +1,8 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
 import { KMsgBox } from '../src/index';
-import KMsgBoxTitle from './message-box.title.svelte';
-import KMsgBoxContent from './message-box.content.svelte';
+import KMsgBoxTitle from './fixture/message-box.title.svelte';
+import KMsgBoxContent from './fixture/message-box.content.svelte';
 
 let host: HTMLElement;
 const initHost = () => {
@@ -215,7 +215,7 @@ describe('Test: KMsgBox', () => {
 		btns[1].click();
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
-		expect(host.innerHTML.includes('Invalid input')).toBeTruthy();
+		expect(host.innerHTML.includes('This is a required input box')).toBeTruthy();
 		expect(rV).toBe(false);
 		expect(vV).toBe('');
 
@@ -228,7 +228,7 @@ describe('Test: KMsgBox', () => {
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('Invalid input')).toBeTruthy();
 		expect(rV).toBe(false);
-		expect(vV).toBe('');
+		expect(vV).toBe('bar');
 
 		input[0].value = 1;
 		input[0].dispatchEvent(new window.Event('input', { bubbles: true }));

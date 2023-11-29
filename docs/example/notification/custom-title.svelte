@@ -1,7 +1,8 @@
 <script>
-    import { KIcon } from "@ikun-ui/icon";
+	import { KIcon } from '@ikun-ui/icon';
 </script>
+
 <div class="flex items-center">
-    <KIcon icon="i-carbon-add"></KIcon>
-    custom-title
+	<KIcon icon="i-carbon-add"></KIcon>
+	custom-title
 </div>

@@ -16,6 +16,8 @@ export const msgBoxShortcuts: Record<string, string> = {
 	'k-msg-box--icon--warning': 'i-carbon-warning-filled',
 	'k-msg-box--icon--error': 'i-carbon-error-filled',
 	'k-msg-box--icon--success': 'i-carbon-checkmark-filled',
+	'k-msg-box--form': 'mt-2 w-full !mb-0',
+	'k-msg-box--input': 'w-full',
 	// dark
 	'k-msg-box--base__dark': 'dark:bg-ikun-dark-300 dark:shadow dark:shadow-ikun-main',
 	'k-msg-box--header--title__dark': 'dark:text-ikun-white'

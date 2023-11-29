@@ -26,6 +26,10 @@ export const selectShortcuts: Record<string, string> = {
 	'k-select--option__hover': 'hover:ikun:80:bg-ikun-main hover:text-white',
 	'k-select--option__active': 'text-ikun-main',
 	'k-select--option__fit': 'text-ellipsis overflow-hidden',
+
+	// error
+	'k-select__error': 'border-ikun-error k-input-shadow--error',
+
 	// dark
 	'k-select--inner__dark': 'dark:bg-ikun-dark-300 dark:text-ikun-white',
 	'k-select--inner__disabled__dark': 'dark:bg-ikun-dark dark:text-ikun-white',

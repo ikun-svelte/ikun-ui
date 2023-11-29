@@ -232,10 +232,10 @@
 		virtual.handleSlotSizeChange();
 	}
 
-	let oData = data
-	$:if(oData !== data){
+	let oData = data;
+	$: if (oData !== data) {
 		handleDataSourcesChange();
-		oData = data
+		oData = data;
 	}
 	$: handleDataSourcesChange();
 

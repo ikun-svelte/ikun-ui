@@ -1,5 +1,5 @@
 <script>
-	import { KButton } from '@ikun-ui/button'
+	import { KButton } from '@ikun-ui/button';
 </script>
 
 <div class="flex items-center flex-wrap">
@@ -15,6 +15,7 @@
 		>Github</KButton
 	>
 </div>
+
 <style>
 	:global(.k-button--primary__fill) {
 		color: #ccfbf1 !important;

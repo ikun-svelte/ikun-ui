@@ -1,7 +1,7 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, vi, describe, beforeEach } from 'vitest';
 import KDrawer from '../src';
-import KDrawerContent from './drawer.content.test.svelte';
+import KDrawerContent from './fixture/drawer.content.test.svelte';
 let host: HTMLElement;
 
 const initHost = () => {

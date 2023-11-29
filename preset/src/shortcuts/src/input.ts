@@ -40,8 +40,6 @@ export const inputShortcuts: Record<string, string> = {
 
 	// error
 	'k-input__error': 'border-ikun-error k-input-shadow--error',
-	'k-input__msg__error':
-		'absolute left-0 -bottom-18px pt-2px text-ikun-error text-12px line-height-none',
 
 	// dark
 	'k-input__dark': 'dark:bg-ikun-dark-300',

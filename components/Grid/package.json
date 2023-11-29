@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/grid",
-	"version": "0.0.13-beta.3",
+	"version": "0.0.13",
 	"type": "module",
 	"main": "src/index.ts",
 	"types": "src/index.d.ts",
@@ -43,6 +43,6 @@
 		"@tsconfig/svelte": "^5.0.2",
 		"svelte-strip": "^3.0.1",
 		"tslib": "^2.6.2",
-		"typescript": "^5.2.2"
+		"typescript": "^5.3.2"
 	}
 }

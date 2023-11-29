@@ -1,8 +1,8 @@
 import { tick } from 'svelte';
 import { afterEach, expect, test, describe, beforeEach } from 'vitest';
 import KCard from '../src';
-import KCardHeader from './card.slot.header.test.svelte';
-import KCardDefault from './card.slot.default.test.svelte';
+import KCardHeader from './fixture/card.slot.header.test.svelte';
+import KCardDefault from './fixture/card.slot.default.test.svelte';
 
 let host: HTMLElement;
 

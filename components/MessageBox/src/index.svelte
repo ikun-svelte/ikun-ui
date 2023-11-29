@@ -5,8 +5,10 @@
 	import type { MsgBoxEmoType, ValidatorFn } from './types';
 	import { KButton } from '@ikun-ui/button';
 	import { KInput } from '@ikun-ui/input';
+	import { KForm, KFormItem } from '@ikun-ui/form';
 	import type { IKunUncertainFunction } from '@ikun-ui/utils';
 	import { clsx, type ClassValue } from 'clsx';
+	import { getPrefixCls } from '@ikun-ui/utils';
 
 	export let show = false;
 	export let attrs: Record<string, string> = {};
@@ -28,7 +30,6 @@
 	export let layout: 'center' | 'right' = 'right';
 	$: showInner = show;
 
-	let value = '';
 	let isError = false;
 
 	const handleCancel = () => {
@@ -36,51 +37,77 @@
 		onCancel && onCancel();
 	};
 
+	let KFormInst: KForm | undefined = undefined;
+	let initValue = {
+		data: ''
+	};
+	const rules = {
+		data: [
+			{
+				required: true,
+				validator: (value: string, callback: any) => {
+					if (!inputValidator) {
+						isError = false;
+						callback('');
+						return;
+					}
+					if (!value) {
+						isError = true;
+						callback('This is a required input box');
+						return;
+					}
+					// Validator
+					if (
+						inputValidator &&
+						Object.prototype.toString.call(inputValidator) === '[object RegExp]'
+					) {
+						if ((inputValidator as unknown as RegExp).test(value)) {
+							isError = false;
+						} else {
+							isError = true;
+							callback(inputErrorMessage);
+						}
+						return;
+					}
+
+					if (inputValidator && isFunction(inputValidator)) {
+						if ((inputValidator as ValidatorFn)(value)) {
+							isError = false;
+						} else {
+							isError = true;
+							callback(inputErrorMessage);
+						}
+						return;
+					}
+				}
+			}
+		]
+	};
+
 	const handleConfirm = () => {
 		if (type === 'prompt') {
-			if (!value) {
-				isError = true;
+			if (KFormInst) {
+				KFormInst.validateForm((value, isValid) => {
+					if (isValid) {
+						showInner = false;
+					}
+					onConfirm && onConfirm(!isError, value.data);
+				});
 			}
-			if (!isError) {
-				showInner = false;
-			}
-			onConfirm && onConfirm(!isError, value);
 		} else {
 			showInner = false;
 			onConfirm && onConfirm();
 		}
 	};
-
-	const onInput = (e: Event) => {
-		const valueTemp = String((e as InputEvent).detail);
-		if (!inputValidator) {
-			value = valueTemp;
-			isError = false;
-			return;
-		}
-		// Validator
-		if (inputValidator && Object.prototype.toString.call(inputValidator) === '[object RegExp]') {
-			if ((inputValidator as unknown as RegExp).test(valueTemp)) {
-				value = valueTemp;
-				isError = false;
-			} else {
-				isError = true;
-			}
-		}
-
-		if (inputValidator && isFunction(inputValidator)) {
-			if ((inputValidator as ValidatorFn)(valueTemp)) {
-				value = valueTemp;
-				isError = false;
-			} else {
-				isError = true;
-			}
-		}
-	};
-
-	$: footerCls = clsx('k-msg-box--footer', layout === 'center' ? 'justify-center' : 'justify-end');
-	$: cancelBtnCls_ = clsx('k-msg-box--footer--btn', cancelBtnCls);
-	$: confirmBtnCls_ = clsx('k-msg-box--footer--btn', confirmBtnCls);
+	const prefixCls = getPrefixCls('msg-box');
+	$: footerCls = clsx(
+		`${prefixCls}--footer`,
+		layout === 'center' ? 'justify-center' : 'justify-end'
+	);
+	$: cancelBtnCls_ = clsx(`${prefixCls}--footer--btn`, cancelBtnCls);
+	$: confirmBtnCls_ = clsx(`${prefixCls}--footer--btn`, confirmBtnCls);
+	$: formCls = clsx(`${prefixCls}--form`);
+	$: inputCls = clsx(`${prefixCls}--input`);
 </script>
 
 <KModal
@@ -112,14 +139,11 @@
 			{#if isString(content)}
 				{@html content}
 				{#if type === 'prompt'}
-					<KInput
-						cls="k-msg-box--input__prompt"
-						placeholder={inputPlaceholder}
-						errorMsg={inputErrorMessage}
-						{isError}
-						on:input={onInput}
-						{value}
-					></KInput>
+					<KForm {initValue} {rules} bind:this={KFormInst}>
+						<KFormItem field="data" label="" cls={formCls} showLabel={false}>
+							<KInput placeholder={inputPlaceholder} cls={inputCls}></KInput>
+						</KFormItem>
+					</KForm>
 				{/if}
 			{:else if isFunction(content)}
 				<svelte:component this={content} />

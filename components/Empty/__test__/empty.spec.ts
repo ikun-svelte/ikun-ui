@@ -1,8 +1,8 @@
 import { afterEach, expect, test, describe, beforeEach } from 'vitest';
 import KEmpty from '../src';
-import KEmptyImageSlot from './slot.image.svelte';
-import KEmptyDescSlot from './slot.desc.svelte';
-import KEmptySlot from './slot.default.svelte';
+import KEmptyImageSlot from './fixture/slot.image.svelte';
+import KEmptyDescSlot from './fixture/slot.desc.svelte';
+import KEmptySlot from './fixture/slot.default.svelte';
 let host: HTMLElement;
 
 const initHost = () => {

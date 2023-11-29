@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { tick } from 'svelte';
-import KSpinShow from './spin.show.svelte';
-import KSpinText from './spin.text.svelte';
-import KSpinFull from './spin.full.svelte';
-import KSpinBg from './spin.bg.svelte';
-import KSpinSpinner from './spin.spinner.svelte';
-import KSpinRotate from './spin.rotate.svelte';
+import KSpinShow from './fixture/spin.show.svelte';
+import KSpinText from './fixture/spin.text.svelte';
+import KSpinFull from './fixture/spin.full.svelte';
+import KSpinBg from './fixture/spin.bg.svelte';
+import KSpinSpinner from './fixture/spin.spinner.svelte';
+import KSpinRotate from './fixture/spin.rotate.svelte';
 
 let host: HTMLElement;
 

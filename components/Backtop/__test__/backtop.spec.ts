@@ -1,6 +1,6 @@
 import { afterEach, expect, test, describe, beforeEach, vi } from 'vitest';
 import KBacktop from '../src';
-import KBacktopSlot from './backtop.test.svelte';
+import KBacktopSlot from './fixture/backtop.test.svelte';
 import { tick } from 'svelte';
 
 const initHost = () => {

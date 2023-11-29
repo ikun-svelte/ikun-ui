@@ -1,6 +1,6 @@
 import { afterEach, expect, test, describe, beforeEach, vi } from 'vitest';
 import KLink from '../src';
-import KLinkIcon from './link.icon.svelte';
+import KLinkIcon from './fixture/link.icon.svelte';
 import { tick } from 'svelte';
 
 let host: HTMLElement;
