@@ -15,7 +15,7 @@ export type KPaginationProps = {
 	layout: Array<'jumper' | 'sizes' | 'total' | 'pager'>;
 	// common
 	disabled: boolean;
-	size: 'sm' | 'md' | 'lg';
+	size: IKunSize;
 	// pager
 	index: number | string;
 	isActive: boolean;

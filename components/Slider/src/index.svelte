@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { KSliderProps } from './types';
-	import { createEventDispatcher } from 'svelte';
-	import { getPrefixCls } from '@ikun-ui/utils';
+	import type { IKunFormInstance } from '@ikun-ui/form';
+	import { createEventDispatcher, getContext } from 'svelte';
+	import { formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 
 	export let size: KSliderProps['size'] = 'md';
@@ -12,6 +13,41 @@
 	export let disabled: KSliderProps['disabled'] = false;
 	export let attrs: KSliderProps['attrs'] = {};
 	export let cls: KSliderProps['cls'] = undefined;
+
+	/*********************** KForm logic start ************************/
+	let disabledFrom = false;
+	$: disabledInner = disabledFrom || disabled;
+	let sizeFrom = '';
+	$: sizeInner = sizeFrom || size;
+
+	const formContext = getContext(formItemKey) as string;
+	const formInstance = getContext(formKey) as IKunFormInstance;
+	let field: string | undefined = '';
+	// Initialize the KInput value based
+	// on the form value in the KFormItem context
+	function formUpdateField(init = false) {
+		field = formContext.split('&').pop();
+		value = formInstance.getValueByPath(
+			field,
+			init ? formInstance.__default_value : formInstance.__value
+		);
+	}
+	function formPropsChangeCb(props: Record<any, any>) {
+		disabledFrom = props.disabled;
+		sizeFrom = props.size;
+	}
+
+	// Register event, KForm can set KInput value
+	if (formContext && formInstance) {
+		formUpdateField(true);
+		formPropsChangeCb(formInstance.__dynamicProps);
+		formInstance.__itemCompMap[field] = {
+			update: formUpdateField,
+			type: 'slider'
+		};
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb);
+	}
+	/*********************** KForm logic end ************************/
 
 	// current value
 	let isDragging: boolean = false;
@@ -32,7 +68,7 @@
 	const dispatch = createEventDispatcher();
 
 	const handleRunwayClick = (event: MouseEvent) => {
-		if (disabled) return;
+		if (disabledInner) return;
 		let newPercent = 0;
 		const clientX = event.clientX;
 		const sliderOffsetLeft = runwayRef!.getBoundingClientRect().left;
@@ -43,7 +79,7 @@
 	};
 
 	const handleMouseDown = (event: MouseEvent) => {
-		if (disabled) return;
+		if (disabledInner) return;
 		onDragStart(event);
 		window.addEventListener('mousemove', onDragging);
 		window.addEventListener('mouseup', onDragEnd);
@@ -95,18 +131,27 @@
 		if (!isDragging) return;
 		isDragging = false;
 		dispatch('change', value);
+		formInstance && formInstance?.updateField(field!, value, !formInstance.__manual_validate);
 		window.removeEventListener('mousemove', onDragging);
 		window.removeEventListener('mouseup', onDragEnd);
 	};
 
 	// class names
 	const prefixCls = getPrefixCls('slider');
-	$: baseCls = clsx(prefixCls, `${prefixCls}--base`, `${prefixCls}--${size}`, cls);
+	$: baseCls = clsx(prefixCls, `${prefixCls}--base`, `${prefixCls}--${sizeInner}`, cls);
 	$: buttonWrapperCls = clsx(`${prefixCls}--button-wrapper`);
-	$: buttonCls = clsx(`${prefixCls}--button`, `${prefixCls}--button--${size}`);
-	$: runwayCls = clsx(`${prefixCls}--runway`, `${prefixCls}--runway--${size}`, {
-		[`${prefixCls}--runway__disabled`]: disabled
+	$: buttonCls = clsx(`${prefixCls}--button`, `${prefixCls}--button--${sizeInner}`);
+	$: runwayCls = clsx(`${prefixCls}--runway`, `${prefixCls}--runway--${sizeInner}`, {
+		[`${prefixCls}--runway__disabled`]: disabledInner
 	});
+
+	// $: sizeCls = clsx(`${prefixCls}--base`, `${prefixCls}__${sizeInner}`);
+	// const barCls = `${prefixCls}--bar`;
+	// $: btnCls = clsx(`${prefixCls}--button`, `${prefixCls}--button__${sizeInner}`);
+	// $: btnWrapperCls = clsx(
+	// 	`${prefixCls}--button__wrapper`,
+	// 	`${prefixCls}--button__wrapper__${sizeInner}`
+	// );
 </script>
 
 <div class={baseCls} {...$$restProps} {...attrs}>

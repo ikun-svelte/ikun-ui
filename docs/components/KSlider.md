@@ -35,15 +35,21 @@ Use `disabled` attribute to determine whether a slider is disabled.
 
 <demo src="slider/disabled.svelte" github="Slider"></demo>
 
-## Range slider
+## Maximum and minimum values
+
+The `max` and `min` attributes limit the maximum and minimum values of the `slider`
 
 <demo src="slider/range.svelte" github="Slider"></demo>
 
-## Render slider
+## Custom Render slider
+
+Rendering `slider` content using slots
 
 <demo src="slider/render.svelte" github="Slider"></demo>
 
 ## Sizes
+
+Add `size` attribute to change the size of Slider. It supports `sm`, `md` and `lg`.
 
 <demo src="slider/sizes.svelte" github="Slider"></demo>
 
@@ -56,6 +62,7 @@ Use `disabled` attribute to determine whether a slider is disabled.
 | max      | `number`                 | `100`   | Maximum value              |
 | step     | `number`                 | `1`     | Step size                  |
 | disabled | `boolean`                | `false` | Whether Slider is disabled |
+| size     | `sm \| md \| lg`         | `md`    | Size of `slider`.          |
 | cls      | `string`                 | `-`     | Additional class           |
 | attrs    | `Record<string, string>` | `{}`    | Additional attributes      |
 
