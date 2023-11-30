@@ -76,7 +76,7 @@ describe('Test: KForm', () => {
 		expect(selectInput[0].value).toBe('不知明镜里');
 		expect(selectInput[1].value).toBe('Huge');
 
-		const sliderEl = host.querySelector('.k-slider--button__wrapper');
+		const sliderEl = host.querySelector('.k-slider--button-wrapper');
 		expect(sliderEl.style.left).toBe('43%');
 
 		const value = JSON.parse(host.querySelector('#form_value')?.innerHTML);
@@ -92,7 +92,7 @@ describe('Test: KForm', () => {
 				id: '3'
 			},
 			KSelectString: 'Huge',
-			slider: 43,
+			slider: 43
 		});
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -167,7 +167,7 @@ describe('Test: KForm', () => {
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--box__disabled').length).toBe(4);
 		expect(host.querySelectorAll('.k-select--base__disabled').length).toBe(4);
-		expect(host.querySelector('.k-slider .k-cur-disabled')).toBeTruthy();
+		expect(host.querySelector('.k-slider--runway__disabled')).toBeTruthy();
 
 		const btnEl = host.querySelector('button');
 		btnEl?.click();
@@ -179,7 +179,7 @@ describe('Test: KForm', () => {
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(1);
 		expect(host.querySelectorAll('.k-checkbox--box__disabled').length).toBe(1);
 		expect(host.querySelectorAll('.k-select--base__disabled').length).toBe(0);
-		expect(host.querySelector('.k-slider .k-cur-disabled')).not.toBeTruthy();
+		expect(host.querySelector('.k-slider--runway__disabled')).not.toBeTruthy();
 
 		btnEl?.click();
 		await tick();
@@ -190,7 +190,7 @@ describe('Test: KForm', () => {
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--box__disabled').length).toBe(4);
 		expect(host.querySelectorAll('.k-select--base__disabled').length).toBe(4);
-		expect(host.querySelector('.k-slider .k-cur-disabled')).toBeTruthy();
+		expect(host.querySelector('.k-slider--runway__disabled')).toBeTruthy();
 	});
 
 	test('props: KForm size', async () => {
@@ -204,8 +204,9 @@ describe('Test: KForm', () => {
 		expect(host.querySelector('.k-input__sm')).toBeTruthy();
 		expect(host.querySelector('.k-switch--sm')).toBeTruthy();
 		expect(host.querySelector('.k-rate--sm')).toBeTruthy();
-		expect(host.querySelector('.k-slider--button__wrapper__sm')).toBeTruthy();
-		expect(host.querySelector('.k-slider--button__sm')).toBeTruthy();
+		expect(host.querySelector('.k-slider--sm')).toBeTruthy();
+		expect(host.querySelector('.k-slider--button--sm')).toBeTruthy();
+		expect(host.querySelector('.k-slider--runway--sm')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--sm').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--sm').length).toBe(4);
 		expect(host.querySelectorAll('.k-select__sm').length).toBe(2);
@@ -217,8 +218,9 @@ describe('Test: KForm', () => {
 		expect(host.querySelector('.k-input__lg')).toBeTruthy();
 		expect(host.querySelector('.k-switch--lg')).toBeTruthy();
 		expect(host.querySelector('.k-rate--lg')).toBeTruthy();
-		expect(host.querySelector('.k-slider--button__wrapper__lg')).toBeTruthy();
-		expect(host.querySelector('.k-slider--button__lg')).toBeTruthy();
+		expect(host.querySelector('.k-slider--lg')).toBeTruthy();
+		expect(host.querySelector('.k-slider--button--lg')).toBeTruthy();
+		expect(host.querySelector('.k-slider--runway--lg')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--lg').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--lg').length).toBe(4);
 		expect(host.querySelectorAll('.k-select__lg').length).toBe(2);
@@ -230,8 +232,9 @@ describe('Test: KForm', () => {
 		expect(host.querySelector('.k-input__md')).toBeTruthy();
 		expect(host.querySelector('.k-switch--md')).toBeTruthy();
 		expect(host.querySelector('.k-rate--md')).toBeTruthy();
-		expect(host.querySelector('.k-slider--button__wrapper__md')).toBeTruthy();
-		expect(host.querySelector('.k-slider--button__md')).toBeTruthy();
+		expect(host.querySelector('.k-slider--md')).toBeTruthy();
+		expect(host.querySelector('.k-slider--button--md')).toBeTruthy();
+		expect(host.querySelector('.k-slider--runway--md')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--md').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--md').length).toBe(4);
 		expect(host.querySelectorAll('.k-select__md').length).toBe(2);
@@ -243,8 +246,9 @@ describe('Test: KForm', () => {
 		expect(host.querySelector('.k-input__sm')).toBeTruthy();
 		expect(host.querySelector('.k-switch--sm')).toBeTruthy();
 		expect(host.querySelector('.k-rate--sm')).toBeTruthy();
-		expect(host.querySelector('.k-slider--button__wrapper__sm')).toBeTruthy();
-		expect(host.querySelector('.k-slider--button__sm')).toBeTruthy();
+		expect(host.querySelector('.k-slider--sm')).toBeTruthy();
+		expect(host.querySelector('.k-slider--button--sm')).toBeTruthy();
+		expect(host.querySelector('.k-slider--runway--sm')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--sm').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--sm').length).toBe(4);
 		expect(host.querySelectorAll('.k-select__sm').length).toBe(2);

@@ -62,7 +62,13 @@ export function doValidateField(
 			} else {
 				const type = (itemCompMap[path as keyof typeof itemCompMap] || {}).type;
 				// switch does not require verification required
-				validateRequired(ruleOption, value, path, undefined, type !== 'switch' && type !== 'slider');
+				validateRequired(
+					ruleOption,
+					value,
+					path,
+					undefined,
+					type !== 'switch' && type !== 'slider'
+				);
 				validateMin(ruleOption, value, path);
 				validateMax(ruleOption, value, path);
 			}

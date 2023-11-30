@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { createEventDispatcher, getContext } from "svelte";
-	import { clsx } from 'clsx';
 	import type { KSliderProps } from './types';
-	import { formItemKey, formKey, getPrefixCls } from "@ikun-ui/utils";
-	import type { IKunFormInstance } from "@ikun-ui/form";
+	import type { IKunFormInstance } from '@ikun-ui/form';
+	import { createEventDispatcher, getContext } from 'svelte';
+	import { formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
+	import { clsx } from 'clsx';
 
+	export let size: KSliderProps['size'] = 'md';
 	export let min: KSliderProps['min'] = 0;
 	export let max: KSliderProps['max'] = 100;
 	export let value: KSliderProps['value'] = 0;
 	export let step: KSliderProps['step'] = 1;
 	export let disabled: KSliderProps['disabled'] = false;
-	export let size: KSliderProps['size'] = 'md';
 	export let attrs: KSliderProps['attrs'] = {};
 	export let cls: KSliderProps['cls'] = undefined;
 
@@ -63,7 +63,7 @@
 	$: percentage = `${((value - min) / (max - min)) * 100}%`;
 
 	// element
-	let sliderRunwayRef: null | HTMLElement = null;
+	let runwayRef: null | HTMLElement = null;
 	// updateValue
 	const dispatch = createEventDispatcher();
 
@@ -71,8 +71,8 @@
 		if (disabledInner) return;
 		let newPercent = 0;
 		const clientX = event.clientX;
-		const sliderOffsetLeft = sliderRunwayRef!.getBoundingClientRect().left;
-		const sliderSize = sliderRunwayRef!.getBoundingClientRect().width;
+		const sliderOffsetLeft = runwayRef!.getBoundingClientRect().left;
+		const sliderSize = runwayRef!.getBoundingClientRect().width;
 		newPercent = ((clientX - sliderOffsetLeft) / sliderSize) * 100;
 		if (newPosition < 0 || newPosition > 100) return;
 		setPosition(newPercent);
@@ -118,10 +118,10 @@
 	};
 
 	const onDragging = (event: MouseEvent) => {
-		if (!isDragging || !sliderRunwayRef) return;
+		if (!isDragging || !runwayRef) return;
 		let diff: number;
 		const { clientX } = getClientXY(event);
-		const sliderWidth = sliderRunwayRef.getBoundingClientRect().width;
+		const sliderWidth = runwayRef.getBoundingClientRect().width;
 		diff = ((clientX - startX) / sliderWidth) * 100;
 		newPosition = startPosition + diff;
 		setPosition(newPosition);
@@ -131,47 +131,35 @@
 		if (!isDragging) return;
 		isDragging = false;
 		dispatch('change', value);
-		formInstance &&
-		formInstance?.updateField( field!, value, !formInstance.__manual_validate);
+		formInstance && formInstance?.updateField(field!, value, !formInstance.__manual_validate);
 		window.removeEventListener('mousemove', onDragging);
 		window.removeEventListener('mouseup', onDragEnd);
 	};
 
+	// class names
 	const prefixCls = getPrefixCls('slider');
-	$: cnames = clsx(prefixCls, cls);
-	$: sliderRunwayCls = clsx(`${prefixCls}--runway`, {
-		'k-cur-disabled': disabledInner
+	$: baseCls = clsx(prefixCls, `${prefixCls}--base`, `${prefixCls}--${sizeInner}`, cls);
+	$: buttonWrapperCls = clsx(`${prefixCls}--button-wrapper`);
+	$: buttonCls = clsx(`${prefixCls}--button`, `${prefixCls}--button--${sizeInner}`);
+	$: runwayCls = clsx(`${prefixCls}--runway`, `${prefixCls}--runway--${sizeInner}`, {
+		[`${prefixCls}--runway__disabled`]: disabledInner
 	});
-	$: sizeCls = clsx(`${prefixCls}--base`, `${prefixCls}__${sizeInner}`);
-	const barCls = `${prefixCls}--bar`;
-	$: btnCls = clsx(`${prefixCls}--button`, `${prefixCls}--button__${sizeInner}`);
-	$: btnWrapperCls = clsx(
-		`${prefixCls}--button__wrapper`,
-		`${prefixCls}--button__wrapper__${sizeInner}`
-	);
 </script>
 
-<div class={cnames}>
-	<div {...attrs} class={sizeCls}>
+<div class={baseCls} {...$$restProps} {...attrs}>
+	<div bind:this={runwayRef} class={runwayCls} aria-hidden="true" on:mousedown={handleRunwayClick}>
 		<div
-			bind:this={sliderRunwayRef}
-			class={sliderRunwayCls}
+			class={buttonWrapperCls}
 			aria-hidden="true"
-			on:mousedown={handleRunwayClick}
+			on:mousedown={handleMouseDown}
+			style:left={percentage}
 		>
-			<div class={barCls} style="width: {percentage}; left: 0%"></div>
-			<div
-				class={btnWrapperCls}
-				aria-hidden="true"
-				on:mousedown={handleMouseDown}
-				style:left={percentage}
-			>
-				{#if $$slots.buttonRender}
-					<slot name="buttonRender" />
-				{:else}
-					<div class={btnCls}></div>
-				{/if}
-			</div>
+			{#if $$slots.buttonRender}
+				<slot name="buttonRender" />
+			{:else}
+				<div class={buttonCls}></div>
+			{/if}
 		</div>
+		<div class="k-slider--bar" style="width: {percentage}; left: 0%"></div>
 	</div>
 </div>
