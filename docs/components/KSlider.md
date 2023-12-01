@@ -51,7 +51,7 @@ Rendering `slider` content using slots
 
 Add `size` attribute to change the size of Slider. It supports `sm`, `md` and `lg`.
 
-<demo src="slider/size.svelte" github="Slider"></demo>
+<demo src="slider/sizes.svelte" github="Slider"></demo>
 
 ## Slider Props
 
