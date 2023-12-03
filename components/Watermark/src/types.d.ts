@@ -17,7 +17,7 @@ export type KWatermarkProps = {
 	rotate: number;
 	zIndex: number;
 	image: string;
-	content: string;
+	content: string | string[];
 	font: KWatermarkFont;
 	gap: [number, number];
 	offset: [number, number];
