@@ -7,6 +7,7 @@ export interface KWatermarkFont {
 	fontWeight: 'normal' | 'light' | 'weight' | number;
 	fontFamily: string;
 	fontStyle: 'none' | 'normal' | 'italic' | 'oblique';
+	textAlign?: 'start' | 'end' | 'left' | 'right' | 'center';
 	textBaseline: 'top' | 'hanging' | 'middle' | 'alphabetic' | 'ideographic' | 'bottom';
 }
 
