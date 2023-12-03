@@ -59,8 +59,8 @@
 		"test:unit": "vitest --watch=false",
 		"test:update": "vitest -u --watch=true",
 		"test:coverage": "vitest --coverage --watch=false",
-		"lint": "prettier --check \\\"./**/*.{svelte,js,ts,jsx,tsx,json}\\\" && eslint .",
-		"format": "prettier --write \\\"./**/*.{svelte,js,ts,jsx,tsx,json}\\\"",
+		"lint": "prettier --check \"./**/*.{svelte,js,ts,jsx,tsx,json,md}\" && eslint .",
+		"format": "prettier --write \"./**/*.{svelte,js,ts,jsx,tsx,json,md}\"",
 		"release": "bumpp package.json components/*/package.json preset/package.json utils/package.json --commit --push --tag",
 		"publish:script": "esno scripts/publish.js && pnpm run publish:npm",
 		"publish:npm": "pnpm publish --no-git-checks --access public",
@@ -68,7 +68,7 @@
 		"clean:deps": "esno scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "esno scripts/new-component.js pagination"
+		"create:new:comp": "esno scripts/new-component.js watermark"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
@@ -125,7 +125,8 @@
 		"@ikun-ui/utils": "workspace:*",
 		"@ikun-ui/virtual-list": "workspace:*",
 		"baiwusanyu-utils": "^1.0.16",
-		"clsx": "^2.0.0"
+		"clsx": "^2.0.0",
+		"@ikun-ui/watermark": "workspace:*"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.1",

@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KWatermark > props: cls 1`] = `"<div class=\\"k-watermark k-watermark--base k-watermark--test\\" style=\\"position: relative;\\"></div>"`;
+
+exports[`Test: KWatermark > slot: default 1`] = `" <div class=\\"k-watermark k-watermark--base\\" style=\\"position: relative;\\"><div style=\\"height: 500px;\\" id=\\"watermark_slot\\"></div></div>"`;

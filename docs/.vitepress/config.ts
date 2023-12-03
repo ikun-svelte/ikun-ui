@@ -201,16 +201,20 @@ const components = [
 		collapsed: false,
 		items: [
 			{
-				text: 'Mask',
-				link: '/components/KMask'
+				text: 'ClientOnly',
+				link: '/components/KClientOnly'
 			},
 			{
 				text: 'EyeDropper',
 				link: '/components/KEyeDropper'
 			},
 			{
-				text: 'ClientOnly',
-				link: '/components/KClientOnly'
+				text: 'Mask',
+				link: '/components/KMask'
+			},
+			{
+				text: 'Watermark',
+				link: '/components/KWatermark'
 			}
 		]
 	}
