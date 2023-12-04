@@ -88,12 +88,15 @@
 		setTimeout(
 			async () => {
 				if (isEnter) {
+					if (isShow) return;
 					isShow = true;
 					dispatch('change', isShow);
 					return;
 				}
-				isShow = show;
-				dispatch('change', isShow);
+				if (show !== isShow) {
+					isShow = show;
+					dispatch('change', isShow);
+				}
 			},
 			trigger === 'hover' ? 200 : 0
 		);
