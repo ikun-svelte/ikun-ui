@@ -31,7 +31,14 @@
 	);
 </script>
 
-<div class={cnames} aria-hidden="true" on:click={handleClick} {...$$restProps} {...attrs}>
+<div
+	class={cnames}
+	aria-hidden="true"
+	data-testid="k_dropdown__item"
+	on:click={handleClick}
+	{...$$restProps}
+	{...attrs}
+>
 	{#if !divider}
 		<slot />
 	{/if}
