@@ -3,13 +3,16 @@
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import { extend } from 'baiwusanyu-utils';
-	import { getPrefixCls, ButtonGroupKey, formKey } from '@ikun-ui/utils';
+	import { getPrefixCls, ButtonGroupKey, formKey, dropDownKey } from '@ikun-ui/utils';
 	import clsx from 'clsx';
 	import { type IKunFormInstance } from '@ikun-ui/form';
+	import type { KDropdownCtx } from '@ikun-ui/dropdown';
 
 	export let type: KButtonProps['type'] | '' = '';
 	export let size: KButtonProps['size'] | '' = '';
 	export let icon: KButtonProps['icon'] = '';
+
+	export let suffixIcon: KButtonProps['suffixIcon'] = '';
 	export let iconSize: KButtonProps['iconSize'] = null;
 	export let to: KButtonProps['to'] = '';
 	export let round: KButtonProps['round'] = '';
@@ -32,7 +35,7 @@
 	const typeInner = type || buttonGroupPropsInner?.type || 'primary';
 	const sizeInner = buttonGroupPropsInner?.size || size || 'md';
 	const isBorderInner = isBorder || buttonGroupPropsInner?.isBorder || ghost || false;
-	const disabledInner = disabled || buttonGroupPropsInner?.disabled || false;
+	let disabledInner = disabled || buttonGroupPropsInner?.disabled || false;
 	let iconSizeInner: KButtonProps['iconSize'];
 	$: if (iconSize) {
 		iconSizeInner = iconSize;
@@ -40,6 +43,13 @@
 		iconSizeInner = buttonGroupPropsInner.iconSize;
 	} else {
 		iconSizeInner = EButtonIconSize[sizeInner];
+	}
+
+	const dropDownCtx = getContext(dropDownKey) as KDropdownCtx;
+	if (dropDownCtx) {
+		dropDownCtx.disabledEvt.push((disabledValue: boolean) => {
+			disabledInner = disabledValue;
+		});
 	}
 
 	let btnRef: null | HTMLElement = null;
@@ -123,6 +133,15 @@
 		<div class="ml-1"></div>
 	{/if}
 	<slot />
+	{#if suffixIcon}
+		<KIcon
+			icon={suffixIcon}
+			cls="ml-1"
+			color={cnamesIcon}
+			width={`${iconSizeInner}px`}
+			height={`${iconSizeInner}px`}
+		/>
+	{/if}
 </svelte:element>
 
 <style>
