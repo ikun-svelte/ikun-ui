@@ -34,7 +34,7 @@ describe('Test: KSlider', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('props: value', async () => {
+	test('props: vertical', async () => {
 		const instance = new KSlider({
 			target: host,
 			props: {
