@@ -59,8 +59,8 @@
 		"test:unit": "vitest --watch=false",
 		"test:update": "vitest -u --watch=true",
 		"test:coverage": "vitest --coverage --watch=false",
-		"lint": "prettier --check \"./**/*.{svelte,js,ts,jsx,tsx,json,md}\" && eslint .",
-		"format": "prettier --write \"./**/*.{svelte,js,ts,jsx,tsx,json,md}\"",
+		"lint": "prettier --check \"./**/*.{svelte,js,ts,jsx,json,md}\" && eslint .",
+		"format": "prettier --write \"./**/*.{svelte,js,ts,jsx,json,md}\"",
 		"release": "bumpp package.json components/*/package.json preset/package.json utils/package.json --commit --push --tag",
 		"publish:script": "esno scripts/publish.js && pnpm run publish:npm",
 		"publish:npm": "pnpm publish --no-git-checks --access public",
@@ -172,7 +172,7 @@
 		"vitest": "^1.0.1"
 	},
 	"lint-staged": {
-		"*.{svelte,js,ts,jsx,tsx,json}": [
+		"*.{svelte,js,ts,jsx,json}": [
 			"prettier --write ",
 			"eslint"
 		]
