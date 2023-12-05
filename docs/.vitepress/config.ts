@@ -155,6 +155,10 @@ const components = [
 			{
 				text: 'Backtop',
 				link: '/components/KBacktop'
+			},
+			{
+				text: 'Dropdown',
+				link: '/components/KDropdown'
 			}
 		]
 	},
