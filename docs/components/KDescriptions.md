@@ -33,7 +33,7 @@ npm install @ikun-ui/descriptions @ikun-ui/descriptions-item
 
 <demo src="descriptions/sizes.svelte"  github='Descriptions'></demo>
 
-# Vertical
+## Vertical
 
 <demo src="descriptions/vertical.svelte"  github='Descriptions'></demo>
 
