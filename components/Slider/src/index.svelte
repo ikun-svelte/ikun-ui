@@ -11,6 +11,7 @@
 	export let value: KSliderProps['value'] = 0;
 	export let step: KSliderProps['step'] = 1;
 	export let disabled: KSliderProps['disabled'] = false;
+	export let vertical: KSliderProps['vertical'] = false;
 	export let attrs: KSliderProps['attrs'] = {};
 	export let cls: KSliderProps['cls'] = undefined;
 
@@ -52,6 +53,7 @@
 	// current value
 	let isDragging: boolean = false;
 	let startX: number = 0;
+	let startY: number = 0;
 	let startPosition: number;
 	let newPosition: number;
 
@@ -61,6 +63,8 @@
 		value = max;
 	}
 	$: percentage = `${((value - min) / (max - min)) * 100}%`;
+	$: barStyle = vertical ? `height: ${percentage}; bottom: 0%` : `width: ${percentage}; left: 0%`;
+	$: btnStyle = vertical ? `bottom: ${percentage}` : `left: ${percentage}`;
 
 	// element
 	let runwayRef: null | HTMLElement = null;
@@ -71,9 +75,16 @@
 		if (disabledInner) return;
 		let newPercent = 0;
 		const clientX = event.clientX;
+		const clientY = event.clientY;
 		const sliderOffsetLeft = runwayRef!.getBoundingClientRect().left;
-		const sliderSize = runwayRef!.getBoundingClientRect().width;
-		newPercent = ((clientX - sliderOffsetLeft) / sliderSize) * 100;
+		const sliderOffsetBottom = runwayRef!.getBoundingClientRect().bottom;
+		const sliderSize = vertical
+			? runwayRef!.getBoundingClientRect().height
+			: runwayRef!.getBoundingClientRect().width;
+		newPercent = vertical
+			? ((sliderOffsetBottom - clientY) / sliderSize) * 100
+			: ((clientX - sliderOffsetLeft) / sliderSize) * 100;
+		console.log(((sliderOffsetBottom - clientY) / sliderSize) * 100);
 		if (newPosition < 0 || newPosition > 100) return;
 		setPosition(newPercent);
 	};
@@ -94,12 +105,14 @@
 
 	const setPosition = (newPosition: number) => {
 		if (Number.isNaN(+newPosition)) return;
+
 		if (newPosition < 0) {
 			newPosition = 0;
 		}
 		if (newPosition > 100) {
 			newPosition = 100;
 		}
+
 		const lengthStep = 100 / ((max - min) / step);
 		const steps = Math.round(newPosition / lengthStep);
 		let newValue = steps * lengthStep * (max - min) * 0.01 + min;
@@ -111,8 +124,9 @@
 
 	const onDragStart = (event: MouseEvent) => {
 		isDragging = true;
-		const { clientX } = getClientXY(event);
+		const { clientX, clientY } = getClientXY(event);
 		startX = clientX;
+		startY = clientY;
 		startPosition = Number.parseFloat(percentage);
 		newPosition = startPosition;
 	};
@@ -120,9 +134,11 @@
 	const onDragging = (event: MouseEvent) => {
 		if (!isDragging || !runwayRef) return;
 		let diff: number;
-		const { clientX } = getClientXY(event);
-		const sliderWidth = runwayRef.getBoundingClientRect().width;
-		diff = ((clientX - startX) / sliderWidth) * 100;
+		const { clientX, clientY } = getClientXY(event);
+		const { width: sliderWidth, height: sliderHeight } = runwayRef.getBoundingClientRect();
+		diff = vertical
+			? ((startY - clientY) / sliderHeight) * 100
+			: ((clientX - startX) / sliderWidth) * 100;
 		newPosition = startPosition + diff;
 		setPosition(newPosition);
 	};
@@ -138,11 +154,33 @@
 
 	// class names
 	const prefixCls = getPrefixCls('slider');
-	$: baseCls = clsx(prefixCls, `${prefixCls}--base`, `${prefixCls}--${sizeInner}`, cls);
-	$: buttonWrapperCls = clsx(`${prefixCls}--button-wrapper`);
+	$: baseCls = clsx(
+		prefixCls,
+		{
+			[`${prefixCls}--base`]: !vertical,
+			[`${prefixCls}--base__vertical`]: vertical
+		},
+		{
+			[`${prefixCls}--${sizeInner}`]: !vertical,
+			[`${prefixCls}--${sizeInner}__vertical`]: vertical
+		},
+		cls
+	);
+	$: buttonWrapperCls = clsx({
+		[`${prefixCls}--button-wrapper`]: !vertical,
+		[`${prefixCls}--button-wrapper__vertical`]: vertical
+	});
 	$: buttonCls = clsx(`${prefixCls}--button`, `${prefixCls}--button--${sizeInner}`);
-	$: runwayCls = clsx(`${prefixCls}--runway`, `${prefixCls}--runway--${sizeInner}`, {
-		[`${prefixCls}--runway__disabled`]: disabledInner
+	$: runwayCls = clsx({
+		[`${prefixCls}--runway__disabled`]: disabledInner,
+		[`${prefixCls}--runway--${sizeInner}`]: !vertical,
+		[`${prefixCls}--runway`]: !vertical,
+		[`${prefixCls}--runway--${sizeInner}__vertical`]: vertical,
+		[`${prefixCls}--runway__vertical`]: vertical
+	});
+	$: barCls = clsx({
+		[`${prefixCls}--bar`]: !vertical,
+		[`${prefixCls}--bar__vertical`]: vertical
 	});
 </script>
 
@@ -152,7 +190,7 @@
 			class={buttonWrapperCls}
 			aria-hidden="true"
 			on:mousedown={handleMouseDown}
-			style:left={percentage}
+			style={btnStyle}
 		>
 			{#if $$slots.buttonRender}
 				<slot name="buttonRender" />
@@ -160,6 +198,6 @@
 				<div class={buttonCls}></div>
 			{/if}
 		</div>
-		<div class="k-slider--bar" style="width: {percentage}; left: 0%"></div>
+		<div class={barCls} style={barStyle}></div>
 	</div>
 </div>

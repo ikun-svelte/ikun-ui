@@ -9,6 +9,7 @@ export type KSliderProps = {
 	value: number;
 	step: number;
 	disabled: boolean;
+	vertical: boolean;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
