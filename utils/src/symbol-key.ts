@@ -16,4 +16,5 @@ export const rowKey = KSymbolKey('row');
 export const contextmenuKey = KSymbolKey('contextmenu');
 export const formKey = KSymbolKey('form');
 export const formItemKey = KSymbolKey('formItem');
+export const dropDownKey = KSymbolKey('dropDown');
 export const descriptionsKey = KSymbolKey('descriptions');

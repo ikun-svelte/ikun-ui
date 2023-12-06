@@ -61,11 +61,11 @@
 	let isShow = false;
 	const handleClick = () => {
 		if (trigger === 'manual') {
-			updateShow(!isShow);
+			doUpdateShow(!isShow);
 		}
 
 		if (trigger === 'click') {
-			updateShow(true);
+			doUpdateShow(true);
 		}
 	};
 
@@ -73,27 +73,36 @@
 	const handleMouseenter = () => {
 		if (trigger === 'hover') {
 			isEnter = true;
-			updateShow(true);
+			doUpdateShow(true);
 		}
 	};
 	const handleMouseleave = () => {
 		if (trigger === 'hover') {
 			isEnter = false;
-			updateShow(false);
+			doUpdateShow(false);
 		}
 	};
 
 	export function updateShow(show: boolean) {
+		if (trigger === 'hover') {
+			isEnter = false;
+		}
+		doUpdateShow(show);
+	}
+	export function doUpdateShow(show: boolean) {
 		if (disabled && show) return;
 		setTimeout(
 			async () => {
 				if (isEnter) {
+					if (isShow) return;
 					isShow = true;
 					dispatch('change', isShow);
 					return;
 				}
-				isShow = show;
-				dispatch('change', isShow);
+				if (show !== isShow) {
+					isShow = show;
+					dispatch('change', isShow);
+				}
 			},
 			trigger === 'hover' ? 200 : 0
 		);
@@ -111,7 +120,7 @@
 			const target = e.target as HTMLElement;
 			const container = node;
 			if (target && container && !container.contains(target)) {
-				updateShow(false);
+				doUpdateShow(false);
 			}
 		}
 		trigger === 'click' && window.addEventListener('click', handleClickOutside);

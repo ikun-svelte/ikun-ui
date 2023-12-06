@@ -57,7 +57,7 @@ const components = [
 				link: '/components/KCheckbox'
 			},
 			{
-				text: 'From',
+				text: 'Form',
 				link: '/components/KForm'
 			},
 			{
@@ -159,6 +159,10 @@ const components = [
 			{
 				text: 'Backtop',
 				link: '/components/KBacktop'
+			},
+			{
+				text: 'Dropdown',
+				link: '/components/KDropdown'
 			}
 		]
 	},
@@ -205,16 +209,20 @@ const components = [
 		collapsed: false,
 		items: [
 			{
-				text: 'Mask',
-				link: '/components/KMask'
+				text: 'ClientOnly',
+				link: '/components/KClientOnly'
 			},
 			{
 				text: 'EyeDropper',
 				link: '/components/KEyeDropper'
 			},
 			{
-				text: 'ClientOnly',
-				link: '/components/KClientOnly'
+				text: 'Mask',
+				link: '/components/KMask'
+			},
+			{
+				text: 'Watermark',
+				link: '/components/KWatermark'
 			}
 		]
 	}

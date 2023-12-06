@@ -1,21 +1,47 @@
 export const sliderShortcuts: Record<string, string> = {
 	// slider
-	'k-slider': 'w-full flex',
-	'k-slider--base': 'w-full ml-4.5 fi',
-	'k-slider__sm': 'h-14px',
-	'k-slider__md': 'h-20px',
-	'k-slider__lg': 'h-30px',
-	'k-slider--runway': 'flex-1 h-1.5 border-rd-0.75 bg-ikun-light-900 pr cursor-pointer',
+	'k-slider--base': 'w-full fi',
+	'k-slider--base__vertical': 'h-full fc',
+
+	// disabled
 	'k-slider--disabled': 'k-bg-disabled',
+
+	// size
+	'k-slider--sm': 'h-24px',
+	'k-slider--md': 'h-32px',
+	'k-slider--lg': 'h-40px',
+	'k-slider--sm__vertical': 'w-24px',
+	'k-slider--md__vertical': 'w-32px',
+	'k-slider--lg__vertical': 'w-40px',
+
+	// runway
+	'k-slider--runway': 'flex-1 rd-0.75 bg-ikun-light-900 cursor-pointer pr',
+	'k-slider--runway__vertical': 'rd-0.75 bg-ikun-light-900 cursor-pointer pr fe flex-col',
+
+	// runway size [2px border]
+	'k-slider--runway--sm': 'mx-8px h-3px',
+	'k-slider--runway--md': 'mx-10px h-4px',
+	'k-slider--runway--lg': 'mx-12px h-5px',
+	'k-slider--runway--sm__vertical': 'my-8px w-3px',
+	'k-slider--runway--md__vertical': 'my-10px w-4px',
+	'k-slider--runway--lg__vertical': 'my-12px w-5px',
+
 	'k-slider--bar': 'h-full border-rd-0.75 bg-ikun-main',
-	'k-slider--button__wrapper':
-		'fcc pa bg-[transparent] translate-x-[-50%] select-none line-height-[none]',
-	'k-slider--button':
-		'inline-block border-ikun-main rounded-full border-2px border-solid bg-ikun-white select-none',
-	'k-slider--button__wrapper__sm': 'h-14px -top-5px',
-	'k-slider--button__wrapper__md': 'h-20px -top-8px',
-	'k-slider--button__wrapper__lg': 'h-30px -top-13px',
-	'k-slider--button__sm': 'h-14px w-14px',
-	'k-slider--button__md': 'h-20px w-20px',
-	'k-slider--button__lg': 'h-30px w-30px'
+	'k-slider--bar__vertical': 'w-full border-rd-0.75 bg-ikun-main',
+
+	// runway disabled
+	'k-slider--runway__disabled': 'k-cur-disabled',
+
+	// button
+	'k-slider--button-wrapper':
+		'fcc pa top-0 bottom-0 my-a translate-x--50% cursor-pointer select-none',
+	'k-slider--button-wrapper__vertical':
+		'fcc pa left-50% mx-a -translate-x-1/2 translate-y-1/2 cursor-pointer select-none',
+
+	// button wrapper size
+	'k-slider--button--sm': 'w-12px h-12px',
+	'k-slider--button--md': 'w-16px h-16px',
+	'k-slider--button--lg': 'w-20px h-20px',
+
+	'k-slider--button': 'fcc b-2px b-solid b-ikun-main rd-50% bg-ikun-white line-height-none'
 };

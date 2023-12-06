@@ -27,12 +27,28 @@ describe('Test: KSlider', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const sliderBarElm = host.getElementsByClassName('k-slider--bar')[0] as HTMLDivElement;
-		const sliderButtonWrapperElm = host.getElementsByClassName(
-			'k-slider--button__wrapper'
-		)[0] as HTMLDivElement;
+		const sliderBarElm = host.querySelector('.k-slider--bar');
+		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper');
 		expect(Number.parseFloat(sliderBarElm.style.width)).toBe(value);
 		expect(Number.parseFloat(sliderButtonWrapperElm.style.left)).toBe(value);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: vertical', async () => {
+		const instance = new KSlider({
+			target: host,
+			props: {
+				vertical: true
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect((host as HTMLElement)!.innerHTML.includes('k-slider--base__vertical')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-slider--runway__vertical')).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes('k-slider--button-wrapper__vertical')
+		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-slider--bar__vertical')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -48,10 +64,8 @@ describe('Test: KSlider', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const sliderBarElm = host.getElementsByClassName('k-slider--bar')[0] as HTMLDivElement;
-		const sliderButtonWrapperElm = host.getElementsByClassName(
-			'k-slider--button__wrapper'
-		)[0] as HTMLDivElement;
+		const sliderBarElm = host.querySelector('.k-slider--bar');
+		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper');
 		expect(Number.parseFloat(sliderBarElm.style.width)).toBe(0);
 		expect(Number.parseFloat(sliderButtonWrapperElm.style.left)).toBe(0);
 		instance.$set({
@@ -78,48 +92,35 @@ describe('Test: KSlider', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		expect(host.innerHTML.includes('k-cur-disabled')).toBe(true);
-		instance.$set({
-			disabled: false
-		});
+		expect(host.innerHTML.includes('k-slider--runway__disabled')).toBe(true);
+		instance.$set({ disabled: false });
 		await tick();
-		expect(host.innerHTML.includes('k-cur-disabled')).toBe(false);
+		expect(host.innerHTML.includes('k-slider--runway__disabled')).toBe(false);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
 	test('props: size', async () => {
-		const instanceSM = new KSlider({
+		const instance = new KSlider({
 			target: host,
 			props: {
 				size: 'sm'
 			}
 		});
-		const instanceMD = new KSlider({
-			target: host,
-			props: {
-				size: 'md'
-			}
-		});
-		const instanceLG = new KSlider({
-			target: host,
-			props: {
-				size: 'lg'
-			}
-		});
-		expect(instanceSM).toBeTruthy();
-		expect(instanceMD).toBeTruthy();
-		expect(instanceLG).toBeTruthy();
+		expect(instance).toBeTruthy();
 		await tick();
-
-		expect(host.innerHTML.includes('k-slider--button__sm')).toBe(true);
-		expect(host.innerHTML.includes('k-slider--button__md')).toBe(true);
-		expect(host.innerHTML.includes('k-slider--button__lg')).toBe(true);
-		expect(host.innerHTML.includes('k-slider--button__wrapper__sm')).toBe(true);
-		expect(host.innerHTML.includes('k-slider--button__wrapper__md')).toBe(true);
-		expect(host.innerHTML.includes('k-slider--button__wrapper__lg')).toBe(true);
-		expect(host.innerHTML.includes('k-slider__sm')).toBe(true);
-		expect(host.innerHTML.includes('k-slider__md')).toBe(true);
-		expect(host.innerHTML.includes('k-slider__lg')).toBe(true);
+		expect(host.innerHTML.includes('k-slider--sm')).toBeTruthy();
+		expect(host.innerHTML.includes('k-slider--button--sm')).toBeTruthy();
+		expect(host.innerHTML.includes('k-slider--runway--sm')).toBeTruthy();
+		instance.$set({ size: 'md' });
+		await tick();
+		expect(host.innerHTML.includes('k-slider--md')).toBeTruthy();
+		expect(host.innerHTML.includes('k-slider--button--md')).toBeTruthy();
+		expect(host.innerHTML.includes('k-slider--runway--md')).toBeTruthy();
+		instance.$set({ size: 'lg' });
+		await tick();
+		expect(host.innerHTML.includes('k-slider--lg')).toBeTruthy();
+		expect(host.innerHTML.includes('k-slider--button--lg')).toBeTruthy();
+		expect(host.innerHTML.includes('k-slider--runway--lg')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -147,7 +148,7 @@ describe('Test: KSlider', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const sliderBaseElm = host.getElementsByClassName('k-slider--base')[0] as HTMLDivElement;
+		const sliderBaseElm = host.querySelector('.k-slider--base');
 		expect(sliderBaseElm.getAttribute('you')).toBe('world');
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -165,9 +166,7 @@ describe('Test: KSlider', () => {
 		instance.$on('change', () => {
 			changeEvent();
 		});
-		const sliderButtonWrapperElm = host.getElementsByClassName(
-			' k-slider--button__wrapper'
-		)[0] as HTMLDivElement;
+		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper');
 		sliderButtonWrapperElm.dispatchEvent(new Event('mousedown'));
 		window.dispatchEvent(new Event('mouseup'));
 		await tick();
@@ -187,7 +186,7 @@ describe('Test: KSlider', () => {
 		instance.$on('input', () => {
 			inputEvent();
 		});
-		const sliderRunwayElm = host.getElementsByClassName(' k-slider--runway')[0] as HTMLDivElement;
+		const sliderRunwayElm = host.querySelector('.k-slider--runway');
 		sliderRunwayElm.dispatchEvent(
 			new MouseEvent('mousedown', {
 				cancelable: true,
@@ -210,12 +209,10 @@ describe('Test: KSlider', () => {
 		await tick();
 		instance.$on('change', event);
 		instance.$on('input', event);
-		const sliderButtonWrapperElm = host.getElementsByClassName(
-			' k-slider--button__wrapper'
-		)[0] as HTMLDivElement;
+		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper');
 		sliderButtonWrapperElm.dispatchEvent(new Event('mousedown'));
 		window.dispatchEvent(new Event('mouseup'));
-		const sliderRunwayElm = host.getElementsByClassName(' k-slider--runway')[0] as HTMLDivElement;
+		const sliderRunwayElm = host.querySelector('.k-slider--runway');
 		sliderRunwayElm.dispatchEvent(
 			new MouseEvent('mousedown', {
 				cancelable: true,
