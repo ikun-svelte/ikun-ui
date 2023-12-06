@@ -57,7 +57,7 @@ const components = [
 				link: '/components/KCheckbox'
 			},
 			{
-				text: 'From',
+				text: 'Form',
 				link: '/components/KForm'
 			},
 			{
