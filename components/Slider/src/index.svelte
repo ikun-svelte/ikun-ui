@@ -84,7 +84,6 @@
 		newPercent = vertical
 			? ((sliderOffsetBottom - clientY) / sliderSize) * 100
 			: ((clientX - sliderOffsetLeft) / sliderSize) * 100;
-		console.log(((sliderOffsetBottom - clientY) / sliderSize) * 100);
 		if (newPosition < 0 || newPosition > 100) return;
 		setPosition(newPercent);
 	};
