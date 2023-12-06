@@ -1,13 +1,15 @@
 <script>
 	import { KSlider } from '@ikun-ui/slider';
 
-	let value1 = 0;
-	const handleInput1 = (event) => {
-		value1 = event.detail;
+	let value = 0;
+	const handleInput = (event) => {
+		value = event.detail;
 	};
 </script>
 
-<div class="flex items-end h-50">
-	<KSlider vertical on:input={handleInput1} value={value1}></KSlider>
-	<p class="px-2">value: {value1}</p>
+<div class="fcc h-50">
+	<KSlider size="lg" vertical on:input={handleInput} value={value}></KSlider>
+	<KSlider vertical on:input={handleInput} value={value}></KSlider>
+	<KSlider size="sm" vertical on:input={handleInput} value={value}></KSlider>
 </div>
+<p class="px-2 text-center">value: {value}</p>
