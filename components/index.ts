@@ -46,3 +46,4 @@ export * from '@ikun-ui/pagination';
 export * from '@ikun-ui/form';
 export * from '@ikun-ui/watermark';
 export * from '@ikun-ui/dropdown';
+export * from '@ikun-ui/tabs';

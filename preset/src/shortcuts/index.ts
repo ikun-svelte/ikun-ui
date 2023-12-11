@@ -43,6 +43,7 @@ import { pageShortcuts } from './src/pagination';
 import { IKUN_SAFE_LIST } from '../utils/constant';
 import { formShortcuts } from './src/form';
 import { dropdownShortcuts } from './src/dropdown';
+import { tabsShortcuts } from './src/tabs';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -123,7 +124,9 @@ export const defaultShortcuts = [
 	// page
 	pageShortcuts,
 	// dropdown
-	dropdownShortcuts
+	dropdownShortcuts,
+	// tabs
+	tabsShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -169,6 +172,7 @@ export function getSafeList() {
 	const virtualList = Object.keys(virtualListShortcuts);
 	const pageList = Object.keys(pageShortcuts);
 	const dropdownList = Object.keys(dropdownShortcuts);
+	const tabsList = Object.keys(tabsShortcuts);
 	let res = iconList
 		.concat(IKUN_SAFE_LIST)
 		.concat(comList)
@@ -210,8 +214,8 @@ export function getSafeList() {
 		.concat(contextmenuList)
 		.concat(virtualList)
 		.concat(pageList)
-		.concat(dropdownList);
-
+		.concat(dropdownList)
+		.concat(tabsList);
 	// rules
 	const colSizeRules = Object.keys(createColSizeClsByNum());
 	const colRules = Object.keys(getColCls());
@@ -260,3 +264,4 @@ export { virtualListShortcuts } from './src/virtual-list';
 export { pageShortcuts } from './src/pagination';
 export { formShortcuts } from './src/form';
 export { dropdownShortcuts } from './src/dropdown';
+export { tabsShortcuts } from './src/tabs';
