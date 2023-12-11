@@ -12,6 +12,6 @@ export {
 	contextmenuKey,
 	formKey,
 	formItemKey,
-	dropDownKey
+	dropDownKey,
+	descriptionsKey
 } from './symbol-key';
-export { reactiveContext } from './reactive-context';

@@ -1,17 +1,7 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
-	import type {
-		DescriptionsItemColGroup,
-		DescriptionsItemLabelMap,
-		KDescriptionsCtx,
-		KDescriptionsProps
-	} from './types';
-	import {
-		descriptionsKey,
-		getPrefixCls,
-		type ReactiveContext,
-		reactiveContext
-	} from '@ikun-ui/utils';
+	import type { KDescriptionsItemMap, KDescriptionsMapItem, KDescriptionsProps } from './types';
+	import { descriptionsKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 
 	export let title: KDescriptionsProps['title'] = '';
@@ -23,33 +13,29 @@
 	export let cls: KDescriptionsProps['cls'] = undefined;
 	export let attrs: KDescriptionsProps['attrs'] = {};
 
-	let colLabelRefs: DescriptionsItemLabelMap = {};
-	let colGroup: DescriptionsItemColGroup = new Array(column).fill([]);
-	const ctxInstance = reactiveContext<KDescriptionsCtx>({
-		props: {
-			column,
-			border,
-			direction,
-			size,
-			colLabelRefs,
-			colGroup
-		}
-	});
+	const descriptionsItemMap: KDescriptionsItemMap = new Map();
 
-	setContext<ReactiveContext<KDescriptionsCtx>>(descriptionsKey, ctxInstance);
+	const registerDescriptionsItem = (uid: symbol, op: KDescriptionsMapItem) => {
+		descriptionsItemMap.set(uid.toString(), op);
+	};
 
 	$: {
-		ctxInstance.evtMap.forEach((cb) => {
-			cb({
-				column,
-				border,
-				direction,
-				size,
-				colLabelRefs,
-				colGroup
-			});
+		Array.from(descriptionsItemMap.values()).forEach((m: KDescriptionsMapItem) => {
+			m.setBorder(border);
+			m.setColumn(column);
+			m.setDirection(direction);
+			m.setSize(size);
 		});
 	}
+
+	setContext(descriptionsKey, {
+		registerDescriptionsItem,
+		descriptionsItemMap,
+		border,
+		column,
+		direction,
+		size
+	});
 
 	const prefixCls = getPrefixCls('descriptions');
 	$: cnames = clsx(prefixCls, `${prefixCls}--${size}`, `${prefixCls}__dark`, cls);
