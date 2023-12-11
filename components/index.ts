@@ -44,5 +44,7 @@ export * from '@ikun-ui/empty';
 export * from '@ikun-ui/virtual-list';
 export * from '@ikun-ui/pagination';
 export * from '@ikun-ui/form';
+export * from '@ikun-ui/watermark';
+export * from '@ikun-ui/dropdown';
 export * from '@ikun-ui/descriptions';
 export * from '@ikun-ui/descriptions-item';

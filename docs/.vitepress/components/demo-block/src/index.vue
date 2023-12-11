@@ -110,4 +110,12 @@ const handleCopy = () => {
 .vp-doc .demo-empty p {
 	margin: 0 !important;
 }
+
+.vp-doc .demon-dropdown .k-link--underline__none {
+  text-decoration: none;
+}
+
+.vp-doc .demon-dropdown .k-link--primary {
+  color: var(--ikun-teal-400);
+}
 </style>

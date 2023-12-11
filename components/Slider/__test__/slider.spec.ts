@@ -34,6 +34,24 @@ describe('Test: KSlider', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: vertical', async () => {
+		const instance = new KSlider({
+			target: host,
+			props: {
+				vertical: true
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect((host as HTMLElement)!.innerHTML.includes('k-slider--base__vertical')).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-slider--runway__vertical')).toBeTruthy();
+		expect(
+			(host as HTMLElement)!.innerHTML.includes('k-slider--button-wrapper__vertical')
+		).toBeTruthy();
+		expect((host as HTMLElement)!.innerHTML.includes('k-slider--bar__vertical')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('props: min and max', async () => {
 		const value = 1;
 		const instance = new KSlider({

@@ -42,6 +42,7 @@ import { virtualListShortcuts } from './src/virtual-list';
 import { pageShortcuts } from './src/pagination';
 import { IKUN_SAFE_LIST } from '../utils/constant';
 import { formShortcuts } from './src/form';
+import { dropdownShortcuts } from './src/dropdown';
 import { descriptionsShortcuts } from './src/descriptions';
 import { getDescriptionsGridColCls } from '../rules/src/descriptions';
 import { descriptionsItemShortcuts } from './src/descriptions-item';
@@ -124,6 +125,10 @@ export const defaultShortcuts = [
 	emptyShortcuts,
 	// virtualList
 	virtualListShortcuts,
+	// page
+	pageShortcuts,
+	// dropdown
+	dropdownShortcuts,
 	// pageShortcuts
 	pageShortcuts,
 	// descriptions
@@ -174,6 +179,7 @@ export function getSafeList() {
 	const emptyList = Object.keys(emptyShortcuts);
 	const virtualList = Object.keys(virtualListShortcuts);
 	const pageList = Object.keys(pageShortcuts);
+	const dropdownList = Object.keys(dropdownShortcuts);
 	const descriptionsList = Object.keys(descriptionsShortcuts);
 	const descriptionsItemList = Object.keys(descriptionsItemShortcuts);
 	let res = iconList
@@ -216,6 +222,8 @@ export function getSafeList() {
 		.concat(emptyList)
 		.concat(contextmenuList)
 		.concat(virtualList)
+		.concat(pageList)
+		.concat(dropdownList)
 		.concat(pageList)
 		.concat(descriptionsList)
 		.concat(descriptionsItemList);
@@ -273,5 +281,6 @@ export { emptyShortcuts } from './src/empty';
 export { virtualListShortcuts } from './src/virtual-list';
 export { pageShortcuts } from './src/pagination';
 export { formShortcuts } from './src/form';
+export { dropdownShortcuts } from './src/dropdown';
 export { descriptionsShortcuts } from './src/descriptions';
 export { descriptionsItemShortcuts } from './src/descriptions-item';
