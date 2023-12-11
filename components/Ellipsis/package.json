@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/ellipsis",
-	"version": "0.0.15",
+	"version": "0.0.16",
 	"type": "module",
 	"main": "src/index.ts",
 	"types": "src/index.d.ts",
