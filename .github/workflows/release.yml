@@ -36,7 +36,7 @@ jobs:
         run: pnpm run build
 
       - name: unit test
-        run: pnpm run test
+        run: pnpm run test:unit
 
       - name: Set npmrc for components
         run: |
