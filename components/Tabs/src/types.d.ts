@@ -13,14 +13,14 @@ export type KTabsProps = {
 
 // TODO: KTabs props -- value 🤡
 // TODO: KTabs props  -- type -- card/border/'
-// TODO: KTabs props -- closeable 🎯
-// TODO: KTabs props -- editable 🎯
+// TODO: KTabs props -- closeable 🤡
+// TODO: KTabs props -- editable 🤡
 // TODO: KTabs props -- position -- top/right/bottom/left
-// TODO: KTabs events -- beforeLeave 🎯
+// TODO: KTabs props -- beforeLeave 🎯
 // TODO: KTabs events -- click 🤡
-// TODO: KTabs events -- remove 🎯
-// TODO: KTabs events -- add 🎯
-// TODO: KTabs events -- edit
+// TODO: KTabs events -- remove 🤡
+// TODO: KTabs events -- add 🤡
+// TODO: KTabs events -- edit 🤡
 // TODO: KTabs slots -- addIcon 🤡
 // TODO: KTabs slots -- default 🤡
 
@@ -42,4 +42,5 @@ export type KTabsPaneProps = {
 export interface TabHeader {
 	uid: string | number;
 	label: string;
+	close: boolean
 }
