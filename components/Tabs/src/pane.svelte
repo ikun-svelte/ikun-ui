@@ -20,7 +20,7 @@
 	$: cnames = clsx(prefixCls, {}, cls);
 </script>
 {#if show}
-	<div class={cnames} {...$$restProps} {...attrs}>
+	<div class={cnames} {...$$restProps} {...attrs} role="tabpanel">
 			<slot />
 	</div>
 {/if}

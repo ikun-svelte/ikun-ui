@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { tabsKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KTabsProps, TabHeader } from './types';
+	import type { KTabsProps, KTabsNav, TabsShowEvt } from "./types";
 	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher, onDestroy, onMount, setContext, tick } from "svelte";
 	import { scale } from 'svelte/transition';
 	import { jsonClone } from 'baiwusanyu-utils'
 	import { BROWSER } from 'esm-env';
 	export let value: KTabsProps['value'] = 0;
-
 	export let type: KTabsProps['type'] = '';
 	export let cls: KTabsProps['cls'] = '';
 	export let closeable: KTabsProps['closeable'] = false;
@@ -19,19 +18,18 @@
 	export let attrs: KTabsProps['attrs'] = {};
 
 	const dispatch = createEventDispatcher();
-	let tabHeaderList: TabHeader[] = []
+	let tabNavList: KTabsNav[] = []
 	$:{
-		tabHeaderList = navOptions.map(option => {
+		tabNavList = navOptions.map(option => {
 			return {
 				...option,
 				close: false
 			}
 		});
 	}
-	$: tabHeaders = tabHeaderList;
 
-	const tabsShowEvt = {} as Record<string, (v: KTabsProps['value']) => void>;
-	function registerTabsShowEvt(uid: KTabsProps['value'], fn: (v: KTabsProps['value']) => void) {
+	const tabsShowEvt = {} as Record<string, TabsShowEvt>;
+	function registerTabsShowEvt(uid: KTabsProps['value'], fn: TabsShowEvt) {
 		tabsShowEvt[uid] = fn;
 	}
 	setContext(tabsKey, {
@@ -49,12 +47,12 @@
 			fn(uid);
 		}
 	}
-	function delPropertyData(tab: TabHeader){
+	function delPropertyData(tab: KTabsNav){
 		const res = jsonClone(tab)
 		Reflect.deleteProperty(res, 'close')
 		return res
 	}
-	const handleClick = async (tab: TabHeader) => {
+	const handleClick = async (e: MouseEvent,tab: KTabsNav) => {
 		if(tab.disabled) return
 		const isSwitch = await beforeLeave(activeValue, tab.uid)
 		if(isSwitch){
@@ -63,17 +61,12 @@
 		}
 	};
 
-	function onMouseenter(tab: TabHeader, index: number){
+	function onHover(tab: KTabsNav, index: number, close){
 		if(tab.disabled) return
-		tabHeaderList[index].close = true
+		tabNavList[index].close = close
 	}
 
-	function onMouseleave(tab: TabHeader, index: number){
-		if(tab.disabled) return
-		tabHeaderList[index].close = false
-	}
-
-	function handleRemove(e: MouseEvent, tab: TabHeader, index: number){
+	function handleRemove(e: MouseEvent, tab: KTabsNav, index: number){
 		if(tab.disabled) return
 		e.stopPropagation()
 		dispatch('remove', { tab:delPropertyData(tab), index});
@@ -180,17 +173,20 @@
 				</div>
 			{/if}
 			<div class={tabCls} bind:this={navRef}>
-				<div bind:this={navsRef} style="{navStyle}" class="flex pr float-left whitespace-nowrap k-tab-transition">
-					{#each tabHeaders as tab, index (tab.uid)}
+				<div bind:this={navsRef}
+						 role="tablist"
+						 style="{navStyle}"
+						 class="flex pr float-left whitespace-nowrap k-tab-transition z-1">
+					{#each tabNavList as tab, index (tab.uid)}
 						<div
 							class={tabItemCls(tab.uid, tab.disabled)}
 							aria-selected="false"
 							aria-hidden="true"
 							role="tab"
 							tabindex="-1"
-							on:mouseenter={()=> onMouseenter(tab, index)}
-							on:mouseleave={()=> onMouseleave(tab, index)}
-							on:click={() => handleClick(tab)}
+							on:mouseenter={()=> onHover(tab, index, true)}
+							on:mouseleave={()=> onHover(tab, index, false)}
+							on:click={(e) => handleClick(e, tab)}
 						>
 							{tab.label}
 
@@ -228,6 +224,7 @@
 				</div>
 			{/if}
 		</div>
+
 		{#if editable}
 			<div class={addCls} on:click={handleAdd} aria-hidden="true">
 				<slot name="addIcon">
@@ -248,5 +245,15 @@
 	:global(.k-tabs--nav::-webkit-scrollbar) {
 		width: 0;
 		height: 0;
+	}
+
+	:global(.k-tabs--header::after) {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 2px;
+		--at-apply: bg-ikun-bd-base;
 	}
 </style>

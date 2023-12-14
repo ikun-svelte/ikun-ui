@@ -2,7 +2,7 @@
 import type { ClassValue } from 'clsx';
 import type { IKunPlacement } from '@ikun-ui/utils';
 
-export interface KTabsNav {
+export interface KTabsNavItem {
 	disabled: boolean;
 	label: string;
 	uid: string | number;
@@ -11,7 +11,7 @@ export interface KTabsNav {
 export type KTabsProps = {
 	value: string | number;
 	type: 'card' | 'border' | '';
-	navOptions: KTabsNav[]
+	navOptions: KTabsNavItem[]
 	closeable: boolean;
 	editable: boolean;
 	position: IKunPlacement;
@@ -47,15 +47,16 @@ export type KTabsPaneProps = {
 // TODO: KTabPane props -- uid 与 value 对应 🤡
 // TODO: KTabPane props -- closeable 🤡
 // TODO: KTabPane slots -- default 🤡
-export interface TabHeader extends KTabsNav{
+export interface KTabsNav extends KTabsNavItem{
 	close?: boolean
 }
 
+export type TabsShowEvt = (v: KTabsProps['value']) => void
 export interface KTabContext {
 	value: KTabsProps['value']
 	setTabsNav: (uid: string | number) => void
 	registerTabsShowEvt: (
 		uid: KTabsProps['value'],
-		fn: (v: KTabsProps['value']) => void
+		fn: TabsShowEvt
 	) => void
 }
