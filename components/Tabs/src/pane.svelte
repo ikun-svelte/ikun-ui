@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getPrefixCls, tabsKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KTabContext, KTabsPaneProps } from "./types";
+	import type { KTabContext, KTabsPaneProps } from './types';
 	import { getContext } from 'svelte';
 
 	export let uid: KTabsPaneProps['uid'] = '';
@@ -19,8 +19,9 @@
 	const prefixCls = getPrefixCls('tab-pane');
 	$: cnames = clsx(prefixCls, {}, cls);
 </script>
+
 {#if show}
 	<div class={cnames} {...$$restProps} {...attrs} role="tabpanel">
-			<slot />
+		<slot />
 	</div>
 {/if}

@@ -3,15 +3,15 @@ import type { ClassValue } from 'clsx';
 import type { IKunPlacement } from '@ikun-ui/utils';
 
 export interface KTabsNavItem {
-	disabled: boolean;
+	disabled?: boolean;
 	label: string;
 	uid: string | number;
-	closeable: boolean;
+	closeable?: boolean;
 }
 export type KTabsProps = {
 	value: string | number;
 	type: 'card' | 'border' | '';
-	navOptions: KTabsNavItem[]
+	navOptions: KTabsNavItem[];
 	closeable: boolean;
 	editable: boolean;
 	position: IKunPlacement;
@@ -21,7 +21,7 @@ export type KTabsProps = {
 };
 
 // TODO: KTabs props -- value 🤡
-// TODO: KTabs props  -- type -- card🤡/border/'
+// TODO: KTabs props  -- type -- card🤡/border🤡/'
 // TODO: KTabs props -- closeable 🤡
 // TODO: KTabs props -- editable 🤡
 // TODO: KTabs props -- position -- top/right/bottom/left
@@ -47,12 +47,9 @@ export type KTabsPaneProps = {
 // TODO: KTabPane props -- closeable 🤡
 // TODO: KTabPane slots -- default 🤡
 export interface KTabsNav extends KTabsNavItem {}
-export type TabsShowEvt = (v: KTabsProps['value']) => void
+export type TabsShowEvt = (v: KTabsProps['value']) => void;
 export interface KTabContext {
-	value: KTabsProps['value']
-	setTabsNav: (uid: string | number) => void
-	registerTabsShowEvt: (
-		uid: KTabsProps['value'],
-		fn: TabsShowEvt
-	) => void
+	value: KTabsProps['value'];
+	setTabsNav: (uid: string | number) => void;
+	registerTabsShowEvt: (uid: KTabsProps['value'], fn: TabsShowEvt) => void;
 }

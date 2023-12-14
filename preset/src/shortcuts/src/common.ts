@@ -26,7 +26,8 @@ export const commonShortcuts: Record<string, string> = {
 	'bdl-1': 'border-l-1 border-t-0 border-b-0 border-r-0',
 	'bdb-1': 'border-l-0 border-t-0 border-b-1 border-r-0',
 	'bdlb-1': 'border-l-1 border-t-0 border-b-1 border-r-0',
+	'bdtb-1': 'border-l-0 border-t-1 border-b-1 border-r-0',
 	'n-bdb-1': 'border-l-1 border-t-1 border-b-0 border-r-1',
 	'n-bdt-1': 'border-l-1 border-t-0 border-b-1 border-r-1',
-	'n-bdl-1': 'border-l-0 border-t-1 border-b-1 border-r-1',
+	'n-bdl-1': 'border-l-0 border-t-1 border-b-1 border-r-1'
 };

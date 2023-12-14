@@ -11,7 +11,7 @@ import { progressRules } from './src/progress';
 import { popoverRules } from './src/popover';
 import { setMainColor } from './set-main-color';
 import { getIkunColorRules } from './src/ikun-color';
-import { tabRules } from "./src/tab";
+import { tabRules } from './src/tab';
 
 declare type dynamicRulesFunc = (...args: any[]) => Array<RegExp | ((...args: any[]) => any)>;
 export const defaultRules = {
