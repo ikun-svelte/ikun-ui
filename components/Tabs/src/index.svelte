@@ -23,7 +23,6 @@
 		tabNavList = navOptions.map(option => {
 			return {
 				...option,
-				close: false
 			}
 		});
 	}
@@ -58,12 +57,28 @@
 		if(isSwitch){
 			activeValue = tab.uid as number;
 			dispatch('click', delPropertyData(tab));
+			hoverTab = ''
 		}
 	};
 
+	let hoverTab = ''
 	function onHover(tab: KTabsNav, index: number, close){
 		if(tab.disabled) return
-		tabNavList[index].close = close
+		hoverTab = close ? tab.uid : ''
+	}
+	function isShowClose(tab: KTabsNav, hoverTabs = hoverTab) {
+		if(tab.closeable && (closeable || editable)){
+			if(isActive(tab.uid)){
+				return true
+			}
+			return hoverTabs === tab.uid
+		}
+	}
+	$: closeIconWidth = (tab: KTabsNav) => {
+		return isShowClose(tab, hoverTab) ? 16 : 0
+	}
+	$: closePaddingX = (tab: KTabsNav) => {
+		return isShowClose(tab, hoverTab) ? 8 : 16
 	}
 
 	function handleRemove(e: MouseEvent, tab: KTabsNav, index: number){
@@ -132,17 +147,26 @@
 
 	const prefixCls = getPrefixCls('tabs');
 	$: cnames = clsx(prefixCls, cls);
-	$: headerCls = clsx(`${prefixCls}__header`);
+	$: headerCls = clsx({
+		[`${prefixCls}__header`]: type !== 'border' && type !== 'card',
+		[`${prefixCls}__header--card`]: type === 'border' || type === 'card',
+	});
 	$: contentCls = clsx(`${prefixCls}--content`);
-	$: tabCls = clsx(`${prefixCls}__nav`);
+	$: tabCls = clsx(
+		`${prefixCls}__nav`,
+		{
+			[`${prefixCls}__nav--card`]: type === 'border' || type === 'card',
+		}
+	);
 	$: tabScrollCls = clsx(`${prefixCls}__nav--scroll`);
 	$: tabContainerCls = clsx(
-		`${prefixCls}__nav-wrap`,
+		`${prefixCls}__nav--wrap`,
 		{
 			[`${prefixCls}__pad`]: showArrow
 		}
 	)
 	$: addCls = clsx(`${prefixCls}__add`);
+	$: addWrapCls = clsx(`${prefixCls}__add--wrap`);
 	$: barCls = clsx(`${prefixCls}__bar`);
 	$: prevCls = clsx(`${prefixCls}__prev`);
 	$: nextCls = clsx(`${prefixCls}__next`);
@@ -151,18 +175,19 @@
 		`${prefixCls}__close--hover`
 	);
 	$: isActive = (uid: KTabsProps['value']) => uid === activeValue;
-	$: tabItemCls = (uid: KTabsProps['value'], disabled: boolean) =>
-		clsx({
-			[`${prefixCls}__nav-item`]: type !== 'border' && type !== 'card',
-			[`${prefixCls}__nav-item__border`]: type === 'border',
-			[`${prefixCls}__nav-item__card`]: type !== 'border' && type === 'card',
-
-			[`${prefixCls}__nav-item--active`]: type !== 'border' && type !== 'card' && isActive(uid),
-			[`${prefixCls}__nav-item--hover`]: !disabled,
-			[`${prefixCls}__nav-item--disabled`]: disabled,
+	$: tabItemCls = (tab: KTabsNav) =>
+		clsx(
+			`${prefixCls}__nav-item`,
+		{
+			[`${prefixCls}__nav-item--active`]: isActive(tab.uid),
+			[`${prefixCls}__nav-item--hover`]: !tab.disabled,
+			[`${prefixCls}__nav-item--hover`]: !tab.disabled,
+			[`${prefixCls}__nav-item--disabled`]: tab.disabled,
+			// card
+			[`${prefixCls}__nav-item--card`]: type !== 'border' && type === 'card',
 			// TODO
+			[`${prefixCls}__nav-item__border`]: type === 'border',
 			[`${prefixCls}__nav-item--border--active`]: type === 'border',
-			[`${prefixCls}__nav-item--card--active`]: type !== 'border' && type === 'card',
 		});
 </script>
 
@@ -181,7 +206,9 @@
 						 class={tabCls}>
 					{#each tabNavList as tab, index (tab.uid)}
 						<div
-							class={tabItemCls(tab.uid, tab.disabled)}
+							class={tabItemCls(tab)}
+							style:padding-left="{`${closePaddingX(tab)}px`}"
+							style:padding-right="{`${closePaddingX(tab)}px`}"
 							aria-selected="false"
 							aria-hidden="true"
 							role="tab"
@@ -190,26 +217,21 @@
 							on:mouseleave={()=> onHover(tab, index, false)}
 							on:click={(e) => handleClick(e, tab)}
 						>
-							{tab.label}
-
-							{#if tab.closeable && (closeable || editable)}
-								<div style="width: 16px; height: 16px">
-									{#if (isActive(tab.uid) || tab.close)}
-										<div class={closeCls}
-												 aria-hidden="true"
-												 on:click={(e) => handleRemove(e, tab, index)}
-												 out:scale={{ duration: 500, start: 0.1, opacity: 0 }}
-												 in:scale={{ duration: 500, start: 0.1, opacity: 0 }}>
-											<KIcon
-												width='16px'
-												height='16px'
-												icon='i-carbon-close'></KIcon>
-										</div>
-									{/if}
-								</div>
-							{/if}
-
-							{#if isActive(tab.uid)}
+							 {tab.label}
+							 <div class={closeCls}
+							 		 aria-hidden="true"
+							 		 style:width={`${closeIconWidth(tab)}px`}
+							 		 style:height={`${closeIconWidth(tab)}px`}
+							 		 on:click={(e) => handleRemove(e, tab, index)}>
+								 {#if closeIconWidth(tab)}
+							 			<KIcon
+							 				width='16px'
+							 				height='16px'
+							 				icon='i-carbon-close'>
+							 			</KIcon>
+								 {/if}
+							 </div>
+							{#if isActive(tab.uid) && type !== 'card' && type !== 'border'}
 								<div
 									class={barCls}
 									out:scale={{ duration: 500, start: 0.1, opacity: 0 }}
@@ -227,13 +249,15 @@
 			{/if}
 		</div>
 
-		{#if editable}
-			<div class={addCls} on:click={handleAdd} aria-hidden="true">
-				<slot name="addIcon">
-					<KIcon width='16px' height='16px' icon="i-carbon-add"></KIcon>
-				</slot>
-			</div>
-		{/if}
+		<div class={addWrapCls}>
+			{#if editable}
+				<div class={addCls} on:click={handleAdd} aria-hidden="true">
+					<slot name="addIcon">
+						<KIcon width='16px' height='16px' icon="i-carbon-add"></KIcon>
+					</slot>
+				</div>
+			{/if}
+		</div>
 	</div>
 	<div class={contentCls}>
 		<slot />
@@ -258,4 +282,9 @@
 		height: 2px;
 		--at-apply: bg-ikun-bd-base;
 	}
+
+	:global(.k-tabs>.k-tabs__header--card .k-tabs__nav-item:first-child){
+		border-left: none;
+	}
+
 </style>

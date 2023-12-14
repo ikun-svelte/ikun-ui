@@ -21,7 +21,7 @@ export type KTabsProps = {
 };
 
 // TODO: KTabs props -- value 🤡
-// TODO: KTabs props  -- type -- card/border/'
+// TODO: KTabs props  -- type -- card🤡/border/'
 // TODO: KTabs props -- closeable 🤡
 // TODO: KTabs props -- editable 🤡
 // TODO: KTabs props -- position -- top/right/bottom/left
@@ -46,10 +46,7 @@ export type KTabsPaneProps = {
 // TODO: KTabPane props -- uid 与 value 对应 🤡
 // TODO: KTabPane props -- closeable 🤡
 // TODO: KTabPane slots -- default 🤡
-export interface KTabsNav extends KTabsNavItem{
-	close?: boolean
-}
-
+export interface KTabsNav extends KTabsNavItem {}
 export type TabsShowEvt = (v: KTabsProps['value']) => void
 export interface KTabContext {
 	value: KTabsProps['value']
