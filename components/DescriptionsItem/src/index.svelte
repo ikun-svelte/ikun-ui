@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getContext } from 'svelte';
+	import { getContext, tick } from 'svelte';
 	import type { KDescriptionsCtx, KDescriptionsProps } from '@ikun-ui/descriptions';
 	import type { KDescriptionsItemProps } from './types';
 	import { descriptionsKey, getPrefixCls } from '@ikun-ui/utils';
@@ -34,13 +34,59 @@
 		size = v;
 	}
 
+	function setLabelRef() {
+		if (labelRef && ctx) {
+			const op = ctx.descriptionsItemMap.get(`${symbolPrefix}-${uid}`);
+			if (op) {
+				op.labelRef = labelRef;
+			}
+		}
+	}
+
+	async function setLabelMinWidth() {
+		if (labelRef && direction === 'horizontal' && border && ctx) {
+			Array.from(ctx.descriptionsItemMap.values()).forEach((f) => {
+				if (f?.labelRef) {
+					f.labelRef.style.minWidth = '';
+				}
+			});
+			await tick();
+			const labelsWidth = Array.from(ctx.descriptionsItemMap.values()).map((m) => {
+				if (m?.labelRef) {
+					return m?.labelRef?.offsetWidth;
+				}
+				return 0;
+			});
+			const groupPosition = uid % column;
+			const groupLabelsWidth = labelsWidth
+				.map((m, i) => {
+					if (i % column === groupPosition) {
+						return m;
+					} else {
+						return null;
+					}
+				})
+				.filter(Boolean) as number[];
+			const groupMaxLabelWidth = Math.max(...groupLabelsWidth);
+			labelRef.style.minWidth = `${groupMaxLabelWidth}px`;
+		}
+	}
+
+	let labelRef: HTMLElement | null = null;
+
+	let uid: number = 0;
+	let symbolPrefix: string = 'descriptions-item';
 	function doRegisterDescriptionsItem() {
 		if (ctx) {
-			ctx.registerDescriptionsItem(Symbol(`descriptions-item-${ctx.descriptionsItemMap.size}`), {
+			uid = ctx.descriptionsItemMap.size;
+			ctx.registerDescriptionsItem(`${symbolPrefix}-${uid}`, {
 				setColumn,
 				setBorder,
 				setDirection,
-				setSize
+				setSize,
+				labelRef,
+				setLabelRef,
+				setLabelMinWidth
 			});
 		}
 	}
@@ -72,7 +118,7 @@
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
-	<label class={lableCls}>
+	<label bind:this={labelRef} class={lableCls}>
 		<slot name="label">
 			{label}
 		</slot>

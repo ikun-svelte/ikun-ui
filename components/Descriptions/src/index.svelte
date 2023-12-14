@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { setContext } from 'svelte';
+	import { onMount, setContext } from 'svelte';
 	import type { KDescriptionsItemMap, KDescriptionsMapItem, KDescriptionsProps } from './types';
 	import { descriptionsKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
@@ -25,7 +25,22 @@
 			m.setColumn(column);
 			m.setDirection(direction);
 			m.setSize(size);
+			m.setLabelRef();
+			m.setLabelMinWidth();
 		});
+	}
+
+	onMount(() => {
+		setLabelWidth();
+	});
+
+	function setLabelWidth() {
+		if (direction === 'horizontal' && border) {
+			Array.from(descriptionsItemMap.values()).forEach((m: KDescriptionsMapItem) => {
+				m.setLabelRef();
+				m.setLabelMinWidth();
+			});
+		}
 	}
 
 	setContext(descriptionsKey, {

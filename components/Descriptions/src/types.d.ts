@@ -18,12 +18,15 @@ export type KDescriptionsMapItem = {
 	setColumn: (v: KDescriptionsProps['column']) => void;
 	setDirection: (v: KDescriptionsProps['direction']) => void;
 	setSize: (v: KDescriptionsProps['size']) => void;
+	labelRef: HTMLElement | null;
+	setLabelRef: () => void;
+	setLabelMinWidth: () => void;
 };
 
 export type KDescriptionsItemMap = Map<string, KDescriptionsMapItem>;
 
 export type KDescriptionsCtx = {
-	registerDescriptionsItem: (uid: symbol, op: KDescriptionsMapItem) => void;
+	registerDescriptionsItem: (uid: string, op: KDescriptionsMapItem) => void;
 	descriptionsItemMap: KDescriptionsItemMap;
 	border: KDescriptionsProps['border'];
 	column: KDescriptionsProps['column'];
