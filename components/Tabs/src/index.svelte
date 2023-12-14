@@ -146,27 +146,42 @@
 	}
 
 	const prefixCls = getPrefixCls('tabs');
-	$: cnames = clsx(prefixCls, cls);
+	$: cnames = clsx(prefixCls,cls);
 	$: headerCls = clsx({
 		[`${prefixCls}__header`]: type !== 'border' && type !== 'card',
-		[`${prefixCls}__header--card`]: type === 'border' || type === 'card',
+		[`${prefixCls}__header--card`]: type === 'card',
+		[`${prefixCls}__header--border`]: type === 'border',
 	});
-	$: contentCls = clsx(`${prefixCls}--content`);
+	$: contentCls = clsx(
+		`${prefixCls}__content`,
+		{
+			[`${prefixCls}__content--border`]: type === 'border',
+		});
 	$: tabCls = clsx(
 		`${prefixCls}__nav`,
 		{
-			[`${prefixCls}__nav--card`]: type === 'border' || type === 'card',
+			[`${prefixCls}__nav--card`]: type === 'card',
+			[`${prefixCls}__nav--border`]: type === 'border',
 		}
 	);
 	$: tabScrollCls = clsx(`${prefixCls}__nav--scroll`);
 	$: tabContainerCls = clsx(
 		`${prefixCls}__nav--wrap`,
 		{
-			[`${prefixCls}__pad`]: showArrow
+			[`${prefixCls}__pad`]: showArrow,
 		}
 	)
-	$: addCls = clsx(`${prefixCls}__add`);
-	$: addWrapCls = clsx(`${prefixCls}__add--wrap`);
+	$: addCls = clsx(
+		`${prefixCls}__add`,
+		{
+			[`${prefixCls}__add--border`]: type === 'border',
+		}
+	);
+	$: addWrapCls = clsx(`${prefixCls}__add--wrap` ,
+		{
+			[`${prefixCls}__add--wrap--border`]: type === 'border',
+		}
+	);
 	$: barCls = clsx(`${prefixCls}__bar`);
 	$: prevCls = clsx(`${prefixCls}__prev`);
 	$: nextCls = clsx(`${prefixCls}__next`);
@@ -184,10 +199,10 @@
 			[`${prefixCls}__nav-item--hover`]: !tab.disabled,
 			[`${prefixCls}__nav-item--disabled`]: tab.disabled,
 			// card
-			[`${prefixCls}__nav-item--card`]: type !== 'border' && type === 'card',
+			[`${prefixCls}__nav-item--card`]: type === 'border' || type === 'card',
 			// TODO
-			[`${prefixCls}__nav-item__border`]: type === 'border',
-			[`${prefixCls}__nav-item--border--active`]: type === 'border',
+			// [`${prefixCls}__nav-item__border`]: type === 'border',
+			// [`${prefixCls}__nav-item--border--active`]: type === 'border',
 		});
 </script>
 
