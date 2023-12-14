@@ -3,7 +3,7 @@
 	import { clsx } from 'clsx';
 	import type { KTabsProps, TabHeader } from './types';
 	import { KIcon } from '@ikun-ui/icon';
-	import { createEventDispatcher, onDestroy, onMount, setContext } from "svelte";
+	import { createEventDispatcher, onDestroy, onMount, setContext, tick } from "svelte";
 	import { scale } from 'svelte/transition';
 	import { jsonClone } from 'baiwusanyu-utils'
 	import { BROWSER } from 'esm-env';
@@ -29,8 +29,8 @@
 		});
 	}
 	$: tabHeaders = tabHeaderList;
-	const tabsShowEvt = {} as Record<string, (v: KTabsProps['value']) => void>;
 
+	const tabsShowEvt = {} as Record<string, (v: KTabsProps['value']) => void>;
 	function registerTabsShowEvt(uid: KTabsProps['value'], fn: (v: KTabsProps['value']) => void) {
 		tabsShowEvt[uid] = fn;
 	}
@@ -40,7 +40,15 @@
 	});
 
 	$: activeValue = value;
-
+	$: {
+		triggerTabsShowEvt(activeValue)
+	}
+	function triggerTabsShowEvt(uid: KTabsProps['value']){
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		for (const [_, fn] of Object.entries(tabsShowEvt)) {
+			fn(uid);
+		}
+	}
 	function delPropertyData(tab: TabHeader){
 		const res = jsonClone(tab)
 		Reflect.deleteProperty(res, 'close')
@@ -50,14 +58,9 @@
 		if(tab.disabled) return
 		const isSwitch = await beforeLeave(activeValue, tab.uid)
 		if(isSwitch){
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			for (const [_, fn] of Object.entries(tabsShowEvt)) {
-				fn(tab.uid);
-			}
 			activeValue = tab.uid as number;
 			dispatch('click', delPropertyData(tab));
 		}
-
 	};
 
 	function onMouseenter(tab: TabHeader, index: number){
@@ -77,9 +80,12 @@
 		dispatch('edit', {tab: delPropertyData(tab), action: 'remove'});
 	}
 
-	function handleAdd(){
+	async function handleAdd(){
 		dispatch('add');
 		dispatch('edit', {tab: undefined, action: 'add'});
+		await tick()
+		checkScrollbar();
+		handleNext()
 	}
 
 	let navRef: HTMLElement|  null = null
@@ -93,8 +99,6 @@
 			if(position === 'top' || position === 'bottom'){
 				showArrow = navRef.scrollWidth - 10 > navRef.clientWidth;
 			}
-
-			console.log('showArrow', showArrow)
 		}
 	};
 
