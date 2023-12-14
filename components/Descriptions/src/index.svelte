@@ -31,17 +31,13 @@
 	}
 
 	onMount(() => {
-		setLabelWidth();
-	});
-
-	function setLabelWidth() {
 		if (direction === 'horizontal' && border) {
 			Array.from(descriptionsItemMap.values()).forEach((m: KDescriptionsMapItem) => {
 				m.setLabelRef();
 				m.setLabelMinWidth();
 			});
 		}
-	}
+	});
 
 	setContext(descriptionsKey, {
 		registerDescriptionsItem,
