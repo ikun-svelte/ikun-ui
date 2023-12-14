@@ -131,36 +131,38 @@
 	}
 
 	const prefixCls = getPrefixCls('tabs');
-	$: cnames = clsx(prefixCls, {}, cls);
-	$: headerCls = clsx(`${prefixCls}--header`);
+	$: cnames = clsx(prefixCls, cls);
+	$: headerCls = clsx(`${prefixCls}__header`);
 	$: contentCls = clsx(`${prefixCls}--content`);
-	$: tabCls = clsx(`${prefixCls}--nav`);
+	$: tabCls = clsx(`${prefixCls}__nav`);
+	$: tabScrollCls = clsx(`${prefixCls}__nav--scroll`);
 	$: tabContainerCls = clsx(
-		`${prefixCls}--nav--container`,
+		`${prefixCls}__nav-wrap`,
 		{
-			[`${prefixCls}--pad`]: showArrow
+			[`${prefixCls}__pad`]: showArrow
 		}
 	)
-	$: addCls = clsx(`${prefixCls}--add`);
-	$: barCls = clsx(`${prefixCls}--bar`);
-	$: prevCls = clsx(`${prefixCls}--prev`);
-	$: nextCls = clsx(`${prefixCls}--next`);
+	$: addCls = clsx(`${prefixCls}__add`);
+	$: barCls = clsx(`${prefixCls}__bar`);
+	$: prevCls = clsx(`${prefixCls}__prev`);
+	$: nextCls = clsx(`${prefixCls}__next`);
 	$: closeCls = clsx(
-		`${prefixCls}--close`,
-		`${prefixCls}--close__hover`
+		`${prefixCls}__close`,
+		`${prefixCls}__close--hover`
 	);
 	$: isActive = (uid: KTabsProps['value']) => uid === activeValue;
 	$: tabItemCls = (uid: KTabsProps['value'], disabled: boolean) =>
 		clsx({
-			[`${prefixCls}--nav-item tra`]: type !== 'border' && type !== 'card',
-			[`${prefixCls}--nav-item__border`]: type === 'border',
-			[`${prefixCls}--nav-item__card`]: type !== 'border' && type === 'card',
+			[`${prefixCls}__nav-item`]: type !== 'border' && type !== 'card',
+			[`${prefixCls}__nav-item__border`]: type === 'border',
+			[`${prefixCls}__nav-item__card`]: type !== 'border' && type === 'card',
 
-			[`${prefixCls}--nav-item__active`]: type !== 'border' && type !== 'card' && isActive(uid),
-			[`${prefixCls}--nav-item__border__active`]: type === 'border',
-			[`${prefixCls}--nav-item__card__active`]: type !== 'border' && type === 'card',
-			[`${prefixCls}--nav-item__hover`]: !disabled,
-			[`${prefixCls}--nav-item__disabled`]: disabled
+			[`${prefixCls}__nav-item--active`]: type !== 'border' && type !== 'card' && isActive(uid),
+			[`${prefixCls}__nav-item--hover`]: !disabled,
+			[`${prefixCls}__nav-item--disabled`]: disabled,
+			// TODO
+			[`${prefixCls}__nav-item--border--active`]: type === 'border',
+			[`${prefixCls}__nav-item--card--active`]: type !== 'border' && type === 'card',
 		});
 </script>
 
@@ -172,11 +174,11 @@
 					<KIcon width='16px' height='16px' icon="i-carbon-chevron-left"></KIcon>
 				</div>
 			{/if}
-			<div class={tabCls} bind:this={navRef}>
+			<div class={tabScrollCls} bind:this={navRef}>
 				<div bind:this={navsRef}
 						 role="tablist"
 						 style="{navStyle}"
-						 class="flex pr float-left whitespace-nowrap k-tab-transition z-1">
+						 class={tabCls}>
 					{#each tabNavList as tab, index (tab.uid)}
 						<div
 							class={tabItemCls(tab.uid, tab.disabled)}
@@ -238,16 +240,16 @@
 	</div>
 </div>
 <style>
-	:global(.k-tabs--nav::-webkit-scrollbar-track-piece) {
+	:global(.k-tabs__nav::-webkit-scrollbar-track-piece) {
 		background: transparent;
 	}
 
-	:global(.k-tabs--nav::-webkit-scrollbar) {
+	:global(.k-tabs__nav::-webkit-scrollbar) {
 		width: 0;
 		height: 0;
 	}
 
-	:global(.k-tabs--header::after) {
+	:global(.k-tabs__header::after) {
 		content: "";
 		position: absolute;
 		left: 0;

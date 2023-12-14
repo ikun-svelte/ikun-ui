@@ -32,7 +32,6 @@ export type KTabsProps = {
 // TODO: KTabs events -- edit 🤡
 // TODO: KTabs slots -- addIcon 🤡
 // TODO: KTabs slots -- default 🤡
-// TODO: class
 export type KTabsPaneProps = {
 	//disabled: boolean;
 	//label: string;
