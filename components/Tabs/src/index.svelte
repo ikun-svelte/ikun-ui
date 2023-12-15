@@ -39,6 +39,7 @@
 	$: activeValue = value;
 	$: {
 		triggerTabsShowEvt(activeValue);
+		hoverTab = activeValue;
 	}
 	function triggerTabsShowEvt(uid: KTabsProps['value']) {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -67,12 +68,20 @@
 		hoverTab = close ? tab.uid : '';
 	}
 	function isShowClose(tab: KTabsNav, hoverTabs = hoverTab) {
-		if (tab.closeable && (closeable || editable)) {
+		if (tab.closeable) {
 			if (isActive(tab.uid)) {
 				return true;
 			}
 			return hoverTabs === tab.uid;
+		} else if (tab.closeable === undefined || tab.closeable === null) {
+			if (closeable || editable) {
+				if (isActive(tab.uid)) {
+					return true;
+				}
+				return hoverTabs === tab.uid;
+			}
 		}
+		return false;
 	}
 	$: closeIconWidth = (tab: KTabsNav) => {
 		return isShowClose(tab, hoverTab) ? 16 : 0;
@@ -86,6 +95,13 @@
 		e.stopPropagation();
 		dispatch('remove', { tab: delPropertyData(tab), index });
 		dispatch('edit', { tab: delPropertyData(tab), action: 'remove' });
+		if (tab.uid === activeValue) {
+			let newIndex = index + 1;
+			if (index === navOptions.length - 1) {
+				newIndex = index - 1;
+			}
+			dispatch('change', navOptions[newIndex]);
+		}
 	}
 
 	async function handleAdd() {
@@ -169,12 +185,8 @@
 		[`${prefixCls}__add--wrap--border`]: type === 'border'
 	});
 	$: barCls = clsx(`${prefixCls}__bar`);
-	$: prevCls = clsx(`${prefixCls}__prev`, {
-		//[`${prefixCls}__prev--card`]: type === 'border' || type === 'card',
-	});
-	$: nextCls = clsx(`${prefixCls}__next`, {
-		//[`${prefixCls}__next--card`]: type === 'border' || type === 'card',
-	});
+	$: prevCls = clsx(`${prefixCls}__prev`);
+	$: nextCls = clsx(`${prefixCls}__next`);
 	$: closeCls = clsx(`${prefixCls}__close`, `${prefixCls}__close--hover`);
 	$: isActive = (uid: KTabsProps['value']) => uid === activeValue;
 	$: tabItemCls = (tab: KTabsNav) =>
@@ -183,11 +195,7 @@
 			[`${prefixCls}__nav-item--hover`]: !tab.disabled,
 			[`${prefixCls}__nav-item--hover`]: !tab.disabled,
 			[`${prefixCls}__nav-item--disabled`]: tab.disabled,
-			// card
 			[`${prefixCls}__nav-item--card`]: type === 'border' || type === 'card'
-			// TODO
-			// [`${prefixCls}__nav-item__border`]: type === 'border',
-			// [`${prefixCls}__nav-item--border--active`]: type === 'border',
 		});
 </script>
 

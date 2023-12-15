@@ -32,19 +32,18 @@ export type KTabsProps = {
 // TODO: KTabs events -- edit 🤡
 // TODO: KTabs slots -- addIcon 🤡
 // TODO: KTabs slots -- default 🤡
+// TODO: KTabs dark mode
+// TODO: KTabs Api addTab
 export type KTabsPaneProps = {
-	//disabled: boolean;
-	//label: string;
 	uid: string | number;
-	//closeable: boolean;
 	attrs: Record<string, string>;
 	cls: ClassValue;
 };
 
-// TODO: KTabPane props -- label 🤡
-// TODO: KTabPane props -- disabled 🤡(样式，点击、删除)
+// TODO: KTabPane props -- label(navOptions) 🤡
+// TODO: KTabPane props -- disabled(navOptions) 🤡(style，click switch、del)
 // TODO: KTabPane props -- uid 与 value 对应 🤡
-// TODO: KTabPane props -- closeable 🤡
+// TODO: KTabPane props -- closeable(navOptions) 🤡
 // TODO: KTabPane slots -- default 🤡
 export interface KTabsNav extends KTabsNavItem {}
 export type TabsShowEvt = (v: KTabsProps['value']) => void;
