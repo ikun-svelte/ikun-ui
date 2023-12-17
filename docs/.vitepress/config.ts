@@ -159,6 +159,10 @@ const components = [
 			{
 				text: 'Dropdown',
 				link: '/components/KDropdown'
+			},
+			{
+				text: 'Tabs',
+				link: '/components/KTabs'
 			}
 		]
 	},

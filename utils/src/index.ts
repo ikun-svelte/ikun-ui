@@ -13,5 +13,6 @@ export {
 	contextmenuKey,
 	formKey,
 	formItemKey,
-	dropDownKey
+	dropDownKey,
+	tabsKey
 } from './symbol-key';
