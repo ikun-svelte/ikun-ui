@@ -78,6 +78,13 @@ The `beforeLeave` hook can limit tab switching
 
 <demo src="tabs/before.svelte" github='Tabs'></demo>
 
+## Add manully
+
+You can manually change the `navOptions` to add tabs,
+but you need to call `addTab` to ensure correct updates
+
+<demo src="tabs/add-tab.svelte" github='Tabs'></demo>
+
 ## Tabs Props
 
 | Name        | Type                                                      | Default | Description                                                               |

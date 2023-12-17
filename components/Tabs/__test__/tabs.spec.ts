@@ -13,6 +13,7 @@ import KTabsRemove from './fixtrue/remove.svelte';
 import KTabsChange from './fixtrue/change.svelte';
 import KTabsAdd from './fixtrue/add.svelte';
 import KTabsEditEvt from './fixtrue/edit.svelte';
+import KTabsAddTab from './fixtrue/add-tab.svelte';
 import { tick } from 'svelte';
 let host;
 
@@ -242,6 +243,25 @@ describe('Test: KTabs', () => {
 		expect(res.innerHTML).toBe('3');
 		expect(host.querySelectorAll('[role="tab"]').length).toBe(3);
 		expect(host.querySelector('[data-test-id="event"]').innerHTML).toBe('{"action":"add"}');
+	});
+
+	test('api: addTab', async () => {
+		// @ts-ignore
+		const instance = new KTabsAddTab({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		let res = host.querySelector('[data-test-id="result"]');
+		expect(res.innerHTML).toBe('2');
+
+		const add = host.querySelector('button');
+		add.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		res = host.querySelector('[data-test-id="result"]');
+		expect(res.innerHTML).toBe('3');
+		expect(host.querySelectorAll('[role="tab"]').length).toBe(3);
+		expect(host.innerHTML).matchSnapshot();
 	});
 
 	test('slots: default', async () => {

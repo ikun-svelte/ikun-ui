@@ -112,6 +112,12 @@
 		handleNext();
 	}
 
+	export async function addTab() {
+		await tick();
+		checkScrollbar();
+		handleNext();
+	}
+
 	let navRef: HTMLElement | null = null;
 	let showArrow = false;
 	const checkScrollbar = () => {

@@ -21,9 +21,7 @@ export type KTabsProps = {
 };
 
 // TODO: KTabs props -- position -- top/right/bottom/left
-
 // TODO: KTabs dark mode
-// TODO: KTabs Api addTab
 export type KTabsPaneProps = {
 	uid: string | number;
 	attrs: Record<string, string>;
