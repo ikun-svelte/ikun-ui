@@ -3,8 +3,10 @@
 	import { clsx } from 'clsx';
 	import type {KCarouselPagerProps, KCarouselProps} from './types';
 	import { KIcon } from "@ikun-ui/icon";
+	import {createEventDispatcher} from "svelte";
 
 	export let defaultPageIndex: KCarouselPagerProps['defaultPageIndex'] = 0;
+	export let count: KCarouselPagerProps['count'] = 0;
 	export let cls: KCarouselProps['cls'] = undefined;
 	export let attrs: KCarouselProps['attrs'] = {};
 
@@ -16,8 +18,11 @@
 
 	export const getPageIndex = () => pageIndex
 
+	const dispatch = createEventDispatcher();
 	const jumpPage = (page: number) => {
 		pageIndex += page
+		pageIndex = pageIndex < 0 ? 0 : pageIndex >= count ? count - 1 : pageIndex
+		dispatch('change', pageIndex)
 	}
 
 	const gotoPrev= () => jumpPage(-1)

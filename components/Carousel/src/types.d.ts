@@ -1,6 +1,7 @@
 /// <reference types="svelte" />
 import type { ClassValue } from 'clsx';
 export type KCarouselProps = {
+	initialIndex: number
 	count: number
 	cls: ClassValue;
 	attrs: Record<string, string>;
@@ -8,6 +9,7 @@ export type KCarouselProps = {
 
 export type KCarouselPagerProps = {
 	defaultPageIndex: number
+	count: number
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };

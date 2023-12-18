@@ -7,11 +7,14 @@
 	export let cls: KCarouselProps['cls'] = undefined;
 	export let attrs: KCarouselProps['attrs'] = {};
 	export let count: KCarouselProps['count'] = 0;
-
-	let pagerRef = null
+	export let initialIndex: KCarouselProps['initialIndex'] = 0;
 	$: wrapWidth = `${count * 100}%`
-	// TODO
-	$: wrapLeft = ``
+
+	let pageIndex = initialIndex
+	const handlePageChange = (e: CustomEvent) => {
+		pageIndex = e.detail
+	}
+	$: wrapLeft = `-${(pageIndex) * 100}%`
 	const prefixCls = getPrefixCls('carousel');
 	$: cnames = clsx(
 		prefixCls,
@@ -29,7 +32,10 @@
 	</div>
 
 	<slot name="pager">
-		<KCarouselPager />
+		<KCarouselPager
+				defaultPageIndex={initialIndex}
+				on:change={handlePageChange}
+				{count}/>
 	</slot>
 	<slot name="indicators">
 		<KIndicators />
