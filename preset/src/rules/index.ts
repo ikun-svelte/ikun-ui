@@ -9,6 +9,8 @@ import { notifyRules } from './src/notify';
 import { switchRules } from './src/switch';
 import { progressRules } from './src/progress';
 import { popoverRules } from './src/popover';
+import { getDescriptionsGridColCls } from './src/descriptions';
+import { getDescriptionsItemGridColStartCls } from './src/descriptions-item';
 import { setMainColor } from './set-main-color';
 import { getIkunColorRules } from './src/ikun-color';
 import { tabRules } from './src/tab';
@@ -24,7 +26,9 @@ export const defaultRules = {
 	...progressRules,
 	...popoverRules,
 	...tabRules,
-	...getColCls()
+	...getColCls(),
+	...getDescriptionsGridColCls(),
+	...getDescriptionsItemGridColStartCls()
 } as Record<string, any>;
 
 function normalizeRules(staticRules: Record<string, any>, dynamicRules: dynamicRulesFunc[]) {

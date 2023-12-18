@@ -91,6 +91,8 @@
 		"@ikun-ui/collapse": "workspace:*",
 		"@ikun-ui/collapse-wrapper": "workspace:*",
 		"@ikun-ui/contextmenu": "workspace:*",
+		"@ikun-ui/descriptions": "workspace:*",
+		"@ikun-ui/descriptions-item": "workspace:*",
 		"@ikun-ui/divider": "workspace:*",
 		"@ikun-ui/drawer": "workspace:*",
 		"@ikun-ui/dropdown": "workspace:*",

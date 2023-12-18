@@ -47,3 +47,5 @@ export * from '@ikun-ui/form';
 export * from '@ikun-ui/watermark';
 export * from '@ikun-ui/dropdown';
 export * from '@ikun-ui/tabs';
+export * from '@ikun-ui/descriptions';
+export * from '@ikun-ui/descriptions-item';

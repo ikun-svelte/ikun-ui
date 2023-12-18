@@ -107,6 +107,10 @@ const components = [
 				link: '/components/KCollapse'
 			},
 			{
+				text: 'Descriptions',
+				link: '/components/KDescriptions'
+			},
+			{
 				text: 'Ellipsis',
 				link: '/components/KEllipsis'
 			},

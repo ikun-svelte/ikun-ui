@@ -1,4 +1,7 @@
-export const commonShortcuts: Record<string, string> = {
+import type { Theme } from '@unocss/preset-uno';
+import type { UserShortcuts } from 'unocss';
+
+export const commonShortcuts: UserShortcuts<Theme> = {
 	pr: 'relative',
 	pa: 'absolute',
 	pf: 'fixed',

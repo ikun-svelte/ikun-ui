@@ -2,14 +2,14 @@
 	import type { KBreadcrumbItemPropsPropsInner } from './types';
 	import { getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
-	import { getPrefixCls, BreadcrumbKey } from '@ikun-ui/utils';
+	import { getPrefixCls, breadcrumbKey } from '@ikun-ui/utils';
 	import { clsx, type ClassValue } from 'clsx';
 
 	export let href: string = '';
 	export let cls: ClassValue = undefined;
 	export let attrs: Record<string, string> = {};
 
-	const breadcrumbProps = getContext<KBreadcrumbItemPropsPropsInner>(BreadcrumbKey) || {};
+	const breadcrumbProps = getContext<KBreadcrumbItemPropsPropsInner>(breadcrumbKey) || {};
 	const { separator = '/', separatorIcon = '' } = breadcrumbProps;
 
 	// class names
