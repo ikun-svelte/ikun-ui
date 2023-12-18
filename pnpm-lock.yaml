@@ -149,6 +149,9 @@ importers:
       '@ikun-ui/switch':
         specifier: workspace:*
         version: link:components/Switch
+      '@ikun-ui/tabs':
+        specifier: workspace:*
+        version: link:components/Tabs
       '@ikun-ui/tag':
         specifier: workspace:*
         version: link:components/Tag
@@ -269,7 +272,7 @@ importers:
         version: 3.6.2(@babel/core@7.23.5)(postcss@8.4.32)(svelte@4.2.8)
       svelte-preprocess:
         specifier: latest
-        version: 5.1.1(@babel/core@7.23.5)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.2)
+        version: 5.1.2(@babel/core@7.23.5)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.2)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1606,6 +1609,37 @@ importers:
       typescript:
         specifier: ^5.3.2
         version: 5.3.2
+
+  components/Tabs:
+    dependencies:
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@ikun-ui/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      baiwusanyu-utils:
+        specifier: ^1.0.16
+        version: registry.npmjs.org/baiwusanyu-utils@1.0.16(ansi-colors@4.1.3)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: registry.npmjs.org/clsx@2.0.0
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: ^5.0.2
+        version: registry.npmjs.org/@tsconfig/svelte@5.0.2
+      esm-env:
+        specifier: ^1.0.0
+        version: 1.0.0
+      svelte-strip:
+        specifier: ^2.0.0
+        version: registry.npmjs.org/svelte-strip@2.0.0(@babel/core@7.23.5)(postcss@8.4.32)(svelte@3.59.2)
+      tslib:
+        specifier: ^2.6.2
+        version: registry.npmjs.org/tslib@2.6.2
+      typescript:
+        specifier: ^5.3.2
+        version: registry.npmjs.org/typescript@5.3.2
 
   components/Tag:
     dependencies:
@@ -4069,7 +4103,7 @@ packages:
     dev: true
 
   /buffer-crc32@0.2.13:
-    resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
+    resolution: {integrity: sha1-DTM+PwDqxQqhRUq9MO+MKl2ackI=}
     dev: true
 
   /buffer@6.0.3:
@@ -4684,7 +4718,7 @@ packages:
     dev: true
 
   /es6-promise@3.3.1:
-    resolution: {integrity: sha512-SOp9Phqvqn7jtEUxPWdWfWoLmyt2VaJ6MpvP9Comy1MceMXqE6bxvaTu4iaxpYYPzhny28Lc+M87/c2cPK6lDg==}
+    resolution: {integrity: sha1-oIzd6EzNvzTQJ6FFG8kdS80ophM=}
     dev: true
 
   /esbuild@0.19.8:
@@ -6032,7 +6066,7 @@ packages:
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
-      tslib: 2.6.2
+      tslib: registry.npmjs.org/tslib@2.6.2
     dev: true
 
   /lru-cache@10.0.1:
@@ -6290,7 +6324,7 @@ packages:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.6.2
+      tslib: registry.npmjs.org/tslib@2.6.2
     dev: true
 
   /node-fetch-native@1.4.0:
@@ -6526,7 +6560,7 @@ packages:
     resolution: {integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.6.2
+      tslib: registry.npmjs.org/tslib@2.6.2
     dev: true
 
   /path-exists@4.0.0:
@@ -7013,7 +7047,7 @@ packages:
     dev: true
 
   /sander@0.5.1:
-    resolution: {integrity: sha512-3lVqBir7WuKDHGrKRDn/1Ye3kwpXaDOMsiRP1wd6wpZW56gJhsbp5RqQpA6JG/P+pkXizygnr1dKR8vzWaVsfA==}
+    resolution: {integrity: sha1-dB4kXiMfB8r7b98PEzrfohalAq0=}
     dependencies:
       es6-promise: 3.3.1
       graceful-fs: 4.2.11
@@ -7443,8 +7477,8 @@ packages:
       picocolors: 1.0.0
       sade: 1.8.1
       svelte: 4.2.8
-      svelte-preprocess: 5.1.1(@babel/core@7.23.5)(postcss@8.4.31)(svelte@4.2.8)(typescript@5.3.2)
-      typescript: 5.3.2
+      svelte-preprocess: registry.npmjs.org/svelte-preprocess@5.1.1(@babel/core@7.23.5)(postcss@8.4.31)(svelte@4.2.8)(typescript@5.3.2)
+      typescript: registry.npmjs.org/typescript@5.3.2
     transitivePeerDependencies:
       - '@babel/core'
       - coffeescript
@@ -7470,8 +7504,8 @@ packages:
       picocolors: 1.0.0
       sade: 1.8.1
       svelte: 4.2.8
-      svelte-preprocess: 5.1.1(@babel/core@7.23.5)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.2)
-      typescript: 5.3.2
+      svelte-preprocess: registry.npmjs.org/svelte-preprocess@5.1.1(@babel/core@7.23.5)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.2)
+      typescript: registry.npmjs.org/typescript@5.3.2
     transitivePeerDependencies:
       - '@babel/core'
       - coffeescript
@@ -7522,8 +7556,8 @@ packages:
       '@popperjs/core': 2.11.8
       svelte: 4.2.8
 
-  /svelte-preprocess@5.1.1(@babel/core@7.23.5)(postcss@8.4.31)(svelte@4.2.8)(typescript@5.3.2):
-    resolution: {integrity: sha512-p/Dp4hmrBW5mrCCq29lEMFpIJT2FZsRlouxEc5qpbOmXRbaFs7clLs8oKPwD3xCFyZfv1bIhvOzpQkhMEVQdMw==}
+  /svelte-preprocess@5.1.2(@babel/core@7.23.5)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.2):
+    resolution: {integrity: sha512-XF0aliMAcYnP4hLETvB6HRAMnaL09ASYT1Z2I1Gwu0nz6xbdg/dSgAEthtFZJA4AKrNhFDFdmUDO+H9d/6xg5g==}
     engines: {node: '>= 14.10.0'}
     requiresBuild: true
     peerDependencies:
@@ -7531,56 +7565,7 @@ packages:
       coffeescript: ^2.5.1
       less: ^3.11.3 || ^4.0.0
       postcss: ^7 || ^8
-      postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0
-      pug: ^3.0.0
-      sass: ^1.26.8
-      stylus: ^0.55.0
-      sugarss: ^2.0.0 || ^3.0.0 || ^4.0.0
-      svelte: ^3.23.0 || ^4.0.0-next.0 || ^4.0.0 || ^5.0.0-next.0
-      typescript: '>=3.9.5 || ^4.0.0 || ^5.0.0'
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      coffeescript:
-        optional: true
-      less:
-        optional: true
-      postcss:
-        optional: true
-      postcss-load-config:
-        optional: true
-      pug:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@babel/core': 7.23.5
-      '@types/pug': 2.0.8
-      detect-indent: 6.1.0
-      magic-string: 0.27.0
-      postcss: 8.4.31
-      sorcery: 0.11.0
-      strip-indent: 3.0.0
-      svelte: 4.2.8
-      typescript: 5.3.2
-    dev: true
-
-  /svelte-preprocess@5.1.1(@babel/core@7.23.5)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.2):
-    resolution: {integrity: sha512-p/Dp4hmrBW5mrCCq29lEMFpIJT2FZsRlouxEc5qpbOmXRbaFs7clLs8oKPwD3xCFyZfv1bIhvOzpQkhMEVQdMw==}
-    engines: {node: '>= 14.10.0'}
-    requiresBuild: true
-    peerDependencies:
-      '@babel/core': ^7.10.2
-      coffeescript: ^2.5.1
-      less: ^3.11.3 || ^4.0.0
-      postcss: ^7 || ^8
-      postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0
+      postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
       pug: ^3.0.0
       sass: ^1.26.8
       stylus: ^0.55.0
@@ -7629,8 +7614,8 @@ packages:
       glob: 10.3.10
       minimatch: 9.0.3
       svelte: 4.2.8
-      svelte-preprocess: 5.1.1(@babel/core@7.23.5)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.2)
-      typescript: 5.3.2
+      svelte-preprocess: registry.npmjs.org/svelte-preprocess@5.1.1(@babel/core@7.23.5)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.2)
+      typescript: registry.npmjs.org/typescript@5.3.2
       yargs: 17.7.2
     transitivePeerDependencies:
       - '@babel/core'
@@ -7654,6 +7639,11 @@ packages:
       pascal-case: 3.1.2
       svelte: 4.2.8
       typescript: 5.3.2
+    dev: true
+
+  /svelte@3.59.2:
+    resolution: {integrity: sha512-vzSyuGr3eEoAtT/A6bmajosJZIUWySzY2CzB3w2pgPvnkUjGqlDnsNnA0PMO+mMAhuyMul6C2uuZzY6ELSkzyA==}
+    engines: {node: '>= 8'}
     dev: true
 
   /svelte@4.2.8:
@@ -8542,4 +8532,692 @@ packages:
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
+    dev: true
+
+  registry.npmjs.org/@baiwusanyu/utils-com@1.0.16(ansi-colors@4.1.3)(hash-sum@2.0.0):
+    resolution: {integrity: sha512-2FIcfCRSBxFJqDU8KVFdEMdzF7IiLQG7CCLEBHYVles7g8C6ztc3QPisfSrd06oQ0TmxP7B+/9yn7OAvOHjSYw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@baiwusanyu/utils-com/-/utils-com-1.0.16.tgz}
+    id: registry.npmjs.org/@baiwusanyu/utils-com/1.0.16
+    name: '@baiwusanyu/utils-com'
+    version: 1.0.16
+    peerDependencies:
+      ansi-colors: ^4.1.3
+      hash-sum: ^2.0.0
+    dependencies:
+      ansi-colors: 4.1.3
+      hash-sum: registry.npmjs.org/hash-sum@2.0.0
+    dev: false
+
+  registry.npmjs.org/@baiwusanyu/utils-date@1.0.16(ansi-colors@4.1.3)(moment@2.29.4):
+    resolution: {integrity: sha512-YdKgSXQ8NIIG54k8pKCQN378zXfdsPhvPCu6qor55Q5R73vdkwkxYF5WbLTsnF0JNdeoxpqK41yhxvrTxt0TyA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@baiwusanyu/utils-date/-/utils-date-1.0.16.tgz}
+    id: registry.npmjs.org/@baiwusanyu/utils-date/1.0.16
+    name: '@baiwusanyu/utils-date'
+    version: 1.0.16
+    peerDependencies:
+      ansi-colors: ^4.1.3
+      moment: ^2.29.4
+    dependencies:
+      ansi-colors: 4.1.3
+      moment: 2.29.4
+    dev: false
+
+  registry.npmjs.org/@baiwusanyu/utils-is@1.0.16:
+    resolution: {integrity: sha512-q5Tinm2zicuxIfmiGtphYATH7bHDzhqSfix+T4IzbDNubp4v5ZuzSVTlk8yFiCgTVVelOkaHs6129LtF3eqVPg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@baiwusanyu/utils-is/-/utils-is-1.0.16.tgz}
+    name: '@baiwusanyu/utils-is'
+    version: 1.0.16
+    dev: false
+
+  registry.npmjs.org/@baiwusanyu/utils-log@1.0.16(ansi-colors@4.1.3):
+    resolution: {integrity: sha512-5OjN6Wny72MVZcivqbJi1+PCHP95jeAQZZ/KopDsRkL1Z9QSy1imMVSxr9d/rZ0X2URZLx1gDLWg1BJ+IfDLYA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@baiwusanyu/utils-log/-/utils-log-1.0.16.tgz}
+    id: registry.npmjs.org/@baiwusanyu/utils-log/1.0.16
+    name: '@baiwusanyu/utils-log'
+    version: 1.0.16
+    peerDependencies:
+      ansi-colors: ^4.1.3
+    dependencies:
+      ansi-colors: 4.1.3
+    dev: false
+
+  registry.npmjs.org/@baiwusanyu/utils-normalize@1.0.16:
+    resolution: {integrity: sha512-eKCg55/t9TWdBOIfviTrRSDJ1oF+RFL+KbxZ7eflU8Wmf1sseGIBzw6wr6O0apBo2uxEYT1tsCVvq5bYQjFO6A==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@baiwusanyu/utils-normalize/-/utils-normalize-1.0.16.tgz}
+    name: '@baiwusanyu/utils-normalize'
+    version: 1.0.16
+    dev: false
+
+  registry.npmjs.org/@baiwusanyu/utils-obj@1.0.16:
+    resolution: {integrity: sha512-btRWNw09WkYARxHyKG3+UOf7eIHCvUXI8AtiU2a5KagNy3PB3GX+5+wK7BV4asONAE3bvOxwfgNbms5qAY18Og==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@baiwusanyu/utils-obj/-/utils-obj-1.0.16.tgz}
+    name: '@baiwusanyu/utils-obj'
+    version: 1.0.16
+    dev: false
+
+  registry.npmjs.org/@baiwusanyu/utils-task@1.0.16:
+    resolution: {integrity: sha512-HMN2xkwll3Z7KEjjMOEH3S7cEZmhraP0HSq7cTSkgGcziuTfkHd/GjpBMuWx8wxx9F0TATfRnrLlSAe5D1SkTA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@baiwusanyu/utils-task/-/utils-task-1.0.16.tgz}
+    name: '@baiwusanyu/utils-task'
+    version: 1.0.16
+    dev: false
+
+  registry.npmjs.org/@jridgewell/sourcemap-codec@1.4.15:
+    resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz}
+    name: '@jridgewell/sourcemap-codec'
+    version: 1.4.15
+    dev: true
+
+  registry.npmjs.org/@tsconfig/svelte@5.0.2:
+    resolution: {integrity: sha512-BRbo1fOtyVbhfLyuCWw6wAWp+U8UQle+ZXu84MYYWzYSEB28dyfnRBIE99eoG+qdAC0po6L2ScIEivcT07UaMA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@tsconfig/svelte/-/svelte-5.0.2.tgz}
+    name: '@tsconfig/svelte'
+    version: 5.0.2
+    dev: true
+
+  registry.npmjs.org/@types/pug@2.0.8:
+    resolution: {integrity: sha512-QzhsZ1dMGyJbn/D9V80zp4GIA4J4rfAjCCxc3MP+new0E8dyVdSkR735Lx+n3LIaHNFcjHL5+TbziccuT+fdoQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@types/pug/-/pug-2.0.8.tgz}
+    name: '@types/pug'
+    version: 2.0.8
+    dev: true
+
+  registry.npmjs.org/ansi-regex@5.0.1:
+    resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz}
+    name: ansi-regex
+    version: 5.0.1
+    engines: {node: '>=8'}
+    dev: true
+
+  registry.npmjs.org/ansi-styles@4.3.0:
+    resolution: {integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz}
+    name: ansi-styles
+    version: 4.3.0
+    engines: {node: '>=8'}
+    dependencies:
+      color-convert: registry.npmjs.org/color-convert@2.0.1
+    dev: true
+
+  registry.npmjs.org/baiwusanyu-utils@1.0.16(ansi-colors@4.1.3)(moment@2.29.4):
+    resolution: {integrity: sha512-CThYTi1YpsqYO2JEYOZfQm8WOltvq7zHkkRkn5a04vXlKcabWdp7BCd79Gju0iAnv+nrNoSOa81CYuax02PU2A==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/baiwusanyu-utils/-/baiwusanyu-utils-1.0.16.tgz}
+    id: registry.npmjs.org/baiwusanyu-utils/1.0.16
+    name: baiwusanyu-utils
+    version: 1.0.16
+    dependencies:
+      '@baiwusanyu/utils-com': registry.npmjs.org/@baiwusanyu/utils-com@1.0.16(ansi-colors@4.1.3)(hash-sum@2.0.0)
+      '@baiwusanyu/utils-date': registry.npmjs.org/@baiwusanyu/utils-date@1.0.16(ansi-colors@4.1.3)(moment@2.29.4)
+      '@baiwusanyu/utils-is': registry.npmjs.org/@baiwusanyu/utils-is@1.0.16
+      '@baiwusanyu/utils-log': registry.npmjs.org/@baiwusanyu/utils-log@1.0.16(ansi-colors@4.1.3)
+      '@baiwusanyu/utils-normalize': registry.npmjs.org/@baiwusanyu/utils-normalize@1.0.16
+      '@baiwusanyu/utils-obj': registry.npmjs.org/@baiwusanyu/utils-obj@1.0.16
+      '@baiwusanyu/utils-task': registry.npmjs.org/@baiwusanyu/utils-task@1.0.16
+      hash-sum: registry.npmjs.org/hash-sum@2.0.0
+    transitivePeerDependencies:
+      - ansi-colors
+      - moment
+    dev: false
+
+  registry.npmjs.org/balanced-match@1.0.2:
+    resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz}
+    name: balanced-match
+    version: 1.0.2
+    dev: true
+
+  registry.npmjs.org/brace-expansion@1.1.11:
+    resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.11.tgz}
+    name: brace-expansion
+    version: 1.1.11
+    dependencies:
+      balanced-match: registry.npmjs.org/balanced-match@1.0.2
+      concat-map: registry.npmjs.org/concat-map@0.0.1
+    dev: true
+
+  registry.npmjs.org/brace-expansion@2.0.1:
+    resolution: {integrity: sha512-XnAIvQ8eM+kC6aULx6wuQiwVsnzsi9d3WxzV3FpWTGA19F621kwdbsAcFKXgKUHZWsy+mY6iL1sHTxWEFCytDA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/brace-expansion/-/brace-expansion-2.0.1.tgz}
+    name: brace-expansion
+    version: 2.0.1
+    dependencies:
+      balanced-match: registry.npmjs.org/balanced-match@1.0.2
+    dev: true
+
+  registry.npmjs.org/buffer-crc32@0.2.13:
+    resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/buffer-crc32/-/buffer-crc32-0.2.13.tgz}
+    name: buffer-crc32
+    version: 0.2.13
+    dev: true
+
+  registry.npmjs.org/cliui@8.0.1:
+    resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/cliui/-/cliui-8.0.1.tgz}
+    name: cliui
+    version: 8.0.1
+    engines: {node: '>=12'}
+    dependencies:
+      string-width: registry.npmjs.org/string-width@4.2.3
+      strip-ansi: registry.npmjs.org/strip-ansi@6.0.1
+      wrap-ansi: registry.npmjs.org/wrap-ansi@7.0.0
+    dev: true
+
+  registry.npmjs.org/clsx@2.0.0:
+    resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/clsx/-/clsx-2.0.0.tgz}
+    name: clsx
+    version: 2.0.0
+    engines: {node: '>=6'}
+    dev: false
+
+  registry.npmjs.org/color-convert@2.0.1:
+    resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz}
+    name: color-convert
+    version: 2.0.1
+    engines: {node: '>=7.0.0'}
+    dependencies:
+      color-name: registry.npmjs.org/color-name@1.1.4
+    dev: true
+
+  registry.npmjs.org/color-name@1.1.4:
+    resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz}
+    name: color-name
+    version: 1.1.4
+    dev: true
+
+  registry.npmjs.org/concat-map@0.0.1:
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz}
+    name: concat-map
+    version: 0.0.1
+    dev: true
+
+  registry.npmjs.org/detect-indent@6.1.0:
+    resolution: {integrity: sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/detect-indent/-/detect-indent-6.1.0.tgz}
+    name: detect-indent
+    version: 6.1.0
+    engines: {node: '>=8'}
+    dev: true
+
+  registry.npmjs.org/emoji-regex@8.0.0:
+    resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz}
+    name: emoji-regex
+    version: 8.0.0
+    dev: true
+
+  registry.npmjs.org/es6-promise@3.3.1:
+    resolution: {integrity: sha512-SOp9Phqvqn7jtEUxPWdWfWoLmyt2VaJ6MpvP9Comy1MceMXqE6bxvaTu4iaxpYYPzhny28Lc+M87/c2cPK6lDg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/es6-promise/-/es6-promise-3.3.1.tgz}
+    name: es6-promise
+    version: 3.3.1
+    dev: true
+
+  registry.npmjs.org/escalade@3.1.1:
+    resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/escalade/-/escalade-3.1.1.tgz}
+    name: escalade
+    version: 3.1.1
+    engines: {node: '>=6'}
+    dev: true
+
+  registry.npmjs.org/fs.realpath@1.0.0:
+    resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz}
+    name: fs.realpath
+    version: 1.0.0
+    dev: true
+
+  registry.npmjs.org/get-caller-file@2.0.5:
+    resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/get-caller-file/-/get-caller-file-2.0.5.tgz}
+    name: get-caller-file
+    version: 2.0.5
+    engines: {node: 6.* || 8.* || >= 10.*}
+    dev: true
+
+  registry.npmjs.org/glob@7.2.3:
+    resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/glob/-/glob-7.2.3.tgz}
+    name: glob
+    version: 7.2.3
+    dependencies:
+      fs.realpath: registry.npmjs.org/fs.realpath@1.0.0
+      inflight: registry.npmjs.org/inflight@1.0.6
+      inherits: registry.npmjs.org/inherits@2.0.4
+      minimatch: registry.npmjs.org/minimatch@3.1.2
+      once: registry.npmjs.org/once@1.4.0
+      path-is-absolute: registry.npmjs.org/path-is-absolute@1.0.1
+    dev: true
+
+  registry.npmjs.org/glob@9.3.5:
+    resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/glob/-/glob-9.3.5.tgz}
+    name: glob
+    version: 9.3.5
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      fs.realpath: registry.npmjs.org/fs.realpath@1.0.0
+      minimatch: registry.npmjs.org/minimatch@8.0.4
+      minipass: registry.npmjs.org/minipass@4.2.8
+      path-scurry: registry.npmjs.org/path-scurry@1.10.1
+    dev: true
+
+  registry.npmjs.org/hash-sum@2.0.0:
+    resolution: {integrity: sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/hash-sum/-/hash-sum-2.0.0.tgz}
+    name: hash-sum
+    version: 2.0.0
+    dev: false
+
+  registry.npmjs.org/inflight@1.0.6:
+    resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/inflight/-/inflight-1.0.6.tgz}
+    name: inflight
+    version: 1.0.6
+    dependencies:
+      once: registry.npmjs.org/once@1.4.0
+      wrappy: registry.npmjs.org/wrappy@1.0.2
+    dev: true
+
+  registry.npmjs.org/inherits@2.0.4:
+    resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz}
+    name: inherits
+    version: 2.0.4
+    dev: true
+
+  registry.npmjs.org/is-fullwidth-code-point@3.0.0:
+    resolution: {integrity: sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz}
+    name: is-fullwidth-code-point
+    version: 3.0.0
+    engines: {node: '>=8'}
+    dev: true
+
+  registry.npmjs.org/lru-cache@10.0.1:
+    resolution: {integrity: sha512-IJ4uwUTi2qCccrioU6g9g/5rvvVl13bsdczUUcqbciD9iLr095yj8DQKdObriEvuNSx325N1rV1O0sJFszx75g==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/lru-cache/-/lru-cache-10.0.1.tgz}
+    name: lru-cache
+    version: 10.0.1
+    engines: {node: 14 || >=16.14}
+    dev: true
+
+  registry.npmjs.org/magic-string@0.27.0:
+    resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/magic-string/-/magic-string-0.27.0.tgz}
+    name: magic-string
+    version: 0.27.0
+    engines: {node: '>=12'}
+    dependencies:
+      '@jridgewell/sourcemap-codec': registry.npmjs.org/@jridgewell/sourcemap-codec@1.4.15
+    dev: true
+
+  registry.npmjs.org/min-indent@1.0.1:
+    resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/min-indent/-/min-indent-1.0.1.tgz}
+    name: min-indent
+    version: 1.0.1
+    engines: {node: '>=4'}
+    dev: true
+
+  registry.npmjs.org/minimatch@3.1.2:
+    resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/minimatch/-/minimatch-3.1.2.tgz}
+    name: minimatch
+    version: 3.1.2
+    dependencies:
+      brace-expansion: registry.npmjs.org/brace-expansion@1.1.11
+    dev: true
+
+  registry.npmjs.org/minimatch@7.4.6:
+    resolution: {integrity: sha512-sBz8G/YjVniEz6lKPNpKxXwazJe4c19fEfV2GDMX6AjFz+MX9uDWIZW8XreVhkFW3fkIdTv/gxWr/Kks5FFAVw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/minimatch/-/minimatch-7.4.6.tgz}
+    name: minimatch
+    version: 7.4.6
+    engines: {node: '>=10'}
+    dependencies:
+      brace-expansion: registry.npmjs.org/brace-expansion@2.0.1
+    dev: true
+
+  registry.npmjs.org/minimatch@8.0.4:
+    resolution: {integrity: sha512-W0Wvr9HyFXZRGIDgCicunpQ299OKXs9RgZfaukz4qAW/pJhcpUfupc9c+OObPOFueNy8VSrZgEmDtk6Kh4WzDA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/minimatch/-/minimatch-8.0.4.tgz}
+    name: minimatch
+    version: 8.0.4
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      brace-expansion: registry.npmjs.org/brace-expansion@2.0.1
+    dev: true
+
+  registry.npmjs.org/minimist@1.2.8:
+    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/minimist/-/minimist-1.2.8.tgz}
+    name: minimist
+    version: 1.2.8
+    dev: true
+
+  registry.npmjs.org/minipass@4.2.8:
+    resolution: {integrity: sha512-fNzuVyifolSLFL4NzpF+wEF4qrgqaaKX0haXPQEdQ7NKAN+WecoKMHV09YcuL/DHxrUsYQOK3MiuDf7Ip2OXfQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/minipass/-/minipass-4.2.8.tgz}
+    name: minipass
+    version: 4.2.8
+    engines: {node: '>=8'}
+    dev: true
+
+  registry.npmjs.org/minipass@7.0.4:
+    resolution: {integrity: sha512-jYofLM5Dam9279rdkWzqHozUo4ybjdZmCsDHePy5V/PbBcVMiSZR97gmAy45aqi8CK1lG2ECd356FU86avfwUQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/minipass/-/minipass-7.0.4.tgz}
+    name: minipass
+    version: 7.0.4
+    engines: {node: '>=16 || 14 >=14.17'}
+    dev: true
+
+  registry.npmjs.org/mkdirp@0.5.6:
+    resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.6.tgz}
+    name: mkdirp
+    version: 0.5.6
+    hasBin: true
+    dependencies:
+      minimist: registry.npmjs.org/minimist@1.2.8
+    dev: true
+
+  registry.npmjs.org/once@1.4.0:
+    resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/once/-/once-1.4.0.tgz}
+    name: once
+    version: 1.4.0
+    dependencies:
+      wrappy: registry.npmjs.org/wrappy@1.0.2
+    dev: true
+
+  registry.npmjs.org/path-is-absolute@1.0.1:
+    resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/path-is-absolute/-/path-is-absolute-1.0.1.tgz}
+    name: path-is-absolute
+    version: 1.0.1
+    engines: {node: '>=0.10.0'}
+    dev: true
+
+  registry.npmjs.org/path-scurry@1.10.1:
+    resolution: {integrity: sha512-MkhCqzzBEpPvxxQ71Md0b1Kk51W01lrYvlMzSUaIzNsODdd7mqhiimSZlr+VegAz5Z6Vzt9Xg2ttE//XBhH3EQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/path-scurry/-/path-scurry-1.10.1.tgz}
+    name: path-scurry
+    version: 1.10.1
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      lru-cache: registry.npmjs.org/lru-cache@10.0.1
+      minipass: registry.npmjs.org/minipass@7.0.4
+    dev: true
+
+  registry.npmjs.org/require-directory@2.1.1:
+    resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz}
+    name: require-directory
+    version: 2.1.1
+    engines: {node: '>=0.10.0'}
+    dev: true
+
+  registry.npmjs.org/rimraf@2.7.1:
+    resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/rimraf/-/rimraf-2.7.1.tgz}
+    name: rimraf
+    version: 2.7.1
+    hasBin: true
+    dependencies:
+      glob: registry.npmjs.org/glob@7.2.3
+    dev: true
+
+  registry.npmjs.org/sander@0.5.1:
+    resolution: {integrity: sha512-3lVqBir7WuKDHGrKRDn/1Ye3kwpXaDOMsiRP1wd6wpZW56gJhsbp5RqQpA6JG/P+pkXizygnr1dKR8vzWaVsfA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/sander/-/sander-0.5.1.tgz}
+    name: sander
+    version: 0.5.1
+    dependencies:
+      es6-promise: registry.npmjs.org/es6-promise@3.3.1
+      graceful-fs: 4.2.11
+      mkdirp: registry.npmjs.org/mkdirp@0.5.6
+      rimraf: registry.npmjs.org/rimraf@2.7.1
+    dev: true
+
+  registry.npmjs.org/sorcery@0.11.0:
+    resolution: {integrity: sha512-J69LQ22xrQB1cIFJhPfgtLuI6BpWRiWu1Y3vSsIwK/eAScqJxd/+CJlUuHQRdX2C9NGFamq+KqNywGgaThwfHw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/sorcery/-/sorcery-0.11.0.tgz}
+    name: sorcery
+    version: 0.11.0
+    hasBin: true
+    dependencies:
+      '@jridgewell/sourcemap-codec': registry.npmjs.org/@jridgewell/sourcemap-codec@1.4.15
+      buffer-crc32: registry.npmjs.org/buffer-crc32@0.2.13
+      minimist: registry.npmjs.org/minimist@1.2.8
+      sander: registry.npmjs.org/sander@0.5.1
+    dev: true
+
+  registry.npmjs.org/string-width@4.2.3:
+    resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz}
+    name: string-width
+    version: 4.2.3
+    engines: {node: '>=8'}
+    dependencies:
+      emoji-regex: registry.npmjs.org/emoji-regex@8.0.0
+      is-fullwidth-code-point: registry.npmjs.org/is-fullwidth-code-point@3.0.0
+      strip-ansi: registry.npmjs.org/strip-ansi@6.0.1
+    dev: true
+
+  registry.npmjs.org/strip-ansi@6.0.1:
+    resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz}
+    name: strip-ansi
+    version: 6.0.1
+    engines: {node: '>=8'}
+    dependencies:
+      ansi-regex: registry.npmjs.org/ansi-regex@5.0.1
+    dev: true
+
+  registry.npmjs.org/strip-indent@3.0.0:
+    resolution: {integrity: sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/strip-indent/-/strip-indent-3.0.0.tgz}
+    name: strip-indent
+    version: 3.0.0
+    engines: {node: '>=8'}
+    dependencies:
+      min-indent: registry.npmjs.org/min-indent@1.0.1
+    dev: true
+
+  registry.npmjs.org/svelte-preprocess@5.1.1(@babel/core@7.23.5)(postcss@8.4.31)(svelte@4.2.8)(typescript@5.3.2):
+    resolution: {integrity: sha512-p/Dp4hmrBW5mrCCq29lEMFpIJT2FZsRlouxEc5qpbOmXRbaFs7clLs8oKPwD3xCFyZfv1bIhvOzpQkhMEVQdMw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/svelte-preprocess/-/svelte-preprocess-5.1.1.tgz}
+    id: registry.npmjs.org/svelte-preprocess/5.1.1
+    name: svelte-preprocess
+    version: 5.1.1
+    engines: {node: '>= 14.10.0'}
+    requiresBuild: true
+    peerDependencies:
+      '@babel/core': ^7.10.2
+      coffeescript: ^2.5.1
+      less: ^3.11.3 || ^4.0.0
+      postcss: ^7 || ^8
+      postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0
+      pug: ^3.0.0
+      sass: ^1.26.8
+      stylus: ^0.55.0
+      sugarss: ^2.0.0 || ^3.0.0 || ^4.0.0
+      svelte: ^3.23.0 || ^4.0.0-next.0 || ^4.0.0 || ^5.0.0-next.0
+      typescript: '>=3.9.5 || ^4.0.0 || ^5.0.0'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      coffeescript:
+        optional: true
+      less:
+        optional: true
+      postcss:
+        optional: true
+      postcss-load-config:
+        optional: true
+      pug:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@babel/core': 7.23.5
+      '@types/pug': registry.npmjs.org/@types/pug@2.0.8
+      detect-indent: registry.npmjs.org/detect-indent@6.1.0
+      magic-string: registry.npmjs.org/magic-string@0.27.0
+      postcss: 8.4.31
+      sorcery: registry.npmjs.org/sorcery@0.11.0
+      strip-indent: registry.npmjs.org/strip-indent@3.0.0
+      svelte: 4.2.8
+      typescript: registry.npmjs.org/typescript@5.3.2
+    dev: true
+
+  registry.npmjs.org/svelte-preprocess@5.1.1(@babel/core@7.23.5)(postcss@8.4.32)(svelte@3.59.2)(typescript@5.3.2):
+    resolution: {integrity: sha512-p/Dp4hmrBW5mrCCq29lEMFpIJT2FZsRlouxEc5qpbOmXRbaFs7clLs8oKPwD3xCFyZfv1bIhvOzpQkhMEVQdMw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/svelte-preprocess/-/svelte-preprocess-5.1.1.tgz}
+    id: registry.npmjs.org/svelte-preprocess/5.1.1
+    name: svelte-preprocess
+    version: 5.1.1
+    engines: {node: '>= 14.10.0'}
+    requiresBuild: true
+    peerDependencies:
+      '@babel/core': ^7.10.2
+      coffeescript: ^2.5.1
+      less: ^3.11.3 || ^4.0.0
+      postcss: ^7 || ^8
+      postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0
+      pug: ^3.0.0
+      sass: ^1.26.8
+      stylus: ^0.55.0
+      sugarss: ^2.0.0 || ^3.0.0 || ^4.0.0
+      svelte: ^3.23.0 || ^4.0.0-next.0 || ^4.0.0 || ^5.0.0-next.0
+      typescript: '>=3.9.5 || ^4.0.0 || ^5.0.0'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      coffeescript:
+        optional: true
+      less:
+        optional: true
+      postcss:
+        optional: true
+      postcss-load-config:
+        optional: true
+      pug:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@babel/core': 7.23.5
+      '@types/pug': registry.npmjs.org/@types/pug@2.0.8
+      detect-indent: registry.npmjs.org/detect-indent@6.1.0
+      magic-string: registry.npmjs.org/magic-string@0.27.0
+      postcss: 8.4.32
+      sorcery: registry.npmjs.org/sorcery@0.11.0
+      strip-indent: registry.npmjs.org/strip-indent@3.0.0
+      svelte: 3.59.2
+      typescript: registry.npmjs.org/typescript@5.3.2
+    dev: true
+
+  registry.npmjs.org/svelte-preprocess@5.1.1(@babel/core@7.23.5)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.2):
+    resolution: {integrity: sha512-p/Dp4hmrBW5mrCCq29lEMFpIJT2FZsRlouxEc5qpbOmXRbaFs7clLs8oKPwD3xCFyZfv1bIhvOzpQkhMEVQdMw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/svelte-preprocess/-/svelte-preprocess-5.1.1.tgz}
+    id: registry.npmjs.org/svelte-preprocess/5.1.1
+    name: svelte-preprocess
+    version: 5.1.1
+    engines: {node: '>= 14.10.0'}
+    requiresBuild: true
+    peerDependencies:
+      '@babel/core': ^7.10.2
+      coffeescript: ^2.5.1
+      less: ^3.11.3 || ^4.0.0
+      postcss: ^7 || ^8
+      postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0
+      pug: ^3.0.0
+      sass: ^1.26.8
+      stylus: ^0.55.0
+      sugarss: ^2.0.0 || ^3.0.0 || ^4.0.0
+      svelte: ^3.23.0 || ^4.0.0-next.0 || ^4.0.0 || ^5.0.0-next.0
+      typescript: '>=3.9.5 || ^4.0.0 || ^5.0.0'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      coffeescript:
+        optional: true
+      less:
+        optional: true
+      postcss:
+        optional: true
+      postcss-load-config:
+        optional: true
+      pug:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@babel/core': 7.23.5
+      '@types/pug': registry.npmjs.org/@types/pug@2.0.8
+      detect-indent: registry.npmjs.org/detect-indent@6.1.0
+      magic-string: registry.npmjs.org/magic-string@0.27.0
+      postcss: 8.4.32
+      sorcery: registry.npmjs.org/sorcery@0.11.0
+      strip-indent: registry.npmjs.org/strip-indent@3.0.0
+      svelte: 4.2.8
+      typescript: registry.npmjs.org/typescript@5.3.2
+    dev: true
+
+  registry.npmjs.org/svelte-strip@2.0.0(@babel/core@7.23.5)(postcss@8.4.32)(svelte@3.59.2):
+    resolution: {integrity: sha512-RZ8swt0ddE22ebZvFpMhW/x9rLIAwCZtWWnb5oohQEYcyuxzvzXwxImjFQ8DINXXMbvw6PB/NfnzDmHqMVrdbw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/svelte-strip/-/svelte-strip-2.0.0.tgz}
+    id: registry.npmjs.org/svelte-strip/2.0.0
+    name: svelte-strip
+    version: 2.0.0
+    hasBin: true
+    peerDependencies:
+      svelte: ^3.0.0
+    dependencies:
+      glob: registry.npmjs.org/glob@9.3.5
+      minimatch: registry.npmjs.org/minimatch@7.4.6
+      svelte: 3.59.2
+      svelte-preprocess: registry.npmjs.org/svelte-preprocess@5.1.1(@babel/core@7.23.5)(postcss@8.4.32)(svelte@3.59.2)(typescript@5.3.2)
+      typescript: registry.npmjs.org/typescript@5.3.2
+      yargs: registry.npmjs.org/yargs@17.7.2
+    transitivePeerDependencies:
+      - '@babel/core'
+      - coffeescript
+      - less
+      - postcss
+      - postcss-load-config
+      - pug
+      - sass
+      - stylus
+      - sugarss
+    dev: true
+
+  registry.npmjs.org/tslib@2.6.2:
+    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz}
+    name: tslib
+    version: 2.6.2
+    dev: true
+
+  registry.npmjs.org/typescript@5.3.2:
+    resolution: {integrity: sha512-6l+RyNy7oAHDfxC4FzSJcz9vnjTKxrLpDG5M2Vu4SHRVNg6xzqZp6LYSR9zjqQTu8DU/f5xwxUdADOkbrIX2gQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/typescript/-/typescript-5.3.2.tgz}
+    name: typescript
+    version: 5.3.2
+    engines: {node: '>=14.17'}
+    hasBin: true
+    dev: true
+
+  registry.npmjs.org/wrap-ansi@7.0.0:
+    resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz}
+    name: wrap-ansi
+    version: 7.0.0
+    engines: {node: '>=10'}
+    dependencies:
+      ansi-styles: registry.npmjs.org/ansi-styles@4.3.0
+      string-width: registry.npmjs.org/string-width@4.2.3
+      strip-ansi: registry.npmjs.org/strip-ansi@6.0.1
+    dev: true
+
+  registry.npmjs.org/wrappy@1.0.2:
+    resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz}
+    name: wrappy
+    version: 1.0.2
+    dev: true
+
+  registry.npmjs.org/y18n@5.0.8:
+    resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/y18n/-/y18n-5.0.8.tgz}
+    name: y18n
+    version: 5.0.8
+    engines: {node: '>=10'}
+    dev: true
+
+  registry.npmjs.org/yargs-parser@21.1.1:
+    resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/yargs-parser/-/yargs-parser-21.1.1.tgz}
+    name: yargs-parser
+    version: 21.1.1
+    engines: {node: '>=12'}
+    dev: true
+
+  registry.npmjs.org/yargs@17.7.2:
+    resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/yargs/-/yargs-17.7.2.tgz}
+    name: yargs
+    version: 17.7.2
+    engines: {node: '>=12'}
+    dependencies:
+      cliui: registry.npmjs.org/cliui@8.0.1
+      escalade: registry.npmjs.org/escalade@3.1.1
+      get-caller-file: registry.npmjs.org/get-caller-file@2.0.5
+      require-directory: registry.npmjs.org/require-directory@2.1.1
+      string-width: registry.npmjs.org/string-width@4.2.3
+      y18n: registry.npmjs.org/y18n@5.0.8
+      yargs-parser: registry.npmjs.org/yargs-parser@21.1.1
     dev: true

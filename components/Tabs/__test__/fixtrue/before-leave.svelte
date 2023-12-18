@@ -1,0 +1,34 @@
+<script lang="ts">
+	import { KTabsPane, KTabs } from '@ikun-ui/tabs';
+	let value = '1';
+	const handleClick = (e: CustomEvent) => {
+		value = e.detail.uid;
+	};
+
+	let navOptions = [
+		{
+			label: 'label1',
+			value: 'label1',
+			uid: '1'
+		},
+		{
+			label: 'label2',
+			value: 'label2',
+			uid: '2'
+		}
+	];
+	async function onLeave(oldActiveTabValue, activeTabValue) {
+		if (activeTabValue === '2') {
+			return false;
+		}
+		return true;
+	}
+</script>
+
+<KTabs {navOptions} beforeLeave={onLeave} on:click={handleClick} {value}>
+	{#each navOptions as option (option.uid)}
+		<KTabsPane uid={option.uid}>
+			<h1 class="py-30px">{option.value}</h1>
+		</KTabsPane>
+	{/each}
+</KTabs>

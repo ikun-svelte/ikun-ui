@@ -9,7 +9,7 @@
 	export let width: KIconProps['width'] = '24px';
 	export let height: KIconProps['height'] = '24px';
 	export let color: KIconProps['color'] = '';
-	export let cls: KIconProps['cls'] = undefined;
+	export let cls: KIconProps['cls'] = '';
 	export let attrs: KIconProps['attrs'] = {};
 
 	$: tag = btn ? 'button' : '';
@@ -17,6 +17,12 @@
 	const dispatch = createEventDispatcher();
 	const onClick = (event: Event) => {
 		dispatch('click', event);
+	};
+	const onMouseenter = (event: Event) => {
+		dispatch('mouseenter', event);
+	};
+	const onMouseleave = (event: Event) => {
+		dispatch('mouseleave', event);
 	};
 
 	const prefixCls = getPrefixCls('icon');
@@ -44,5 +50,7 @@
 	{...attrs}
 	style:width={widthInner}
 	style:height={heightInner}
+	on:mouseenter={onMouseenter}
+	on:mouseleave={onMouseleave}
 	on:click={onClick}
 ></span>

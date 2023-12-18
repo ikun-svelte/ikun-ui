@@ -13,6 +13,7 @@ import { getDescriptionsGridColCls } from './src/descriptions';
 import { getDescriptionsItemGridColStartCls } from './src/descriptions-item';
 import { setMainColor } from './set-main-color';
 import { getIkunColorRules } from './src/ikun-color';
+import { tabRules } from './src/tab';
 
 declare type dynamicRulesFunc = (...args: any[]) => Array<RegExp | ((...args: any[]) => any)>;
 export const defaultRules = {
@@ -24,6 +25,7 @@ export const defaultRules = {
 	...switchRules,
 	...progressRules,
 	...popoverRules,
+	...tabRules,
 	...getColCls(),
 	...getDescriptionsGridColCls(),
 	...getDescriptionsItemGridColStartCls()
