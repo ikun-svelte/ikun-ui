@@ -172,10 +172,12 @@
 	$: headerCls = clsx({
 		[`${prefixCls}__header`]: type !== 'border' && type !== 'card',
 		[`${prefixCls}__header--card`]: type === 'card',
-		[`${prefixCls}__header--border`]: type === 'border'
+		[`${prefixCls}__header--border`]: type === 'border',
+		[`${prefixCls}__header--border--dark`]: type === 'border'
 	});
 	$: contentCls = clsx(`${prefixCls}__content`, {
-		[`${prefixCls}__content--border`]: type === 'border'
+		[`${prefixCls}__content--border`]: type === 'border',
+		[`${prefixCls}__content--border--dark`]: type === 'border'
 	});
 	$: tabCls = clsx(`${prefixCls}__nav`);
 	$: tabScrollCls = clsx(`${prefixCls}__nav--scroll`);
@@ -184,20 +186,28 @@
 		[`${prefixCls}__nav--wrap--card`]: type === 'card',
 		[`${prefixCls}__nav--wrap--border`]: type === 'border'
 	});
-	$: addCls = clsx(`${prefixCls}__add`, {
+	$: addCls = clsx(`${prefixCls}__add`, `${prefixCls}__add--dark`, {
 		[`${prefixCls}__add--border`]: type === 'border'
 	});
 	$: addWrapCls = clsx(`${prefixCls}__add--wrap`, {
 		[`${prefixCls}__add--wrap--border`]: type === 'border'
 	});
 	$: barCls = clsx(`${prefixCls}__bar`);
-	$: prevCls = clsx(`${prefixCls}__prev`);
-	$: nextCls = clsx(`${prefixCls}__next`);
-	$: closeCls = clsx(`${prefixCls}__close`, `${prefixCls}__close--hover`);
+	$: prevCls = clsx(`${prefixCls}__prev`, `${prefixCls}__prev--dark`);
+	$: nextCls = clsx(`${prefixCls}__next`, `${prefixCls}__next--dark`);
+	$: closeCls = clsx(
+		`${prefixCls}__close`,
+		`${prefixCls}__close--dark`,
+		`${prefixCls}__close--hover`,
+		`${prefixCls}__close--hover--dark`
+	);
 	$: isActive = (uid: KTabsProps['value']) => uid === activeValue;
 	$: tabItemCls = (tab: KTabsNav) =>
 		clsx(`${prefixCls}__nav-item`, {
+			[`${prefixCls}__nav-item--dark`]: !isActive(tab.uid),
 			[`${prefixCls}__nav-item--active`]: isActive(tab.uid),
+			[`${prefixCls}__nav-item--active--dark`]: isActive(tab.uid) && type !== 'border',
+			[`${prefixCls}__nav-item--border--active--dark`]: isActive(tab.uid) && type === 'border',
 			[`${prefixCls}__nav-item--hover`]: !tab.disabled,
 			[`${prefixCls}__nav-item--hover`]: !tab.disabled,
 			[`${prefixCls}__nav-item--disabled`]: tab.disabled,
@@ -290,7 +300,8 @@
 
 	:global(.k-tabs__header--card::after, .k-tabs__header--border::after) {
 		content: '';
-		--at-apply: bg-ikun-bd-base absolute w-full h-1px left-0 bottom-0;
+		--at-apply: bg-ikun-bd-base absolute w-full border-solid border-ikun-bd-base bdb-1 left-0
+			bottom-0;
 	}
 
 	:global(.k-tabs > .k-tabs__header--card .k-tabs__nav-item:first-child) {
