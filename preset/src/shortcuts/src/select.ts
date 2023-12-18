@@ -7,7 +7,7 @@ export const selectShortcuts: Record<string, string> = {
 	'k-select--prefix': 'mr-0.4em text-1em op50',
 	'k-select--suffix': 'mx-0.4em text-1em op50',
 	'k-select--icon': 'op50 k-icon-transition',
-	'k-select--inner': 'w-full h-full flex-auto !outline-none border-transparent',
+	'k-select--inner': 'w-full h-full flex-auto !outline-none border-transparent bg-transparent',
 	'k-select--inner__sm': 'text-12px',
 	'k-select--inner__md': 'text-14px',
 	'k-select--inner__lg': 'text-16px',
