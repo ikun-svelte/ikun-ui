@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ButtonGroupKey, dropDownKey, getPrefixCls } from '@ikun-ui/utils';
+	import { buttonGroupKey, dropDownKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import type { KDropdownProps } from './types';
 	import { KPopover } from '@ikun-ui/popover';
@@ -16,7 +16,7 @@
 	export let cls: KDropdownProps['cls'] = undefined;
 	export let attrs: KDropdownProps['attrs'] = {};
 
-	setContext(ButtonGroupKey, {
+	setContext(buttonGroupKey, {
 		disabled
 	});
 	let cbList = [] as Array<(isDisabled: boolean) => void>;

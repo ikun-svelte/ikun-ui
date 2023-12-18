@@ -28,6 +28,7 @@ afterEach(() => {
 
 describe('Test: KDropdown', () => {
 	test('props: cls', async () => {
+		// @ts-ignore
 		const instance = new KDropdown({
 			target: host,
 			props: {
@@ -40,6 +41,7 @@ describe('Test: KDropdown', () => {
 	});
 
 	test('props: disabled', async () => {
+		// @ts-ignore
 		const instance = new KDropdownDisabled({
 			target: host
 		});
@@ -54,6 +56,7 @@ describe('Test: KDropdown', () => {
 	});
 
 	test('props: maxHeight', async () => {
+		// @ts-ignore
 		const instance = new KDropdownMaxHeight({
 			target: host
 		});
@@ -73,6 +76,7 @@ describe('Test: KDropdown', () => {
 	test('events: change', async () => {
 		let show = false;
 		const mockFn = vi.fn();
+		// @ts-ignore
 		const instance = new KDropdownChange({
 			target: host
 		});
@@ -95,6 +99,7 @@ describe('Test: KDropdown', () => {
 	});
 
 	test('slots: default and dropdown', async () => {
+		// @ts-ignore
 		const instance = new KDropdownSlots({
 			target: host
 		});
@@ -109,6 +114,7 @@ describe('Test: KDropdown', () => {
 	});
 
 	test('api: handleOpen', async () => {
+		// @ts-ignore
 		const instance = new KDropdownOpen({
 			target: host
 		});
@@ -128,6 +134,7 @@ describe('Test: KDropdown', () => {
 
 describe('Test: KDropdown', () => {
 	test('props: disabled', async () => {
+		// @ts-ignore
 		const instance = new KDropdownItemDisabled({
 			target: host
 		});
@@ -143,6 +150,7 @@ describe('Test: KDropdown', () => {
 	});
 
 	test('props: divider', async () => {
+		// @ts-ignore
 		const instance = new KDropdownItemDivider({
 			target: host
 		});
@@ -163,6 +171,7 @@ describe('Test: KDropdown', () => {
 	test('KDropdownItem props command and KDropdown command event', async () => {
 		let value = '';
 		const mockFn = vi.fn();
+		// @ts-ignore
 		const instance = new KDropdownItemCommand({
 			target: host
 		});
