@@ -21,7 +21,7 @@
 	};
 	const hoverJump = (page: number) => {
 		if (trigger !== 'hover') return;
-		dispatch('change', page);
+		dispatch('change', { index: page });
 	};
 
 	const prefixCls = getPrefixCls('carousel-indicators');
