@@ -6,13 +6,20 @@
 	import KCarouselPager from './pager.svelte';
 	export let cls: KCarouselProps['cls'] = undefined;
 	export let attrs: KCarouselProps['attrs'] = {};
+	export let trigger: KCarouselProps['trigger'] = 'click';
 	export let count: KCarouselProps['count'] = 0;
+	export let height: KCarouselProps['count'] = 0;
 	export let initialIndex: KCarouselProps['initialIndex'] = 0;
 	$: wrapWidth = `${count * 100}%`;
 
 	let pageIndex = initialIndex;
+	let resolveHeight = height ? `${height}px` : '';
 	const handlePageChange = (e: CustomEvent) => {
 		pageIndex = e.detail;
+		const children = document.querySelector('.k-carousel-wrap')?.children;
+		if (children) {
+			resolveHeight = `${children[pageIndex].clientHeight}px`;
+		}
 	};
 	$: wrapLeft = `-${pageIndex * 100}%`;
 	const prefixCls = getPrefixCls('carousel');
@@ -20,7 +27,7 @@
 	$: wrapCls = clsx(`${prefixCls}-wrap`);
 </script>
 
-<div class={cnames} {...$$restProps} {...attrs}>
+<div style:height={resolveHeight} class={cnames} {...$$restProps} {...attrs}>
 	<div class={wrapCls} style:width={wrapWidth} style:left={wrapLeft} data-carousel-container>
 		<slot />
 	</div>
@@ -29,6 +36,6 @@
 		<KCarouselPager defaultPageIndex={pageIndex} on:change={handlePageChange} {count} />
 	</slot>
 	<slot name="indicators">
-		<KIndicators {count} on:change={handlePageChange} defaultPageIndex={pageIndex} />
+		<KIndicators {count} {trigger} on:change={handlePageChange} defaultPageIndex={pageIndex} />
 	</slot>
 </div>

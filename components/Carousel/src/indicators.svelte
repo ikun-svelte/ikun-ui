@@ -6,6 +6,7 @@
 
 	export let defaultPageIndex: KIndicatorsProps['defaultPageIndex'] = 0;
 	export let count: KIndicatorsProps['count'] = 0;
+	export let trigger: KIndicatorsProps['trigger'] = 'click';
 	export let cls: KIndicatorsProps['cls'] = undefined;
 	export let attrs: KIndicatorsProps['attrs'] = {};
 
@@ -14,7 +15,12 @@
 	$: arr = [...Array(count).keys()];
 
 	$: pageIndex = defaultPageIndex;
-	const jumpPage = (page: number) => {
+	const clickJump = (page: number) => {
+		if (trigger !== 'click') return;
+		dispatch('change', page);
+	};
+	const hoverJump = (page: number) => {
+		if (trigger !== 'hover') return;
 		dispatch('change', page);
 	};
 
@@ -33,7 +39,8 @@
 				role="button"
 				class={itemCls(item)}
 				aria-hidden="true"
-				on:click={() => jumpPage(item)}
+				on:mouseenter={() => hoverJump(item)}
+				on:click={() => clickJump(item)}
 			></div>
 		{/each}
 	</slot>
