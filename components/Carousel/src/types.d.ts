@@ -43,7 +43,7 @@ export type KIndicatorsProps = {
 // TODO: KCarousel - props type 类型 card/''
 // TODO: KCarousel - props loop 是否循环显示 🤡
 
-// TODO: KCarousel - events Change 目前激活的幻灯片的索引，原幻灯片的索引
+// TODO: KCarousel - events Change 目前激活的幻灯片的索引，原幻灯片的索引 🤡
 
 // TODO: KCarousel - api goto 手动切换幻灯片 🤡
 // TODO: KCarousel - api prev 切换至上一张幻灯片 🤡

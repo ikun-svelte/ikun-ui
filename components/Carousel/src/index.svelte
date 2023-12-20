@@ -4,7 +4,7 @@
 	import type { KCarouselProps } from './types';
 	import KIndicators from './indicators.svelte';
 	import KCarouselPager from './pager.svelte';
-	import { onDestroy, onMount, tick } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount, tick } from 'svelte';
 	export let cls: KCarouselProps['cls'] = undefined;
 	export let attrs: KCarouselProps['attrs'] = {};
 	export let trigger: KCarouselProps['trigger'] = 'click';
@@ -21,16 +21,19 @@
 	let pageIndex = initialIndex;
 	let resolveHeight = height ? `${height}px` : '';
 	let transition = 'left .5s ease 0s';
+	const dispatch = createEventDispatcher();
+	let oldIndex = pageIndex;
 	const handlePageChange = async (e: CustomEvent) => {
 		const { index, type: actionType } = e.detail;
 		const children = document.querySelector('.k-carousel-wrap')?.children;
-
+		oldIndex = pageIndex;
 		if (!loop) {
 			pageIndex = index;
 			wrapLeft = `-${pageIndex * 100}%`;
 			if (children) {
 				resolveHeight = `${children[pageIndex].clientHeight}px`;
 			}
+			dispatch('change', { index: pageIndex, oldIndex });
 			return;
 		} else {
 			if (children) {
@@ -57,6 +60,7 @@
 				} else {
 					pageIndex = index;
 					wrapLeft = `-${pageIndex * 100}%`;
+					dispatch('change', { index: pageIndex, oldIndex });
 				}
 			}
 		}
@@ -69,6 +73,7 @@
 			el.style.transform = '';
 			transition = '';
 			wrapLeft = `-${pageIndex * 100}%`;
+			dispatch('change', { index, oldIndex });
 		}, 400);
 	}
 
