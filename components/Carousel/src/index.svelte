@@ -45,7 +45,7 @@
 					wrapLeft = `-${pageIndex * 100}%`;
 					const firstElm = children[0];
 					if (firstElm) {
-						(firstElm as HTMLElement).style.transform = `translateX(${wrapWidth}) scale(1)`;
+						(firstElm as HTMLElement).style.transform = `translateX(${wrapWidth})`;
 						resetChild(firstElm as HTMLElement, index);
 					}
 				} else if (actionType === 'fte' && loop) {
@@ -54,7 +54,7 @@
 					await tick();
 					const lastElm = children[count - 1];
 					if (lastElm) {
-						(lastElm as HTMLElement).style.transform = `translateX(-${count * 100}%) scale(1)`;
+						(lastElm as HTMLElement).style.transform = `translateX(-${count * 100}%)`;
 						resetChild(lastElm as HTMLElement, index);
 					}
 				} else {
