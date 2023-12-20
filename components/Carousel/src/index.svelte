@@ -8,36 +8,27 @@
 	export let attrs: KCarouselProps['attrs'] = {};
 	export let count: KCarouselProps['count'] = 0;
 	export let initialIndex: KCarouselProps['initialIndex'] = 0;
-	$: wrapWidth = `${count * 100}%`
+	$: wrapWidth = `${count * 100}%`;
 
-	let pageIndex = initialIndex
+	let pageIndex = initialIndex;
 	const handlePageChange = (e: CustomEvent) => {
-		pageIndex = e.detail
-	}
-	$: wrapLeft = `-${(pageIndex) * 100}%`
+		pageIndex = e.detail;
+	};
+	$: wrapLeft = `-${pageIndex * 100}%`;
 	const prefixCls = getPrefixCls('carousel');
-	$: cnames = clsx(
-		prefixCls,
-		cls
-	);
+	$: cnames = clsx(prefixCls, cls);
 	$: wrapCls = clsx(`${prefixCls}-wrap`);
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
-	<div class={wrapCls}
-		 style:width={wrapWidth}
-		 style:left={wrapLeft}
-		 data-carousel-container>
+	<div class={wrapCls} style:width={wrapWidth} style:left={wrapLeft} data-carousel-container>
 		<slot />
 	</div>
 
 	<slot name="pager">
-		<KCarouselPager
-				defaultPageIndex={initialIndex}
-				on:change={handlePageChange}
-				{count}/>
+		<KCarouselPager defaultPageIndex={pageIndex} on:change={handlePageChange} {count} />
 	</slot>
 	<slot name="indicators">
-		<KIndicators />
+		<KIndicators {count} on:change={handlePageChange} defaultPageIndex={pageIndex} />
 	</slot>
 </div>

@@ -1,15 +1,22 @@
 /// <reference types="svelte" />
 import type { ClassValue } from 'clsx';
 export type KCarouselProps = {
-	initialIndex: number
-	count: number
+	initialIndex: number;
+	count: number;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
 
 export type KCarouselPagerProps = {
-	defaultPageIndex: number
-	count: number
+	defaultPageIndex: number;
+	count: number;
+	cls: ClassValue;
+	attrs: Record<string, string>;
+};
+
+export type KIndicatorsProps = {
+	defaultPageIndex: number;
+	count: number;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
@@ -22,9 +29,7 @@ export type KCarouselPagerProps = {
 // TODO: KCarousel - props autoplay 是否自动切换
 // TODO: KCarousel - props interval 自动切换的时间间隔，单位为毫秒
 // TODO: KCarousel - props arrow 切换箭头的显示时机
-// TODO: KCarousel - props autoplay 是否自动切换
 // TODO: KCarousel - props type 类型 card/''
-// TODO: KCarousel - props loop 是否循环显示
 // TODO: KCarousel - props loop 是否循环显示
 // TODO: KCarousel - props pauseOnHover 鼠标悬浮时暂停自动切换
 
@@ -33,4 +38,5 @@ export type KCarouselPagerProps = {
 // TODO: KCarousel - api goto 手动切换幻灯片
 // TODO: KCarousel - api prev 切换至上一张幻灯片
 // TODO: KCarousel - api next 切换至下一张幻灯片
-// TODO: KCarousel - props direction 展示的方向
+
+// TODO: KCarousel - props direction 展示的方向(next version enhancement)
