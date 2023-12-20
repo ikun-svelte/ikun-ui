@@ -4,13 +4,16 @@
 	import type { KCarouselProps } from './types';
 	import KIndicators from './indicators.svelte';
 	import KCarouselPager from './pager.svelte';
-	import { tick } from 'svelte';
+	import { onDestroy, onMount, tick } from 'svelte';
 	export let cls: KCarouselProps['cls'] = undefined;
 	export let attrs: KCarouselProps['attrs'] = {};
 	export let trigger: KCarouselProps['trigger'] = 'click';
 	export let arrow: KCarouselProps['arrow'] = 'hover';
 	export let count: KCarouselProps['count'] = 0;
 	export let loop: KCarouselProps['loop'] = true;
+	export let autoplay: KCarouselProps['autoplay'] = true;
+	export let pauseOnHover: KCarouselProps['pauseOnHover'] = true;
+	export let interval: KCarouselProps['interval'] = 3000;
 	export let height: KCarouselProps['count'] = 0;
 	export let initialIndex: KCarouselProps['initialIndex'] = 0;
 	$: wrapWidth = `${count * 100}%`;
@@ -76,12 +79,30 @@
 	};
 	let isShowPager = showPager(false);
 	const handleMouseenter = () => {
+		pauseOnHover && timer && clearInterval(timer);
 		isShowPager = showPager(true);
 	};
 
 	const handleMouseleave = () => {
+		pauseOnHover && doAutoplay();
 		isShowPager = showPager(false);
 	};
+
+	let pagerRef: any = null;
+	let timer: null | number = null;
+	const doAutoplay = () => {
+		if (autoplay) {
+			timer = window.setInterval(() => {
+				pagerRef && pagerRef.gotoNext();
+			}, interval);
+		}
+	};
+
+	onMount(doAutoplay);
+
+	onDestroy(() => {
+		timer && clearInterval(timer);
+	});
 
 	let wrapLeft = `-${initialIndex * 100}%`;
 	$: {
@@ -113,6 +134,7 @@
 
 	<slot name="pager">
 		<KCarouselPager
+			bind:this={pagerRef}
 			show={isShowPager}
 			{loop}
 			defaultPageIndex={pageIndex}

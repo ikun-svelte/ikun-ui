@@ -14,12 +14,9 @@
 
 	$: pageIndex = defaultPageIndex;
 
-	// let resolveIndex = defaultPageIndex
-	// const setPageIndex = (current: number) => {
-	// 	pageIndex = current
-	// }
-
-	// export const getPageIndex = () => pageIndex
+	export const setPageIndex = (current: number) => {
+		jumpPage(current);
+	};
 
 	const dispatch = createEventDispatcher();
 	const jumpPage = (page: number) => {
@@ -42,9 +39,9 @@
 		});
 	};
 
-	const gotoPrev = () => jumpPage(-1);
+	export const gotoPrev = () => jumpPage(-1);
 
-	const gotoNext = () => jumpPage(1);
+	export const gotoNext = () => jumpPage(1);
 
 	const prefixCls = getPrefixCls('carousel-pager');
 	$: cnames = clsx(prefixCls, cls);
