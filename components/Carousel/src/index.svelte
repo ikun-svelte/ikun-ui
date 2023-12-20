@@ -104,6 +104,33 @@
 		timer && clearInterval(timer);
 	});
 
+	/**
+	 * api goto
+	 * manual switch
+	 * @public
+	 */
+	export function goto(page: number) {
+		pagerRef && pagerRef.setPage(page);
+	}
+
+	/**
+	 * api prev
+	 * Switch to previous picture
+	 * @public
+	 */
+	export function prev() {
+		pagerRef && pagerRef.gotoPrev();
+	}
+
+	/**
+	 * api next
+	 * Switch to next picture
+	 * @public
+	 */
+	export function next() {
+		pagerRef && pagerRef.gotoNext();
+	}
+
 	let wrapLeft = `-${initialIndex * 100}%`;
 	$: {
 		wrapLeft = `-${initialIndex * 100}%`;

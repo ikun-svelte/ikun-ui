@@ -14,13 +14,17 @@
 
 	$: pageIndex = defaultPageIndex;
 
-	export const setPageIndex = (current: number) => {
+	export const setPage = (current: number) => {
+		if (current < 0 || current >= count) {
+			console.warn('[KCarousel]: The target index of the jump exceeds the allowed range.');
+			return;
+		}
 		jumpPage(current);
 	};
 
 	const dispatch = createEventDispatcher();
 	const jumpPage = (page: number) => {
-		let resolveIndex = pageIndex + page;
+		let resolveIndex = page;
 		let type = 'normal';
 		if (loop) {
 			if (resolveIndex < 0) {
@@ -39,9 +43,9 @@
 		});
 	};
 
-	export const gotoPrev = () => jumpPage(-1);
+	export const gotoPrev = () => jumpPage(pageIndex - 1);
 
-	export const gotoNext = () => jumpPage(1);
+	export const gotoNext = () => jumpPage(pageIndex + 1);
 
 	const prefixCls = getPrefixCls('carousel-pager');
 	$: cnames = clsx(prefixCls, cls);

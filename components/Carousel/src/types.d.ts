@@ -45,8 +45,8 @@ export type KIndicatorsProps = {
 
 // TODO: KCarousel - events Change 目前激活的幻灯片的索引，原幻灯片的索引
 
-// TODO: KCarousel - api goto 手动切换幻灯片
-// TODO: KCarousel - api prev 切换至上一张幻灯片
-// TODO: KCarousel - api next 切换至下一张幻灯片
+// TODO: KCarousel - api goto 手动切换幻灯片 🤡
+// TODO: KCarousel - api prev 切换至上一张幻灯片 🤡
+// TODO: KCarousel - api next 切换至下一张幻灯片 🤡
 
 // TODO: KCarousel - props direction 展示的方向(next version enhancement)
