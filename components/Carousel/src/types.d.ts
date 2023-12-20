@@ -4,6 +4,7 @@ export type KCarouselProps = {
 	initialIndex: number;
 	height: number;
 	trigger: 'click' | 'hover';
+	arrow: 'always' | 'hover' | 'never';
 	count: number;
 	cls: ClassValue;
 	attrs: Record<string, string>;
@@ -11,6 +12,7 @@ export type KCarouselProps = {
 
 export type KCarouselPagerProps = {
 	defaultPageIndex: number;
+	show: boolean;
 	count: number;
 	cls: ClassValue;
 	attrs: Record<string, string>;
@@ -32,7 +34,7 @@ export type KIndicatorsProps = {
 // TODO: KCarousel - props autoplay 是否自动切换
 // TODO: KCarousel - props interval 自动切换的时间间隔，单位为毫秒
 // TODO: KCarousel - props pauseOnHover 鼠标悬浮时暂停自动切换
-// TODO: KCarousel - props arrow 切换箭头的显示时机
+// TODO: KCarousel - props arrow 切换箭头的显示时机 🤡
 // TODO: KCarousel - props type 类型 card/''
 // TODO: KCarousel - props loop 是否循环显示
 

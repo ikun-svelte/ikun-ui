@@ -4,9 +4,10 @@
 	import type { KCarouselPagerProps } from './types';
 	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher } from 'svelte';
-
+	import { fly } from 'svelte/transition';
 	export let defaultPageIndex: KCarouselPagerProps['defaultPageIndex'] = 0;
 	export let count: KCarouselPagerProps['count'] = 0;
+	export let show: KCarouselPagerProps['show'] = false;
 	export let cls: KCarouselPagerProps['cls'] = undefined;
 	export let attrs: KCarouselPagerProps['attrs'] = {};
 
@@ -39,13 +40,31 @@
 
 <div class={cnames} {...$$restProps} {...attrs}>
 	<slot name="prev">
-		<div role="button" class={prevCls} aria-hidden="true" on:click={gotoPrev}>
-			<KIcon icon="i-carbon-chevron-left" width="16px" height="16px" />
-		</div>
+		{#if show}
+			<div
+				role="button"
+				out:fly={{ duration: 500, x: -100 }}
+				in:fly={{ duration: 500, x: -100 }}
+				class={prevCls}
+				aria-hidden="true"
+				on:click={gotoPrev}
+			>
+				<KIcon icon="i-carbon-chevron-left" width="16px" height="16px" />
+			</div>
+		{/if}
 	</slot>
 	<slot name="next">
-		<div role="button" class={nextCls} aria-hidden="true" on:click={gotoNext}>
-			<KIcon icon="i-carbon-chevron-right" width="16px" height="16px" />
-		</div>
+		{#if show}
+			<div
+				role="button"
+				out:fly={{ duration: 500, x: 100 }}
+				in:fly={{ duration: 500, x: 100 }}
+				class={nextCls}
+				aria-hidden="true"
+				on:click={gotoNext}
+			>
+				<KIcon icon="i-carbon-chevron-right" width="16px" height="16px" />
+			</div>
+		{/if}
 	</slot>
 </div>

@@ -48,7 +48,7 @@ import { descriptionsShortcuts } from './src/descriptions';
 import { getDescriptionsGridColCls } from '../rules/src/descriptions';
 import { descriptionsItemShortcuts } from './src/descriptions-item';
 import { getDescriptionsItemGridColStartCls } from '../rules/src/descriptions-item';
-import { carouselShortcuts } from "./src/carousel";
+import { carouselShortcuts } from './src/carousel';
 
 export const defaultShortcuts = [
 	baseShortcuts,
@@ -187,7 +187,7 @@ export function getSafeList() {
 	const tabsList = Object.keys(tabsShortcuts);
 	const descriptionsList = Object.keys(descriptionsShortcuts);
 	const descriptionsItemList = Object.keys(descriptionsItemShortcuts);
-	const carouselList = Object.keys(carouselShortcuts)
+	const carouselList = Object.keys(carouselShortcuts);
 	let res = iconList
 		.concat(IKUN_SAFE_LIST)
 		.concat(comList)
