@@ -8,6 +8,7 @@
 	export let defaultPageIndex: KCarouselPagerProps['defaultPageIndex'] = 0;
 	export let count: KCarouselPagerProps['count'] = 0;
 	export let show: KCarouselPagerProps['show'] = false;
+	export let loop: KCarouselPagerProps['loop'] = true;
 	export let cls: KCarouselPagerProps['cls'] = undefined;
 	export let attrs: KCarouselPagerProps['attrs'] = {};
 
@@ -23,8 +24,22 @@
 	const dispatch = createEventDispatcher();
 	const jumpPage = (page: number) => {
 		let resolveIndex = pageIndex + page;
-		resolveIndex = resolveIndex < 0 ? 0 : resolveIndex >= count ? count - 1 : resolveIndex;
-		dispatch('change', resolveIndex);
+		let type = 'normal';
+		if (loop) {
+			if (resolveIndex < 0) {
+				resolveIndex = count - 1;
+				type = 'fte';
+			} else if (resolveIndex >= count) {
+				resolveIndex = 0;
+				type = 'etf';
+			}
+		} else {
+			resolveIndex = resolveIndex < 0 ? 0 : resolveIndex >= count ? count - 1 : resolveIndex;
+		}
+		dispatch('change', {
+			index: resolveIndex,
+			type
+		});
 	};
 
 	const gotoPrev = () => jumpPage(-1);

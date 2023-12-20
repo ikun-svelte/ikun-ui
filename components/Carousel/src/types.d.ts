@@ -5,6 +5,7 @@ export type KCarouselProps = {
 	height: number;
 	trigger: 'click' | 'hover';
 	arrow: 'always' | 'hover' | 'never';
+	loop: boolean;
 	count: number;
 	cls: ClassValue;
 	attrs: Record<string, string>;
@@ -14,6 +15,7 @@ export type KCarouselPagerProps = {
 	defaultPageIndex: number;
 	show: boolean;
 	count: number;
+	loop: boolean;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
@@ -36,7 +38,7 @@ export type KIndicatorsProps = {
 // TODO: KCarousel - props pauseOnHover 鼠标悬浮时暂停自动切换
 // TODO: KCarousel - props arrow 切换箭头的显示时机 🤡
 // TODO: KCarousel - props type 类型 card/''
-// TODO: KCarousel - props loop 是否循环显示
+// TODO: KCarousel - props loop 是否循环显示 🤡
 
 // TODO: KCarousel - events Change 目前激活的幻灯片的索引，原幻灯片的索引
 
