@@ -31,14 +31,14 @@
 			pageIndex = index;
 			wrapLeft = `-${pageIndex * 100}%`;
 			if (children) {
-				resolveHeight = `${children[pageIndex].clientHeight}px`;
+				!height && (resolveHeight = `${children[pageIndex].clientHeight}px`);
 			}
 			dispatch('change', { index: pageIndex, oldIndex });
 			return;
 		} else {
 			if (children) {
 				transition = 'left .5s ease 0s';
-				resolveHeight = `${children[index].clientHeight}px`;
+				!height && (resolveHeight = `${children[index].clientHeight}px`);
 
 				if (actionType === 'etf' && loop) {
 					pageIndex = count;
@@ -67,14 +67,14 @@
 	};
 
 	function resetChild(el: HTMLElement, index: number) {
+		pageIndex = index;
 		setTimeout(() => {
-			pageIndex = index;
 			// reset
 			el.style.transform = '';
 			transition = '';
 			wrapLeft = `-${pageIndex * 100}%`;
 			dispatch('change', { index, oldIndex });
-		}, 400);
+		}, 300);
 	}
 
 	const showPager = (show: boolean) => {
@@ -159,6 +159,7 @@
 		style:width={wrapWidth}
 		style:left={wrapLeft}
 		style:transition
+		data-active={pageIndex}
 		data-carousel-container
 	>
 		<slot />

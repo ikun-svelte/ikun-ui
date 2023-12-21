@@ -17,7 +17,7 @@
 	$: pageIndex = defaultPageIndex;
 	const clickJump = (page: number) => {
 		if (trigger !== 'click') return;
-		dispatch('change', page);
+		dispatch('change', { index: page });
 	};
 	const hoverJump = (page: number) => {
 		if (trigger !== 'hover') return;
