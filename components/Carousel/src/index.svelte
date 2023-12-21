@@ -3,7 +3,7 @@
 	import { clsx } from 'clsx';
 	import type { KCarouselProps } from './types';
 	import KIndicators from './indicators.svelte';
-	import KCarouselPager from './pager.svelte';
+	import KCarouselArrow from './arrow.svelte';
 	import { createEventDispatcher, onDestroy, onMount, tick } from 'svelte';
 	export let cls: KCarouselProps['cls'] = undefined;
 	export let attrs: KCarouselProps['attrs'] = {};
@@ -23,9 +23,10 @@
 	let transition = 'left .5s ease 0s';
 	const dispatch = createEventDispatcher();
 	let oldIndex = pageIndex;
+	let carouselRef: any = null;
 	const handlePageChange = async (e: CustomEvent) => {
 		const { index, type: actionType } = e.detail;
-		const children = document.querySelector('.k-carousel-wrap')?.children;
+		const children = carouselRef.querySelector('.k-carousel-item-wrap')?.children;
 		oldIndex = pageIndex;
 		if (!loop) {
 			pageIndex = index;
@@ -38,7 +39,7 @@
 		} else {
 			if (children) {
 				transition = 'left .5s ease 0s';
-				!height && (resolveHeight = `${children[index].clientHeight}px`);
+				children[index] && !height && (resolveHeight = `${children[index].clientHeight}px`);
 
 				if (actionType === 'etf' && loop) {
 					pageIndex = count;
@@ -74,36 +75,42 @@
 			transition = '';
 			wrapLeft = `-${pageIndex * 100}%`;
 			dispatch('change', { index, oldIndex });
-		}, 300);
+		}, 500);
 	}
 
-	const showPager = (show: boolean) => {
+	const showArrow = (show: boolean) => {
 		if (arrow === 'always') return true;
 		if (arrow === 'never') return false;
 		if (arrow === 'hover') return show;
 	};
-	let isShowPager = showPager(false);
+	let isShowArrow = showArrow(false);
 	const handleMouseenter = () => {
 		pauseOnHover && timer && clearInterval(timer);
-		isShowPager = showPager(true);
+		isShowArrow = showArrow(true);
 	};
 
 	const handleMouseleave = () => {
 		pauseOnHover && doAutoplay();
-		isShowPager = showPager(false);
+		isShowArrow = showArrow(false);
 	};
 
-	let pagerRef: any = null;
+	let arrowRef: any = null;
 	let timer: null | number = null;
 	const doAutoplay = () => {
 		if (autoplay) {
 			timer = window.setInterval(() => {
-				pagerRef && pagerRef.gotoNext();
+				arrowRef && arrowRef.gotoNext();
 			}, interval);
 		}
 	};
 
-	onMount(doAutoplay);
+	onMount(() => {
+		const children = carouselRef.querySelector('.k-carousel-item-wrap')?.children;
+		if (children && children[pageIndex]) {
+			resolveHeight = height ? `${height}px` : `${children[pageIndex].clientHeight}px`;
+		}
+		doAutoplay();
+	});
 
 	onDestroy(() => {
 		timer && clearInterval(timer);
@@ -115,7 +122,7 @@
 	 * @public
 	 */
 	export function goto(page: number) {
-		pagerRef && pagerRef.setPage(page);
+		arrowRef && arrowRef.setPage(page);
 	}
 
 	/**
@@ -124,7 +131,7 @@
 	 * @public
 	 */
 	export function prev() {
-		pagerRef && pagerRef.gotoPrev();
+		arrowRef && arrowRef.gotoPrev();
 	}
 
 	/**
@@ -133,7 +140,7 @@
 	 * @public
 	 */
 	export function next() {
-		pagerRef && pagerRef.gotoNext();
+		arrowRef && arrowRef.gotoNext();
 	}
 
 	let wrapLeft = `-${initialIndex * 100}%`;
@@ -143,39 +150,54 @@
 	const prefixCls = getPrefixCls('carousel');
 	$: cnames = clsx(prefixCls, cls);
 	$: wrapCls = clsx(`${prefixCls}-wrap`);
+	$: wrapItemCls = clsx(`${prefixCls}-item-wrap`);
 </script>
 
 <div
-	style:height={resolveHeight}
 	aria-hidden="true"
 	on:mouseenter={handleMouseenter}
 	on:mouseleave={handleMouseleave}
 	class={cnames}
+	bind:this={carouselRef}
 	{...$$restProps}
 	{...attrs}
 >
-	<div
-		class={wrapCls}
-		style:width={wrapWidth}
-		style:left={wrapLeft}
-		style:transition
-		data-active={pageIndex}
-		data-carousel-container
-	>
-		<slot />
+	<div class={wrapCls} style:height={resolveHeight}>
+		<div
+			class={wrapItemCls}
+			style:width={wrapWidth}
+			style:left={wrapLeft}
+			style:transition
+			data-active={pageIndex}
+			data-carousel-container
+		>
+			<slot />
+		</div>
 	</div>
-
-	<slot name="pager">
-		<KCarouselPager
-			bind:this={pagerRef}
-			show={isShowPager}
+	<slot
+		name="arrow"
+		onChange={handlePageChange}
+		defaultPageIndex={pageIndex}
+		show={isShowArrow}
+		{count}
+		{loop}
+	>
+		<KCarouselArrow
+			bind:this={arrowRef}
+			show={isShowArrow}
 			{loop}
 			defaultPageIndex={pageIndex}
 			on:change={handlePageChange}
 			{count}
 		/>
 	</slot>
-	<slot name="indicators">
+	<slot
+		name="indicators"
+		onChange={handlePageChange}
+		defaultPageIndex={pageIndex}
+		{count}
+		{trigger}
+	>
 		<KIndicators {count} {trigger} on:change={handlePageChange} defaultPageIndex={pageIndex} />
 	</slot>
 </div>

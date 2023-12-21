@@ -14,7 +14,7 @@ export type KCarouselProps = {
 	attrs: Record<string, string>;
 };
 
-export type KCarouselPagerProps = {
+export type KCarouselArrowProps = {
 	defaultPageIndex: number;
 	show: boolean;
 	count: number;
@@ -30,7 +30,5 @@ export type KIndicatorsProps = {
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
-// TODO: KCarousel 自定义分页器
-// TODO: KCarousel 自定义指示器
 
 // TODO: KCarousel - props direction 展示的方向(next version enhancement)

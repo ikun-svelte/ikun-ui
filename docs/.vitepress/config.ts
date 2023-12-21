@@ -103,6 +103,10 @@ const components = [
 				link: '/components/KCard'
 			},
 			{
+				text: 'Carousel',
+				link: '/components/KCarousel'
+			},
+			{
 				text: 'Collapse',
 				link: '/components/KCollapse'
 			},

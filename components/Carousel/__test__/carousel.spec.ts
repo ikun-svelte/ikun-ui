@@ -14,6 +14,7 @@ import KCarouselApiGoto from './fixture/api.goto.svelte';
 import KCarouselEvtApi from './fixture/event.api.svelte';
 import KCarouselEvt from './fixture/event.svelte';
 import KCarouselEvtPlay from './fixture/event.play.svelte';
+import KCarouselCustom from './fixture/custom.svelte';
 import { tick } from 'svelte';
 let host;
 
@@ -45,6 +46,8 @@ describe('Test: KCarousel', () => {
 		const instance = new KCarousel({
 			target: host,
 			props: {
+				count: 3,
+				initialIndex: 0,
 				cls: 'k-carousel--test'
 			}
 		});
@@ -95,8 +98,8 @@ describe('Test: KCarousel', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host.querySelector('.k-carousel-pager-prev')).toBeTruthy();
-		expect(host.querySelector('.k-carousel-pager-next')).toBeTruthy();
+		expect(host.querySelector('.k-carousel-arrow-prev')).toBeTruthy();
+		expect(host.querySelector('.k-carousel-arrow-next')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -106,13 +109,13 @@ describe('Test: KCarousel', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host.querySelector('.k-carousel-pager-prev')).not.toBeTruthy();
-		expect(host.querySelector('.k-carousel-pager-next')).not.toBeTruthy();
+		expect(host.querySelector('.k-carousel-arrow-prev')).not.toBeTruthy();
+		expect(host.querySelector('.k-carousel-arrow-next')).not.toBeTruthy();
 		const carouselElm = host.querySelector('.k-carousel');
 		carouselElm.dispatchEvent(new Event('mouseenter', { bubbles: true }));
 		await tick();
-		expect(host.querySelector('.k-carousel-pager-prev')).toBeTruthy();
-		expect(host.querySelector('.k-carousel-pager-next')).toBeTruthy();
+		expect(host.querySelector('.k-carousel-arrow-prev')).toBeTruthy();
+		expect(host.querySelector('.k-carousel-arrow-next')).toBeTruthy();
 	});
 
 	test('props: arrow is never', async () => {
@@ -121,8 +124,8 @@ describe('Test: KCarousel', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host.querySelector('.k-carousel-pager-prev')).not.toBeTruthy();
-		expect(host.querySelector('.k-carousel-pager-next')).not.toBeTruthy();
+		expect(host.querySelector('.k-carousel-arrow-prev')).not.toBeTruthy();
+		expect(host.querySelector('.k-carousel-arrow-next')).not.toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -137,8 +140,8 @@ describe('Test: KCarousel', () => {
 		expect(carouselElm1.querySelector('[data-active="2"]')).toBeTruthy();
 		expect(carouselElm2.querySelector('[data-active="2"]')).toBeTruthy();
 
-		const nextBtn1 = carouselElm1.querySelector('.k-carousel-pager-next');
-		const nextBtn2 = carouselElm2.querySelector('.k-carousel-pager-next');
+		const nextBtn1 = carouselElm1.querySelector('.k-carousel-arrow-next');
+		const nextBtn2 = carouselElm2.querySelector('.k-carousel-arrow-next');
 		nextBtn1.click();
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
@@ -148,7 +151,7 @@ describe('Test: KCarousel', () => {
 		await vi.advanceTimersByTimeAsync(300);
 		expect(carouselElm2.querySelector('[data-active="2"]')).toBeTruthy();
 
-		const prevBtn1 = carouselElm1.querySelector('.k-carousel-pager-prev');
+		const prevBtn1 = carouselElm1.querySelector('.k-carousel-arrow-prev');
 		prevBtn1.click();
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
@@ -228,11 +231,11 @@ describe('Test: KCarousel', () => {
 		indicatorsElms[2].click();
 		await tick();
 		expect(host.innerHTML).toMatchSnapshot('{"index":2,"oldIndex":1}');
-		const nextBtn = host.querySelector('.k-carousel-pager-next');
+		const nextBtn = host.querySelector('.k-carousel-arrow-next');
 		nextBtn.click();
 		await tick();
 		expect(host.innerHTML).toMatchSnapshot('{"index":1,"oldIndex":2}');
-		const prevBtn = host.querySelector('.k-carousel-pager-prev');
+		const prevBtn = host.querySelector('.k-carousel-arrow-prev');
 		prevBtn.click();
 		await tick();
 		expect(host.innerHTML).toMatchSnapshot('{"index":2,"oldIndex":1}');
@@ -272,5 +275,14 @@ describe('Test: KCarousel', () => {
 		btnPrev.click();
 		await tick();
 		expect(host.innerHTML).toMatchSnapshot('{"index":2,"oldIndex":0}');
+	});
+
+	test('slot: custom arrow indicators ', async () => {
+		// @ts-ignore
+		const instance = new KCarouselCustom({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
 	});
 });

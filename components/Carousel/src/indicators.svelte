@@ -33,7 +33,7 @@
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
-	<slot>
+	<slot {hoverJump} {clickJump} activeIndex={pageIndex} name="item">
 		{#each arr as item}
 			<div
 				role="button"
