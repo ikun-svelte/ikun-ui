@@ -49,7 +49,7 @@ import { getDescriptionsGridColCls } from '../rules/src/descriptions';
 import { descriptionsItemShortcuts } from './src/descriptions-item';
 import { getDescriptionsItemGridColStartCls } from '../rules/src/descriptions-item';
 import { carouselShortcuts } from './src/carousel';
-
+import { affixShortcuts } from './src/affix';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -138,7 +138,9 @@ export const defaultShortcuts = [
 	// descriptions item
 	descriptionsItemShortcuts,
 	// carousel
-	carouselShortcuts
+	carouselShortcuts,
+	// affix
+	affixShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -188,6 +190,7 @@ export function getSafeList() {
 	const descriptionsList = Object.keys(descriptionsShortcuts);
 	const descriptionsItemList = Object.keys(descriptionsItemShortcuts);
 	const carouselList = Object.keys(carouselShortcuts);
+	const affixlList = Object.keys(affixShortcuts);
 	let res = iconList
 		.concat(IKUN_SAFE_LIST)
 		.concat(comList)
@@ -234,6 +237,7 @@ export function getSafeList() {
 		.concat(pageList)
 		.concat(descriptionsList)
 		.concat(descriptionsItemList)
+		.concat(affixlList)
 		.concat(carouselList);
 
 	// rules
@@ -294,3 +298,4 @@ export { tabsShortcuts } from './src/tabs';
 export { descriptionsShortcuts } from './src/descriptions';
 export { descriptionsItemShortcuts } from './src/descriptions-item';
 export { carouselShortcuts } from './src/carousel';
+export { affixShortcuts } from './src/affix';

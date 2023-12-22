@@ -31,3 +31,5 @@ Thanks to everyone who has already contributed to ikun-ui !
 - [svelte](https://github.com/sveltejs/svelte)
 - [unocss](https://github.com/unocss/unocss)
 - [onu-ui](https://github.com/onu-ui/onu-ui)
+- [naive-ui](https://github.com/tusen-ai/naive-ui)
+- [element-plus](https://github.com/element-plus/element-plus)
