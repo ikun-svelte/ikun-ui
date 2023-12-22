@@ -157,6 +157,10 @@ const components = [
 		collapsed: false,
 		items: [
 			{
+				text: 'Affix',
+				link: '/components/KAffix'
+			},
+			{
 				text: 'Breadcrumb',
 				link: '/components/KBreadcrumb'
 			},
