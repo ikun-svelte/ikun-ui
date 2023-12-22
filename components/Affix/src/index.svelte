@@ -7,13 +7,12 @@
 	import { onDestroy, onMount } from 'svelte';
 	export let cls: KAffixProps['cls'] = undefined;
 	export let attrs: KAffixProps['attrs'] = {};
-
-	export let listenTo: string | ScrollTarget | (() => HTMLElement) | undefined = undefined;
-	export let top: number | undefined = undefined;
-	export let bottom: number | undefined = undefined;
-	export let triggerTop: number | undefined = undefined;
-	export let triggerBottom: number | undefined = undefined;
-	export let positionOption: 'fixed' | 'absolute' = 'fixed';
+	export let listenTo: KAffixProps['listenTo'] = undefined;
+	export let top: KAffixProps['top'] = undefined;
+	export let bottom: KAffixProps['bottom'] = undefined;
+	export let triggerTop: KAffixProps['triggerTop'] = undefined;
+	export let triggerBottom: KAffixProps['triggerBottom'] = undefined;
+	export let positionOption: KAffixProps['positionOption'] = 'fixed';
 
 	let scrollTarget: ScrollTarget | null = null;
 	let stickToTopRef = false;
