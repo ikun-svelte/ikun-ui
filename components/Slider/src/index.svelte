@@ -1,16 +1,17 @@
 <script lang="ts">
-	import { createEventDispatcher, getContext } from "svelte";
-	import { clsx } from 'clsx';
 	import type { KSliderProps } from './types';
-	import { formItemKey, formKey, getPrefixCls } from "@ikun-ui/utils";
-	import type { IKunFormInstance } from "@ikun-ui/form";
+	import type { IKunFormInstance } from '@ikun-ui/form';
+	import { createEventDispatcher, getContext } from 'svelte';
+	import { formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
+	import { clsx } from 'clsx';
 
+	export let size: KSliderProps['size'] = 'md';
 	export let min: KSliderProps['min'] = 0;
 	export let max: KSliderProps['max'] = 100;
 	export let value: KSliderProps['value'] = 0;
 	export let step: KSliderProps['step'] = 1;
 	export let disabled: KSliderProps['disabled'] = false;
-	export let size: KSliderProps['size'] = 'md';
+	export let vertical: KSliderProps['vertical'] = false;
 	export let attrs: KSliderProps['attrs'] = {};
 	export let cls: KSliderProps['cls'] = undefined;
 
@@ -52,6 +53,7 @@
 	// current value
 	let isDragging: boolean = false;
 	let startX: number = 0;
+	let startY: number = 0;
 	let startPosition: number;
 	let newPosition: number;
 
@@ -61,9 +63,11 @@
 		value = max;
 	}
 	$: percentage = `${((value - min) / (max - min)) * 100}%`;
+	$: barStyle = vertical ? `height: ${percentage}; bottom: 0%` : `width: ${percentage}; left: 0%`;
+	$: btnStyle = vertical ? `bottom: ${percentage}` : `left: ${percentage}`;
 
 	// element
-	let sliderRunwayRef: null | HTMLElement = null;
+	let runwayRef: null | HTMLElement = null;
 	// updateValue
 	const dispatch = createEventDispatcher();
 
@@ -71,9 +75,15 @@
 		if (disabledInner) return;
 		let newPercent = 0;
 		const clientX = event.clientX;
-		const sliderOffsetLeft = sliderRunwayRef!.getBoundingClientRect().left;
-		const sliderSize = sliderRunwayRef!.getBoundingClientRect().width;
-		newPercent = ((clientX - sliderOffsetLeft) / sliderSize) * 100;
+		const clientY = event.clientY;
+		const sliderOffsetLeft = runwayRef!.getBoundingClientRect().left;
+		const sliderOffsetBottom = runwayRef!.getBoundingClientRect().bottom;
+		const sliderSize = vertical
+			? runwayRef!.getBoundingClientRect().height
+			: runwayRef!.getBoundingClientRect().width;
+		newPercent = vertical
+			? ((sliderOffsetBottom - clientY) / sliderSize) * 100
+			: ((clientX - sliderOffsetLeft) / sliderSize) * 100;
 		if (newPosition < 0 || newPosition > 100) return;
 		setPosition(newPercent);
 	};
@@ -94,12 +104,14 @@
 
 	const setPosition = (newPosition: number) => {
 		if (Number.isNaN(+newPosition)) return;
+
 		if (newPosition < 0) {
 			newPosition = 0;
 		}
 		if (newPosition > 100) {
 			newPosition = 100;
 		}
+
 		const lengthStep = 100 / ((max - min) / step);
 		const steps = Math.round(newPosition / lengthStep);
 		let newValue = steps * lengthStep * (max - min) * 0.01 + min;
@@ -111,18 +123,21 @@
 
 	const onDragStart = (event: MouseEvent) => {
 		isDragging = true;
-		const { clientX } = getClientXY(event);
+		const { clientX, clientY } = getClientXY(event);
 		startX = clientX;
+		startY = clientY;
 		startPosition = Number.parseFloat(percentage);
 		newPosition = startPosition;
 	};
 
 	const onDragging = (event: MouseEvent) => {
-		if (!isDragging || !sliderRunwayRef) return;
+		if (!isDragging || !runwayRef) return;
 		let diff: number;
-		const { clientX } = getClientXY(event);
-		const sliderWidth = sliderRunwayRef.getBoundingClientRect().width;
-		diff = ((clientX - startX) / sliderWidth) * 100;
+		const { clientX, clientY } = getClientXY(event);
+		const { width: sliderWidth, height: sliderHeight } = runwayRef.getBoundingClientRect();
+		diff = vertical
+			? ((startY - clientY) / sliderHeight) * 100
+			: ((clientX - startX) / sliderWidth) * 100;
 		newPosition = startPosition + diff;
 		setPosition(newPosition);
 	};
@@ -131,47 +146,57 @@
 		if (!isDragging) return;
 		isDragging = false;
 		dispatch('change', value);
-		formInstance &&
-		formInstance?.updateField( field!, value, !formInstance.__manual_validate);
+		formInstance && formInstance?.updateField(field!, value, !formInstance.__manual_validate);
 		window.removeEventListener('mousemove', onDragging);
 		window.removeEventListener('mouseup', onDragEnd);
 	};
 
+	// class names
 	const prefixCls = getPrefixCls('slider');
-	$: cnames = clsx(prefixCls, cls);
-	$: sliderRunwayCls = clsx(`${prefixCls}--runway`, {
-		'k-cur-disabled': disabledInner
-	});
-	$: sizeCls = clsx(`${prefixCls}--base`, `${prefixCls}__${sizeInner}`);
-	const barCls = `${prefixCls}--bar`;
-	$: btnCls = clsx(`${prefixCls}--button`, `${prefixCls}--button__${sizeInner}`);
-	$: btnWrapperCls = clsx(
-		`${prefixCls}--button__wrapper`,
-		`${prefixCls}--button__wrapper__${sizeInner}`
+	$: baseCls = clsx(
+		prefixCls,
+		{
+			[`${prefixCls}--base`]: !vertical,
+			[`${prefixCls}--base__vertical`]: vertical
+		},
+		{
+			[`${prefixCls}--${sizeInner}`]: !vertical,
+			[`${prefixCls}--${sizeInner}__vertical`]: vertical
+		},
+		cls
 	);
+	$: buttonWrapperCls = clsx({
+		[`${prefixCls}--button-wrapper`]: !vertical,
+		[`${prefixCls}--button-wrapper__vertical`]: vertical
+	});
+	$: buttonCls = clsx(`${prefixCls}--button`, `${prefixCls}--button--${sizeInner}`);
+	$: runwayCls = clsx({
+		[`${prefixCls}--runway__disabled`]: disabledInner,
+		[`${prefixCls}--runway--${sizeInner}`]: !vertical,
+		[`${prefixCls}--runway`]: !vertical,
+		[`${prefixCls}--runway--${sizeInner}__vertical`]: vertical,
+		[`${prefixCls}--runway__vertical`]: vertical
+	});
+	$: barCls = clsx({
+		[`${prefixCls}--bar`]: !vertical,
+		[`${prefixCls}--bar__vertical`]: vertical
+	});
 </script>
 
-<div class={cnames}>
-	<div {...attrs} class={sizeCls}>
+<div class={baseCls} {...$$restProps} {...attrs}>
+	<div bind:this={runwayRef} class={runwayCls} aria-hidden="true" on:mousedown={handleRunwayClick}>
 		<div
-			bind:this={sliderRunwayRef}
-			class={sliderRunwayCls}
+			class={buttonWrapperCls}
 			aria-hidden="true"
-			on:mousedown={handleRunwayClick}
+			on:mousedown={handleMouseDown}
+			style={btnStyle}
 		>
-			<div class={barCls} style="width: {percentage}; left: 0%"></div>
-			<div
-				class={btnWrapperCls}
-				aria-hidden="true"
-				on:mousedown={handleMouseDown}
-				style:left={percentage}
-			>
-				{#if $$slots.buttonRender}
-					<slot name="buttonRender" />
-				{:else}
-					<div class={btnCls}></div>
-				{/if}
-			</div>
+			{#if $$slots.buttonRender}
+				<slot name="buttonRender" />
+			{:else}
+				<div class={buttonCls}></div>
+			{/if}
 		</div>
+		<div class={barCls} style={barStyle}></div>
 	</div>
 </div>

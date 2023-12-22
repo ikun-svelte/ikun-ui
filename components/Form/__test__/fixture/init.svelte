@@ -9,7 +9,7 @@
 	import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
 	import { KSelect } from '@ikun-ui/select';
 	import { onMount } from 'svelte';
-	import { KSlider } from "@ikun-ui/slider";
+	import { KSlider } from '@ikun-ui/slider';
 	const initValue = {
 		KInput: 'KInput',
 		KSwitch: true,
@@ -18,7 +18,7 @@
 		KCheckbox: ['2'],
 		KSelect: { label: '不知明镜里', value: '不知', id: '3' },
 		KSelectString: 'Huge',
-		slider: 43,
+		slider: 43
 	};
 	let KFormInst: KForm | undefined = undefined;
 	const dataList = [

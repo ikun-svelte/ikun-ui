@@ -9,7 +9,7 @@
 	import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
 	import { KSelect } from '@ikun-ui/select';
 	import { createEventDispatcher } from 'svelte';
-	import { KSlider } from "@ikun-ui/slider";
+	import { KSlider } from '@ikun-ui/slider';
 	export let initValue = {};
 	let KFormInst: KForm | undefined = undefined;
 	const dataList = [

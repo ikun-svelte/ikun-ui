@@ -6,10 +6,12 @@ node_modules
 .env
 .env.*
 !.env.example
+**/dist
+rollup.config.js
+play/**/*
+e2e/**/*
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
-**/dist
-rollup.config.js

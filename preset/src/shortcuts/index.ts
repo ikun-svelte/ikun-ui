@@ -42,6 +42,14 @@ import { virtualListShortcuts } from './src/virtual-list';
 import { pageShortcuts } from './src/pagination';
 import { IKUN_SAFE_LIST } from '../utils/constant';
 import { formShortcuts } from './src/form';
+import { dropdownShortcuts } from './src/dropdown';
+import { tabsShortcuts } from './src/tabs';
+import { descriptionsShortcuts } from './src/descriptions';
+import { getDescriptionsGridColCls } from '../rules/src/descriptions';
+import { descriptionsItemShortcuts } from './src/descriptions-item';
+import { getDescriptionsItemGridColStartCls } from '../rules/src/descriptions-item';
+import { carouselShortcuts } from './src/carousel';
+
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -119,8 +127,18 @@ export const defaultShortcuts = [
 	emptyShortcuts,
 	// virtualList
 	virtualListShortcuts,
-	// pageShortcuts
-	pageShortcuts
+	// page
+	pageShortcuts,
+	// dropdown
+	dropdownShortcuts,
+	// tabs
+	tabsShortcuts,
+	// descriptions
+	descriptionsShortcuts,
+	// descriptions item
+	descriptionsItemShortcuts,
+	// carousel
+	carouselShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -165,6 +183,11 @@ export function getSafeList() {
 	const emptyList = Object.keys(emptyShortcuts);
 	const virtualList = Object.keys(virtualListShortcuts);
 	const pageList = Object.keys(pageShortcuts);
+	const dropdownList = Object.keys(dropdownShortcuts);
+	const tabsList = Object.keys(tabsShortcuts);
+	const descriptionsList = Object.keys(descriptionsShortcuts);
+	const descriptionsItemList = Object.keys(descriptionsItemShortcuts);
+	const carouselList = Object.keys(carouselShortcuts);
 	let res = iconList
 		.concat(IKUN_SAFE_LIST)
 		.concat(comList)
@@ -205,12 +228,24 @@ export function getSafeList() {
 		.concat(emptyList)
 		.concat(contextmenuList)
 		.concat(virtualList)
-		.concat(pageList);
+		.concat(pageList)
+		.concat(dropdownList)
+		.concat(tabsList)
+		.concat(pageList)
+		.concat(descriptionsList)
+		.concat(descriptionsItemList)
+		.concat(carouselList);
 
 	// rules
 	const colSizeRules = Object.keys(createColSizeClsByNum());
 	const colRules = Object.keys(getColCls());
-	res = res.concat(colSizeRules).concat(colRules);
+	const descriptionsRules = Object.keys(getDescriptionsGridColCls());
+	const descriptionsItemRules = Object.keys(getDescriptionsItemGridColStartCls());
+	res = res
+		.concat(colSizeRules)
+		.concat(colRules)
+		.concat(descriptionsRules)
+		.concat(descriptionsItemRules);
 	return res;
 }
 
@@ -254,3 +289,8 @@ export { emptyShortcuts } from './src/empty';
 export { virtualListShortcuts } from './src/virtual-list';
 export { pageShortcuts } from './src/pagination';
 export { formShortcuts } from './src/form';
+export { dropdownShortcuts } from './src/dropdown';
+export { tabsShortcuts } from './src/tabs';
+export { descriptionsShortcuts } from './src/descriptions';
+export { descriptionsItemShortcuts } from './src/descriptions-item';
+export { carouselShortcuts } from './src/carousel';

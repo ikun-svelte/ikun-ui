@@ -27,6 +27,7 @@ export const IKUN_SAFE_LIST = [
 	'i-carbon-view-off',
 	'i-carbon-view',
 	'i-carbon-close',
+	'i-carbon-add',
 	'i-carbon-chevron-left',
 	'i-carbon-settings',
 	'i-carbon:radio-button-checked',

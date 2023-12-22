@@ -29,6 +29,12 @@ npm install @ikun-ui/slider
 
 <demo src="slider/basic.svelte" github="Slider"></demo>
 
+## Vertical mode
+
+Setting the `vertical` attribute to true enables vertical mode.
+
+<demo src="slider/vertical.svelte" github="Slider"></demo>
+
 ## Disabled slider
 
 Use `disabled` attribute to determine whether a slider is disabled.
@@ -51,13 +57,14 @@ Rendering `slider` content using slots
 
 Add `size` attribute to change the size of Slider. It supports `sm`, `md` and `lg`.
 
-<demo src="slider/size.svelte" github="Slider"></demo>
+<demo src="slider/sizes.svelte" github="Slider"></demo>
 
 ## Slider Props
 
 | Name     | Type                     | Default | Description                |
 | -------- | ------------------------ | ------- | -------------------------- |
 | value    | `number`                 | `0`     | Binding value              |
+| vertical | `boolean`                | `false` | Vertical mode              |
 | min      | `number`                 | `0`     | Minimum value              |
 | max      | `number`                 | `100`   | Maximum value              |
 | step     | `number`                 | `1`     | Step size                  |

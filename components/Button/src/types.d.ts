@@ -7,6 +7,7 @@ export type KButtonProps = {
 	type: IKunTypePro | 'main';
 	size: IKunSize;
 	icon: string;
+	suffixIcon: string;
 	iconSize: number | null;
 	to: HTMLAnchorElement['href'];
 	round: string | number;

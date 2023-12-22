@@ -3,14 +3,16 @@ export * from './types';
 export { getPrefixCls } from './class-names';
 
 export {
-	KSymbolKey,
-	BreadcrumbKey,
-	ButtonGroupKey,
+	breadcrumbKey,
+	buttonGroupKey,
 	collapseWrapperKey,
 	checkboxGroupKey,
 	radioGroupKey,
 	rowKey,
 	contextmenuKey,
 	formKey,
-	formItemKey
+	formItemKey,
+	tabsKey,
+	dropDownKey,
+	descriptionsKey
 } from './symbol-key';
