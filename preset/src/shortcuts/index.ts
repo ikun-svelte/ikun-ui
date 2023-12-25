@@ -50,7 +50,7 @@ import { descriptionsItemShortcuts } from './src/descriptions-item';
 import { getDescriptionsItemGridColStartCls } from '../rules/src/descriptions-item';
 import { carouselShortcuts } from './src/carousel';
 import { affixShortcuts } from './src/affix';
-import { statisticShortcuts } from './src/statistic'
+import { statisticShortcuts } from './src/statistic';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -143,7 +143,7 @@ export const defaultShortcuts = [
 	// affix
 	affixShortcuts,
 	// statistic
-	statisticShortcuts,
+	statisticShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -194,7 +194,7 @@ export function getSafeList() {
 	const descriptionsItemList = Object.keys(descriptionsItemShortcuts);
 	const carouselList = Object.keys(carouselShortcuts);
 	const affixList = Object.keys(affixShortcuts);
-	const statisticList  = Object.keys(statisticShortcuts);
+	const statisticList = Object.keys(statisticShortcuts);
 	let res = iconList
 		.concat(IKUN_SAFE_LIST)
 		.concat(comList)

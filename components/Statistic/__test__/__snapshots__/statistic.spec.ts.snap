@@ -1,3 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KStatistic > props: cls 1`] = `"<div class=\\"k-statistic k-statistic--base k-statistic--test\\"></div>"`;
+exports[`Test: KStatistic > props: cls 1`] = `"<div class=\\"k-statistic k-statistic--test\\"> <div class=\\"k-statistic__content\\"> <span class=\\"k-statistic__value\\">0</span> </div></div>"`;
+
+exports[`Test: KStatistic > props: title 1`] = `"<div class=\\"k-statistic\\"><div class=\\"k-statistic__head\\">test-title</div> <div class=\\"k-statistic__content\\"> <span class=\\"k-statistic__value\\">0</span> </div></div>"`;
+
+exports[`Test: KStatistic > props: value 1`] = `"<div class=\\"k-statistic\\"> <div class=\\"k-statistic__content\\"> <span class=\\"k-statistic__value\\">57,454,157</span> </div></div>"`;
+
+exports[`Test: KStatistic > slot: suffix 1`] = `"<div class=\\"k-statistic\\"><div class=\\"k-statistic__head\\">Daily active users</div> <div class=\\"k-statistic__content\\"> <span class=\\"k-statistic__value\\">268,500</span> <div class=\\"k-statistic__suffix\\"><span slot=\\"suffix\\">suffix</span></div></div></div>"`;
