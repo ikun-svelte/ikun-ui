@@ -59,6 +59,9 @@ importers:
       '@ikun-ui/contextmenu':
         specifier: workspace:*
         version: link:components/Contextmenu
+      '@ikun-ui/countdown':
+        specifier: workspace:*
+        version: link:components/Countdown
       '@ikun-ui/descriptions':
         specifier: workspace:*
         version: link:components/Descriptions
@@ -182,6 +185,9 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
+      dayjs:
+        specifier: ^1.11.3
+        version: 1.11.10
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^2.1.1
@@ -773,6 +779,43 @@ importers:
       svelte-strip:
         specifier: ^3.0.1
         version: 3.0.1(@babel/core@7.23.5)(postcss@8.4.32)(svelte@4.2.8)
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
+      typescript:
+        specifier: ^5.3.2
+        version: 5.3.2
+
+  components/Countdown:
+    dependencies:
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@ikun-ui/statistic':
+        specifier: workspace:*
+        version: link:../Statistic
+      '@ikun-ui/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      baiwusanyu-utils:
+        specifier: ^1.0.16
+        version: 1.0.16(ansi-colors@4.1.3)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+      dayjs:
+        specifier: ^1.11.3
+        version: 1.11.10
+      esm-env:
+        specifier: ^1.0.0
+        version: 1.0.0
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: ^5.0.2
+        version: 5.0.2
+      svelte-strip:
+        specifier: ^2.0.0
+        version: 2.0.0(@babel/core@7.23.5)(postcss@8.4.32)(svelte@3.59.2)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4519,6 +4562,10 @@ packages:
       whatwg-mimetype: 4.0.0
       whatwg-url: 14.0.0
     dev: true
+
+  /dayjs@1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==, tarball: https://registry.npmjs.org/dayjs/-/dayjs-1.11.10.tgz}
+    dev: false
 
   /debug@4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}

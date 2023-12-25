@@ -15,7 +15,18 @@
 	export let valueStyle: KStatisticProps['valueStyle'] = undefined;
 	export let cls: KStatisticProps['cls'] = undefined;
 	export let attrs: KStatisticProps['attrs'] = {};
-
+	/**
+	 * @internal
+	 */
+	export let showPrefix = false;
+	/**
+	 * @internal
+	 */
+	export let showTitle = false;
+	/**
+	 * @internal
+	 */
+	export let showSuffix = false;
 	$: displayValue = () => {
 		if (isFunction(formatter)) return formatter!(value);
 
@@ -37,7 +48,7 @@
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
-	{#if $$slots.title || title}
+	{#if ($$slots.title || title) && showTitle}
 		<div class={headCls}>
 			<slot name="title">
 				{title}
@@ -45,7 +56,7 @@
 		</div>
 	{/if}
 	<div class={contentCls}>
-		{#if $$slots.prefix || prefix}
+		{#if ($$slots.prefix || prefix) && showPrefix}
 			<div class={prefixCls}>
 				<slot name="prefix">
 					<span>{prefix}</span>
@@ -57,7 +68,7 @@
 			{displayValue()}
 		</span>
 
-		{#if $$slots.suffix || suffix}
+		{#if ($$slots.suffix || suffix) && showSuffix}
 			<div class={suffixCls}>
 				<slot name="suffix">
 					<span>{suffix}</span>
