@@ -21,10 +21,6 @@ export type KInputNumberProps = {
 	 */
 	id: string
 	/**
-	 * TODO: native attr 🤡
-	 */
-	label: string
-	/**
 	 *  TODO: native attr 🤡
 	 */
 	name: string

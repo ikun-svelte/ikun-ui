@@ -5,6 +5,7 @@
   import { formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
   import clsx from 'clsx';
   import type { IKunFormInstance } from '@ikun-ui/form';
+  import { KIcon } from "@ikun-ui/icon";
 
   export let size: KInputNumberProps['size'] = 'md';
   export let value: KInputNumberProps['value'] = null;
@@ -33,10 +34,6 @@
    * native attr
    */
   export let id: KInputNumberProps['id'] = '';
-  /**
-   * native attr
-   */
-  export let label: KInputNumberProps['label'] = '';
   /**
    * native attr
    */
@@ -94,12 +91,13 @@
   const onInput = (e: Event) => {
     if (disabledInner) return;
     const { value: inputValue } = e.target as HTMLInputElement;
-    dispatch('input', inputValue, e);
-    formInstance && formInstance?.updateField(field!, inputValue, !formInstance.__manual_validate);
+    const resolveValue = isNaN(Number(inputValue)) ? Number(inputValue) : null
+    dispatch('input', resolveValue, e);
+    formInstance && formInstance?.updateField(field!, resolveValue, !formInstance.__manual_validate);
     if (!useCompositionInput || !isComposing) {
-      value = inputValue;
+      value = resolveValue;
       if (useCompositionInput && !isComposing) {
-        dispatch('compositionInput', inputValue, e);
+        dispatch('compositionInput', resolveValue, e);
       }
     }
   };
@@ -164,7 +162,7 @@
   $: inputWrapperCls = clsx(
     `${prefixCls}--base`,
     {
-      [`${prefixCls}__${sizeInner}`]: true
+      [`${prefixCls}-number__${sizeInner}`]: true
     },
     `${prefixCls}__dark`,
     {
@@ -190,8 +188,12 @@
       [`${prefixCls}__disabled__dark`]: disabledInner
     }
   );
+  $: iconCls = clsx(`${prefixCls}-number--icon`, `${prefixCls}--icon__${sizeInner}`);
+  $: upCls =clsx(`${prefixCls}-number--up`, `${prefixCls}-number--controls__dark`)
+  $: downCls =clsx(`${prefixCls}-number--down`, `${prefixCls}-number--controls__dark`)
   $: prependCls = clsx(`${prefixCls}--prepend`, `${prefixCls}--prepend__${sizeInner}`);
   $: appendgCls = clsx(`${prefixCls}--append`, `${prefixCls}--append__${sizeInner}`);
+  $: controlsCls =clsx(`${prefixCls}-number--controls`)
 </script>
   <div class={baseCls}>
     {#if $$slots.prepend || prepend}
@@ -224,9 +226,16 @@
         {name}
         {id}
         {readonly}
-        {label}
         {...attrs}
       />
+      <div class={controlsCls}>
+        <div class={upCls}>
+          <KIcon cls={iconCls} icon="i-carbon-chevron-up"></KIcon>
+        </div>
+        <div class={downCls}>
+          <KIcon cls={iconCls} icon="i-carbon-chevron-down"></KIcon>
+        </div>
+      </div>
     </div>
     {#if $$slots.append || append}
       <KButton
