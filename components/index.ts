@@ -52,3 +52,4 @@ export * from '@ikun-ui/descriptions-item';
 export * from '@ikun-ui/carousel';
 export * from '@ikun-ui/affix';
 export * from '@ikun-ui/statistic';
+export * from '@ikun-ui/countdown';

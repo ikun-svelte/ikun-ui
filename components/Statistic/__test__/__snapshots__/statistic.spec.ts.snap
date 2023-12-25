@@ -6,4 +6,6 @@ exports[`Test: KStatistic > props: title 1`] = `"<div class=\\"k-statistic\\"><d
 
 exports[`Test: KStatistic > props: value 1`] = `"<div class=\\"k-statistic\\"> <div class=\\"k-statistic__content\\"> <span class=\\"k-statistic__value\\">57,454,157</span> </div></div>"`;
 
+exports[`Test: KStatistic > slot: prefix 1`] = `"<div class=\\"k-statistic\\"><div class=\\"k-statistic__head\\">Daily active users</div> <div class=\\"k-statistic__content\\"><div class=\\"k-statistic__prefix\\"><span slot=\\"prefix\\">prefix</span></div> <span class=\\"k-statistic__value\\">268,500</span> </div></div>"`;
+
 exports[`Test: KStatistic > slot: suffix 1`] = `"<div class=\\"k-statistic\\"><div class=\\"k-statistic__head\\">Daily active users</div> <div class=\\"k-statistic__content\\"> <span class=\\"k-statistic__value\\">268,500</span> <div class=\\"k-statistic__suffix\\"><span slot=\\"suffix\\">suffix</span></div></div></div>"`;

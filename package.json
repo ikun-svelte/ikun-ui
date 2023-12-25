@@ -68,7 +68,7 @@
 		"clean:deps": "node scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "node scripts/new-component.js statistic"
+		"create:new:comp": "node scripts/new-component.js countdown"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
@@ -130,10 +130,12 @@
 		"@ikun-ui/watermark": "workspace:*",
 		"baiwusanyu-utils": "^1.0.16",
 		"clsx": "^2.0.0",
+		"dayjs": "^1.11.3",
 		"@ikun-ui/tabs": "workspace:*",
 		"@ikun-ui/carousel": "workspace:*",
 		"@ikun-ui/affix": "workspace:*",
-		"@ikun-ui/statistic": "workspace:*"
+		"@ikun-ui/statistic": "workspace:*",
+		"@ikun-ui/countdown": "workspace:*"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.1",
