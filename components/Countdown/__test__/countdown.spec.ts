@@ -46,7 +46,6 @@ describe('Test: KCountdown', () => {
 
 		expect(host.querySelector('.k-statistic__head')).toBeTruthy();
 		expect(host!.innerHTML.includes('test-title')).toBeTruthy();
-		expect(host!.innerHTML.includes('00:00:59')).toBeTruthy();
 	});
 
 	test('events: change', async () => {

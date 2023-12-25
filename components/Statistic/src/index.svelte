@@ -18,15 +18,15 @@
 	/**
 	 * @internal
 	 */
-	export let showPrefix = false;
+	export let showPrefix = true;
 	/**
 	 * @internal
 	 */
-	export let showTitle = false;
+	export let showTitle = true;
 	/**
 	 * @internal
 	 */
-	export let showSuffix = false;
+	export let showSuffix = true;
 	$: displayValue = () => {
 		if (isFunction(formatter)) return formatter!(value);
 
