@@ -34,10 +34,12 @@
 		"types": "dist/index.d.ts"
 	},
 	"dependencies": {
+		"@ikun-ui/button": "workspace:*",
+		"@ikun-ui/form": "workspace:*",
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"clsx": "^2.0.0",
-		"baiwusanyu-utils": "^1.0.16"
+		"baiwusanyu-utils": "^1.0.16",
+		"clsx": "^2.0.0"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.0",
