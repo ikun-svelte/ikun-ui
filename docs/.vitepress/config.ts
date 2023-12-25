@@ -143,6 +143,10 @@ const components = [
 				link: '/components/KPopover'
 			},
 			{
+				text: 'Statistics',
+				link: '/components/KStatistics'
+			},
+			{
 				text: 'Tooltip',
 				link: '/components/KTooltip'
 			},

@@ -1,6 +1,6 @@
 export const gridShortcuts: Record<string, string> = {
 	// row
-	'k-row--base': 'flex flex-wrap pr box-border',
+	'k-row--base': 'flex flex-wrap pr box-border text-center',
 	'k-row__justify__start': 'justify-start',
 	'k-row__justify__center': 'justify-center',
 	'k-row__justify__end': 'justify-end',
