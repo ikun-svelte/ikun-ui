@@ -39,8 +39,8 @@ Card usage display, can be freely combined.
 
 | Name             | Type                                    | Default | Description                     |
 | ---------------- | --------------------------------------- | ------- | ------------------------------- |
-| decimalSeparator | `string`                                | `'.'`     | Setting the decimal point.      |
-| groupSeparator   | `string`                                | `','`     | Sets the thousandth identifier. |
+| decimalSeparator | `string`                                | `'.'`   | Setting the decimal point.      |
+| groupSeparator   | `string`                                | `','`   | Sets the thousandth identifier. |
 | precision        | `number`                                | `0`     | numerical precision.            |
 | formatter        | `((value: number) => string \| number)` | `-`     | Custom numerical presentation.  |
 | value            | `number`                                | `0`     | Numerical content.              |
@@ -53,8 +53,8 @@ Card usage display, can be freely combined.
 
 ## Statistics Slots
 
-| Name    | Description                 |
-| ------- | --------------------------- |
-| prefix | Numeric prefix. |
-| title   | Numeric titles.       |
-| suffix    | Suffixes for numeric values.        |
+| Name   | Description                  |
+| ------ | ---------------------------- |
+| prefix | Numeric prefix.              |
+| title  | Numeric titles.              |
+| suffix | Suffixes for numeric values. |
