@@ -48,6 +48,8 @@
 	 * @internal
 	 */
 	export let center: KInputNumberProps['center'] = false;
+	let resolveValue: Decimal | null = value ? new Deci(value) : null;
+	let inputRef: null | HTMLInputElement | HTMLTextAreaElement = null;
 	/*********************** KForm logic start ************************/
 	let disabledFrom = false;
 	$: disabledInner = disabledFrom || disabled;
@@ -62,10 +64,11 @@
 	// on the form value in the KFormItem context
 	function formUpdateField(init = false) {
 		field = formContext.split('&').pop();
-		value = formInstance.getValueByPath(
+		resolveValue = value = formInstance.getValueByPath(
 			field,
 			init ? formInstance.__default_value : formInstance.__value
 		);
+		setValueToInput(normalizeVarStrEmpty(`${toPrecision(resolveValue)}`));
 	}
 	function formPropsChangeCb(props: Record<any, any>) {
 		disabledFrom = props.disabled;
@@ -95,7 +98,6 @@
 	/*********************** KForm logic end ************************/
 
 	const dispatch = createEventDispatcher();
-	let resolveValue: Decimal | null = value ? new Deci(value) : null;
 	$: {
 		if (!isInput) {
 			resolveValue = fixStepStrictlyVal(value);
@@ -203,7 +205,6 @@
 		}
 	};
 
-	let inputRef: null | HTMLInputElement | HTMLTextAreaElement = null;
 	const handlePrependClick = () => {
 		if (disabledInner) return;
 		inputRef && dispatch('triggerPrepend', new Deci(inputRef.value).toNumber());
@@ -248,14 +249,14 @@
 		return value;
 	};
 
-	$: toPrecision = (value: Decimal | null) => {
+	function toPrecision(value: Decimal | null) {
 		if (value && precision) {
 			return value.toFixed(precision);
 		}
 
 		if (value && !precision) return value.toString();
 		return null;
-	};
+	}
 
 	// class names
 	const prefixCls = getPrefixCls('input');

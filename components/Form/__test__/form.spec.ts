@@ -20,6 +20,7 @@ import KFormItemLabelSlot from './fixture/labelSlot.svelte';
 import KFormValidateEvent from './fixture/validateEvent.svelte';
 import KFormValidateEventSefField from './fixture/validateEventSefField.svelte';
 import KFormValidateEventValidateField from './fixture/validateEventvalidateField.svelte';
+import KFormReset from './fixture/inputNumberReset.svelte';
 import { tick } from 'svelte';
 import { fireEvent, screen, render, waitFor } from '@testing-library/svelte';
 import { getValueByPath, parsePath, setValueByPath } from '../src/helpers/fields';
@@ -982,8 +983,6 @@ describe('Test: KForm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		expect(instance).toBeTruthy();
-		await tick();
 		expect(host.innerHTML.includes('Error-Slot')).not.toBeTruthy();
 
 		const btn = host.querySelector('#validate');
@@ -992,6 +991,29 @@ describe('Test: KForm', () => {
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('Error-Slot')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('The inputNumber component should be reset correctly when its initial value is null', async () => {
+		// @ts-ignore
+		const instance = new KFormReset({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const input = host.querySelector('.k-input--inner');
+		expect(input.value).toBe('');
+
+		const upElm = host.querySelector('.k-input-number--up');
+		upElm?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(input.value).toBe('1');
+
+		const btn = host.querySelector('#reset');
+		btn?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(input.value).toBe('');
 	});
 });
 
