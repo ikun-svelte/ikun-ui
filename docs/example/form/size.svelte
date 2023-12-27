@@ -12,12 +12,14 @@
 	import { KRate } from '@ikun-ui/rate';
 	import type { IKunSize } from '@ikun-ui/utils';
 	import { KSlider } from '@ikun-ui/slider';
+	import { KInputNumber } from '@ikun-ui/input-number';
 	const initValue = {
 		name: 'Ikun',
 		KInputs: {
 			KInputs1: 'KInputs1',
 			KInputs2: 'KInputs2'
 		},
+		KInputNumber: 4,
 		KSwitch: true,
 		KRate: null,
 		KRadio: '',
@@ -41,7 +43,6 @@
 	};
 
 	const handleReset = () => {
-		// TODO: reset bug
 		KFormInst && KFormInst.resetForm();
 	};
 	let size: IKunSize = 'md';
@@ -69,6 +70,9 @@
 		<KFormItem field="KInputs.KInputs2" label="">
 			<KInput placeholder="Please input value"></KInput>
 		</KFormItem>
+	</KFormItem>
+	<KFormItem field="KInputNumber" label="KInputNumber">
+		<KInputNumber placeholder="KInputNumber" />
 	</KFormItem>
 	<KFormItem field="KSwitch" label="KSwitch">
 		<KSwitch />

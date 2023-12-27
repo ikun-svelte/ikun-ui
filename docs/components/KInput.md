@@ -108,16 +108,16 @@ An options object can be provided to `autosize` to specify the minimum and maxim
 
 | Name             | Description                                                                                                                        | Type                                     |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| input            | Event fired on input                                                                                                               | `(value: HTMLInputElement.value)=> void` |
-| enter            | Event fired when `enter` is pressed                                                                                                | `(value: Event)=> void`                  |
-| keydown          | Event fired when `keyboard` is pressed                                                                                             | `(value: Event)=> void`                  |
-| change           | Event fired when the `value` is changes                                                                                            | `(value: Event)=> void`                  |
+| input            | Event fired on input                                                                                                               | `(value: string)=> void`                 |
+| enter            | Event fired when `enter` is pressed                                                                                                | `(e: Event)=> void`                      |
+| keydown          | Event fired when `keyboard` is pressed                                                                                             | `(e: Event)=> void`                      |
+| change           | Event fired when the `value` is changes                                                                                            | `(e: Event)=> void`                      |
 | compositionstart | The compositionstart event is fired when a text composition system                                                                 | `(e: CompositionEvent)=> void`           |
 | compositionend   | The compositionend event is fired when a text composition system                                                                   | `(e: CompositionEvent)=> void`           |
-| compositionInput | Event fired when enable `useCompositionInput`                                                                                      | `(value: Event)=> void`                  |
-| triggerPrepend   | Event fired on prepend button                                                                                                      | `(value: Event)=> void`                  |
-| triggerAppend    | Event fired on append button                                                                                                       | `(value: Event)=> void`                  |
-| search           | When search is true and you press `enter` or click the `prepend` button or click the `append` button, the event will be triggered. | `(value: Event)=> void`                  |
+| compositionInput | Event fired when enable `useCompositionInput`                                                                                      | `(e: CompositionEvent)=> void`           |
+| triggerPrepend   | Event fired on prepend button                                                                                                      | `(value: HTMLInputElement.value)=> void` |
+| triggerAppend    | Event fired on append button                                                                                                       | `(value: HTMLInputElement.value)=> void` |
+| search           | When search is true and you press `enter` or click the `prepend` button or click the `append` button, the event will be triggered. | `(value: HTMLInputElement.value)=> void` |
 
 ## Input Slots
 
