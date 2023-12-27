@@ -125,6 +125,9 @@ importers:
       '@ikun-ui/notify':
         specifier: workspace:*
         version: link:components/Notification
+      '@ikun-ui/page-header':
+        specifier: workspace:*
+        version: link:components/PageHeader
       '@ikun-ui/pagination':
         specifier: workspace:*
         version: link:components/Pagination
@@ -1431,6 +1434,37 @@ importers:
       svelte-strip:
         specifier: ^3.0.1
         version: 3.0.1(@babel/core@7.23.5)(postcss@8.4.32)(svelte@4.2.8)
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
+      typescript:
+        specifier: ^5.3.2
+        version: 5.3.2
+
+  components/PageHeader:
+    dependencies:
+      '@ikun-ui/divider':
+        specifier: workspace:*
+        version: link:../Divider
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@ikun-ui/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      baiwusanyu-utils:
+        specifier: ^1.0.16
+        version: 1.0.16(ansi-colors@4.1.3)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: ^5.0.2
+        version: 5.0.2
+      svelte-strip:
+        specifier: ^2.0.0
+        version: 2.0.0(@babel/core@7.23.5)(postcss@8.4.32)(svelte@3.59.2)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3437,7 +3471,7 @@ packages:
     dev: true
 
   /@types/pug@2.0.8:
-    resolution: {integrity: sha512-QzhsZ1dMGyJbn/D9V80zp4GIA4J4rfAjCCxc3MP+new0E8dyVdSkR735Lx+n3LIaHNFcjHL5+TbziccuT+fdoQ==}
+    resolution: {integrity: sha512-QzhsZ1dMGyJbn/D9V80zp4GIA4J4rfAjCCxc3MP+new0E8dyVdSkR735Lx+n3LIaHNFcjHL5+TbziccuT+fdoQ==, tarball: https://registry.npmjs.org/@types/pug/-/pug-2.0.8.tgz}
     dev: true
 
   /@types/semver@7.5.4:
@@ -4125,7 +4159,7 @@ packages:
     dev: true
 
   /ansi-styles@6.2.1:
-    resolution: {integrity: sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==}
+    resolution: {integrity: sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==, tarball: https://registry.npmjs.org/ansi-styles/-/ansi-styles-6.2.1.tgz}
     engines: {node: '>=12'}
     dev: true
 
@@ -4248,7 +4282,7 @@ packages:
     dev: true
 
   /brace-expansion@1.1.11:
-    resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
+    resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==, tarball: https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.11.tgz}
     dependencies:
       balanced-match: 1.0.2
       concat-map: 0.0.1
@@ -4279,7 +4313,7 @@ packages:
     dev: true
 
   /buffer-crc32@0.2.13:
-    resolution: {integrity: sha1-DTM+PwDqxQqhRUq9MO+MKl2ackI=}
+    resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==, tarball: https://registry.npmjs.org/buffer-crc32/-/buffer-crc32-0.2.13.tgz}
     dev: true
 
   /buffer@6.0.3:
@@ -4495,7 +4529,7 @@ packages:
     dev: true
 
   /color-convert@2.0.1:
-    resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
+    resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==, tarball: https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz}
     engines: {node: '>=7.0.0'}
     dependencies:
       color-name: 1.1.4
@@ -4506,7 +4540,7 @@ packages:
     dev: true
 
   /color-name@1.1.4:
-    resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+    resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==, tarball: https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz}
     dev: true
 
   /colorette@2.0.20:
@@ -4738,7 +4772,7 @@ packages:
     dev: true
 
   /detect-indent@6.1.0:
-    resolution: {integrity: sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==}
+    resolution: {integrity: sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==, tarball: https://registry.npmjs.org/detect-indent/-/detect-indent-6.1.0.tgz}
     engines: {node: '>=8'}
     dev: true
 
@@ -4897,7 +4931,7 @@ packages:
     dev: true
 
   /es6-promise@3.3.1:
-    resolution: {integrity: sha1-oIzd6EzNvzTQJ6FFG8kdS80ophM=}
+    resolution: {integrity: sha512-SOp9Phqvqn7jtEUxPWdWfWoLmyt2VaJ6MpvP9Comy1MceMXqE6bxvaTu4iaxpYYPzhny28Lc+M87/c2cPK6lDg==, tarball: https://registry.npmjs.org/es6-promise/-/es6-promise-3.3.1.tgz}
     dev: true
 
   /esbuild@0.19.8:
@@ -5406,7 +5440,7 @@ packages:
     dev: true
 
   /glob@7.2.3:
-    resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==, tarball: https://registry.npmjs.org/glob/-/glob-7.2.3.tgz}
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -6386,7 +6420,7 @@ packages:
     dev: true
 
   /min-indent@1.0.1:
-    resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
+    resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==, tarball: https://registry.npmjs.org/min-indent/-/min-indent-1.0.1.tgz}
     engines: {node: '>=4'}
     dev: true
 
@@ -6418,14 +6452,14 @@ packages:
     dev: true
 
   /minimatch@9.0.3:
-    resolution: {integrity: sha512-RHiac9mvaRw0x3AYRgDC1CxAP7HTcNrrECeA8YYJeWnpo+2Q5CegtZjaotWTWxDG3UeGA1coE05iH1mPjT/2mg==}
+    resolution: {integrity: sha512-RHiac9mvaRw0x3AYRgDC1CxAP7HTcNrrECeA8YYJeWnpo+2Q5CegtZjaotWTWxDG3UeGA1coE05iH1mPjT/2mg==, tarball: https://registry.npmjs.org/minimatch/-/minimatch-9.0.3.tgz}
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
       brace-expansion: 2.0.1
     dev: true
 
   /minimist@1.2.8:
-    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
+    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==, tarball: https://registry.npmjs.org/minimist/-/minimist-1.2.8.tgz}
     dev: true
 
   /minipass@3.3.6:
@@ -6463,14 +6497,14 @@ packages:
     dev: true
 
   /mkdirp@0.5.6:
-    resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
+    resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==, tarball: https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.6.tgz}
     hasBin: true
     dependencies:
       minimist: 1.2.8
     dev: true
 
   /mkdirp@1.0.4:
-    resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
+    resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==, tarball: https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz}
     engines: {node: '>=10'}
     hasBin: true
     dev: true
@@ -7163,7 +7197,7 @@ packages:
     dev: true
 
   /rimraf@2.7.1:
-    resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
+    resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==, tarball: https://registry.npmjs.org/rimraf/-/rimraf-2.7.1.tgz}
     hasBin: true
     dependencies:
       glob: 7.2.3
@@ -7255,7 +7289,7 @@ packages:
     dev: true
 
   /sander@0.5.1:
-    resolution: {integrity: sha1-dB4kXiMfB8r7b98PEzrfohalAq0=}
+    resolution: {integrity: sha512-3lVqBir7WuKDHGrKRDn/1Ye3kwpXaDOMsiRP1wd6wpZW56gJhsbp5RqQpA6JG/P+pkXizygnr1dKR8vzWaVsfA==, tarball: https://registry.npmjs.org/sander/-/sander-0.5.1.tgz}
     dependencies:
       es6-promise: 3.3.1
       graceful-fs: 4.2.11
@@ -7436,7 +7470,7 @@ packages:
     dev: false
 
   /sorcery@0.11.0:
-    resolution: {integrity: sha512-J69LQ22xrQB1cIFJhPfgtLuI6BpWRiWu1Y3vSsIwK/eAScqJxd/+CJlUuHQRdX2C9NGFamq+KqNywGgaThwfHw==}
+    resolution: {integrity: sha512-J69LQ22xrQB1cIFJhPfgtLuI6BpWRiWu1Y3vSsIwK/eAScqJxd/+CJlUuHQRdX2C9NGFamq+KqNywGgaThwfHw==, tarball: https://registry.npmjs.org/sorcery/-/sorcery-0.11.0.tgz}
     hasBin: true
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
@@ -7622,7 +7656,7 @@ packages:
     dev: true
 
   /strip-indent@3.0.0:
-    resolution: {integrity: sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==}
+    resolution: {integrity: sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==, tarball: https://registry.npmjs.org/strip-indent/-/strip-indent-3.0.0.tgz}
     engines: {node: '>=8'}
     dependencies:
       min-indent: 1.0.1
@@ -8876,12 +8910,6 @@ packages:
     version: 1.0.16
     dev: false
 
-  registry.npmjs.org/@jridgewell/sourcemap-codec@1.4.15:
-    resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz}
-    name: '@jridgewell/sourcemap-codec'
-    version: 1.4.15
-    dev: true
-
   registry.npmjs.org/@tsconfig/svelte@5.0.2:
     resolution: {integrity: sha512-BRbo1fOtyVbhfLyuCWw6wAWp+U8UQle+ZXu84MYYWzYSEB28dyfnRBIE99eoG+qdAC0po6L2ScIEivcT07UaMA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@tsconfig/svelte/-/svelte-5.0.2.tgz}
     name: '@tsconfig/svelte'
@@ -8892,22 +8920,6 @@ packages:
     resolution: {integrity: sha512-QzhsZ1dMGyJbn/D9V80zp4GIA4J4rfAjCCxc3MP+new0E8dyVdSkR735Lx+n3LIaHNFcjHL5+TbziccuT+fdoQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/@types/pug/-/pug-2.0.8.tgz}
     name: '@types/pug'
     version: 2.0.8
-    dev: true
-
-  registry.npmjs.org/ansi-regex@5.0.1:
-    resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz}
-    name: ansi-regex
-    version: 5.0.1
-    engines: {node: '>=8'}
-    dev: true
-
-  registry.npmjs.org/ansi-styles@4.3.0:
-    resolution: {integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz}
-    name: ansi-styles
-    version: 4.3.0
-    engines: {node: '>=8'}
-    dependencies:
-      color-convert: registry.npmjs.org/color-convert@2.0.1
     dev: true
 
   registry.npmjs.org/baiwusanyu-utils@1.0.16(ansi-colors@4.1.3)(moment@2.29.4):
@@ -8929,12 +8941,6 @@ packages:
       - moment
     dev: false
 
-  registry.npmjs.org/buffer-crc32@0.2.13:
-    resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/buffer-crc32/-/buffer-crc32-0.2.13.tgz}
-    name: buffer-crc32
-    version: 0.2.13
-    dev: true
-
   registry.npmjs.org/cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/cliui/-/cliui-8.0.1.tgz}
     name: cliui
@@ -8942,8 +8948,8 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       string-width: 4.2.3
-      strip-ansi: registry.npmjs.org/strip-ansi@6.0.1
-      wrap-ansi: registry.npmjs.org/wrap-ansi@7.0.0
+      strip-ansi: 6.0.1
+      wrap-ansi: 7.0.0
     dev: true
 
   registry.npmjs.org/clsx@2.0.0:
@@ -8953,38 +8959,11 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  registry.npmjs.org/color-convert@2.0.1:
-    resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz}
-    name: color-convert
-    version: 2.0.1
-    engines: {node: '>=7.0.0'}
-    dependencies:
-      color-name: registry.npmjs.org/color-name@1.1.4
-    dev: true
-
-  registry.npmjs.org/color-name@1.1.4:
-    resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz}
-    name: color-name
-    version: 1.1.4
-    dev: true
-
   registry.npmjs.org/detect-indent@6.1.0:
     resolution: {integrity: sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/detect-indent/-/detect-indent-6.1.0.tgz}
     name: detect-indent
     version: 6.1.0
     engines: {node: '>=8'}
-    dev: true
-
-  registry.npmjs.org/emoji-regex@8.0.0:
-    resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz}
-    name: emoji-regex
-    version: 8.0.0
-    dev: true
-
-  registry.npmjs.org/es6-promise@3.3.1:
-    resolution: {integrity: sha512-SOp9Phqvqn7jtEUxPWdWfWoLmyt2VaJ6MpvP9Comy1MceMXqE6bxvaTu4iaxpYYPzhny28Lc+M87/c2cPK6lDg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/es6-promise/-/es6-promise-3.3.1.tgz}
-    name: es6-promise
-    version: 3.3.1
     dev: true
 
   registry.npmjs.org/escalade@3.1.1:
@@ -9019,27 +8998,13 @@ packages:
     version: 2.0.0
     dev: false
 
-  registry.npmjs.org/is-fullwidth-code-point@3.0.0:
-    resolution: {integrity: sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz}
-    name: is-fullwidth-code-point
-    version: 3.0.0
-    engines: {node: '>=8'}
-    dev: true
-
   registry.npmjs.org/magic-string@0.27.0:
     resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/magic-string/-/magic-string-0.27.0.tgz}
     name: magic-string
     version: 0.27.0
     engines: {node: '>=12'}
     dependencies:
-      '@jridgewell/sourcemap-codec': registry.npmjs.org/@jridgewell/sourcemap-codec@1.4.15
-    dev: true
-
-  registry.npmjs.org/min-indent@1.0.1:
-    resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/min-indent/-/min-indent-1.0.1.tgz}
-    name: min-indent
-    version: 1.0.1
-    engines: {node: '>=4'}
+      '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
   registry.npmjs.org/minimatch@7.4.6:
@@ -9051,46 +9016,11 @@ packages:
       brace-expansion: 2.0.1
     dev: true
 
-  registry.npmjs.org/minimist@1.2.8:
-    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/minimist/-/minimist-1.2.8.tgz}
-    name: minimist
-    version: 1.2.8
-    dev: true
-
-  registry.npmjs.org/mkdirp@0.5.6:
-    resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.6.tgz}
-    name: mkdirp
-    version: 0.5.6
-    hasBin: true
-    dependencies:
-      minimist: 1.2.8
-    dev: true
-
   registry.npmjs.org/require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz}
     name: require-directory
     version: 2.1.1
     engines: {node: '>=0.10.0'}
-    dev: true
-
-  registry.npmjs.org/rimraf@2.7.1:
-    resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/rimraf/-/rimraf-2.7.1.tgz}
-    name: rimraf
-    version: 2.7.1
-    hasBin: true
-    dependencies:
-      glob: 7.2.3
-    dev: true
-
-  registry.npmjs.org/sander@0.5.1:
-    resolution: {integrity: sha512-3lVqBir7WuKDHGrKRDn/1Ye3kwpXaDOMsiRP1wd6wpZW56gJhsbp5RqQpA6JG/P+pkXizygnr1dKR8vzWaVsfA==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/sander/-/sander-0.5.1.tgz}
-    name: sander
-    version: 0.5.1
-    dependencies:
-      es6-promise: registry.npmjs.org/es6-promise@3.3.1
-      graceful-fs: 4.2.11
-      mkdirp: registry.npmjs.org/mkdirp@0.5.6
-      rimraf: registry.npmjs.org/rimraf@2.7.1
     dev: true
 
   registry.npmjs.org/sorcery@0.11.0:
@@ -9099,10 +9029,10 @@ packages:
     version: 0.11.0
     hasBin: true
     dependencies:
-      '@jridgewell/sourcemap-codec': registry.npmjs.org/@jridgewell/sourcemap-codec@1.4.15
-      buffer-crc32: registry.npmjs.org/buffer-crc32@0.2.13
-      minimist: registry.npmjs.org/minimist@1.2.8
-      sander: registry.npmjs.org/sander@0.5.1
+      '@jridgewell/sourcemap-codec': 1.4.15
+      buffer-crc32: 0.2.13
+      minimist: 1.2.8
+      sander: 0.5.1
     dev: true
 
   registry.npmjs.org/string-width@4.2.3:
@@ -9111,18 +9041,9 @@ packages:
     version: 4.2.3
     engines: {node: '>=8'}
     dependencies:
-      emoji-regex: registry.npmjs.org/emoji-regex@8.0.0
-      is-fullwidth-code-point: registry.npmjs.org/is-fullwidth-code-point@3.0.0
-      strip-ansi: registry.npmjs.org/strip-ansi@6.0.1
-    dev: true
-
-  registry.npmjs.org/strip-ansi@6.0.1:
-    resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz}
-    name: strip-ansi
-    version: 6.0.1
-    engines: {node: '>=8'}
-    dependencies:
-      ansi-regex: registry.npmjs.org/ansi-regex@5.0.1
+      emoji-regex: 8.0.0
+      is-fullwidth-code-point: 3.0.0
+      strip-ansi: 6.0.1
     dev: true
 
   registry.npmjs.org/strip-indent@3.0.0:
@@ -9131,7 +9052,7 @@ packages:
     version: 3.0.0
     engines: {node: '>=8'}
     dependencies:
-      min-indent: registry.npmjs.org/min-indent@1.0.1
+      min-indent: 1.0.1
     dev: true
 
   registry.npmjs.org/svelte-preprocess@5.1.1(@babel/core@7.23.5)(postcss@8.4.31)(svelte@4.2.8)(typescript@5.3.2):
@@ -9329,17 +9250,6 @@ packages:
     version: 5.3.2
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
-
-  registry.npmjs.org/wrap-ansi@7.0.0:
-    resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==, registry: https://mirrors.cloud.tencent.com/npm/, tarball: https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz}
-    name: wrap-ansi
-    version: 7.0.0
-    engines: {node: '>=10'}
-    dependencies:
-      ansi-styles: registry.npmjs.org/ansi-styles@4.3.0
-      string-width: 4.2.3
-      strip-ansi: 6.0.1
     dev: true
 
   registry.npmjs.org/y18n@5.0.8:
