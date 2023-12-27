@@ -23,7 +23,7 @@
 	$: contentCls = clsx(`${prefixCls}--content`);
 </script>
 
-<div class={dividerCls} {...$$restProps} {...attrs}>
+<div class={dividerCls} {...$$restProps} {...attrs} data-divider="k-divider">
 	{#if direction === 'horizontal' && $$slots.default}
 		<span class={contentCls}>
 			<slot />

@@ -35,6 +35,7 @@ export const IKUN_SAFE_LIST = [
 	'i-carbon-overflow-menu-horizontal',
 	'i-carbon-page-last',
 	'i-carbon-page-first',
+	'i-carbon-arrow-left',
 	'rotate-180',
 	'px-0',
 	'w-full',
