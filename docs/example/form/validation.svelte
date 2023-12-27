@@ -9,8 +9,10 @@
 	import { KSelect } from '@ikun-ui/select';
 	import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
 	import { KRate } from '@ikun-ui/rate';
+	import { KInputNumber } from '@ikun-ui/input-number';
 	const initValue = {
 		KInput: '',
+		KInputNumber: null,
 		KInputs: {
 			KInputs1: 'KInputs1',
 			KInputs2: 'KInputs2'
@@ -44,6 +46,10 @@
 		KInput: [
 			{ required: true, msg: 'KInput required' },
 			{ min: 3, max: 5, msg: 'KInput 3 ~5' }
+		],
+		KInputNumber: [
+			{ required: true, msg: 'KInputNumber required' },
+			{ min: 3, max: 5, msg: 'KInputNumber 3 ~5' }
 		],
 		KInputs: [
 			{ required: true, msg: 'KInput required' },
@@ -107,6 +113,9 @@
 		<KFormItem field="KInputs.KInputs2" label="">
 			<KInput placeholder="Please input value"></KInput>
 		</KFormItem>
+	</KFormItem>
+	<KFormItem field="KInputNumber" label="KInputNumber">
+		<KInputNumber placeholder="KInputNumber" />
 	</KFormItem>
 	<KFormItem field="KSwitch" label="KSwitch">
 		<KSwitch />

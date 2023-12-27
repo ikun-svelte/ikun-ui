@@ -11,8 +11,8 @@
 	import { isNumber, isString, normalizeVarStrEmpty } from 'baiwusanyu-utils';
 	export let size: KInputNumberProps['size'] = 'md';
 	export let value: KInputNumberProps['value'] = null;
-	export let min: KInputNumberProps['value'] = -Infinity;
-	export let max: KInputNumberProps['value'] = Infinity;
+	export let min: KInputNumberProps['min'] = -Infinity;
+	export let max: KInputNumberProps['max'] = Infinity;
 	export let step: KInputNumberProps['step'] = 1;
 	export let stepStrictly: KInputNumberProps['stepStrictly'] = false;
 	export let precision: KInputNumberProps['precision'] = null;

@@ -69,6 +69,10 @@ const components = [
 				link: '/components/KInput'
 			},
 			{
+				text: 'InputNumber',
+				link: '/components/KInputNumber'
+			},
+			{
 				text: 'Radio',
 				link: '/components/KRadio'
 			},

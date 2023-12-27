@@ -11,6 +11,7 @@
 	import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
 	import { KRate } from '@ikun-ui/rate';
 	import { KSlider } from '@ikun-ui/slider';
+	import { KInputNumber } from '@ikun-ui/input-number';
 	const initValue = {
 		name: 'Ikun',
 		KInputs: {
@@ -19,6 +20,7 @@
 		},
 		KSwitch: true,
 		KRate: null,
+		KInputNumber: null,
 		KRadio: '',
 		KCheckbox: [],
 		KSelect: null,
@@ -82,6 +84,9 @@
 		<KFormItem field="KInputs.KInputs2" label="">
 			<KInput placeholder="Please input value"></KInput>
 		</KFormItem>
+	</KFormItem>
+	<KFormItem field="KInputNumber" label="KInputNumber">
+		<KInputNumber placeholder="KInputNumber" />
 	</KFormItem>
 	<KFormItem field="KSwitch" label="KSwitch">
 		<KSwitch />
