@@ -185,6 +185,10 @@ const components = [
 				link: '/components/KDropdown'
 			},
 			{
+				text: 'PageHeader',
+				link: '/components/KPageHeader'
+			},
+			{
 				text: 'Tabs',
 				link: '/components/KTabs'
 			}
@@ -199,8 +203,8 @@ const components = [
 				link: '/components/KAlert'
 			},
 			{
-				text: 'Notification',
-				link: '/components/KNotification'
+				text: 'Drawer',
+				link: '/components/KDrawer'
 			},
 			{
 				text: 'Message',
@@ -211,20 +215,20 @@ const components = [
 				link: '/components/KMessageBox'
 			},
 			{
-				text: 'Drawer',
-				link: '/components/KDrawer'
-			},
-			{
 				text: 'Modal',
 				link: '/components/KModal'
 			},
 			{
-				text: 'Spin',
-				link: '/components/KSpin'
+				text: 'Notification',
+				link: '/components/KNotification'
 			},
 			{
 				text: 'Popconfirm',
 				link: '/components/KPopconfirm'
+			},
+			{
+				text: 'Spin',
+				link: '/components/KSpin'
 			}
 		]
 	},
