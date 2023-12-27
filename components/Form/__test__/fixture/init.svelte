@@ -10,10 +10,12 @@
 	import { KSelect } from '@ikun-ui/select';
 	import { onMount } from 'svelte';
 	import { KSlider } from '@ikun-ui/slider';
+	import { KInputNumber } from '@ikun-ui/input-number';
 	const initValue = {
 		KInput: 'KInput',
 		KSwitch: true,
 		KRate: 4,
+		KInputNumber: 4,
 		KRadio: '3',
 		KCheckbox: ['2'],
 		KSelect: { label: '不知明镜里', value: '不知', id: '3' },
@@ -45,6 +47,9 @@
 	</KFormItem>
 	<KFormItem field="KRate" label="KRate">
 		<KRate clearable />
+	</KFormItem>
+	<KFormItem field="KInputNumber" label="KInputNumber">
+		<KInputNumber />
 	</KFormItem>
 	<KFormItem field="KRadio" label="KRadio">
 		<KRadioGroup>

@@ -1,6 +1,6 @@
 export function setMainColor(rules: Record<string, any>, themeColorRGB: string) {
 	// set main color to input shadow
-	rules['k-input-shadow'] = { 'box-shadow': `0 0 0 2px rgb(${themeColorRGB}, 0.5)` };
+	rules['k-input-shadow'] = { 'box-shadow': `0 0 0 2px rgb(${themeColorRGB}, 0.3)` };
 	// set main color to popover shadow (dark mode)
 	rules['k-popover-shadow__left__dark'] =
 		rules['k-popover-shadow__right__dark'] =

@@ -6,6 +6,7 @@ export type KFormComponent =
 	| 'select'
 	| 'switch'
 	| 'input'
+	| 'input-number'
 	| 'radio'
 	| 'checkbox'
 	| 'rate'
