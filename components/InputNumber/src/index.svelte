@@ -8,7 +8,7 @@
 	import { KIcon } from '@ikun-ui/icon';
 	import Deci from 'decimal.js';
 	import type { Decimal } from 'decimal.js';
-	import { isNumber, normalizeVarStrEmpty } from 'baiwusanyu-utils';
+	import { isNumber, isString, normalizeVarStrEmpty } from 'baiwusanyu-utils';
 	export let size: KInputNumberProps['size'] = 'md';
 	export let value: KInputNumberProps['value'] = null;
 	export let min: KInputNumberProps['value'] = -Infinity;
@@ -110,19 +110,28 @@
 		let normalValue =
 			isNaN(Number(inputValue)) || inputValue.trim() === '' ? null : Number(inputValue);
 		let finalValue = null;
-		if (normalValue) {
+		if (normalValue || normalValue === 0) {
 			finalValue = new Deci(normalValue);
 			finalValue = limitValue(finalValue);
 		}
 
 		isInput = true;
 		finalValue = fixStepStrictlyVal(finalValue);
-		value = finalValue ? finalValue?.toNumber() : valueOnClear;
+		value = isValueOnClear(finalValue);
 		dispatchInput(finalValue, e);
 	};
 
+	function isValueOnClear(val: Decimal | number | null | undefined | string) {
+		let res = val;
+		if (!res && res !== 0) return valueOnClear;
+		if (isNumber(res) || isString(res)) {
+			res = new Deci(res);
+		}
+		return (res as Decimal).toNumber();
+	}
+
 	const fixStepStrictlyVal = (value: Decimal | null | number) => {
-		if (!value) return null;
+		if (!value && value !== 0) return null;
 		let res = value;
 		if (isNumber(value)) {
 			res = new Deci(value);
@@ -135,11 +144,11 @@
 		return res as Decimal;
 	};
 	const dispatchInput = (resolveValue: Decimal | null, e?: Event) => {
-		const finalVal = fixStepStrictlyVal(resolveValue)?.toNumber() || valueOnClear;
+		const finalVal = isValueOnClear(fixStepStrictlyVal(resolveValue));
 		dispatch('input', finalVal, e);
 		formInstance && formInstance?.updateField(field!, finalVal, !formInstance.__manual_validate);
 		if (!useCompositionInput || !isComposing) {
-			value = finalVal || valueOnClear;
+			value = isValueOnClear(finalVal);
 			if (useCompositionInput && !isComposing) {
 				dispatch('compositionInput', finalVal, e);
 			}
@@ -149,11 +158,11 @@
 	const onChange = (e: Event) => {
 		if (disabledInner) return;
 		dispatch('change', e);
-		const deciValue = new Deci((e?.target as HTMLInputElement)?.value);
-		formInstance &&
-			formInstance?.updateField(field!, deciValue.toNumber(), !formInstance.__manual_validate);
+		const targetValue = (e?.target as HTMLInputElement)?.value;
+		const deciValue = isValueOnClear(targetValue);
+		formInstance && formInstance?.updateField(field!, deciValue, !formInstance.__manual_validate);
 
-		resolveValue = fixStepStrictlyVal(value || valueOnClear);
+		resolveValue = fixStepStrictlyVal(isValueOnClear(value));
 		setValueToInput(normalizeVarStrEmpty(`${toPrecision(resolveValue)}`));
 	};
 
@@ -197,12 +206,12 @@
 	let inputRef: null | HTMLInputElement | HTMLTextAreaElement = null;
 	const handlePrependClick = () => {
 		if (disabledInner) return;
-		inputRef && dispatch('triggerPrepend', inputRef.value);
+		inputRef && dispatch('triggerPrepend', new Deci(inputRef.value).toNumber());
 	};
 
 	const handleAppendClick = () => {
 		if (disabledInner) return;
-		inputRef && dispatch('triggerAppend', inputRef.value);
+		inputRef && dispatch('triggerAppend', new Deci(inputRef.value).toNumber());
 	};
 
 	function setValueToInput(value: string) {
@@ -215,7 +224,8 @@
 			const res = resolveValue.plus(new Deci(step));
 			resolveValue = limitValue(res);
 		} else {
-			resolveValue = new Deci(step);
+			const res = new Deci(step);
+			resolveValue = limitValue(res);
 		}
 		dispatchInput(resolveValue);
 	};
@@ -226,7 +236,8 @@
 			const res = resolveValue.minus(new Deci(step));
 			resolveValue = limitValue(res);
 		} else {
-			resolveValue = new Deci(-step);
+			const res = new Deci(-step);
+			resolveValue = limitValue(res);
 		}
 		dispatchInput(resolveValue);
 	};

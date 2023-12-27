@@ -6,12 +6,12 @@ import KInputSlots from './fixture/input.slots.svelte';
 import KInputSlotsAppend from './fixture/input.slots.append.svelte';
 import KInputBindValueUpdate from './fixture/input.bind.value.update.svelte';
 
-let host: HTMLElement;
+let host;
 
 const initHost = () => {
-	host = document.createElement('div');
+	host = globalThis.document.createElement('div');
 	host.setAttribute('id', 'host');
-	document.body.appendChild(host);
+	globalThis.document.body.appendChild(host);
 };
 beforeEach(() => {
 	initHost();
@@ -35,6 +35,7 @@ describe('Test: KInput', () => {
 		for (const size of sizes) {
 			host.remove();
 			initHost();
+			// @ts-ignore
 			const instance = new KInput({
 				target: host,
 				props: {
@@ -44,18 +45,15 @@ describe('Test: KInput', () => {
 				}
 			});
 			expect(instance).toBeTruthy();
-			expect((host as HTMLElement)!.innerHTML.includes(`k-input__${size}`)).toBeTruthy();
-			expect(
-				(host as HTMLElement)!.innerHTML.includes(`k-input--icon__${size} k-input--prefix-icon`)
-			).toBeTruthy();
-			expect(
-				(host as HTMLElement)!.innerHTML.includes(`k-input--icon__${size} k-input--suffix-icon`)
-			).toBeTruthy();
+			expect(host!.innerHTML.includes(`k-input__${size}`)).toBeTruthy();
+			expect(host!.innerHTML.includes(`k-input--icon__${size} k-input--prefix-icon`)).toBeTruthy();
+			expect(host!.innerHTML.includes(`k-input--icon__${size} k-input--suffix-icon`)).toBeTruthy();
 			expect(host.innerHTML).matchSnapshot();
 		}
 	});
 
 	test('props: value', async () => {
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -70,6 +68,7 @@ describe('Test: KInput', () => {
 
 	test('props: placeholder', async () => {
 		const placeholder = '我见青山多妩媚，料青山见我应如是';
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -83,6 +82,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('props: disabled', async () => {
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -96,6 +96,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('props: iconPrefix', async () => {
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -109,6 +110,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('props: iconSuffix', async () => {
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -122,6 +124,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('props: cls', async () => {
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -135,6 +138,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('props: password', async () => {
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -158,6 +162,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('props: prepend', async () => {
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -172,6 +177,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('props: append', async () => {
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -186,6 +192,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('props: append & prepend', async () => {
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -204,6 +211,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('props: textarea & rows', async () => {
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -218,6 +226,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('props: textarea & autosize', async () => {
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -236,6 +245,7 @@ describe('Test: KInput', () => {
 			name: 'KInput'
 		};
 		const arrAttr = ['i', 'kun'];
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -267,6 +277,7 @@ describe('Test: KInput', () => {
 	test('event: should trigger input event', async () => {
 		let value = '';
 		const mockFn = vi.fn();
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -274,6 +285,7 @@ describe('Test: KInput', () => {
 			}
 		});
 		await tick();
+		// @ts-ignore
 		instance.$on('input', (v) => {
 			value = v.detail;
 			mockFn();
@@ -293,7 +305,7 @@ describe('Test: KInput', () => {
 		const mockCompositionInputFn = vi.fn();
 		const mockCompositionStart = vi.fn();
 		const mockCompositionEnd = vi.fn();
-
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -302,18 +314,19 @@ describe('Test: KInput', () => {
 			}
 		});
 		await tick();
+		// @ts-ignore
 		instance.$on('input', () => {
 			mockInputFn();
 		});
-
+		// @ts-ignore
 		instance.$on('compositionstart', () => {
 			mockCompositionStart();
 		});
-
+		// @ts-ignore
 		instance.$on('compositionend', () => {
 			mockCompositionEnd();
 		});
-
+		// @ts-ignore
 		instance.$on('compositionInput', (v) => {
 			value = v.detail;
 			mockCompositionInputFn();
@@ -341,13 +354,16 @@ describe('Test: KInput', () => {
 
 	test('event: should trigger enter event when pressing enter', async () => {
 		const mockFn = vi.fn();
+		// @ts-ignore
 		const instance = new KInput({
 			target: host
 		});
 		await tick();
+		// @ts-ignore
 		instance.$on('enter', mockFn);
 		const inputElm = host.getElementsByTagName('input')[0];
 		inputElm.dispatchEvent(
+			// @ts-ignore
 			new KeyboardEvent('keydown', {
 				bubbles: true,
 				cancelable: true,
@@ -362,6 +378,7 @@ describe('Test: KInput', () => {
 	test('event: should trigger search event when pressing enter', async () => {
 		const mockFn = vi.fn();
 		const mockSearchFn = vi.fn();
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -369,10 +386,13 @@ describe('Test: KInput', () => {
 			}
 		});
 		await tick();
+		// @ts-ignore
 		instance.$on('enter', mockFn);
+		// @ts-ignore
 		instance.$on('search', mockSearchFn);
 		const inputElm = host.getElementsByTagName('input')[0];
 		inputElm.dispatchEvent(
+			// @ts-ignore
 			new KeyboardEvent('keydown', {
 				bubbles: true,
 				cancelable: true,
@@ -387,13 +407,16 @@ describe('Test: KInput', () => {
 
 	test('event: should trigger keydown event when not pressing enter', async () => {
 		const mockFn = vi.fn();
+		// @ts-ignore
 		const instance = new KInput({
 			target: host
 		});
 		await tick();
+		// @ts-ignore
 		instance.$on('enter', mockFn);
 		const inputElm = host.getElementsByTagName('input')[0];
 		inputElm.dispatchEvent(
+			// @ts-ignore
 			new KeyboardEvent('keydown', {
 				bubbles: true,
 				cancelable: true,
@@ -408,6 +431,7 @@ describe('Test: KInput', () => {
 	test('event: should trigger change event', async () => {
 		let value = '';
 		const mockFn = vi.fn();
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -415,8 +439,9 @@ describe('Test: KInput', () => {
 			}
 		});
 		await tick();
+		// @ts-ignore
 		instance.$on('change', (v) => {
-			value = (v.detail.target as HTMLInputElement).value;
+			value = v.detail.target.value;
 			mockFn();
 		});
 		const inputElm = host.getElementsByTagName('input')[0];
@@ -431,6 +456,7 @@ describe('Test: KInput', () => {
 
 	test('event: should not trigger event when disabled', async () => {
 		const mockFn = vi.fn();
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -439,12 +465,16 @@ describe('Test: KInput', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
+		// @ts-ignore
 		instance.$on('input', mockFn);
+		// @ts-ignore
 		instance.$on('change', mockFn);
+		// @ts-ignore
 		instance.$on('enter', mockFn);
 		const inputElm = host.getElementsByTagName('input')[0];
 		inputElm.dispatchEvent(new Event('input'));
 		inputElm.dispatchEvent(
+			// @ts-ignore
 			new KeyboardEvent('keydown', {
 				bubbles: true,
 				cancelable: true,
@@ -464,6 +494,7 @@ describe('Test: KInput', () => {
 		let valueClick = '';
 		const mockFn = vi.fn();
 		const mockFnClick = vi.fn();
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -473,14 +504,17 @@ describe('Test: KInput', () => {
 			}
 		});
 		await tick();
+		// @ts-ignore
 		instance.$on('input', (v) => {
 			value = v.detail;
 			mockFn();
 		});
+		// @ts-ignore
 		instance.$on('triggerPrepend', (v) => {
 			valueClick = v.detail;
 			mockFnClick();
 		});
+		// @ts-ignore
 		instance.$on('triggerAppend', (v) => {
 			valueClick = v.detail;
 			mockFnClick();
@@ -511,6 +545,7 @@ describe('Test: KInput', () => {
 		const mockFn = vi.fn();
 		const mockFnClick = vi.fn();
 		const mockFnSearch = vi.fn();
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -521,16 +556,20 @@ describe('Test: KInput', () => {
 			}
 		});
 		await tick();
+		// @ts-ignore
 		instance.$on('input', (v) => {
 			value = v.detail;
 			mockFn();
 		});
+		// @ts-ignore
 		instance.$on('triggerPrepend', () => {
 			mockFnClick();
 		});
+		// @ts-ignore
 		instance.$on('triggerAppend', () => {
 			mockFnClick();
 		});
+		// @ts-ignore
 		instance.$on('search', (v) => {
 			valueClick = v.detail;
 			mockFnSearch();
@@ -558,6 +597,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('slot: prefix and suffix', async () => {
+		// @ts-ignore
 		const instance = new KInputSlots({
 			target: host
 		});
@@ -569,6 +609,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('slot: prepend and append', async () => {
+		// @ts-ignore
 		const instance = new KInputSlotsAppend({
 			target: host
 		});
@@ -581,6 +622,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('props: bind value be updated in real time', async () => {
+		// @ts-ignore
 		const instance = new KInputBindValueUpdate({
 			target: host
 		});
@@ -602,6 +644,7 @@ describe('Test: KInput', () => {
 	});
 
 	test('props: clearable', async () => {
+		// @ts-ignore
 		const instance = new KInput({
 			target: host,
 			props: {
@@ -612,6 +655,7 @@ describe('Test: KInput', () => {
 		expect(instance).toBeTruthy();
 		const inputElm = host.querySelector('input');
 		expect(host.querySelector('.k-input--clear-icon')).toBeNull();
+		// @ts-ignore
 		instance.$set({ value: 'ikun-ui' });
 		await fireEvent.focus(inputElm);
 		await tick();

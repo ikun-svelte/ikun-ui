@@ -249,21 +249,23 @@ async function devDependenciesInstall() {
 
 async function writeTest(baseDir, compName, originalCompName) {
 	const file = `${baseDir}/${originalCompName}.spec.ts`;
-	const testContent = `import { afterEach, expect, test, describe, beforeEach } from 'vitest';
+	const testContent = `import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import K${compName} from '../src';
 
-let host: HTMLElement;
+let host;
 
 const initHost = () => {
-	host = document.createElement('div');
+	host = globalThis.document.createElement('div');
 	host.setAttribute('id', 'host');
-	document.body.appendChild(host);
+	globalThis.document.body.appendChild(host);
 };
 beforeEach(() => {
 	initHost();
+	vi.useFakeTimers();
 });
 afterEach(() => {
 	host.remove();
+	vi.useRealTimers();
 });
 
 describe('Test: K${compName}', () => {
@@ -276,7 +278,7 @@ describe('Test: K${compName}', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(
-			(host as HTMLElement)!.innerHTML.includes('k-${originalCompName}--test')
+			(host)!.innerHTML.includes('k-${originalCompName}--test')
 		).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
