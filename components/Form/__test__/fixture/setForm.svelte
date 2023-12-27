@@ -9,11 +9,13 @@
 	import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
 	import { KSelect } from '@ikun-ui/select';
 	import { createEventDispatcher } from 'svelte';
+	import { KInputNumber } from '@ikun-ui/input-number';
 	export let isValidate = true;
 	export let initValue = {
 		KInput: 'KInput',
 		KSwitch: true,
 		KRate: null,
+		KInputNumber: 3,
 		KRadio: '',
 		KCheckbox: [],
 		KSelect: null,
@@ -31,6 +33,10 @@
 		KInput: [
 			{ required: true, msg: 'KInput required' },
 			{ min: 3, max: 5, msg: 'KInput 3 ~5' }
+		],
+		KInputNumber: [
+			{ required: true, msg: 'KInputNumber required' },
+			{ min: 3, max: 5, msg: 'KInputNumber 3 ~5' }
 		],
 		KSwitch: [
 			{
@@ -93,6 +99,7 @@
 					},
 					KRadio: '1',
 					KCheckbox: ['1'],
+					KInputNumber: 4,
 					KSelect: {
 						label: '白发三千丈',
 						value: '白发',
@@ -129,6 +136,9 @@
 			<KRadio uid="3">KRadio 3</KRadio>
 			<KRadio uid="4" disabled>KRadio 4</KRadio>
 		</KRadioGroup>
+	</KFormItem>
+	<KFormItem field="KInputNumber" label="KInputNumber">
+		<KInputNumber />
 	</KFormItem>
 	<KFormItem field="KCheckbox" label="KCheckbox">
 		<KCheckboxGroup>

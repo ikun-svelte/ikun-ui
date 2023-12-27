@@ -24,12 +24,12 @@ import { tick } from 'svelte';
 import { fireEvent, screen, render, waitFor } from '@testing-library/svelte';
 import { getValueByPath, parsePath, setValueByPath } from '../src/helpers/fields';
 
-let host: HTMLElement;
+let host;
 
 const initHost = () => {
-	host = document.createElement('div');
+	host = globalThis.document.createElement('div');
 	host.setAttribute('id', 'host');
-	document.body.appendChild(host);
+	globalThis.document.body.appendChild(host);
 };
 beforeEach(() => {
 	initHost();
@@ -50,6 +50,7 @@ describe('Test: KForm', () => {
 	});
 
 	test('props: KForm initValue', async () => {
+		// @ts-ignore
 		const instance = new KFormInit({
 			target: host
 		});
@@ -79,11 +80,15 @@ describe('Test: KForm', () => {
 		const sliderEl = host.querySelector('.k-slider--button-wrapper');
 		expect(sliderEl.style.left).toBe('43%');
 
+		const inputNum = host.querySelector('.k-input-number__md').children[0];
+		expect(inputNum.value).toBe('4');
+
 		const value = JSON.parse(host.querySelector('#form_value')?.innerHTML);
 		expect(value).toMatchObject({
 			KInput: 'KInput',
 			KSwitch: true,
 			KRate: 4,
+			KInputNumber: 4,
 			KRadio: '3',
 			KCheckbox: ['2'],
 			KSelect: {
@@ -98,6 +103,7 @@ describe('Test: KForm', () => {
 	});
 
 	test('props: KForm labelWidth', async () => {
+		// @ts-ignore
 		const instance = new KFormLabelWidth({
 			target: host
 		});
@@ -113,6 +119,7 @@ describe('Test: KForm', () => {
 	});
 
 	test('props: KForm labelAlign', async () => {
+		// @ts-ignore
 		const instance = new KFormLabelAlign({
 			target: host
 		});
@@ -137,6 +144,7 @@ describe('Test: KForm', () => {
 	});
 
 	test('props: KForm labelPosition', async () => {
+		// @ts-ignore
 		const instance = new KFormLabelPosition({
 			target: host
 		});
@@ -154,14 +162,16 @@ describe('Test: KForm', () => {
 	});
 
 	test('props: KForm disabled', async () => {
+		// @ts-ignore
 		const instance = new KFormDisabled({
 			target: host
 		});
 		expect(instance).toBeTruthy();
 		await tick();
 
-		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(8);
+		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(9);
 		expect(host.querySelector('.k-input__disabled')).toBeTruthy();
+		expect(host.querySelectorAll('.k-input__disabled').length).toBe(4);
 		expect(host.querySelector('.k-switch__disabled')).toBeTruthy();
 		expect(host.querySelector('.k-rate--item__disabled')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(4);
@@ -174,6 +184,7 @@ describe('Test: KForm', () => {
 		await tick();
 		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(0);
 		expect(host.querySelector('.k-input__disabled')).not.toBeTruthy();
+		expect(host.querySelectorAll('.k-input__disabled').length).toBe(0);
 		expect(host.querySelector('.k-switch__disabled')).not.toBeTruthy();
 		expect(host.querySelector('.k-rate--item__disabled')).not.toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(1);
@@ -183,8 +194,9 @@ describe('Test: KForm', () => {
 
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(8);
+		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(9);
 		expect(host.querySelector('.k-input__disabled')).toBeTruthy();
+		expect(host.querySelectorAll('.k-input__disabled').length).toBe(4);
 		expect(host.querySelector('.k-switch__disabled')).toBeTruthy();
 		expect(host.querySelector('.k-rate--item__disabled')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(4);
@@ -194,14 +206,16 @@ describe('Test: KForm', () => {
 	});
 
 	test('props: KForm size', async () => {
+		// @ts-ignore
 		const instance = new KFormSize({
 			target: host
 		});
 		expect(instance).toBeTruthy();
 		await tick();
 
-		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(8);
+		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(9);
 		expect(host.querySelector('.k-input__sm')).toBeTruthy();
+		expect(host.querySelector('.k-input-number__sm')).toBeTruthy();
 		expect(host.querySelector('.k-switch--sm')).toBeTruthy();
 		expect(host.querySelector('.k-rate--sm')).toBeTruthy();
 		expect(host.querySelector('.k-slider--sm')).toBeTruthy();
@@ -214,8 +228,9 @@ describe('Test: KForm', () => {
 		let btnEl = host.querySelector('#size_lg');
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__lg').length).toBe(8);
+		expect(host.querySelectorAll('.k-form-item-label__lg').length).toBe(9);
 		expect(host.querySelector('.k-input__lg')).toBeTruthy();
+		expect(host.querySelector('.k-input-number__lg')).toBeTruthy();
 		expect(host.querySelector('.k-switch--lg')).toBeTruthy();
 		expect(host.querySelector('.k-rate--lg')).toBeTruthy();
 		expect(host.querySelector('.k-slider--lg')).toBeTruthy();
@@ -228,8 +243,9 @@ describe('Test: KForm', () => {
 		btnEl = host.querySelector('#size_md');
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__md').length).toBe(8);
+		expect(host.querySelectorAll('.k-form-item-label__md').length).toBe(9);
 		expect(host.querySelector('.k-input__md')).toBeTruthy();
+		expect(host.querySelector('.k-input-number__md')).toBeTruthy();
 		expect(host.querySelector('.k-switch--md')).toBeTruthy();
 		expect(host.querySelector('.k-rate--md')).toBeTruthy();
 		expect(host.querySelector('.k-slider--md')).toBeTruthy();
@@ -242,8 +258,9 @@ describe('Test: KForm', () => {
 		btnEl = host.querySelector('#size_sm');
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(8);
+		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(9);
 		expect(host.querySelector('.k-input__sm')).toBeTruthy();
+		expect(host.querySelector('.k-input-number__sm')).toBeTruthy();
 		expect(host.querySelector('.k-switch--sm')).toBeTruthy();
 		expect(host.querySelector('.k-rate--sm')).toBeTruthy();
 		expect(host.querySelector('.k-slider--sm')).toBeTruthy();
@@ -256,11 +273,13 @@ describe('Test: KForm', () => {
 
 	test('props: KForm manualValidate', async () => {
 		let value = {};
+		// @ts-ignore
 		const instance = new KFormManualValidate({
 			target: host
 		});
 		expect(instance).toBeTruthy();
 		await tick();
+		// @ts-ignore
 		instance.$on('getRes', (data) => {
 			value = data.detail;
 		});
@@ -292,11 +311,13 @@ describe('Test: KForm', () => {
 	test('events: KForm validate & api validateField', async () => {
 		const mockFn = vi.fn();
 		let value: any = {};
+		// @ts-ignore
 		const instance = new KFormValidateEventValidateField({
 			target: host
 		});
 		expect(instance).toBeTruthy();
 		await tick();
+		// @ts-ignore
 		instance.$on('getRes', (data) => {
 			value = data.detail;
 			mockFn();
@@ -318,6 +339,7 @@ describe('Test: KForm', () => {
 		const initValue = {
 			KInput: 'KInput'
 		};
+		// @ts-ignore
 		const instance = new KFormValidateEventSefField({
 			target: host,
 			props: {
@@ -327,6 +349,7 @@ describe('Test: KForm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
+		// @ts-ignore
 		instance.$on('getRes', (data) => {
 			value = data.detail;
 			mockFn();
@@ -346,17 +369,19 @@ describe('Test: KForm', () => {
 	test('events: KForm validate & input interaction', async () => {
 		const mockFn = vi.fn();
 		let value: any = {};
+		// @ts-ignore
 		const instance = new KFormValidateEvent({
 			target: host
 		});
 		expect(instance).toBeTruthy();
 		await tick();
+		// @ts-ignore
 		instance.$on('getRes', (data) => {
 			value = data.detail;
 			mockFn();
 		});
 
-		const inputEl = host.querySelector('.k-input--inner');
+		const inputEl = host.querySelectorAll('.k-input--inner')[0];
 		await fireEvent.input(inputEl, { target: { value: '' } });
 		expect(host.innerHTML.includes('KInput required')).toBeTruthy();
 		expect(mockFn).toBeCalledTimes(1);
@@ -367,6 +392,17 @@ describe('Test: KForm', () => {
 		expect(mockFn).toBeCalledTimes(2);
 		expect(value).matchSnapshot();
 
+		const inputNumEl = host.querySelectorAll('.k-input--inner')[1];
+		await fireEvent.input(inputNumEl, { target: { value: '' } });
+		expect(host.innerHTML.includes('KInputNumber required')).toBeTruthy();
+		expect(mockFn).toBeCalledTimes(3);
+		expect(value).matchSnapshot();
+
+		await fireEvent.input(inputNumEl, { target: { value: 2 } });
+		expect(host.innerHTML.includes('KInputNumber 3 ~5')).toBeTruthy();
+		expect(mockFn).toBeCalledTimes(4);
+		expect(value).matchSnapshot();
+
 		const checkboxEl = host.querySelectorAll('[type="checkbox"]')[0];
 		checkboxEl?.click();
 		await tick();
@@ -375,7 +411,7 @@ describe('Test: KForm', () => {
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('KCheckbox error')).toBeTruthy();
-		expect(mockFn).toBeCalledTimes(3);
+		expect(mockFn).toBeCalledTimes(5);
 		expect(value).matchSnapshot();
 
 		const selectInput = host.querySelectorAll('.k-select--inner');
@@ -398,7 +434,7 @@ describe('Test: KForm', () => {
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('KSelect error')).toBeTruthy();
-		expect(mockFn).toBeCalledTimes(4);
+		expect(mockFn).toBeCalledTimes(6);
 		expect(value).matchSnapshot();
 
 		const selectInput2 = host.querySelectorAll('.k-select--inner');
@@ -421,25 +457,27 @@ describe('Test: KForm', () => {
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('KSelect error')).toBeTruthy();
-		expect(mockFn).toBeCalledTimes(5);
+		expect(mockFn).toBeCalledTimes(7);
 		expect(value).matchSnapshot();
 	});
 
 	test('api: KForm validateForm', async () => {
 		let value = {};
+		// @ts-ignore
 		const instance = new KFormValidateForm({
 			target: host
 		});
 		expect(instance).toBeTruthy();
 		await tick();
+		// @ts-ignore
 		instance.$on('getRes', (data) => {
 			value = data.detail;
 		});
 		const btn = host.querySelector('#validate');
 		btn?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-star').length).toBe(7);
-		expect(host.querySelectorAll('.k-form-item-msg_error').length).toBe(6);
+		expect(host.querySelectorAll('.k-form-item-star').length).toBe(8);
+		expect(host.querySelectorAll('.k-form-item-msg_error').length).toBe(7);
 		expect(host.innerHTML.includes('KSelectString custom error')).toBeTruthy();
 		expect(value).toMatchSnapshot(JSON.stringify(value));
 	});
@@ -450,12 +488,14 @@ describe('Test: KForm', () => {
 			KInput: 'KInput',
 			KSwitch: true,
 			KRate: null,
+			KInputNumber: 3,
 			KRadio: '',
 			KCheckbox: [],
 			KSelect: null,
 			KSelectString: '',
 			slider: 0
 		};
+		// @ts-ignore
 		const instance = new KFormResetForm({
 			target: host,
 			props: {
@@ -464,6 +504,7 @@ describe('Test: KForm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
+		// @ts-ignore
 		instance.$on('getRes', (data) => {
 			value = data.detail;
 		});
@@ -472,8 +513,11 @@ describe('Test: KForm', () => {
 		await tick();
 		expect(value.data).toMatchObject(initValue);
 
-		const inputEl = host.querySelector('.k-input--inner');
+		const inputEl = host.querySelectorAll('.k-input--inner')[0];
 		await fireEvent.input(inputEl, { target: { value: 'test' } });
+
+		const inputNumEl = host.querySelector('.k-input-number--up');
+		await fireEvent.click(inputNumEl);
 
 		const switchEl = host.querySelector('.k-switch');
 		switchEl?.click();
@@ -508,6 +552,7 @@ describe('Test: KForm', () => {
 			KInput: 'test',
 			KSwitch: false,
 			KRate: 0,
+			KInputNumber: 4,
 			KRadio: '1',
 			KCheckbox: ['1'],
 			KSelect: {
@@ -534,11 +579,13 @@ describe('Test: KForm', () => {
 			KInput: 'KInput',
 			KSwitch: true,
 			KRate: null,
+			KInputNumber: 3,
 			KRadio: '',
 			KCheckbox: [],
 			KSelect: null,
 			KSelectString: ''
 		};
+		// @ts-ignore
 		const instance = new KFormGetForm({
 			target: host,
 			props: {
@@ -547,6 +594,7 @@ describe('Test: KForm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
+		// @ts-ignore
 		instance.$on('getRes', (data) => {
 			value = data.detail;
 		});
@@ -557,6 +605,9 @@ describe('Test: KForm', () => {
 
 		const inputEl = host.querySelector('.k-input--inner');
 		await fireEvent.input(inputEl, { target: { value: 'test' } });
+
+		const inputNumEl = host.querySelector('.k-input-number--up');
+		await fireEvent.click(inputNumEl);
 
 		const switchEl = host.querySelector('.k-switch');
 		switchEl?.click();
@@ -591,6 +642,7 @@ describe('Test: KForm', () => {
 			KInput: 'test',
 			KSwitch: false,
 			KRate: 0,
+			KInputNumber: 4,
 			KRadio: '1',
 			KCheckbox: ['1'],
 			KSelect: {
@@ -608,11 +660,13 @@ describe('Test: KForm', () => {
 			KInput: 'KInput',
 			KSwitch: true,
 			KRate: null,
+			KInputNumber: 3,
 			KRadio: '',
 			KCheckbox: [],
 			KSelect: null,
 			KSelectString: ''
 		};
+		// @ts-ignore
 		const instance = new KFormSetForm({
 			target: host,
 			props: {
@@ -622,6 +676,7 @@ describe('Test: KForm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
+		// @ts-ignore
 		instance.$on('getRes', (data) => {
 			value = data.detail;
 		});
@@ -637,6 +692,8 @@ describe('Test: KForm', () => {
 
 		const input = host.querySelector('.k-input--inner');
 		expect(input.value).toBe('KInput change');
+
+		expect(host.querySelectorAll('.k-input--inner')[1].value === '4').toBeTruthy();
 
 		expect(host.querySelectorAll('.k-rate--active-icon').length === 1).toBeTruthy();
 
@@ -661,6 +718,7 @@ describe('Test: KForm', () => {
 		expect(value).toMatchObject({
 			KInput: 'KInput change',
 			KSwitch: false,
+			KInputNumber: 4,
 			KRate: {
 				sub: 1
 			},
@@ -686,6 +744,7 @@ describe('Test: KForm', () => {
 			KSelect: null,
 			KSelectString: ''
 		};
+		// @ts-ignore
 		const instance = new KFormSetForm({
 			target: host,
 			props: {
@@ -695,6 +754,7 @@ describe('Test: KForm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
+		// @ts-ignore
 		instance.$on('getRes', (data) => {
 			value = data.detail;
 		});
@@ -710,6 +770,8 @@ describe('Test: KForm', () => {
 
 		const input = host.querySelector('.k-input--inner');
 		expect(input.value).toBe('KInput change');
+
+		expect(host.querySelectorAll('.k-input--inner')[1].value === '4').toBeTruthy();
 
 		expect(host.querySelectorAll('.k-rate--active-icon').length === 1).toBeTruthy();
 
@@ -734,6 +796,7 @@ describe('Test: KForm', () => {
 		expect(value).toMatchObject({
 			KInput: 'KInput change',
 			KSwitch: false,
+			KInputNumber: 4,
 			KRate: {
 				sub: 1
 			},
@@ -753,6 +816,7 @@ describe('Test: KForm', () => {
 		const initValue = {
 			KInput: 'KInput'
 		};
+		// @ts-ignore
 		const instance = new KFormSetField({
 			target: host,
 			props: {
@@ -762,6 +826,7 @@ describe('Test: KForm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
+		// @ts-ignore
 		instance.$on('getRes', (data) => {
 			value = data.detail;
 		});
@@ -790,6 +855,7 @@ describe('Test: KForm', () => {
 		const initValue = {
 			KInput: 'KInput'
 		};
+		// @ts-ignore
 		const instance = new KFormSetField({
 			target: host,
 			props: {
@@ -799,6 +865,7 @@ describe('Test: KForm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
+		// @ts-ignore
 		instance.$on('getRes', (data) => {
 			value = data.detail;
 		});
@@ -825,6 +892,7 @@ describe('Test: KForm', () => {
 
 	test('api: KForm clearValidateField', async () => {
 		let value: any = {};
+		// @ts-ignore
 		const instance = render(KFormClearValidateField);
 		instance.component.$on('getRes', (data) => {
 			value = data.detail;
@@ -854,6 +922,7 @@ describe('Test: KForm', () => {
 	});
 
 	test('api: KForm validateField', async () => {
+		// @ts-ignore
 		const instance = new KFormValidateField({
 			target: host
 		});
@@ -869,6 +938,7 @@ describe('Test: KForm', () => {
 	});
 
 	test('props: KFormItem showMsg', async () => {
+		// @ts-ignore
 		const instance = new KFormItemShowMsg({
 			target: host
 		});
@@ -884,6 +954,7 @@ describe('Test: KForm', () => {
 	});
 
 	test('props: KFormItem label', async () => {
+		// @ts-ignore
 		const instance = new KFormItemLabel({
 			target: host
 		});
@@ -894,6 +965,7 @@ describe('Test: KForm', () => {
 	});
 
 	test('slots: KFormItem label', async () => {
+		// @ts-ignore
 		const instance = new KFormItemLabelSlot({
 			target: host
 		});
@@ -904,6 +976,7 @@ describe('Test: KForm', () => {
 	});
 
 	test('slots: KFormItem error', async () => {
+		// @ts-ignore
 		const instance = new KFormErrorSlot({
 			target: host
 		});

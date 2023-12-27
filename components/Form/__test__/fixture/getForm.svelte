@@ -9,6 +9,7 @@
 	import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
 	import { KSelect } from '@ikun-ui/select';
 	import { createEventDispatcher } from 'svelte';
+	import { KInputNumber } from '@ikun-ui/input-number';
 	export let initValue = {};
 	let KFormInst: KForm | undefined = undefined;
 	const dataList = [
@@ -22,6 +23,10 @@
 		KInput: [
 			{ required: true, msg: 'KInput required' },
 			{ min: 3, max: 5, msg: 'KInput 3 ~5' }
+		],
+		KInputNumber: [
+			{ required: true, msg: 'KInputNumber required' },
+			{ min: 3, max: 5, msg: 'KInputNumber 3 ~5' }
 		],
 		KSwitch: [
 			{
@@ -83,6 +88,9 @@
 	</KFormItem>
 	<KFormItem field="KRate" label="KRate">
 		<KRate clearable />
+	</KFormItem>
+	<KFormItem field="KInputNumber" label="KInputNumber">
+		<KInputNumber />
 	</KFormItem>
 	<KFormItem field="KRadio" label="KRadio">
 		<KRadioGroup>
