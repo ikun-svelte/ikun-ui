@@ -17,7 +17,7 @@
 	export let stepStrictly: KInputNumberProps['stepStrictly'] = false;
 	export let precision: KInputNumberProps['precision'] = null;
 	export let controls: KInputNumberProps['controls'] = true;
-	export let valueOnClear: KInputNumberProps['valueOnClear'] = 9;
+	export let valueOnClear: KInputNumberProps['valueOnClear'] = null;
 	export let disabled: KInputNumberProps['disabled'] = false;
 	export let append: KInputNumberProps['append'] = '';
 	export let prepend: KInputNumberProps['prepend'] = '';
@@ -48,7 +48,7 @@
 	 * @internal
 	 */
 	export let center: KInputNumberProps['center'] = false;
-	/*********************** TODO: KForm logic start ************************/
+	/*********************** KForm logic start ************************/
 	let disabledFrom = false;
 	$: disabledInner = disabledFrom || disabled;
 	let sizeFrom = '';
@@ -78,13 +78,18 @@
 
 	// Register event, KForm can set KInput value
 	if (formContext && formInstance) {
+		// init value
 		formUpdateField(true);
+		// init disabled、 size
 		formPropsChangeCb(formInstance.__dynamicProps);
+		// register updated event
 		formInstance.__itemCompMap[field] = {
 			update: formUpdateField,
-			type: 'input'
+			type: 'input-number'
 		};
+		// register error event
 		formInstance.__errorCompEvtMap[field] = fromFieldError;
+		// register prop change event
 		formInstance.__propHandleEvtMap.push(formPropsChangeCb);
 	}
 	/*********************** KForm logic end ************************/
@@ -144,15 +149,22 @@
 	const onChange = (e: Event) => {
 		if (disabledInner) return;
 		dispatch('change', e);
+		const deciValue = new Deci((e?.target as HTMLInputElement)?.value);
 		formInstance &&
-			formInstance?.updateField(
-				field!,
-				(e?.target as HTMLInputElement)?.value,
-				!formInstance.__manual_validate
-			);
+			formInstance?.updateField(field!, deciValue.toNumber(), !formInstance.__manual_validate);
 
 		resolveValue = fixStepStrictlyVal(value || valueOnClear);
 		setValueToInput(normalizeVarStrEmpty(`${toPrecision(resolveValue)}`));
+	};
+
+	const onBlur = (e: Event) => {
+		if (disabledInner) return;
+		dispatch('blur', e);
+	};
+
+	const onFocus = (e: Event) => {
+		if (disabledInner) return;
+		dispatch('focus', e);
 	};
 
 	const onEnter = (e: KeyboardEvent) => {
@@ -298,6 +310,8 @@
 			disabled={disabledInner}
 			bind:this={inputRef}
 			on:input={onInput}
+			on:blur={onBlur}
+			on:focus={onFocus}
 			on:change={onChange}
 			on:keydown={onEnter}
 			on:compositionstart={onCompositionStart}
