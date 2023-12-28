@@ -39,7 +39,7 @@
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/mask": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.16"
+		"baiwusanyu-utils": "^1.0.18"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.2",

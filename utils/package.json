@@ -23,5 +23,8 @@
 		"main": "./dist/index.js",
 		"module": "./dist/index.mjs",
 		"types": "./dist/index.d.ts"
+	},
+	"dependencies": {
+		"esm-env": "^1.0.0"
 	}
 }

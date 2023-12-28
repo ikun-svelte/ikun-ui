@@ -16,3 +16,4 @@ export {
 	dropDownKey,
 	descriptionsKey
 } from './symbol-key';
+export * from './dom';
