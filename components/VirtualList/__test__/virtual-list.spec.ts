@@ -1,16 +1,16 @@
 import { afterEach, expect, test, describe, beforeEach, vi } from 'vitest';
 import KVirtualList from '../src';
-let host: HTMLElement;
+let host;
 const dataList: any = [];
 for (let i = 0; i < 1000; i++) {
 	dataList.push({ id: i, label: `this is item ${i}` });
 }
 const initHost = () => {
-	host = document.createElement('div');
+	host = globalThis.document.createElement('div');
 	host.setAttribute('id', 'host');
 	host.style.height = '50px';
 	host.style.overflow = 'auto';
-	document.body.appendChild(host);
+	globalThis.document.body.appendChild(host);
 };
 beforeEach(() => {
 	initHost();
@@ -44,7 +44,7 @@ describe('Test: KVirtualList', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-virtual-list--test')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-virtual-list--test')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -71,8 +71,8 @@ describe('Test: KVirtualList', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host.querySelectorAll('.k-virtual-list--item').length === 30).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-virtual-list--base')).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-virtual-list--wrapper')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-virtual-list--base')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-virtual-list--wrapper')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 });

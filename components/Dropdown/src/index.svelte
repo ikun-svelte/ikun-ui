@@ -4,6 +4,7 @@
 	import type { KDropdownProps } from './types';
 	import { KPopover } from '@ikun-ui/popover';
 	import { createEventDispatcher, setContext } from 'svelte';
+	import { KScrollbar } from '@ikun-ui/scrollbar/src/index.js';
 
 	export let placement: KDropdownProps['placement'] = 'bottom';
 	// hover click manual
@@ -61,7 +62,7 @@
 
 	const prefixCls = getPrefixCls('dropdown');
 	$: cnames = clsx(prefixCls, cls);
-	$: itmeCls = clsx(`${prefixCls}-item-container`, 'ikun-scroll-bar');
+	$: itmeCls = clsx(`${prefixCls}-item-container`);
 </script>
 
 <KPopover
@@ -77,22 +78,7 @@
 	<button class={cnames} {...$$restProps} {role} {tabindex} {...attrs} slot="triggerEl">
 		<slot />
 	</button>
-	<div slot="contentEl" class={itmeCls} style:max-height={maxHeight}>
+	<KScrollbar slot="contentEl" cls={itmeCls} css={`max-height: ${maxHeight}`}>
 		<slot name="dropdown" />
-	</div>
+	</KScrollbar>
 </KPopover>
-
-<style>
-	:global(.ikun-scroll-bar::-webkit-scrollbar-track-piece) {
-		background: transparent;
-	}
-
-	:global(.ikun-scroll-bar::-webkit-scrollbar) {
-		width: 6px;
-	}
-
-	:global(.ikun-scroll-bar::-webkit-scrollbar-thumb) {
-		background: var(--ikun-light-800);
-		border-radius: 20px;
-	}
-</style>

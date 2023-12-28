@@ -55,3 +55,4 @@ export * from '@ikun-ui/statistic';
 export * from '@ikun-ui/countdown';
 export * from '@ikun-ui/input-number';
 export * from '@ikun-ui/page-header';
+export * from '@ikun-ui/scrollbar';

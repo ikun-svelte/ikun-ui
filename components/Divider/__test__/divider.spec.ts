@@ -3,12 +3,12 @@ import { afterEach, expect, test, describe, beforeEach } from 'vitest';
 import KDivider from '../src';
 import KDividerContent from './fixture/divider.content.slot.test.svelte';
 
-let host: HTMLElement;
+let host;
 
 const initHost = () => {
-	host = document.createElement('div');
+	host = globalThis.document.createElement('div');
 	host.setAttribute('id', 'host');
-	document.body.appendChild(host);
+	globalThis.document.body.appendChild(host);
 };
 beforeEach(() => {
 	initHost();
@@ -26,7 +26,7 @@ describe('Test: KDivider', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-divider--test')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-divider--test')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -38,10 +38,10 @@ describe('Test: KDivider', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-divider--horizontal')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-divider--horizontal')).toBeTruthy();
 		instance.$set({ direction: 'vertical' });
 		await tick();
-		expect((host as HTMLElement)!.innerHTML.includes('k-divider--vertical')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-divider--vertical')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -53,10 +53,10 @@ describe('Test: KDivider', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('b-red')).toBeTruthy();
+		expect(host!.innerHTML.includes('b-red')).toBeTruthy();
 		instance.$set({ borderColor: 'b-blue' });
 		await tick();
-		expect((host as HTMLElement)!.innerHTML.includes('b-blue')).toBeTruthy();
+		expect(host!.innerHTML.includes('b-blue')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -69,17 +69,18 @@ describe('Test: KDivider', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect((host as HTMLElement)!.innerHTML.includes('k-divider--horizontal__solid')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-divider--horizontal__solid')).toBeTruthy();
 		instance.$set({ borderStyle: 'dotted' });
 		await tick();
-		expect((host as HTMLElement)!.innerHTML.includes('k-divider--horizontal__dotted')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-divider--horizontal__dotted')).toBeTruthy();
 		instance.$set({ direction: 'vertical', borderStyle: 'dashed' });
 		await tick();
-		expect((host as HTMLElement)!.innerHTML.includes('k-divider--vertical__dashed')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-divider--vertical__dashed')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
 	test('slots: content', async () => {
+		//@ts-ignore
 		const instance = new KDividerContent({
 			target: host
 		});

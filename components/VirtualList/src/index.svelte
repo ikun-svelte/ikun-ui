@@ -4,7 +4,8 @@
 	import type { KVirtualListProps } from './types';
 	import Virtual, { isBrowser, type VRange } from './virtual';
 	import Item from './item.svelte';
-	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount, tick } from 'svelte';
+	import { scrollDefaultProps, genCSSVariable } from '@ikun-ui/scrollbar';
 
 	export let cls: KVirtualListProps['cls'] = undefined;
 	export let attrs: KVirtualListProps['attrs'] = {};
@@ -67,7 +68,7 @@
 		},
 		onRangeChanged
 	);
-	let root: HTMLElement | null = null;
+	let root: any = null;
 	let shepherd: HTMLElement | null = null;
 	const dispatch = createEventDispatcher();
 
@@ -166,7 +167,8 @@
 		}
 	}
 
-	onMount(() => {
+	onMount(async () => {
+		await tick();
 		if (start) {
 			scrollToIndex(start);
 		} else if (offset) {
@@ -250,11 +252,14 @@
 		{
 			[`${prefixCls}--base`]: isHorizontal
 		},
+		'k-scrollbar',
 		cls
 	);
 	$: wrapperCls = clsx({
 		[`${prefixCls}--wrapper`]: isHorizontal
 	});
+
+	const containerStyle = `overflow-y: auto; height: inherit; ${genCSSVariable(scrollDefaultProps)}`;
 </script>
 
 <div
@@ -263,7 +268,7 @@
 	{...$$restProps}
 	{...attrs}
 	on:scroll={onScroll}
-	style="overflow-y: auto; height: inherit"
+	style={containerStyle}
 >
 	{#if $$slots.header}
 		<Item on:resize={onItemResized} type="slot" uniqueKey="header">
