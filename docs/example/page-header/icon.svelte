@@ -9,6 +9,6 @@
 	};
 </script>
 
-<KPageHeader on:back={goBack}>
+<KPageHeader on:back={goBack} icon="i-carbon-logo-vue">
 	<span class="text-large font-600 mr-3 dark:text-white" slot="content"> Title </span>
 </KPageHeader>

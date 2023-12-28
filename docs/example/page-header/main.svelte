@@ -11,4 +11,8 @@
 
 <KPageHeader on:back={goBack}>
 	<span class="text-large font-600 mr-3 dark:text-white" slot="content"> Title </span>
+	<div class="p-2">
+		A lady’s imagination is very rapid; it jumps from admiration to love, from love to matrimony in
+		a moment.
+	</div>
 </KPageHeader>
