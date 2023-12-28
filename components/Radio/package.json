@@ -38,7 +38,7 @@
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/radio-group": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.16",
+		"baiwusanyu-utils": "^1.0.18",
 		"clsx": "^2.0.0"
 	},
 	"devDependencies": {

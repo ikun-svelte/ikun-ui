@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@ikun-ui/utils": "workspace:*",
-		"baiwusanyu-utils": "^1.0.16",
+		"baiwusanyu-utils": "^1.0.18",
 		"svelte-popperjs": "^1.3.2"
 	},
 	"devDependencies": {

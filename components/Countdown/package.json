@@ -37,7 +37,7 @@
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"@ikun-ui/statistic": "workspace:*",
-		"baiwusanyu-utils": "^1.0.16",
+		"baiwusanyu-utils": "^1.0.18",
 		"clsx": "^2.0.0",
 		"dayjs": "^1.11.3",
 		"esm-env": "^1.0.0"
