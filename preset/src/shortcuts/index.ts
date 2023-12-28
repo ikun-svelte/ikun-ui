@@ -53,6 +53,7 @@ import { affixShortcuts } from './src/affix';
 import { statisticShortcuts } from './src/statistic';
 import { inputNumberShortcuts } from './src/input-number';
 import { pageHeadersShortcuts } from './src/page-header';
+import { scrollbarShortcuts } from './src/scrollbar';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -149,7 +150,9 @@ export const defaultShortcuts = [
 	// input-number
 	inputNumberShortcuts,
 	// page-header
-	pageHeadersShortcuts
+	pageHeadersShortcuts,
+	// scrollbar
+	scrollbarShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -203,6 +206,7 @@ export function getSafeList() {
 	const statisticList = Object.keys(statisticShortcuts);
 	const inputNumberList = Object.keys(inputNumberShortcuts);
 	const pageHeaderList = Object.keys(pageHeadersShortcuts);
+	const scrollList = Object.keys(scrollbarShortcuts);
 	let res = iconList
 		.concat(IKUN_SAFE_LIST)
 		.concat(comList)
@@ -253,6 +257,7 @@ export function getSafeList() {
 		.concat(statisticList)
 		.concat(inputNumberList)
 		.concat(pageHeaderList)
+		.concat(scrollList)
 		.concat(carouselList);
 
 	// rules
@@ -317,3 +322,4 @@ export { affixShortcuts } from './src/affix';
 export { statisticShortcuts } from './src/statistic';
 export { inputNumberShortcuts } from './src/input-number';
 export { pageHeadersShortcuts } from './src/page-header';
+export { scrollbarShortcuts } from './src/scrollbar';

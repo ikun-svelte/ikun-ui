@@ -350,7 +350,6 @@
 				bind:this={vListRef}
 				estimateSize={dataListInner.length}
 				let:data
-				cls="ikun-scroll-bar"
 			>
 				{#if !$$slots.default}
 					<KOption
@@ -370,18 +369,3 @@
 		{/if}
 	</div>
 </KPopover>
-
-<style>
-	:global(.ikun-scroll-bar::-webkit-scrollbar-track-piece) {
-		background: transparent;
-	}
-
-	:global(.ikun-scroll-bar::-webkit-scrollbar) {
-		width: 6px;
-	}
-
-	:global(.ikun-scroll-bar::-webkit-scrollbar-thumb) {
-		background: var(--ikun-light-800);
-		border-radius: 20px;
-	}
-</style>

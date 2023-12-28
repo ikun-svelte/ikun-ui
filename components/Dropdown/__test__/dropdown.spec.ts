@@ -65,8 +65,8 @@ describe('Test: KDropdown', () => {
 		await fireEvent.click(btn);
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
-		expect(host!.innerHTML.includes('ikun-scroll-bar')).toBeTruthy();
-		expect(host!.innerHTML.includes('style="max-height: 10px;"')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-scrollbar')).toBeTruthy();
+		expect(host!.innerHTML.includes('max-height: 10px')).toBeTruthy();
 		expect(host!.innerHTML.includes('白发三千丈')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -80,6 +80,7 @@ describe('Test: KDropdown', () => {
 		const instance = new KDropdownChange({
 			target: host
 		});
+		// @ts-ignore
 		instance.$on('change', (v) => {
 			mockFn();
 			show = v.detail;
@@ -175,6 +176,7 @@ describe('Test: KDropdown', () => {
 		const instance = new KDropdownItemCommand({
 			target: host
 		});
+		// @ts-ignore
 		instance.$on('command', (v) => {
 			mockFn();
 			value = v.detail;

@@ -31,14 +31,14 @@ npm install @ikun-ui/page-header
 
 ## Additional operation section
 
-The header can be as complicated as needed, 
+The header can be as complicated as needed,
 you may add additional sections to the header, to allow rich interactions.
 
 <demo src="page-header/extra.svelte"  github='Pageheader'></demo>
 
 ## Main content
 
-Sometimes we want the head to show with some co-responding content, 
+Sometimes we want the head to show with some co-responding content,
 we can utilize the `default` slot for doing so.
 
 <demo src="page-header/main.svelte"  github='Pageheader'></demo>

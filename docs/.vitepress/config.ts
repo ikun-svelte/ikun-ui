@@ -27,6 +27,10 @@ const components = [
 			{
 				text: 'Link',
 				link: '/components/KLink'
+			},
+			{
+				text: 'Scrollbar',
+				link: '/components/KScrollbar'
 			}
 		]
 	},
