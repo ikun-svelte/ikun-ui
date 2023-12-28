@@ -68,7 +68,7 @@
 		"clean:deps": "node scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "node scripts/new-component.js scrollbar"
+		"create:new:comp": "node scripts/new-component.js image"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.14",
@@ -138,7 +138,8 @@
 		"@ikun-ui/countdown": "workspace:*",
 		"@ikun-ui/input-number": "workspace:*",
 		"@ikun-ui/page-header": "workspace:*",
-		"@ikun-ui/scrollbar": "workspace:*"
+		"@ikun-ui/scrollbar": "workspace:*",
+		"@ikun-ui/image": "workspace:*"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.1",
