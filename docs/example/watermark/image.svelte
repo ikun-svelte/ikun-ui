@@ -6,7 +6,7 @@
 <KClientOnly></KClientOnly>
 
 <KClientOnly>
-	<KWatermark image="../../public/logo.svg" width={60} height={50} gap={[50, 50]}>
+	<KWatermark image="https://ikun-ui.netlify.app/logo.svg" width={60} height={50} gap={[50, 50]}>
 		<div style="height: 500px" />
 	</KWatermark>
 </KClientOnly>

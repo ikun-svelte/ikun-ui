@@ -31,27 +31,39 @@ npm install @ikun-ui/page-header
 
 ## Additional operation section
 
-<demo src="page-header/basic.svelte"  github='Pageheader'></demo>
+The header can be as complicated as needed, 
+you may add additional sections to the header, to allow rich interactions.
+
+<demo src="page-header/extra.svelte"  github='Pageheader'></demo>
 
 ## Main content
 
-<demo src="page-header/basic.svelte"  github='Pageheader'></demo>
+Sometimes we want the head to show with some co-responding content, 
+we can utilize the `default` slot for doing so.
+
+<demo src="page-header/main.svelte"  github='Pageheader'></demo>
 
 ## Breadcrumbs
 
-<demo src="page-header/basic.svelte"  github='Pageheader'></demo>
+Page header allows you to add breadcrumbs for giving route information to the users by `breadcrumb` slot.
+
+<demo src="page-header/breadcrumbs.svelte"  github='Pageheader'></demo>
 
 ## Custom icon
 
-<demo src="page-header/basic.svelte"  github='Pageheader'></demo>
+You can customize the icon through the slot or icon attribute
+
+<demo src="page-header/icon.svelte"  github='Pageheader'></demo>
 
 ## No icon
 
-<demo src="page-header/basic.svelte"  github='Pageheader'></demo>
+PageHeader without icon is also possible
+
+<demo src="page-header/no-icon.svelte"  github='Pageheader'></demo>
 
 ## Complete example
 
-<demo src="page-header/basic.svelte"  github='Pageheader'></demo>
+<demo src="page-header/complete.svelte"  github='Pageheader'></demo>
 
 ## PageHeader Props
 
