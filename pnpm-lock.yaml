@@ -1157,6 +1157,9 @@ importers:
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon
+      '@ikun-ui/image-view':
+        specifier: workspace:*
+        version: link:../ImageView
       '@ikun-ui/utils':
         specifier: workspace:*
         version: link:../../utils
@@ -1185,6 +1188,9 @@ importers:
 
   components/ImageView:
     dependencies:
+      '@ikun-ui/client-only':
+        specifier: workspace:*
+        version: link:../ClientOnly
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon

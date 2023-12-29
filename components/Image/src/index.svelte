@@ -6,7 +6,7 @@
 	import { createEventDispatcher, onMount, tick } from 'svelte';
 	import { isString, isElement, throttle } from 'baiwusanyu-utils';
 	import { getScrollContainer, isInContainer } from '@ikun-ui/utils';
-
+	import { KImageView } from '@ikun-ui/image-view';
 	export let scrollContainer: KImageProps['scrollContainer'] = undefined;
 	export let previewSrcList: KImageProps['previewSrcList'] = [];
 	export let fit: KImageProps['fit'] = undefined;
@@ -109,10 +109,17 @@
 		}
 	});
 
-	function clickHandler() {
-		// don't show viewer when preview is false
-		//if (!preview.value) return
-		//
+	let showViewer = false;
+	function closeViewer() {
+		showViewer = false;
+	}
+
+	$: isPreview = Array.isArray(previewSrcList) && previewSrcList.length > 0;
+	function clickHandler(event: Event) {
+		//  don't show viewer when preview is false
+		if (!isPreview) return;
+		showViewer = true;
+		dispatch('show', event);
 		//stopWheelListener = useEventListener('wheel', wheelHandler, {
 		//  passive: false,
 		//})
@@ -123,8 +130,6 @@
 		//showViewer.value = true
 		//emit('show')
 	}
-
-	$: isPreview = Array.isArray(previewSrcList) && previewSrcList.length > 0;
 
 	const prefixCls = getPrefixCls('image');
 	$: cnames = clsx(prefixCls, cls);
@@ -166,5 +171,8 @@
 				</slot>
 			</div>
 		{/if}
+	{/if}
+	{#if isPreview}
+		<KImageView urls={previewSrcList} show={showViewer} on:close={closeViewer} />
 	{/if}
 </div>
