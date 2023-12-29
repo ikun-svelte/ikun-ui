@@ -120,15 +120,6 @@
 		if (!isPreview) return;
 		showViewer = true;
 		dispatch('show', event);
-		//stopWheelListener = useEventListener('wheel', wheelHandler, {
-		//  passive: false,
-		//})
-		//
-		//// prevent body scroll
-		//prevOverflow = document.body.style.overflow
-		//document.body.style.overflow = 'hidden'
-		//showViewer.value = true
-		//emit('show')
 	}
 
 	const prefixCls = getPrefixCls('image');
@@ -151,7 +142,7 @@
 	{:else}
 		{#if imageSrc !== undefined}
 			<img
-				{alt}
+				alt={alt || imageSrc}
 				aria-hidden="true"
 				{...$$restProps}
 				{...attrs}
