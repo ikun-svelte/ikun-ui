@@ -38,7 +38,7 @@ scrollbar supports partial style settings for `tumb`, `bar`, and `track`
 ## Scrollbar Props
 
 | Name            | Type     | Default                 | Description                                                |
-| --------------- | -------- | ----------------------- |------------------------------------------------------------|
+| --------------- | -------- | ----------------------- | ---------------------------------------------------------- |
 | css             | `string` | `string`                | Css content which will be appended to the style attribute. |
 | trackBackground | `string` | `transparent`           | Scrollbar track background color.                          |
 | trackRadius     | `string` | `20px`                  | Scrollbar track radius.                                    |

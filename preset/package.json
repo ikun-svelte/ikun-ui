@@ -17,6 +17,7 @@
 	],
 	"scripts": {
 		"build": "tsup --config tsup.config.ts",
+		"dev": "tsup --watch --config tsup.config.ts",
 		"publish:npm": "pnpm publish --no-git-checks --access public"
 	},
 	"publishConfig": {
