@@ -135,6 +135,10 @@ const components = [
 				link: '/components/KEmpty'
 			},
 			{
+				text: 'Image',
+				link: '/components/KImage'
+			},
+			{
 				text: 'Infinite',
 				link: '/components/KInfinite'
 			},
