@@ -1,5 +1,5 @@
 import { BROWSER } from 'esm-env';
-import { IKunUncertainFunction } from './types';
+import type { IKunUncertainFunction } from './types';
 export const getStyle = (element: HTMLElement, styleName: string): string => {
 	if (!BROWSER || !element || !styleName) return '';
 
