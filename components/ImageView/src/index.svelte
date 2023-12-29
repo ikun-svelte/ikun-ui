@@ -73,6 +73,23 @@
 		transition: transform 0.3s ease 0s;
 	`;
 
+	let curIndex = 0;
+	const next = () => {
+		if (curIndex === urls.length - 1) {
+			curIndex = 0;
+			return;
+		}
+		curIndex++;
+	};
+
+	const prev = () => {
+		if (curIndex === 0) {
+			curIndex = urls.length - 1;
+			return;
+		}
+		curIndex--;
+	};
+
 	$: isShowPage = urls.length > 1;
 	const prefixCls = getPrefixCls('image-view');
 	$: cnames = clsx(prefixCls, cls);
@@ -137,9 +154,9 @@
 
 			<div class={bodyCls} on:wheel={handleWheel}>
 				<img
-					src={urls[0]}
+					src={urls[curIndex]}
 					use:drag
-					alt={urls[0]}
+					alt={urls[curIndex]}
 					class={bodyImgCls}
 					style:left
 					style:top
@@ -150,7 +167,13 @@
 			<div class={footerWrapperCls}>
 				<div class={footerCls}>
 					{#if isShowPage}
-						<KIcon cls={footerIconCls} width="26px" height="26px" icon="i-carbon-chevron-left" />
+						<KIcon
+							cls={footerIconCls}
+							width="26px"
+							height="26px"
+							icon="i-carbon-chevron-left"
+							on:click={prev}
+						/>
 					{/if}
 
 					<KIcon
@@ -197,7 +220,13 @@
 					/>
 
 					{#if isShowPage}
-						<KIcon cls={footerIconCls} width="26px" height="26px" icon="i-carbon-chevron-right" />
+						<KIcon
+							cls={footerIconCls}
+							width="26px"
+							height="26px"
+							on:click={next}
+							icon="i-carbon-chevron-right"
+						/>
 					{/if}
 				</div>
 			</div>
