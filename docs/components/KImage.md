@@ -38,24 +38,26 @@ Indicate how the image should be resized to fit its container by fit, same as na
 
 You can use the `placeholder` slot to define the placeholder content when the image is not loaded.
 
-<demo src="image/basic.svelte"  github='Image'></demo>
+<demo src="image/placeholder.svelte"  github='Image'></demo>
 
 ## Load Failed
 
 You can use the `error` slot to define the placeholder content when the image fails to load.
 
-<demo src="image/basic.svelte"  github='Image'></demo>
+<demo src="image/failed.svelte"  github='Image'></demo>
 
 ## Lazy Load
 
 The lazy loading function can be turned on through `lazy`,
 and the image will not be loaded until it is scrolled into the visible range.
 
-<demo src="image/basic.svelte"  github='Image'></demo>
+<demo src="image/lazy.svelte"  github='Image'></demo>
 
 ## Image Preview
 
 The function of previewing large images can be enabled through `previewSrcList`
+
+<demo src="image/preview.svelte"  github='Image'></demo>
 
 ## Image Props
 
@@ -88,7 +90,6 @@ The function of previewing large images can be enabled through `previewSrcList`
 ## ImageView Props
 
 | Name  | Type       | Default | Description                      |
-| ----- | ---------- | ------- | -------------------------------- |
 | ----- | --------   | ------- | ------------------------------   |
 | show  | `boolean`  | `false` | Whether to display image preview |
 | urls  | `string[]` | `[]`    | Preview image link list          |
