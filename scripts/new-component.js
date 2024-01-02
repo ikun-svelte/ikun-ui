@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+import fs from 'fs-extra';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -21,6 +21,7 @@ const libName = `@ikun-ui/${originalCompName}`;
 
 const __dirname = fileURLToPath(new URL('../', import.meta.url));
 const componentsRoot = 'components/';
+const presetRoot = 'preset/';
 const pkgPath = path.join(__dirname, 'package.json');
 const rootPKG = require(pkgPath);
 
@@ -56,10 +57,14 @@ async function createComponent() {
 	const compBaseDir = `${componentsRoot}${compName}`;
 	const compMainDir = `${compBaseDir}/src`;
 	const compTestDir = `${compBaseDir}/__test__`;
+	const indexFileDir = `${componentsRoot}index.ts`;
+	const shortcutsIndexFileDir = `${presetRoot}src/shortcuts/`;
 	await appendDepToPkg(originalCompName);
 	mkCompDirsSync(compBaseDir, compMainDir, compTestDir);
 	// writes files
 	await Promise.all([
+		writeIndex(indexFileDir, originalCompName),
+		writePreset(shortcutsIndexFileDir, originalCompName),
 		writeTsConfig(compBaseDir),
 		writePkgJson(compBaseDir, originalCompName),
 		writeComponent(compMainDir, originalCompName),
@@ -300,4 +305,47 @@ async function rollback(err) {
 async function writeFnSpinnerRegister(file, content, fn) {
 	const witreSpinner = ora(`createing file: ${file}`).start();
 	await fn(file, content, witreSpinner);
+}
+
+async function writeIndex(indexFileDir, originalCompName) {
+	const file = await fs.readFile(indexFileDir);
+	let contextStr = `${file.toString()}export * from '@ikun-ui/${originalCompName}';`;
+	await fs.outputFileSync(indexFileDir, contextStr);
+}
+
+async function writePreset(shortcutsIndexFileDir, originalCompName) {
+	// create shortcuts file
+	const srcDir = `${shortcutsIndexFileDir}/src`;
+	const fileDir = `${srcDir}/${originalCompName}.ts`;
+	const content = `export const ${originalCompName}Shortcuts: Record<string, string> = {
+  'k-${originalCompName}': ''
+}`;
+	await fs.outputFileSync(fileDir, content);
+
+	// rewrite index
+	const indexDir = `${shortcutsIndexFileDir}/index.ts`;
+	const file = await fs.readFile(indexDir);
+	let indexContent = `${file.toString()}export { ${originalCompName}Shortcuts } from './src/${originalCompName}';\n`;
+	indexContent =
+		`import { ${originalCompName}Shortcuts } from './src/${originalCompName}';\n` + indexContent;
+	indexContent = indexContent.replaceAll(
+		'// anchor shortcuts',
+		`// anchor shortcuts
+\tconst ${originalCompName}List = Object.keys(${originalCompName}Shortcuts);`
+	);
+
+	indexContent = indexContent.replaceAll(
+		'// anchor list',
+		`// anchor list
+		.concat(${originalCompName}List)`
+	);
+
+	indexContent = indexContent.replaceAll(
+		'// anchor defaultShortcuts',
+		`// anchor defaultShortcuts
+	// ${originalCompName}
+	${originalCompName}Shortcuts,`
+	);
+
+	await fs.outputFileSync(indexDir, indexContent);
 }
