@@ -59,6 +59,8 @@ import { imageViewShortcuts } from './src/image-view';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
+	// don't remove
+	// anchor defaultShortcuts
 	// icon
 	iconShortcuts,
 	// alert
@@ -162,7 +164,8 @@ export const defaultShortcuts = [
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
-	// shortcuts
+	// don't remove
+	// anchor shortcuts
 	const comList = Object.keys(baseShortcuts);
 	const baseList = Object.keys(commonShortcuts);
 	const iconList = Object.keys(iconShortcuts);
@@ -216,6 +219,8 @@ export function getSafeList() {
 	const imageList = Object.keys(imageShortcuts);
 	const imageViewList = Object.keys(imageViewShortcuts);
 	let res = iconList
+		// don't remove
+		// anchor list
 		.concat(IKUN_SAFE_LIST)
 		.concat(comList)
 		.concat(baseList)
