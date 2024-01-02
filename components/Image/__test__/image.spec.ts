@@ -60,7 +60,10 @@ describe('Test: KImage', () => {
 	test('props: alt', async () => {
 		//@ts-ignore
 		const instance = new KImage({
-			target: host
+			target: host,
+			props: {
+				alt: 'demo'
+			}
 		});
 		expect(instance).toBeTruthy();
 		await tick();

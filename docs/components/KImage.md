@@ -90,7 +90,7 @@ The function of previewing large images can be enabled through `previewSrcList`
 ## ImageView Props
 
 | Name  | Type       | Default | Description                      |
-| ----- | --------   | ------- | ------------------------------   |
+| ----- | ---------- | ------- | -------------------------------- |
 | show  | `boolean`  | `false` | Whether to display image preview |
 | urls  | `string[]` | `[]`    | Preview image link list          |
 | cls   | `string`   | `""`    | Additional class for component   |
