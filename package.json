@@ -68,7 +68,7 @@
 		"clean:deps": "node scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "node scripts/new-component.js image-view"
+		"create:new:comp": "node scripts/new-component.js flex"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.18",
@@ -140,7 +140,8 @@
 		"@ikun-ui/page-header": "workspace:*",
 		"@ikun-ui/scrollbar": "workspace:*",
 		"@ikun-ui/image": "workspace:*",
-		"@ikun-ui/image-view": "workspace:*"
+		"@ikun-ui/image-view": "workspace:*",
+		"@ikun-ui/flex": "workspace:*"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.1",

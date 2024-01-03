@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KFlex > props: cls 1`] = `"<div class=\\"k-flex k-flex--row k-flex--nowrap k-flex--normal k-flex--normal k-flex--test\\"></div>"`;
