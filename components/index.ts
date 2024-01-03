@@ -58,3 +58,4 @@ export * from '@ikun-ui/page-header';
 export * from '@ikun-ui/scrollbar';
 export * from '@ikun-ui/image';
 export * from '@ikun-ui/image-view';
+export * from '@ikun-ui/flex';
