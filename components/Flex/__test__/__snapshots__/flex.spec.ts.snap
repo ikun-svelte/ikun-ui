@@ -1,3 +1,17 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KFlex > props: cls 1`] = `"<div class="k-flex k-flex--row k-flex--nowrap k-flex--normal k-flex--normal k-flex--test"></div>"`;
+exports[`Test: KFlex > props: align 1`] = `"<div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-normal"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-start k-flex--justify-normal"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-end k-flex--justify-normal"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-center k-flex--justify-normal"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-baseline k-flex--justify-normal"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-stretch k-flex--justify-normal"></div>"`;
+
+exports[`Test: KFlex > props: cls 1`] = `"<div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-normal k-flex--test"></div>"`;
+
+exports[`Test: KFlex > props: elm 1`] = `"<p class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-normal"></p>"`;
+
+exports[`Test: KFlex > props: flex 1`] = `"<div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-normal" style="flex: 1;"></div>"`;
+
+exports[`Test: KFlex > props: gap 1`] = `"<div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-normal" style="gap: 90px;"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-normal" style="gap: 16px;"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-normal" style="gap: 8px;"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-normal" style="gap: 24px;"></div>"`;
+
+exports[`Test: KFlex > props: justify 1`] = `"<div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-normal"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-start"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-end"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-center"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-between"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-around"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-evenly"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-stretch"></div>"`;
+
+exports[`Test: KFlex > props: vertical 1`] = `"<div class="k-flex k-flex--col k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-normal"></div>"`;
+
+exports[`Test: KFlex > props: wrap 1`] = `"<div class="k-flex k-flex--row k-flex--wrap-wrap k-flex--align-normal k-flex--justify-normal"></div> <div class="k-flex k-flex--row k-flex--wrap-nowrap k-flex--align-normal k-flex--justify-normal"></div> <div class="k-flex k-flex--row k-flex--wrap-wrap-reverse k-flex--align-normal k-flex--justify-normal"></div>"`;
