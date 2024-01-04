@@ -39,16 +39,20 @@ const components = [
 		collapsed: false,
 		items: [
 			{
+				text: 'Divider',
+				link: '/components/KDivider'
+			},
+			{
+				text: 'Flex',
+				link: '/components/KFlex'
+			},
+			{
 				text: 'Grid',
 				link: '/components/KGrid'
 			},
 			{
 				text: 'Layout',
 				link: '/components/KLayout'
-			},
-			{
-				text: 'Divider',
-				link: '/components/KDivider'
 			}
 		]
 	},
