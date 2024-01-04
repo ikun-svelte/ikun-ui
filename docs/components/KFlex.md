@@ -45,6 +45,12 @@ The gap attribute can jump the gap and supports `sm`, `md`, `lg` and custom numb
 
 <demo src="flex/gap.svelte" github='Flex'></demo>
 
+## Wrap
+
+Auto wrap line.
+
+<demo src="flex/wrap.svelte" github='Flex'></demo>
+
 ## Flex Props
 
 | Name     | Type                                                                                                  | Default                                                           | Description                                                                 |
