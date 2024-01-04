@@ -72,11 +72,11 @@
 			? {
 					newVal: unCheckedValue,
 					oldVal: checkedValue
-			  }
+				}
 			: {
 					newVal: checkedValue,
 					oldVal: unCheckedValue
-			  };
+				};
 		dispatch('change', changeData);
 	};
 
