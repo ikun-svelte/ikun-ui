@@ -37,9 +37,9 @@
 			[`${prefixCls}--row`]: !vertical,
 			[`${prefixCls}--col`]: vertical
 		},
-		`${prefixCls}--${wrap}`,
-		`${prefixCls}--${justify}`,
-		`${prefixCls}--${align}`,
+		`${prefixCls}--wrap-${wrap}`,
+		`${prefixCls}--align-${align}`,
+		`${prefixCls}--justify-${justify}`,
 		cls
 	);
 </script>
