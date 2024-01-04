@@ -35,6 +35,7 @@
 	},
 	"dependencies": {
 		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/tooltip": "workspace:*",
 		"baiwusanyu-utils": "^1.0.18"
 	},
 	"devDependencies": {
