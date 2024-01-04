@@ -1,5 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KScrollbar > basic render 1`] = `"<div class=\\"k-scrollbar k-scrollbar--test\\" style=\\"--k-scrollbar--thumb__radius: 50px; --k-scrollbar--thumb: red; --k-scrollbar__h: 10px; --k-scrollbar__w: 10px; --k-scrollbar--track__radius: 50px; --k-scrollbar--track: green;\\"></div>"`;
+exports[`Test: KScrollbar > basic render 1`] = `"<div class="k-scrollbar k-scrollbar--test" style="--k-scrollbar--thumb__radius: 50px; --k-scrollbar--thumb: red; --k-scrollbar__h: 10px; --k-scrollbar__w: 10px; --k-scrollbar--track__radius: 50px; --k-scrollbar--track: green;"></div>"`;
 
-exports[`Test: KScrollbar > props: cls 1`] = `"<div class=\\"k-scrollbar k-scrollbar--test\\" style=\\"--k-scrollbar--thumb__radius: 20px; --k-scrollbar--thumb: var(--ikun-light-800); --k-scrollbar__h: 6px; --k-scrollbar__w: 6px; --k-scrollbar--track__radius: 20px; --k-scrollbar--track: transparent;\\"></div>"`;
+exports[`Test: KScrollbar > props: cls 1`] = `"<div class="k-scrollbar k-scrollbar--test" style="--k-scrollbar--thumb__radius: 20px; --k-scrollbar--thumb: var(--ikun-light-800); --k-scrollbar__h: 6px; --k-scrollbar__w: 6px; --k-scrollbar--track__radius: 20px; --k-scrollbar--track: transparent;"></div>"`;

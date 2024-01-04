@@ -1,11 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KIcon > props: btn 1`] = `"<span class=\\"k-icon--base k-icon--base__dark k-icon--role-button k-icon-transition i-carbon-settings\\" role=\\"button\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span>"`;
+exports[`Test: KIcon > props: btn 1`] = `"<span class="k-icon--base k-icon--base__dark k-icon--role-button k-icon-transition i-carbon-settings" role="button" aria-hidden="true" style="width: 24px; height: 24px;"></span>"`;
 
-exports[`Test: KIcon > props: color 1`] = `"<span class=\\"k-icon--base k-icon-transition i-carbon-settings text-red\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span>"`;
+exports[`Test: KIcon > props: color 1`] = `"<span class="k-icon--base k-icon-transition i-carbon-settings text-red" role="" aria-hidden="true" style="width: 24px; height: 24px;"></span>"`;
 
-exports[`Test: KIcon > props: icon 1`] = `"<span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span>"`;
+exports[`Test: KIcon > props: icon 1`] = `"<span class="k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings" role="" aria-hidden="true" style="width: 24px; height: 24px;"></span>"`;
 
-exports[`Test: KIcon > props: width & height 1`] = `"<span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 30px; height: 30px;\\"></span>"`;
+exports[`Test: KIcon > props: width & height 1`] = `"<span class="k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings" role="" aria-hidden="true" style="width: 30px; height: 30px;"></span>"`;
 
-exports[`Test: KIcon > style: customizable icon color 1`] = `"<span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"background: red; width: 24px; height: 24px;\\"></span>"`;
+exports[`Test: KIcon > style: customizable icon color 1`] = `"<span class="k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings" role="" aria-hidden="true" style="background: red; width: 24px; height: 24px;"></span>"`;

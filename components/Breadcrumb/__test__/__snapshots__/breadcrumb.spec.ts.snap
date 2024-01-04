@@ -1,3 +1,3 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KBreadcrumb > props: cls 1`] = `"<div class=\\"k-breadcrumb k-breadcrumb--test\\"></div>"`;
+exports[`Test: KBreadcrumb > props: cls 1`] = `"<div class="k-breadcrumb k-breadcrumb--test"></div>"`;

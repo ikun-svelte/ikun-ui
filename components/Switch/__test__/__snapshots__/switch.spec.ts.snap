@@ -1,21 +1,21 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KSwitch > props: attrs 1`] = `"<div class=\\"k-switch k-switch--base k-switch--md k-switch__unchecked\\" aria-hidden=\\"true\\" you=\\"world\\"><span class=\\"k-switch-tx__unchecked k-switch-tx__unchecked--md\\"></span> <span class=\\"k-switch-circle k-switch-circle--md\\"></span> </div>"`;
+exports[`Test: KSwitch > props: attrs 1`] = `"<div class="k-switch k-switch--base k-switch--md k-switch__unchecked" aria-hidden="true" you="world"><span class="k-switch-tx__unchecked k-switch-tx__unchecked--md"></span> <span class="k-switch-circle k-switch-circle--md"></span> </div>"`;
 
-exports[`Test: KSwitch > props: cls 1`] = `"<div class=\\"k-switch k-switch--base k-switch--md k-switch__unchecked 关关雎鸠,在河之洲\\" aria-hidden=\\"true\\"><span class=\\"k-switch-tx__unchecked k-switch-tx__unchecked--md\\"></span> <span class=\\"k-switch-circle k-switch-circle--md\\"></span> </div>"`;
+exports[`Test: KSwitch > props: cls 1`] = `"<div class="k-switch k-switch--base k-switch--md k-switch__unchecked 关关雎鸠,在河之洲" aria-hidden="true"><span class="k-switch-tx__unchecked k-switch-tx__unchecked--md"></span> <span class="k-switch-circle k-switch-circle--md"></span> </div>"`;
 
-exports[`Test: KSwitch > props: disabled 1`] = `"<div class=\\"k-switch k-switch--base k-switch--md k-switch__unchecked\\" aria-hidden=\\"true\\"><span class=\\"k-switch-tx__unchecked k-switch-tx__unchecked--md\\"></span> <span class=\\"k-switch-circle k-switch-circle--md\\"></span> </div>"`;
+exports[`Test: KSwitch > props: disabled 1`] = `"<div class="k-switch k-switch--base k-switch--md k-switch__unchecked" aria-hidden="true"><span class="k-switch-tx__unchecked k-switch-tx__unchecked--md"></span> <span class="k-switch-circle k-switch-circle--md"></span> </div>"`;
 
-exports[`Test: KSwitch > props: loading 1`] = `"<div class=\\"k-switch k-switch--base k-switch--md k-switch__unchecked\\" aria-hidden=\\"true\\"><span class=\\"k-switch-tx__unchecked k-switch-tx__unchecked--md\\"></span> <span class=\\"k-switch-circle k-switch-circle--md\\"></span> </div>"`;
+exports[`Test: KSwitch > props: loading 1`] = `"<div class="k-switch k-switch--base k-switch--md k-switch__unchecked" aria-hidden="true"><span class="k-switch-tx__unchecked k-switch-tx__unchecked--md"></span> <span class="k-switch-circle k-switch-circle--md"></span> </div>"`;
 
-exports[`Test: KSwitch > props: size 1`] = `"<div class=\\"k-switch k-switch--base k-switch--sm k-switch__unchecked\\" aria-hidden=\\"true\\"><span class=\\"k-switch-tx__unchecked k-switch-tx__unchecked--sm\\"></span> <span class=\\"k-switch-circle k-switch-circle--sm\\"></span> </div>"`;
+exports[`Test: KSwitch > props: size 1`] = `"<div class="k-switch k-switch--base k-switch--sm k-switch__unchecked" aria-hidden="true"><span class="k-switch-tx__unchecked k-switch-tx__unchecked--sm"></span> <span class="k-switch-circle k-switch-circle--sm"></span> </div>"`;
 
-exports[`Test: KSwitch > props: size 2`] = `"<div class=\\"k-switch k-switch--base k-switch--md k-switch__unchecked\\" aria-hidden=\\"true\\"><span class=\\"k-switch-tx__unchecked k-switch-tx__unchecked--md\\"></span> <span class=\\"k-switch-circle k-switch-circle--md\\"></span> </div>"`;
+exports[`Test: KSwitch > props: size 2`] = `"<div class="k-switch k-switch--base k-switch--md k-switch__unchecked" aria-hidden="true"><span class="k-switch-tx__unchecked k-switch-tx__unchecked--md"></span> <span class="k-switch-circle k-switch-circle--md"></span> </div>"`;
 
-exports[`Test: KSwitch > props: size 3`] = `"<div class=\\"k-switch k-switch--base k-switch--lg k-switch__unchecked\\" aria-hidden=\\"true\\"><span class=\\"k-switch-tx__unchecked k-switch-tx__unchecked--lg\\"></span> <span class=\\"k-switch-circle k-switch-circle--lg\\"></span> </div>"`;
+exports[`Test: KSwitch > props: size 3`] = `"<div class="k-switch k-switch--base k-switch--lg k-switch__unchecked" aria-hidden="true"><span class="k-switch-tx__unchecked k-switch-tx__unchecked--lg"></span> <span class="k-switch-circle k-switch-circle--lg"></span> </div>"`;
 
-exports[`Test: KSwitch > props: unCheckedColor and checkedColor 1`] = `"<div class=\\"k-switch k-switch--base k-switch--md k-switch__checked #1314\\" aria-hidden=\\"true\\"> <span class=\\"k-switch-circle k-switch-circle--md\\"></span> <span class=\\"k-switch-tx__checked k-switch-tx__checked--md\\"></span></div>"`;
+exports[`Test: KSwitch > props: unCheckedColor and checkedColor 1`] = `"<div class="k-switch k-switch--base k-switch--md k-switch__checked #1314" aria-hidden="true"> <span class="k-switch-circle k-switch-circle--md"></span> <span class="k-switch-tx__checked k-switch-tx__checked--md"></span></div>"`;
 
-exports[`Test: KSwitch > props: unCheckedValue and checkedValue 1`] = `"<div class=\\"k-switch k-switch--base k-switch--md k-switch__checked k-switch-tra\\" aria-hidden=\\"true\\"> <span class=\\"k-switch-circle k-switch-circle--md\\" style=\\"right: 1px;\\"></span> <span class=\\"k-switch-tx__checked k-switch-tx__checked--md\\"></span></div>"`;
+exports[`Test: KSwitch > props: unCheckedValue and checkedValue 1`] = `"<div class="k-switch k-switch--base k-switch--md k-switch__checked k-switch-tra" aria-hidden="true"> <span class="k-switch-circle k-switch-circle--md" style="right: 1px;"></span> <span class="k-switch-tx__checked k-switch-tx__checked--md"></span></div>"`;
 
-exports[`Test: KSwitch > props: value 1`] = `"<div class=\\"k-switch k-switch--base k-switch--md k-switch__unchecked\\" aria-hidden=\\"true\\"><span class=\\"k-switch-tx__unchecked k-switch-tx__unchecked--md\\"></span> <span class=\\"k-switch-circle k-switch-circle--md\\"></span> </div>"`;
+exports[`Test: KSwitch > props: value 1`] = `"<div class="k-switch k-switch--base k-switch--md k-switch__unchecked" aria-hidden="true"><span class="k-switch-tx__unchecked k-switch-tx__unchecked--md"></span> <span class="k-switch-circle k-switch-circle--md"></span> </div>"`;

@@ -1,25 +1,25 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KAvatar > props: cls 1`] = `"<div class=\\"k-avatar k-avatar--test\\" style=\\"width: 50px; height: 50px; border-radius: 4px;\\"></div>"`;
+exports[`Test: KAvatar > props: cls 1`] = `"<div class="k-avatar k-avatar--test" style="width: 50px; height: 50px; border-radius: 4px;"></div>"`;
 
-exports[`Test: KAvatar > props: fit 1`] = `"<div class=\\"k-avatar\\" style=\\"width: 50px; height: 50px; border-radius: 4px;\\"><img src=\\"https://ikun-ui.netlify.app/logo.svg\\" alt=\\"\\" style=\\"object-fit: fill;\\"></div>"`;
+exports[`Test: KAvatar > props: fit 1`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 4px;"><img src="https://ikun-ui.netlify.app/logo.svg" alt="" style="object-fit: fill;"></div>"`;
 
-exports[`Test: KAvatar > props: fit 2`] = `"<div class=\\"k-avatar\\" style=\\"width: 50px; height: 50px; border-radius: 4px;\\"><img src=\\"https://ikun-ui.netlify.app/logo.svg\\" alt=\\"\\" style=\\"object-fit: contain;\\"></div>"`;
+exports[`Test: KAvatar > props: fit 2`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 4px;"><img src="https://ikun-ui.netlify.app/logo.svg" alt="" style="object-fit: contain;"></div>"`;
 
-exports[`Test: KAvatar > props: fit 3`] = `"<div class=\\"k-avatar\\" style=\\"width: 50px; height: 50px; border-radius: 4px;\\"><img src=\\"https://ikun-ui.netlify.app/logo.svg\\" alt=\\"\\" style=\\"object-fit: cover;\\"></div>"`;
+exports[`Test: KAvatar > props: fit 3`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 4px;"><img src="https://ikun-ui.netlify.app/logo.svg" alt="" style="object-fit: cover;"></div>"`;
 
-exports[`Test: KAvatar > props: fit 4`] = `"<div class=\\"k-avatar\\" style=\\"width: 50px; height: 50px; border-radius: 4px;\\"><img src=\\"https://ikun-ui.netlify.app/logo.svg\\" alt=\\"\\" style=\\"object-fit: none;\\"></div>"`;
+exports[`Test: KAvatar > props: fit 4`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 4px;"><img src="https://ikun-ui.netlify.app/logo.svg" alt="" style="object-fit: none;"></div>"`;
 
-exports[`Test: KAvatar > props: fit 5`] = `"<div class=\\"k-avatar\\" style=\\"width: 50px; height: 50px; border-radius: 4px;\\"><img src=\\"https://ikun-ui.netlify.app/logo.svg\\" alt=\\"\\" style=\\"object-fit: scale-down;\\"></div>"`;
+exports[`Test: KAvatar > props: fit 5`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 4px;"><img src="https://ikun-ui.netlify.app/logo.svg" alt="" style="object-fit: scale-down;"></div>"`;
 
-exports[`Test: KAvatar > props: icon 1`] = `"<div class=\\"k-avatar\\" style=\\"width: 50px; height: 50px; border-radius: 4px;\\"><span class=\\"k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings\\" role=\\"\\" aria-hidden=\\"true\\" style=\\"width: 24px; height: 24px;\\"></span></div>"`;
+exports[`Test: KAvatar > props: icon 1`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 4px;"><span class="k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings" role="" aria-hidden="true" style="width: 24px; height: 24px;"></span></div>"`;
 
-exports[`Test: KAvatar > props: radius is number 1`] = `"<div class=\\"k-avatar\\" style=\\"width: 50px; height: 50px; border-radius: 10px;\\"></div>"`;
+exports[`Test: KAvatar > props: radius is number 1`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 10px;"></div>"`;
 
-exports[`Test: KAvatar > props: radius is string 1`] = `"<div class=\\"k-avatar\\" style=\\"width: 50px; height: 50px; border-radius: 50%;\\"></div>"`;
+exports[`Test: KAvatar > props: radius is string 1`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 50%;"></div>"`;
 
-exports[`Test: KAvatar > props: size is number 1`] = `"<div class=\\"k-avatar\\" style=\\"width: 30px; height: 30px; border-radius: 4px;\\"></div>"`;
+exports[`Test: KAvatar > props: size is number 1`] = `"<div class="k-avatar" style="width: 30px; height: 30px; border-radius: 4px;"></div>"`;
 
-exports[`Test: KAvatar > props: size is string 1`] = `"<div class=\\"k-avatar\\" style=\\"width: 2rem; height: 2rem; border-radius: 4px;\\"></div>"`;
+exports[`Test: KAvatar > props: size is string 1`] = `"<div class="k-avatar" style="width: 2rem; height: 2rem; border-radius: 4px;"></div>"`;
 
-exports[`Test: KAvatar > props: src 1`] = `"<div class=\\"k-avatar\\" style=\\"width: 50px; height: 50px; border-radius: 4px;\\"><img src=\\"https://ikun-ui.netlify.app/logo.svg\\" alt=\\"\\" style=\\"object-fit: cover;\\"></div>"`;
+exports[`Test: KAvatar > props: src 1`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 4px;"><img src="https://ikun-ui.netlify.app/logo.svg" alt="" style="object-fit: cover;"></div>"`;

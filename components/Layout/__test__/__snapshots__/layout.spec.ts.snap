@@ -1,11 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KAside > props: width 1`] = `"<footer class=\\"k-aside k-aside--base\\" style=\\"width: 666px;\\"></footer>"`;
+exports[`Test: KAside > props: width 1`] = `"<footer class="k-aside k-aside--base" style="width: 666px;"></footer>"`;
 
-exports[`Test: KContainer > slot: default & header & footer 1`] = `"<section class=\\"k-container k-container--base k-container--base__vertical\\"><header class=\\"k-header k-header--base\\" slot=\\"header\\">KHeader</header> <main class=\\"k-main k-main--base\\">KMain</main> <footer class=\\"k-footer k-footer--base\\" slot=\\"footer\\">KFooter</footer></section>"`;
+exports[`Test: KContainer > slot: default & header & footer 1`] = `"<section class="k-container k-container--base k-container--base__vertical"><header class="k-header k-header--base" slot="header">KHeader</header> <main class="k-main k-main--base">KMain</main> <footer class="k-footer k-footer--base" slot="footer">KFooter</footer></section>"`;
 
-exports[`Test: KFooter > props: height 1`] = `"<footer class=\\"k-footer k-footer--base\\" style=\\"height: 666px;\\"></footer>"`;
+exports[`Test: KFooter > props: height 1`] = `"<footer class="k-footer k-footer--base" style="height: 666px;"></footer>"`;
 
-exports[`Test: KHeader > props: height 1`] = `"<header class=\\"k-header k-header--base\\" style=\\"height: 666px;\\"></header>"`;
+exports[`Test: KHeader > props: height 1`] = `"<header class="k-header k-header--base" style="height: 666px;"></header>"`;
 
-exports[`Test: KMain > KMain class render 1`] = `"<main class=\\"k-main k-main--base\\"></main>"`;
+exports[`Test: KMain > KMain class render 1`] = `"<main class="k-main k-main--base"></main>"`;

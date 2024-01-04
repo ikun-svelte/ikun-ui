@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KBreadcrumbItem > props: cls 1`] = `"<span class=\\"k-breadcrumb-item k-breadcrumb-item--test\\"><span class=\\"k-breadcrumb-item-content k-breadcrumb-item-content__dark\\" href=\\"\\"></span> <span class=\\"k-breadcrumb-item-separator k-breadcrumb-item-separator__dark\\">/</span></span>"`;
+exports[`Test: KBreadcrumbItem > props: cls 1`] = `"<span class="k-breadcrumb-item k-breadcrumb-item--test"><span class="k-breadcrumb-item-content k-breadcrumb-item-content__dark" href=""></span> <span class="k-breadcrumb-item-separator k-breadcrumb-item-separator__dark">/</span></span>"`;
 
-exports[`Test: KBreadcrumbItem > props: href is empty 1`] = `"<span class=\\"k-breadcrumb-item\\"><span class=\\"k-breadcrumb-item-content k-breadcrumb-item-content__dark\\" href=\\"\\"></span> <span class=\\"k-breadcrumb-item-separator k-breadcrumb-item-separator__dark\\">/</span></span>"`;
+exports[`Test: KBreadcrumbItem > props: href is empty 1`] = `"<span class="k-breadcrumb-item"><span class="k-breadcrumb-item-content k-breadcrumb-item-content__dark" href=""></span> <span class="k-breadcrumb-item-separator k-breadcrumb-item-separator__dark">/</span></span>"`;
 
-exports[`Test: KBreadcrumbItem > props: href is not empty 1`] = `"<span class=\\"k-breadcrumb-item\\"><a class=\\"k-breadcrumb-item-content k-breadcrumb-item-content__dark k-breadcrumb-item-link\\" href=\\"https://github.com/ikun-svelte/ikun-ui\\"></a> <span class=\\"k-breadcrumb-item-separator k-breadcrumb-item-separator__dark\\">/</span></span>"`;
+exports[`Test: KBreadcrumbItem > props: href is not empty 1`] = `"<span class="k-breadcrumb-item"><a class="k-breadcrumb-item-content k-breadcrumb-item-content__dark k-breadcrumb-item-link" href="https://github.com/ikun-svelte/ikun-ui"></a> <span class="k-breadcrumb-item-separator k-breadcrumb-item-separator__dark">/</span></span>"`;

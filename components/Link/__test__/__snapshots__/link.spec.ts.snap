@@ -1,13 +1,13 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KLink > props: cls 1`] = `"<a class=\\"k-link k-link--base k-link--default k-link--default__hover k-link--underline k-link--test\\" aria-hidden=\\"true\\">  </a>"`;
+exports[`Test: KLink > props: cls 1`] = `"<a class="k-link k-link--base k-link--default k-link--default__hover k-link--underline k-link--test" aria-hidden="true">  </a>"`;
 
-exports[`Test: KLink > props: disabled 1`] = `"<a class=\\"k-link k-link--base k-link--default k-cur-disabled k-link--disabled k-link--underline__none\\" aria-hidden=\\"true\\">  </a>"`;
+exports[`Test: KLink > props: disabled 1`] = `"<a class="k-link k-link--base k-link--default k-cur-disabled k-link--disabled k-link--underline__none" aria-hidden="true">  </a>"`;
 
-exports[`Test: KLink > props: href 1`] = `"<a class=\\"k-link k-link--base k-link--default k-link--default__hover k-link--underline\\" aria-hidden=\\"true\\" href=\\"jinitaimei\\">  </a>"`;
+exports[`Test: KLink > props: href 1`] = `"<a class="k-link k-link--base k-link--default k-link--default__hover k-link--underline" aria-hidden="true" href="jinitaimei">  </a>"`;
 
-exports[`Test: KLink > props: icon 1`] = `"<a class=\\"k-link k-link--base k-link--default k-link--default__hover k-link--underline\\" aria-hidden=\\"true\\"><span class=\\"k-icon--base k-icon-transition i-carbon-logo-vue ikun-initial\\" role=\\"\\" aria-hidden=\\"true\\"></span>  </a>"`;
+exports[`Test: KLink > props: icon 1`] = `"<a class="k-link k-link--base k-link--default k-link--default__hover k-link--underline" aria-hidden="true"><span class="k-icon--base k-icon-transition i-carbon-logo-vue ikun-initial" role="" aria-hidden="true"></span>  </a>"`;
 
-exports[`Test: KLink > props: underline 1`] = `"<a class=\\"k-link k-link--base k-link--default k-link--default__hover k-link--underline__none\\" aria-hidden=\\"true\\">  </a>"`;
+exports[`Test: KLink > props: underline 1`] = `"<a class="k-link k-link--base k-link--default k-link--default__hover k-link--underline__none" aria-hidden="true">  </a>"`;
 
-exports[`Test: KLink > slots: icon 1`] = `"<a class=\\"k-link k-link--base k-link--success k-link--success__hover k-link--underline\\" target=\\"_blank\\" aria-hidden=\\"true\\">  <div class=\\"i-carbon-logo-vue\\" slot=\\"icon\\"></div></a>"`;
+exports[`Test: KLink > slots: icon 1`] = `"<a class="k-link k-link--base k-link--success k-link--success__hover k-link--underline" target="_blank" aria-hidden="true">  <div class="i-carbon-logo-vue" slot="icon"></div></a>"`;

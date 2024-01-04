@@ -1,3 +1,3 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KInfinite > props: cls 1`] = `"<div class=\\"k-infinite k-infinite--base k-infinite--test\\"> <div id=\\"svelte-infinite-scroll\\" style=\\"width: 0px;\\"></div></div>"`;
+exports[`Test: KInfinite > props: cls 1`] = `"<div class="k-infinite k-infinite--base k-infinite--test"> <div id="svelte-infinite-scroll" style="width: 0px;"></div></div>"`;
