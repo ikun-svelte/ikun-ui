@@ -4,7 +4,6 @@ export const flexShortcuts: Record<string, string> = {
 	'k-flex--row': 'flex-row',
 	'k-flex--col': 'flex-col',
 
-	'k-flex--justify-normal': 'justify-normal',
 	'k-flex--justify-start': 'justify-start',
 	'k-flex--justify-end': 'justify-end',
 	'k-flex--justify-center': 'justify-center',
@@ -17,7 +16,6 @@ export const flexShortcuts: Record<string, string> = {
 	'k-flex--align-start': 'items-start',
 	'k-flex--align-end': 'items-end',
 	'k-flex--align-baseline': 'items-baseline',
-	'k-flex--align-normal': 'items-normal',
 	'k-flex--align-stretch': 'items-stretch',
 
 	'k-flex--wrap-wrap': 'flex-wrap',
