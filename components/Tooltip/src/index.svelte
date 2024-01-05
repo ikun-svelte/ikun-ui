@@ -9,11 +9,12 @@
 	export let cls: ClassValue = undefined;
 	export let attrs: Record<string, string> = {};
 	export let content = '';
+	export let disabled: boolean = false;
 
 	$: cnames = clsx(cls);
 </script>
 
-<KPopover cls={cnames} {trigger} {placement} {attrs}>
+<KPopover cls={cnames} {disabled} {trigger} {placement} {attrs}>
 	<span slot="contentEl">{content}</span>
 	<slot name="triggerEl" slot="triggerEl" />
 </KPopover>
