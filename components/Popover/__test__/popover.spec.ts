@@ -86,7 +86,7 @@ describe('Test: KPopover', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const Elm = host.children[0];
+		const Elm = host.children[0] as HTMLElement;
 		Elm.click();
 		vi.runAllTimers();
 		await tick();

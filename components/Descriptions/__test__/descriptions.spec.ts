@@ -134,7 +134,7 @@ describe('Test: KDescriptions', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const titleEl = host.querySelector('#slot-title');
+		const titleEl = host.querySelector('#slot-title') as HTMLElement;
 		expect(titleEl.textContent).toBe('Ikun Descriptions Title');
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -145,7 +145,7 @@ describe('Test: KDescriptions', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const extraEl = host.querySelector('#slot-extra');
+		const extraEl = host.querySelector('#slot-extra') as HTMLElement;
 		expect(extraEl.textContent).toBe('Ikun Descriptions Extra');
 		expect(host.innerHTML).matchSnapshot();
 	});

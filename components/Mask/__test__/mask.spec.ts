@@ -65,7 +65,7 @@ describe('Test: KMask', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.children[0]!.style.backgroundColor).toBe('red');
+		expect((host.children[0] as HTMLElement)!.style.backgroundColor).toBe('red');
 		expect(host.innerHTML).matchSnapshot();
 	});
 });
