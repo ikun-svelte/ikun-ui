@@ -15,6 +15,7 @@
 	export let vertical: KSliderProps['vertical'] = false;
 	export let attrs: KSliderProps['attrs'] = {};
 	export let cls: KSliderProps['cls'] = undefined;
+	export let showTooltip: KSliderProps['showTooltip'] = true;
 
 	/*********************** KForm logic start ************************/
 	let disabledFrom = false;
@@ -193,13 +194,13 @@
 			style={btnStyle}
 		>
 			{#if $$slots.buttonRender}
-				<KTooltip placement="top" content={String(value)}>
+				<KTooltip disabled={!showTooltip} placement="top" content={String(value)}>
 					<div slot="triggerEl" class={buttonCls}>
 						<slot name="buttonRender" />
 					</div>
 				</KTooltip>
 			{:else}
-				<KTooltip placement="top" content={String(value)}>
+				<KTooltip disabled={!showTooltip} placement="top" content={String(value)}>
 					<div slot="triggerEl" class={buttonCls}></div>
 				</KTooltip>
 			{/if}

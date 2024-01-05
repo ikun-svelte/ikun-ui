@@ -13,7 +13,7 @@
 </script>
 
 <div>
-	<KSlider on:input={handleInput1} value={value1}></KSlider>
+	<KSlider showTooltip={false} on:input={handleInput1} value={value1}></KSlider>
 	<p class="px-2">value: {value1}</p>
 </div>
 
