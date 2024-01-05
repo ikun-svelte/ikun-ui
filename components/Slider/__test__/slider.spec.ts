@@ -11,9 +11,11 @@ const initHost = () => {
 };
 beforeEach(() => {
 	initHost();
+	vi.useFakeTimers();
 });
 afterEach(() => {
 	host.remove();
+	vi.useRealTimers();
 });
 
 describe('Test: KSlider', () => {
@@ -27,8 +29,18 @@ describe('Test: KSlider', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const sliderBarElm = host.querySelector('.k-slider--bar');
-		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper');
+		const sliderBarElm = host.querySelector('.k-slider--bar') as HTMLElement;
+		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper') as HTMLElement;
+		const triggerElm = sliderButtonWrapperElm.children[0];
+		triggerElm.dispatchEvent(
+			new MouseEvent('mouseenter', {
+				cancelable: true
+			})
+		);
+		vi.runAllTimers();
+		await tick();
+		expect(host.innerHTML.includes('10')).toBeTruthy();
+		expect(host.innerHTML.includes('data-popper-arrow-bottom')).toBeTruthy();
 		expect(Number.parseFloat(sliderBarElm.style.width)).toBe(value);
 		expect(Number.parseFloat(sliderButtonWrapperElm.style.left)).toBe(value);
 		expect(host.innerHTML).matchSnapshot();
@@ -64,8 +76,8 @@ describe('Test: KSlider', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const sliderBarElm = host.querySelector('.k-slider--bar');
-		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper');
+		const sliderBarElm = host.querySelector('.k-slider--bar') as HTMLElement;
+		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper') as HTMLElement;
 		expect(Number.parseFloat(sliderBarElm.style.width)).toBe(0);
 		expect(Number.parseFloat(sliderButtonWrapperElm.style.left)).toBe(0);
 		instance.$set({
@@ -148,7 +160,7 @@ describe('Test: KSlider', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const sliderBaseElm = host.querySelector('.k-slider--base');
+		const sliderBaseElm = host.querySelector('.k-slider--base') as HTMLElement;
 		expect(sliderBaseElm.getAttribute('you')).toBe('world');
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -166,7 +178,7 @@ describe('Test: KSlider', () => {
 		instance.$on('change', () => {
 			changeEvent();
 		});
-		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper');
+		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper') as HTMLElement;
 		sliderButtonWrapperElm.dispatchEvent(new Event('mousedown'));
 		window.dispatchEvent(new Event('mouseup'));
 		await tick();
@@ -186,7 +198,7 @@ describe('Test: KSlider', () => {
 		instance.$on('input', () => {
 			inputEvent();
 		});
-		const sliderRunwayElm = host.querySelector('.k-slider--runway');
+		const sliderRunwayElm = host.querySelector('.k-slider--runway') as HTMLElement;
 		sliderRunwayElm.dispatchEvent(
 			new MouseEvent('mousedown', {
 				cancelable: true,
@@ -209,10 +221,10 @@ describe('Test: KSlider', () => {
 		await tick();
 		instance.$on('change', event);
 		instance.$on('input', event);
-		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper');
+		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper') as HTMLElement;
 		sliderButtonWrapperElm.dispatchEvent(new Event('mousedown'));
 		window.dispatchEvent(new Event('mouseup'));
-		const sliderRunwayElm = host.querySelector('.k-slider--runway');
+		const sliderRunwayElm = host.querySelector('.k-slider--runway') as HTMLElement;
 		sliderRunwayElm.dispatchEvent(
 			new MouseEvent('mousedown', {
 				cancelable: true,

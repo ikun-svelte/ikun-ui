@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { KSliderProps } from './types';
+	import { KTooltip } from '@ikun-ui/tooltip';
 	import type { IKunFormInstance } from '@ikun-ui/form';
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
@@ -14,6 +15,7 @@
 	export let vertical: KSliderProps['vertical'] = false;
 	export let attrs: KSliderProps['attrs'] = {};
 	export let cls: KSliderProps['cls'] = undefined;
+	export let showTooltip: KSliderProps['showTooltip'] = true;
 
 	/*********************** KForm logic start ************************/
 	let disabledFrom = false;
@@ -192,9 +194,15 @@
 			style={btnStyle}
 		>
 			{#if $$slots.buttonRender}
-				<slot name="buttonRender" />
+				<KTooltip disabled={!showTooltip} placement="top" content={String(value)}>
+					<div slot="triggerEl" class={buttonCls}>
+						<slot name="buttonRender" />
+					</div>
+				</KTooltip>
 			{:else}
-				<div class={buttonCls}></div>
+				<KTooltip disabled={!showTooltip} placement="top" content={String(value)}>
+					<div slot="triggerEl" class={buttonCls}></div>
+				</KTooltip>
 			{/if}
 		</div>
 		<div class={barCls} style={barStyle}></div>
