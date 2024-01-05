@@ -45,11 +45,11 @@ describe('Test: KRadioGroup', () => {
 		});
 		await tick();
 		expect(instance).toBeTruthy();
-		const smEls = host.querySelector('#group-sm');
+		const smEls = host.querySelector('#group-sm') as HTMLElement;
 		expect(smEls.querySelectorAll('.k-radio--sm').length).toBe(3);
-		const mdEls = host.querySelector('#group-md');
+		const mdEls = host.querySelector('#group-md') as HTMLElement;
 		expect(mdEls.querySelectorAll('.k-radio--md').length).toBe(5);
-		const lgEls = host.querySelector('#group-lg');
+		const lgEls = host.querySelector('#group-lg') as HTMLElement;
 		expect(lgEls.querySelectorAll('.k-radio--lg').length).toBe(2);
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -77,7 +77,7 @@ describe('Test: KRadioGroup', () => {
 		expect(inputEls[0].value === 'false').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
 		expect(inputEls[2].value === 'true').toBeTruthy();
-		const btn = host.querySelector('#group_change_btn');
+		const btn = host.querySelector('#group_change_btn') as HTMLElement;
 		btn.click(); // or btn.dispatchEvent(new window.Event('click', { bubbles: true }))
 		await tick();
 		expect(inputEls[0].value === 'true').toBeTruthy();
@@ -135,7 +135,7 @@ describe('Test: KRadioGroup', () => {
 		expect(inputEls[0].value === 'false').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
 		expect(inputEls[2].value === 'true').toBeTruthy();
-		const btn = host.querySelector('#group_change_disabled_btn');
+		const btn = host.querySelector('#group_change_disabled_btn') as HTMLElement;
 		btn.click(); // or btn.dispatchEvent(new window.Event('click', { bubbles: true }))
 		await tick();
 		expect(inputEls[0].value === 'false').toBeTruthy();
@@ -185,14 +185,14 @@ describe('Test: KRadioGroup', () => {
 		expect(inputEls[0].value === 'false').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
 		expect(inputEls[2].value === 'true').toBeTruthy();
-		const btn = host.querySelector('#group_change_value_btn');
+		const btn = host.querySelector('#group_change_value_btn') as HTMLElement;
 		btn.click(); // or btn.dispatchEvent(new window.Event('click', { bubbles: true }))
 		await tick();
 		expect(inputEls[0].value === 'false').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
 		expect(inputEls[2].value === 'true').toBeTruthy();
 
-		const btn2 = host.querySelector('#group_change_disabled_btn');
+		const btn2 = host.querySelector('#group_change_disabled_btn') as HTMLElement;
 		btn2.click(); // or btn.dispatchEvent(new window.Event('click', { bubbles: true }))
 		await tick();
 		expect(inputEls[0].value === 'true').toBeTruthy();

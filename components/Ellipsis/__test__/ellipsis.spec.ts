@@ -41,7 +41,7 @@ describe('Test: KEllipsis', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		const elm = host.querySelector('[slot="triggerEl"]');
+		const elm = host.querySelector('[slot="triggerEl"]') as HTMLElement;
 		elm.dispatchEvent(new Event('mouseenter', { bubbles: true }));
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
@@ -89,7 +89,7 @@ describe('Test: KEllipsis', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		const elm = host.querySelector('[slot="triggerEl"]');
+		const elm = host.querySelector('[slot="triggerEl"]') as HTMLElement;
 		expect(elm.style.display === '-webkit-inline-box').toBeTruthy();
 		elm.dispatchEvent(new Event('click', { bubbles: true }));
 		await tick();
