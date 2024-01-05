@@ -48,6 +48,59 @@ exports[`Test: KForm > api: KForm clearValidateField 3`] = `
 }
 `;
 
+exports[`Test: KForm > api: KForm validateForm > {"data":{"KInput":"KInput","KSwitch":true,"KInputNumber":2,"KRate":null,"KRadio":"","KCheckbox":[],"KSelect":null,"KSelectString":""},"isValid":false,"invalidFields":[{"message":"KInput 3 ~5","fieldValue":"KInput","field":"KInput"},{"message":"KInputNumber 3 ~5","fieldValue":2,"field":"KInputNumber"},{"message":"KRate error","fieldValue":null,"field":"KRate"},{"message":"KRadio error","fieldValue":"","field":"KRadio"},{"message":"KRadio error","fieldValue":[],"field":"KCheckbox"},{"message":"KSelect error","fieldValue":null,"field":"KSelect"},{"message":"KSelectString custom error","fieldValue":"","field":"KSelectString"}]} 1`] = `
+{
+  "data": {
+    "KCheckbox": [],
+    "KInput": "KInput",
+    "KInputNumber": 2,
+    "KRadio": "",
+    "KRate": null,
+    "KSelect": null,
+    "KSelectString": "",
+    "KSwitch": true,
+  },
+  "invalidFields": [
+    {
+      "field": "KInput",
+      "fieldValue": "KInput",
+      "message": "KInput 3 ~5",
+    },
+    {
+      "field": "KInputNumber",
+      "fieldValue": 2,
+      "message": "KInputNumber 3 ~5",
+    },
+    {
+      "field": "KRate",
+      "fieldValue": null,
+      "message": "KRate error",
+    },
+    {
+      "field": "KRadio",
+      "fieldValue": "",
+      "message": "KRadio error",
+    },
+    {
+      "field": "KCheckbox",
+      "fieldValue": [],
+      "message": "KRadio error",
+    },
+    {
+      "field": "KSelect",
+      "fieldValue": null,
+      "message": "KSelect error",
+    },
+    {
+      "field": "KSelectString",
+      "fieldValue": "",
+      "message": "KSelectString custom error",
+    },
+  ],
+  "isValid": false,
+}
+`;
+
 exports[`Test: KForm > events: KForm validate & api setField 1`] = `
 CustomEvent {
   "isTrusted": false,
