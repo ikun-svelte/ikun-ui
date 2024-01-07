@@ -68,8 +68,8 @@ describe('Test: KIcon', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.children[0].style.width).toBe('30px');
-		expect(host.children[0].style.height).toBe('30px');
+		expect((host.children[0] as HTMLElement).style.width).toBe('30px');
+		expect((host.children[0] as HTMLElement).style.height).toBe('30px');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -87,7 +87,7 @@ describe('Test: KIcon', () => {
 			value = v.detail;
 			mockFn();
 		});
-		const input = host.children[0];
+		const input = host.children[0] as HTMLElement;
 		input.click(); // or input.dispatchEvent(new window.Event('click', { bubbles: true }))
 		await tick();
 		expect(instance).toBeTruthy();
@@ -100,7 +100,7 @@ describe('Test: KIcon', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host.children[0].style.background).toBe('red');
+		expect((host.children[0] as HTMLElement).style.background).toBe('red');
 		expect(host.innerHTML).matchSnapshot();
 	});
 });

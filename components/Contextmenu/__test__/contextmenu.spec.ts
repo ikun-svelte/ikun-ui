@@ -101,7 +101,7 @@ describe('Test: KContextmenu', () => {
 		expect(host.innerHTML.includes('<span>contextmenu-sub-title</span>')).toBeTruthy();
 		expect(host.innerHTML.includes('options 4')).not.toBeTruthy();
 		const submenu = host.querySelector('.k-contextmenu-sub-menu--base');
-		submenu.dispatchEvent(new Event('mouseenter', { cancelable: true }));
+		submenu!.dispatchEvent(new Event('mouseenter', { cancelable: true }));
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('options 4')).toBeTruthy();
@@ -122,7 +122,7 @@ describe('Test: KContextmenu', () => {
 		expect(host.innerHTML.includes('options 4')).not.toBeTruthy();
 		expect(host.innerHTML.includes('k-contextmenu-sub-menu__disabled')).toBeTruthy();
 		const submenu = host.querySelector('.k-contextmenu-sub-menu--base');
-		submenu.dispatchEvent(new Event('mouseenter', { cancelable: true }));
+		submenu!.dispatchEvent(new Event('mouseenter', { cancelable: true }));
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('options 4')).not.toBeTruthy();

@@ -37,7 +37,7 @@ describe('Test: KPopconfirm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const elm = host.querySelector('#test_trigger');
+		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
 		vi.runAllTimers();
 		await tick();
@@ -54,7 +54,7 @@ describe('Test: KPopconfirm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const elm = host.querySelector('#test_trigger');
+		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
 		vi.runAllTimers();
 		await tick();
@@ -69,13 +69,13 @@ describe('Test: KPopconfirm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const elmInfo = host.querySelector('#test_trigger_error');
+		const elmInfo = host.querySelector('#test_trigger_error') as HTMLElement;
 		elmInfo.click();
-		const elmWarning = host.querySelector('#test_trigger_info');
+		const elmWarning = host.querySelector('#test_trigger_info') as HTMLElement;
 		elmWarning.click();
-		const elmSuccess = host.querySelector('#test_trigger_warning');
+		const elmSuccess = host.querySelector('#test_trigger_warning') as HTMLElement;
 		elmSuccess.click();
-		const elmError = host.querySelector('#test_trigger_success');
+		const elmError = host.querySelector('#test_trigger_success') as HTMLElement;
 		elmError.click();
 		vi.runAllTimers();
 		await tick();
@@ -91,7 +91,7 @@ describe('Test: KPopconfirm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const elm = host.querySelector('#test_trigger');
+		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
 		vi.runAllTimers();
 		await tick();
@@ -108,7 +108,7 @@ describe('Test: KPopconfirm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const elm = host.querySelector('#test_trigger');
+		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
 		vi.runAllTimers();
 		await tick();
@@ -126,7 +126,7 @@ describe('Test: KPopconfirm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const elm = host.querySelector('#test_trigger');
+		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
 		vi.runAllTimers();
 		await tick();
@@ -157,7 +157,7 @@ describe('Test: KPopconfirm', () => {
 			data = e.detail;
 		});
 		await tick();
-		const elm = host.querySelector('#test_trigger');
+		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
 		vi.runAllTimers();
 		await tick();
@@ -165,8 +165,8 @@ describe('Test: KPopconfirm', () => {
 		expect(
 			host.innerHTML.includes('<div class="k-popconfirm--content">清扬婉兮</div>')
 		).toBeTruthy();
-		const btnCancel = host.querySelector('.k-button--info__ghost');
-		const btnConfirm = host.querySelector('.k-button--primary__fill');
+		const btnCancel = host.querySelector('.k-button--info__ghost') as HTMLElement;
+		const btnConfirm = host.querySelector('.k-button--primary__fill') as HTMLElement;
 		btnConfirm.click();
 		btnCancel.click();
 		await tick();
@@ -191,7 +191,7 @@ describe('Test: KPopconfirm', () => {
 			show = e.detail;
 		});
 		const elm = host.querySelector('#test_trigger');
-		elm.dispatchEvent(new Event('click', { bubbles: true }));
+		elm!.dispatchEvent(new Event('click', { bubbles: true }));
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('有美一人')).toBeTruthy();
@@ -224,7 +224,7 @@ describe('Test: KPopconfirm', () => {
 			show = e.detail;
 		});
 		const elm = host.querySelector('#test_trigger');
-		elm.dispatchEvent(new Event('click', { bubbles: true }));
+		elm!.dispatchEvent(new Event('click', { bubbles: true }));
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('有美一人')).toBeTruthy();
@@ -258,7 +258,7 @@ describe('Test: KPopconfirm', () => {
 			show = e.detail;
 		});
 		const elm = host.querySelector('#test_trigger');
-		elm.dispatchEvent(new Event('click', { bubbles: true }));
+		elm!.dispatchEvent(new Event('click', { bubbles: true }));
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('有美一人')).toBeTruthy();
@@ -286,7 +286,7 @@ describe('Test: KPopconfirm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const elm = host.querySelector('#test_trigger');
+		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
 		vi.runAllTimers();
 		await tick();
@@ -300,7 +300,7 @@ describe('Test: KPopconfirm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const elm = host.querySelector('#test_trigger');
+		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
 		vi.runAllTimers();
 		await tick();
@@ -314,7 +314,7 @@ describe('Test: KPopconfirm', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const elm = host.querySelector('#test_trigger');
+		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
 		vi.runAllTimers();
 		await tick();

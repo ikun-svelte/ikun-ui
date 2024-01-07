@@ -142,7 +142,7 @@ describe('Test: KRate', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.querySelector('.k-rate--text').style.color).toBe(textColor);
+		expect((host.querySelector('.k-rate--text') as HTMLElement).style.color).toBe(textColor);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -197,9 +197,9 @@ describe('Test: KRate', () => {
 		});
 		expect(instance).toBeTruthy();
 		const stars = host.querySelectorAll('.k-rate--item');
-		expect(stars[0].children[0].style.background).toBe(colors);
-		expect(stars[1].children[0].style.background).toBe(colors);
-		expect(stars[2].children[0].style.background).toBe(colors);
+		expect((stars[0].children[0] as HTMLElement).style.background).toBe(colors);
+		expect((stars[1].children[0] as HTMLElement).style.background).toBe(colors);
+		expect((stars[2].children[0] as HTMLElement).style.background).toBe(colors);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -218,13 +218,13 @@ describe('Test: KRate', () => {
 		});
 		expect(instance).toBeTruthy();
 		const stars = host.querySelectorAll('.k-rate--item');
-		expect(stars[0].children[0].style.background).toBe('red');
+		expect((stars[0].children[0] as HTMLElement).style.background).toBe('red');
 		instance.$set({ value: 3 });
 		await tick();
-		expect(stars[2].children[0].style.background).toBe('blue');
+		expect((stars[2].children[0] as HTMLElement).style.background).toBe('blue');
 		instance.$set({ value: 5 });
 		await tick();
-		expect(stars[4].children[0].style.background).toBe('blue');
+		expect((stars[4].children[0] as HTMLElement).style.background).toBe('blue');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -255,8 +255,8 @@ describe('Test: KRate', () => {
 		});
 		expect(instance).toBeTruthy();
 		const stars = host.querySelectorAll('.k-rate--item');
-		expect(stars[2].children[0].style.background).not.toBe(voidColor);
-		expect(stars[3].children[0].style.background).toBe(voidColor);
+		expect((stars[2].children[0] as HTMLElement).style.background).not.toBe(voidColor);
+		expect((stars[3].children[0] as HTMLElement).style.background).toBe(voidColor);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -313,8 +313,8 @@ describe('Test: KRate', () => {
 		});
 		expect(instance).toBeTruthy();
 		const stars = host.querySelectorAll('.k-rate--item');
-		expect(stars[2].children[0].style.background).not.toBe('rgb(255, 0, 240)');
-		expect(stars[3].children[0].style.background).toBe('rgb(255, 0, 240)');
+		expect((stars[2].children[0] as HTMLElement).style.background).not.toBe('rgb(255, 0, 240)');
+		expect((stars[3].children[0] as HTMLElement).style.background).toBe('rgb(255, 0, 240)');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
