@@ -62,9 +62,10 @@ Add `size` attribute to change the size of Slider. It supports `sm`, `md` and `l
 ## Slider Props
 
 | Name     | Type                     | Default | Description                |
-| -------- | ------------------------ | ------- | -------------------------- |
+|----------|--------------------------|---------|----------------------------|
 | value    | `number`                 | `0`     | Binding value              |
 | vertical | `boolean`                | `false` | Vertical mode              |
+| format   | `string`                 | `""`    | Tooltip format value       |
 | min      | `number`                 | `0`     | Minimum value              |
 | max      | `number`                 | `100`   | Maximum value              |
 | step     | `number`                 | `1`     | Step size                  |
