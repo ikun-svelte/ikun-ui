@@ -16,6 +16,7 @@
 	export let attrs: KSliderProps['attrs'] = {};
 	export let cls: KSliderProps['cls'] = undefined;
 	export let showTooltip: KSliderProps['showTooltip'] = true;
+	export let format: KSliderProps['format'] = '';
 
 	/*********************** KForm logic start ************************/
 	let disabledFrom = false;
@@ -67,6 +68,7 @@
 	$: percentage = `${((value - min) / (max - min)) * 100}%`;
 	$: barStyle = vertical ? `height: ${percentage}; bottom: 0%` : `width: ${percentage}; left: 0%`;
 	$: btnStyle = vertical ? `bottom: ${percentage}` : `left: ${percentage}`;
+	$: formatContent = format || String(value);
 
 	// element
 	let runwayRef: null | HTMLElement = null;
@@ -194,13 +196,13 @@
 			style={btnStyle}
 		>
 			{#if $$slots.buttonRender}
-				<KTooltip disabled={!showTooltip} placement="top" content={String(value)}>
+				<KTooltip disabled={!showTooltip} placement="top" content={formatContent}>
 					<div slot="triggerEl" class={buttonCls}>
 						<slot name="buttonRender" />
 					</div>
 				</KTooltip>
 			{:else}
-				<KTooltip disabled={!showTooltip} placement="top" content={String(value)}>
+				<KTooltip disabled={!showTooltip} placement="top" content={formatContent}>
 					<div slot="triggerEl" class={buttonCls}></div>
 				</KTooltip>
 			{/if}
