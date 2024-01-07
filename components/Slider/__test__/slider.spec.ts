@@ -46,6 +46,28 @@ describe('Test: KSlider', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: format', async () => {
+		const instance = new KSlider({
+			target: host,
+			props: {
+				format: 'Ikun'
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const sliderButtonWrapperElm = host.querySelector('.k-slider--button-wrapper') as HTMLElement;
+		const triggerElm = sliderButtonWrapperElm.children[0];
+		triggerElm.dispatchEvent(
+			new MouseEvent('mouseenter', {
+				cancelable: true
+			})
+		);
+		vi.runAllTimers();
+		await tick();
+		expect(host.innerHTML.includes('data-popper-arrow-bottom')).toBeTruthy();
+		expect(host.innerHTML.includes('Ikun')).toBeTruthy();
+	});
+
 	test('props: vertical', async () => {
 		const instance = new KSlider({
 			target: host,
