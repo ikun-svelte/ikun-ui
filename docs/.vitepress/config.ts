@@ -197,6 +197,10 @@ const components = [
 				link: '/components/KDropdown'
 			},
 			{
+				text: 'Segmented',
+				link: '/components/KSegmented'
+			},
+			{
 				text: 'PageHeader',
 				link: '/components/KPageHeader'
 			},

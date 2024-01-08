@@ -9,7 +9,7 @@ export const segmentedShortcuts: Record<string, string> = {
 	'k-segmented-item--active':
 		'rounded bg-white shadow hover:bg-white active:bg-white h-full w-full pa',
 	'k-segmented-item--label': 'px-11px pr z-1 truncate w-full',
-	'k-segmented-item--icon': 'align-bottom !inline-flex',
+	'k-segmented-item--icon': 'align-middle !inline-flex',
 	'k-segmented-item--block': 'flex-1 min-w-0',
 
 	'k-segmented-item--sm': 'h-24px',
