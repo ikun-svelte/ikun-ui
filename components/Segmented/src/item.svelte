@@ -4,6 +4,7 @@
 	import type { KSegmentedContext, KSegmentedItemProps, KSegmentedProps } from './types';
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
+	import { scale } from 'svelte/transition';
 	export let value: KSegmentedItemProps['value'] = '';
 	export let label: KSegmentedItemProps['label'] = '';
 	export let disabled: KSegmentedItemProps['disabled'] = false;
@@ -35,21 +36,23 @@
 
 	const dispatch = createEventDispatcher();
 	function onClick() {
+		if (disabled) return;
 		dispatch('click', value);
 		context.onChange(value);
 	}
 
 	const prefixCls = getPrefixCls('segmented-item');
 	$: cnames = clsx(
-		prefixCls,
 		`${prefixCls}--${size}`,
 		{
-			[`${prefixCls}--active`]: isActive,
+			[prefixCls]: !disabled,
 			[`${prefixCls}--disabled`]: disabled
 		},
 		cls
 	);
-
+	$: activeCls = clsx({
+		[`${prefixCls}--active`]: isActive
+	});
 	const labelCls = `${prefixCls}--label`;
 	const iconCls = `${prefixCls}--icon`;
 </script>
@@ -61,8 +64,15 @@
 				<KIcon width={iconSize} cls={iconCls} height={iconSize} {icon}></KIcon>
 			{/if}
 			{#if !onlyIcon}
-				<div>{label}</div>
+				{label}
 			{/if}
 		</div>
+		{#if isActive}
+			<div
+				class={activeCls}
+				out:scale={{ duration: 300, start: 0.3 }}
+				in:scale={{ duration: 300, start: 0.3 }}
+			></div>
+		{/if}
 	</slot>
 </div>

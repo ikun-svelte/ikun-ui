@@ -36,7 +36,7 @@ export interface KSegmentedContext {
 // TODO: Segmented events : change  => function(value: string | number) 🤡
 
 // TODO: Segmented item props : value  => string | number 🤡
-// TODO: Segmented item props : disabled  => boolean(default: false)
+// TODO: Segmented item props : disabled  => boolean(default: false) 🤡
 // TODO: Segmented item props : label  => string | number 🤡
 // TODO: Segmented item props : icon  => string 🤡
 // TODO: Segmented item props : onlyIcon  => boolean 🤡
@@ -44,3 +44,4 @@ export interface KSegmentedContext {
 // TODO: Segmented item slots : default slot 🤡
 
 // TODO: Segmented events : click  => function(value: string | number) 🤡
+// TODO: 初始值优化 value、size
