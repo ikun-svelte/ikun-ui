@@ -14,6 +14,7 @@ export const commonShortcuts: UserShortcuts<Theme> = {
 	fs: 'flex justify-start',
 	fsc: 'flex justify-start items-center',
 	fse: 'flex justify-start items-end',
+	fssc: 'flex justify-start items-stretch',
 	fe: 'flex justify-end',
 	fec: 'flex justify-end items-center',
 	fb: 'flex justify-between',

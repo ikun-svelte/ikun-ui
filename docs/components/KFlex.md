@@ -53,17 +53,17 @@ Auto wrap line.
 
 ## Flex Props
 
-| Name     | Type                                                                                                  | Default                                                           | Description                                                                 |
-| -------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| vertical | `boolean`                                                                                             | `false`                                                           | Is direction of the flex vertical.                                          |
-| wrap     | `'wrap' \| 'nowrap' \| 'wrap-reverse'`                                                                | `'normal'`                                                        | Set whether the element is displayed in a single line or in multiple lines. |
-| justify  | `'normal' \| 'start'\| 'end'\| 'center'\| 'between'\| 'around' \| 'evenly' \| 'stretch'` | `'normal'` | Sets the alignment of elements in the direction of the main axis. |
-| align    | `'center' \| 'start' \| 'end' \| 'baseline' \| 'normal' \| 'stretch'`                                 | `'normal'`                                                        | Sets the alignment of elements in the direction of the cross axis.          |
-| flex     | `string`                                                                                              | `-`                                                               | Flex CSS shorthand properties.                                              |
-| gap      | `'sm' \| 'md' \| 'lg' \| number`                                                                      | `-`                                                               | Sets the gap between grids.                                                 |
-| elm      | `string`                                                                                              | `div`                                                             | Custom element type.                                                        |
-| cls      | `string`                                                                                              | `''`                                                              | Additional class for component                                              |
-| attrs    | `any`                                                                                                 | `{}`                                                              | Additional attributes                                                       |
+| Name     | Type                                                                                     | Default    | Description                                                                 |
+| -------- | ---------------------------------------------------------------------------------------- | ---------- | --------------------------------------------------------------------------- |
+| vertical | `boolean`                                                                                | `false`    | Is direction of the flex vertical.                                          |
+| wrap     | `'wrap' \| 'nowrap' \| 'wrap-reverse'`                                                   | `'normal'` | Set whether the element is displayed in a single line or in multiple lines. |
+| justify  | `'normal' \| 'start'\| 'end'\| 'center'\| 'between'\| 'around' \| 'evenly' \| 'stretch'` | `'normal'` | Sets the alignment of elements in the direction of the main axis.           |
+| align    | `'center' \| 'start' \| 'end' \| 'baseline' \| 'normal' \| 'stretch'`                    | `'normal'` | Sets the alignment of elements in the direction of the cross axis.          |
+| flex     | `string`                                                                                 | `-`        | Flex CSS shorthand properties.                                              |
+| gap      | `'sm' \| 'md' \| 'lg' \| number`                                                         | `-`        | Sets the gap between grids.                                                 |
+| elm      | `string`                                                                                 | `div`      | Custom element type.                                                        |
+| cls      | `string`                                                                                 | `''`       | Additional class for component                                              |
+| attrs    | `any`                                                                                    | `{}`       | Additional attributes                                                       |
 
 ## Flex Slots
 
