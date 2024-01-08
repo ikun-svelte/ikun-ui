@@ -47,7 +47,7 @@ Disabled Segmented.
 
 Custom each Segmented Item by slot.
 
-<demo src="segmented/basic.svelte"  github='Segmented'></demo>
+<demo src="segmented/custom.svelte"  github='Segmented'></demo>
 
 ## Size
 

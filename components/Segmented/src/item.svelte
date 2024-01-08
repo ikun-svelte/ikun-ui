@@ -65,12 +65,12 @@
 				{/if}
 			</span>
 		</div>
-		{#if isActive}
-			<div
-				class={activeCls}
-				out:scale={{ duration: 300, start: 0.3 }}
-				in:scale={{ duration: 300, start: 0.3 }}
-			></div>
-		{/if}
 	</slot>
+	{#if isActive}
+		<div
+			class={activeCls}
+			out:scale={{ duration: 300, start: 0.3 }}
+			in:scale={{ duration: 300, start: 0.3 }}
+		></div>
+	{/if}
 </div>
