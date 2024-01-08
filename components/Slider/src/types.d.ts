@@ -11,6 +11,7 @@ export type KSliderProps = {
 	disabled: boolean;
 	vertical: boolean;
 	showTooltip: boolean;
+	format: (value: number) => number | string;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
