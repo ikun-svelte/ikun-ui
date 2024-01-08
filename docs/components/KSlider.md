@@ -61,18 +61,18 @@ Add `size` attribute to change the size of Slider. It supports `sm`, `md` and `l
 
 ## Slider Props
 
-| Name     | Type                     | Default           | Description                |
-|----------|--------------------------|-------------------|----------------------------|
-| value    | `number`                 | `0`               | Binding value              |
-| vertical | `boolean`                | `false`           | Vertical mode              |
-| format   | `string`                 | `"String(value)"` | Tooltip format value       |
-| min      | `number`                 | `0`               | Minimum value              |
-| max      | `number`                 | `100`             | Maximum value              |
-| step     | `number`                 | `1`               | Step size                  |
-| disabled | `boolean`                | `false`           | Whether Slider is disabled |
-| size     | `sm \| md \| lg`         | `md`              | Size of `slider`.          |
-| cls      | `string`                 | `-`               | Additional class           |
-| attrs    | `Record<string, string>` | `{}`              | Additional attributes      |
+| Name     | Type                                  | Default                    | Description                |
+| -------- | ------------------------------------- | -------------------------- | -------------------------- |
+| value    | `number`                              | `0`                        | Binding value              |
+| vertical | `boolean`                             | `false`                    | Vertical mode              |
+| format   | `(value: number) => number \| string` | `(value: number) => value` | Tooltip format value       |
+| min      | `number`                              | `0`                        | Minimum value              |
+| max      | `number`                              | `100`                      | Maximum value              |
+| step     | `number`                              | `1`                        | Step size                  |
+| disabled | `boolean`                             | `false`                    | Whether Slider is disabled |
+| size     | `sm \| md \| lg`                      | `md`                       | Size of `slider`.          |
+| cls      | `string`                              | `-`                        | Additional class           |
+| attrs    | `Record<string, string>`              | `{}`                       | Additional attributes      |
 
 ## Slider Events
 
