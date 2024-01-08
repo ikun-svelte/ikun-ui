@@ -143,7 +143,7 @@ describe('Test: KSelect', () => {
 			'{"label":"Connecticut","value":"Connecticut","id":"Connecticut"}'
 		);
 		expect(contentEl).not.toBeTruthy();
-		const inputEl = triggerEl?.querySelector('input');
+		const inputEl = triggerEl?.querySelector('input') as HTMLInputElement;
 		inputEl.value = 'ikun';
 		inputEl.dispatchEvent(new Event('input', { cancelable: true }));
 		await tick();

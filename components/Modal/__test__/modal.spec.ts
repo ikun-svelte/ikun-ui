@@ -109,7 +109,7 @@ describe('Test: KModal', () => {
 		await tick();
 		instance.$on('cancel', mockFn);
 		const btn = host.querySelector('.k-button--info__fill');
-		btn.dispatchEvent(new Event('click', { bubbles: true }));
+		btn!.dispatchEvent(new Event('click', { bubbles: true }));
 		await tick();
 		expect(instance).toBeTruthy();
 		expect(mockFn).toBeCalled();
@@ -127,7 +127,7 @@ describe('Test: KModal', () => {
 		await tick();
 		instance.$on('confirm', mockFn);
 		const btn = host.querySelector('.k-button--primary__fill');
-		btn.dispatchEvent(new Event('click', { bubbles: true }));
+		btn!.dispatchEvent(new Event('click', { bubbles: true }));
 		await tick();
 		expect(instance).toBeTruthy();
 		expect(mockFn).toBeCalled();
@@ -145,7 +145,7 @@ describe('Test: KModal', () => {
 		await tick();
 		instance.$on('close', mockFn);
 		const btn = host.querySelector('.i-carbon-close');
-		btn.dispatchEvent(new Event('click', { bubbles: true }));
+		btn!.dispatchEvent(new Event('click', { bubbles: true }));
 		await tick();
 		expect(instance).toBeTruthy();
 		expect(mockFn).toBeCalled();

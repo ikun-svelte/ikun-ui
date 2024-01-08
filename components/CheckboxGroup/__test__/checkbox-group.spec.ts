@@ -44,11 +44,11 @@ describe('Test: KCheckboxGroup', () => {
 		await tick();
 		expect(instance).toBeTruthy();
 		const smEls = host.querySelector('#group-sm');
-		expect(smEls.querySelectorAll('.k-checkbox--sm').length).toBe(3);
+		expect(smEls!.querySelectorAll('.k-checkbox--sm').length).toBe(3);
 		const mdEls = host.querySelector('#group-md');
-		expect(mdEls.querySelectorAll('.k-checkbox--md').length).toBe(5);
+		expect(mdEls!.querySelectorAll('.k-checkbox--md').length).toBe(5);
 		const lgEls = host.querySelector('#group-lg');
-		expect(lgEls.querySelectorAll('.k-checkbox--lg').length).toBe(2);
+		expect(lgEls!.querySelectorAll('.k-checkbox--lg').length).toBe(2);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -75,8 +75,8 @@ describe('Test: KCheckboxGroup', () => {
 		expect(inputEls[0].value === 'false').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
 		expect(inputEls[2].value === 'true').toBeTruthy();
-		const btn = host.querySelector('#group_change_btn');
-		btn.click(); // or btn.dispatchEvent(new window.Event('click', { bubbles: true }))
+		const btn = host.querySelector('#group_change_btn') as HTMLElement;
+		btn!.click(); // or btn.dispatchEvent(new window.Event('click', { bubbles: true }))
 		await tick();
 		expect(inputEls[0].value === 'true').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
@@ -140,8 +140,8 @@ describe('Test: KCheckboxGroup', () => {
 		expect(inputEls[0].value === 'false').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
 		expect(inputEls[2].value === 'true').toBeTruthy();
-		const btn = host.querySelector('#group_change_disabled_btn');
-		btn.click(); // or btn.dispatchEvent(new window.Event('click', { bubbles: true }))
+		const btn = host.querySelector('#group_change_disabled_btn') as HTMLElement;
+		btn!.click(); // or btn.dispatchEvent(new window.Event('click', { bubbles: true }))
 		await tick();
 		expect(inputEls[0].value === 'false').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
@@ -190,15 +190,15 @@ describe('Test: KCheckboxGroup', () => {
 		expect(inputEls[0].value === 'false').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
 		expect(inputEls[2].value === 'true').toBeTruthy();
-		const btn = host.querySelector('#group_change_value_btn');
-		btn.click(); // or btn.dispatchEvent(new window.Event('click', { bubbles: true }))
+		const btn = host.querySelector('#group_change_value_btn') as HTMLElement;
+		btn!.click(); // or btn.dispatchEvent(new window.Event('click', { bubbles: true }))
 		await tick();
 		expect(inputEls[0].value === 'false').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
 		expect(inputEls[2].value === 'true').toBeTruthy();
 
-		const btn2 = host.querySelector('#group_change_disabled_btn');
-		btn2.click(); // or btn.dispatchEvent(new window.Event('click', { bubbles: true }))
+		const btn2 = host.querySelector('#group_change_disabled_btn') as HTMLElement;
+		btn2!.click(); // or btn.dispatchEvent(new window.Event('click', { bubbles: true }))
 		await tick();
 		expect(inputEls[0].value === 'true').toBeTruthy();
 		expect(inputEls[1].value === 'false').toBeTruthy();
