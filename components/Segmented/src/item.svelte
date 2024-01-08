@@ -46,7 +46,8 @@
 		`${prefixCls}--${size}`,
 		{
 			[prefixCls]: !disabled,
-			[`${prefixCls}--disabled`]: disabled
+			[`${prefixCls}--disabled`]: disabled,
+			[`${prefixCls}--block`]: context.block
 		},
 		cls
 	);
@@ -60,12 +61,12 @@
 <div class={cnames} {...$$restProps} {...attrs} on:click={onClick} aria-hidden="true">
 	<slot>
 		<div title={label} class={labelCls}>
-			{#if !onlyIcon && icon}
-				<KIcon width={iconSize} cls={iconCls} height={iconSize} {icon}></KIcon>
-			{/if}
-			{#if !onlyIcon}
-				{label}
-			{/if}
+					{#if icon}
+						<KIcon width={iconSize} cls={iconCls} height='auto' {icon}></KIcon>
+					{/if}
+					{#if !onlyIcon}
+						<span>{label}</span>
+					{/if}
 		</div>
 		{#if isActive}
 			<div

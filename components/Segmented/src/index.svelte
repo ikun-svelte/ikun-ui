@@ -14,6 +14,7 @@
 	let valueChangeFns: ValueChangeFns = [];
 	setContext(segmentedKey, {
 		onChange,
+		block,
 		sizeChangeFns,
 		valueChangeFns
 	});
@@ -47,7 +48,9 @@
 	}
 
 	const prefixCls = getPrefixCls('segmented');
-	$: cnames = clsx(prefixCls, cls);
+	$: cnames = clsx(prefixCls, {
+		[`${prefixCls}-block`]: block,
+	} ,cls);
 
 	const groupCls = `${prefixCls}-group`;
 </script>

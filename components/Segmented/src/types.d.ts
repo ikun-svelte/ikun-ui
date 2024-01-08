@@ -23,6 +23,7 @@ export type KSegmentedItemProps = {
 export type SizeChangeFns = Array<(size: KSegmentedProps['size']) => void>;
 export type ValueChangeFns = Array<(value: KSegmentedProps['value']) => void>;
 export interface KSegmentedContext {
+	block: boolean
 	onChange: (value: KSegmentedProps['value']) => void;
 	sizeChangeFns: SizeChangeFns;
 	valueChangeFns: ValueChangeFns;
