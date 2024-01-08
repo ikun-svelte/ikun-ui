@@ -230,7 +230,7 @@ describe('Test: KMsgBox', () => {
 		expect(rV).toBe(false);
 		expect(vV).toBe('bar');
 
-		input[0].value = 1;
+		input[0].value = '1';
 		input[0].dispatchEvent(new window.Event('input', { bubbles: true }));
 		await tick();
 		btns[1].click();
