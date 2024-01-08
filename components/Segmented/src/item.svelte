@@ -19,11 +19,12 @@
 		isActive = val === value;
 	}
 	context.valueChangeFns.push(setActive);
+	setActive(context.segmentedValue);
 
 	let size: KSegmentedProps['size'] = 'md';
 	let iconSizeMap = {
 		sm: '12px',
-		md: '16px',
+		md: '18px',
 		lg: '20px'
 	};
 	let iconSize = iconSizeMap[size];
@@ -33,6 +34,7 @@
 		iconSize = iconSizeMap[size];
 	}
 	context.sizeChangeFns.push(setSize);
+	setSize(context.segmentedSize);
 
 	const dispatch = createEventDispatcher();
 	function onClick() {
@@ -61,12 +63,14 @@
 <div class={cnames} {...$$restProps} {...attrs} on:click={onClick} aria-hidden="true">
 	<slot>
 		<div title={label} class={labelCls}>
+			{#if !onlyIcon}
+				<span>
 					{#if icon}
-						<KIcon width={iconSize} cls={iconCls} height='auto' {icon}></KIcon>
+						<KIcon width={iconSize} cls={iconCls} height={iconSize} {icon}></KIcon>
 					{/if}
-					{#if !onlyIcon}
-						<span>{label}</span>
-					{/if}
+					{label}
+				</span>
+			{/if}
 		</div>
 		{#if isActive}
 			<div

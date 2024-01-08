@@ -23,14 +23,16 @@ export type KSegmentedItemProps = {
 export type SizeChangeFns = Array<(size: KSegmentedProps['size']) => void>;
 export type ValueChangeFns = Array<(value: KSegmentedProps['value']) => void>;
 export interface KSegmentedContext {
-	block: boolean
+	block: boolean;
+	segmentedValue: KSegmentedProps['value'];
+	segmentedSize: KSegmentedProps['size'];
 	onChange: (value: KSegmentedProps['value']) => void;
 	sizeChangeFns: SizeChangeFns;
 	valueChangeFns: ValueChangeFns;
 }
 // TODO: Segmented props : value  => string | number 🤡
 // TODO: Segmented props : size  => 'md' | 'sm'	 | 'lg'(default 'md') 🤡
-// TODO: Segmented props : block  => boolean(default: false)
+// TODO: Segmented props : block  => boolean(default: false) 🤡
 
 // TODO: Segmented slots : default slot 🤡
 
@@ -45,4 +47,3 @@ export interface KSegmentedContext {
 // TODO: Segmented item slots : default slot 🤡
 
 // TODO: Segmented events : click  => function(value: string | number) 🤡
-// TODO: 初始值优化 value、size

@@ -2,7 +2,7 @@
 	import { getPrefixCls, segmentedKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import type { KSegmentedProps, SizeChangeFns, ValueChangeFns } from './types';
-	import { createEventDispatcher, onMount, setContext } from 'svelte';
+	import { createEventDispatcher, setContext } from 'svelte';
 
 	export let value: KSegmentedProps['value'] = '';
 	export let size: KSegmentedProps['size'] = 'md';
@@ -13,6 +13,8 @@
 	let sizeChangeFns: SizeChangeFns = [];
 	let valueChangeFns: ValueChangeFns = [];
 	setContext(segmentedKey, {
+		segmentedValue: value,
+		segmentedSize: size,
 		onChange,
 		block,
 		sizeChangeFns,
@@ -37,20 +39,19 @@
 		setSize(size);
 	}
 
-	onMount(() => {
-		setValue(value);
-		setSize(size);
-	});
-
 	const dispatch = createEventDispatcher();
 	function onChange(value: KSegmentedProps['value']) {
 		dispatch('change', value);
 	}
 
 	const prefixCls = getPrefixCls('segmented');
-	$: cnames = clsx(prefixCls, {
-		[`${prefixCls}-block`]: block,
-	} ,cls);
+	$: cnames = clsx(
+		prefixCls,
+		{
+			[`${prefixCls}-block`]: block
+		},
+		cls
+	);
 
 	const groupCls = `${prefixCls}-group`;
 </script>
