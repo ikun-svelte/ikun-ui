@@ -14,6 +14,7 @@ export {
 	formItemKey,
 	tabsKey,
 	dropDownKey,
-	descriptionsKey
+	descriptionsKey,
+	segmentedKey
 } from './symbol-key';
 export * from './dom';

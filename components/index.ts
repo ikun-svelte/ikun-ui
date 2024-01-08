@@ -59,3 +59,4 @@ export * from '@ikun-ui/scrollbar';
 export * from '@ikun-ui/image';
 export * from '@ikun-ui/image-view';
 export * from '@ikun-ui/flex';
+export * from '@ikun-ui/segmented';
