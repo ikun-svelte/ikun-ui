@@ -50,7 +50,10 @@ describe('Test: KSlider', () => {
 		const instance = new KSlider({
 			target: host,
 			props: {
-				format: 'Ikun'
+				value: 10,
+				format: (value) => {
+					return 'Ikun' + value;
+				}
 			}
 		});
 		expect(instance).toBeTruthy();
@@ -65,7 +68,7 @@ describe('Test: KSlider', () => {
 		vi.runAllTimers();
 		await tick();
 		expect(host.innerHTML.includes('data-popper-arrow-bottom')).toBeTruthy();
-		expect(host.innerHTML.includes('Ikun')).toBeTruthy();
+		expect(host.innerHTML.includes('Ikun10')).toBeTruthy();
 	});
 
 	test('props: vertical', async () => {
