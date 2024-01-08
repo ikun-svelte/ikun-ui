@@ -16,7 +16,7 @@
 	export let attrs: KSliderProps['attrs'] = {};
 	export let cls: KSliderProps['cls'] = undefined;
 	export let showTooltip: KSliderProps['showTooltip'] = true;
-	export let format: KSliderProps['format'] = '';
+	export let format: KSliderProps['format'];
 
 	/*********************** KForm logic start ************************/
 	let disabledFrom = false;
@@ -53,6 +53,19 @@
 	}
 	/*********************** KForm logic end ************************/
 
+	function handleFormat(value: number) {
+		if (format) {
+			const formattedValue = format(value);
+			if (typeof formattedValue === 'number' || typeof formattedValue === 'string') {
+				return formattedValue;
+			} else {
+				return value;
+			}
+		} else {
+			return value;
+		}
+	}
+
 	// current value
 	let isDragging: boolean = false;
 	let startX: number = 0;
@@ -68,7 +81,7 @@
 	$: percentage = `${((value - min) / (max - min)) * 100}%`;
 	$: barStyle = vertical ? `height: ${percentage}; bottom: 0%` : `width: ${percentage}; left: 0%`;
 	$: btnStyle = vertical ? `bottom: ${percentage}` : `left: ${percentage}`;
-	$: formatContent = format || String(value);
+	$: formatContent = String(handleFormat(value));
 
 	// element
 	let runwayRef: null | HTMLElement = null;
