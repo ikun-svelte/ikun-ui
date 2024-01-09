@@ -1,3 +1,4 @@
+import { stepsShortcuts } from './src/steps';
 import { segmentedShortcuts } from './src/segmented';
 import { flexShortcuts } from './src/flex';
 import type { Theme } from '@unocss/preset-uno';
@@ -63,6 +64,8 @@ export const defaultShortcuts = [
 	commonShortcuts,
 	// don't remove
 	// anchor defaultShortcuts
+	// steps
+	stepsShortcuts,
 	// segmented
 	segmentedShortcuts,
 	// flex
@@ -172,6 +175,7 @@ export const defaultShortcuts = [
 export function getSafeList() {
 	// don't remove
 	// anchor shortcuts
+	const stepsList = Object.keys(stepsShortcuts);
 	const segmentedList = Object.keys(segmentedShortcuts);
 	const flexList = Object.keys(flexShortcuts);
 	const comList = Object.keys(baseShortcuts);
@@ -229,6 +233,7 @@ export function getSafeList() {
 	let res = iconList
 		// don't remove
 		// anchor list
+		.concat(stepsList)
 		.concat(segmentedList)
 		.concat(flexList)
 		.concat(IKUN_SAFE_LIST)
@@ -352,3 +357,4 @@ export { imageShortcuts } from './src/image';
 export { imageViewShortcuts } from './src/image-view';
 export { flexShortcuts } from './src/flex';
 export { segmentedShortcuts } from './src/segmented';
+export { stepsShortcuts } from './src/steps';

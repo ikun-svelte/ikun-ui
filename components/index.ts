@@ -60,3 +60,4 @@ export * from '@ikun-ui/image';
 export * from '@ikun-ui/image-view';
 export * from '@ikun-ui/flex';
 export * from '@ikun-ui/segmented';
+export * from '@ikun-ui/steps';
