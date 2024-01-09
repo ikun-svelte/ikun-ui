@@ -30,5 +30,3 @@ export interface KSegmentedContext {
 	sizeChangeFns: SizeChangeFns;
 	valueChangeFns: ValueChangeFns;
 }
-
-// TODO: Segmented item slots : default slot 🤡
