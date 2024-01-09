@@ -8,10 +8,10 @@ export type KStepsProps = {
 export interface KStepsOption {
 	uid: string | number;
 	title: string;
-	subTitle: string;
-	description: string;
-	status: 'wait' | 'process' | 'finish' | 'error';
-	disabled: boolean;
+	subTitle?: string;
+	description?: string;
+	status?: 'wait' | 'process' | 'finish' | 'error'; // 不填，则按照wait -> process -> finish
+	disabled?: boolean;
 }
 
 export type KStepsOptions = Array<KStepsOption>;
