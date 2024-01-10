@@ -42,8 +42,8 @@ export type KStepStatus = 'wait' | 'process' | 'finish' | 'error';
 
 // TODO: KSteps props active - number ｜ string 当前步骤， 值应该是 index 🤡
 
-// TODO: KSteps props direction - 'vertical' | 'horizontal' 显示方向
-// TODO: KSteps props labelPlacement - 'vertical' | 'horizontal' label位置
+// TODO: KSteps props direction - 'vertical' | 'horizontal' 显示方向 🤡
+// TODO: KSteps props labelPlacement - 'vertical' | 'horizontal' label位置 🤡
 
 // TODO: KSteps props dot - boolean 点状步骤（step 变为圆点）
 
