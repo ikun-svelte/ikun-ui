@@ -21,8 +21,16 @@
 	}
 
 	const prefixCls = getPrefixCls('steps');
-	$: cnames = clsx(prefixCls, cls);
-	$: containerCls = clsx(`${prefixCls}-container`);
+	$: cnames = clsx(
+		prefixCls,
+		{
+			[`${prefixCls}-horizontal`]: direction === 'horizontal'
+		},
+		cls
+	);
+	$: containerCls = clsx(`${prefixCls}-container`, `${prefixCls}-container-${direction}`, {
+		[`${prefixCls}-label-container-vertical`]: labelPlacement === 'vertical'
+	});
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
