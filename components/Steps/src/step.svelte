@@ -42,21 +42,37 @@
 	$: cnames = clsx(
 		prefixCls,
 		{
-			[`${prefixCls}--click`]: stepStatus === 'finish' || stepStatus === 'wait'
+			[`${prefixCls}--click`]: canClick && (stepStatus === 'finish' || stepStatus === 'wait'),
+			[`${prefixCls}-vertical`]: direction === 'vertical',
+			[`${prefixCls}-label-vertical`]: labelPlacement === 'vertical' && direction === 'horizontal'
 		},
 		cls
 	);
 
 	$: stepStatus = getStatus(active, index, option.status);
-	$: contentCls = clsx(`${prefixCls}-content`);
+	$: contentCls = clsx(`${prefixCls}-content`, {
+		[`${prefixCls}-content-vertical`]: labelPlacement === 'vertical'
+	});
+	$: tailCls = clsx({
+		[`${prefixCls}-tail`]: labelPlacement === 'horizontal',
+		[`${prefixCls}-label-tail-vertical`]: labelPlacement === 'vertical',
+		[`${prefixCls}-tail-vertical`]: direction === 'vertical',
+		[`${prefixCls}-tail--none`]: last,
+		[`${prefixCls}-tail--finish`]: stepStatus === 'finish'
+	});
 	$: titleCls = clsx(`${prefixCls}-title`, {
 		[`${prefixCls}-title--error`]: !isHover && stepStatus === 'error',
 		[`${prefixCls}-title--wait`]: !isHover && stepStatus === 'wait',
+		[`${prefixCls}-title--click`]: isHover,
+		[`${prefixCls}-title-vertical`]: labelPlacement === 'vertical',
+
+		[`${prefixCls}-tail-horizontal`]: labelPlacement === 'horizontal' && direction === 'horizontal',
 		[`${prefixCls}-tail--none`]: last,
-		[`${prefixCls}-tail--finish`]: stepStatus === 'finish',
-		[`${prefixCls}-title--click`]: isHover
+		[`${prefixCls}-tail--finish`]: stepStatus === 'finish'
 	});
-	$: subTitleCls = clsx(`${prefixCls}-sub-title`);
+	$: subTitleCls = clsx(`${prefixCls}-sub-title`, {
+		[`${prefixCls}-sub-title-vertical`]: labelPlacement === 'vertical'
+	});
 	$: descriptionCls = clsx(`${prefixCls}-description`, {
 		[`${prefixCls}-description--error`]: !isHover && stepStatus === 'error',
 		[`${prefixCls}-description--no-process`]:
@@ -64,7 +80,7 @@
 		[`${prefixCls}-description--click`]: isHover
 	});
 	$: iconStatusCls = `${prefixCls}-icon--${getStatus(active, index, option.status)}`;
-	$: iconCls = clsx(`${prefixCls}-icon`, {
+	$: iconCls = clsx(`${prefixCls}-icon`, `${prefixCls}-icon-${labelPlacement}`, {
 		[`${prefixCls}-icon--wait-bg`]: stepStatus === 'wait',
 		[iconStatusCls]: !(stepStatus === 'wait' && isHover),
 		[`${prefixCls}-icon--click`]: isHover
@@ -80,6 +96,9 @@
 	on:mouseenter={handleEnter}
 	on:mouseleave={handleLeave}
 >
+	{#if direction === 'vertical' || labelPlacement === 'vertical'}
+		<div class={tailCls}></div>
+	{/if}
 	<div class={iconCls}>
 		<div class={iconInnerCls}>
 			{#if stepStatus === 'error'}
