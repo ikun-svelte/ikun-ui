@@ -4,7 +4,7 @@ export const stepsShortcuts: Record<string, string> = {
 	'k-steps-container-horizontal': 'inline-block flex-1 ps-16px last:flex-none first:ps-0',
 	'k-steps-container-vertical': 'block',
 	'k-steps-container': 'align-top pr overflow-hidden box-border',
-	'k-steps-label-container-vertical': 'ps-0',
+	'k-steps-label-container-vertical': 'ps-0 overflow-visible',
 
 	'k-step': 'whitespace-nowrap',
 	'k-step-vertical': 'pr my-4px',
@@ -33,7 +33,7 @@ export const stepsShortcuts: Record<string, string> = {
 
 	'k-step-tail': 'h-full w-1px pa start-16px top-0 pt-38px pb-6px px-0',
 	'k-step-label-tail-vertical':
-		'h-1px w-full pa start-120px top-0 after:(content-[""] inline-block w-full h-1px bg-ikun-bg-grs2 k-icon-transition)',
+		'h-1px w-full pa start-120px top-0 ml-58px left-0 box-border py-0 px-32px after:(content-[""] inline-block w-full h-1px bg-ikun-bg-grs2 k-icon-transition)',
 	'k-step-tail-vertical':
 		'after:(content-[""] inline-block w-1px h-full bg-ikun-bg-grs2 k-icon-transition)',
 	'k-step-tail-horizontal':
