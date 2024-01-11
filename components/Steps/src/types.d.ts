@@ -60,7 +60,7 @@ export type KStepStatus = 'wait' | 'process' | 'finish' | 'error';
 // TODO: KStep 仅做自定义插槽渲染
 // TODO: KStep props index
 
-// TODO: KStep slots default
+// TODO: KStep slots icon
 // TODO: KStep slots title
 // TODO: KStep slots subTitle
 // TODO: KStep slots description

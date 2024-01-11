@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KStepProps, KStepStatus } from './types';
+	import type { KStepProps, KStepsItem, KStepStatus } from './types';
 	import { KIcon } from '@ikun-ui/icon';
+	import { createEventDispatcher } from 'svelte';
+	import { scale } from 'svelte/transition';
 	export let active: KStepProps['active'] = 0;
 	export let direction: KStepProps['direction'] = 'horizontal';
 	export let labelPlacement: KStepProps['labelPlacement'] = 'horizontal';
@@ -39,6 +41,13 @@
 	const handleLeave = () => {
 		isHover = false;
 	};
+	const dispatch = createEventDispatcher();
+	function handleChange(item: KStepsItem) {
+		if (!canClick) return;
+		dispatch('change', item);
+	}
+
+	$: isActive = (index: number) => Number(active) === Number(index);
 	const prefixCls = getPrefixCls('step');
 	$: cnames = clsx(
 		prefixCls,
@@ -104,54 +113,92 @@
 		[`${prefixCls}-arrow-horizontal`]: !dot && navigation && direction === 'horizontal',
 		[`${prefixCls}-arrow-vertical`]: !dot && navigation && direction === 'vertical'
 	});
+
+	const namespaceCls = getPrefixCls('steps');
+	$: containerCls = clsx(`${namespaceCls}-container`, {
+		[`${namespaceCls}-label-container-vertical`]:
+			labelPlacement === 'vertical' || direction === 'vertical',
+		[`${namespaceCls}-container-${direction}`]: !navigation || (dot && navigation),
+		[`${namespaceCls}-container-horizontal--nav`]: !dot && navigation && direction === 'horizontal'
+	});
+	$: barCls = clsx({
+		[`${namespaceCls}-bar-${direction}`]: !dot && navigation && labelPlacement === 'horizontal',
+		[`${namespaceCls}-bar-lb-horizontal`]:
+			!dot && navigation && labelPlacement === 'vertical' && direction === 'horizontal'
+	});
 </script>
 
-<div
-	class={cnames}
-	{...$$restProps}
-	{...attrs}
-	aria-hidden="true"
-	on:mouseenter={handleEnter}
-	on:mouseleave={handleLeave}
->
-	{#if (direction === 'vertical' || labelPlacement === 'vertical') && !last && (!navigation || (dot && navigation))}
-		<div class={tailCls}></div>
-	{/if}
+<div class={containerCls} aria-hidden="true" data-k-step on:click={() => handleChange(item)}>
+	<div
+		class={cnames}
+		{...$$restProps}
+		{...attrs}
+		aria-hidden="true"
+		on:mouseenter={handleEnter}
+		on:mouseleave={handleLeave}
+	>
+		{#if (direction === 'vertical' || labelPlacement === 'vertical') && !last && (!navigation || (dot && navigation))}
+			<div class={tailCls}></div>
+		{/if}
 
-	{#if !dot && (direction === 'horizontal' || labelPlacement === 'vertical') && !last && navigation}
-		<div class={arrowCls}>
-			<KIcon icon="i-carbon-chevron-right"></KIcon>
-		</div>
-	{/if}
-
-	{#if !dot && direction === 'vertical' && !last && navigation}
-		<div class={arrowCls}>
-			<KIcon icon="i-carbon-chevron-down"></KIcon>
-		</div>
-	{/if}
-
-	<div class={iconCls}>
-		{#if !dot}
-			<div class={iconInnerCls}>
-				{#if stepStatus === 'error'}
-					<KIcon icon="i-carbon-close"></KIcon>
-				{:else if stepStatus === 'finish'}
-					<KIcon icon="i-carbon-checkmark"></KIcon>
-				{:else}
-					{eachIndex}
-				{/if}
+		{#if !dot && (direction === 'horizontal' || labelPlacement === 'vertical') && !last && navigation}
+			<div class={arrowCls}>
+				<KIcon icon="i-carbon-chevron-right"></KIcon>
 			</div>
 		{/if}
-	</div>
-	<div class={contentCls}>
-		<div class={titleCls} data-k-step-title>
-			{item.title}
-			{#if item.subTitle}
-				<div class={subTitleCls}>{item.subTitle}</div>
+
+		{#if !dot && direction === 'vertical' && !last && navigation}
+			<div class={arrowCls}>
+				<KIcon icon="i-carbon-chevron-down"></KIcon>
+			</div>
+		{/if}
+
+		<div class={iconCls}>
+			{#if !dot}
+				<slot name="icon">
+					<div class={iconInnerCls}>
+						{#if stepStatus === 'error'}
+							<KIcon icon="i-carbon-close"></KIcon>
+						{:else if stepStatus === 'finish'}
+							<KIcon icon="i-carbon-checkmark"></KIcon>
+						{:else}
+							{eachIndex}
+						{/if}
+					</div>
+				</slot>
 			{/if}
 		</div>
-		{#if item.description}
-			<div class={descriptionCls}>{item.description}</div>
-		{/if}
+
+		<div class={contentCls}>
+			<div class={titleCls} data-k-step-title>
+				<slot name="title">{item.title}</slot>
+				{#if item.subTitle || $$slots.subTitle}
+					<div class={subTitleCls}>
+						<slot name="subTitle">{item.subTitle}</slot>
+					</div>
+				{/if}
+			</div>
+			{#if item.description || $$slots.subTitle}
+				<div class={descriptionCls}>
+					<slot name="description">{item.description}</slot>
+				</div>
+			{/if}
+		</div>
 	</div>
+
+	{#if !dot && navigation && isActive(eachIndex) && direction === 'horizontal'}
+		<div
+			class={barCls}
+			out:scale={{ duration: 300, start: 0.3 }}
+			in:scale={{ duration: 300, start: 0.3 }}
+		></div>
+	{/if}
+
+	{#if !dot && navigation && isActive(eachIndex) && direction === 'vertical'}
+		<div
+			class={barCls}
+			out:scale={{ duration: 300, start: 0.3 }}
+			in:scale={{ duration: 300, start: 0.3 }}
+		></div>
+	{/if}
 </div>
