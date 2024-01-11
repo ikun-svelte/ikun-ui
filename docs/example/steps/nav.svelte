@@ -1,5 +1,6 @@
 <script>
 	import { KSteps } from '@ikun-ui/steps';
+	import { KDivider } from '@ikun-ui/divider';
 	let active = 2;
 	const items = [
 		{
@@ -25,12 +26,8 @@
 </script>
 
 <KSteps on:change={handleChange} canClick navigation {items} {active}></KSteps>
+<KDivider></KDivider>
 <KSteps on:change={handleChange} canClick navigation {items} {active} direction="vertical"></KSteps>
-<KSteps
-	on:change={handleChange}
-	canClick
-	navigation
-	{items}
-	{active}
-	labelPlacement="vertical"
+<KDivider></KDivider>
+<KSteps on:change={handleChange} canClick navigation {items} {active} labelPlacement="vertical"
 ></KSteps>
