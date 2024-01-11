@@ -43,20 +43,26 @@
 		prefixCls,
 		{
 			[`${prefixCls}--click`]: canClick && (stepStatus === 'finish' || stepStatus === 'wait'),
-			[`${prefixCls}-vertical`]: direction === 'vertical',
-			[`${prefixCls}-label-vertical`]: labelPlacement === 'vertical' && direction === 'horizontal'
+			[`${prefixCls}-vertical`]: direction === 'vertical' && !dot,
+			[`${prefixCls}-vertical--dot`]: direction === 'vertical' && dot,
+			[`${prefixCls}-lb-vertical`]: labelPlacement === 'vertical' && direction === 'horizontal'
 		},
 		cls
 	);
 
 	$: stepStatus = getStatus(active, index, option.status);
 	$: contentCls = clsx(`${prefixCls}-content`, {
-		[`${prefixCls}-content-vertical`]: labelPlacement === 'vertical'
+		[`${prefixCls}-content-vertical`]: direction === 'vertical',
+		[`${prefixCls}-content-lb-vertical`]: labelPlacement === 'vertical'
 	});
 	$: tailCls = clsx({
-		[`${prefixCls}-tail`]: labelPlacement === 'horizontal',
-		[`${prefixCls}-label-tail-vertical`]: labelPlacement === 'vertical',
+		[`${prefixCls}-tail`]: labelPlacement === 'horizontal' && !dot,
+		[`${prefixCls}-tail-lb-horizontal--dot`]: labelPlacement === 'horizontal' && dot,
+		[`${prefixCls}-tail-lb-vertical`]: labelPlacement === 'vertical',
+		[`${prefixCls}-tail-lb-vertical--dot`]: labelPlacement === 'vertical' && dot,
 		[`${prefixCls}-tail-vertical`]: direction === 'vertical',
+		[`${prefixCls}-tail-vertical--dot`]: direction === 'vertical' && dot,
+		[`${prefixCls}-tail-horizontal--dot`]: direction === 'horizontal' && dot,
 		[`${prefixCls}-tail--none`]: last,
 		[`${prefixCls}-tail--finish`]: stepStatus === 'finish'
 	});
@@ -64,14 +70,15 @@
 		[`${prefixCls}-title--error`]: !isHover && stepStatus === 'error',
 		[`${prefixCls}-title--wait`]: !isHover && stepStatus === 'wait',
 		[`${prefixCls}-title--click`]: isHover,
-		[`${prefixCls}-title-vertical`]: labelPlacement === 'vertical',
+		[`${prefixCls}-title-lb-vertical`]: labelPlacement === 'vertical',
 
 		[`${prefixCls}-tail-horizontal`]: labelPlacement === 'horizontal' && direction === 'horizontal',
+		[`${prefixCls}-tail-horizontal--dot`]: dot,
 		[`${prefixCls}-tail--none`]: last,
 		[`${prefixCls}-tail--finish`]: stepStatus === 'finish'
 	});
 	$: subTitleCls = clsx(`${prefixCls}-sub-title`, {
-		[`${prefixCls}-sub-title-vertical`]: labelPlacement === 'vertical'
+		[`${prefixCls}-sub-title-lb-vertical`]: labelPlacement === 'vertical'
 	});
 	$: descriptionCls = clsx(`${prefixCls}-description`, {
 		[`${prefixCls}-description--error`]: !isHover && stepStatus === 'error',
@@ -80,7 +87,8 @@
 		[`${prefixCls}-description--click`]: isHover
 	});
 	$: iconStatusCls = `${prefixCls}-icon--${getStatus(active, index, option.status)}`;
-	$: iconCls = clsx(`${prefixCls}-icon`, `${prefixCls}-icon-${labelPlacement}`, {
+	$: iconCls = clsx(`${prefixCls}-icon`, `${prefixCls}-icon-lb-${labelPlacement}`, {
+		[`${prefixCls}-icon--dot`]: dot,
 		[`${prefixCls}-icon--wait-bg`]: stepStatus === 'wait',
 		[iconStatusCls]: !(stepStatus === 'wait' && isHover),
 		[`${prefixCls}-icon--click`]: isHover
@@ -100,27 +108,27 @@
 		<div class={tailCls}></div>
 	{/if}
 	<div class={iconCls}>
-		<div class={iconInnerCls}>
-			{#if stepStatus === 'error'}
-				<KIcon icon="i-carbon-close"></KIcon>
-			{:else if stepStatus === 'finish'}
-				<KIcon icon="i-carbon-checkmark"></KIcon>
-			{:else}
-				{eachIndex}
-			{/if}
-		</div>
-	</div>
-	{#if !dot}
-		<div class={contentCls}>
-			<div class={titleCls} data-k-step-title>
-				{option.title}
-				{#if option.subTitle}
-					<div class={subTitleCls}>{option.subTitle}</div>
+		{#if !dot}
+			<div class={iconInnerCls}>
+				{#if stepStatus === 'error'}
+					<KIcon icon="i-carbon-close"></KIcon>
+				{:else if stepStatus === 'finish'}
+					<KIcon icon="i-carbon-checkmark"></KIcon>
+				{:else}
+					{eachIndex}
 				{/if}
 			</div>
-			{#if option.description}
-				<div class={descriptionCls}>{option.description}</div>
+		{/if}
+	</div>
+	<div class={contentCls}>
+		<div class={titleCls} data-k-step-title>
+			{option.title}
+			{#if option.subTitle}
+				<div class={subTitleCls}>{option.subTitle}</div>
 			{/if}
 		</div>
-	{/if}
+		{#if option.description}
+			<div class={descriptionCls}>{option.description}</div>
+		{/if}
+	</div>
 </div>

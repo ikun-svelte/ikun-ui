@@ -29,7 +29,8 @@
 		cls
 	);
 	$: containerCls = clsx(`${prefixCls}-container`, `${prefixCls}-container-${direction}`, {
-		[`${prefixCls}-label-container-vertical`]: labelPlacement === 'vertical'
+		[`${prefixCls}-label-container-vertical`]:
+			labelPlacement === 'vertical' || direction === 'vertical'
 	});
 </script>
 
