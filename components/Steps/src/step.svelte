@@ -141,6 +141,7 @@
 		class={cnames}
 		{...$$restProps}
 		{...attrs}
+		data-k-step
 		aria-hidden="true"
 		on:mouseenter={handleEnter}
 		on:mouseleave={handleLeave}

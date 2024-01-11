@@ -4,7 +4,7 @@ export const stepsShortcuts: Record<string, string> = {
 	'k-steps-container-horizontal': 'inline-block flex-1 ps-16px last:flex-none first:ps-0',
 	'k-steps-container-horizontal--nav': 'fcc flex-1 pb-12px',
 	'k-steps-container-vertical': 'block',
-	'k-steps-container': 'align-top pr overflow-hidden box-border',
+	'k-steps-container': 'align-top pr overflow-hidden box-border [&:first-child>[data-k-step]]:mt-0',
 	'k-steps-label-container-vertical': 'ps-0 overflow-visible',
 
 	'k-step': 'whitespace-nowrap',
@@ -35,8 +35,9 @@ export const stepsShortcuts: Record<string, string> = {
 	'k-step-title--error': 'text-ikun-error',
 	'k-step-title--wait': 'text-ikun-tx-gr',
 
-	'k-step-tail': 'h-full w-1px pa start-16px top-0 pt-38px pb-6px px-0',
-	'k-step-tail-lb-horizontal--dot': 'h-full w-2px pa start-3px top-0 pt-26px pb-6px px-0',
+	'k-step-tail': 'h-full w-1px pa start-16px top-0 pt-38px pb-6px px-0 box-content',
+	'k-step-tail-lb-horizontal--dot':
+		'h-full w-2px pa start-3px top-0 pt-26px pb-6px px-0 box-content',
 	'k-step-tail-lb-vertical':
 		'h-1px w-full pa start-120px top-1px ml-58px left-0 box-border py-0 px-32px after:(content-[""] inline-block w-full h-1px bg-ikun-bg-grs2 k-icon-transition)',
 	'k-step-tail-lb-vertical--dot': '-top-11px px-20px',

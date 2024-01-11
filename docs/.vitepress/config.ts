@@ -201,6 +201,10 @@ const components = [
 				link: '/components/KSegmented'
 			},
 			{
+				text: 'Steps',
+				link: '/components/KSteps'
+			},
+			{
 				text: 'PageHeader',
 				link: '/components/KPageHeader'
 			},
