@@ -62,7 +62,7 @@ export const stepsShortcuts: Record<string, string> = {
 	'k-step-arrow-horizontal': 'k-step-arrow-lb-vertical',
 	'k-step-arrow-vertical': 'pa -bottom-26px left-4px text-ikun-tx-gr',
 
-	'k-steps-bar-lb-horizontal': 'w-full h-2px bg-ikun-main pa -bottom-12px',
+	'k-steps-bar-lb-horizontal': 'w-full h-2px bg-ikun-main pa bottom-0',
 	'k-steps-bar-vertical': 'w-2px h-full bg-ikun-main pa top-0 right-0',
-	'k-steps-bar-horizontal': 'w-full h-2px bg-ikun-main pa bottom-0'
+	'k-steps-bar-horizontal': 'k-steps-bar-lb-horizontal'
 };

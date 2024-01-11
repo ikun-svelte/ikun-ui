@@ -63,13 +63,16 @@
 	$: stepStatus = getStatus(active, index, item.status);
 	$: contentCls = clsx(`${prefixCls}-content`, {
 		[`${prefixCls}-content-vertical`]: direction === 'vertical',
-		[`${prefixCls}-content-lb-vertical`]: labelPlacement === 'vertical'
+		[`${prefixCls}-content-lb-vertical`]:
+			labelPlacement === 'vertical' && direction === 'horizontal'
 	});
 	$: tailCls = clsx({
-		[`${prefixCls}-tail`]: labelPlacement === 'horizontal' && !dot,
-		[`${prefixCls}-tail-lb-horizontal--dot`]: labelPlacement === 'horizontal' && dot,
-		[`${prefixCls}-tail-lb-vertical`]: labelPlacement === 'vertical',
-		[`${prefixCls}-tail-lb-vertical--dot`]: labelPlacement === 'vertical' && dot,
+		[`${prefixCls}-tail`]: direction === 'vertical' && !dot,
+		[`${prefixCls}-tail-lb-horizontal--dot`]:
+			(labelPlacement === 'horizontal' || direction === 'vertical') && dot,
+		[`${prefixCls}-tail-lb-vertical`]: labelPlacement === 'vertical' && direction === 'horizontal',
+		[`${prefixCls}-tail-lb-vertical--dot`]:
+			labelPlacement === 'vertical' && direction === 'horizontal' && dot,
 		[`${prefixCls}-tail-vertical`]: direction === 'vertical',
 		[`${prefixCls}-tail-vertical--dot`]: direction === 'vertical' && dot,
 		[`${prefixCls}-tail-horizontal--dot`]: direction === 'horizontal' && dot,
@@ -80,7 +83,7 @@
 		[`${prefixCls}-title--error`]: !isHover && stepStatus === 'error',
 		[`${prefixCls}-title--wait`]: !isHover && stepStatus === 'wait',
 		[`${prefixCls}-title--click`]: isHover,
-		[`${prefixCls}-title-lb-vertical`]: labelPlacement === 'vertical',
+		[`${prefixCls}-title-lb-vertical`]: labelPlacement === 'vertical' && direction === 'horizontal',
 
 		[`${prefixCls}-tail-horizontal`]:
 			labelPlacement === 'horizontal' &&
@@ -91,7 +94,8 @@
 		[`${prefixCls}-tail--finish`]: stepStatus === 'finish' && (!navigation || (dot && navigation))
 	});
 	$: subTitleCls = clsx(`${prefixCls}-sub-title`, {
-		[`${prefixCls}-sub-title-lb-vertical`]: labelPlacement === 'vertical'
+		[`${prefixCls}-sub-title-lb-vertical`]:
+			labelPlacement === 'vertical' && direction === 'horizontal'
 	});
 	$: descriptionCls = clsx(`${prefixCls}-description`, {
 		[`${prefixCls}-description--error`]: !isHover && stepStatus === 'error',
@@ -101,6 +105,8 @@
 	});
 	$: iconStatusCls = `${prefixCls}-icon--${getStatus(active, index, item.status)}`;
 	$: iconCls = clsx(`${prefixCls}-icon`, `${prefixCls}-icon-lb-${labelPlacement}`, {
+		[`${prefixCls}-icon-lb-vertical`]: labelPlacement === 'vertical' && direction === 'horizontal',
+		[`${prefixCls}-icon-lb-horizontal`]: labelPlacement === 'vertical' && direction === 'vertical',
 		[`${prefixCls}-icon--dot`]: dot,
 		[`${prefixCls}-icon--wait-bg`]: stepStatus === 'wait',
 		[iconStatusCls]: !(stepStatus === 'wait' && isHover),
@@ -109,7 +115,8 @@
 	$: iconInnerCls = clsx(`${prefixCls}-icon--inner`);
 
 	$: arrowCls = clsx({
-		[`${prefixCls}-arrow-lb-vertical`]: !dot && navigation && labelPlacement === 'vertical',
+		[`${prefixCls}-arrow-lb-vertical`]:
+			!dot && navigation && labelPlacement === 'vertical' && direction === 'horizontal',
 		[`${prefixCls}-arrow-horizontal`]: !dot && navigation && direction === 'horizontal',
 		[`${prefixCls}-arrow-vertical`]: !dot && navigation && direction === 'vertical'
 	});
@@ -122,7 +129,8 @@
 		[`${namespaceCls}-container-horizontal--nav`]: !dot && navigation && direction === 'horizontal'
 	});
 	$: barCls = clsx({
-		[`${namespaceCls}-bar-${direction}`]: !dot && navigation && labelPlacement === 'horizontal',
+		[`${namespaceCls}-bar-horizontal`]: !dot && navigation && direction === 'horizontal',
+		[`${namespaceCls}-bar-vertical`]: !dot && navigation && direction === 'vertical',
 		[`${namespaceCls}-bar-lb-horizontal`]:
 			!dot && navigation && labelPlacement === 'vertical' && direction === 'horizontal'
 	});
@@ -141,7 +149,7 @@
 			<div class={tailCls}></div>
 		{/if}
 
-		{#if !dot && (direction === 'horizontal' || labelPlacement === 'vertical') && !last && navigation}
+		{#if !dot && direction === 'horizontal' && !last && navigation}
 			<div class={arrowCls}>
 				<KIcon icon="i-carbon-chevron-right"></KIcon>
 			</div>
