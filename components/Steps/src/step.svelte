@@ -6,11 +6,12 @@
 	export let active: KStepProps['active'] = 0;
 	export let direction: KStepProps['direction'] = 'horizontal';
 	export let labelPlacement: KStepProps['labelPlacement'] = 'horizontal';
-	export let option: KStepProps['option'] = { title: '', index: '' };
+	export let item: KStepProps['item'] = { title: '', index: '' };
 	export let index: KStepProps['index'] = 0;
 	export let last: KStepProps['last'] = false;
 	export let canClick: KStepProps['canClick'] = false;
 	export let dot: KStepProps['dot'] = false;
+	export let navigation: KStepProps['navigation'] = false;
 	export let eachIndex: KStepProps['eachIndex'] = 0;
 	export let cls: KStepProps['cls'] = undefined;
 	export let attrs: KStepProps['attrs'] = {};
@@ -50,7 +51,7 @@
 		cls
 	);
 
-	$: stepStatus = getStatus(active, index, option.status);
+	$: stepStatus = getStatus(active, index, item.status);
 	$: contentCls = clsx(`${prefixCls}-content`, {
 		[`${prefixCls}-content-vertical`]: direction === 'vertical',
 		[`${prefixCls}-content-lb-vertical`]: labelPlacement === 'vertical'
@@ -72,10 +73,13 @@
 		[`${prefixCls}-title--click`]: isHover,
 		[`${prefixCls}-title-lb-vertical`]: labelPlacement === 'vertical',
 
-		[`${prefixCls}-tail-horizontal`]: labelPlacement === 'horizontal' && direction === 'horizontal',
-		[`${prefixCls}-tail-horizontal--dot`]: dot,
-		[`${prefixCls}-tail--none`]: last,
-		[`${prefixCls}-tail--finish`]: stepStatus === 'finish'
+		[`${prefixCls}-tail-horizontal`]:
+			labelPlacement === 'horizontal' &&
+			direction === 'horizontal' &&
+			(!navigation || (dot && navigation)),
+		[`${prefixCls}-tail-horizontal--dot`]: dot && (!navigation || (dot && navigation)),
+		[`${prefixCls}-tail--none`]: last && (!navigation || (dot && navigation)),
+		[`${prefixCls}-tail--finish`]: stepStatus === 'finish' && (!navigation || (dot && navigation))
 	});
 	$: subTitleCls = clsx(`${prefixCls}-sub-title`, {
 		[`${prefixCls}-sub-title-lb-vertical`]: labelPlacement === 'vertical'
@@ -86,7 +90,7 @@
 			!isHover && (stepStatus === 'finish' || stepStatus === 'wait'),
 		[`${prefixCls}-description--click`]: isHover
 	});
-	$: iconStatusCls = `${prefixCls}-icon--${getStatus(active, index, option.status)}`;
+	$: iconStatusCls = `${prefixCls}-icon--${getStatus(active, index, item.status)}`;
 	$: iconCls = clsx(`${prefixCls}-icon`, `${prefixCls}-icon-lb-${labelPlacement}`, {
 		[`${prefixCls}-icon--dot`]: dot,
 		[`${prefixCls}-icon--wait-bg`]: stepStatus === 'wait',
@@ -94,6 +98,12 @@
 		[`${prefixCls}-icon--click`]: isHover
 	});
 	$: iconInnerCls = clsx(`${prefixCls}-icon--inner`);
+
+	$: arrowCls = clsx({
+		[`${prefixCls}-arrow-lb-vertical`]: !dot && navigation && labelPlacement === 'vertical',
+		[`${prefixCls}-arrow-horizontal`]: !dot && navigation && direction === 'horizontal',
+		[`${prefixCls}-arrow-vertical`]: !dot && navigation && direction === 'vertical'
+	});
 </script>
 
 <div
@@ -104,9 +114,22 @@
 	on:mouseenter={handleEnter}
 	on:mouseleave={handleLeave}
 >
-	{#if direction === 'vertical' || labelPlacement === 'vertical'}
+	{#if (direction === 'vertical' || labelPlacement === 'vertical') && !last && (!navigation || (dot && navigation))}
 		<div class={tailCls}></div>
 	{/if}
+
+	{#if !dot && (direction === 'horizontal' || labelPlacement === 'vertical') && !last && navigation}
+		<div class={arrowCls}>
+			<KIcon icon="i-carbon-chevron-right"></KIcon>
+		</div>
+	{/if}
+
+	{#if !dot && direction === 'vertical' && !last && navigation}
+		<div class={arrowCls}>
+			<KIcon icon="i-carbon-chevron-down"></KIcon>
+		</div>
+	{/if}
+
 	<div class={iconCls}>
 		{#if !dot}
 			<div class={iconInnerCls}>
@@ -122,13 +145,13 @@
 	</div>
 	<div class={contentCls}>
 		<div class={titleCls} data-k-step-title>
-			{option.title}
-			{#if option.subTitle}
-				<div class={subTitleCls}>{option.subTitle}</div>
+			{item.title}
+			{#if item.subTitle}
+				<div class={subTitleCls}>{item.subTitle}</div>
 			{/if}
 		</div>
-		{#if option.description}
-			<div class={descriptionCls}>{option.description}</div>
+		{#if item.description}
+			<div class={descriptionCls}>{item.description}</div>
 		{/if}
 	</div>
 </div>

@@ -2,6 +2,7 @@ export const stepsShortcuts: Record<string, string> = {
 	'k-steps': 'm-0 p-0 box-border w-full',
 	'k-steps-horizontal': 'flex',
 	'k-steps-container-horizontal': 'inline-block flex-1 ps-16px last:flex-none first:ps-0',
+	'k-steps-container-horizontal--nav': 'fcc flex-1 pb-12px',
 	'k-steps-container-vertical': 'block',
 	'k-steps-container': 'align-top pr overflow-hidden box-border',
 	'k-steps-label-container-vertical': 'ps-0 overflow-visible',
@@ -55,5 +56,13 @@ export const stepsShortcuts: Record<string, string> = {
 	'k-step-description': 'text-14px whitespace-normal',
 	'k-step-description--no-process': 'text-ikun-tx-gr',
 	'k-step-description--error': 'text-ikun-error',
-	'k-step-description--click': 'text-ikun-main'
+	'k-step-description--click': 'text-ikun-main',
+
+	'k-step-arrow-lb-vertical': 'pa top-6px right-0 text-ikun-tx-gr',
+	'k-step-arrow-horizontal': 'k-step-arrow-lb-vertical',
+	'k-step-arrow-vertical': 'pa -bottom-26px left-4px text-ikun-tx-gr',
+
+	'k-steps-bar-lb-horizontal': 'w-full h-2px bg-ikun-main pa -bottom-12px',
+	'k-steps-bar-vertical': 'w-2px h-full bg-ikun-main pa top-0 right-0',
+	'k-steps-bar-horizontal': 'w-full h-2px bg-ikun-main pa bottom-0'
 };
