@@ -26,10 +26,7 @@ describe('Test: KAutoComplete', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(
-			(host)!.innerHTML.includes('k-auto-complete--test')
-		).toBeTruthy();
+		expect(host!.innerHTML.includes('k-auto-complete--test')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
-})
-	
+});

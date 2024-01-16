@@ -392,12 +392,27 @@ importers:
 
   components/AutoComplete:
     dependencies:
+      '@ikun-ui/button':
+        specifier: workspace:*
+        version: link:../Button
+      '@ikun-ui/form':
+        specifier: workspace:*
+        version: link:../Form
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon
+      '@ikun-ui/input':
+        specifier: workspace:*
+        version: link:../Input
+      '@ikun-ui/popover':
+        specifier: workspace:*
+        version: link:../Popover
       '@ikun-ui/utils':
         specifier: workspace:*
         version: link:../../utils
+      '@ikun-ui/virtual-list':
+        specifier: workspace:*
+        version: link:../VirtualList
       baiwusanyu-utils:
         specifier: ^1.0.18
         version: 1.0.18(ansi-colors@4.1.3)(moment@2.29.4)
@@ -3542,7 +3557,7 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^2.0.0
     dependencies:
-      '@sveltejs/kit': 2.0.6(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@4.2.8)(vite@5.0.10)
+      '@sveltejs/kit': 2.0.6(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.8)(vite@5.0.10)
       import-meta-resolve: 4.0.0
     dev: true
 
