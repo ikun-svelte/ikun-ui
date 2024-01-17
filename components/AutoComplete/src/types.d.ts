@@ -1,12 +1,15 @@
 /// <reference types="svelte" />
 import type { ClassValue } from 'clsx';
 import { IKunSize } from '@ikun-ui/utils';
+import {string} from "fast-glob/out/utils";
 export type KAutoCompleteProps = {
+	// TODO: KForm
 	size: IKunSize;
-	// TODO:
+	// TODO: KForm
 	value: string;
-	placeholder: string;
+	// TODO: KForm、disabled
 	disabled: boolean;
+	placeholder: string;
 	iconPrefix: string;
 	iconSuffix: string;
 	append: string;
@@ -15,10 +18,11 @@ export type KAutoCompleteProps = {
 	isError: boolean;
 	// TODO:
 	center: boolean;
-	// TODO:输入触发，或聚焦触发
 	triggerOnFocus: boolean;
-	// TODO:
-	fetchSuggestions: undefined | ((params: string | number) => AutoCompleteItems[]);
+	fetchSuggestions: undefined | ((
+		params: string | number,
+		cb: (res: AutoCompleteItems[]) => void
+	) => void);
 	cls: ClassValue;
 	attrs: Record<string, string>;
 	useCompositionInput: boolean;
@@ -31,13 +35,14 @@ export type KAutoCompleteProps = {
 	key: string;
 };
 
-export type AutoCompleteItems = string | number;
+export type AutoCompleteItems = {
+	[string]: any
+	value: string | number
+}
 
-// TODO: KAutoComplete events updatedValue
 
 // TODO: KAutoComplete slot prefix
 // TODO: KAutoComplete slot suffix
 // TODO: KAutoComplete slot default
-// TODO: KAutoComplete loading default
 
 // TODO: KForm
