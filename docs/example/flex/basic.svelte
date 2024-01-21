@@ -2,7 +2,7 @@
 	import { KFlex } from '@ikun-ui/flex';
 	import { KRadio } from '@ikun-ui/radio';
 	import { KRadioGroup } from '@ikun-ui/radio-group';
-	let value = '2';
+	let value = '1';
 	let vertical = false;
 	const handleUpdated = (e) => {
 		value = e.detail;
