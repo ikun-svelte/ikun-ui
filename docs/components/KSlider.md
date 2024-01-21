@@ -59,16 +59,23 @@ Add `size` attribute to change the size of Slider. It supports `sm`, `md` and `l
 
 <demo src="slider/sizes.svelte" github="Slider"></demo>
 
+## Discrete values
+
+Set step size with the `step` attribute. You can display breakpoints by setting the `showStops` attribute
+
+<demo src="slider/discrete.svelte" github="Slider"></demo>
+
 ## Slider Props
 
 | Name     | Type                                  | Default                    | Description                |
-| -------- | ------------------------------------- | -------------------------- | -------------------------- |
+|----------|---------------------------------------|----------------------------|----------------------------|
 | value    | `number`                              | `0`                        | Binding value              |
 | vertical | `boolean`                             | `false`                    | Vertical mode              |
 | format   | `(value: number) => number \| string` | `(value: number) => value` | Tooltip format value       |
 | min      | `number`                              | `0`                        | Minimum value              |
 | max      | `number`                              | `100`                      | Maximum value              |
 | step     | `number`                              | `1`                        | Step size                  |
+| showStop | `boolean`                             | `false`                    | Display breakpoints        |
 | disabled | `boolean`                             | `false`                    | Whether Slider is disabled |
 | size     | `sm \| md \| lg`                      | `md`                       | Size of `slider`.          |
 | cls      | `string`                              | `-`                        | Additional class           |
