@@ -161,6 +161,27 @@ describe('Test: KSlider', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: showStops', async () => {
+		const step: number = 10;
+		const min: number = 0;
+		const max: number = 100;
+		const instance = new KSlider({
+			target: host,
+			props: {
+				step,
+				max,
+				min,
+				showStops: true
+			}
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		expect(host.innerHTML.includes('k-slider--stop')).toBe(true);
+		const stopsElm = host.querySelectorAll('.k-slider--stop');
+		expect(stopsElm.length).toBe((max - min) / step - 1);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('props: cls', async () => {
 		const instance = new KSlider({
 			target: host,
