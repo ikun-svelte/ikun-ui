@@ -1,12 +1,10 @@
 <script lang="ts">
-	import type { AutoCompleteItems, KAutoCompleteProps } from './types';
-	import { createEventDispatcher, tick, getContext, onMount } from 'svelte';
+	import type { KAutoCompleteProps } from './types';
+	import { createEventDispatcher, tick, onMount } from 'svelte';
 	import { KInput } from '@ikun-ui/input';
-	import { formItemKey, formKey, getPrefixCls } from '@ikun-ui/utils';
+	import { getPrefixCls } from '@ikun-ui/utils';
 	import clsx from 'clsx';
 	import { isObject } from 'baiwusanyu-utils';
-	import type { CSSObject } from 'unocss';
-	import type { IKunFormInstance } from '@ikun-ui/form';
 	import { KPopover } from '@ikun-ui/popover';
 	import { KVirtualList } from '@ikun-ui/virtual-list';
 	import KOption from './option.svelte';
@@ -27,14 +25,6 @@
 
 	export let maxHeight: KAutoCompleteProps['maxHeight'] = 250;
 	export let fitInputWidth: KAutoCompleteProps['fitInputWidth'] = true;
-	/**
-	 * @internal
-	 */
-	export let isError: KAutoCompleteProps['isError'] = false;
-	/**
-	 * @internal
-	 */
-	export let center: KAutoCompleteProps['center'] = false;
 	export let clearable: KAutoCompleteProps['clearable'] = false;
 	// class names
 	const prefixCls = getPrefixCls('auto-complete');
@@ -76,10 +66,10 @@
 	let list = [] as Array<Record<string, any>>;
 	let text = 'no data';
 	const handleInput = async (e: CustomEvent) => {
-		curValue = e.detail
+		curValue = e.detail;
 		// 根据输入值重新触发 list 更新
-		if(isOpen && fetchSuggestions){
-			curValue = e.detail
+		if (isOpen && fetchSuggestions) {
+			curValue = e.detail;
 			text = 'loading';
 			fetchSuggestions(curValue, (res) => {
 				list = res.map((v) => wrapperData(v.value as KAutoCompleteProps['value']));
@@ -88,8 +78,8 @@
 		}
 
 		if (!triggerOnFocus) {
-			isDisabledPopover = false
-			await tick()
+			isDisabledPopover = false;
+			await tick();
 			popoverRef.updateShow(true);
 		}
 	};
@@ -105,18 +95,17 @@
 		setPopoverW();
 	});
 
-	// TODO
 	let isDisabledPopover = disabled || !triggerOnFocus;
 	$: {
-		isDisabledPopover = disabled  || !triggerOnFocus;
+		isDisabledPopover = disabled || !triggerOnFocus;
 	}
 
 	let popoverModalRef: HTMLElement | null = null;
 	let heightInner = 'initial';
 	async function setVList() {
-		if(!list.length) {
+		if (!list.length) {
 			text = 'no data';
-			return
+			return;
 		}
 		await tick();
 		if (popoverModalRef) {
@@ -145,13 +134,11 @@
 		};
 	};
 
-	$: curValue = value
-	let isOpen = false
+	$: curValue = value;
+	let isOpen = false;
 	async function onOpen(e: CustomEvent) {
-		isOpen = e.detail
-		// TODO: isDisabledPopover = true
-		if (fetchSuggestions &&
-				(triggerOnFocus || !triggerOnFocus && !isDisabledPopover)) {
+		isOpen = e.detail;
+		if (fetchSuggestions && (triggerOnFocus || (!triggerOnFocus && !isDisabledPopover))) {
 			fetchSuggestions(curValue, (res) => {
 				list = res.map((v) => wrapperData(v.value as KAutoCompleteProps['value']));
 				setVList();
@@ -159,14 +146,14 @@
 		}
 	}
 
+	let inputRef = null;
 	// updateValue
 	const handleSelect = async (data: Record<string, any>) => {
-		// TODO: if (disabledInner) return;
 		dispatch('updateValue', data.value);
-		curValue = data.value
-		// TODO: formInstance && formInstance?.updateField(field!, data, !formInstance.__manual_validate);
-		// TODO: //await tick();
-		// TODO: formInstance && (value = data!);
+		curValue = data.value;
+		if (inputRef) {
+			inputRef.doUpdateFormField(curValue);
+		}
 		popoverRef.updateShow(false);
 	};
 
@@ -184,11 +171,9 @@
 	width={triggerWidth}
 	placement="bottom"
 >
-	<div class={cname} {...attrs}
-		 slot="triggerEl"
-		 bind:this={inputSelectRef}
-		 aria-hidden="true">
+	<div class={cname} {...attrs} slot="triggerEl" bind:this={inputSelectRef} aria-hidden="true">
 		<KInput
+			bind:this={inputRef}
 			on:input={handleInput}
 			on:enter={handleEnter}
 			on:keydown={handleKeydown}
@@ -212,10 +197,9 @@
 			{...attrs}
 			type="text"
 		>
-			<slot name="prefix" slot="prefix"></slot>
-			<slot name="suffix" slot="suffix"></slot>
+			<slot name="prefix" slot="prefix" />
+			<slot name="suffix" slot="suffix" />
 		</KInput>
-
 	</div>
 	<div
 		slot="contentEl"
@@ -227,15 +211,9 @@
 		style:max-height={`${maxHeight}px`}
 	>
 		{#if list.length > 0}
-			<KVirtualList data={list}
-						  key="id"
-						  estimateSize={list.length}
-						  let:data>
+			<KVirtualList data={list} key="id" estimateSize={list.length} let:data>
 				{#if !$$slots.default}
-					<KOption
-						{fitInputWidth}
-						label={getLabel(data)}
-						on:click={() => handleSelect(data)}
+					<KOption {fitInputWidth} label={getLabel(data)} on:click={() => handleSelect(data)}
 					></KOption>
 				{:else}
 					<slot {data} onSelect={handleSelect} label={data} />
