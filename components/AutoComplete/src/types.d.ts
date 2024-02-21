@@ -40,9 +40,6 @@ export type AutoCompleteItems = {
 	value: string | number
 }
 
-
-// TODO: KAutoComplete slot prefix
-// TODO: KAutoComplete slot suffix
 // TODO: KAutoComplete slot default
 
 // TODO: KForm

@@ -211,7 +211,11 @@
 			{...$$restProps}
 			{...attrs}
 			type="text"
-		/>
+		>
+			<slot name="prefix" slot="prefix"></slot>
+			<slot name="suffix" slot="suffix"></slot>
+		</KInput>
+
 	</div>
 	<div
 		slot="contentEl"
