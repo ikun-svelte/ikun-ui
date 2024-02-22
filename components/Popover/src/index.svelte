@@ -116,21 +116,20 @@
 		arrowRef && arrowRef.setAttribute(`data-popper-arrow-${curPlacement}`, '');
 	}
 
-	let popoverContainerRef: HTMLDivElement | null = null
+	let popoverContainerRef: HTMLDivElement | null = null;
 	function clickOutside(node: HTMLElement) {
 		function handleClickOutside(e: MouseEvent) {
 			const target = e.target as HTMLElement;
 			const container = node;
 			if (target && container && !container.contains(target)) {
-				if(popoverContainerRef){
-					const triggerEl = popoverContainerRef.querySelector('[slot="triggerEl"]')
-					if(!triggerEl || !triggerEl.contains(target)){
+				if (popoverContainerRef) {
+					const triggerEl = popoverContainerRef.querySelector('[slot="triggerEl"]');
+					if (!triggerEl || !triggerEl.contains(target)) {
 						doUpdateShow(false);
 					}
 				} else {
 					doUpdateShow(false);
 				}
-
 			}
 		}
 		trigger === 'click' && window.addEventListener('click', handleClickOutside);

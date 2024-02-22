@@ -191,7 +191,8 @@
 			{useCompositionInput}
 			{...$$restProps}
 			{...attrs}
-			type="text">
+			type="text"
+		>
 			<slot name="prefix" slot="prefix" />
 			<slot name="suffix" slot="suffix" />
 		</KInput>
@@ -208,9 +209,7 @@
 		{#if list.length > 0}
 			<KVirtualList data={list} key="id" estimateSize={list.length} let:data>
 				{#if !$$slots.default}
-					<KOption {fitInputWidth}
-							 label={getLabel(data)}
-							 on:click={() => handleSelect(data)}
+					<KOption {fitInputWidth} label={getLabel(data)} on:click={() => handleSelect(data)}
 					></KOption>
 				{:else}
 					<slot {data} onSelect={handleSelect} label={data} />

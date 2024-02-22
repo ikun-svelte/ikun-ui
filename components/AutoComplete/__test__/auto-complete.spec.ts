@@ -1,12 +1,12 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import KAutoComplete from '../src';
-import {tick} from "svelte";
-import KAutoCompleteFit from "./fixture/autocomplete.fit.svelte";
-import KAutoCompleteBasic from "./fixture/autocomplete.basic.svelte";
-import KAutoCompleteClear from "./fixture/autocomplete.clear.svelte";
-import KAutoCompleteDisabled from "./fixture/autocomplete.disabled.svelte";
-import KAutoCompleteSlot from "./fixture/autocomplete.slot.svelte";
-import KAutoCompleteDefault from "./fixture/autocomplete.default.svelte";
+import { tick } from 'svelte';
+import KAutoCompleteFit from './fixture/autocomplete.fit.svelte';
+import KAutoCompleteBasic from './fixture/autocomplete.basic.svelte';
+import KAutoCompleteClear from './fixture/autocomplete.clear.svelte';
+import KAutoCompleteDisabled from './fixture/autocomplete.disabled.svelte';
+import KAutoCompleteSlot from './fixture/autocomplete.slot.svelte';
+import KAutoCompleteDefault from './fixture/autocomplete.default.svelte';
 let host;
 
 const initHost = () => {
@@ -134,8 +134,8 @@ describe('Test: KAutoComplete', () => {
 		(triggerEl as HTMLElement)?.dispatchEvent(new Event('input', { cancelable: true }));
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
-		const options = host.querySelector('[data-kv-key="vue-router"]').children[0]
-		options.click()
+		const options = host.querySelector('[data-kv-key="vue-router"]').children[0];
+		options.click();
 		await tick();
 		await vi.advanceTimersByTimeAsync(400);
 		expect(triggerEl.value === 'vue-router').toBeTruthy();
@@ -153,7 +153,7 @@ describe('Test: KAutoComplete', () => {
 		(triggerEl as HTMLElement)?.dispatchEvent(new Event('input', { cancelable: true }));
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
-		const options = host.querySelector('[data-kv-key="vue-router"]')
+		const options = host.querySelector('[data-kv-key="vue-router"]');
 		expect(options).not.toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -178,7 +178,6 @@ describe('Test: KAutoComplete', () => {
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML).matchSnapshot();
 	});
-
 
 	test('event: should trigger composition input event', async () => {
 		let value = '';
@@ -330,5 +329,4 @@ describe('Test: KAutoComplete', () => {
 		await tick();
 		expect(mockFn).not.toBeCalled();
 	});
-
 });
