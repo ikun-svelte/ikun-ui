@@ -43,5 +43,12 @@ export const sliderShortcuts: Record<string, string> = {
 	'k-slider--button--md': 'w-16px h-16px',
 	'k-slider--button--lg': 'w-20px h-20px',
 
-	'k-slider--button': 'fcc b-2px b-solid b-ikun-main rd-50% bg-ikun-white line-height-none'
+	'k-slider--button': 'fcc b-2px b-solid b-ikun-main rd-50% bg-ikun-white line-height-none',
+
+	// discrete stop
+	'k-slider--stop': 'inline-block bg-ikun-main absolute top-50% translate-y--50% rd-50%',
+	'k-slider--stop__vertical': 'rd-50% bg-ikun-main absolute left-50% translate-x--50%',
+	'k-slider--stop--sm': 'w-3px h-3px',
+	'k-slider--stop--md': 'w-4px h-4px',
+	'k-slider--stop--lg': 'w-5px h-5px'
 };

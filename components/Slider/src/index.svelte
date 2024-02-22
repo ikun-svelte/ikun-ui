@@ -17,6 +17,7 @@
 	export let cls: KSliderProps['cls'] = undefined;
 	export let showTooltip: KSliderProps['showTooltip'] = true;
 	export let format: KSliderProps['format'];
+	export let showStops: KSliderProps['showStops'] = false;
 
 	/*********************** KForm logic start ************************/
 	let disabledFrom = false;
@@ -65,6 +66,12 @@
 			return value;
 		}
 	}
+
+	// discrete showStops attr
+	let discreteNum = (max - min) / step - 1;
+	$: discreteDivsArray = showStops
+		? Array.from({ length: discreteNum }, (_, index) => index + 1)
+		: [];
 
 	// current value
 	let isDragging: boolean = false;
@@ -198,10 +205,28 @@
 		[`${prefixCls}--bar`]: !vertical,
 		[`${prefixCls}--bar__vertical`]: vertical
 	});
+	$: discreteCls = clsx(
+		{
+			[`${prefixCls}--stop`]: !vertical,
+			[`${prefixCls}--stop__vertical`]: vertical
+		},
+		`${prefixCls}--stop--${sizeInner}`
+	);
 </script>
 
 <div class={baseCls} {...$$restProps} {...attrs}>
 	<div bind:this={runwayRef} class={runwayCls} aria-hidden="true" on:mousedown={handleRunwayClick}>
+		{#if discreteDivsArray.length > 0}
+			{#each discreteDivsArray as discreteDiv}
+				<div
+					class={discreteCls}
+					style={vertical
+						? `top: ${(discreteDiv * (max - min)) / step}%`
+						: `left: ${(discreteDiv * (max - min)) / step}%`}
+				></div>
+			{/each}
+		{/if}
+
 		<div
 			class={buttonWrapperCls}
 			aria-hidden="true"

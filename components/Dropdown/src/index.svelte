@@ -4,7 +4,7 @@
 	import type { KDropdownProps } from './types';
 	import { KPopover } from '@ikun-ui/popover';
 	import { createEventDispatcher, setContext } from 'svelte';
-	import { KScrollbar } from '@ikun-ui/scrollbar/src/index.js';
+	import { KScrollbar } from '@ikun-ui/scrollbar';
 
 	export let placement: KDropdownProps['placement'] = 'bottom';
 	// hover click manual
