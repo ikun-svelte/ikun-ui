@@ -11,6 +11,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { KSlider } from '@ikun-ui/slider';
 	import { KInputNumber } from '@ikun-ui/input-number';
+	import { KAutoComplete } from '@ikun-ui/auto-complete';
 	export let initValue = {};
 	let KFormInst: KForm | undefined = undefined;
 	const dataList = [
@@ -90,6 +91,25 @@
 			KFormInst.resetForm();
 		}
 	};
+
+	const restaurants = [
+		{ value: 'vue', link: 'https://github.com/vuejs/vue' },
+		{ value: 'element', link: 'https://github.com/ElemeFE/element' },
+		{ value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+		{ value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
+		{ value: 'vuex', link: 'https://github.com/vuejs/vuex' },
+		{ value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
+		{ value: 'babel', link: 'https://github.com/babel/babel' }
+	];
+	const createFilter = (queryString) => {
+		return (restaurant) => {
+			return restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
+		};
+	};
+	const fetchFn = (queryString, cb) => {
+		const results = queryString ? restaurants.filter(createFilter(queryString)) : restaurants;
+		cb(results);
+	};
 </script>
 
 <KForm {initValue} {rules} labelWidth="120" bind:this={KFormInst}>
@@ -130,6 +150,10 @@
 	</KFormItem>
 	<KFormItem field="slider" label="slider">
 		<KSlider cls="w-300px"></KSlider>
+	</KFormItem>
+
+	<KFormItem field="KAutoComplete" label="KAutoComplete">
+		<KAutoComplete cls="w-300px" fetchSuggestions={fetchFn}></KAutoComplete>
 	</KFormItem>
 </KForm>
 <button id="validate" on:click={handleValidate}>validate</button>
