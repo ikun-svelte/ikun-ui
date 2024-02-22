@@ -5,7 +5,7 @@
 	import type { KAutoCompleteProps } from './types';
 
 	export let label: KAutoCompleteProps['label'] = '';
-	export let cls: KAutoCompleteProps['cls'] = undefined;
+	export let cls: KAutoCompleteProps['cls'] =  '';
 	export let disabled: KAutoCompleteProps['disabled'] = false;
 	export let isActive: KAutoCompleteProps['isActive'] = false;
 	export let attrs: KAutoCompleteProps['attrs'] = {};

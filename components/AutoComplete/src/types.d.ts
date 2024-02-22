@@ -6,9 +6,9 @@ export type KAutoCompleteProps = {
 	size: IKunSize;
 	value: string;
 	disabled: boolean;
+
+	clearable: boolean;
 	placeholder: string;
-	iconPrefix: string;
-	iconSuffix: string;
 	append: string;
 	prepend: string;
 	triggerOnFocus: boolean;
@@ -18,7 +18,6 @@ export type KAutoCompleteProps = {
 	cls: ClassValue;
 	attrs: Record<string, string>;
 	useCompositionInput: boolean;
-	clearable: boolean;
 	// option
 	isActive: boolean;
 	label: string;

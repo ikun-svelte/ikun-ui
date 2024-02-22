@@ -13,8 +13,6 @@
 	export let value: KAutoCompleteProps['value'] = '';
 	export let placeholder: KAutoCompleteProps['placeholder'] = '';
 	export let disabled: KAutoCompleteProps['disabled'] = false;
-	export let iconPrefix: KAutoCompleteProps['iconPrefix'] = '';
-	export let iconSuffix: KAutoCompleteProps['iconSuffix'] = '';
 	export let append: KAutoCompleteProps['append'] = '';
 	export let prepend: KAutoCompleteProps['prepend'] = '';
 	export let cls: KAutoCompleteProps['cls'] = undefined;
@@ -187,16 +185,13 @@
 			value={curValue}
 			{placeholder}
 			{disabled}
-			{iconPrefix}
-			{iconSuffix}
 			{append}
 			{prepend}
 			{clearable}
 			{useCompositionInput}
 			{...$$restProps}
 			{...attrs}
-			type="text"
-		>
+			type="text">
 			<slot name="prefix" slot="prefix" />
 			<slot name="suffix" slot="suffix" />
 		</KInput>
@@ -213,7 +208,9 @@
 		{#if list.length > 0}
 			<KVirtualList data={list} key="id" estimateSize={list.length} let:data>
 				{#if !$$slots.default}
-					<KOption {fitInputWidth} label={getLabel(data)} on:click={() => handleSelect(data)}
+					<KOption {fitInputWidth}
+							 label={getLabel(data)}
+							 on:click={() => handleSelect(data)}
 					></KOption>
 				{:else}
 					<slot {data} onSelect={handleSelect} label={data} />
