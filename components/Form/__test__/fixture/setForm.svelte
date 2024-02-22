@@ -10,6 +10,7 @@
 	import { KSelect } from '@ikun-ui/select';
 	import { createEventDispatcher } from 'svelte';
 	import { KInputNumber } from '@ikun-ui/input-number';
+	import { KAutoComplete } from '@ikun-ui/auto-complete';
 	export let isValidate = true;
 	export let initValue = {
 		KInput: 'KInput',
@@ -19,7 +20,8 @@
 		KRadio: '',
 		KCheckbox: [],
 		KSelect: null,
-		KSelectString: ''
+		KSelectString: '',
+		KAutoComplete: '白雾三语'
 	};
 	let KFormInst: KForm | undefined = undefined;
 	const dataList = [
@@ -105,7 +107,8 @@
 						value: '白发',
 						id: '1'
 					},
-					KSelectString: 'Huge'
+					KSelectString: 'Huge',
+					KAutoComplete: 'baiwusanyu'
 				},
 				isValidate
 			);
@@ -116,6 +119,25 @@
 		if (KFormInst) {
 			dispatch('getRes', KFormInst.getForm());
 		}
+	};
+
+	const restaurants = [
+		{ value: 'vue', link: 'https://github.com/vuejs/vue' },
+		{ value: 'element', link: 'https://github.com/ElemeFE/element' },
+		{ value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+		{ value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
+		{ value: 'vuex', link: 'https://github.com/vuejs/vuex' },
+		{ value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
+		{ value: 'babel', link: 'https://github.com/babel/babel' }
+	];
+	const createFilter = (queryString) => {
+		return (restaurant) => {
+			return restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
+		};
+	};
+	const fetchFn = (queryString, cb) => {
+		const results = queryString ? restaurants.filter(createFilter(queryString)) : restaurants;
+		cb(results);
 	};
 </script>
 
@@ -154,6 +176,9 @@
 	</KFormItem>
 	<KFormItem field="KSelectString" label="KSelectString">
 		<KSelect dataList={['Tiny', 'Small', 'Normal', 'Large', 'Huge']}></KSelect>
+	</KFormItem>
+	<KFormItem field="KAutoComplete" label="KAutoComplete">
+		<KAutoComplete cls="w-300px" fetchSuggestions={fetchFn}></KAutoComplete>
 	</KFormItem>
 </KForm>
 <button id="setForm" on:click={handleSetForm}>setForm</button>

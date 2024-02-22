@@ -14,7 +14,6 @@ export type KInputProps = {
 	isError: boolean;
 	center: boolean;
 	search: boolean;
-	errorMsg: string;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 	useCompositionInput: boolean;

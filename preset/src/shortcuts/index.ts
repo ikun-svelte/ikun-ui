@@ -1,3 +1,4 @@
+import { autoCompleteShortcuts } from './src/auto-complete';
 import { stepsShortcuts } from './src/steps';
 import { segmentedShortcuts } from './src/segmented';
 import { flexShortcuts } from './src/flex';
@@ -64,6 +65,8 @@ export const defaultShortcuts = [
 	commonShortcuts,
 	// don't remove
 	// anchor defaultShortcuts
+	// auto-complete
+	autoCompleteShortcuts,
 	// steps
 	stepsShortcuts,
 	// segmented
@@ -175,6 +178,7 @@ export const defaultShortcuts = [
 export function getSafeList() {
 	// don't remove
 	// anchor shortcuts
+	const autoCompleteList = Object.keys(autoCompleteShortcuts);
 	const stepsList = Object.keys(stepsShortcuts);
 	const segmentedList = Object.keys(segmentedShortcuts);
 	const flexList = Object.keys(flexShortcuts);
@@ -233,6 +237,7 @@ export function getSafeList() {
 	let res = iconList
 		// don't remove
 		// anchor list
+		.concat(autoCompleteList)
 		.concat(stepsList)
 		.concat(segmentedList)
 		.concat(flexList)
@@ -358,3 +363,4 @@ export { imageViewShortcuts } from './src/image-view';
 export { flexShortcuts } from './src/flex';
 export { segmentedShortcuts } from './src/segmented';
 export { stepsShortcuts } from './src/steps';
+export { autoCompleteShortcuts } from './src/auto-complete';

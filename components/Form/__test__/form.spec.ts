@@ -57,8 +57,10 @@ describe('Test: KForm', () => {
 		});
 		expect(instance).toBeTruthy();
 
-		const input = host.querySelector('.k-input--inner');
-		expect(input.value).toBe('KInput');
+		const input = host.querySelectorAll('.k-input--inner');
+		expect(input[0].value).toBe('KInput');
+
+		expect(input[2].value).toBe('vue');
 
 		expect(host.innerHTML.includes(`k-form-item-label__right`)).toBeTruthy();
 
@@ -98,7 +100,8 @@ describe('Test: KForm', () => {
 				id: '3'
 			},
 			KSelectString: 'Huge',
-			slider: 43
+			slider: 43,
+			KAutoComplete: 'vue'
 		});
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -170,9 +173,9 @@ describe('Test: KForm', () => {
 		expect(instance).toBeTruthy();
 		await tick();
 
-		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(9);
+		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(10);
 		expect(host.querySelector('.k-input__disabled')).toBeTruthy();
-		expect(host.querySelectorAll('.k-input__disabled').length).toBe(4);
+		expect(host.querySelectorAll('.k-input__disabled').length).toBe(6);
 		expect(host.querySelector('.k-switch__disabled')).toBeTruthy();
 		expect(host.querySelector('.k-rate--item__disabled')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(4);
@@ -195,9 +198,9 @@ describe('Test: KForm', () => {
 
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(9);
+		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(10);
 		expect(host.querySelector('.k-input__disabled')).toBeTruthy();
-		expect(host.querySelectorAll('.k-input__disabled').length).toBe(4);
+		expect(host.querySelectorAll('.k-input__disabled').length).toBe(6);
 		expect(host.querySelector('.k-switch__disabled')).toBeTruthy();
 		expect(host.querySelector('.k-rate--item__disabled')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(4);
@@ -214,8 +217,8 @@ describe('Test: KForm', () => {
 		expect(instance).toBeTruthy();
 		await tick();
 
-		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(9);
-		expect(host.querySelector('.k-input__sm')).toBeTruthy();
+		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(10);
+		expect(host.querySelectorAll('.k-input__sm').length).toBe(2);
 		expect(host.querySelector('.k-input-number__sm')).toBeTruthy();
 		expect(host.querySelector('.k-switch--sm')).toBeTruthy();
 		expect(host.querySelector('.k-rate--sm')).toBeTruthy();
@@ -229,8 +232,8 @@ describe('Test: KForm', () => {
 		let btnEl = host.querySelector('#size_lg');
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__lg').length).toBe(9);
-		expect(host.querySelector('.k-input__lg')).toBeTruthy();
+		expect(host.querySelectorAll('.k-form-item-label__lg').length).toBe(10);
+		expect(host.querySelectorAll('.k-input__lg').length).toBe(2);
 		expect(host.querySelector('.k-input-number__lg')).toBeTruthy();
 		expect(host.querySelector('.k-switch--lg')).toBeTruthy();
 		expect(host.querySelector('.k-rate--lg')).toBeTruthy();
@@ -244,8 +247,8 @@ describe('Test: KForm', () => {
 		btnEl = host.querySelector('#size_md');
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__md').length).toBe(9);
-		expect(host.querySelector('.k-input__md')).toBeTruthy();
+		expect(host.querySelectorAll('.k-form-item-label__md').length).toBe(10);
+		expect(host.querySelectorAll('.k-input__md').length).toBe(2);
 		expect(host.querySelector('.k-input-number__md')).toBeTruthy();
 		expect(host.querySelector('.k-switch--md')).toBeTruthy();
 		expect(host.querySelector('.k-rate--md')).toBeTruthy();
@@ -259,8 +262,8 @@ describe('Test: KForm', () => {
 		btnEl = host.querySelector('#size_sm');
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(9);
-		expect(host.querySelector('.k-input__sm')).toBeTruthy();
+		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(10);
+		expect(host.querySelectorAll('.k-input__sm').length).toBe(2);
 		expect(host.querySelector('.k-input-number__sm')).toBeTruthy();
 		expect(host.querySelector('.k-switch--sm')).toBeTruthy();
 		expect(host.querySelector('.k-rate--sm')).toBeTruthy();
@@ -399,9 +402,15 @@ describe('Test: KForm', () => {
 		expect(mockFn).toBeCalledTimes(3);
 		expect(value).matchSnapshot();
 
+		const autoEl = host.querySelectorAll('.k-input--inner')[2];
+		await fireEvent.input(autoEl, { target: { value: '' } });
+		expect(host.innerHTML.includes('KAutoComplete required')).toBeTruthy();
+		expect(mockFn).toBeCalledTimes(4);
+		expect(value).matchSnapshot();
+
 		await fireEvent.input(inputNumEl, { target: { value: 2 } });
 		expect(host.innerHTML.includes('KInputNumber 3 ~5')).toBeTruthy();
-		expect(mockFn).toBeCalledTimes(4);
+		expect(mockFn).toBeCalledTimes(5);
 		expect(value).matchSnapshot();
 
 		const checkboxEl = host.querySelectorAll('[type="checkbox"]')[0];
@@ -412,7 +421,7 @@ describe('Test: KForm', () => {
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('KCheckbox error')).toBeTruthy();
-		expect(mockFn).toBeCalledTimes(5);
+		expect(mockFn).toBeCalledTimes(6);
 		expect(value).matchSnapshot();
 
 		const selectInput = host.querySelectorAll('.k-select--inner');
@@ -435,7 +444,7 @@ describe('Test: KForm', () => {
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('KSelect error')).toBeTruthy();
-		expect(mockFn).toBeCalledTimes(6);
+		expect(mockFn).toBeCalledTimes(7);
 		expect(value).matchSnapshot();
 
 		const selectInput2 = host.querySelectorAll('.k-select--inner');
@@ -458,7 +467,7 @@ describe('Test: KForm', () => {
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML.includes('KSelect error')).toBeTruthy();
-		expect(mockFn).toBeCalledTimes(7);
+		expect(mockFn).toBeCalledTimes(8);
 		expect(value).matchSnapshot();
 	});
 
@@ -477,8 +486,8 @@ describe('Test: KForm', () => {
 		const btn = host.querySelector('#validate');
 		btn?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-star').length).toBe(8);
-		expect(host.querySelectorAll('.k-form-item-msg_error').length).toBe(7);
+		expect(host.querySelectorAll('.k-form-item-star').length).toBe(9);
+		expect(host.querySelectorAll('.k-form-item-msg_error').length).toBe(8);
 		expect(host.innerHTML.includes('KSelectString custom error')).toBeTruthy();
 		expect(value).toMatchSnapshot(JSON.stringify(value));
 	});
@@ -494,7 +503,8 @@ describe('Test: KForm', () => {
 			KCheckbox: [],
 			KSelect: null,
 			KSelectString: '',
-			slider: 0
+			slider: 0,
+			KAutoComplete: 'vue'
 		};
 		// @ts-ignore
 		const instance = new KFormResetForm({
@@ -514,8 +524,8 @@ describe('Test: KForm', () => {
 		await tick();
 		expect(value.data).toMatchObject(initValue);
 
-		const inputEl = host.querySelectorAll('.k-input--inner')[0];
-		await fireEvent.input(inputEl, { target: { value: 'test' } });
+		const inputEl = host.querySelectorAll('.k-input--inner');
+		await fireEvent.input(inputEl[0], { target: { value: 'test' } });
 
 		const inputNumEl = host.querySelector('.k-input-number--up');
 		await fireEvent.click(inputNumEl);
@@ -546,6 +556,12 @@ describe('Test: KForm', () => {
 		const itemEl2 = host.querySelector('[data-kv-key="Huge"]')?.children[0];
 		itemEl2?.click();
 
+		await fireEvent.input(inputEl[2], { target: { value: 'el' } });
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const autoOption = host.querySelector('[data-kv-key="element"]')?.children[0];
+		autoOption?.click();
+
 		btn?.click();
 		await tick();
 
@@ -562,7 +578,8 @@ describe('Test: KForm', () => {
 				id: '1'
 			},
 			KSelectString: 'Huge',
-			slider: 0
+			slider: 0,
+			KAutoComplete: 'element'
 		});
 
 		const btnReset = host.querySelector('#reset');
@@ -584,7 +601,8 @@ describe('Test: KForm', () => {
 			KRadio: '',
 			KCheckbox: [],
 			KSelect: null,
-			KSelectString: ''
+			KSelectString: '',
+			KAutoComplete: 'vue'
 		};
 		// @ts-ignore
 		const instance = new KFormGetForm({
@@ -604,8 +622,8 @@ describe('Test: KForm', () => {
 		await tick();
 		expect(value).toMatchObject(initValue);
 
-		const inputEl = host.querySelector('.k-input--inner');
-		await fireEvent.input(inputEl, { target: { value: 'test' } });
+		const inputEl = host.querySelectorAll('.k-input--inner');
+		await fireEvent.input(inputEl[0], { target: { value: 'test' } });
 
 		const inputNumEl = host.querySelector('.k-input-number--up');
 		await fireEvent.click(inputNumEl);
@@ -636,6 +654,12 @@ describe('Test: KForm', () => {
 		const itemEl2 = host.querySelector('[data-kv-key="Huge"]')?.children[0];
 		itemEl2?.click();
 
+		await fireEvent.input(inputEl[2], { target: { value: 'el' } });
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const autoOption = host.querySelector('[data-kv-key="element"]')?.children[0];
+		autoOption?.click();
+
 		btn?.click();
 		await tick();
 
@@ -651,7 +675,8 @@ describe('Test: KForm', () => {
 				value: '白发',
 				id: '1'
 			},
-			KSelectString: 'Huge'
+			KSelectString: 'Huge',
+			KAutoComplete: 'element'
 		});
 	});
 
@@ -665,7 +690,8 @@ describe('Test: KForm', () => {
 			KRadio: '',
 			KCheckbox: [],
 			KSelect: null,
-			KSelectString: ''
+			KSelectString: '',
+			KAutoComplete: '白雾三语'
 		};
 		// @ts-ignore
 		const instance = new KFormSetForm({
@@ -691,10 +717,12 @@ describe('Test: KForm', () => {
 		await tick();
 		expect(host.innerHTML.includes('KInput 3 ~5')).toBeTruthy();
 
-		const input = host.querySelector('.k-input--inner');
-		expect(input.value).toBe('KInput change');
+		const input = host.querySelectorAll('.k-input--inner');
+		expect(input[0].value).toBe('KInput change');
 
-		expect(host.querySelectorAll('.k-input--inner')[1].value === '4').toBeTruthy();
+		expect(input[1].value === '4').toBeTruthy();
+
+		expect(input[1].value === '4').toBeTruthy();
 
 		expect(host.querySelectorAll('.k-rate--active-icon').length === 1).toBeTruthy();
 
@@ -730,7 +758,8 @@ describe('Test: KForm', () => {
 				value: '白发',
 				id: '1'
 			},
-			KSelectString: 'Huge'
+			KSelectString: 'Huge',
+			KAutoComplete: 'baiwusanyu'
 		});
 	});
 

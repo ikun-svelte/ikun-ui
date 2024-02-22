@@ -92,7 +92,7 @@ describe('Test: KDropdown', () => {
 		await vi.advanceTimersByTimeAsync(300);
 		expect(show).toBeTruthy();
 		expect(mockFn).toBeCalledTimes(1);
-		await fireEvent.click(btn);
+		await fireEvent.click(host);
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(show).not.toBeTruthy();
