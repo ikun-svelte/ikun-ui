@@ -61,6 +61,10 @@ const components = [
 		collapsed: false,
 		items: [
 			{
+				text: 'AutoComplete',
+				link: '/components/KAutoComplete'
+			},
+			{
 				text: 'Checkbox',
 				link: '/components/KCheckbox'
 			},

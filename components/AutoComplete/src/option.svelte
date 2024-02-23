@@ -17,7 +17,7 @@
 	};
 
 	// class names
-	const prefixCls = getPrefixCls('select--option');
+	const prefixCls = getPrefixCls('auto-complete--option');
 	$: cnames = clsx(
 		`${prefixCls}`,
 		`${prefixCls}__dark`,

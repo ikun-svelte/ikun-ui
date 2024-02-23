@@ -68,7 +68,7 @@ Set step size with the `step` attribute. You can display breakpoints by setting 
 ## Slider Props
 
 | Name     | Type                                  | Default                    | Description                |
-|----------|---------------------------------------|----------------------------|----------------------------|
+| -------- | ------------------------------------- | -------------------------- | -------------------------- |
 | value    | `number`                              | `0`                        | Binding value              |
 | vertical | `boolean`                             | `false`                    | Vertical mode              |
 | format   | `(value: number) => number \| string` | `(value: number) => value` | Tooltip format value       |
