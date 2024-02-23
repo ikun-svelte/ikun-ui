@@ -16,6 +16,7 @@
 	export let append: KAutoCompleteProps['append'] = '';
 	export let prepend: KAutoCompleteProps['prepend'] = '';
 	export let cls: KAutoCompleteProps['cls'] = undefined;
+	export let clsInput: KAutoCompleteProps['cls'] = undefined;
 	export let attrs: KAutoCompleteProps['attrs'] = {};
 	export let triggerOnFocus: KAutoCompleteProps['triggerOnFocus'] = false;
 	export let fetchSuggestions: KAutoCompleteProps['fetchSuggestions'] = undefined;
@@ -188,6 +189,7 @@
 			{append}
 			{prepend}
 			{clearable}
+			cls={clsInput}
 			{useCompositionInput}
 			{...$$restProps}
 			{...attrs}
@@ -212,7 +214,7 @@
 					<KOption {fitInputWidth} label={getLabel(data)} on:click={() => handleSelect(data)}
 					></KOption>
 				{:else}
-					<slot {data} onSelect={handleSelect} label={data} />
+					<slot {data} onSelect={handleSelect} label={getLabel(data)} />
 				{/if}
 			</KVirtualList>
 		{:else}

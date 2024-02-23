@@ -92,8 +92,8 @@ An options object can be provided to `autosize` to specify the minimum and maxim
 | value               | `string`                                         | `-`     | Binding value                                                                  |
 | iconPrefix          | `string`                                         | `-`     | The class name of the prefix icon, following the unocss standard               |
 | iconSuffix          | `string`                                         | `-`     | The class name of the suffix icon, following the unocss standard               |
-| append              | `string`                                         | `-`     | The class name of the append button, following the unocss standard             |
-| prepend             | `string`                                         | `-`     | The class name of the prepend button, following the unocss standard            |
+| append              | `string`                                         | `-`     | The class name of the append button icon, following the unocss standard        |
+| prepend             | `string`                                         | `-`     | The class name of the prepend button icon, following the unocss standard       |
 | placeholder         | `string`                                         | `false` | Input's placeholder                                                            |
 | disabled            | `boolean`                                        | `false` | Disable the Input                                                              |
 | clearable           | `boolean`                                        | `false` | whether to show clear button, only works when type is not 'textarea'           |

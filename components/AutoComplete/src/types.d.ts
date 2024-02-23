@@ -12,9 +12,7 @@ export type KAutoCompleteProps = {
 	append: string;
 	prepend: string;
 	triggerOnFocus: boolean;
-	fetchSuggestions:
-		| undefined
-		| ((params: string | number, cb: (res: AutoCompleteItems[]) => void) => void);
+	fetchSuggestions: undefined | FetchSuggestionType;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 	useCompositionInput: boolean;
@@ -26,5 +24,11 @@ export type KAutoCompleteProps = {
 	key: string;
 };
 
-// TODO: unit test
-// TODO: document
+export type FetchSuggestionType = (
+	params: string | number,
+	cb: (res: AutoCompleteItems[]) => void
+) => void;
+export type AutoCompleteItems = {
+	[string]: any;
+	value: string | number;
+};
