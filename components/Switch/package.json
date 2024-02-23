@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/switch",
-	"version": "0.1.5",
+	"version": "0.2.0",
 	"type": "module",
 	"main": "src/index.ts",
 	"types": "src/index.d.ts",
