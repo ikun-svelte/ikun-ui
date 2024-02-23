@@ -104,7 +104,7 @@ describe('Test: KAutoComplete', () => {
 		(triggerEl as HTMLElement)?.dispatchEvent(new Event('input'));
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
-		expect(host.innerHTML.includes('k-select--option__fit')).toBeTruthy();
+		expect(host.innerHTML.includes('k-auto-complete--option__fit')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
