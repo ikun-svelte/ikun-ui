@@ -173,6 +173,9 @@ importers:
       '@ikun-ui/select':
         specifier: workspace:*
         version: link:components/Select
+      '@ikun-ui/skeleton':
+        specifier: workspace:*
+        version: link:components/Skeleton
       '@ikun-ui/slider':
         specifier: workspace:*
         version: link:components/Slider
@@ -218,16 +221,16 @@ importers:
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^3.1.0
-        version: 3.1.0(@sveltejs/kit@2.0.6)
+        version: 3.1.0(@sveltejs/kit@2.5.1)
       '@sveltejs/kit':
-        specifier: ^2.0.6
-        version: 2.0.6(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@4.2.8)(vite@5.0.10)
+        specifier: ^2.5.1
+        version: 2.5.1(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@4.2.8)(vite@5.1.4)
       '@sveltejs/package':
         specifier: ^2.2.5
         version: 2.2.5(svelte@4.2.8)(typescript@5.3.3)
       '@sveltejs/vite-plugin-svelte':
         specifier: ^2.5.3
-        version: 2.5.3(svelte@4.2.8)(vite@5.0.10)
+        version: 2.5.3(svelte@4.2.8)(vite@5.1.4)
       '@testing-library/svelte':
         specifier: ^4.0.5
         version: 4.0.5(svelte@4.2.8)
@@ -311,25 +314,25 @@ importers:
         version: 4.2.8
       svelte-check:
         specifier: ^3.6.2
-        version: 3.6.2(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.6.2(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       svelte-preprocess:
         specifier: latest
-        version: 5.1.2(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.3)
+        version: 5.1.2(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)(typescript@5.3.3)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.32)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.35)(typescript@5.3.3)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
       unocss:
         specifier: ^0.58.3
-        version: 0.58.3(postcss@8.4.32)(vite@5.0.10)
+        version: 0.58.3(postcss@8.4.35)(vite@5.1.4)
       vite:
-        specifier: ^5.0.10
-        version: 5.0.10(@types/node@20.10.6)
+        specifier: ^5.1.4
+        version: 5.1.4(@types/node@20.10.6)
       vitest:
         specifier: ^1.1.1
         version: 1.1.1(@types/node@20.10.6)(@vitest/ui@1.1.1)(jsdom@23.0.1)
@@ -354,7 +357,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -382,7 +385,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -425,7 +428,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(@babel/core@7.23.7)(postcss@8.4.32)(svelte@3.59.2)
+        version: 2.0.0(@babel/core@7.23.7)(postcss@8.4.35)(svelte@3.59.2)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -453,7 +456,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -484,7 +487,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -509,7 +512,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -537,7 +540,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -565,7 +568,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -593,7 +596,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -621,7 +624,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -649,7 +652,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -677,7 +680,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -711,7 +714,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -739,7 +742,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -767,7 +770,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -792,7 +795,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -820,7 +823,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -848,7 +851,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -885,7 +888,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -913,7 +916,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -944,7 +947,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -972,7 +975,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1003,7 +1006,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1037,7 +1040,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1068,7 +1071,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1096,7 +1099,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1118,7 +1121,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1146,7 +1149,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1174,7 +1177,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1202,7 +1205,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1227,7 +1230,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1261,7 +1264,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1295,7 +1298,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1326,7 +1329,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1360,7 +1363,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1397,7 +1400,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1425,7 +1428,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1453,7 +1456,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1475,7 +1478,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1500,7 +1503,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1537,7 +1540,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1571,7 +1574,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1596,7 +1599,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1627,7 +1630,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1661,7 +1664,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1692,7 +1695,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1717,7 +1720,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1745,7 +1748,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1779,7 +1782,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1807,7 +1810,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1832,7 +1835,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1860,7 +1863,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1888,7 +1891,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(@babel/core@7.23.7)(postcss@8.4.32)(svelte@3.59.2)
+        version: 2.0.0(@babel/core@7.23.7)(postcss@8.4.35)(svelte@3.59.2)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1922,7 +1925,35 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+
+  components/Skeleton:
+    dependencies:
+      '@ikun-ui/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@ikun-ui/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      baiwusanyu-utils:
+        specifier: ^1.0.18
+        version: 1.0.18(ansi-colors@4.1.3)(moment@2.29.4)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.1.0
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: ^5.0.2
+        version: 5.0.2
+      svelte-strip:
+        specifier: ^2.0.0
+        version: 2.0.0(@babel/core@7.23.7)(postcss@8.4.35)(svelte@3.59.2)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1947,7 +1978,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1978,7 +2009,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2006,7 +2037,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2034,7 +2065,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^2.0.0
-        version: 2.0.0(@babel/core@7.23.7)(postcss@8.4.32)(svelte@3.59.2)
+        version: 2.0.0(@babel/core@7.23.7)(postcss@8.4.35)(svelte@3.59.2)
       tslib:
         specifier: ^2.6.1
         version: 2.6.2
@@ -2062,7 +2093,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2093,7 +2124,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2118,7 +2149,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2143,7 +2174,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2171,7 +2202,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2199,7 +2230,7 @@ importers:
         version: 5.0.2
       svelte-strip:
         specifier: ^3.1.1
-        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)
+        version: 3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2317,7 +2348,7 @@ importers:
         version: 5.0.10(@types/node@20.10.6)
       vitepress:
         specifier: 1.0.0-rc.31
-        version: 1.0.0-rc.31(@algolia/client-search@4.20.0)(@types/node@20.10.6)(postcss@8.4.32)(search-insights@2.9.0)(typescript@5.3.3)
+        version: 1.0.0-rc.31(@algolia/client-search@4.20.0)(@types/node@20.10.6)(postcss@8.4.35)(search-insights@2.9.0)(typescript@5.3.3)
       vue:
         specifier: ^3.4.4
         version: 3.4.4(typescript@5.3.3)
@@ -3054,7 +3085,7 @@ packages:
     dev: true
 
   /@esbuild/android-arm64@0.19.8:
-    resolution: {integrity: sha512-B8JbS61bEunhfx8kasogFENgQfr/dIp+ggYXwTqdbMAgGDhRa3AaPpQMuQU0rNxDLECj6FhDzk1cF9WHMVwrtA==}
+    resolution: {integrity: sha512-B8JbS61bEunhfx8kasogFENgQfr/dIp+ggYXwTqdbMAgGDhRa3AaPpQMuQU0rNxDLECj6FhDzk1cF9WHMVwrtA==, tarball: https://registry.npmjs.org/@esbuild/android-arm64/-/android-arm64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [arm64]
     os: [android]
@@ -3063,7 +3094,7 @@ packages:
     optional: true
 
   /@esbuild/android-arm@0.19.8:
-    resolution: {integrity: sha512-31E2lxlGM1KEfivQl8Yf5aYU/mflz9g06H6S15ITUFQueMFtFjESRMoDSkvMo8thYvLBax+VKTPlpnx+sPicOA==}
+    resolution: {integrity: sha512-31E2lxlGM1KEfivQl8Yf5aYU/mflz9g06H6S15ITUFQueMFtFjESRMoDSkvMo8thYvLBax+VKTPlpnx+sPicOA==, tarball: https://registry.npmjs.org/@esbuild/android-arm/-/android-arm-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [arm]
     os: [android]
@@ -3072,7 +3103,7 @@ packages:
     optional: true
 
   /@esbuild/android-x64@0.19.8:
-    resolution: {integrity: sha512-rdqqYfRIn4jWOp+lzQttYMa2Xar3OK9Yt2fhOhzFXqg0rVWEfSclJvZq5fZslnz6ypHvVf3CT7qyf0A5pM682A==}
+    resolution: {integrity: sha512-rdqqYfRIn4jWOp+lzQttYMa2Xar3OK9Yt2fhOhzFXqg0rVWEfSclJvZq5fZslnz6ypHvVf3CT7qyf0A5pM682A==, tarball: https://registry.npmjs.org/@esbuild/android-x64/-/android-x64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [x64]
     os: [android]
@@ -3081,7 +3112,7 @@ packages:
     optional: true
 
   /@esbuild/darwin-arm64@0.19.8:
-    resolution: {integrity: sha512-RQw9DemMbIq35Bprbboyf8SmOr4UXsRVxJ97LgB55VKKeJOOdvsIPy0nFyF2l8U+h4PtBx/1kRf0BelOYCiQcw==}
+    resolution: {integrity: sha512-RQw9DemMbIq35Bprbboyf8SmOr4UXsRVxJ97LgB55VKKeJOOdvsIPy0nFyF2l8U+h4PtBx/1kRf0BelOYCiQcw==, tarball: https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [arm64]
     os: [darwin]
@@ -3090,7 +3121,7 @@ packages:
     optional: true
 
   /@esbuild/darwin-x64@0.19.8:
-    resolution: {integrity: sha512-3sur80OT9YdeZwIVgERAysAbwncom7b4bCI2XKLjMfPymTud7e/oY4y+ci1XVp5TfQp/bppn7xLw1n/oSQY3/Q==}
+    resolution: {integrity: sha512-3sur80OT9YdeZwIVgERAysAbwncom7b4bCI2XKLjMfPymTud7e/oY4y+ci1XVp5TfQp/bppn7xLw1n/oSQY3/Q==, tarball: https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [x64]
     os: [darwin]
@@ -3099,7 +3130,7 @@ packages:
     optional: true
 
   /@esbuild/freebsd-arm64@0.19.8:
-    resolution: {integrity: sha512-WAnPJSDattvS/XtPCTj1tPoTxERjcTpH6HsMr6ujTT+X6rylVe8ggxk8pVxzf5U1wh5sPODpawNicF5ta/9Tmw==}
+    resolution: {integrity: sha512-WAnPJSDattvS/XtPCTj1tPoTxERjcTpH6HsMr6ujTT+X6rylVe8ggxk8pVxzf5U1wh5sPODpawNicF5ta/9Tmw==, tarball: https://registry.npmjs.org/@esbuild/freebsd-arm64/-/freebsd-arm64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [arm64]
     os: [freebsd]
@@ -3108,7 +3139,7 @@ packages:
     optional: true
 
   /@esbuild/freebsd-x64@0.19.8:
-    resolution: {integrity: sha512-ICvZyOplIjmmhjd6mxi+zxSdpPTKFfyPPQMQTK/w+8eNK6WV01AjIztJALDtwNNfFhfZLux0tZLC+U9nSyA5Zg==}
+    resolution: {integrity: sha512-ICvZyOplIjmmhjd6mxi+zxSdpPTKFfyPPQMQTK/w+8eNK6WV01AjIztJALDtwNNfFhfZLux0tZLC+U9nSyA5Zg==, tarball: https://registry.npmjs.org/@esbuild/freebsd-x64/-/freebsd-x64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [x64]
     os: [freebsd]
@@ -3117,7 +3148,7 @@ packages:
     optional: true
 
   /@esbuild/linux-arm64@0.19.8:
-    resolution: {integrity: sha512-z1zMZivxDLHWnyGOctT9JP70h0beY54xDDDJt4VpTX+iwA77IFsE1vCXWmprajJGa+ZYSqkSbRQ4eyLCpCmiCQ==}
+    resolution: {integrity: sha512-z1zMZivxDLHWnyGOctT9JP70h0beY54xDDDJt4VpTX+iwA77IFsE1vCXWmprajJGa+ZYSqkSbRQ4eyLCpCmiCQ==, tarball: https://registry.npmjs.org/@esbuild/linux-arm64/-/linux-arm64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [arm64]
     os: [linux]
@@ -3126,7 +3157,7 @@ packages:
     optional: true
 
   /@esbuild/linux-arm@0.19.8:
-    resolution: {integrity: sha512-H4vmI5PYqSvosPaTJuEppU9oz1dq2A7Mr2vyg5TF9Ga+3+MGgBdGzcyBP7qK9MrwFQZlvNyJrvz6GuCaj3OukQ==}
+    resolution: {integrity: sha512-H4vmI5PYqSvosPaTJuEppU9oz1dq2A7Mr2vyg5TF9Ga+3+MGgBdGzcyBP7qK9MrwFQZlvNyJrvz6GuCaj3OukQ==, tarball: https://registry.npmjs.org/@esbuild/linux-arm/-/linux-arm-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [arm]
     os: [linux]
@@ -3135,7 +3166,7 @@ packages:
     optional: true
 
   /@esbuild/linux-ia32@0.19.8:
-    resolution: {integrity: sha512-1a8suQiFJmZz1khm/rDglOc8lavtzEMRo0v6WhPgxkrjcU0LkHj+TwBrALwoz/OtMExvsqbbMI0ChyelKabSvQ==}
+    resolution: {integrity: sha512-1a8suQiFJmZz1khm/rDglOc8lavtzEMRo0v6WhPgxkrjcU0LkHj+TwBrALwoz/OtMExvsqbbMI0ChyelKabSvQ==, tarball: https://registry.npmjs.org/@esbuild/linux-ia32/-/linux-ia32-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [ia32]
     os: [linux]
@@ -3144,7 +3175,7 @@ packages:
     optional: true
 
   /@esbuild/linux-loong64@0.19.8:
-    resolution: {integrity: sha512-fHZWS2JJxnXt1uYJsDv9+b60WCc2RlvVAy1F76qOLtXRO+H4mjt3Tr6MJ5l7Q78X8KgCFudnTuiQRBhULUyBKQ==}
+    resolution: {integrity: sha512-fHZWS2JJxnXt1uYJsDv9+b60WCc2RlvVAy1F76qOLtXRO+H4mjt3Tr6MJ5l7Q78X8KgCFudnTuiQRBhULUyBKQ==, tarball: https://registry.npmjs.org/@esbuild/linux-loong64/-/linux-loong64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [loong64]
     os: [linux]
@@ -3153,7 +3184,7 @@ packages:
     optional: true
 
   /@esbuild/linux-mips64el@0.19.8:
-    resolution: {integrity: sha512-Wy/z0EL5qZYLX66dVnEg9riiwls5IYnziwuju2oUiuxVc+/edvqXa04qNtbrs0Ukatg5HEzqT94Zs7J207dN5Q==}
+    resolution: {integrity: sha512-Wy/z0EL5qZYLX66dVnEg9riiwls5IYnziwuju2oUiuxVc+/edvqXa04qNtbrs0Ukatg5HEzqT94Zs7J207dN5Q==, tarball: https://registry.npmjs.org/@esbuild/linux-mips64el/-/linux-mips64el-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [mips64el]
     os: [linux]
@@ -3162,7 +3193,7 @@ packages:
     optional: true
 
   /@esbuild/linux-ppc64@0.19.8:
-    resolution: {integrity: sha512-ETaW6245wK23YIEufhMQ3HSeHO7NgsLx8gygBVldRHKhOlD1oNeNy/P67mIh1zPn2Hr2HLieQrt6tWrVwuqrxg==}
+    resolution: {integrity: sha512-ETaW6245wK23YIEufhMQ3HSeHO7NgsLx8gygBVldRHKhOlD1oNeNy/P67mIh1zPn2Hr2HLieQrt6tWrVwuqrxg==, tarball: https://registry.npmjs.org/@esbuild/linux-ppc64/-/linux-ppc64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [ppc64]
     os: [linux]
@@ -3171,7 +3202,7 @@ packages:
     optional: true
 
   /@esbuild/linux-riscv64@0.19.8:
-    resolution: {integrity: sha512-T2DRQk55SgoleTP+DtPlMrxi/5r9AeFgkhkZ/B0ap99zmxtxdOixOMI570VjdRCs9pE4Wdkz7JYrsPvsl7eESg==}
+    resolution: {integrity: sha512-T2DRQk55SgoleTP+DtPlMrxi/5r9AeFgkhkZ/B0ap99zmxtxdOixOMI570VjdRCs9pE4Wdkz7JYrsPvsl7eESg==, tarball: https://registry.npmjs.org/@esbuild/linux-riscv64/-/linux-riscv64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [riscv64]
     os: [linux]
@@ -3180,7 +3211,7 @@ packages:
     optional: true
 
   /@esbuild/linux-s390x@0.19.8:
-    resolution: {integrity: sha512-NPxbdmmo3Bk7mbNeHmcCd7R7fptJaczPYBaELk6NcXxy7HLNyWwCyDJ/Xx+/YcNH7Im5dHdx9gZ5xIwyliQCbg==}
+    resolution: {integrity: sha512-NPxbdmmo3Bk7mbNeHmcCd7R7fptJaczPYBaELk6NcXxy7HLNyWwCyDJ/Xx+/YcNH7Im5dHdx9gZ5xIwyliQCbg==, tarball: https://registry.npmjs.org/@esbuild/linux-s390x/-/linux-s390x-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [s390x]
     os: [linux]
@@ -3189,7 +3220,7 @@ packages:
     optional: true
 
   /@esbuild/linux-x64@0.19.8:
-    resolution: {integrity: sha512-lytMAVOM3b1gPypL2TRmZ5rnXl7+6IIk8uB3eLsV1JwcizuolblXRrc5ShPrO9ls/b+RTp+E6gbsuLWHWi2zGg==}
+    resolution: {integrity: sha512-lytMAVOM3b1gPypL2TRmZ5rnXl7+6IIk8uB3eLsV1JwcizuolblXRrc5ShPrO9ls/b+RTp+E6gbsuLWHWi2zGg==, tarball: https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [x64]
     os: [linux]
@@ -3198,7 +3229,7 @@ packages:
     optional: true
 
   /@esbuild/netbsd-x64@0.19.8:
-    resolution: {integrity: sha512-hvWVo2VsXz/8NVt1UhLzxwAfo5sioj92uo0bCfLibB0xlOmimU/DeAEsQILlBQvkhrGjamP0/el5HU76HAitGw==}
+    resolution: {integrity: sha512-hvWVo2VsXz/8NVt1UhLzxwAfo5sioj92uo0bCfLibB0xlOmimU/DeAEsQILlBQvkhrGjamP0/el5HU76HAitGw==, tarball: https://registry.npmjs.org/@esbuild/netbsd-x64/-/netbsd-x64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [x64]
     os: [netbsd]
@@ -3207,7 +3238,7 @@ packages:
     optional: true
 
   /@esbuild/openbsd-x64@0.19.8:
-    resolution: {integrity: sha512-/7Y7u77rdvmGTxR83PgaSvSBJCC2L3Kb1M/+dmSIvRvQPXXCuC97QAwMugBNG0yGcbEGfFBH7ojPzAOxfGNkwQ==}
+    resolution: {integrity: sha512-/7Y7u77rdvmGTxR83PgaSvSBJCC2L3Kb1M/+dmSIvRvQPXXCuC97QAwMugBNG0yGcbEGfFBH7ojPzAOxfGNkwQ==, tarball: https://registry.npmjs.org/@esbuild/openbsd-x64/-/openbsd-x64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [x64]
     os: [openbsd]
@@ -3216,7 +3247,7 @@ packages:
     optional: true
 
   /@esbuild/sunos-x64@0.19.8:
-    resolution: {integrity: sha512-9Lc4s7Oi98GqFA4HzA/W2JHIYfnXbUYgekUP/Sm4BG9sfLjyv6GKKHKKVs83SMicBF2JwAX6A1PuOLMqpD001w==}
+    resolution: {integrity: sha512-9Lc4s7Oi98GqFA4HzA/W2JHIYfnXbUYgekUP/Sm4BG9sfLjyv6GKKHKKVs83SMicBF2JwAX6A1PuOLMqpD001w==, tarball: https://registry.npmjs.org/@esbuild/sunos-x64/-/sunos-x64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [x64]
     os: [sunos]
@@ -3225,7 +3256,7 @@ packages:
     optional: true
 
   /@esbuild/win32-arm64@0.19.8:
-    resolution: {integrity: sha512-rq6WzBGjSzihI9deW3fC2Gqiak68+b7qo5/3kmB6Gvbh/NYPA0sJhrnp7wgV4bNwjqM+R2AApXGxMO7ZoGhIJg==}
+    resolution: {integrity: sha512-rq6WzBGjSzihI9deW3fC2Gqiak68+b7qo5/3kmB6Gvbh/NYPA0sJhrnp7wgV4bNwjqM+R2AApXGxMO7ZoGhIJg==, tarball: https://registry.npmjs.org/@esbuild/win32-arm64/-/win32-arm64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [arm64]
     os: [win32]
@@ -3234,7 +3265,7 @@ packages:
     optional: true
 
   /@esbuild/win32-ia32@0.19.8:
-    resolution: {integrity: sha512-AIAbverbg5jMvJznYiGhrd3sumfwWs8572mIJL5NQjJa06P8KfCPWZQ0NwZbPQnbQi9OWSZhFVSUWjjIrn4hSw==}
+    resolution: {integrity: sha512-AIAbverbg5jMvJznYiGhrd3sumfwWs8572mIJL5NQjJa06P8KfCPWZQ0NwZbPQnbQi9OWSZhFVSUWjjIrn4hSw==, tarball: https://registry.npmjs.org/@esbuild/win32-ia32/-/win32-ia32-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [ia32]
     os: [win32]
@@ -3243,7 +3274,7 @@ packages:
     optional: true
 
   /@esbuild/win32-x64@0.19.8:
-    resolution: {integrity: sha512-bfZ0cQ1uZs2PqpulNL5j/3w+GDhP36k1K5c38QdQg+Swy51jFZWWeIkteNsufkQxp986wnqRRsb/bHbY1WQ7TA==}
+    resolution: {integrity: sha512-bfZ0cQ1uZs2PqpulNL5j/3w+GDhP36k1K5c38QdQg+Swy51jFZWWeIkteNsufkQxp986wnqRRsb/bHbY1WQ7TA==, tarball: https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.19.8.tgz}
     engines: {node: '>=12'}
     cpu: [x64]
     os: [win32]
@@ -3407,7 +3438,7 @@ packages:
     dev: true
 
   /@pkgjs/parseargs@0.11.0:
-    resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
+    resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==, tarball: https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz}
     engines: {node: '>=14'}
     requiresBuild: true
     dev: true
@@ -3422,7 +3453,7 @@ packages:
     dev: true
 
   /@popperjs/core@2.11.8:
-    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==, tarball: https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz}
 
   /@rollup/pluginutils@5.0.5:
     resolution: {integrity: sha512-6aEYR910NyP73oHiJglti74iRyOwgFU4x3meH/H8OJx6Ry0j6cOVZ5X/wTvub7G7Ao6qaHBEaNsV3GLJkSsF+Q==}
@@ -3453,7 +3484,7 @@ packages:
     dev: true
 
   /@rollup/rollup-android-arm-eabi@4.6.0:
-    resolution: {integrity: sha512-keHkkWAe7OtdALGoutLY3utvthkGF+Y17ws9LYT8pxMBYXaCoH/8dXS2uzo6e8+sEhY7y/zi5RFo22Dy2lFpDw==}
+    resolution: {integrity: sha512-keHkkWAe7OtdALGoutLY3utvthkGF+Y17ws9LYT8pxMBYXaCoH/8dXS2uzo6e8+sEhY7y/zi5RFo22Dy2lFpDw==, tarball: https://registry.npmjs.org/@rollup/rollup-android-arm-eabi/-/rollup-android-arm-eabi-4.6.0.tgz}
     cpu: [arm]
     os: [android]
     requiresBuild: true
@@ -3461,7 +3492,7 @@ packages:
     optional: true
 
   /@rollup/rollup-android-arm64@4.6.0:
-    resolution: {integrity: sha512-y3Kt+34smKQNWilicPbBz/MXEY7QwDzMFNgwEWeYiOhUt9MTWKjHqe3EVkXwT2fR7izOvHpDWZ0o2IyD9SWX7A==}
+    resolution: {integrity: sha512-y3Kt+34smKQNWilicPbBz/MXEY7QwDzMFNgwEWeYiOhUt9MTWKjHqe3EVkXwT2fR7izOvHpDWZ0o2IyD9SWX7A==, tarball: https://registry.npmjs.org/@rollup/rollup-android-arm64/-/rollup-android-arm64-4.6.0.tgz}
     cpu: [arm64]
     os: [android]
     requiresBuild: true
@@ -3469,7 +3500,7 @@ packages:
     optional: true
 
   /@rollup/rollup-darwin-arm64@4.6.0:
-    resolution: {integrity: sha512-oLzzxcUIHltHxOCmaXl+pkIlU+uhSxef5HfntW7RsLh1eHm+vJzjD9Oo4oUKso4YuP4PpbFJNlZjJuOrxo8dPg==}
+    resolution: {integrity: sha512-oLzzxcUIHltHxOCmaXl+pkIlU+uhSxef5HfntW7RsLh1eHm+vJzjD9Oo4oUKso4YuP4PpbFJNlZjJuOrxo8dPg==, tarball: https://registry.npmjs.org/@rollup/rollup-darwin-arm64/-/rollup-darwin-arm64-4.6.0.tgz}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
@@ -3477,7 +3508,7 @@ packages:
     optional: true
 
   /@rollup/rollup-darwin-x64@4.6.0:
-    resolution: {integrity: sha512-+ANnmjkcOBaV25n0+M0Bere3roeVAnwlKW65qagtuAfIxXF9YxUneRyAn/RDcIdRa7QrjRNJL3jR7T43ObGe8Q==}
+    resolution: {integrity: sha512-+ANnmjkcOBaV25n0+M0Bere3roeVAnwlKW65qagtuAfIxXF9YxUneRyAn/RDcIdRa7QrjRNJL3jR7T43ObGe8Q==, tarball: https://registry.npmjs.org/@rollup/rollup-darwin-x64/-/rollup-darwin-x64-4.6.0.tgz}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
@@ -3485,7 +3516,7 @@ packages:
     optional: true
 
   /@rollup/rollup-linux-arm-gnueabihf@4.6.0:
-    resolution: {integrity: sha512-tBTSIkjSVUyrekddpkAqKOosnj1Fc0ZY0rJL2bIEWPKqlEQk0paORL9pUIlt7lcGJi3LzMIlUGXvtNi1Z6MOCQ==}
+    resolution: {integrity: sha512-tBTSIkjSVUyrekddpkAqKOosnj1Fc0ZY0rJL2bIEWPKqlEQk0paORL9pUIlt7lcGJi3LzMIlUGXvtNi1Z6MOCQ==, tarball: https://registry.npmjs.org/@rollup/rollup-linux-arm-gnueabihf/-/rollup-linux-arm-gnueabihf-4.6.0.tgz}
     cpu: [arm]
     os: [linux]
     requiresBuild: true
@@ -3493,39 +3524,43 @@ packages:
     optional: true
 
   /@rollup/rollup-linux-arm64-gnu@4.6.0:
-    resolution: {integrity: sha512-Ed8uJI3kM11de9S0j67wAV07JUNhbAqIrDYhQBrQW42jGopgheyk/cdcshgGO4fW5Wjq97COCY/BHogdGvKVNQ==}
+    resolution: {integrity: sha512-Ed8uJI3kM11de9S0j67wAV07JUNhbAqIrDYhQBrQW42jGopgheyk/cdcshgGO4fW5Wjq97COCY/BHogdGvKVNQ==, tarball: https://registry.npmjs.org/@rollup/rollup-linux-arm64-gnu/-/rollup-linux-arm64-gnu-4.6.0.tgz}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-linux-arm64-musl@4.6.0:
-    resolution: {integrity: sha512-mZoNQ/qK4D7SSY8v6kEsAAyDgznzLLuSFCA3aBHZTmf3HP/dW4tNLTtWh9+LfyO0Z1aUn+ecpT7IQ3WtIg3ViQ==}
+    resolution: {integrity: sha512-mZoNQ/qK4D7SSY8v6kEsAAyDgznzLLuSFCA3aBHZTmf3HP/dW4tNLTtWh9+LfyO0Z1aUn+ecpT7IQ3WtIg3ViQ==, tarball: https://registry.npmjs.org/@rollup/rollup-linux-arm64-musl/-/rollup-linux-arm64-musl-4.6.0.tgz}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-linux-x64-gnu@4.6.0:
-    resolution: {integrity: sha512-rouezFHpwCqdEXsqAfNsTgSWO0FoZ5hKv5p+TGO5KFhyN/dvYXNMqMolOb8BkyKcPqjYRBeT+Z6V3aM26rPaYg==}
+    resolution: {integrity: sha512-rouezFHpwCqdEXsqAfNsTgSWO0FoZ5hKv5p+TGO5KFhyN/dvYXNMqMolOb8BkyKcPqjYRBeT+Z6V3aM26rPaYg==, tarball: https://registry.npmjs.org/@rollup/rollup-linux-x64-gnu/-/rollup-linux-x64-gnu-4.6.0.tgz}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-linux-x64-musl@4.6.0:
-    resolution: {integrity: sha512-Bbm+fyn3S6u51urfj3YnqBXg5vI2jQPncRRELaucmhBVyZkbWClQ1fEsRmdnCPpQOQfkpg9gZArvtMVkOMsh1w==}
+    resolution: {integrity: sha512-Bbm+fyn3S6u51urfj3YnqBXg5vI2jQPncRRELaucmhBVyZkbWClQ1fEsRmdnCPpQOQfkpg9gZArvtMVkOMsh1w==, tarball: https://registry.npmjs.org/@rollup/rollup-linux-x64-musl/-/rollup-linux-x64-musl-4.6.0.tgz}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
 
   /@rollup/rollup-win32-arm64-msvc@4.6.0:
-    resolution: {integrity: sha512-+MRMcyx9L2kTrTUzYmR61+XVsliMG4odFb5UmqtiT8xOfEicfYAGEuF/D1Pww1+uZkYhBqAHpvju7VN+GnC3ng==}
+    resolution: {integrity: sha512-+MRMcyx9L2kTrTUzYmR61+XVsliMG4odFb5UmqtiT8xOfEicfYAGEuF/D1Pww1+uZkYhBqAHpvju7VN+GnC3ng==, tarball: https://registry.npmjs.org/@rollup/rollup-win32-arm64-msvc/-/rollup-win32-arm64-msvc-4.6.0.tgz}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
@@ -3533,7 +3568,7 @@ packages:
     optional: true
 
   /@rollup/rollup-win32-ia32-msvc@4.6.0:
-    resolution: {integrity: sha512-rxfeE6K6s/Xl2HGeK6cO8SiQq3k/3BYpw7cfhW5Bk2euXNEpuzi2cc7llxx1si1QgwfjNtdRNTGqdBzGlFZGFw==}
+    resolution: {integrity: sha512-rxfeE6K6s/Xl2HGeK6cO8SiQq3k/3BYpw7cfhW5Bk2euXNEpuzi2cc7llxx1si1QgwfjNtdRNTGqdBzGlFZGFw==, tarball: https://registry.npmjs.org/@rollup/rollup-win32-ia32-msvc/-/rollup-win32-ia32-msvc-4.6.0.tgz}
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
@@ -3541,7 +3576,7 @@ packages:
     optional: true
 
   /@rollup/rollup-win32-x64-msvc@4.6.0:
-    resolution: {integrity: sha512-QqmCsydHS172Y0Kc13bkMXvipbJSvzeglBncJG3LsYJSiPlxYACz7MmJBs4A8l1oU+jfhYEIC/+AUSlvjmiX/g==}
+    resolution: {integrity: sha512-QqmCsydHS172Y0Kc13bkMXvipbJSvzeglBncJG3LsYJSiPlxYACz7MmJBs4A8l1oU+jfhYEIC/+AUSlvjmiX/g==, tarball: https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.6.0.tgz}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
@@ -3561,30 +3596,13 @@ packages:
       import-meta-resolve: 4.0.0
     dev: true
 
-  /@sveltejs/kit@2.0.6(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@4.2.8)(vite@5.0.10):
-    resolution: {integrity: sha512-dnHtyjBLGXx+hrZQ9GuqLlSfTBixewJaByUVWai7LmB4dgV3FwkK155OltEgONDQW6KW64hLNS/uojdx3uC2/g==}
-    engines: {node: '>=18.13'}
-    hasBin: true
-    requiresBuild: true
+  /@sveltejs/adapter-auto@3.1.0(@sveltejs/kit@2.5.1):
+    resolution: {integrity: sha512-igS5hqCwdiXWb8NoWzThKCVQQj9tKgUkbTtzfxBPgSLOyFjkiGNDX0SgCoY2QIUWBqOkfGTOqGlrW5Ynw9oUvw==}
     peerDependencies:
-      '@sveltejs/vite-plugin-svelte': ^3.0.0
-      svelte: ^4.0.0 || ^5.0.0-next.0
-      vite: ^5.0.3
+      '@sveltejs/kit': ^2.0.0
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 2.5.3(svelte@4.2.8)(vite@5.0.10)
-      '@types/cookie': 0.6.0
-      cookie: 0.6.0
-      devalue: 4.3.2
-      esm-env: 1.0.0
-      kleur: 4.1.5
-      magic-string: 0.30.5
-      mrmime: 2.0.0
-      sade: 1.8.1
-      set-cookie-parser: 2.6.0
-      sirv: 2.0.4
-      svelte: 4.2.8
-      tiny-glob: 0.2.9
-      vite: 5.0.10(@types/node@20.10.6)
+      '@sveltejs/kit': 2.5.1(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@4.2.8)(vite@5.1.4)
+      import-meta-resolve: 4.0.0
     dev: true
 
   /@sveltejs/kit@2.0.6(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.8)(vite@5.0.10):
@@ -3611,6 +3629,33 @@ packages:
       svelte: 4.2.8
       tiny-glob: 0.2.9
       vite: 5.0.10(@types/node@20.10.6)
+    dev: true
+
+  /@sveltejs/kit@2.5.1(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@4.2.8)(vite@5.1.4):
+    resolution: {integrity: sha512-TKj08o3mJCoQNLTdRdGkHPePTCPUGTgkew65RDqjVU3MtPVxljsofXQYfXndHfq0P7KoPRO/0/reF6HesU0Djw==, tarball: https://registry.npmjs.org/@sveltejs/kit/-/kit-2.5.1.tgz}
+    engines: {node: '>=18.13'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@sveltejs/vite-plugin-svelte': ^3.0.0
+      svelte: ^4.0.0 || ^5.0.0-next.0
+      vite: ^5.0.3
+    dependencies:
+      '@sveltejs/vite-plugin-svelte': 2.5.3(svelte@4.2.8)(vite@5.1.4)
+      '@types/cookie': 0.6.0
+      cookie: 0.6.0
+      devalue: 4.3.2
+      esm-env: 1.0.0
+      import-meta-resolve: 4.0.0
+      kleur: 4.1.5
+      magic-string: 0.30.5
+      mrmime: 2.0.0
+      sade: 1.8.1
+      set-cookie-parser: 2.6.0
+      sirv: 2.0.4
+      svelte: 4.2.8
+      tiny-glob: 0.2.9
+      vite: 5.1.4(@types/node@20.10.6)
     dev: true
 
   /@sveltejs/package@2.2.5(svelte@4.2.8)(typescript@5.3.3):
@@ -3646,8 +3691,24 @@ packages:
       - supports-color
     dev: true
 
+  /@sveltejs/vite-plugin-svelte-inspector@1.0.4(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@4.2.8)(vite@5.1.4):
+    resolution: {integrity: sha512-zjiuZ3yydBtwpF3bj0kQNV0YXe+iKE545QGZVTaylW3eAzFr+pJ/cwK8lZEaRp4JtaJXhD5DyWAV4AxLh6DgaQ==}
+    engines: {node: ^14.18.0 || >= 16}
+    peerDependencies:
+      '@sveltejs/vite-plugin-svelte': ^2.2.0
+      svelte: ^3.54.0 || ^4.0.0
+      vite: ^4.0.0
+    dependencies:
+      '@sveltejs/vite-plugin-svelte': 2.5.3(svelte@4.2.8)(vite@5.1.4)
+      debug: 4.3.4
+      svelte: 4.2.8
+      vite: 5.1.4(@types/node@20.10.6)
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@sveltejs/vite-plugin-svelte-inspector@2.0.0(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.8)(vite@5.0.10):
-    resolution: {integrity: sha512-gjr9ZFg1BSlIpfZ4PRewigrvYmHWbDrq2uvvPB1AmTWKuM+dI1JXQSUu2pIrYLb/QncyiIGkFDFKTwJ0XqQZZg==}
+    resolution: {integrity: sha512-gjr9ZFg1BSlIpfZ4PRewigrvYmHWbDrq2uvvPB1AmTWKuM+dI1JXQSUu2pIrYLb/QncyiIGkFDFKTwJ0XqQZZg==, tarball: https://registry.npmjs.org/@sveltejs/vite-plugin-svelte-inspector/-/vite-plugin-svelte-inspector-2.0.0.tgz}
     engines: {node: ^18.0.0 || >=20}
     peerDependencies:
       '@sveltejs/vite-plugin-svelte': ^3.0.0
@@ -3682,8 +3743,28 @@ packages:
       - supports-color
     dev: true
 
+  /@sveltejs/vite-plugin-svelte@2.5.3(svelte@4.2.8)(vite@5.1.4):
+    resolution: {integrity: sha512-erhNtXxE5/6xGZz/M9eXsmI7Pxa6MS7jyTy06zN3Ck++ldrppOnOlJwHHTsMC7DHDQdgUp4NAc4cDNQ9eGdB/w==}
+    engines: {node: ^14.18.0 || >= 16}
+    peerDependencies:
+      svelte: ^3.54.0 || ^4.0.0 || ^5.0.0-next.0
+      vite: ^4.0.0
+    dependencies:
+      '@sveltejs/vite-plugin-svelte-inspector': 1.0.4(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@4.2.8)(vite@5.1.4)
+      debug: 4.3.4
+      deepmerge: 4.3.1
+      kleur: 4.1.5
+      magic-string: 0.30.5
+      svelte: 4.2.8
+      svelte-hmr: 0.15.3(svelte@4.2.8)
+      vite: 5.1.4(@types/node@20.10.6)
+      vitefu: 0.2.5(vite@5.1.4)
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@sveltejs/vite-plugin-svelte@3.0.1(svelte@4.2.8)(vite@5.0.10):
-    resolution: {integrity: sha512-CGURX6Ps+TkOovK6xV+Y2rn8JKa8ZPUHPZ/NKgCxAmgBrXReavzFl8aOSCj3kQ1xqT7yGJj53hjcV/gqwDAaWA==}
+    resolution: {integrity: sha512-CGURX6Ps+TkOovK6xV+Y2rn8JKa8ZPUHPZ/NKgCxAmgBrXReavzFl8aOSCj3kQ1xqT7yGJj53hjcV/gqwDAaWA==, tarball: https://registry.npmjs.org/@sveltejs/vite-plugin-svelte/-/vite-plugin-svelte-3.0.1.tgz}
     engines: {node: ^18.0.0 || >=20}
     peerDependencies:
       svelte: ^4.0.0 || ^5.0.0-next.0
@@ -3929,7 +4010,7 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@unocss/astro@0.58.3(vite@5.0.10):
+  /@unocss/astro@0.58.3(vite@5.1.4):
     resolution: {integrity: sha512-qJL+XkWYJhEIX4AmOtbfb2Zu4holTDpRscfvVci4T+2VWjyE3mgtsyNzi9ZChe/hdEPRa7g26gSpNQeMhjh/Kw==}
     peerDependencies:
       vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0-0
@@ -3939,8 +4020,8 @@ packages:
     dependencies:
       '@unocss/core': 0.58.3
       '@unocss/reset': 0.58.3
-      '@unocss/vite': 0.58.3(vite@5.0.10)
-      vite: 5.0.10(@types/node@20.10.6)
+      '@unocss/vite': 0.58.3(vite@5.1.4)
+      vite: 5.1.4(@types/node@20.10.6)
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -3994,7 +4075,7 @@ packages:
       sirv: 2.0.4
     dev: true
 
-  /@unocss/postcss@0.58.3(postcss@8.4.32):
+  /@unocss/postcss@0.58.3(postcss@8.4.35):
     resolution: {integrity: sha512-y1WQNvLUidypCu/tr6oJfaV4pjd8Lsk1N27ASEVsvockOH3MekRYpHtJfTl2fMk+1Y98AHv7hPAVjM2NlvhDow==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -4006,7 +4087,7 @@ packages:
       css-tree: 2.3.1
       fast-glob: 3.3.2
       magic-string: 0.30.5
-      postcss: 8.4.32
+      postcss: 8.4.35
     dev: true
 
   /@unocss/preset-attributify@0.58.3:
@@ -4123,7 +4204,7 @@ packages:
       '@unocss/core': 0.58.3
     dev: true
 
-  /@unocss/vite@0.58.3(vite@5.0.10):
+  /@unocss/vite@0.58.3(vite@5.1.4):
     resolution: {integrity: sha512-gmB2//z7lDEK7Bw5HbHTSQ3abOM0iveAY/W3L3FFXpvduoxMQyuI5dDk0hOCtzhAWeJoynnVN4MBGVmXM4Y/Mg==}
     peerDependencies:
       vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0-0
@@ -4138,7 +4219,7 @@ packages:
       chokidar: 3.5.3
       fast-glob: 3.3.2
       magic-string: 0.30.5
-      vite: 5.0.10(@types/node@20.10.6)
+      vite: 5.1.4(@types/node@20.10.6)
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -4436,7 +4517,7 @@ packages:
     dev: true
 
   /ansi-colors@4.1.3:
-    resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==}
+    resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==, tarball: https://registry.npmjs.org/ansi-colors/-/ansi-colors-4.1.3.tgz}
     engines: {node: '>=6'}
 
   /ansi-escapes@6.2.0:
@@ -5613,7 +5694,7 @@ packages:
     dev: true
 
   /fsevents@2.3.3:
-    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
+    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==, tarball: https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
@@ -6825,7 +6906,7 @@ packages:
     dev: true
 
   /moment@2.29.4:
-    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==, tarball: https://registry.npmjs.org/moment/-/moment-2.29.4.tgz}
 
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -7254,7 +7335,7 @@ packages:
       yaml: 1.10.2
     dev: true
 
-  /postcss-load-config@4.0.1(postcss@8.4.32):
+  /postcss-load-config@4.0.1(postcss@8.4.35):
     resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -7267,7 +7348,7 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.32
+      postcss: 8.4.35
       yaml: 2.3.3
     dev: true
 
@@ -7313,6 +7394,15 @@ packages:
       nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.0.2
+
+  /postcss@8.4.35:
+    resolution: {integrity: sha512-u5U8qYpBCpN13BsiEB0CbR1Hhh4Gc0zLFuedrHJKMctHCHAGrMdG0PRM/KErzAL3CU6/eckEtmHNB3x6e3c0vA==, tarball: https://registry.npmjs.org/postcss/-/postcss-8.4.35.tgz}
+    engines: {node: ^10 || ^12 || >=14}
+    dependencies:
+      nanoid: 3.3.7
+      picocolors: 1.0.0
+      source-map-js: 1.0.2
+    dev: true
 
   /preact@10.18.1:
     resolution: {integrity: sha512-mKUD7RRkQQM6s7Rkmi7IFkoEHjuFqRQUaXamO61E6Nn7vqF/bo7EZCmSyrUnp2UWHw0O7XjZ2eeXis+m7tf4lg==}
@@ -7603,7 +7693,7 @@ packages:
     dev: true
 
   /search-insights@2.9.0:
-    resolution: {integrity: sha512-bkWW9nIHOFkLwjQ1xqVaMbjjO5vhP26ERsH9Y3pKr8imthofEFIxlnOabkmGcw6ksRj9jWidcI65vvjJH/nTGg==}
+    resolution: {integrity: sha512-bkWW9nIHOFkLwjQ1xqVaMbjjO5vhP26ERsH9Y3pKr8imthofEFIxlnOabkmGcw6ksRj9jWidcI65vvjJH/nTGg==, tarball: https://registry.npmjs.org/search-insights/-/search-insights-2.9.0.tgz}
     dev: true
 
   /semver@5.7.2:
@@ -8023,7 +8113,7 @@ packages:
       - sugarss
     dev: true
 
-  /svelte-check@3.6.2(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8):
+  /svelte-check@3.6.2(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8):
     resolution: {integrity: sha512-E6iFh4aUCGJLRz6QZXH3gcN/VFfkzwtruWSRmlKrLWQTiO6VzLsivR6q02WYLGNAGecV3EocqZuCDrC2uttZ0g==}
     hasBin: true
     peerDependencies:
@@ -8036,7 +8126,7 @@ packages:
       picocolors: 1.0.0
       sade: 1.8.1
       svelte: 4.2.8
-      svelte-preprocess: 5.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.3)
+      svelte-preprocess: 5.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)(typescript@5.3.3)
       typescript: 5.3.3
     transitivePeerDependencies:
       - '@babel/core'
@@ -8137,7 +8227,7 @@ packages:
       typescript: 5.3.3
     dev: true
 
-  /svelte-preprocess@5.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.3):
+  /svelte-preprocess@5.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)(typescript@5.3.3):
     resolution: {integrity: sha512-p/Dp4hmrBW5mrCCq29lEMFpIJT2FZsRlouxEc5qpbOmXRbaFs7clLs8oKPwD3xCFyZfv1bIhvOzpQkhMEVQdMw==}
     engines: {node: '>= 14.10.0'}
     requiresBuild: true
@@ -8179,14 +8269,14 @@ packages:
       '@types/pug': 2.0.8
       detect-indent: 6.1.0
       magic-string: 0.27.0
-      postcss: 8.4.32
+      postcss: 8.4.35
       sorcery: 0.11.0
       strip-indent: 3.0.0
       svelte: 4.2.8
       typescript: 5.3.3
     dev: true
 
-  /svelte-preprocess@5.1.2(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.3):
+  /svelte-preprocess@5.1.2(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)(typescript@5.3.3):
     resolution: {integrity: sha512-XF0aliMAcYnP4hLETvB6HRAMnaL09ASYT1Z2I1Gwu0nz6xbdg/dSgAEthtFZJA4AKrNhFDFdmUDO+H9d/6xg5g==}
     engines: {node: '>= 14.10.0'}
     requiresBuild: true
@@ -8228,14 +8318,14 @@ packages:
       '@types/pug': 2.0.8
       detect-indent: 6.1.0
       magic-string: 0.27.0
-      postcss: 8.4.32
+      postcss: 8.4.35
       sorcery: 0.11.0
       strip-indent: 3.0.0
       svelte: 4.2.8
       typescript: 5.3.3
     dev: true
 
-  /svelte-preprocess@5.1.3(@babel/core@7.23.7)(postcss@8.4.32)(svelte@3.59.2)(typescript@5.3.3):
+  /svelte-preprocess@5.1.3(@babel/core@7.23.7)(postcss@8.4.35)(svelte@3.59.2)(typescript@5.3.3):
     resolution: {integrity: sha512-xxAkmxGHT+J/GourS5mVJeOXZzne1FR5ljeOUAMXUkfEhkLEllRreXpbl3dIYJlcJRfL1LO1uIAPpBpBfiqGPw==, tarball: https://registry.npmjs.org/svelte-preprocess/-/svelte-preprocess-5.1.3.tgz}
     engines: {node: '>= 16.0.0', pnpm: ^8.0.0}
     requiresBuild: true
@@ -8277,14 +8367,14 @@ packages:
       '@types/pug': 2.0.8
       detect-indent: 6.1.0
       magic-string: 0.30.5
-      postcss: 8.4.32
+      postcss: 8.4.35
       sorcery: 0.11.0
       strip-indent: 3.0.0
       svelte: 3.59.2
       typescript: 5.3.3
     dev: true
 
-  /svelte-preprocess@5.1.3(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.3):
+  /svelte-preprocess@5.1.3(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)(typescript@5.3.3):
     resolution: {integrity: sha512-xxAkmxGHT+J/GourS5mVJeOXZzne1FR5ljeOUAMXUkfEhkLEllRreXpbl3dIYJlcJRfL1LO1uIAPpBpBfiqGPw==, tarball: https://registry.npmjs.org/svelte-preprocess/-/svelte-preprocess-5.1.3.tgz}
     engines: {node: '>= 16.0.0', pnpm: ^8.0.0}
     requiresBuild: true
@@ -8326,14 +8416,14 @@ packages:
       '@types/pug': 2.0.8
       detect-indent: 6.1.0
       magic-string: 0.30.5
-      postcss: 8.4.32
+      postcss: 8.4.35
       sorcery: 0.11.0
       strip-indent: 3.0.0
       svelte: 4.2.8
       typescript: 5.3.3
     dev: true
 
-  /svelte-strip@2.0.0(@babel/core@7.23.7)(postcss@8.4.32)(svelte@3.59.2):
+  /svelte-strip@2.0.0(@babel/core@7.23.7)(postcss@8.4.35)(svelte@3.59.2):
     resolution: {integrity: sha512-RZ8swt0ddE22ebZvFpMhW/x9rLIAwCZtWWnb5oohQEYcyuxzvzXwxImjFQ8DINXXMbvw6PB/NfnzDmHqMVrdbw==, tarball: https://registry.npmjs.org/svelte-strip/-/svelte-strip-2.0.0.tgz}
     hasBin: true
     peerDependencies:
@@ -8342,7 +8432,7 @@ packages:
       glob: 9.3.5
       minimatch: 7.4.6
       svelte: 3.59.2
-      svelte-preprocess: 5.1.3(@babel/core@7.23.7)(postcss@8.4.32)(svelte@3.59.2)(typescript@5.3.3)
+      svelte-preprocess: 5.1.3(@babel/core@7.23.7)(postcss@8.4.35)(svelte@3.59.2)(typescript@5.3.3)
       typescript: 5.3.3
       yargs: 17.7.2
     transitivePeerDependencies:
@@ -8357,7 +8447,7 @@ packages:
       - sugarss
     dev: true
 
-  /svelte-strip@3.1.1(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8):
+  /svelte-strip@3.1.1(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8):
     resolution: {integrity: sha512-u0KIKGtYCBD3DrsQbTvjEokHfB13Ey2PycEQoncl0pTWU8XXNbJ8QLCrXvVmtxr6J/zG0T0uoEy99tHLRypcbw==}
     hasBin: true
     peerDependencies:
@@ -8366,7 +8456,7 @@ packages:
       glob: 10.3.10
       minimatch: 9.0.3
       svelte: 4.2.8
-      svelte-preprocess: 5.1.3(@babel/core@7.23.7)(postcss@8.4.32)(svelte@4.2.8)(typescript@5.3.3)
+      svelte-preprocess: 5.1.3(@babel/core@7.23.7)(postcss@8.4.35)(svelte@4.2.8)(typescript@5.3.3)
       typescript: 5.3.3
       yargs: 17.7.2
     transitivePeerDependencies:
@@ -8394,7 +8484,7 @@ packages:
     dev: true
 
   /svelte@3.59.2:
-    resolution: {integrity: sha512-vzSyuGr3eEoAtT/A6bmajosJZIUWySzY2CzB3w2pgPvnkUjGqlDnsNnA0PMO+mMAhuyMul6C2uuZzY6ELSkzyA==}
+    resolution: {integrity: sha512-vzSyuGr3eEoAtT/A6bmajosJZIUWySzY2CzB3w2pgPvnkUjGqlDnsNnA0PMO+mMAhuyMul6C2uuZzY6ELSkzyA==, tarball: https://registry.npmjs.org/svelte/-/svelte-3.59.2.tgz}
     engines: {node: '>= 8'}
     dev: true
 
@@ -8544,7 +8634,7 @@ packages:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
     dev: true
 
-  /tsup@8.0.1(postcss@8.4.32)(typescript@5.3.3):
+  /tsup@8.0.1(postcss@8.4.35)(typescript@5.3.3):
     resolution: {integrity: sha512-hvW7gUSG96j53ZTSlT4j/KL0q1Q2l6TqGBFc6/mu/L46IoNWqLLUzLRLP1R8Q7xrJTmkDxxDoojV5uCVs1sVOg==}
     engines: {node: '>=18'}
     hasBin: true
@@ -8571,8 +8661,8 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss: 8.4.32
-      postcss-load-config: 4.0.1(postcss@8.4.32)
+      postcss: 8.4.35
+      postcss-load-config: 4.0.1(postcss@8.4.35)
       resolve-from: 5.0.0
       rollup: 4.6.0
       source-map: 0.8.0-beta.0
@@ -8718,7 +8808,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: true
 
-  /unocss@0.58.3(postcss@8.4.32)(vite@5.0.10):
+  /unocss@0.58.3(postcss@8.4.35)(vite@5.1.4):
     resolution: {integrity: sha512-2rnvghfiIDRQ2cOrmN4P7J7xV2p3yBK+bPAt1aoUxCXcszkLczAnQzh9c7IZ+p70kSVstK45cJTYV6TMzOLF7Q==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -8730,11 +8820,11 @@ packages:
       vite:
         optional: true
     dependencies:
-      '@unocss/astro': 0.58.3(vite@5.0.10)
+      '@unocss/astro': 0.58.3(vite@5.1.4)
       '@unocss/cli': 0.58.3
       '@unocss/core': 0.58.3
       '@unocss/extractor-arbitrary-variants': 0.58.3
-      '@unocss/postcss': 0.58.3(postcss@8.4.32)
+      '@unocss/postcss': 0.58.3(postcss@8.4.35)
       '@unocss/preset-attributify': 0.58.3
       '@unocss/preset-icons': 0.58.3
       '@unocss/preset-mini': 0.58.3
@@ -8749,8 +8839,8 @@ packages:
       '@unocss/transformer-compile-class': 0.58.3
       '@unocss/transformer-directives': 0.58.3
       '@unocss/transformer-variant-group': 0.58.3
-      '@unocss/vite': 0.58.3(vite@5.0.10)
-      vite: 5.0.10(@types/node@20.10.6)
+      '@unocss/vite': 0.58.3(vite@5.1.4)
+      vite: 5.1.4(@types/node@20.10.6)
     transitivePeerDependencies:
       - postcss
       - rollup
@@ -8828,7 +8918,7 @@ packages:
       debug: 4.3.4
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 5.0.10(@types/node@20.10.6)
+      vite: 5.1.4(@types/node@20.10.6)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -8900,6 +8990,42 @@ packages:
       fsevents: 2.3.3
     dev: true
 
+  /vite@5.1.4(@types/node@20.10.6):
+    resolution: {integrity: sha512-n+MPqzq+d9nMVTKyewqw6kSt+R3CkvF9QAKY8obiQn8g1fwTscKxyfaYnC632HtBXAQGc1Yjomphwn1dtwGAHg==, tarball: https://registry.npmjs.org/vite/-/vite-5.1.4.tgz}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^18.0.0 || >=20.0.0
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      '@types/node': 20.10.6
+      esbuild: 0.19.8
+      postcss: 8.4.35
+      rollup: 4.6.0
+    optionalDependencies:
+      fsevents: 2.3.3
+    dev: true
+
   /vitefu@0.2.5(vite@5.0.10):
     resolution: {integrity: sha512-SgHtMLoqaeeGnd2evZ849ZbACbnwQCIwRH57t18FxcXoZop0uQu0uzlIhJBlF/eWVzuce0sHeqPcDo+evVcg8Q==}
     peerDependencies:
@@ -8911,7 +9037,18 @@ packages:
       vite: 5.0.10(@types/node@20.10.6)
     dev: true
 
-  /vitepress@1.0.0-rc.31(@algolia/client-search@4.20.0)(@types/node@20.10.6)(postcss@8.4.32)(search-insights@2.9.0)(typescript@5.3.3):
+  /vitefu@0.2.5(vite@5.1.4):
+    resolution: {integrity: sha512-SgHtMLoqaeeGnd2evZ849ZbACbnwQCIwRH57t18FxcXoZop0uQu0uzlIhJBlF/eWVzuce0sHeqPcDo+evVcg8Q==}
+    peerDependencies:
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0
+    peerDependenciesMeta:
+      vite:
+        optional: true
+    dependencies:
+      vite: 5.1.4(@types/node@20.10.6)
+    dev: true
+
+  /vitepress@1.0.0-rc.31(@algolia/client-search@4.20.0)(@types/node@20.10.6)(postcss@8.4.35)(search-insights@2.9.0)(typescript@5.3.3):
     resolution: {integrity: sha512-ikH9pIjOOAbyoYAGBVfTz8TzuXp+UoWaIRMU4bw/oiTg8R65SbAaGKY84xx6TuL+f4VqUJ8lhzW82YyxSLvstA==}
     hasBin: true
     peerDependencies:
@@ -8934,7 +9071,7 @@ packages:
       mark.js: 8.11.1
       minisearch: 6.3.0
       mrmime: 1.0.1
-      postcss: 8.4.32
+      postcss: 8.4.35
       shikiji: 0.7.4
       shikiji-transformers: 0.7.4
       vite: 5.0.10(@types/node@20.10.6)

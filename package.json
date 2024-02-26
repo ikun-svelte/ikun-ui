@@ -68,7 +68,7 @@
 		"clean:deps": "node scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "node scripts/new-component.js auto-complete"
+		"create:new:comp": "node scripts/new-component.js skeleton"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.18",
@@ -144,11 +144,12 @@
 		"dayjs": "^1.11.10",
 		"@ikun-ui/segmented": "workspace:*",
 		"@ikun-ui/steps": "workspace:*",
-		"@ikun-ui/auto-complete": "workspace:*"
+		"@ikun-ui/auto-complete": "workspace:*",
+		"@ikun-ui/skeleton": "workspace:*"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.1.0",
-		"@sveltejs/kit": "^2.0.6",
+		"@sveltejs/kit": "^2.5.1",
 		"@sveltejs/package": "^2.2.5",
 		"@sveltejs/vite-plugin-svelte": "^2.5.3",
 		"@testing-library/svelte": "^4.0.5",
@@ -184,7 +185,7 @@
 		"tsup": "^8.0.1",
 		"typescript": "^5.3.3",
 		"unocss": "^0.58.3",
-		"vite": "^5.0.10",
+		"vite": "^5.1.4",
 		"vitest": "^1.1.1"
 	},
 	"lint-staged": {
