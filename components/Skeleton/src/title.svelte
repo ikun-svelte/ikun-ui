@@ -10,7 +10,7 @@
 	export let attrs: KSkeletonTitleProps['attrs'] = {};
 
 	const prefixCls = getPrefixCls('skeleton-title');
-	$: cnames = clsx(prefixCls, cls);
+	$: cnames = clsx(prefixCls, `${prefixCls}--${size}`, { [`${prefixCls}--active`]: active }, cls);
 
 	$: styleWidth = width === undefined || width === null ? '50%' : `${width}px`;
 </script>
