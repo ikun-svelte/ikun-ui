@@ -119,6 +119,10 @@ const getAnimation = (themeColor: string) => {
           60% { box-shadow: 0 0 0 4px rgba(45,212,191,0.2)}
           80% { box-shadow: 0 0 0 6px rgba(45,212,191,0.1)}
           100% { box-shadow: 0 0 0 10px rgba(45,212,191,0.05)}
+			}`,
+			'ikun-skeleton-loading': `{
+			 	  0% { background-position: 100% 50%;}
+			 	  100% { background-position: 0 50%; }
 			}`
 		},
 		durations: {
@@ -129,7 +133,8 @@ const getAnimation = (themeColor: string) => {
 			'ikun-clicking--primary': '.3s',
 			'ikun-checking-main': '.3s',
 			'ikun-checking': '.3s',
-			'ikun-switching': '.3s'
+			'ikun-switching': '.3s',
+			'ikun-skeleton-loading': '1.4s'
 		},
 		timingFns: {
 			'ikun-clicking--success': 'linear',
@@ -140,7 +145,11 @@ const getAnimation = (themeColor: string) => {
 			'ikun-checking-main': 'linear',
 			'ikun-clicking': 'linear',
 			'ikun-checking': 'linear',
-			'ikun-switching': 'linear'
+			'ikun-switching': 'linear',
+			'ikun-skeleton-loading': 'ease'
+		},
+		counts: {
+			'ikun-skeleton-loading': 'infinite'
 		}
 	};
 };
