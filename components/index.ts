@@ -62,3 +62,4 @@ export * from '@ikun-ui/flex';
 export * from '@ikun-ui/segmented';
 export * from '@ikun-ui/steps';
 export * from '@ikun-ui/auto-complete';
+export * from '@ikun-ui/skeleton';
