@@ -64,10 +64,11 @@ export type KSkeletonButtonProps = {
 };
 
 export type KSkeletonInputProps = {
-	active: boolean; // TODO
-	size: IKunSize; // TODO
-	cls: ClassValue;
-	attrs: Record<string, string>;
+	active: boolean; // TODO unit test
+	size: IKunSize; // TODO unit test
+	block: boolean; // TODO unit test
+	cls: ClassValue; // TODO unit test
+	attrs: Record<string, string>; // TODO unit test
 };
 
 // TODO

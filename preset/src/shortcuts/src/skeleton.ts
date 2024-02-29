@@ -29,6 +29,7 @@ export const skeletonShortcuts: Record<string, string> = {
 	'k-skeleton-button--sm': 'h-24px w-48px',
 	'k-skeleton-button--md': 'h-32px w-64px',
 	'k-skeleton-button--lg': 'h-40px w-80px',
+	'k-skeleton-button-un--active': 'bg-ikun-light-700',
 	'k-skeleton-button--block--sm': 'h-24px w-full',
 	'k-skeleton-button--block--md': 'h-32px w-full',
 	'k-skeleton-button--block--lg': 'h-40px w-full',
@@ -36,5 +37,12 @@ export const skeletonShortcuts: Record<string, string> = {
 	'k-skeleton-button--circle--md': 'h-32px w-32px rounded-full',
 	'k-skeleton-button--circle--lg': 'h-40px w-40px rounded-full',
 	'k-skeleton-button--round': 'rounded-4px',
-	'k-skeleton-button--square': 'rounded-0'
+	'k-skeleton-button--square': 'rounded-0',
+	'k-skeleton-input': 'rounded-4px outline-0px border-0 bg-ikun-light-700 p-0 box-border',
+	'k-skeleton-input--sm': 'h-24px w-48px',
+	'k-skeleton-input--md': 'h-32px w-64px',
+	'k-skeleton-input--lg': 'h-40px w-80px',
+	'k-skeleton-input--block--sm': 'h-24px w-full',
+	'k-skeleton-input--block--md': 'h-32px w-full',
+	'k-skeleton-input--block--lg': 'h-40px w-full'
 };
