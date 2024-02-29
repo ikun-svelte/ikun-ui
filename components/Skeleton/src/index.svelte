@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KSkeletonProps } from './types';
+	import type { KSkeletonParagraphProps, KSkeletonProps, KSkeletonTitleProps } from './types';
 	import KSkeletonTitle from './title.svelte';
+	import KSkeletonParagraph from './paragraph.svelte';
 	import { isObject } from 'baiwusanyu-utils';
 	export let loading: KSkeletonProps['loading'] = false;
 	export let title: KSkeletonProps['title'] = true;
+	export let paragraph: KSkeletonProps['paragraph'] = true;
 	export let size: KSkeletonProps['size'] = 'md';
 	export let active: KSkeletonProps['active'] = false;
 	export let cls: KSkeletonProps['cls'] = '';
@@ -17,7 +19,17 @@
 		? {
 				size,
 				active,
-				...(title as Record<string, any>)
+				...(title as KSkeletonTitleProps)
+			}
+		: {
+				size,
+				active
+			};
+	$: paragraphProps = isObject(paragraph)
+		? {
+				size,
+				active,
+				...(paragraph as KSkeletonParagraphProps)
 			}
 		: {
 				size,
@@ -29,7 +41,10 @@
 	{#if loading}
 		<slot name="skeleton">
 			{#if title}
-				<KSkeletonTitle {...titleProps}></KSkeletonTitle>
+				<div>
+					<KSkeletonTitle {...titleProps}></KSkeletonTitle>
+					<KSkeletonParagraph {...paragraphProps}></KSkeletonParagraph>
+				</div>
 			{/if}
 		</slot>
 	{:else}

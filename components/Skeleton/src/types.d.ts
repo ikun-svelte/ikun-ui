@@ -17,7 +17,7 @@ export type KSkeletonProps = {
 	avatar: boolean | KSkeletonAvatarProps; // TODO
 	// @default false
 	round: boolean; // TODO
-	cls: ClassValue;  // TODO unit test
+	cls: ClassValue; // TODO unit test
 	attrs: Record<string, string>; // TODO unit test
 };
 
@@ -38,20 +38,20 @@ export type KSkeletonTitleProps = {
 };
 
 export type KSkeletonParagraphProps = {
-	active: boolean; // TODO
-	size: IKunSize; // TODO
-	width: number | string | Array<number | string>; // TODO
-	rows: number; // TODO
-	cls: ClassValue;
-	attrs: Record<string, string>;
+	active?: boolean; // TODO unit test
+	size?: IKunSize; // TODO unit test
+	width?: number | string | Array<number | string>; // TODO unit test
+	rows?: number; // TODO unit test
+	cls?: ClassValue; // TODO unit test
+	attrs?: Record<string, string>; // TODO unit test
 };
 
 export type KSkeletonAvatarProps = {
 	active: boolean; // TODO
 	size: IKunSize; // TODO
 	shape: 'circle' | 'round'; // TODO
-	cls: ClassValue;
-	attrs: Record<string, string>;
+	cls: ClassValue; // TODO
+	attrs: Record<string, string>; // TODO
 };
 
 export type KSkeletonButtonProps = {
