@@ -10,31 +10,31 @@ export type KSkeletonProps = {
 	active: boolean; // TODO
 	size: IKunSize; // TODO
 	// @default true
-	title: boolean | KSkeletonTitleProps; // TODO
+	title: boolean | KSkeletonTitleProps; // TODO unit test
 	// @default true
 	paragraph: boolean | KSkeletonParagraphProps; // TODO
 	// @default false
 	avatar: boolean | KSkeletonAvatarProps; // TODO
 	// @default false
 	round: boolean; // TODO
-	cls: ClassValue;
-	attrs: Record<string, string>;
+	cls: ClassValue;  // TODO unit test
+	attrs: Record<string, string>; // TODO unit test
 };
 
 export type KSkeletonTitleProps = {
-	width?: number | string; // TODO
-	cls?: ClassValue; // TODO
-	attrs?: Record<string, string>;
+	width?: number | string; // TODO unit test
+	cls?: ClassValue; // TODO unit test
+	attrs?: Record<string, string>; // TODO unit test
 	/**
 	 * @internal
 	 * @default false
 	 */
-	active?: boolean; // TODO
+	active?: boolean; // TODO unit test
 	/**
 	 * @internal
 	 * @default 'md'
 	 */
-	size?: IKunSize; // TODO
+	size?: IKunSize; // TODO unit test
 };
 
 export type KSkeletonParagraphProps = {

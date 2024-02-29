@@ -10,9 +10,16 @@
 	export let attrs: KSkeletonTitleProps['attrs'] = {};
 
 	const prefixCls = getPrefixCls('skeleton-title');
-	$: cnames = clsx(prefixCls, `${prefixCls}--${size}`, { [`${prefixCls}--active`]: active }, cls);
+  const prefixClsSke = getPrefixCls('skeleton');
+	$: cnames = clsx(prefixCls,
+    `${prefixCls}--${size}`,
+    {
+      [`${prefixClsSke}--active`]: active,
+    },
+    cls
+  );
 
-	$: styleWidth = width === undefined || width === null ? '50%' : `${width}px`;
+	$: styleWidth = width === undefined || width === null ? '50%' : `${width}`;
 </script>
 
 <div class={cnames} style:width={styleWidth} {...$$restProps} {...attrs}></div>

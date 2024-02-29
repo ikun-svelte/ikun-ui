@@ -29,10 +29,10 @@
 	{#if loading}
 		<slot name="skeleton">
 			{#if title}
-				<KSkeletonTitle {...titleProps} {size}></KSkeletonTitle>
+				<KSkeletonTitle {...titleProps}></KSkeletonTitle>
 			{/if}
 		</slot>
 	{:else}
-		<slot name="content" />
+		<slot />
 	{/if}
 </div>
