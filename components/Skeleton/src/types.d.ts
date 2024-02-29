@@ -71,10 +71,8 @@ export type KSkeletonInputProps = {
 	attrs: Record<string, string>; // TODO unit test
 };
 
-// TODO
 export type KSkeletonImageProps = {
-	active: boolean; // TODO
-	size: IKunSize; // TODO
-	cls: ClassValue;
-	attrs: Record<string, string>;
+	active: boolean; // TODO unit test
+	cls: ClassValue; // TODO unit test
+	attrs: Record<string, string>; // TODO unit test
 };

@@ -44,5 +44,8 @@ export const skeletonShortcuts: Record<string, string> = {
 	'k-skeleton-input--lg': 'h-40px w-80px',
 	'k-skeleton-input--block--sm': 'h-24px w-full',
 	'k-skeleton-input--block--md': 'h-32px w-full',
-	'k-skeleton-input--block--lg': 'h-40px w-full'
+	'k-skeleton-input--block--lg': 'h-40px w-full',
+	'k-skeleton-image': 'rounded-4px fcc h-96px w-96px',
+	'k-skeleton-image-un--active': 'bg-ikun-light-700',
+	'k-skeleton-image--icon': 'text-ikun-stone-400'
 };
