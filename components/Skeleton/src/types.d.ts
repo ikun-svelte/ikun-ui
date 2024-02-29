@@ -55,12 +55,12 @@ export type KSkeletonAvatarProps = {
 };
 
 export type KSkeletonButtonProps = {
-	active: boolean; // TODO
-	size: IKunSize; // TODO
-	block: boolean; // TODO
-	shape: 'circle' | 'round' | 'square'; // TODO
-	cls: ClassValue;
-	attrs: Record<string, string>;
+	active: boolean; // TODO unit test
+	size: IKunSize; // TODO unit test
+	block: boolean; // TODO unit test
+	shape: 'circle' | 'round' | 'square'; // TODO unit test
+	cls: ClassValue; // TODO unit test
+	attrs: Record<string, string>; // TODO unit test
 };
 
 export type KSkeletonInputProps = {

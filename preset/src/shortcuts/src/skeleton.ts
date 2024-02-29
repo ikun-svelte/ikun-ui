@@ -24,5 +24,17 @@ export const skeletonShortcuts: Record<string, string> = {
 	'k-skeleton-avatar--lg': 'h-80px w-80px',
 	'k-skeleton-avatar--circle': 'rounded-full',
 	'k-skeleton-avatar--round': 'rounded-4px',
-	'k-skeleton-avatar--square': 'rounded-0'
+	'k-skeleton-avatar--square': 'rounded-0',
+	'k-skeleton-button': 'outline-none border-0',
+	'k-skeleton-button--sm': 'h-24px w-48px',
+	'k-skeleton-button--md': 'h-32px w-64px',
+	'k-skeleton-button--lg': 'h-40px w-80px',
+	'k-skeleton-button--block--sm': 'h-24px w-full',
+	'k-skeleton-button--block--md': 'h-32px w-full',
+	'k-skeleton-button--block--lg': 'h-40px w-full',
+	'k-skeleton-button--circle--sm': 'h-24px w-24px rounded-full',
+	'k-skeleton-button--circle--md': 'h-32px w-32px rounded-full',
+	'k-skeleton-button--circle--lg': 'h-40px w-40px rounded-full',
+	'k-skeleton-button--round': 'rounded-4px',
+	'k-skeleton-button--square': 'rounded-0'
 };
