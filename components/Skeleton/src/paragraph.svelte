@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KSkeletonParagraphProps } from './types';
+	import type { KSkeletonParagraphProps, KSkeletonProps } from './types';
 	import { isArray } from 'baiwusanyu-utils';
 
 	export let width: KSkeletonParagraphProps['width'] = undefined;
 	export let active: KSkeletonParagraphProps['active'] = false;
 	export let size: KSkeletonParagraphProps['size'] = 'md';
 	export let rows: KSkeletonParagraphProps['rows'] = 3;
+	export let round: KSkeletonProps['round'] = false;
 	export let cls: KSkeletonParagraphProps['cls'] = '';
 	export let attrs: KSkeletonParagraphProps['attrs'] = {};
 
@@ -16,6 +17,7 @@
 	$: cnames = clsx(prefixCls, cls);
 
 	$: itemCls = clsx(`${prefixCls}--item`, `${prefixCls}--${size}`, {
+		[`${prefixCls}--round`]: round,
 		[`${prefixClsSke}--active`]: active
 	});
 

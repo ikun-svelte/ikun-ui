@@ -2,77 +2,69 @@
 import type { ClassValue } from 'clsx';
 import type { IKunSize } from '@ikun-ui/utils';
 
-// 默认包含 Title、Paragraph 和  Avatar，
-// 可以自由组合其他
 export type KSkeletonProps = {
-	loading: boolean; // TODO unit test
+	loading: boolean;
 	// @default false
-	active: boolean; // TODO
-	size: IKunSize; // TODO
+	active: boolean;
+	size: IKunSize;
 	// @default true
-	title: boolean | KSkeletonTitleProps; // TODO unit test
+	title?: boolean | KSkeletonTitleProps;
 	// @default true
-	paragraph: boolean | KSkeletonParagraphProps; // TODO unit test
+	paragraph?: boolean | KSkeletonParagraphProps;
 	// @default false
-	avatar: boolean | KSkeletonAvatarProps; // TODO unit test
+	avatar?: boolean | KSkeletonAvatarProps;
 	// @default false
-	round: boolean; // TODO
-	cls: ClassValue; // TODO unit test
-	attrs: Record<string, string>; // TODO unit test
+	round: boolean;
+	cls?: ClassValue;
+	attrs?: Record<string, string>;
 };
 
 export type KSkeletonTitleProps = {
-	width?: number | string; // TODO unit test
-	cls?: ClassValue; // TODO unit test
-	attrs?: Record<string, string>; // TODO unit test
-	/**
-	 * @internal
-	 * @default false
-	 */
-	active?: boolean; // TODO unit test
-	/**
-	 * @internal
-	 * @default 'md'
-	 */
-	size?: IKunSize; // TODO unit test
+	width?: number | string;
+	cls?: ClassValue;
+	attrs?: Record<string, string>;
+	round: boolean;
+	active?: boolean;
+	size?: IKunSize;
 };
 
 export type KSkeletonParagraphProps = {
-	active?: boolean; // TODO unit test
-	size?: IKunSize; // TODO unit test
-	width?: number | string | Array<number | string>; // TODO unit test
-	rows?: number; // TODO unit test
-	cls?: ClassValue; // TODO unit test
-	attrs?: Record<string, string>; // TODO unit test
+	active?: boolean;
+	size?: IKunSize;
+	round: boolean;
+	width?: number | string | Array<number | string>;
+	rows?: number;
+	cls?: ClassValue;
+	attrs?: Record<string, string>;
 };
 
 export type KSkeletonAvatarProps = {
-	active?: boolean; // TODO unit test
-	size?: IKunSize; // TODO unit test
-	shape?: 'circle' | 'round' | 'square'; // TODO unit test
-	cls?: ClassValue; // TODO unit test
-	attrs?: Record<string, string>; // TODO unit test
+	active?: boolean;
+	size?: IKunSize;
+	shape?: 'circle' | 'round' | 'square';
+	cls?: ClassValue;
+	attrs?: Record<string, string>;
 };
 
 export type KSkeletonButtonProps = {
-	active: boolean; // TODO unit test
-	size: IKunSize; // TODO unit test
-	block: boolean; // TODO unit test
-	shape: 'circle' | 'round' | 'square'; // TODO unit test
-	cls: ClassValue; // TODO unit test
-	attrs: Record<string, string>; // TODO unit test
+	active: boolean;
+	size: IKunSize;
+	block: boolean;
+	shape: 'circle' | 'round' | 'square';
+	cls: ClassValue;
+	attrs: Record<string, string>;
 };
 
 export type KSkeletonInputProps = {
-	active: boolean; // TODO unit test
-	size: IKunSize; // TODO unit test
-	block: boolean; // TODO unit test
-	cls: ClassValue; // TODO unit test
-	attrs: Record<string, string>; // TODO unit test
+	active: boolean;
+	size: IKunSize;
+	block: boolean;
+	cls: ClassValue;
+	attrs: Record<string, string>;
 };
 
 export type KSkeletonImageProps = {
-	active: boolean; // TODO unit test
-	cls: ClassValue; // TODO unit test
-	attrs: Record<string, string>; // TODO unit test
+	active: boolean;
+	cls: ClassValue;
+	attrs: Record<string, string>;
 };

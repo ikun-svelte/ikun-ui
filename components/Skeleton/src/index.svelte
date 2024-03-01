@@ -14,6 +14,7 @@
 	export let loading: KSkeletonProps['loading'] = false;
 	export let title: KSkeletonProps['title'] = true;
 	export let paragraph: KSkeletonProps['paragraph'] = true;
+	export let round: KSkeletonProps['round'] = false;
 	export let avatar: KSkeletonProps['avatar'] = false;
 	export let size: KSkeletonProps['size'] = 'md';
 	export let active: KSkeletonProps['active'] = false;
@@ -21,41 +22,43 @@
 	export let attrs: KSkeletonProps['attrs'] = {};
 
 	const prefixCls = getPrefixCls('skeleton');
-	$: avatarSize = isObject(avatar) ? (avatar as KSkeletonAvatarProps).size || size : size;
+	$: paragraphSize = isObject(paragraph) ? (paragraph as KSkeletonAvatarProps).size || size : size;
 	$: cnames = clsx(prefixCls, cls);
-	$: contentCls = clsx(`${prefixCls}-content--${avatarSize}`);
+	$: contentCls = clsx(`${prefixCls}-content--${paragraphSize}`, {
+		[`${prefixCls}-pd--${paragraphSize}`]: avatar
+	});
 	$: headerCls = clsx(`${prefixCls}-header`);
+	$: defaultSubProps = {
+		size,
+		active
+	};
 	$: titleProps = isObject(title)
 		? {
-				size,
-				active,
+				...defaultSubProps,
+				round,
 				...(title as KSkeletonTitleProps)
 			}
 		: {
-				size,
-				active
+				...defaultSubProps,
+				round
 			};
 	$: paragraphProps = isObject(paragraph)
 		? {
-				size,
-				active,
+				...defaultSubProps,
+				round,
 				...(paragraph as KSkeletonParagraphProps)
 			}
 		: {
-				size,
-				active
+				...defaultSubProps,
+				round
 			};
 
 	$: avatarProps = isObject(avatar)
 		? {
-				size: avatarSize,
-				active,
+				...defaultSubProps,
 				...(avatar as KSkeletonAvatarProps)
 			}
-		: {
-				size: avatarSize,
-				active
-			};
+		: defaultSubProps;
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
