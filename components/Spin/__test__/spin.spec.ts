@@ -7,7 +7,7 @@ import KSpinBg from './fixture/spin.bg.svelte';
 import KSpinSpinner from './fixture/spin.spinner.svelte';
 import KSpinRotate from './fixture/spin.rotate.svelte';
 
-let host: HTMLElement;
+let host;
 
 const initHost = () => {
 	host = document.createElement('div');
@@ -25,6 +25,7 @@ afterEach(() => {
 
 describe('Test: KSpin', () => {
 	test('options: show', async () => {
+		// @ts-ignore
 		const instance = new KSpinShow({
 			target: host
 		});
@@ -39,6 +40,7 @@ describe('Test: KSpin', () => {
 	});
 
 	test('options: text', async () => {
+		// @ts-ignore
 		const instance = new KSpinText({
 			target: host
 		});
@@ -55,6 +57,7 @@ describe('Test: KSpin', () => {
 	});
 
 	test('options: fullScreen', async () => {
+		// @ts-ignore
 		const instance = new KSpinFull({
 			target: host
 		});
@@ -77,6 +80,7 @@ describe('Test: KSpin', () => {
 	});
 
 	test('options: background', async () => {
+		// @ts-ignore
 		const instance = new KSpinBg({
 			target: host
 		});
@@ -93,6 +97,7 @@ describe('Test: KSpin', () => {
 	});
 
 	test('options: spinner', async () => {
+		// @ts-ignore
 		const instance = new KSpinSpinner({
 			target: host
 		});
@@ -108,6 +113,7 @@ describe('Test: KSpin', () => {
 	});
 
 	test('options: rotating', async () => {
+		// @ts-ignore
 		const instance = new KSpinRotate({
 			target: host
 		});
