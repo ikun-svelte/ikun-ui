@@ -25,6 +25,7 @@
 			[`${prefixClsSke}--active`]: active,
 			[`${prefixCls}-un--active`]: !active
 		},
+		'k-skeleton-button-un--active__dark',
 		cls
 	);
 </script>

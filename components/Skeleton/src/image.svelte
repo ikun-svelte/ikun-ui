@@ -15,9 +15,10 @@
 			[`${prefixClsSke}--active`]: active,
 			[`${prefixCls}-un--active`]: !active
 		},
+		'k-skeleton-image-un--active__dark',
 		cls
 	);
-	const iconCls = clsx(`${prefixCls}--icon`);
+	const iconCls = clsx(`${prefixCls}--icon`, 'k-skeleton-image--icon__dark');
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>

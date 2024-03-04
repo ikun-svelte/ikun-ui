@@ -35,6 +35,7 @@
 	$: titleProps = isObject(title)
 		? {
 				...defaultSubProps,
+				// @ts-ignore
 				round,
 				...(title as KSkeletonTitleProps)
 			}
@@ -45,6 +46,7 @@
 	$: paragraphProps = isObject(paragraph)
 		? {
 				...defaultSubProps,
+				// @ts-ignore
 				round,
 				...(paragraph as KSkeletonParagraphProps)
 			}
@@ -66,7 +68,7 @@
 		<slot name="skeleton">
 			<div class={headerCls}>
 				{#if avatar}
-					<KSkeletonAvatar {...avatarProps}></KSkeletonAvatar>
+					<KSkeletonAvatar {...avatarProps} isInSK></KSkeletonAvatar>
 				{/if}
 				{#if title}
 					<KSkeletonTitle {...titleProps}></KSkeletonTitle>

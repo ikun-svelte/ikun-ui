@@ -16,10 +16,15 @@
 	const prefixClsSke = getPrefixCls('skeleton');
 	$: cnames = clsx(prefixCls, cls);
 
-	$: itemCls = clsx(`${prefixCls}--item`, `${prefixCls}--${size}`, {
-		[`${prefixCls}--round`]: round,
-		[`${prefixClsSke}--active`]: active
-	});
+	$: itemCls = clsx(
+		`${prefixCls}--item`,
+		`${prefixCls}--${size}`,
+		{
+			[`${prefixCls}--round`]: round,
+			[`${prefixClsSke}--active`]: active
+		},
+		'k-skeleton-paragraph--item__dark'
+	);
 
 	let list: Array<{ width: string }> = [];
 	$: {

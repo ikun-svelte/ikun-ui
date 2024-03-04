@@ -251,6 +251,10 @@ const components = [
 				link: '/components/KPopconfirm'
 			},
 			{
+				text: 'Skeleton',
+				link: '/components/KSkeleton'
+			},
+			{
 				text: 'Spin',
 				link: '/components/KSpin'
 			}

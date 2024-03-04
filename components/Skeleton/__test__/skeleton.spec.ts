@@ -138,19 +138,19 @@ describe('Test: KSkeleton', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host!.innerHTML.includes('k-skeleton-avatar--sm')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-skeleton-avatar-sk--sm')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-avatar-container--sm')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-title--sm')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-content--sm')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-paragraph--sm')).toBeTruthy();
 
-		expect(host!.innerHTML.includes('k-skeleton-avatar--md')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-skeleton-avatar-sk--md')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-avatar-container--md')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-title--md')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-content--md')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-paragraph--md')).toBeTruthy();
 
-		expect(host!.innerHTML.includes('k-skeleton-avatar--lg')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-skeleton-avatar-sk--lg')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-avatar-container--lg')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-title--lg')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-content--lg')).toBeTruthy();
@@ -173,7 +173,7 @@ describe('Test: KSkeleton', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host!.innerHTML.includes('k-skeleton-avatar--lg')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-skeleton-avatar-sk--lg')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-avatar-container--lg')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton--active')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
@@ -441,7 +441,6 @@ describe('Test: KSkeletonAvatar', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-avatar--lg')).toBeTruthy();
-		expect(host!.innerHTML.includes('k-skeleton-avatar-container--lg')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
