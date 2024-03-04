@@ -4,3 +4,5 @@ import TabPane from './pane.svelte';
 export { Tabs as KTabs };
 export { TabPane as KTabsPane };
 export default Tabs;
+
+export type { KTabsProps, KTabsPaneProps, KTabsNav, KTabContext } from './types';

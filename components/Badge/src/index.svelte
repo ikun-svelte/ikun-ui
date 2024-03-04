@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { isNumber } from 'baiwusanyu-utils';
-	import type { IKunTypePro } from '@ikun-ui/utils';
 	import { getPrefixCls } from '@ikun-ui/utils';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import type { KBadgeProps } from './types';
 
-	export let value: string | number = '';
-	export let max: number = 99;
-	export let isDot: boolean = false;
-	export let show: boolean = true;
-	export let type: IKunTypePro = 'error';
-	export let cls: ClassValue = undefined;
-	export let attrs: Record<string, string> = {};
+	export let value: KBadgeProps['value'] = '';
+	export let max: KBadgeProps['max'] = 99;
+	export let isDot: KBadgeProps['isDot'] = false;
+	export let show: KBadgeProps['show'] = true;
+	export let type: KBadgeProps['type'] = 'error';
+	export let cls: KBadgeProps['cls'] = '';
+	export let attrs: KBadgeProps['attrs'] = {};
 
 	let content = `${value}`;
 	$: if (isDot) {

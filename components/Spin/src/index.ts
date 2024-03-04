@@ -60,3 +60,5 @@ export const useKSpin = () => {
 		}
 	};
 };
+
+export type { SpinOptions } from './types';

@@ -28,5 +28,3 @@ export type KInputNumberProps = {
 	center: boolean;
 	errorMsg: string;
 };
-// TODO: KForm input-number 🤡
-// TODO: KForm input-number unit test

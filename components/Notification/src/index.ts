@@ -1,7 +1,7 @@
 import Notification from './index.svelte';
 import type { NotifyOptions, NotifyPlacement } from './types';
 import { jsonClone } from 'baiwusanyu-utils';
-export * from './types';
+export type { NotifyType, NotifyPlacement, NotifyOptions } from './types';
 
 export declare type NotifyComponent = InstanceType<typeof Notification> & {
 	__notify_index: number;
@@ -146,11 +146,11 @@ NotifyFn.success = <T, C>(options: NotifyOptions<T, C> = {}) => {
 };
 
 NotifyFn.clear = (inst: NotifyComponent) => {
-	const index = notifyMap[inst.__notify_placement].findIndex(
+	const index = notifyMap[inst.__notify_placement as NotifyPlacement].findIndex(
 		(notify) => notify!.__notify_index === inst.__notify_index
 	);
 	if (index !== -1) {
-		notifyMap[inst.__notify_placement].splice(index, 1);
+		notifyMap[inst.__notify_placement as NotifyPlacement].splice(index, 1);
 		updatedNotifyByIndex(inst.__notify_placement);
 
 		unmountNotify(inst, ANIMATION_DURATION);

@@ -5,3 +5,5 @@ import ContextmenuSubMenu from './contextmenu-sub-menu.svelte';
 export { Contextmenu as KContextmenu };
 export { ContextmenuItem as KContextmenuItem };
 export { ContextmenuSubMenu as KContextmenuSubMenu };
+
+export type { KContextmenuProps } from './types';

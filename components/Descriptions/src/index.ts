@@ -4,4 +4,9 @@ export { Descriptions as KDescriptions };
 
 export default Descriptions;
 
-export type { KDescriptionsCtx, KDescriptionsProps } from './types';
+export type {
+	KDescriptionsCtx,
+	KDescriptionsProps,
+	KDescriptionsMapItem,
+	KDescriptionsItemMap
+} from './types';

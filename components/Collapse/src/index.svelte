@@ -2,16 +2,17 @@
 	import { fly } from 'svelte/transition';
 	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher, getContext, tick } from 'svelte';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
 	import { getPrefixCls, collapseWrapperKey } from '@ikun-ui/utils';
+	import type { KCollapseProps } from './types';
 
-	export let title = '';
-	export let content = '';
-	export let attrs: Record<string, string> = {};
-	export let cls: ClassValue = undefined;
-	export let show = false;
-	export let showClose = true;
-	export let uid: string = '';
+	export let title: KCollapseProps['title'] = '';
+	export let content: KCollapseProps['content'] = '';
+	export let attrs: KCollapseProps['attrs'] = {};
+	export let cls: KCollapseProps['cls'] = undefined;
+	export let show: KCollapseProps['show'] = false;
+	export let showClose: KCollapseProps['showClose'] = true;
+	export let uid: KCollapseProps['uid'] = '';
 
 	const dispatch = createEventDispatcher();
 	let showInner = show;

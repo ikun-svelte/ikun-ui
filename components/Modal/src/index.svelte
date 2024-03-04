@@ -5,15 +5,16 @@
 	import { KIcon } from '@ikun-ui/icon';
 	import { createEventDispatcher } from 'svelte';
 	import { fly } from 'svelte/transition';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import type { KModalProps } from './types';
 
-	export let show = false;
-	export let attrs: Record<string, string> = {};
-	export let cls: ClassValue = undefined;
-	export let title = '';
-	export let footer = false;
+	export let show: KModalProps['show'] = false;
+	export let attrs: KModalProps['attrs'] = {};
+	export let cls: KModalProps['cls'] = '';
+	export let title: KModalProps['title'] = '';
+	export let footer: KModalProps['footer'] = false;
 	// center、right
-	export let layout: 'center' | 'right' = 'center';
+	export let layout: KModalProps['layout'] = 'center';
 	// close、cancel、confirm
 	const dispatch = createEventDispatcher();
 	$: showInner = show;

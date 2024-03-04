@@ -132,14 +132,14 @@ You can customize the skeleton content through slots
 
 ## Skeleton Image Props
 
-| Name   | Type             | Default | Description                                    |
-| ------ | ---------------- | ------- | ---------------------------------------------- |
-| active | `boolean`        | `false` | Show animation effect.                         |
-| cls    | `string`         | `''`    | Additional class for component                 |
-| attrs  | `any`            | `{}`    | Additional attributes                          |
+| Name   | Type      | Default | Description                    |
+| ------ | --------- | ------- | ------------------------------ |
+| active | `boolean` | `false` | Show animation effect.         |
+| cls    | `string`  | `''`    | Additional class for component |
+| attrs  | `any`     | `{}`    | Additional attributes          |
 
 ## Skeleton Image Slots
 
-| Name     | Description                           |
-| -------- |---------------------------------------|
-| default  | Content of the skeleton image.        |
+| Name    | Description                    |
+| ------- | ------------------------------ |
+| default | Content of the skeleton image. |

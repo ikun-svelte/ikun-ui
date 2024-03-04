@@ -11,3 +11,5 @@ export {
 	Footer as KFooter,
 	Header as KHeader
 };
+
+export type { KLayoutProps, KHeaderFooterProps, KAsideProps, KContainerProps } from './types';

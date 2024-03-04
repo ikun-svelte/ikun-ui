@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import type { KEyeDropperProps } from './types';
 
-	export let cls: ClassValue = undefined;
-	export let attrs: Record<string, string> = {};
+	export let cls: KEyeDropperProps['cls'] = undefined;
+	export let attrs: KEyeDropperProps['attrs'] = {};
 
 	interface EyeDropperOpenOptions {
 		signal?: AbortSignal;

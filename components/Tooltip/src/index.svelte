@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { KPopover } from '@ikun-ui/popover';
-	import type { IKunPlacement, IKunTrigger } from '@ikun-ui/utils';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import type { KTooltipProps } from './types';
 
-	export let placement: IKunPlacement = 'top';
+	export let placement: KTooltipProps['placement'] = 'top';
 	// hover click manual
-	export let trigger: IKunTrigger = 'hover';
-	export let cls: ClassValue = undefined;
-	export let attrs: Record<string, string> = {};
-	export let content = '';
-	export let disabled: boolean = false;
+	export let trigger: KTooltipProps['trigger'] = 'hover';
+	export let cls: KTooltipProps['cls'] = undefined;
+	export let attrs: KTooltipProps['attrs'] = {};
+	export let content: KTooltipProps['content'] = '';
+	export let disabled: KTooltipProps['disabled'] = false;
 
 	$: cnames = clsx(cls);
 </script>

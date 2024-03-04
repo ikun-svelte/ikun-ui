@@ -2,7 +2,14 @@ import MsgBox from './index.svelte';
 import type { MsgBoxOptions, MsgBoxComponent } from './types';
 import { jsonClone } from 'baiwusanyu-utils';
 
-export * from './types';
+export type {
+	MsgBoxComponent,
+	MsgBoxEmoType,
+	MsgBoxType,
+	MsgBoxLayout,
+	ValidatorFn,
+	MsgBoxOptions
+} from './types';
 
 const defaultMsgBoxOptions: MsgBoxOptions<undefined, undefined> = {
 	confirmBtnText: 'confirm',
@@ -39,7 +46,7 @@ function mountMsgBox<T, C>(options: MsgBoxOptions<T, C>) {
 				cancelEvt && cancelEvt();
 				durationUnmountMsgBox(MsgBoxInst, 0);
 			},
-			onConfirm(r: boolean, v: string) {
+			onConfirm(r?: boolean, v?: string) {
 				confirmEvt && confirmEvt(r, v);
 			}
 		}
