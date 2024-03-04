@@ -5,10 +5,13 @@ const packageJsonPath = path.join(pathCWD, 'package.json');
 const packageJson = fs.readJsonSync(packageJsonPath);
 
 packageJson.export = {
-	'.': {
-		svelte: './dist/index.js'
+	exports: {
+		'.': {
+			types: './dist/index.d.ts',
+			svelte: './dist/index.js'
+		}
 	}
 };
 
-Reflect.deleteProperty(packageJson, 'svelte')
+Reflect.deleteProperty(packageJson, 'svelte');
 fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 4 });

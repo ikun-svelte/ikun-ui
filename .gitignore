@@ -80,3 +80,5 @@ dist
 
 .vite-inspect
 docs/.vitepress/cache
+
+components/**/**/.svelte-kit
