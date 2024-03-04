@@ -27,7 +27,7 @@ const rootPKG = require(pkgPath);
 
 const upperReg = /[A-Z]/;
 
-const compDevDeps = ['@tsconfig/svelte', 'svelte-strip', 'tslib', 'typescript'];
+const compDevDeps = ['@tsconfig/svelte', '@sveltejs/package', 'tslib', 'typescript'];
 const getDeps = (dep) => `"${dep}": "${rootPKG.dependencies[dep]}"`;
 const _write = async (file, content, witreSpinner) => {
 	return new Promise((resolve, reject) => {
@@ -147,9 +147,7 @@ async function writePkgJson(baseDir, originalCompName) {
   "package.json"
  ],
   "scripts": {
-    "build": "npm run build:js && npm run build:svelte",
-    "build:js": "tsc -p . --outDir dist/ --rootDir src/",
-    "build:svelte": "svelte-strip strip src/ dist",
+    "build": "svelte-package -i src",
     "publish:pre": "node ../../scripts/pre-publish.js",
     "publish:npm": "pnpm run publish:pre && pnpm publish --no-git-checks --access public"
   },
@@ -163,12 +161,13 @@ async function writePkgJson(baseDir, originalCompName) {
   "dependencies": {
     "@ikun-ui/icon": "workspace:*",
     "@ikun-ui/utils": "workspace:*",
+    "svelte": "^4.2.7",
 	"clsx": "^2.0.0",
     ${getDeps('baiwusanyu-utils')}
   },
   "devDependencies": {
 	"@tsconfig/svelte": "^5.0.0",
-	"svelte-strip": "^2.0.0",
+  "@sveltejs/package": "^2.0.0",
 	"tslib": "^2.6.1",
 	"typescript": "^5.1.6"
 	}

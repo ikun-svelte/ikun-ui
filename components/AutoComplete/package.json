@@ -44,7 +44,6 @@
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.2",
 		"@sveltejs/package": "^2.0.0",
-		"svelte-strip": "^2.0.0",
 		"tslib": "^2.6.2",
 		"typescript": "^5.3.3"
 	}
