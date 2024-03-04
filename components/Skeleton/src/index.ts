@@ -14,3 +14,13 @@ export { SkeletonInput as KSkeletonInput };
 export { SkeletonImage as KSkeletonImage };
 export { SkeletonAvatar as KSkeletonAvatar };
 export default Skeleton;
+
+export type {
+	KSkeletonProps,
+	KSkeletonTitleProps,
+	KSkeletonParagraphProps,
+	KSkeletonAvatarProps,
+	KSkeletonButtonProps,
+	KSkeletonInputProps,
+	KSkeletonImageProps
+} from './types';

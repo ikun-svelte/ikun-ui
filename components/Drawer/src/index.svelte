@@ -4,13 +4,14 @@
 	import { KIcon } from '@ikun-ui/icon';
 	import { KMask } from '@ikun-ui/mask';
 	import { KClientOnly } from '@ikun-ui/client-only';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import type { KDrawerProps } from './types';
 
-	export let placement: 'right' | 'left' = 'right';
-	export let value = false;
-	export let cls: ClassValue = undefined;
-	export let attrs: Record<string, string> = {};
-	export let header = true;
+	export let placement: KDrawerProps['placement'] = 'right';
+	export let value: KDrawerProps['value'] = false;
+	export let cls: KDrawerProps['cls'] = undefined;
+	export let attrs: KDrawerProps['attrs'] = {};
+	export let header: KDrawerProps['header'] = true;
 
 	$: cnames = clsx(cls);
 	$: maskCls = clsx('k-drawer--base k-drawer--base__dark', isRight ? 'right-0' : 'left-0', cnames);

@@ -27,4 +27,3 @@ export type KPaginationProps = {
 	pageSizes: number[];
 	pageSizesWidth: number;
 };
-// TODO: dark mode

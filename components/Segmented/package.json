@@ -20,9 +20,7 @@
 		"package.json"
 	],
 	"scripts": {
-		"build": "npm run build:js && npm run build:svelte",
-		"build:js": "tsc -p . --outDir dist/ --rootDir src/",
-		"build:svelte": "svelte-strip strip src/ dist",
+		"build": "svelte-package -i src",
 		"publish:pre": "node ../../scripts/pre-publish.js",
 		"publish:npm": "pnpm run publish:pre && pnpm publish --no-git-checks --access public"
 	},
@@ -36,11 +34,13 @@
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
+		"svelte": "^4.2.7",
 		"baiwusanyu-utils": "^1.0.18",
 		"clsx": "^2.0.0"
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "^5.0.2",
+		"@sveltejs/package": "^2.0.0",
 		"svelte-strip": "^2.0.0",
 		"tslib": "^2.6.2",
 		"typescript": "^5.3.3"

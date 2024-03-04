@@ -5,4 +5,4 @@ export { Steps as KSteps };
 export { Step as KStep };
 export default Steps;
 
-export * from './types.d';
+export type { KStepsProps, KStepsItem, KStepsItems, KStepProps, KStepStatus } from './types.d';

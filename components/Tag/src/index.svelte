@@ -1,18 +1,18 @@
 <script lang="ts">
 	import { KIcon } from '@ikun-ui/icon';
-	import type { IKunTypePro } from '@ikun-ui/utils';
 	import { createEventDispatcher } from 'svelte';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import type { KTagProps } from './types';
 
-	export let type: IKunTypePro = 'primary';
-	export let bgColor: string = '';
-	export let textColor: string = '';
-	export let icon: string = '';
-	export let border: boolean = false;
-	export let closable: boolean = false;
-	export let closeIcon: string = 'i-carbon-close';
-	export let cls: ClassValue = undefined;
-	export let attrs: Record<string, string> = {};
+	export let type: KTagProps['type'] = 'primary';
+	export let bgColor: KTagProps['bgColor'] = '';
+	export let textColor: KTagProps['textColor'] = '';
+	export let icon: KTagProps['icon'] = '';
+	export let border: KTagProps['border'] = false;
+	export let closable: KTagProps['closable'] = false;
+	export let closeIcon: KTagProps['closeIcon'] = 'i-carbon-close';
+	export let cls: KTagProps['cls'] = undefined;
+	export let attrs: KTagProps['attrs'] = {};
 
 	const dispatch = createEventDispatcher();
 

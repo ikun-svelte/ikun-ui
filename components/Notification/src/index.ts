@@ -1,7 +1,7 @@
 import Notification from './index.svelte';
 import type { NotifyOptions, NotifyPlacement } from './types';
 import { jsonClone } from 'baiwusanyu-utils';
-export * from './types';
+export type { NotifyType, NotifyPlacement, NotifyOptions } from './types';
 
 export declare type NotifyComponent = InstanceType<typeof Notification> & {
 	__notify_index: number;

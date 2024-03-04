@@ -1,5 +1,5 @@
 /// <reference types="svelte" />
-import { ClassValue } from 'clsx/clsx';
+import { ClassValue } from 'clsx';
 import type { IKunSize } from '@ikun-ui/utils';
 
 export type KRadioGroupProps = {

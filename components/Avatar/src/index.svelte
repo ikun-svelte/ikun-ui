@@ -3,24 +3,25 @@
 	import { KIcon } from '@ikun-ui/icon';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { isNumber } from 'baiwusanyu-utils';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import type { KAvatarProps } from './types';
 
-	export let icon: string = '';
-	export let src: string = '';
-	export let srcSet: string = '';
-	export let alt: string = '';
-	export let fit: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down' = 'cover';
-	export let size: string | number = '50px';
-	export let radius: string | number = '4px';
-	export let cls: ClassValue = undefined;
-	export let attrs: Record<string, string> = {};
+	export let icon: KAvatarProps['icon'] = '';
+	export let src: KAvatarProps['src'] = '';
+	export let srcSet: KAvatarProps['srcSet'] = '';
+	export let alt: KAvatarProps['alt'] = '';
+	export let fit: KAvatarProps['fit'] = 'cover';
+	export let size: KAvatarProps['size'] = '50px';
+	export let radius: KAvatarProps['radius'] = '4px';
+	export let cls: KAvatarProps['cls'] = '';
+	export let attrs: KAvatarProps['attrs'] = {};
 
-	let avatarSize: string = size;
+	let avatarSize: KAvatarProps['size'] = size;
 	$: if (isNumber(size)) {
 		avatarSize = `${size}px`;
 	}
 
-	let avatarRadius: string = radius;
+	let avatarRadius: KAvatarProps['radius'] = radius;
 	$: if (isNumber(radius)) {
 		avatarRadius = `${radius}px`;
 	}
@@ -32,9 +33,9 @@
 
 	const dispatch = createEventDispatcher();
 
-	const onError = (event: CustomEvent) => {
+	const onError = (event: Event & { currentTarget: EventTarget & Element }) => {
 		hasLoadError = true;
-		dispatch('error', event);
+		dispatch('error', event as unknown as CustomEvent);
 	};
 
 	// remove extra space from class names

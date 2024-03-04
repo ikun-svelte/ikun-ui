@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { onDestroy, tick } from 'svelte';
 	import { fade } from 'svelte/transition';
-	import { clsx, type ClassValue } from 'clsx';
+	import { clsx } from 'clsx';
+	import type { KMaskProps } from './types';
 
-	export let color = '';
-	export let attrs: Record<string, string> = {};
-	export let cls: ClassValue = undefined;
-	export let value = false;
-	export let target: null | HTMLElement = null;
+	export let color: KMaskProps['color'] = '';
+	export let attrs: KMaskProps['attrs'] = {};
+	export let cls: KMaskProps['cls'] = '';
+	export let value: KMaskProps['value'] = false;
+	export let target: KMaskProps['target'] = null;
 
 	let maskRef: null | HTMLElement = null;
 	let maskWidth = '100%';

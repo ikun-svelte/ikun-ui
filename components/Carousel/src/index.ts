@@ -6,3 +6,5 @@ export { Carousel as KCarousel };
 export { Arrow as KCarouselArrow };
 export { Indicators as KIndicators };
 export default Carousel;
+
+export type { KCarouselProps, KCarouselArrowProps, KIndicatorsProps } from './types';
