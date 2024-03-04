@@ -441,7 +441,6 @@ describe('Test: KSkeletonAvatar', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host!.innerHTML.includes('k-skeleton-avatar--lg')).toBeTruthy();
-		expect(host!.innerHTML.includes('k-skeleton-avatar-container--lg')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 
