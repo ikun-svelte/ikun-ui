@@ -6,7 +6,7 @@
 	import { getPrefixCls, buttonGroupKey, formKey, dropDownKey } from '@ikun-ui/utils';
 	import clsx from 'clsx';
 	import { type IKunFormInstance } from '@ikun-ui/form';
-	import { type KDropdownCtx } from '@ikun-ui/dropdown/src/types';
+	import { type KDropdownCtx } from '@ikun-ui/dropdown';
 
 	export let type: KButtonProps['type'] | '' = '';
 	export let size: KButtonProps['size'] | '' = '';
