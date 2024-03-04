@@ -35,6 +35,7 @@
 	},
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
+		"@ikun-ui/form": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.18"
 	},
