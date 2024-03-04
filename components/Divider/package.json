@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/divider",
-	"version": "0.2.1-beta.0",
+	"version": "0.2.1",
 	"type": "module",
 	"main": "src/index.ts",
 	"types": "src/index.d.ts",
