@@ -22,6 +22,7 @@
 			[`${prefixClsSke}--active`]: active,
 			[`${prefixCls}-un--active`]: !active
 		},
+		'k-skeleton-title-un--active__dark',
 		cls
 	);
 

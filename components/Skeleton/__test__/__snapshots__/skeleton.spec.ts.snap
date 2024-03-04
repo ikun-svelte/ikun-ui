@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KSkeleton > props: The avatar component configuration should override active and size 1`] = `"<div class="k-skeleton"><div class="k-skeleton-header"><div class="k-skeleton-avatar-container--lg"><div class="k-skeleton-avatar k-skeleton-avatar--lg k-skeleton-avatar--circle k-skeleton--active"></div></div> </div> <div class="k-skeleton-content--sm k-skeleton-pd--sm"></div></div>"`;
+exports[`Test: KSkeleton > props: The avatar component configuration should override active and size 1`] = `"<div class="k-skeleton"><div class="k-skeleton-header"><div class="k-skeleton-avatar-container--lg"><div class="k-skeleton-avatar k-skeleton-avatar--circle k-skeleton-avatar-sk k-skeleton-avatar-sk--lg k-skeleton--active"></div></div> </div> <div class="k-skeleton-content--sm k-skeleton-pd--sm"></div></div>"`;
 
 exports[`Test: KSkeleton > props: The paragraph component configuration should override active and size 1`] = `"<div class="k-skeleton"><div class="k-skeleton-header"> </div> <div class="k-skeleton-content--lg"><ul class="k-skeleton-paragraph"><li class="k-skeleton-paragraph--item k-skeleton-paragraph--lg k-skeleton--active" style="width: 100%;"></li><li class="k-skeleton-paragraph--item k-skeleton-paragraph--lg k-skeleton--active" style="width: 100%;"></li><li class="k-skeleton-paragraph--item k-skeleton-paragraph--lg k-skeleton--active" style="width: 60%;"></li></ul></div></div>"`;
 
@@ -8,23 +8,23 @@ exports[`Test: KSkeleton > props: The title component configuration should overr
 
 exports[`Test: KSkeleton > props: cls 1`] = `"<div class="k-skeleton k-skeleton--test"></div>"`;
 
-exports[`Test: KSkeleton > props: props: The paragraph and title component configuration should override round 1`] = `"<div class="k-skeleton"><div class="k-skeleton-header"><div class="k-skeleton-avatar-container--md"><div class="k-skeleton-avatar k-skeleton-avatar--md k-skeleton-avatar--circle"></div></div> <div class="k-skeleton-title--round k-skeleton-title--md k-skeleton-title-un--active" style="width: 50%;"></div></div> <div class="k-skeleton-content--md k-skeleton-pd--md"><ul class="k-skeleton-paragraph"><li class="k-skeleton-paragraph--item k-skeleton-paragraph--md k-skeleton-paragraph--round" style="width: 100%;"></li><li class="k-skeleton-paragraph--item k-skeleton-paragraph--md k-skeleton-paragraph--round" style="width: 100%;"></li><li class="k-skeleton-paragraph--item k-skeleton-paragraph--md k-skeleton-paragraph--round" style="width: 60%;"></li></ul></div></div>"`;
+exports[`Test: KSkeleton > props: props: The paragraph and title component configuration should override round 1`] = `"<div class="k-skeleton"><div class="k-skeleton-header"><div class="k-skeleton-avatar-container--md"><div class="k-skeleton-avatar k-skeleton-avatar--circle k-skeleton-avatar-sk k-skeleton-avatar-sk--md"></div></div> <div class="k-skeleton-title--round k-skeleton-title--md k-skeleton-title-un--active" style="width: 50%;"></div></div> <div class="k-skeleton-content--md k-skeleton-pd--md"><ul class="k-skeleton-paragraph"><li class="k-skeleton-paragraph--item k-skeleton-paragraph--md k-skeleton-paragraph--round" style="width: 100%;"></li><li class="k-skeleton-paragraph--item k-skeleton-paragraph--md k-skeleton-paragraph--round" style="width: 100%;"></li><li class="k-skeleton-paragraph--item k-skeleton-paragraph--md k-skeleton-paragraph--round" style="width: 60%;"></li></ul></div></div>"`;
 
 exports[`Test: KSkeleton > slot: default 1`] = `"<div class="k-skeleton"><div>hello</div></div>"`;
 
 exports[`Test: KSkeleton > slot: skeleton 1`] = `"<div class="k-skeleton"><div slot="skeleton">hello</div></div>"`;
 
-exports[`Test: KSkeletonAvatar > props: active 1`] = `"<div class="k-skeleton-avatar-container--md"><div class="k-skeleton-avatar k-skeleton-avatar--md k-skeleton-avatar--circle k-skeleton--active"></div></div>"`;
+exports[`Test: KSkeletonAvatar > props: active 1`] = `"<div class="k-skeleton-avatar-container--md"><div class="k-skeleton-avatar k-skeleton-avatar--circle k-skeleton-avatar--md k-skeleton--active"></div></div>"`;
 
-exports[`Test: KSkeletonAvatar > props: cls 1`] = `"<div class="k-skeleton-avatar-container--md"><div class="k-skeleton-avatar k-skeleton-avatar--md k-skeleton-avatar--circle k-skeleton--test"></div></div>"`;
+exports[`Test: KSkeletonAvatar > props: cls 1`] = `"<div class="k-skeleton-avatar-container--md"><div class="k-skeleton-avatar k-skeleton-avatar--circle k-skeleton-avatar--md k-skeleton--test"></div></div>"`;
 
-exports[`Test: KSkeletonAvatar > props: shape is circle 1`] = `"<div class="k-skeleton-avatar-container--md"><div class="k-skeleton-avatar k-skeleton-avatar--md k-skeleton-avatar--circle"></div></div>"`;
+exports[`Test: KSkeletonAvatar > props: shape is circle 1`] = `"<div class="k-skeleton-avatar-container--md"><div class="k-skeleton-avatar k-skeleton-avatar--circle k-skeleton-avatar--md"></div></div>"`;
 
-exports[`Test: KSkeletonAvatar > props: shape is round 1`] = `"<div class="k-skeleton-avatar-container--md"><div class="k-skeleton-avatar k-skeleton-avatar--md k-skeleton-avatar--round"></div></div>"`;
+exports[`Test: KSkeletonAvatar > props: shape is round 1`] = `"<div class="k-skeleton-avatar-container--md"><div class="k-skeleton-avatar k-skeleton-avatar--round k-skeleton-avatar--md"></div></div>"`;
 
-exports[`Test: KSkeletonAvatar > props: shape is square 1`] = `"<div class="k-skeleton-avatar-container--md"><div class="k-skeleton-avatar k-skeleton-avatar--md k-skeleton-avatar--square"></div></div>"`;
+exports[`Test: KSkeletonAvatar > props: shape is square 1`] = `"<div class="k-skeleton-avatar-container--md"><div class="k-skeleton-avatar k-skeleton-avatar--square k-skeleton-avatar--md"></div></div>"`;
 
-exports[`Test: KSkeletonAvatar > props: size 1`] = `"<div class="k-skeleton-avatar-container--lg"><div class="k-skeleton-avatar k-skeleton-avatar--lg k-skeleton-avatar--circle"></div></div>"`;
+exports[`Test: KSkeletonAvatar > props: size 1`] = `"<div class="k-skeleton-avatar-container--lg"><div class="k-skeleton-avatar k-skeleton-avatar--circle k-skeleton-avatar--lg"></div></div>"`;
 
 exports[`Test: KSkeletonButton > props: active 1`] = `"<button class="k-skeleton-button k-skeleton-button--md k-skeleton-button--round k-skeleton--active"></button>"`;
 

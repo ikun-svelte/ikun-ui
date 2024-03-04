@@ -2,4 +2,4 @@
 	import { KSkeleton } from '@ikun-ui/skeleton';
 </script>
 
-<KSkeleton loading></KSkeleton>
+<KSkeleton loading avatar active></KSkeleton>

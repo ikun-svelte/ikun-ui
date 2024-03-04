@@ -8,18 +8,27 @@
 	export let shape: KSkeletonAvatarProps['shape'] = 'circle';
 	export let cls: KSkeletonAvatarProps['cls'] = '';
 	export let attrs: KSkeletonAvatarProps['attrs'] = {};
+	/**
+	 * @internal
+	 */
+	export let isInSK: KSkeletonAvatarProps['isInSK'] = false;
 
 	const prefixCls = getPrefixCls('skeleton-avatar');
 	const prefixClsSke = getPrefixCls('skeleton');
 	const prefixClsContainer = getPrefixCls('skeleton-avatar-container');
-	$: containerCls = clsx(`${prefixClsContainer}--${size}`);
+	$: containerCls = clsx({
+		[`${prefixClsContainer}--${size}`]: isInSK
+	});
 	$: cnames = clsx(
 		prefixCls,
-		`${prefixCls}--${size}`,
 		`${prefixCls}--${shape}`,
 		{
+			[`${prefixCls}-sk`]: isInSK,
+			[`${prefixCls}-sk--${size}`]: isInSK,
+			[`${prefixCls}--${size}`]: !isInSK,
 			[`${prefixClsSke}--active`]: active
 		},
+		'k-skeleton-avatar__dark',
 		cls
 	);
 </script>

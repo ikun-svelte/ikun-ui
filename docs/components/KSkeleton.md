@@ -31,6 +31,30 @@ Simplest Skeleton usage.
 
 <demo src="skeleton/basic.svelte"  github='Skeleton'></demo>
 
+## Complex Combination
+
+Complex combination with avatar and multiple paragraphs.
+
+<demo src="skeleton/complex.svelte"  github='Skeleton'></demo>
+
+## Active
+
+Display active animation.
+
+<demo src="skeleton/active.svelte"  github='Skeleton'></demo>
+
+## Skeleton Button, Avatar, Input, Image
+
+Support some subcomponent skeletons
+
+<demo src="skeleton/option.svelte"  github='Skeleton'></demo>
+
+## Custom Skeleton
+
+You can customize the skeleton content through slots
+
+<demo src="skeleton/custom.svelte"  github='Skeleton'></demo>
+
 ## Skeleton Props
 
 | Name      | Type                             | Default | Description                                |

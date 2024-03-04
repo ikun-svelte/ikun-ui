@@ -40,6 +40,10 @@ export type KSkeletonParagraphProps = {
 
 export type KSkeletonAvatarProps = {
 	active?: boolean;
+	/**
+	 * @internal
+	 */
+	isInSK?: boolean;
 	size?: IKunSize;
 	shape?: 'circle' | 'round' | 'square';
 	cls?: ClassValue;

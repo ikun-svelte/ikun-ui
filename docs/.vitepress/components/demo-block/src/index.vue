@@ -118,4 +118,8 @@ const handleCopy = () => {
 .vp-doc .demon-dropdown .k-link--primary {
   color: var(--ikun-teal-400);
 }
+
+.vp-doc ul.k-skeleton-paragraph{
+ padding: 0;
+}
 </style>

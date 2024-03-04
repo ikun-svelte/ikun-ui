@@ -19,6 +19,7 @@
 		{
 			[`${prefixClsSke}--active`]: active
 		},
+		'k-skeleton-input__dark',
 		cls
 	);
 </script>
