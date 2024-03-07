@@ -33,6 +33,12 @@
 	},
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
+		"@ikun-ui/popover": "workspace:*",
+		"@ikun-ui/input": "workspace:*",
+		"@ikun-ui/input-number": "workspace:*",
+		"@ikun-ui/dropdown": "workspace:*",
+		"@ikun-ui/checkbox": "workspace:*",
+		"@ikun-ui/checkbox-group": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.18",
 		"clsx": "^2.0.0",

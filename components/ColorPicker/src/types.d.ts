@@ -1,9 +1,77 @@
 /// <reference types="svelte" />
 import type { ClassValue } from 'clsx';
+import type { IKunPlacement, IKunSize, IKunTrigger } from '@ikun-ui/utils';
 export type KColorPickerProps = {
+	/**
+	 * 允许清除选择的颜色
+	 * @type boolean
+	 * @default false
+	 */
+	allowClear?: boolean;
+	/**
+	 * 颜色的值
+	 * @type string
+	 * @default ''
+	 */
+	value: string;
+	/**
+	 * 颜色格式值
+	 * @type 'rgb' | 'hex' | 'hsb'
+	 * @default 'rgb'
+	 */
+	format?: 'rgb' | 'hex' | 'hsb';
+	/**
+	 * 禁用颜色选择器
+	 * @type boolean
+	 * @default false
+	 */
+	disabled?: boolean;
+	/**
+	 * 禁用透明度
+	 * @type boolean
+	 * @default false
+	 */
+	disabledAlpha?: boolean;
+	/**
+	 * 弹出窗口的位置
+	 * @type IKunPlacement
+	 * @default 'top'
+	 */
+	placement?: IKunPlacement;
+	/**
+	 * 预设的颜色
+	 * @type { label: string, colors: Array<string | Color>, defaultOpen?: boolean }[]
+	 * @default undefined
+	 */
+	presets?: boolean;
+	/**
+	 * 触发器大小
+	 * @type IKunSize
+	 * @default 'md'
+	 */
+	size: IKunSize;
+	/**
+	 * 触发器是否显示文本
+	 * @type boolean
+	 * @default false
+	 */
+	showText: boolean;
+	/**
+	 * 颜色选择器的触发模式
+	 * @type IKunTrigger
+	 * @default 'click'
+	 */
+	trigger: IKunTrigger;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
+
+// TODO:
+//  手風琴
+//  顔色選擇
+//  bar
+//  顔色格式轉換
+//  多個 popover
 
 // TODO: Title and Clear
 // TODO: 颜色选择区
@@ -17,14 +85,14 @@ export type KColorPickerProps = {
 
 // TODO: props allowClear 允许清除选择的颜色 boolean @default false
 // TODO: props value 颜色的值 string @default ''
-// TODO: props defaultFormat 颜色格式值 rgb | hex | hsb @default rgb
+// TODO: props format 颜色格式值 rgb | hex | hsb @default rgb
 // TODO: props disabled 禁用颜色选择器 boolean @default false
 // TODO: props disabledAlpha 禁用透明度 boolean @default false
-// TODO: props placement 弹出窗口的位置 'top' / 'left' / 'right' / 'bottom'  @default top
-// TODO: props disabledAlpha 预设的颜色  { label: string, colors: Array<string | Color>, defaultOpen?: boolean }[] @default undefined
+// TODO: 🚧 props placement unit test
+// TODO: props presets 预设的颜色  { label: string, colors: Array<string | Color>, defaultOpen?: boolean }[] @default undefined
 // TODO: props size 触发器大小 IkunSize @default 'md'
 // TODO: props showText 触发器是否显示文本 boolean @default false
-// TODO: props trigger 颜色选择器的触发模式 IKunTrigger @default click
+// TODO: 🚧 props trigger unit test
 
 // TODO: event change 颜色变化的回调 (value: Color, hex: string) => void
 // TODO: event changeComplete 颜色选择完成的回调 (value: Color) => void

@@ -890,9 +890,27 @@ importers:
 
   components/ColorPicker:
     dependencies:
+      '@ikun-ui/checkbox':
+        specifier: workspace:*
+        version: link:../Checkbox
+      '@ikun-ui/checkbox-group':
+        specifier: workspace:*
+        version: link:../CheckboxGroup
+      '@ikun-ui/dropdown':
+        specifier: workspace:*
+        version: link:../Dropdown
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon
+      '@ikun-ui/input':
+        specifier: workspace:*
+        version: link:../Input
+      '@ikun-ui/input-number':
+        specifier: workspace:*
+        version: link:../InputNumber
+      '@ikun-ui/popover':
+        specifier: workspace:*
+        version: link:../Popover
       '@ikun-ui/utils':
         specifier: workspace:*
         version: link:../../utils
