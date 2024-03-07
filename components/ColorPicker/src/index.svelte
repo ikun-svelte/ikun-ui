@@ -16,6 +16,7 @@
 	export let cls: KColorPickerProps['cls'] = '';
 	export let attrs: KColorPickerProps['attrs'] = {};
 
+	// TODO: 三色转 ##， ## 转三色
 	const prefixCls = getPrefixCls('color-picker');
 	$: cnames = clsx(
 		prefixCls,

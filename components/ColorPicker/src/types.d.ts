@@ -66,6 +66,17 @@ export type KColorPickerProps = {
 	attrs: Record<string, string>;
 };
 
+export type KColorPickerPaletteProps = {
+	/**
+	 * 颜色的值
+	 * @type string
+	 * @default ''
+	 */
+	value: string;
+	cls: ClassValue;
+	attrs: Record<string, string>;
+};
+
 // TODO:
 //  手風琴
 //  顔色選擇
