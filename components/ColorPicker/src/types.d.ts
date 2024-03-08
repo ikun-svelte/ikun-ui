@@ -1,6 +1,7 @@
 /// <reference types="svelte" />
 import type { ClassValue } from 'clsx';
 import type { IKunPlacement, IKunSize, IKunTrigger } from '@ikun-ui/utils';
+import type { RgbaColor, HsvaColor} from 'colord'
 export type KColorPickerProps = {
 	/**
 	 * 允许清除选择的颜色
@@ -9,17 +10,23 @@ export type KColorPickerProps = {
 	 */
 	allowClear?: boolean;
 	/**
-	 * 颜色的值
-	 * @type string
+	 * 默认颜色的值
+	 * @type string | RgbaColor | HsvaColor;
 	 * @default ''
 	 */
-	value: string;
+	defaultValue: string | RgbaColor | HsvaColor;
+	/**
+	 * 颜色的值
+	 * @type string | RgbaColor | HsvaColor;
+	 * @default ''
+	 */
+	value: string | RgbaColor | HsvaColor;
 	/**
 	 * 颜色格式值
-	 * @type 'rgb' | 'hex' | 'hsb'
+	 * @type 'rgb' | 'hex' | 'hsv'
 	 * @default 'rgb'
 	 */
-	format?: 'rgb' | 'hex' | 'hsb';
+	format?: 'rgb' | 'hex' | 'hsv';
 	/**
 	 * 禁用颜色选择器
 	 * @type boolean
@@ -69,10 +76,16 @@ export type KColorPickerProps = {
 export type KColorPickerPaletteProps = {
 	/**
 	 * 颜色的值
-	 * @type string
+	 * @type string | RgbaColor | HsvaColor;
 	 * @default ''
 	 */
-	value: string;
+	value: HsvaColor;
+	/**
+	 * 默认颜色的值
+	 * @type string | RgbaColor | HsvaColor;
+	 * @default ''
+	 */
+	defaultValue: string | RgbaColor | HsvaColor;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };

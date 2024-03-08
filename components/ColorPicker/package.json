@@ -40,6 +40,8 @@
 		"@ikun-ui/checkbox": "workspace:*",
 		"@ikun-ui/checkbox-group": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
+		"esm-env": "^1.0.0",
+		"colord": "^2,9,3",
 		"baiwusanyu-utils": "^1.0.18",
 		"clsx": "^2.0.0",
 		"svelte": "^4.2.7"
