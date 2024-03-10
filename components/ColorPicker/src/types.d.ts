@@ -1,7 +1,7 @@
 /// <reference types="svelte" />
 import type { ClassValue } from 'clsx';
 import type { IKunPlacement, IKunSize, IKunTrigger } from '@ikun-ui/utils';
-import type { RgbaColor, HsvaColor} from 'colord'
+import type { RgbaColor, HsvaColor } from 'colord';
 export type KColorPickerProps = {
 	/**
 	 * 允许清除选择的颜色
@@ -11,6 +11,7 @@ export type KColorPickerProps = {
 	allowClear?: boolean;
 	/**
 	 * 默认颜色的值
+	 * @expiremrnt 可能会删除，初始化时决定线性范围，他会根据颜色的 slider 来变化
 	 * @type string | RgbaColor | HsvaColor;
 	 * @default ''
 	 */
@@ -82,6 +83,7 @@ export type KColorPickerPaletteProps = {
 	value: HsvaColor;
 	/**
 	 * 默认颜色的值
+	 * @expiremrnt 可能会删除，初始化时决定线性范围，他会根据颜色的 slider 来变化
 	 * @type string | RgbaColor | HsvaColor;
 	 * @default ''
 	 */
@@ -93,12 +95,12 @@ export type KColorPickerPaletteProps = {
 // TODO:
 //  手風琴
 //  顔色選擇
-//  bar
+//  slider
 //  顔色格式轉換
 //  多個 popover
 
 // TODO: Title and Clear
-// TODO: 颜色选择区
+// TODO: 🚧 颜色选择区
 // TODO: 颜色选择条
 // TODO: 透明度选择条
 // TODO: HEX 格式输入控件与值输出
