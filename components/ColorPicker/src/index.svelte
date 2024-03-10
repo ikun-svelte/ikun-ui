@@ -3,9 +3,9 @@
 	import { clsx } from 'clsx';
 	import type { KColorPickerProps } from './types';
 	import { KPopover } from '@ikun-ui/popover';
-	import { colord, type HsvaColor } from "colord";
-	import KColorPickerPalette from "./palette.svelte";
-	import { createEventDispatcher } from "svelte";
+	import { colord, type HsvaColor } from 'colord';
+	import KColorPickerPalette from './palette.svelte';
+	import { createEventDispatcher } from 'svelte';
 	export let allowClear: KColorPickerProps['allowClear'] = false;
 	export let value: KColorPickerProps['value'] = '';
 	export let defaultValue: KColorPickerProps['defaultValue'] = '';
@@ -22,38 +22,34 @@
 
 	// TODO: 三色的传入和穿出，内部统一使用 hsv来处理
 
-	function formatColor(
-		format: KColorPickerProps['format'],
-		color: KColorPickerProps['value']
-	){
-		if(format === 'rgb'){
-			return  colord(color).toRgb();
-		} else if(format === 'hex'){
-			return  colord(color).toHex();
-		} else if(format === 'hsv'){
+	function formatColor(format: KColorPickerProps['format'], color: KColorPickerProps['value']) {
+		if (format === 'rgb') {
+			return colord(color).toRgb();
+		} else if (format === 'hex') {
+			return colord(color).toHex();
+		} else if (format === 'hsv') {
 			return colord(color).toHsv();
 		}
 	}
 
 	const dispatch = createEventDispatcher();
-	function handleChangeComplete(e: CustomEvent){
-		dispatch('changeComplete',genReturnColor(e))
+	function handleChangeComplete(e: CustomEvent) {
+		dispatch('changeComplete', genReturnColor(e));
 	}
-	function handleChange(e: CustomEvent){
-		dispatch('change',genReturnColor(e))
+	function handleChange(e: CustomEvent) {
+		dispatch('change', genReturnColor(e));
 	}
 
-	function genReturnColor(e: CustomEvent){
+	function genReturnColor(e: CustomEvent) {
 		return {
 			rgb: formatColor('rgb', e.detail),
 			hex: formatColor('hex', e.detail),
 			hsv: formatColor('hsv', e.detail)
-		}
+		};
 	}
 
-
-	$:hsvColor = formatColor('hsv', value) as HsvaColor
-	$:defaultHsvColor = formatColor('hsv', defaultValue) as HsvaColor
+	$: hsvColor = formatColor('hsv', value) as HsvaColor;
+	$: defaultHsvColor = formatColor('hsv', defaultValue) as HsvaColor;
 
 	const prefixCls = getPrefixCls('color-picker');
 	$: cnames = clsx(
@@ -78,7 +74,7 @@
 			value={hsvColor}
 			defaultValue={defaultHsvColor}
 			on:change={handleChange}
-			on:changeComplete={handleChangeComplete}>
-		</KColorPickerPalette>
+			on:changeComplete={handleChangeComplete}
+		></KColorPickerPalette>
 	</div>
 </KPopover>

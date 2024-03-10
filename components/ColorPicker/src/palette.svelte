@@ -146,27 +146,3 @@
 		bind:this={dragElement}
 	></div>
 </div>
-
-<style>
-	.k-color-picker-palette {
-		overflow: hidden;
-		position: relative;
-		left: 0;
-		top: 0;
-		border-radius: 4px;
-		width: 234px;
-		height: 160px;
-		background-image: linear-gradient(0deg, rgb(0, 0, 0), transparent),
-			linear-gradient(90deg, rgb(255, 255, 255), rgba(255, 255, 255, 0));
-	}
-	.k-color-picker-pointer {
-		cursor: pointer;
-		position: absolute;
-		border-radius: 16px;
-		width: 14px;
-		height: 14px;
-		border-width: 2px;
-		border-style: solid;
-		border-color: white;
-	}
-</style>

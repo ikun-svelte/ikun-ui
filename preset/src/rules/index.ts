@@ -16,6 +16,7 @@ import { getIkunColorRules } from './src/ikun-color';
 import { tabRules } from './src/tab';
 import { carouselRules } from './src/carousel';
 import { skeletonRules } from './src/skeleton';
+import { colorPickerRules } from './src/color-picker';
 import { baseRules } from './src/base';
 
 declare type dynamicRulesFunc = (...args: any[]) => Array<RegExp | ((...args: any[]) => any)>;
@@ -31,6 +32,7 @@ export const defaultRules = {
 	...tabRules,
 	...carouselRules,
 	...skeletonRules,
+	...colorPickerRules,
 	...baseRules,
 	...getColCls(),
 	...getDescriptionsGridColCls(),
