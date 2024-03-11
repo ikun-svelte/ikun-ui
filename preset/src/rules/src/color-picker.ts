@@ -6,5 +6,21 @@ export const colorPickerRules = {
 	},
 	'color-block-bg': {
 		'background-size': '50% 50%;'
+	},
+	'color-alpha-bg': {
+		'background-size': '8px 8px'
+	},
+	'color-track': {
+		background:
+			'linear-gradient(\n' +
+			'\t\t\tto right,\n' +
+			'\t\t\trgb(255, 0, 0),\n' +
+			'\t\t\trgb(255, 255, 0),\n' +
+			'\t\t\trgb(0, 255, 0),\n' +
+			'\t\t\trgb(0, 255, 255),\n' +
+			'\t\t\trgb(0, 0, 255),\n' +
+			'\t\t\trgb(255, 0, 255),\n' +
+			'\t\t\trgb(255, 0, 0)\n' +
+			'\t\t);'
 	}
 };

@@ -96,6 +96,7 @@ export type KColorPickerSliderProps = {
 	max: number;
 	min: number;
 	step: number;
+	isAlpha: boolean;
 	/**
 	 * 颜色的值
 	 * @type string | RgbaColor | HsvaColor;

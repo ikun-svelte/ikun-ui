@@ -49,9 +49,14 @@
 		};
 	}
 
-	function handleHValueInput(e: CustomEvent){
-		hsvColor.h = e.detail.h
-		defaultHsvColor.h = e.detail.h
+	function handleHValueInput(e: CustomEvent) {
+		hsvColor.h = e.detail.h;
+		defaultHsvColor.h = e.detail.h;
+		dispatch('change', genReturnColor(hsvColor));
+	}
+
+	function handleAValueInput(e: CustomEvent) {
+		hsvColor.a = e.detail.a;
 		dispatch('change', genReturnColor(hsvColor));
 	}
 
@@ -59,17 +64,13 @@
 	$: defaultHsvColor = formatColor('hsv', defaultValue) as HsvaColor;
 
 	const prefixCls = getPrefixCls('color-picker');
-	const popCls = getPrefixCls('color-picker-pop');
-	$: cnames = clsx(
-		prefixCls,
-		cls
-	);
+	const hsbCls = getPrefixCls('color-picker--hsb');
+	const hsCls = getPrefixCls('color-picker--hs');
+	const alphaCls = getPrefixCls('color-picker--alpha');
+	$: cnames = clsx(prefixCls, cls);
 </script>
 
-<KPopover
-	cls={popCls}
-	{placement}
-	{trigger}>
+<KPopover {placement} {trigger}>
 	<div slot="triggerEl">
 		{#if $$slots.default}
 			<slot />
@@ -84,23 +85,24 @@
 			on:change={handleChange}
 			on:changeComplete={handleChangeComplete}
 		></KColorPickerPalette>
-		<div>
-			<div>
+		<div class={hsbCls}>
+			<div class={hsCls}>
 				<KColorPickerSlider
-					cls="my-1"
 					max={360}
 					min={0}
 					step={1}
 					on:input={handleHValueInput}
-					value={hsvColor}>
-				</KColorPickerSlider>
+					value={hsvColor}
+				></KColorPickerSlider>
 				<KColorPickerSlider
-					cls="my-1"
-					max={360}
+					isAlpha
+					on:input={handleAValueInput}
+					cls={alphaCls}
+					max={1}
 					min={0}
-					step={1}
-					value={hsvColor}>
-				</KColorPickerSlider>
+					step={0.01}
+					value={hsvColor}
+				></KColorPickerSlider>
 			</div>
 		</div>
 	</div>
