@@ -107,16 +107,27 @@ export type KColorPickerSliderProps = {
 	attrs: Record<string, string>;
 };
 
+export type KColorPickerBlockProps = {
+	/**
+	 * 颜色的值
+	 * @type string | RgbaColor | HsvaColor;
+	 * @default ''
+	 */
+	value: string | RgbaColor | HsvaColor;
+	cls: ClassValue;
+	attrs: Record<string, string>;
+};
+
 // TODO:
 //  手風琴
-//  slider
+//  🚧 slider
 //  顔色格式轉換
 //  多個 popover
 
 // TODO: Title and Clear
 // TODO: 🚧 颜色选择区
 // TODO: 🚧 颜色选择条
-// TODO: 透明度选择条
+// TODO: 🚧 透明度选择条
 // TODO: HEX 格式输入控件与值输出
 // TODO: HSB 格式输入控件与值输出
 // TODO: RGB 格式输入控件与值输出

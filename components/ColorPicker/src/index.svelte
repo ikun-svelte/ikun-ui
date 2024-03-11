@@ -6,6 +6,7 @@
 	import { colord, type HsvaColor } from 'colord';
 	import KColorPickerPalette from './palette.svelte';
 	import KColorPickerSlider from './slider.svelte';
+	import KColorPickerBlock from './block.svelte';
 	import { createEventDispatcher } from 'svelte';
 	export let allowClear: KColorPickerProps['allowClear'] = false;
 	export let value: KColorPickerProps['value'] = '';
@@ -75,7 +76,7 @@
 		{#if $$slots.default}
 			<slot />
 		{:else}
-			<div>trigger</div>
+			<KColorPickerBlock value={hsvColor} />
 		{/if}
 	</div>
 	<div slot="contentEl" class={cnames} {...$$restProps} {...attrs}>
@@ -87,12 +88,7 @@
 		></KColorPickerPalette>
 		<div class={hsbCls}>
 			<div class={hsCls}>
-				<KColorPickerSlider
-					max={360}
-					min={0}
-					step={1}
-					on:input={handleHValueInput}
-					value={hsvColor}
+				<KColorPickerSlider max={360} min={0} step={1} on:input={handleHValueInput} value={hsvColor}
 				></KColorPickerSlider>
 				<KColorPickerSlider
 					isAlpha
@@ -104,6 +100,7 @@
 					value={hsvColor}
 				></KColorPickerSlider>
 			</div>
+			<KColorPickerBlock value={hsvColor} />
 		</div>
 	</div>
 </KPopover>

@@ -5,8 +5,10 @@ export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker-pointer':
 		'cursor-pointer pa rounded-16px w-14px h-14px bd-3 border-solid border-white',
 	'k-color-picker--hsb': 'fcc mt-12px w-full',
-	'k-color-picker--hs': 'w-full',
+	'k-color-picker--hs': 'w-full mr-12px',
 	'k-color-picker--alpha': 'mt-12px',
+	'k-color-picker-block': 'w-28px h-28px color-block-bg k-transparent-bg rounded-4px',
+	'k-color-picker-block--content': 'w-28px h-28px rounded-4px',
 	'k-color-picker-slider': 'cursor-pointer pr select-none h-8px',
 	'k-color-picker-slider_alpha': 'color-alpha-bg k-transparent-bg ',
 	'k-color-picker-slider--track':
