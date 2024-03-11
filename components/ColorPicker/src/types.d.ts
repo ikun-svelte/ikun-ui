@@ -93,9 +93,9 @@ export type KColorPickerPaletteProps = {
 };
 
 export type KColorPickerSliderProps = {
-	max: number
-	min: number
-	step: number
+	max: number;
+	min: number;
+	step: number;
 	/**
 	 * 颜色的值
 	 * @type string | RgbaColor | HsvaColor;
@@ -108,14 +108,13 @@ export type KColorPickerSliderProps = {
 
 // TODO:
 //  手風琴
-//  顔色選擇
 //  slider
 //  顔色格式轉換
 //  多個 popover
 
 // TODO: Title and Clear
 // TODO: 🚧 颜色选择区
-// TODO: 颜色选择条
+// TODO: 🚧 颜色选择条
 // TODO: 透明度选择条
 // TODO: HEX 格式输入控件与值输出
 // TODO: HSB 格式输入控件与值输出
