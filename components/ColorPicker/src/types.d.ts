@@ -92,6 +92,20 @@ export type KColorPickerPaletteProps = {
 	attrs: Record<string, string>;
 };
 
+export type KColorPickerSliderProps = {
+	max: number
+	min: number
+	step: number
+	/**
+	 * 颜色的值
+	 * @type string | RgbaColor | HsvaColor;
+	 * @default ''
+	 */
+	value: string | RgbaColor | HsvaColor;
+	cls: ClassValue;
+	attrs: Record<string, string>;
+};
+
 // TODO:
 //  手風琴
 //  顔色選擇

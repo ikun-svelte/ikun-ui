@@ -5,6 +5,7 @@
 	import { KPopover } from '@ikun-ui/popover';
 	import { colord, type HsvaColor } from 'colord';
 	import KColorPickerPalette from './palette.svelte';
+	import KColorPickerSlider from './slider.svelte';
 	import { createEventDispatcher } from 'svelte';
 	export let allowClear: KColorPickerProps['allowClear'] = false;
 	export let value: KColorPickerProps['value'] = '';
@@ -34,47 +35,73 @@
 
 	const dispatch = createEventDispatcher();
 	function handleChangeComplete(e: CustomEvent) {
-		dispatch('changeComplete', genReturnColor(e));
+		dispatch('changeComplete', genReturnColor(e.detail));
 	}
 	function handleChange(e: CustomEvent) {
-		dispatch('change', genReturnColor(e));
+		dispatch('change', genReturnColor(e.detail));
 	}
 
-	function genReturnColor(e: CustomEvent) {
+	function genReturnColor(val: HsvaColor) {
 		return {
-			rgb: formatColor('rgb', e.detail),
-			hex: formatColor('hex', e.detail),
-			hsv: formatColor('hsv', e.detail)
+			rgb: formatColor('rgb', val),
+			hex: formatColor('hex', val),
+			hsv: formatColor('hsv', val)
 		};
+	}
+
+	function handleHValueInput(e: CustomEvent){
+		hsvColor.h = e.detail.h
+		defaultHsvColor.h = e.detail.h
+		dispatch('change', genReturnColor(hsvColor));
 	}
 
 	$: hsvColor = formatColor('hsv', value) as HsvaColor;
 	$: defaultHsvColor = formatColor('hsv', defaultValue) as HsvaColor;
 
 	const prefixCls = getPrefixCls('color-picker');
+	const popCls = getPrefixCls('color-picker-pop');
 	$: cnames = clsx(
 		prefixCls,
-		{
-			[`${prefixCls}--base`]: true
-		},
 		cls
 	);
 </script>
 
-<KPopover {placement} {trigger}>
-	<div slot="triggerEl" class={cnames} {...$$restProps} {...attrs}>
+<KPopover
+	cls={popCls}
+	{placement}
+	{trigger}>
+	<div slot="triggerEl">
 		{#if $$slots.default}
 			<slot />
 		{:else}
 			<div>trigger</div>
 		{/if}
 	</div>
-	<div slot="contentEl">
+	<div slot="contentEl" class={cnames} {...$$restProps} {...attrs}>
 		<KColorPickerPalette
 			value={hsvColor}
 			defaultValue={defaultHsvColor}
 			on:change={handleChange}
 			on:changeComplete={handleChangeComplete}
 		></KColorPickerPalette>
+		<div>
+			<div>
+				<KColorPickerSlider
+					cls="my-1"
+					max={360}
+					min={0}
+					step={1}
+					on:input={handleHValueInput}
+					value={hsvColor}>
+				</KColorPickerSlider>
+				<KColorPickerSlider
+					cls="my-1"
+					max={360}
+					min={0}
+					step={1}
+					value={hsvColor}>
+				</KColorPickerSlider>
+			</div>
+		</div>
 	</div>
 </KPopover>
