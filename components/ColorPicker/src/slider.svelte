@@ -13,6 +13,7 @@
 	export let cls: KColorPickerSliderProps['cls'] = '';
 	export let attrs: KColorPickerSliderProps['attrs'] = {};
 
+	// TODO 0000时拽不动
 	let slider: HTMLDivElement | undefined = undefined;
 	$: valueHsv = colord(value).toHsv();
 	$: valueHsvH = valueHsv.h;

@@ -69,14 +69,19 @@
 	const hsCls = getPrefixCls('color-picker--hs');
 	const alphaCls = getPrefixCls('color-picker--alpha');
 	$: cnames = clsx(prefixCls, cls);
+
+	let focus = false;
+	function onDisplayChange(e: CustomEvent) {
+		focus = e.detail;
+	}
 </script>
 
-<KPopover {placement} {trigger}>
+<KPopover {placement} {trigger} on:change={onDisplayChange}>
 	<div slot="triggerEl">
 		{#if $$slots.default}
 			<slot />
 		{:else}
-			<KColorPickerBlock value={hsvColor} />
+			<KColorPickerBlock value={hsvColor} trigger {size} {focus} />
 		{/if}
 	</div>
 	<div slot="contentEl" class={cnames} {...$$restProps} {...attrs}>

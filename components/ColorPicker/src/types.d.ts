@@ -108,12 +108,20 @@ export type KColorPickerSliderProps = {
 };
 
 export type KColorPickerBlockProps = {
+	focus: boolean;
+	trigger: boolean;
 	/**
 	 * 颜色的值
 	 * @type string | RgbaColor | HsvaColor;
 	 * @default ''
 	 */
 	value: string | RgbaColor | HsvaColor;
+	/**
+	 * 触发器大小
+	 * @type IKunSize
+	 * @default 'md'
+	 */
+	size: IKunSize;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
