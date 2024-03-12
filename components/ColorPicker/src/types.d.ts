@@ -133,6 +133,29 @@ export type KColorPickerBlockProps = {
 	attrs: Record<string, string>;
 };
 
+export type KColorPickerFormatProps = {
+	/**
+	 * 禁用透明度
+	 * @type boolean
+	 * @default false
+	 */
+	disabledAlpha?: boolean;
+	/**
+	 * 颜色格式值
+	 * @type 'rgb' | 'hex' | 'hsv'
+	 * @default 'rgb'
+	 */
+	format?: 'rgb' | 'hex' | 'hsv';
+	/**
+	 * 颜色的值
+	 * @type string | RgbaColor | HsvaColor;
+	 * @default ''
+	 */
+	value: string | RgbaColor | HsvaColor;
+	cls: ClassValue;
+	attrs: Record<string, string>;
+};
+
 // TODO:
 //  手風琴
 //  🚧 slider
@@ -172,3 +195,5 @@ export type KColorPickerBlockProps = {
 // TODO: slot default 自定义触发插槽
 
 // TODO: dark mode
+// TODO: Kdropdownitem
+// TODO: input show format

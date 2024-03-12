@@ -7,6 +7,7 @@
 	import KColorPickerPalette from './palette.svelte';
 	import KColorPickerSlider from './slider.svelte';
 	import KColorPickerBlock from './block.svelte';
+	import KColorPickerFormat from './format.svelte';
 	import { createEventDispatcher } from 'svelte';
 	export let allowClear: KColorPickerProps['allowClear'] = false;
 	export let title: KColorPickerProps['title'] = '';
@@ -79,6 +80,11 @@
 		dispatch('change', null);
 	}
 
+	$: formatValue = format
+	function handleFormatInput(e: CustomEvent) {
+		console.log(e.detail)
+	}
+
 	$: hsvColor = formatColor('hsv', value) as HsvaColor;
 	$: defaultHsvColor = formatColor('hsv', defaultValue) as HsvaColor;
 
@@ -88,6 +94,9 @@
 	const headerCls = getPrefixCls('color-picker-header');
 	const clearCls = getPrefixCls('color-picker-clear');
 	const lineCls = getPrefixCls('color-picker-line');
+	$: titleCls = clsx({
+		[`${prefixCls}-title`]: title
+	});
 	const clearClsx = clsx(clearCls, lineCls);
 	const alphaCls = getPrefixCls('color-picker--alpha');
 	$: cnames = clsx(prefixCls, cls);
@@ -104,7 +113,7 @@
 	<div slot="contentEl" class={cnames} {...$$restProps} {...attrs}>
 		<div class={headerCls}>
 			<slot name="title">
-				<span class="k-color-picker-title">{title}</span>
+				<span class="{titleCls}">{title}</span>
 			</slot>
 			{#if allowClear}
 				<div class={clearClsx} aria-hidden="true" on:click={handleClear}></div>
@@ -118,8 +127,13 @@
 		></KColorPickerPalette>
 		<div class={hsbCls}>
 			<div class={hsCls}>
-				<KColorPickerSlider max={360} min={0} step={1} on:input={handleHValueInput} value={hsvColor}
-				></KColorPickerSlider>
+				<KColorPickerSlider
+						max={360}
+						min={0}
+						step={1}
+						on:input={handleHValueInput}
+						value={hsvColor}>
+				</KColorPickerSlider>
 				<KColorPickerSlider
 					isAlpha
 					on:input={handleAValueInput}
@@ -132,5 +146,10 @@
 			</div>
 			<KColorPickerBlock value={hsvColor} />
 		</div>
+		<KColorPickerFormat value={hsvColor}
+							{disabledAlpha}
+							on:change={handleFormatInput}
+							format ={formatValue}>
+		</KColorPickerFormat>
 	</div>
 </KPopover>

@@ -7,7 +7,7 @@ export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker-clear':
 		'w-18px h-18px k-border border-ikun-bd-base rounded-4px cursor-pointer mb-12px',
 	'k-color-picker-palette':
-		'pr overflow-hidden left-0 top-0 rounded-4px w-234px h-160px palette-bg',
+		'pr overflow-hidden left-0 top-0 rounded-4px w-269px h-160px palette-bg',
 	'k-color-picker-pointer':
 		'cursor-pointer pa rounded-16px w-14px h-14px bd-3 border-solid border-white',
 	'k-color-picker--hsb': 'fcc mt-12px w-full',
@@ -36,5 +36,9 @@ export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker-slider--track_alpha':
 		'pa h-8px w-full pointer-events-none box-border top-1/2 rounded-8px left-0 right-0 -translate-y-1/2',
 	'k-color-picker-slider--thumb':
-		'-translate-y-1/2 -translate-x-1/2 border-solid border-white bd-3 box-border pointer-events-none pa h-14px w-14px rounded-full shadow top-1/2'
+		'-translate-y-1/2 -translate-x-1/2 border-solid border-white bd-3 box-border pointer-events-none pa h-14px w-14px rounded-full shadow top-1/2',
+	'k-color-picker-format': 'fsc mt-12px',
+	'k-color-picker-format--val': 'fcc cursor-pointer',
+	'k-color-picker-format--input-num': 'w-50px ml-6px',
+	'k-color-picker-format--input': 'ml-6px',
 };
