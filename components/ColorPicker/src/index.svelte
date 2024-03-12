@@ -9,6 +9,7 @@
 	import KColorPickerBlock from './block.svelte';
 	import { createEventDispatcher } from 'svelte';
 	export let allowClear: KColorPickerProps['allowClear'] = false;
+	export let title: KColorPickerProps['title'] = '';
 	export let value: KColorPickerProps['value'] = '';
 	export let defaultValue: KColorPickerProps['defaultValue'] = '';
 	export let format: KColorPickerProps['format'] = 'rgb';
@@ -36,9 +37,11 @@
 
 	const dispatch = createEventDispatcher();
 	function handleChangeComplete(e: CustomEvent) {
+		isClear = false;
 		dispatch('changeComplete', genReturnColor(e.detail));
 	}
 	function handleChange(e: CustomEvent) {
+		isClear = false;
 		dispatch('change', genReturnColor(e.detail));
 	}
 
@@ -53,12 +56,27 @@
 	function handleHValueInput(e: CustomEvent) {
 		hsvColor.h = e.detail.h;
 		defaultHsvColor.h = e.detail.h;
+		isClear = false;
 		dispatch('change', genReturnColor(hsvColor));
 	}
 
 	function handleAValueInput(e: CustomEvent) {
 		hsvColor.a = e.detail.a;
-		dispatch('change', genReturnColor(hsvColor));
+		isClear = false;
+		dispatch('changeComplete', genReturnColor(hsvColor));
+	}
+
+	let focus = false;
+	function onDisplayChange(e: CustomEvent) {
+		focus = e.detail;
+	}
+
+	let isClear = false;
+	function handleClear() {
+		hsvColor.a = 0;
+		isClear = true;
+		dispatch('clear');
+		dispatch('change', null);
 	}
 
 	$: hsvColor = formatColor('hsv', value) as HsvaColor;
@@ -67,13 +85,12 @@
 	const prefixCls = getPrefixCls('color-picker');
 	const hsbCls = getPrefixCls('color-picker--hsb');
 	const hsCls = getPrefixCls('color-picker--hs');
+	const headerCls = getPrefixCls('color-picker-header');
+	const clearCls = getPrefixCls('color-picker-clear');
+	const lineCls = getPrefixCls('color-picker-line');
+	const clearClsx = clsx(clearCls, lineCls);
 	const alphaCls = getPrefixCls('color-picker--alpha');
 	$: cnames = clsx(prefixCls, cls);
-
-	let focus = false;
-	function onDisplayChange(e: CustomEvent) {
-		focus = e.detail;
-	}
 </script>
 
 <KPopover {placement} {trigger} on:change={onDisplayChange}>
@@ -81,10 +98,18 @@
 		{#if $$slots.default}
 			<slot />
 		{:else}
-			<KColorPickerBlock value={hsvColor} trigger {size} {focus} />
+			<KColorPickerBlock value={hsvColor} trigger {size} {focus} {isClear} />
 		{/if}
 	</div>
 	<div slot="contentEl" class={cnames} {...$$restProps} {...attrs}>
+		<div class={headerCls}>
+			<slot name="title">
+				<span class="k-color-picker-title">{title}</span>
+			</slot>
+			{#if allowClear}
+				<div class={clearClsx} aria-hidden="true" on:click={handleClear}></div>
+			{/if}
+		</div>
 		<KColorPickerPalette
 			value={hsvColor}
 			defaultValue={defaultHsvColor}

@@ -31,7 +31,7 @@
 
 	let trackAlphaBg = '';
 	$: {
-		const v = colord({ ...valueHsv, a: valueHsvA }).toHex();
+		const v = colord({ ...valueHsv, a: 1 }).toHex();
 		trackAlphaBg = !isAlpha ? '' : `linear-gradient(to right, rgba(255, 0, 4, 0), ${v})`;
 	}
 	$: position = Number((((!isAlpha ? valueHsvH : valueHsvA) - min) / (max - min)).toFixed(4));

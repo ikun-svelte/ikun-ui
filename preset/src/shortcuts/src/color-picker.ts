@@ -1,5 +1,11 @@
 export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker': 'm-4px',
+	'k-color-picker-header': 'fbc text-base',
+	'k-color-picker-title': 'mb-12px',
+	'k-color-picker-line':
+		"after:(content-[''] pa right-14px top-15px w-22px h-2px block bg-ikun-error origin-right -rotate-45)",
+	'k-color-picker-clear':
+		'w-18px h-18px k-border border-ikun-bd-base rounded-4px cursor-pointer mb-12px',
 	'k-color-picker-palette':
 		'pr overflow-hidden left-0 top-0 rounded-4px w-234px h-160px palette-bg',
 	'k-color-picker-pointer':
@@ -8,6 +14,8 @@ export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker--hs': 'w-full mr-12px',
 	'k-color-picker--alpha': 'mt-12px',
 	'k-color-picker-block': 'w-28px h-28px color-block-bg k-transparent-bg rounded-4px',
+	'k-color-picker-block-clear':
+		"k-border border-ikun-bd-base rounded-4px pr w-28px h-28px bg-transparent after:(content-[''] pa right-2px top-0 w-32px h-2px block bg-ikun-error origin-right -rotate-45)",
 	'k-color-picker-block--sm': 'w-16px h-16px',
 	'k-color-picker-block--md': 'w-24px h-24px',
 	'k-color-picker-block--lg': 'w-32px h-32px',

@@ -4,6 +4,12 @@ import type { IKunPlacement, IKunSize, IKunTrigger } from '@ikun-ui/utils';
 import type { RgbaColor, HsvaColor } from 'colord';
 export type KColorPickerProps = {
 	/**
+	 * 标题
+	 * @type string ;
+	 * @default ''
+	 */
+	title: string;
+	/**
 	 * 允许清除选择的颜色
 	 * @type boolean
 	 * @default false
@@ -109,6 +115,7 @@ export type KColorPickerSliderProps = {
 
 export type KColorPickerBlockProps = {
 	focus: boolean;
+	isClear: boolean;
 	trigger: boolean;
 	/**
 	 * 颜色的值
@@ -132,7 +139,7 @@ export type KColorPickerBlockProps = {
 //  顔色格式轉換
 //  多個 popover
 
-// TODO: Title and Clear
+// TODO: 🚧 Title and Clear
 // TODO: 🚧 颜色选择区
 // TODO: 🚧 颜色选择条
 // TODO: 🚧 透明度选择条
@@ -142,8 +149,9 @@ export type KColorPickerBlockProps = {
 // TODO: 颜色预设区域
 // TODO: 受控模式
 
-// TODO: props allowClear 允许清除选择的颜色 boolean @default false
+// TODO: 🚧 props allowClear 允许清除选择的颜色 boolean @default false
 // TODO: props value 颜色的值 string @default ''
+// TODO: defaultValue value 初始化时决定线性范围 string @default ''
 // TODO: props format 颜色格式值 rgb | hex | hsb @default rgb
 // TODO: props disabled 禁用颜色选择器 boolean @default false
 // TODO: props disabledAlpha 禁用透明度 boolean @default false
@@ -162,3 +170,5 @@ export type KColorPickerBlockProps = {
 // TODO: slot presetLabel 预设的 label 插槽
 // TODO: slot trigger 后置插槽
 // TODO: slot default 自定义触发插槽
+
+// TODO: dark mode

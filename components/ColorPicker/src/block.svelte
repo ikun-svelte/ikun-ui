@@ -5,6 +5,7 @@
 	import { colord } from 'colord';
 	export let focus: KColorPickerBlockProps['focus'] = false;
 	export let trigger: KColorPickerBlockProps['trigger'] = false;
+	export let isClear: KColorPickerBlockProps['isClear'] = false;
 	export let size: KColorPickerBlockProps['size'] = 'md';
 	export let value: KColorPickerBlockProps['value'] = '';
 	export let cls: KColorPickerBlockProps['cls'] = '';
@@ -17,14 +18,19 @@
 	$: blockBg = colord(value).toHex();
 
 	$: contentSizeCls = clsx({
-		[`${prefixCls}-content--${size}`]: trigger
+		[`${prefixCls}-content--${size}`]: trigger,
+		[`${prefixCls}-content--clear`]: isClear
 	});
 	$: wrapperCls = clsx(`${prefixCls}-w`, {
 		[`${prefixCls}-w--${size}`]: trigger,
 		[`${prefixCls}-w--focus`]: focus
 	});
 	$: cnamesSize = clsx(
-		prefixCls,
+		{
+			[`${prefixCls}`]: !isClear,
+			[`${prefixCls}-clear`]: isClear,
+			[`${prefixCls}--${size}`]: trigger
+		},
 		{
 			[`${prefixCls}--${size}`]: trigger
 		},
