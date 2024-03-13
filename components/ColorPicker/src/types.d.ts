@@ -86,7 +86,7 @@ export type KColorPickerPaletteProps = {
 	 * @type string | RgbaColor | HsvaColor;
 	 * @default ''
 	 */
-	value: HsvaColor;
+	value: string | RgbaColor | HsvaColor;
 	/**
 	 * 默认颜色的值
 	 * @expiremrnt 可能会删除，初始化时决定线性范围，他会根据颜色的 slider 来变化
@@ -160,22 +160,22 @@ export type KColorPickerFormatProps = {
 //  手風琴
 //  🚧 slider
 //  顔色格式轉換
-//  多個 popover
+//  🚧多個 popover
 
 // TODO: 🚧 Title and Clear
 // TODO: 🚧 颜色选择区
 // TODO: 🚧 颜色选择条
 // TODO: 🚧 透明度选择条
-// TODO: HEX 格式输入控件与值输出
-// TODO: HSB 格式输入控件与值输出
-// TODO: RGB 格式输入控件与值输出
+// TODO: 🚧 HEX 格式输入控件与值输出
+// TODO: 🚧 HSB 格式输入控件与值输出
+// TODO: 🚧 RGB 格式输入控件与值输出
 // TODO: 颜色预设区域
 // TODO: 受控模式
 
 // TODO: 🚧 props allowClear 允许清除选择的颜色 boolean @default false
 // TODO: props value 颜色的值 string @default ''
 // TODO: defaultValue value 初始化时决定线性范围 string @default ''
-// TODO: props format 颜色格式值 rgb | hex | hsb @default rgb
+// TODO: 🚧 props format 颜色格式值 rgb | hex | hsb @default rgb
 // TODO: props disabled 禁用颜色选择器 boolean @default false
 // TODO: props disabledAlpha 禁用透明度 boolean @default false
 // TODO: 🚧 props placement unit test
@@ -197,3 +197,9 @@ export type KColorPickerFormatProps = {
 // TODO: dark mode
 // TODO: Kdropdownitem
 // TODO: input show format
+
+// TODO 📌0000时拽不动
+// TODO 📌360 时变成了0
+// TODO: 📌拖拽优化
+// TODO: 📌 Hex input 联动
+// TODO: 📌 事件

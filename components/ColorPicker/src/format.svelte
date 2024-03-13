@@ -4,10 +4,11 @@
     import { KDropdown, KDropdownItem } from "@ikun-ui/dropdown";
     import { KIcon } from "@ikun-ui/icon";
     import { clsx } from 'clsx';
-	import { colord } from 'colord';
+    import {colord } from 'colord';
     import {createEventDispatcher} from "svelte";
     import { KInput } from "@ikun-ui/input";
     import {KInputNumber} from "@ikun-ui/input-number";
+    import {isString} from "baiwusanyu-utils";
 	export let format: KColorPickerFormatProps['format'] = 'rgb';
     export let disabledAlpha: KColorPickerFormatProps['disabledAlpha'] = false;
 	export let value: KColorPickerFormatProps['value'] = '';
@@ -17,29 +18,48 @@
     let hRValue = 0
     let sGValue = 0
     let vBValue = 0
+    let hRMaxValue = 255
+    let sGMaxValue = 255
+    let vBMaxValue = 255
     let alphaValue = 0
     let valueHex = ''
-    $:{
+    function init(
+        formatValue:KColorPickerFormatProps['format'],
+        value:KColorPickerFormatProps['value']){
         if(formatValue === 'rgb'){
             const rgbValue = colord(value).toRgb()
+            hRMaxValue = 255
+            sGMaxValue = 255
+            vBMaxValue = 255
             hRValue = rgbValue.r
             sGValue = rgbValue.g
             vBValue = rgbValue.b
-            alphaValue = rgbValue.a
+            alphaValue = rgbValue.a * 100
         }
 
         if(formatValue === 'hsv'){
             const rgbValue = colord(value).toHsv()
+            hRMaxValue = 360
+            sGMaxValue = 100
+            vBMaxValue = 100
             hRValue = rgbValue.h
             sGValue = rgbValue.s
             vBValue = rgbValue.v
-            alphaValue = rgbValue.a
+            alphaValue = rgbValue.a * 100
         }
 
         if(formatValue === 'hex'){
-            valueHex = colord(value).toHex().replace('#', '')
+            const rgbValue = colord(value).toRgb()
+            if(!isString(value) || (isString(value) && rgbValue.a !== 1)){
+                alphaValue = rgbValue.a * 100
+                valueHex = colord({...rgbValue, a: 1}).toHex().replace('#', '')
+            } else {
+                valueHex = (value as string).replace('#', '')
+            }
         }
-
+    }
+    $:{
+        init(formatValue, value)
     }
 
     $: formatValue = format
@@ -49,6 +69,48 @@
     }
 
     const dispatch = createEventDispatcher();
+    function handleInput(
+        e: CustomEvent,
+        type: 'hr' | 'sg' | 'vb' | 'a' | 'hex'
+    ){
+
+        if(type === 'hr'){
+            hRValue = e.detail
+        }
+        if(type === 'sg'){
+            sGValue = e.detail
+        }
+        if(type === 'vb'){
+            vBValue = e.detail
+        }
+        if(type === 'a'){
+            alphaValue = e.detail
+        }
+        const alpha = alphaValue / 100
+        if(formatValue === 'rgb' ){
+            dispatch('change', {
+                r: hRValue,
+                g: sGValue,
+                b: vBValue,
+                a: alpha
+            })
+        }
+
+        if(formatValue === 'hsv'){
+            dispatch('change', {
+                h: hRValue,
+                s: sGValue,
+                v: vBValue,
+                a: alpha
+            })
+        }
+
+        if(formatValue === 'hex'){
+            const hsv = colord(`#${valueHex}`).toRgb()
+            hsv.a = alpha
+            dispatch('change', colord(hsv).toHex())
+        }
+    }
 
 	const prefixCls = getPrefixCls('color-picker-format');
     const valueCls = `${prefixCls}--val`
@@ -77,14 +139,30 @@
     </KDropdown>
     {#if formatValue !== 'hex'}
         <KInputNumber value={hRValue}
+                      min={1}
+                      step={1}
+                      stepStrictly
+                      max={hRMaxValue}
+                      on:input={(e)=> handleInput(e, 'hr')}
                       cls={inputNumCls}
                       size="sm">
         </KInputNumber>
         <KInputNumber value={sGValue}
+                      min={1}
+                      step={1}
+                      max={sGMaxValue}
+                      stepStrictly
+                      on:input={(e)=> handleInput(e, 'sg')}
                       cls={inputNumCls}
                       size="sm">
         </KInputNumber>
+
         <KInputNumber value={vBValue}
+                      min={1}
+                      step={1}
+                      max={vBMaxValue}
+                      stepStrictly
+                      on:input={(e)=> handleInput(e, 'vb')}
                       cls={inputNumCls}
                       size="sm">
         </KInputNumber>
@@ -92,12 +170,18 @@
     {#if formatValue === 'hex'}
         <KInput value={valueHex}
                 cls={inputCls}
+                on:input={(e)=> handleInput(e, 'hex')}
                 size="sm">
             <span slot="prefix">#</span>
         </KInput>
     {/if}
     {#if !disabledAlpha}
         <KInputNumber value={alphaValue}
+                      min={1}
+                      max={100}
+                      step={1}
+                      stepStrictly
+                      on:input={(e)=> handleInput(e, 'a')}
                       cls={inputNumCls}
                       size="sm">
         </KInputNumber>

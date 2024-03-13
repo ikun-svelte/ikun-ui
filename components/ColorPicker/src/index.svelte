@@ -3,7 +3,7 @@
 	import { clsx } from 'clsx';
 	import type { KColorPickerProps } from './types';
 	import { KPopover } from '@ikun-ui/popover';
-	import { colord, type HsvaColor } from 'colord';
+	import { colord } from 'colord';
 	import KColorPickerPalette from './palette.svelte';
 	import KColorPickerSlider from './slider.svelte';
 	import KColorPickerBlock from './block.svelte';
@@ -24,47 +24,39 @@
 	export let cls: KColorPickerProps['cls'] = '';
 	export let attrs: KColorPickerProps['attrs'] = {};
 
-	// TODO: 三色的传入和穿出，内部统一使用 hsv来处理
-
-	function formatColor(format: KColorPickerProps['format'], color: KColorPickerProps['value']) {
-		if (format === 'rgb') {
-			return colord(color).toRgb();
-		} else if (format === 'hex') {
-			return colord(color).toHex();
-		} else if (format === 'hsv') {
-			return colord(color).toHsv();
-		}
-	}
-
 	const dispatch = createEventDispatcher();
 	function handleChangeComplete(e: CustomEvent) {
+		const res = {...e.detail, a: aColor.a}
+		aColor = res
+		blockColor = res
+		formatterColor = res
 		isClear = false;
-		dispatch('changeComplete', genReturnColor(e.detail));
+		//dispatch('changeComplete', e.detail);
 	}
 	function handleChange(e: CustomEvent) {
+		const res = {...e.detail, a: aColor.a}
+		aColor = res
+		blockColor = res
+		formatterColor = res
 		isClear = false;
-		dispatch('change', genReturnColor(e.detail));
-	}
-
-	function genReturnColor(val: HsvaColor) {
-		return {
-			rgb: formatColor('rgb', val),
-			hex: formatColor('hex', val),
-			hsv: formatColor('hsv', val)
-		};
+		//dispatch('change', e.detail);
 	}
 
 	function handleHValueInput(e: CustomEvent) {
-		hsvColor.h = e.detail.h;
-		defaultHsvColor.h = e.detail.h;
+		const res = {...e.detail, a: aColor.a}
+		aColor = res
+		blockColor = res
+		formatterColor = res
+		defaultPaletteColor = e.detail
 		isClear = false;
-		dispatch('change', genReturnColor(hsvColor));
+		// dispatch('change', e.detail);
 	}
 
 	function handleAValueInput(e: CustomEvent) {
-		hsvColor.a = e.detail.a;
+		blockColor = e.detail
+		formatterColor = e.detail
 		isClear = false;
-		dispatch('changeComplete', genReturnColor(hsvColor));
+		// dispatch('changeComplete', e.detail);
 	}
 
 	let focus = false;
@@ -74,19 +66,28 @@
 
 	let isClear = false;
 	function handleClear() {
-		hsvColor.a = 0;
+		aColor.a = 0
+		blockColor = aColor
+		formatterColor = aColor
 		isClear = true;
-		dispatch('clear');
-		dispatch('change', null);
+		// dispatch('clear');
+		// dispatch('change', null);
 	}
 
 	$: formatValue = format
 	function handleFormatInput(e: CustomEvent) {
-		console.log(e.detail)
+		// colorValue = e.detail
+		// colorHsvValue = colord(colorValue).toHsv();
 	}
 
-	$: hsvColor = formatColor('hsv', value) as HsvaColor;
-	$: defaultHsvColor = formatColor('hsv', defaultValue) as HsvaColor;
+
+	$: paletteColor = value
+	$: defaultPaletteColor = defaultValue
+	$: hColor = colord(value).toHsv();
+	$: aColor = colord(value).toHsv();
+	$: blockColor = value
+	$: formatterColor = value
+
 
 	const prefixCls = getPrefixCls('color-picker');
 	const hsbCls = getPrefixCls('color-picker--hsb');
@@ -102,12 +103,14 @@
 	$: cnames = clsx(prefixCls, cls);
 </script>
 
-<KPopover {placement} {trigger} on:change={onDisplayChange}>
+<KPopover {placement}
+		  {trigger}
+		  on:change={onDisplayChange}>
 	<div slot="triggerEl">
 		{#if $$slots.default}
 			<slot />
 		{:else}
-			<KColorPickerBlock value={hsvColor} trigger {size} {focus} {isClear} />
+			<KColorPickerBlock value={blockColor} trigger {size} {focus} {isClear} />
 		{/if}
 	</div>
 	<div slot="contentEl" class={cnames} {...$$restProps} {...attrs}>
@@ -120,8 +123,8 @@
 			{/if}
 		</div>
 		<KColorPickerPalette
-			value={hsvColor}
-			defaultValue={defaultHsvColor}
+			value={paletteColor}
+			defaultValue={defaultPaletteColor}
 			on:change={handleChange}
 			on:changeComplete={handleChangeComplete}
 		></KColorPickerPalette>
@@ -132,7 +135,7 @@
 						min={0}
 						step={1}
 						on:input={handleHValueInput}
-						value={hsvColor}>
+						value={hColor}>
 				</KColorPickerSlider>
 				<KColorPickerSlider
 					isAlpha
@@ -141,12 +144,12 @@
 					max={1}
 					min={0}
 					step={0.01}
-					value={hsvColor}
+					value={aColor}
 				></KColorPickerSlider>
 			</div>
-			<KColorPickerBlock value={hsvColor} />
+			<KColorPickerBlock value={blockColor} />
 		</div>
-		<KColorPickerFormat value={hsvColor}
+		<KColorPickerFormat value={formatterColor}
 							{disabledAlpha}
 							on:change={handleFormatInput}
 							format ={formatValue}>

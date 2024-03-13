@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { KColorPickerSliderProps } from './types';
-	import { colord } from 'colord';
+	import {colord, type HsvaColor} from 'colord';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import { createEventDispatcher } from 'svelte';
@@ -13,9 +13,8 @@
 	export let cls: KColorPickerSliderProps['cls'] = '';
 	export let attrs: KColorPickerSliderProps['attrs'] = {};
 
-	// TODO 0000时拽不动
 	let slider: HTMLDivElement | undefined = undefined;
-	$: valueHsv = colord(value).toHsv();
+	$: valueHsv = value as HsvaColor;
 	$: valueHsvH = valueHsv.h;
 	$: valueHsvA = !isAlpha ? 100 : valueHsv.a;
 	let valueHex = '';

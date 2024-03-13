@@ -2,7 +2,7 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import { colord } from 'colord';
+	import {colord, type HsvaColor} from 'colord';
 	import type { KColorPickerPaletteProps } from './types.js';
 	import { extend } from 'baiwusanyu-utils';
 	export let cls: KColorPickerPaletteProps['cls'] = '';
@@ -14,6 +14,7 @@
 		v: 100,
 		a: 1
 	};
+	$: hsvColor = colord(value).toHsv()
 	let isDragging = false;
 	let startX = 0;
 	let startY = 0;
@@ -36,8 +37,8 @@
 
 		const s = clamp(mouse.x / width, 0, 1) * 100;
 		const v = clamp((height - mouse.y) / height, 0, 1) * 100;
-		value.h = valueHsvH;
-		return extend(value, { s, v });
+		hsvColor.h = valueHsvH;
+		return extend(hsvColor, { s, v });
 	}
 
 	function handleMouseup() {
@@ -101,18 +102,18 @@
 		dispatch('change', getCurColorVal(width, height));
 	}
 
-	export function setPickerPos(val: KColorPickerPaletteProps['value']) {
+	export function setPickerPos(val: HsvaColor) {
 		if (dragElement && containerElement) {
 			const { width, height } = containerElement!.getBoundingClientRect();
 			const sNormalized = val.s / 100;
 			const vNormalized = val.v / 100;
 			const mouseX = sNormalized * width;
 			const mouseY = height - vNormalized * height;
-			value.h = valueHsvH;
+			hsvColor.h = valueHsvH;
 			updatePickerPos(mouseX - 8, mouseY - 8);
 		}
 	}
-	onMount(() => setTimeout(() => setPickerPos(value), 300));
+	onMount(() => setTimeout(() => setPickerPos(hsvColor), 300));
 
 	$: valueHsvH = colord(defaultValue).toHsv().h;
 	$: bgColorVal = colord(defaultValue).toHex();
