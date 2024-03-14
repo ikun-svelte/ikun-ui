@@ -43,8 +43,8 @@
             sGMaxValue = 100
             vBMaxValue = 100
             hRValue = rgbValue.h
-            sGValue = rgbValue.s
-            vBValue = rgbValue.v
+            sGValue = rgbValue.s * 100
+            vBValue = rgbValue.v * 100
             alphaValue = rgbValue.a * 100
         }
 
@@ -89,26 +89,35 @@
         const alpha = alphaValue / 100
         if(formatValue === 'rgb' ){
             dispatch('change', {
-                r: hRValue,
-                g: sGValue,
-                b: vBValue,
-                a: alpha
+                value: {
+                    r: hRValue,
+                    g: sGValue,
+                    b: vBValue,
+                    a: alpha
+                },
+                format: formatValue
             })
         }
 
         if(formatValue === 'hsv'){
             dispatch('change', {
-                h: hRValue,
-                s: sGValue,
-                v: vBValue,
-                a: alpha
+                value: {
+                    h: hRValue,
+                    s: sGValue,
+                    v: vBValue,
+                    a: alpha
+                },
+                format: formatValue
             })
         }
 
         if(formatValue === 'hex'){
             const hsv = tinycolor(`#${valueHex}`).toRgb()
             hsv.a = alpha
-            dispatch('change', tinycolor(hsv).toHex())
+            dispatch('change', {
+                value: tinycolor(hsv).toHex(),
+                format: formatValue
+            })
         }
     }
 

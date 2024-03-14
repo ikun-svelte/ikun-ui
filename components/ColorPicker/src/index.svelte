@@ -43,16 +43,18 @@
 	}
 
 	function handleHValueInput(e: CustomEvent) {
+
 		const res = {...e.detail, a: aColor.a}
-		aColor = res
-		blockColor = res
-		formatterColor = res
-		defaultPaletteColor = e.detail
+		aColor = { ...aColor, h:res.h, a:res.a }
+		blockColor = { ...blockColor, h:res.h, a:res.a }
+		formatterColor = { ...formatterColor, h:res.h, a:res.a }
+		defaultPaletteColor = { ...defaultPaletteColor, h:res.h, a:res.a }
 		isClear = false;
 		// dispatch('change', e.detail);
 	}
 
 	function handleAValueInput(e: CustomEvent) {
+		console.log(e.detail)
 		blockColor = e.detail
 		formatterColor = e.detail
 		isClear = false;
@@ -74,8 +76,24 @@
 		// dispatch('change', null);
 	}
 
+	let paletteRef: any = null
 	$: formatValue = format
 	function handleFormatInput(e: CustomEvent) {
+		const hsv = tinycolor(e.detail.value).toHsv() as HsvaColor;
+		hsv.s = hsv.s * 100
+		hsv.v = hsv.v * 100
+		formatValue = e.detail.format
+
+		blockColor = hsv
+		paletteColor = hsv
+		aColor =hsv
+		hColor = hsv
+		defaultPaletteColor = {...hColor, s:100, v:100, a: 100}
+		formatterColor = hsv
+		if(paletteRef){
+			paletteRef.setPickerPos(paletteColor)
+		}
+
 		// colorValue = e.detail
 		// colorHsvValue = colord(colorValue).toHsv();
 	}
@@ -133,6 +151,7 @@
 			{/if}
 		</div>
 		<KColorPickerPalette
+			bind:this={paletteRef}
 			value={paletteColor}
 			defaultValue={defaultPaletteColor}
 			on:change={handleChange}

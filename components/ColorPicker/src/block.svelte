@@ -15,7 +15,7 @@
 	const contentCls = `${prefixCls}-content`;
 
 	$: cnames = clsx(prefixCls, cls);
-	$: blockBg = `#${tinycolor(value).toHex()}`
+	$: blockBg = tinycolor(value).toRgbString()
 
 	$: contentSizeCls = clsx({
 		[`${prefixCls}-content--${size}`]: trigger,

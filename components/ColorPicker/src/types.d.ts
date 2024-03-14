@@ -200,7 +200,6 @@ export type KColorPickerFormatProps = {
 // TODO 📌0000时拽不动
 // TODO 📌360 时变成了0
 // TODO: 📌拖拽优化
-// TODO: 📌 Hex input 联动
 // TODO: 📌 事件
 
 export interface RgbaColor {
