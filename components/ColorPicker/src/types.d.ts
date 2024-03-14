@@ -1,7 +1,6 @@
 /// <reference types="svelte" />
 import type { ClassValue } from 'clsx';
 import type { IKunPlacement, IKunSize, IKunTrigger } from '@ikun-ui/utils';
-import type { RgbaColor, HsvaColor } from 'colord';
 export type KColorPickerProps = {
 	/**
 	 * 标题
@@ -203,3 +202,17 @@ export type KColorPickerFormatProps = {
 // TODO: 📌拖拽优化
 // TODO: 📌 Hex input 联动
 // TODO: 📌 事件
+
+export interface RgbaColor {
+	r: number
+	g: number
+	b: number
+	a: number
+}
+
+export interface HsvaColor{
+	h: number
+	s: number
+	v: number
+	a: number
+}

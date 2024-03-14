@@ -4,7 +4,7 @@
     import { KDropdown, KDropdownItem } from "@ikun-ui/dropdown";
     import { KIcon } from "@ikun-ui/icon";
     import { clsx } from 'clsx';
-    import {colord } from 'colord';
+    import tinycolor from 'tinycolor2';
     import {createEventDispatcher} from "svelte";
     import { KInput } from "@ikun-ui/input";
     import {KInputNumber} from "@ikun-ui/input-number";
@@ -27,7 +27,7 @@
         formatValue:KColorPickerFormatProps['format'],
         value:KColorPickerFormatProps['value']){
         if(formatValue === 'rgb'){
-            const rgbValue = colord(value).toRgb()
+            const rgbValue = tinycolor(value).toRgb()
             hRMaxValue = 255
             sGMaxValue = 255
             vBMaxValue = 255
@@ -38,7 +38,7 @@
         }
 
         if(formatValue === 'hsv'){
-            const rgbValue = colord(value).toHsv()
+            const rgbValue = tinycolor(value).toHsv()
             hRMaxValue = 360
             sGMaxValue = 100
             vBMaxValue = 100
@@ -49,10 +49,10 @@
         }
 
         if(formatValue === 'hex'){
-            const rgbValue = colord(value).toRgb()
+            const rgbValue = tinycolor(value).toRgb()
             if(!isString(value) || (isString(value) && rgbValue.a !== 1)){
                 alphaValue = rgbValue.a * 100
-                valueHex = colord({...rgbValue, a: 1}).toHex().replace('#', '')
+                valueHex = tinycolor({...rgbValue, a: 1}).toHex().replace('#', '')
             } else {
                 valueHex = (value as string).replace('#', '')
             }
@@ -106,9 +106,9 @@
         }
 
         if(formatValue === 'hex'){
-            const hsv = colord(`#${valueHex}`).toRgb()
+            const hsv = tinycolor(`#${valueHex}`).toRgb()
             hsv.a = alpha
-            dispatch('change', colord(hsv).toHex())
+            dispatch('change', tinycolor(hsv).toHex())
         }
     }
 

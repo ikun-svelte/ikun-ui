@@ -2,8 +2,8 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import {colord, type HsvaColor} from 'colord';
-	import type { KColorPickerPaletteProps } from './types.js';
+	import tinycolor  from "tinycolor2";
+	import type { KColorPickerPaletteProps, HsvaColor } from './types.js';
 	import { extend } from 'baiwusanyu-utils';
 	export let cls: KColorPickerPaletteProps['cls'] = '';
 	export let attrs: KColorPickerPaletteProps['attrs'] = {};
@@ -14,7 +14,7 @@
 		v: 100,
 		a: 1
 	};
-	$: hsvColor = colord(value).toHsv()
+	$: hsvColor = value as HsvaColor
 	let isDragging = false;
 	let startX = 0;
 	let startY = 0;
@@ -115,8 +115,8 @@
 	}
 	onMount(() => setTimeout(() => setPickerPos(hsvColor), 300));
 
-	$: valueHsvH = colord(defaultValue).toHsv().h;
-	$: bgColorVal = colord(defaultValue).toHex();
+	$: valueHsvH = tinycolor(defaultValue).toHsv().h;
+	$: bgColorVal = tinycolor(defaultValue).toHex();
 	const prefixCls = getPrefixCls('color-picker-palette');
 	$: cnames = clsx(
 		prefixCls,
@@ -135,7 +135,7 @@
 	on:mousedown|preventDefault={handleMousedown}
 	on:mouseup|preventDefault={handleMouseup}
 	bind:this={containerElement}
-	style:background-color={bgColorVal}
+	style:background-color={`#${bgColorVal}`}
 	{...$$restProps}
 	{...attrs}
 >

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { KColorPickerSliderProps } from './types';
-	import {colord, type HsvaColor} from 'colord';
+	import type { HsvaColor, KColorPickerSliderProps } from "./types";
+	import tinycolor from 'tinycolor2';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import { createEventDispatcher } from 'svelte';
@@ -25,13 +25,13 @@
 			h: valueHsvH,
 			a: valueHsvA
 		};
-		valueHex = colord(v).toHex();
+		valueHex = `#${tinycolor(v).toHex()}`
 	}
 
 	let trackAlphaBg = '';
 	$: {
-		const v = colord({ ...valueHsv, a: 1 }).toHex();
-		trackAlphaBg = !isAlpha ? '' : `linear-gradient(to right, rgba(255, 0, 4, 0), ${v})`;
+		const v = tinycolor({ ...valueHsv, a: 1 }).toHex();
+		trackAlphaBg = !isAlpha ? '' : `linear-gradient(to right, rgba(255, 0, 4, 0), #${v})`;
 	}
 	$: position = Number((((!isAlpha ? valueHsvH : valueHsvA) - min) / (max - min)).toFixed(4));
 

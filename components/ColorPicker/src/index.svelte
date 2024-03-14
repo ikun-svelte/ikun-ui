@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KColorPickerProps } from './types';
+	import type { HsvaColor, KColorPickerProps } from "./types";
 	import { KPopover } from '@ikun-ui/popover';
-	import { colord } from 'colord';
+	import tinycolor from 'tinycolor2';
 	import KColorPickerPalette from './palette.svelte';
 	import KColorPickerSlider from './slider.svelte';
 	import KColorPickerBlock from './block.svelte';
@@ -81,13 +81,23 @@
 	}
 
 
-	$: paletteColor = value
-	$: defaultPaletteColor = defaultValue
-	$: hColor = colord(value).toHsv();
-	$: aColor = colord(value).toHsv();
-	$: blockColor = value
-	$: formatterColor = value
+	let hsvValue:HsvaColor = { h:0, s: 0, v: 0, a: 100}
+	let hsvDefaultValue:HsvaColor = { h:0, s: 0, v: 0, a: 100}
+  $: {
+		hsvValue = tinycolor(value).toHsv() as HsvaColor;
+		hsvValue.s = hsvValue.s * 100
+		hsvValue.v = hsvValue.v * 100
 
+		hsvDefaultValue = tinycolor(defaultValue).toHsv();
+		hsvDefaultValue.s = hsvDefaultValue.s * 100
+		hsvDefaultValue.v = hsvDefaultValue.v * 100
+	}
+	$: paletteColor = hsvValue
+	$: defaultPaletteColor = hsvDefaultValue
+	$: hColor = hsvValue
+	$: aColor = hsvValue
+	$: blockColor = hsvValue
+	$: formatterColor = hsvValue
 
 	const prefixCls = getPrefixCls('color-picker');
 	const hsbCls = getPrefixCls('color-picker--hsb');

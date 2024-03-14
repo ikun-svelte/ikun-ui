@@ -2,7 +2,7 @@
 	import type { KColorPickerBlockProps } from './types';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import { colord } from 'colord';
+	import tinycolor from 'tinycolor2';
 	export let focus: KColorPickerBlockProps['focus'] = false;
 	export let trigger: KColorPickerBlockProps['trigger'] = false;
 	export let isClear: KColorPickerBlockProps['isClear'] = false;
@@ -15,7 +15,7 @@
 	const contentCls = `${prefixCls}-content`;
 
 	$: cnames = clsx(prefixCls, cls);
-	$: blockBg = colord(value).toHex();
+	$: blockBg = `#${tinycolor(value).toHex()}`
 
 	$: contentSizeCls = clsx({
 		[`${prefixCls}-content--${size}`]: trigger,

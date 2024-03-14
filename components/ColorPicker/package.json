@@ -41,7 +41,7 @@
 		"@ikun-ui/checkbox-group": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"esm-env": "^1.0.0",
-		"colord": "^2.9.3",
+		"tinycolor2": "^1.6.0",
 		"baiwusanyu-utils": "^1.0.18",
 		"clsx": "^2.0.0",
 		"svelte": "^4.2.7"
@@ -49,6 +49,7 @@
 	"devDependencies": {
 		"@sveltejs/package": "^2.2.5",
 		"@tsconfig/svelte": "^5.0.2",
+		"@types/tinycolor2": "^1.4.6",
 		"tslib": "^2.6.2",
 		"typescript": "^5.3.3"
 	}
