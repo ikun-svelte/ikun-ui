@@ -7,11 +7,11 @@
 	import { extend } from 'baiwusanyu-utils';
 	export let cls: KColorPickerPaletteProps['cls'] = '';
 	export let attrs: KColorPickerPaletteProps['attrs'] = {};
-	export let value: KColorPickerPaletteProps['value'] = { h: 0, s: 100, v: 100, a: 1 };
+	export let value: KColorPickerPaletteProps['value'] = { h: 0, s: 1, v: 1, a: 1 };
 	export let defaultValue: KColorPickerPaletteProps['defaultValue'] = {
 		h: 0,
-		s: 100,
-		v: 100,
+		s: 1,
+		v: 1,
 		a: 1
 	};
 	$: hsvColor = value as HsvaColor;

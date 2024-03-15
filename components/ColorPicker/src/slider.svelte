@@ -16,12 +16,12 @@
 	let slider: HTMLDivElement | undefined = undefined;
 	$: valueHsv = value as HsvaColor;
 	$: valueHsvH = valueHsv.h;
-	$: valueHsvA = !isAlpha ? 100 : valueHsv.a;
+	$: valueHsvA = !isAlpha ? 1 : valueHsv.a;
 	let valueHex = '';
 	$: {
 		const v = {
-			s: !isAlpha ? 100 : valueHsv.s,
-			v: !isAlpha ? 100 : valueHsv.v,
+			s: !isAlpha ? 1 : valueHsv.s,
+			v: !isAlpha ? 1 : valueHsv.v,
 			h: valueHsvH,
 			a: valueHsvA
 		};

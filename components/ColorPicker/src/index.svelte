@@ -31,7 +31,7 @@
 		if (format === 'hsv') {
 			return tinycolor(value).toHsvString();
 		}
-		return tinycolor(value).toHexString();
+		return tinycolor(value).toHex8String();
 	}
 
 	const dispatch = createEventDispatcher();
@@ -99,15 +99,13 @@
 	$: formatValue = format;
 	function handleFormatInput(e: CustomEvent) {
 		const hsv = tinycolor(e.detail.value).toHsv() as HsvaColor;
-		hsv.s = hsv.s * 100;
-		hsv.v = hsv.v * 100;
 		formatValue = e.detail.format;
 
 		blockColor = hsv;
 		paletteColor = hsv;
 		aColor = hsv;
 		hColor = hsv;
-		defaultPaletteColor = { ...hColor, s: 100, v: 100, a: 100 };
+		defaultPaletteColor = { ...hColor, s: 1, v: 1, a: 1 };
 		formatterColor = hsv;
 		if (paletteRef) {
 			paletteRef.setPickerPos(paletteColor);
@@ -120,20 +118,16 @@
 		dispatch('formatChange', formatValue);
 	}
 
-	let hsvValue: HsvaColor = { h: 0, s: 0, v: 0, a: 100 };
+	let hsvValue: HsvaColor = { h: 0, s: 0, v: 0, a: 1 };
 	$: {
 		if (!isDragging) {
 			hsvValue = tinycolor(value).toHsv() as HsvaColor;
-			hsvValue.s = hsvValue.s * 100;
-			hsvValue.v = hsvValue.v * 100;
 		}
 	}
 
-	let hsvDefaultValue: HsvaColor = { h: 0, s: 0, v: 0, a: 100 };
+	let hsvDefaultValue: HsvaColor = { h: 0, s: 0, v: 0, a: 1 };
 	$: {
 		hsvDefaultValue = tinycolor(defaultValue).toHsv();
-		hsvDefaultValue.s = hsvDefaultValue.s * 100;
-		hsvDefaultValue.v = hsvDefaultValue.v * 100;
 	}
 	$: paletteColor = hsvValue;
 	$: defaultPaletteColor = hsvDefaultValue;

@@ -91,12 +91,12 @@
 		const alpha = alphaValue / 100;
 		if (formatValue === 'rgb') {
 			dispatch('change', {
-				value: {
+				value: tinycolor({
 					r: hRValue,
 					g: sGValue,
 					b: vBValue,
 					a: alpha
-				},
+				}).toHsv(),
 				format: formatValue
 			});
 		}
@@ -114,10 +114,10 @@
 		}
 
 		if (formatValue === 'hex') {
-			const hsv = tinycolor(`#${valueHex}`).toRgb();
+			const hsv = tinycolor(`#${valueHex}`).toHsv();
 			hsv.a = alpha;
 			dispatch('change', {
-				value: tinycolor(hsv).toHex(),
+				value: hsv,
 				format: formatValue
 			});
 		}

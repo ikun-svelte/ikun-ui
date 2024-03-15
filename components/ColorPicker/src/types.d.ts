@@ -199,8 +199,6 @@ export type KColorPickerFormatProps = {
 // TODO: dark mode
 // TODO: Kdropdownitem
 // TODO: input show format
-// TODO: ❗ platte mouseup alpha
-// TODO: ❗ h slider alpha
 export interface RgbaColor {
 	r: number;
 	g: number;
