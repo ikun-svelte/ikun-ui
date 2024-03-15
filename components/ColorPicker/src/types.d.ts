@@ -186,7 +186,7 @@ export type KColorPickerFormatProps = {
 // TODO: 🚧 event change 颜色变化的回调 (color: string) => void
 // TODO: 🚧 event changeComplete 颜色选择完成的回调 (color: string) => void
 
-// TODO:  event formatChange 颜色格式变化的回调 (format: 'hex' | 'rgb' | 'hsb') => void
+// TODO: 🚧 event formatChange 颜色格式变化的回调 (format: 'hex' | 'rgb' | 'hsb') => void
 // TODO: 🚧 event openChange 当 open 被改变时的回调 (open: boolean) => void
 // TODO: 🚧 event clear 清除的回调 () => void
 

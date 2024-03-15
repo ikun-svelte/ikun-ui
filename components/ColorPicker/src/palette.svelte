@@ -2,7 +2,7 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import tinycolor  from "tinycolor2";
+	import tinycolor from 'tinycolor2';
 	import type { KColorPickerPaletteProps, HsvaColor } from './types.js';
 	import { extend } from 'baiwusanyu-utils';
 	export let cls: KColorPickerPaletteProps['cls'] = '';
@@ -14,7 +14,7 @@
 		v: 100,
 		a: 1
 	};
-	$: hsvColor = value as HsvaColor
+	$: hsvColor = value as HsvaColor;
 	let isDragging = false;
 	let startX = 0;
 	let startY = 0;

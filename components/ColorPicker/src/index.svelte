@@ -107,6 +107,10 @@
 			paletteRef.setPickerPos(paletteColor);
 		}
 		dispatch('change', formatColor(formatValue, blockColor));
+	}
+
+	function handleFormatChange(e: CustomEvent) {
+		formatValue = e.detail;
 		dispatch('formatChange', formatValue);
 	}
 
@@ -199,6 +203,7 @@
 				value={formatterColor}
 				{disabledAlpha}
 				on:change={handleFormatInput}
+				on:formatChange={handleFormatChange}
 				format={formatValue}
 			></KColorPickerFormat>
 		</div>

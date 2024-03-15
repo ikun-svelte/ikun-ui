@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { HsvaColor, KColorPickerSliderProps } from "./types";
+	import type { HsvaColor, KColorPickerSliderProps } from './types';
 	import tinycolor from 'tinycolor2';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
@@ -25,7 +25,7 @@
 			h: valueHsvH,
 			a: valueHsvA
 		};
-		valueHex = `#${tinycolor(v).toHex()}`
+		valueHex = `#${tinycolor(v).toHex()}`;
 	}
 
 	let trackAlphaBg = '';
