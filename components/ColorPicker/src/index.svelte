@@ -146,7 +146,7 @@
 	const clearCls = getPrefixCls('color-picker-clear');
 	const lineCls = getPrefixCls('color-picker-line');
 	$: triggerCls = clsx({
-		[`${prefixCls}-trigger`]: disabled
+		[`${prefixCls}-trigger--disabled`]: disabled
 	});
 
 	$: txtCls = clsx({
@@ -165,7 +165,7 @@
 		{#if $$slots.default}
 			<slot {blockColor} />
 		{:else}
-			<KColorPickerBlock value={blockColor} trigger {size} {focus} {isClear}>
+			<KColorPickerBlock {disabled} value={blockColor} trigger {size} {focus} {isClear}>
 				<div slot="text" class={txtCls} style:display={showText ? 'initial' : 'none'}>
 					{#if showText}
 						<slot name="text">
