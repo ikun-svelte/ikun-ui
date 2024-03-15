@@ -25,7 +25,8 @@
 			h: valueHsvH,
 			a: valueHsvA
 		};
-		valueHex = `#${tinycolor(v).toHex()}`;
+		// console.log(valueHsvA)
+		valueHex = tinycolor(v).toRgbString();
 	}
 
 	let trackAlphaBg = '';

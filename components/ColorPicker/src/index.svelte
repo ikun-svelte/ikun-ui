@@ -57,8 +57,10 @@
 	}
 
 	function handleHValueInput(e: CustomEvent) {
+		// console.log(aColor)
 		const res = { ...e.detail, a: aColor.a };
 		aColor = { ...aColor, h: res.h, a: res.a };
+		// console.log(aColor)
 		blockColor = { ...blockColor, h: res.h, a: res.a };
 		formatterColor = { ...formatterColor, h: res.h, a: res.a };
 		defaultPaletteColor = { ...defaultPaletteColor, h: res.h, a: res.a };
@@ -70,6 +72,7 @@
 	}
 
 	function handleAValueInput(e: CustomEvent) {
+		aColor.a = e.detail.a;
 		blockColor = e.detail;
 		formatterColor = e.detail;
 		isClear = false;

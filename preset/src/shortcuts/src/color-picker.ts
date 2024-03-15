@@ -15,7 +15,7 @@ export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker--alpha': 'mt-12px',
 	'k-color-picker-block': 'w-28px h-28px color-block-bg k-transparent-bg rounded-4px',
 	'k-color-picker-block-clear':
-		"k-border border-ikun-bd-base rounded-4px pr w-28px h-28px bg-transparent after:(content-[''] pa right-2px top-0 w-32px h-2px block bg-ikun-error origin-right -rotate-45)",
+		"color-block-bg k-border border-ikun-bd-base rounded-4px pr w-28px h-28px k-transparent-bg after:(content-[''] pa right-2px top-0 w-32px h-2px block bg-ikun-error origin-right -rotate-45)",
 	'k-color-picker-block--sm': 'w-16px h-16px',
 	'k-color-picker-block--md': 'w-24px h-24px',
 	'k-color-picker-block--lg': 'w-32px h-32px',
