@@ -75,6 +75,7 @@
 
 	const dispatch = createEventDispatcher();
 	function handleInput(e: CustomEvent, type: 'hr' | 'sg' | 'vb' | 'a' | 'hex') {
+		if (e.detail === null) return;
 		if (type === 'hr') {
 			hRValue = e.detail;
 		}
@@ -145,7 +146,7 @@
 	{#if formatValue !== 'hex'}
 		<KInputNumber
 			value={hRValue}
-			min={1}
+			min={0}
 			step={1}
 			stepStrictly
 			max={hRMaxValue}
@@ -155,7 +156,7 @@
 		></KInputNumber>
 		<KInputNumber
 			value={sGValue}
-			min={1}
+			min={0}
 			step={1}
 			max={sGMaxValue}
 			stepStrictly
@@ -166,7 +167,7 @@
 
 		<KInputNumber
 			value={vBValue}
-			min={1}
+			min={0}
 			step={1}
 			max={vBMaxValue}
 			stepStrictly

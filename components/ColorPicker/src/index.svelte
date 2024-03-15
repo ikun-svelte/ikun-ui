@@ -115,12 +115,14 @@
 	}
 
 	let hsvValue: HsvaColor = { h: 0, s: 0, v: 0, a: 100 };
-	let hsvDefaultValue: HsvaColor = { h: 0, s: 0, v: 0, a: 100 };
 	$: {
 		hsvValue = tinycolor(value).toHsv() as HsvaColor;
 		hsvValue.s = hsvValue.s * 100;
 		hsvValue.v = hsvValue.v * 100;
+	}
 
+	let hsvDefaultValue: HsvaColor = { h: 0, s: 0, v: 0, a: 100 };
+	$: {
 		hsvDefaultValue = tinycolor(defaultValue).toHsv();
 		hsvDefaultValue.s = hsvDefaultValue.s * 100;
 		hsvDefaultValue.v = hsvDefaultValue.v * 100;
@@ -158,7 +160,6 @@
 				<div slot="text" class={txtCls} style:display={showText ? 'initial' : 'none'}>
 					{#if showText}
 						<slot name="text">
-							{formatValue}
 							{formatColor(formatValue, blockColor)}
 						</slot>
 					{/if}
