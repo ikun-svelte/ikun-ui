@@ -16,7 +16,7 @@ export type KColorPickerProps = {
 	allowClear?: boolean;
 	/**
 	 * 默认颜色的值
-	 * @expiremrnt 可能会删除，初始化时决定线性范围，他会根据颜色的 slider 来变化
+	 * @expiremrnt 决定线性范围，他会根据颜色的 slider 来变化
 	 * @type string | RgbaColor | HsvaColor;
 	 * @default ''
 	 */
@@ -88,7 +88,7 @@ export type KColorPickerPaletteProps = {
 	value: string | RgbaColor | HsvaColor;
 	/**
 	 * 默认颜色的值
-	 * @expiremrnt 可能会删除，初始化时决定线性范围，他会根据颜色的 slider 来变化
+	 * @expiremrnt 决定线性范围，他会根据颜色的 slider 来变化
 	 * @type string | RgbaColor | HsvaColor;
 	 * @default ''
 	 */
@@ -199,7 +199,6 @@ export type KColorPickerFormatProps = {
 // TODO: Kdropdownitem
 // TODO: input show format
 
-// TODO 📌0000时拽不动
 // TODO 📌360 时变成了0
 // TODO: 📌拖拽优化
 export interface RgbaColor {

@@ -36,6 +36,7 @@
 
 	const dispatch = createEventDispatcher();
 	function handleChangeComplete(e: CustomEvent) {
+		isDragging = false;
 		const res = { ...e.detail, a: aColor.a };
 		aColor = res;
 		blockColor = res;
@@ -43,7 +44,10 @@
 		isClear = false;
 		dispatch('changeComplete', formatColor(formatValue, blockColor));
 	}
+
+	let isDragging = false;
 	function handleChange(e: CustomEvent) {
+		isDragging = true;
 		const res = { ...e.detail, a: aColor.a };
 		aColor = res;
 		blockColor = res;
@@ -66,7 +70,6 @@
 	}
 
 	function handleAValueInput(e: CustomEvent) {
-		console.log(e.detail);
 		blockColor = e.detail;
 		formatterColor = e.detail;
 		isClear = false;
@@ -116,9 +119,11 @@
 
 	let hsvValue: HsvaColor = { h: 0, s: 0, v: 0, a: 100 };
 	$: {
-		hsvValue = tinycolor(value).toHsv() as HsvaColor;
-		hsvValue.s = hsvValue.s * 100;
-		hsvValue.v = hsvValue.v * 100;
+		if (!isDragging) {
+			hsvValue = tinycolor(value).toHsv() as HsvaColor;
+			hsvValue.s = hsvValue.s * 100;
+			hsvValue.v = hsvValue.v * 100;
+		}
 	}
 
 	let hsvDefaultValue: HsvaColor = { h: 0, s: 0, v: 0, a: 100 };
