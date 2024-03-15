@@ -199,8 +199,6 @@ export type KColorPickerFormatProps = {
 // TODO: Kdropdownitem
 // TODO: input show format
 
-// TODO 📌360 时变成了0
-// TODO: 📌拖拽优化
 export interface RgbaColor {
 	r: number;
 	g: number;

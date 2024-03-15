@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import tinycolor from 'tinycolor2';
@@ -54,19 +54,8 @@
 	}
 
 	let ClickPos = { x: 0, y: 0 };
-	function pickerMousedown(event: MouseEvent) {
-		isDragging = true;
-		containerBounds = containerElement!.getBoundingClientRect();
-		ClickPos = {
-			x: event.clientX,
-			y: event.clientY
-		};
-		startX = event.clientX - offsetX;
-		startY = event.clientY - offsetY;
-	}
-
 	function handleMouseMove(event: MouseEvent) {
-		if (event.clientX - ClickPos.x < 10 && event.clientY - ClickPos.y < 10) {
+		if (Math.abs(event.clientX - ClickPos.x) < 10 && Math.abs(event.clientY - ClickPos.y) < 10) {
 			return;
 		}
 		if (isDragging && dragElement) {
@@ -83,6 +72,17 @@
 		}
 	}
 
+	function pickerMousedown(event: MouseEvent) {
+		isDragging = true;
+		containerBounds = containerElement!.getBoundingClientRect();
+		ClickPos = {
+			x: event.clientX,
+			y: event.clientY
+		};
+		startX = event.clientX - offsetX;
+		startY = event.clientY - offsetY;
+	}
+
 	let dragLeft = '-99px';
 	let dragTop = '-99px';
 	function updatePickerPos<T = string | number>(x: T, y: T) {
@@ -96,10 +96,12 @@
 
 	let mouse = { x: 0, y: 0 };
 	function onClick(e: { clientX: number; clientY: number }) {
-		const { width, left, height, top } = containerElement!.getBoundingClientRect();
-		mouse = { x: clamp(e.clientX - left, 0, width), y: clamp(e.clientY - top, 0, height) };
-		updatePickerPos(mouse.x - 8, mouse.y - 8);
-		dispatch('change', getCurColorVal(width, height));
+		if (containerElement) {
+			const { width, left, height, top } = containerElement!.getBoundingClientRect();
+			mouse = { x: clamp(e.clientX - left, 0, width), y: clamp(e.clientY - top, 0, height) };
+			updatePickerPos(mouse.x - 8, mouse.y - 8);
+			dispatch('change', getCurColorVal(width, height));
+		}
 	}
 
 	export function setPickerPos(val: HsvaColor) {
@@ -113,7 +115,14 @@
 			updatePickerPos(mouseX - 8, mouseY - 8);
 		}
 	}
-	onMount(() => setTimeout(() => setPickerPos(hsvColor), 300));
+	onMount(() => {
+		setTimeout(() => setPickerPos(hsvColor), 300);
+		window.addEventListener('mousemove', handleMouseMove);
+	});
+
+	onDestroy(() => {
+		window.removeEventListener('mousemove', handleMouseMove);
+	});
 
 	$: valueHsvH = tinycolor(defaultValue).toHsv().h;
 	$: bgColorVal = tinycolor(defaultValue).toHex();
@@ -131,7 +140,6 @@
 <div
 	class={cnames}
 	aria-hidden="true"
-	on:mousemove={handleMouseMove}
 	on:mousedown|preventDefault={handleMousedown}
 	on:mouseup|preventDefault={handleMouseup}
 	bind:this={containerElement}
