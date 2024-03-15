@@ -183,11 +183,12 @@ export type KColorPickerFormatProps = {
 // TODO: props showText 触发器是否显示文本 boolean @default false
 // TODO: 🚧 props trigger unit test
 
-// TODO: event change 颜色变化的回调 (value: Color, hex: string) => void
-// TODO: event changeComplete 颜色选择完成的回调 (value: Color) => void
-// TODO: event formatChange 颜色格式变化的回调 (format: 'hex' | 'rgb' | 'hsb') => void
-// TODO: event openChange 当 open 被改变时的回调 (open: boolean) => void
-// TODO: event clear 清除的回调 () => void
+// TODO: 🚧 event change 颜色变化的回调 (color: string) => void
+// TODO: 🚧 event changeComplete 颜色选择完成的回调 (color: string) => void
+
+// TODO: 🚧 event formatChange 颜色格式变化的回调 (format: 'hex' | 'rgb' | 'hsb') => void
+// TODO: 🚧 event openChange 当 open 被改变时的回调 (open: boolean) => void
+// TODO: 🚧 event clear 清除的回调 () => void
 
 // TODO: slot presetLabel 预设的 label 插槽
 // TODO: slot trigger 后置插槽
@@ -203,15 +204,15 @@ export type KColorPickerFormatProps = {
 // TODO: 📌 事件
 
 export interface RgbaColor {
-	r: number
-	g: number
-	b: number
-	a: number
+	r: number;
+	g: number;
+	b: number;
+	a: number;
 }
 
-export interface HsvaColor{
-	h: number
-	s: number
-	v: number
-	a: number
+export interface HsvaColor {
+	h: number;
+	s: number;
+	v: number;
+	a: number;
 }
