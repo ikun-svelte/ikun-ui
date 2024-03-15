@@ -172,11 +172,11 @@ export type KColorPickerFormatProps = {
 // TODO: 受控模式
 
 // TODO: 🚧 props allowClear 允许清除选择的颜色 boolean @default false
-// TODO: props value 颜色的值 string @default ''
-// TODO: defaultValue value 初始化时决定线性范围 string @default ''
+// TODO: 🚧 props value 颜色的值 string @default ''
+// TODO: 🚧 defaultValue value 初始化时决定线性范围 string @default ''
 // TODO: 🚧 props format 颜色格式值 rgb | hex | hsb @default rgb
 // TODO: props disabled 禁用颜色选择器 boolean @default false
-// TODO: props disabledAlpha 禁用透明度 boolean @default false
+// TODO: 🚧 props disabledAlpha 禁用透明度 boolean @default false
 // TODO: 🚧 props placement unit test
 // TODO: props presets 预设的颜色  { label: string, colors: Array<string | Color>, defaultOpen?: boolean }[] @default undefined
 // TODO: props size 触发器大小 IkunSize @default 'md'
@@ -198,7 +198,7 @@ export type KColorPickerFormatProps = {
 // TODO: dark mode
 // TODO: Kdropdownitem
 // TODO: input show format
-
+// TODO: ❗ clear alpha
 export interface RgbaColor {
 	r: number;
 	g: number;

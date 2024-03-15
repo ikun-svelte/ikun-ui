@@ -193,15 +193,17 @@
 				<div class={hsCls}>
 					<KColorPickerSlider max={360} min={0} step={1} on:input={handleHValueInput} value={hColor}
 					></KColorPickerSlider>
-					<KColorPickerSlider
-						isAlpha
-						on:input={handleAValueInput}
-						cls={alphaCls}
-						max={1}
-						min={0}
-						step={0.01}
-						value={aColor}
-					></KColorPickerSlider>
+					{#if !disabledAlpha}
+						<KColorPickerSlider
+							isAlpha
+							on:input={handleAValueInput}
+							cls={alphaCls}
+							max={1}
+							min={0}
+							step={0.01}
+							value={aColor}
+						></KColorPickerSlider>
+					{/if}
 				</div>
 				<KColorPickerBlock value={blockColor} />
 			</div>
