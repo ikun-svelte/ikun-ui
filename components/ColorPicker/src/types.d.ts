@@ -158,8 +158,8 @@ export type KColorPickerFormatProps = {
 // TODO:
 //  手風琴
 //  🚧 slider
-//  顔色格式轉換
-//  🚧多個 popover
+//  🚧 顔色格式轉換
+//  🚧 多個 popover
 
 // TODO: 🚧 Title and Clear
 // TODO: 🚧 颜色选择区
@@ -175,7 +175,7 @@ export type KColorPickerFormatProps = {
 // TODO: 🚧 props value 颜色的值 string @default ''
 // TODO: 🚧 defaultValue value 初始化时决定线性范围 string @default ''
 // TODO: 🚧 props format 颜色格式值 rgb | hex | hsb @default rgb
-// TODO: props disabled 禁用颜色选择器 boolean @default false
+// TODO: ❗ props disabled 禁用颜色选择器 boolean @default false
 // TODO: 🚧 props disabledAlpha 禁用透明度 boolean @default false
 // TODO: 🚧 props placement unit test
 // TODO: props presets 预设的颜色  { label: string, colors: Array<string | Color>, defaultOpen?: boolean }[] @default undefined

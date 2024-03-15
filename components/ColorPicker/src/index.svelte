@@ -145,6 +145,10 @@
 	const headerCls = getPrefixCls('color-picker-header');
 	const clearCls = getPrefixCls('color-picker-clear');
 	const lineCls = getPrefixCls('color-picker-line');
+	$: triggerCls = clsx({
+		[`${prefixCls}-trigger`]: disabled
+	});
+
 	$: txtCls = clsx({
 		[`${prefixCls}-txt`]: showText
 	});
@@ -156,8 +160,8 @@
 	$: cnames = clsx(prefixCls, cls);
 </script>
 
-<KPopover {placement} {trigger} on:change={onDisplayChange} arrow={false}>
-	<div slot="triggerEl">
+<KPopover {placement} {disabled} {trigger} on:change={onDisplayChange} arrow={false}>
+	<div slot="triggerEl" class={triggerCls}>
 		{#if $$slots.default}
 			<slot {blockColor} />
 		{:else}
