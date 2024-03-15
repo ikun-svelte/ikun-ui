@@ -22,9 +22,10 @@ export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker-block-w':
 		'p-4px box-border rounded-4px k-border border-ikun-bd-base cursor-pointer fcc hover:border-ikun-main',
 	'k-color-picker-block-w--focus': 'border-ikun-main k-color-picker-shadow',
-	'k-color-picker-block-w--sm': 'w-24px h-24px',
-	'k-color-picker-block-w--md': 'w-32px h-32px',
-	'k-color-picker-block-w--lg': 'w-40px h-40px',
+	'k-color-picker-block-w--sm': 'min-w-24px h-24px',
+	'k-color-picker-block-w--md': 'min-w-32px h-32px',
+	'k-color-picker-txt': 'ml-4px',
+	'k-color-picker-block-w--lg': 'min-w-40px h-40px',
 	'k-color-picker-block-content': 'w-28px h-28px rounded-4px',
 	'k-color-picker-block-content--sm': 'w-16px h-16px rounded-4px',
 	'k-color-picker-block-content--md': 'w-24px h-24px rounded-4px',
@@ -40,5 +41,5 @@ export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker-format': 'fsc mt-12px',
 	'k-color-picker-format--val': 'fcc cursor-pointer',
 	'k-color-picker-format--input-num': 'w-50px ml-6px',
-	'k-color-picker-format--input': 'ml-6px',
+	'k-color-picker-format--input': 'ml-6px'
 };

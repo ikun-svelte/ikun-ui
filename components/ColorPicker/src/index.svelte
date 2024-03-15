@@ -134,6 +134,9 @@
 	const headerCls = getPrefixCls('color-picker-header');
 	const clearCls = getPrefixCls('color-picker-clear');
 	const lineCls = getPrefixCls('color-picker-line');
+	$: txtCls = clsx({
+		[`${prefixCls}-txt`]: showText
+	});
 	$: titleCls = clsx({
 		[`${prefixCls}-title`]: title
 	});
@@ -142,12 +145,21 @@
 	$: cnames = clsx(prefixCls, cls);
 </script>
 
-<KPopover {placement} {trigger} on:change={onDisplayChange}>
+<KPopover {placement} {trigger} on:change={onDisplayChange} arrow={false}>
 	<div slot="triggerEl">
 		{#if $$slots.default}
-			<slot />
+			<slot {blockColor} />
 		{:else}
-			<KColorPickerBlock value={blockColor} trigger {size} {focus} {isClear} />
+			<KColorPickerBlock value={blockColor} trigger {size} {focus} {isClear}>
+				<div slot="text" class={txtCls} style:display={showText ? 'initial' : 'none'}>
+					{#if showText}
+						<slot name="text">
+							{formatValue}
+							{formatColor(formatValue, blockColor)}
+						</slot>
+					{/if}
+				</div>
+			</KColorPickerBlock>
 		{/if}
 	</div>
 	<div slot="contentEl" class={cnames} {...$$restProps} {...attrs}>
@@ -159,39 +171,36 @@
 				<div class={clearClsx} aria-hidden="true" on:click={handleClear}></div>
 			{/if}
 		</div>
-		<KColorPickerPalette
-			bind:this={paletteRef}
-			value={paletteColor}
-			defaultValue={defaultPaletteColor}
-			on:change={handleChange}
-			on:changeComplete={handleChangeComplete}
-		></KColorPickerPalette>
-		<div class={hsbCls}>
-			<div class={hsCls}>
-				<KColorPickerSlider
-					max={360}
-					min={0}
-					step={1}
-					on:input={handleHValueInput}
-					value={hColor}
-				></KColorPickerSlider>
-				<KColorPickerSlider
-					isAlpha
-					on:input={handleAValueInput}
-					cls={alphaCls}
-					max={1}
-					min={0}
-					step={0.01}
-					value={aColor}
-				></KColorPickerSlider>
+		<div>
+			<KColorPickerPalette
+				bind:this={paletteRef}
+				value={paletteColor}
+				defaultValue={defaultPaletteColor}
+				on:change={handleChange}
+				on:changeComplete={handleChangeComplete}
+			></KColorPickerPalette>
+			<div class={hsbCls}>
+				<div class={hsCls}>
+					<KColorPickerSlider max={360} min={0} step={1} on:input={handleHValueInput} value={hColor}
+					></KColorPickerSlider>
+					<KColorPickerSlider
+						isAlpha
+						on:input={handleAValueInput}
+						cls={alphaCls}
+						max={1}
+						min={0}
+						step={0.01}
+						value={aColor}
+					></KColorPickerSlider>
+				</div>
+				<KColorPickerBlock value={blockColor} />
 			</div>
-			<KColorPickerBlock value={blockColor} />
+			<KColorPickerFormat
+				value={formatterColor}
+				{disabledAlpha}
+				on:change={handleFormatInput}
+				format={formatValue}
+			></KColorPickerFormat>
 		</div>
-		<KColorPickerFormat
-			value={formatterColor}
-			{disabledAlpha}
-			on:change={handleFormatInput}
-			format={formatValue}
-		></KColorPickerFormat>
 	</div>
 </KPopover>

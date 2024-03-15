@@ -15,7 +15,7 @@
 	const contentCls = `${prefixCls}-content`;
 
 	$: cnames = clsx(prefixCls, cls);
-	$: blockBg = tinycolor(value).toRgbString()
+	$: blockBg = tinycolor(value).toRgbString();
 
 	$: contentSizeCls = clsx({
 		[`${prefixCls}-content--${size}`]: trigger,
@@ -43,6 +43,7 @@
 		<div class={cnamesSize} {...$$restProps} {...attrs}>
 			<div class={contentSizeCls} style:background-color={blockBg}></div>
 		</div>
+		<slot name="text" />
 	</div>
 {:else}
 	<div class={cnames} {...$$restProps} {...attrs}>

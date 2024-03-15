@@ -180,19 +180,20 @@ export type KColorPickerFormatProps = {
 // TODO: 🚧 props placement unit test
 // TODO: props presets 预设的颜色  { label: string, colors: Array<string | Color>, defaultOpen?: boolean }[] @default undefined
 // TODO: props size 触发器大小 IkunSize @default 'md'
-// TODO: props showText 触发器是否显示文本 boolean @default false
+// TODO: 🚧 props showText 触发器是否显示文本 boolean @default false
 // TODO: 🚧 props trigger unit test
 
 // TODO: 🚧 event change 颜色变化的回调 (color: string) => void
 // TODO: 🚧 event changeComplete 颜色选择完成的回调 (color: string) => void
 
-// TODO: 🚧 event formatChange 颜色格式变化的回调 (format: 'hex' | 'rgb' | 'hsb') => void
+// TODO:  event formatChange 颜色格式变化的回调 (format: 'hex' | 'rgb' | 'hsb') => void
 // TODO: 🚧 event openChange 当 open 被改变时的回调 (open: boolean) => void
 // TODO: 🚧 event clear 清除的回调 () => void
 
 // TODO: slot presetLabel 预设的 label 插槽
-// TODO: slot trigger 后置插槽
-// TODO: slot default 自定义触发插槽
+// TODO: 🚧 slot text 后置插槽(参数颜色值)
+// TODO: 🚧 slot default 自定义触发插槽
+// TODO: 🚧 slot title 标题插槽
 
 // TODO: dark mode
 // TODO: Kdropdownitem
@@ -201,7 +202,6 @@ export type KColorPickerFormatProps = {
 // TODO 📌0000时拽不动
 // TODO 📌360 时变成了0
 // TODO: 📌拖拽优化
-// TODO: 📌 事件
 
 export interface RgbaColor {
 	r: number;
