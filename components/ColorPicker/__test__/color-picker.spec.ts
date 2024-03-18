@@ -135,7 +135,6 @@ describe('Test: KColorPicker', () => {
 				value: '#1677FF',
 				defaultValue: '#1677FF',
 				format: 'hex',
-				disabled: true
 			}
 		});
 
