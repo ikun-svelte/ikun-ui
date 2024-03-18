@@ -68,7 +68,7 @@
 		"clean:deps": "node scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "node scripts/new-component.js skeleton"
+		"create:new:comp": "node scripts/new-component.js color-picker"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.18",
@@ -145,7 +145,8 @@
 		"@ikun-ui/segmented": "workspace:*",
 		"@ikun-ui/steps": "workspace:*",
 		"@ikun-ui/auto-complete": "workspace:*",
-		"@ikun-ui/skeleton": "workspace:*"
+		"@ikun-ui/skeleton": "workspace:*",
+		"@ikun-ui/color-picker": "workspace:*"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.1.0",

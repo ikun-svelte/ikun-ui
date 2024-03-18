@@ -18,6 +18,10 @@
 	export let indeterminate: KCheckboxProps['indeterminate'] = false;
 	export let cls: KCheckboxProps['cls'] = undefined;
 	export let attrs: KCheckboxProps['attrs'] = {};
+	/**
+	 * @internal
+	 */
+	export let canCancel: KCheckboxProps['canCancel'] = false;
 	// updateValue
 	const dispatch = createEventDispatcher();
 
@@ -43,6 +47,9 @@
 	 */
 	const handleUpdateValue = () => {
 		if (isDisabled) return;
+		if (canCancel && valueInner) {
+			return;
+		}
 		doUpdatedValue(!valueInner, true);
 		isIndeterminate = false;
 		// Being in a checkbox group does not trigger it

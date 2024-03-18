@@ -1,3 +1,4 @@
+import { colorPickerShortcuts } from './src/color-picker';
 import { skeletonShortcuts } from './src/skeleton';
 import { autoCompleteShortcuts } from './src/auto-complete';
 import { stepsShortcuts } from './src/steps';
@@ -66,6 +67,8 @@ export const defaultShortcuts = [
 	commonShortcuts,
 	// don't remove
 	// anchor defaultShortcuts
+	// color-picker
+	colorPickerShortcuts,
 	// skeleton
 	skeletonShortcuts,
 	// auto-complete
@@ -181,6 +184,7 @@ export const defaultShortcuts = [
 export function getSafeList() {
 	// don't remove
 	// anchor shortcuts
+	const colorPickerList = Object.keys(colorPickerShortcuts);
 	const skeletonList = Object.keys(skeletonShortcuts);
 	const autoCompleteList = Object.keys(autoCompleteShortcuts);
 	const stepsList = Object.keys(stepsShortcuts);
@@ -241,6 +245,7 @@ export function getSafeList() {
 	let res = iconList
 		// don't remove
 		// anchor list
+		.concat(colorPickerList)
 		.concat(skeletonList)
 		.concat(autoCompleteList)
 		.concat(stepsList)
@@ -370,3 +375,4 @@ export { segmentedShortcuts } from './src/segmented';
 export { stepsShortcuts } from './src/steps';
 export { autoCompleteShortcuts } from './src/auto-complete';
 export { skeletonShortcuts } from './src/skeleton';
+export { colorPickerShortcuts } from './src/color-picker';

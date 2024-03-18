@@ -35,7 +35,7 @@
 	}
 	onMount(() => {
 		// Register event, KForm can set KInput value
-		if (formContext && formInstance) {
+		if (formContext && formInstance && field) {
 			formUpdateField(true);
 			formPropsChangeCb(formInstance.__dynamicProps);
 			formInstance.__itemCompMap[field] = {
