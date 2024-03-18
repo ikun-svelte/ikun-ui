@@ -3,6 +3,9 @@ import type { ClassValue } from 'clsx';
 import { IKunSize } from '@ikun-ui/utils';
 
 export type KCheckboxProps = {
+	checkColor: string;
+	bgCheckColor: string;
+	bgUnCheckColor: string;
 	label: string;
 	value: boolean;
 	uid: string | number;

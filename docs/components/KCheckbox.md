@@ -63,6 +63,9 @@ The `indeterminate` property can help you to achieve a 'check all' effect.
 | ------------- | ------------------------ | ------- | -------------------------------------------------------------------------------------------- |
 | label         | `string`                 | `-`     | Label of the `checkbox`                                                                      |
 | value         | `boolean`                | `false` | Binding value                                                                                |
+| checkColor           | `string`                 | `-`     | Icon color when selected |
+| bgCheckColor `string`                 | `-`     | Background color when selected |
+| bgUnCheckColor `string`                 | `-`     | Background color when not selected |
 | uid           | `string`                 | `-`     | The unique value of the `checkbox` component, must be passed when wrapped by `checkboxGroup` |
 | size          | `sm \| md \| lg`         | `md`    | size of `checkbox`.                                                                          |
 | disabled      | `boolean`                | `false` | Whether the `checkbox` is disabled                                                           |
