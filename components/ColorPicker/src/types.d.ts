@@ -177,11 +177,11 @@ export type KColorPickerFormatProps = {
 // TODO: 🚧 props format 颜色格式值 rgb | hex | hsb @default rgb
 // TODO: 🚧 props disabled 禁用颜色选择器 boolean @default false
 // TODO: 🚧 props disabledAlpha 禁用透明度 boolean @default false
-// TODO: 🚧 props placement unit test
+// TODO: ✅ props placement
 // TODO: 🚧 props presets 预设的颜色  { label: string, colors: Array<string | Color>, defaultOpen?: boolean }[] @default undefined
-// TODO: 🚧 props size 触发器大小 IkunSize @default 'md'
-// TODO: 🚧 props showText 触发器是否显示文本 boolean @default false
-// TODO: 🚧 props trigger unit test
+// TODO: ✅ props size 触发器大小 IkunSize @default 'md'
+// TODO: ✅ props showText 触发器是否显示文本 boolean @default false
+// TODO: ✅ props trigger unit test
 
 // TODO: 🚧 event change 颜色变化的回调 (color: string) => void
 // TODO: 🚧 event changeComplete 颜色选择完成的回调 (color: string) => void
