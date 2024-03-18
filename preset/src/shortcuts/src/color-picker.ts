@@ -43,5 +43,6 @@ export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker-format': 'fsc mt-12px',
 	'k-color-picker-format--val': 'fcc cursor-pointer',
 	'k-color-picker-format--input-num': 'w-50px ml-6px',
-	'k-color-picker-format--input': 'ml-6px'
+	'k-color-picker-format--input': 'ml-6px',
+	'k-color-picker-preset--icon': 'op50 k-icon-transition'
 };

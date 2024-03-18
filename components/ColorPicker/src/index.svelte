@@ -8,6 +8,7 @@
 	import KColorPickerSlider from './slider.svelte';
 	import KColorPickerBlock from './block.svelte';
 	import KColorPickerFormat from './format.svelte';
+	import KColorPickerPreset from './preset.svelte';
 	import { createEventDispatcher } from 'svelte';
 	export let allowClear: KColorPickerProps['allowClear'] = false;
 	export let title: KColorPickerProps['title'] = '';
@@ -17,7 +18,7 @@
 	export let disabled: KColorPickerProps['disabled'] = false;
 	export let disabledAlpha: KColorPickerProps['disabledAlpha'] = false;
 	export let placement: KColorPickerProps['placement'] = 'top';
-	export let presets: KColorPickerProps['presets'] = undefined;
+	export let presets: KColorPickerProps['presets'] = [];
 	export let size: KColorPickerProps['size'] = 'md';
 	export let showText: KColorPickerProps['showText'] = false;
 	export let trigger: KColorPickerProps['trigger'] = 'click';
@@ -135,6 +136,7 @@
 	$: aColor = hsvValue;
 	$: blockColor = hsvValue;
 	$: formatterColor = hsvValue;
+	$: presetColor = hsvValue;
 
 	const prefixCls = getPrefixCls('color-picker');
 	const hsbCls = getPrefixCls('color-picker--hsb');
@@ -215,6 +217,9 @@
 				on:formatChange={handleFormatChange}
 				format={formatValue}
 			></KColorPickerFormat>
+			{#if presets && presets.length}
+				<KColorPickerPreset value={presetColor} {presets}></KColorPickerPreset>
+			{/if}
 		</div>
 	</div>
 </KPopover>

@@ -107,8 +107,8 @@
 	export function setPickerPos(val: HsvaColor) {
 		if (dragElement && containerElement) {
 			const { width, height } = containerElement!.getBoundingClientRect();
-			const sNormalized = val.s / 100;
-			const vNormalized = val.v / 100;
+			const sNormalized = val.s;
+			const vNormalized = val.v;
 			const mouseX = sNormalized * width;
 			const mouseY = height - vNormalized * height;
 			hsvColor.h = valueHsvH;

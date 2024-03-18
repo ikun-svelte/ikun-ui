@@ -56,7 +56,7 @@ export type KColorPickerProps = {
 	 * @type { label: string, colors: Array<string | Color>, defaultOpen?: boolean }[]
 	 * @default undefined
 	 */
-	presets?: boolean;
+	presets?: KColorPickerPreset[];
 	/**
 	 * 触发器大小
 	 * @type IKunSize
@@ -212,3 +212,25 @@ export interface HsvaColor {
 	v: number;
 	a: number;
 }
+
+export interface KColorPickerPreset {
+	defaultOpen?: boolean;
+	label: string;
+	colors: string[] | RgbaColor[] | HsvaColor[];
+}
+export type KColorPickerPresetProps = {
+	/**
+	 * 颜色的值
+	 * @type string | RgbaColor | HsvaColor;
+	 * @default ''
+	 */
+	value: string | RgbaColor | HsvaColor;
+	/**
+	 * 预设颜色的值
+	 * @type string[] | RgbaColor[] | HsvaColor[];
+	 * @default ''
+	 */
+	presets: KColorPickerPreset[];
+	cls: ClassValue;
+	attrs: Record<string, string>;
+};
