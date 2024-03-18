@@ -44,5 +44,10 @@ export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker-format--val': 'fcc cursor-pointer',
 	'k-color-picker-format--input-num': 'w-50px ml-6px',
 	'k-color-picker-format--input': 'ml-6px',
-	'k-color-picker-preset--icon': 'op50 k-icon-transition'
+	'k-color-picker-preset--icon': 'op50 k-icon-transition',
+	'k-color-picker-preset--container': 'mt-12px cursor-pointer',
+	'k-color-picker-preset--head': 'fsc',
+	'k-color-picker-preset--label': 'text-12px ml-4px',
+	'k-color-picker-preset--color': 'grid mt-12px gap-6px grid-cols-11',
+	'k-color-picker-preset--checkbox': 'w-18px h-18px rounded-4px'
 };

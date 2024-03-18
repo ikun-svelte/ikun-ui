@@ -119,6 +119,23 @@
 		dispatch('formatChange', formatValue);
 	}
 
+	function handlePresetChange(e: CustomEvent) {
+		const v = tinycolor(e.detail[0]).toHsv() as HsvaColor;
+		const res = { ...v, a: aColor.a };
+		defaultPaletteColor = { ...defaultPaletteColor, h: res.h, a: res.a };
+		blockColor = { ...res, a: res.a };
+		formatterColor = { ...res, a: res.a };
+		paletteColor = { ...res, a: res.a };
+		presetColor = res;
+		if (paletteRef) {
+			paletteRef.setPickerPos(paletteColor);
+		}
+		isClear = false;
+		const resolveColor = formatColor(formatValue, blockColor);
+		dispatch('change', resolveColor);
+		dispatch('changeComplete', resolveColor);
+	}
+
 	let hsvValue: HsvaColor = { h: 0, s: 0, v: 0, a: 1 };
 	$: {
 		if (!isDragging) {
@@ -218,7 +235,11 @@
 				format={formatValue}
 			></KColorPickerFormat>
 			{#if presets && presets.length}
-				<KColorPickerPreset value={presetColor} {presets}></KColorPickerPreset>
+				<KColorPickerPreset
+					value={presetColor}
+					on:change={handlePresetChange}
+					{presets}
+				></KColorPickerPreset>
 			{/if}
 		</div>
 	</div>

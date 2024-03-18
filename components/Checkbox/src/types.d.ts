@@ -8,6 +8,7 @@ export type KCheckboxProps = {
 	bgUnCheckColor: string;
 	label: string;
 	value: boolean;
+	canCancel: boolean;
 	uid: string | number;
 	size: IKunSize;
 	disabled: boolean;
