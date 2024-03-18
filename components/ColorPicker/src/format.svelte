@@ -134,8 +134,7 @@
 	<KDropdown on:command={onSelectFormat} trigger="click">
 		<div class={valueCls}>
 			{curFormat}
-			<KIcon icon="i-carbon-chevron-down" width="auto" height="auto" cls="text-ikun-bd-base"
-			></KIcon>
+			<KIcon icon="i-carbon-chevron-down" width="auto" height="auto" cls="op50"></KIcon>
 		</div>
 		<div slot="dropdown">
 			<KDropdownItem command="rgb">RGB</KDropdownItem>
