@@ -157,7 +157,6 @@ export type KColorPickerFormatProps = {
 };
 
 // TODO:
-//  手風琴
 //  🚧 slider
 //  🚧 顔色格式轉換
 //  🚧 多個 popover
@@ -191,14 +190,12 @@ export type KColorPickerFormatProps = {
 // TODO: 🚧 event openChange 当 open 被改变时的回调 (open: boolean) => void
 // TODO: 🚧 event clear 清除的回调 () => void
 
-// TODO: slot presetLabel 预设的 label 插槽
+// TODO: 🚧 slot presetLabel 预设的 label 插槽
 // TODO: 🚧 slot text 后置插槽(参数颜色值)
 // TODO: 🚧 slot default 自定义触发插槽
 // TODO: 🚧 slot title 标题插槽
 
 // TODO: dark mode
-// TODO: Kdropdownitem
-// TODO: input show format
 export interface RgbaColor {
 	r: number;
 	g: number;

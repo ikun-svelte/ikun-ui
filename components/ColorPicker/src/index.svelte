@@ -234,13 +234,12 @@
 				on:formatChange={handleFormatChange}
 				format={formatValue}
 			></KColorPickerFormat>
-			{#if presets && presets.length}
-				<KColorPickerPreset
-					value={presetColor}
-					on:change={handlePresetChange}
-					{presets}
-				></KColorPickerPreset>
-			{/if}
+			<slot name="preset" {presetColor} {handlePresetChange}>
+				{#if presets && presets.length}
+					<KColorPickerPreset value={presetColor} on:change={handlePresetChange} {presets}
+					></KColorPickerPreset>
+				{/if}
+			</slot>
 		</div>
 	</div>
 </KPopover>
