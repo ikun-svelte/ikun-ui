@@ -39,6 +39,7 @@
 	const prefixCls = getPrefixCls('segmented-item');
 	$: cnames = clsx(
 		`${prefixCls}--${size}`,
+		`${prefixCls}__dark`,
 		{
 			[prefixCls]: !disabled,
 			[`${prefixCls}--disabled`]: disabled,
@@ -47,7 +48,8 @@
 		cls
 	);
 	$: activeCls = clsx({
-		[`${prefixCls}--active`]: isActive
+		[`${prefixCls}--active`]: isActive,
+		[`${prefixCls}--active__dark`]: isActive
 	});
 	const labelCls = `${prefixCls}--label`;
 	const iconCls = `${prefixCls}--icon`;

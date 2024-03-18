@@ -47,6 +47,7 @@
 	const prefixCls = getPrefixCls('segmented');
 	$: cnames = clsx(
 		prefixCls,
+		`${prefixCls}__dark`,
 		{
 			[`${prefixCls}-block`]: block
 		},
