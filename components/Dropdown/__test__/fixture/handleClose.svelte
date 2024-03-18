@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { KButton } from '@ikun-ui/button';
-	import { KDropdown, DropdownItem } from '@ikun-ui/dropdown';
+	import { KDropdown, KDropdownItem } from '@ikun-ui/dropdown';
 
 	let dorpdownRef: any = null;
 	const handleShow = (v: boolean) => {
@@ -17,7 +17,7 @@
 		>Dropdown List</KButton
 	>
 	<div slot="dropdown">
-		<DropdownItem command="白发三千丈">白发三千丈</DropdownItem>
+		<KDropdownItem command="白发三千丈">白发三千丈</KDropdownItem>
 	</div>
 </KDropdown>
 <button data-testid="handle_close" id="handle_close" on:click={() => handleShow(false)}>open</button
