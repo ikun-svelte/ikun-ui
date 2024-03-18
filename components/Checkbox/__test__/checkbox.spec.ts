@@ -122,6 +122,36 @@ describe('Test: KCheckBox', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: checkColor & bgCheckColor ', async () => {
+		new KCheckBox({
+			target: host,
+			props: {
+				value: true,
+				checkColor: 'text-red',
+				bgCheckColor: 'blue'
+			}
+		});
+		await tick();
+		expect(host.innerHTML.includes('border-ikun-main" style="background-color: blue')).toBeTruthy();
+		expect(host.innerHTML.includes('i-carbon-checkmark text-red')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: bgUnCheckColor ', async () => {
+		new KCheckBox({
+			target: host,
+			props: {
+				value: false,
+				bgUnCheckColor: 'green'
+			}
+		});
+		await tick();
+		expect(
+			host.innerHTML.includes('k-checkbox--box" style="background-color: green;')
+		).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('event: should trigger updateValue event', async () => {
 		const mockFn = vi.fn();
 		let value = false;

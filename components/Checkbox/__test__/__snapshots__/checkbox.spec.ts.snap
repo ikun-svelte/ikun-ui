@@ -1,5 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Test: KCheckBox > props: bgUnCheckColor  1`] = `"<label class="k-checkbox--base k-checkbox--base__dark k-checkbox--md"><input type="checkbox" value="false" hidden=""> <div class="k-checkbox--box" style="background-color: green;"> </div> </label>"`;
+
+exports[`Test: KCheckBox > props: checkColor & bgCheckColor  1`] = `"<label class="k-checkbox--base k-checkbox--base__dark k-checkbox--md"><input type="checkbox" value="true" hidden=""> <div class="k-checkbox--box bg-ikun-main border-ikun-main" style="background-color: blue;"><div><span class="k-icon--base k-icon-transition i-carbon-checkmark text-red" role="" aria-hidden="true"></span></div> </div> </label>"`;
+
 exports[`Test: KCheckBox > props: disabled 1`] = `"<label class="k-checkbox--base k-checkbox--base__dark k-checkbox--md k-cur-disabled"><input disabled="" type="checkbox" value="false" hidden=""> <div class="k-checkbox--box k-checkbox--box__disabled"> </div> </label>"`;
 
 exports[`Test: KCheckBox > props: indeterminate 1`] = `"<label class="k-checkbox--base k-checkbox--base__dark k-checkbox--md"><input type="checkbox" value="false" hidden=""> <div class="k-checkbox--box"> </div> </label>"`;

@@ -11,6 +11,9 @@
 	export let value: KCheckboxProps['value'] = false;
 	export let uid: KCheckboxProps['uid'] = '';
 	export let size: KCheckboxProps['size'] = 'md';
+	export let checkColor: KCheckboxProps['checkColor'] = 'text-white';
+	export let bgCheckColor: KCheckboxProps['bgCheckColor'] = '';
+	export let bgUnCheckColor: KCheckboxProps['bgUnCheckColor'] = '';
 	export let disabled: KCheckboxProps['disabled'] = false;
 	export let indeterminate: KCheckboxProps['indeterminate'] = false;
 	export let cls: KCheckboxProps['cls'] = undefined;
@@ -134,12 +137,15 @@
 		on:change={handleUpdateValue}
 		hidden
 	/>
-	<div class={boxCls}>
+	<div
+		class={boxCls}
+		style:background-color={valueInner && !isIndeterminate ? bgCheckColor : bgUnCheckColor}
+	>
 		{#if valueInner && !isIndeterminate}
 			<div out:fade={{ duration: 200 }} in:fade={{ duration: 200 }}>
 				<KIcon
 					icon="i-carbon-checkmark"
-					color="!text-white"
+					color={checkColor}
 					width={KCheckboxSize[sizeInner]}
 					height={KCheckboxSize[sizeInner]}
 				/>
@@ -148,7 +154,7 @@
 		{#if isIndeterminate}
 			<KIcon
 				icon="i-carbon-subtract"
-				color="!text-white"
+				color={checkColor}
 				width={KCheckboxSize[sizeInner]}
 				height={KCheckboxSize[sizeInner]}
 			/>
