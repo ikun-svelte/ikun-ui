@@ -35,10 +35,10 @@
 	}
 	onMount(() => {
 		// Register event, KForm can set KInput value
-		if (formContext && formInstance && field) {
+		if (formContext && formInstance) {
 			formUpdateField(true);
 			formPropsChangeCb(formInstance.__dynamicProps);
-			formInstance.__itemCompMap[field] = {
+			formInstance.__itemCompMap[field!] = {
 				update: formUpdateField,
 				type: 'checkbox'
 			};

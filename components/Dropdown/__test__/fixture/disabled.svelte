@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { KButton } from '@ikun-ui/button';
-	import { KDropdown, DropdownItem } from '@ikun-ui/dropdown';
+	import { KDropdown, KDropdownItem } from '@ikun-ui/dropdown';
 	let disabled = true;
 </script>
 
@@ -9,6 +9,6 @@
 		>Dropdown List</KButton
 	>
 	<div slot="dropdown">
-		<DropdownItem command="白发三千丈">白发三千丈</DropdownItem>
+		<KDropdownItem command="白发三千丈">白发三千丈</KDropdownItem>
 	</div>
 </KDropdown>
