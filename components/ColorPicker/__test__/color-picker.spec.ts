@@ -99,4 +99,52 @@ describe('Test: KColorPicker', () => {
 		expect(textEl!.innerHTML === '#1677ffff').toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
+
+	test('props: disabled', async () => {
+		const mockFn = vi.fn()
+		//@ts-ignore
+		const instance = new KColorPicker({
+			target: host,
+			props: {
+				value: '#1677FF',
+				defaultValue: '#1677FF',
+				format: 'hex',
+				disabled: true
+			}
+		});
+
+		expect(instance).toBeTruthy();
+		await tick();
+		//@ts-ignore
+		instance.$on('openChange', mockFn);
+		const btn = host.querySelector('[slot="triggerEl"]');
+		await fireEvent.click(btn);
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(mockFn).not.toBeCalled();
+		expect(host!.innerHTML.includes('k-color-picker-trigger--disabled')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-color-picker-block-w--disabled')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: defaultValue & defaultValue', async () => {
+		//@ts-ignore
+		const instance = new KColorPicker({
+			target: host,
+			props: {
+				value: '#1677FF',
+				defaultValue: '#1677FF',
+				format: 'hex',
+				disabled: true
+			}
+		});
+
+		expect(instance).toBeTruthy();
+		const btn = host.querySelector('[slot="triggerEl"]');
+		await fireEvent.click(btn);
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		debugger
+		expect(host.innerHTML).matchSnapshot();
+	});
 });
