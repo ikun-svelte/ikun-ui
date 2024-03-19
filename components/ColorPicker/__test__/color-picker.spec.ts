@@ -6,6 +6,7 @@ import KCPSlotText from './fixtrue/slot.text.svelte';
 import KCPSlotDefault from './fixtrue/slot.default.svelte';
 import KCPSlotTitle from './fixtrue/slot.title.svelte';
 import KCPSlotPreset from './fixtrue/slot.preset.svelte';
+import KCPEventFormatChange from './fixtrue/event.formatChange.svelte';
 let host;
 
 const initHost = () => {
@@ -358,5 +359,116 @@ describe('Test: KColorPicker', () => {
 		await tick();
 		await vi.advanceTimersByTimeAsync(400);
 		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('events: formatChange', async () => {
+		//@ts-ignore
+		const instance = new KCPEventFormatChange({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		const btn = host.querySelector('[slot="triggerEl"]');
+		await fireEvent.click(btn);
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const resDom = host.querySelector('#format_test');
+		expect(resDom.innerHTML).toBe('hsv');
+		expect(host.innerHTML.includes('hsv(211, 59%, 100%)')).toBeTruthy();
+
+		const formatTrigger = host.querySelector('.k-dropdown');
+		await fireEvent.click(formatTrigger);
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+
+		const formatItems = host.querySelectorAll('.k-dropdown-item');
+		await fireEvent.click(formatItems[0]);
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+
+		expect(resDom.innerHTML).toBe('rgb');
+		expect(host.innerHTML.includes('rgb(105, 177, 255)')).toBeTruthy();
+
+		await fireEvent.click(formatItems[1]);
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+
+		expect(resDom.innerHTML).toBe('hex');
+		expect(host.innerHTML.includes('#69b1ffff')).toBeTruthy();
+
+		await fireEvent.click(formatItems[2]);
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+
+		expect(resDom.innerHTML).toBe('hsv');
+		expect(host.innerHTML.includes('hsv(211, 59%, 100%)')).toBeTruthy();
+	});
+
+	test('events: openChange', async () => {
+		let open = false;
+		const mockFn = vi.fn();
+		//@ts-ignore
+		const instance = new KColorPicker({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		//@ts-ignore
+		instance.$on('openChange', (e: CustomEvent) => {
+			mockFn();
+			open = e.detail;
+		});
+		const btn = host.querySelector('[slot="triggerEl"]');
+		await fireEvent.click(btn);
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(mockFn).toBeCalled();
+		expect(open).toBeTruthy();
+	});
+
+	test('events: clear', async () => {
+		const mockFn = vi.fn();
+		//@ts-ignore
+		const instance = new KColorPicker({
+			target: host,
+			props: {
+				allowClear: true,
+				value: '#1677FF',
+				defaultValue: '#1677FF',
+				format: 'hex'
+			}
+		});
+		expect(instance).toBeTruthy();
+		//@ts-ignore
+		instance.$on('clear', () => {
+			mockFn();
+		});
+		const btn = host.querySelector('[slot="triggerEl"]');
+		await fireEvent.click(btn);
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+
+		const alphaInput = host.querySelector('[type="number"]');
+		expect(alphaInput.value).toBe('100');
+
+		const block = host.querySelector('.k-color-picker-block-content');
+		const blockMd = host.querySelector('.k-color-picker-block-content--md');
+		expect(block !== blockMd).toBeTruthy();
+		expect(block.style.backgroundColor).toBe('rgb(22, 119, 255)');
+		expect(blockMd.style.backgroundColor).toBe('rgb(22, 119, 255)');
+
+		const thumbs = host.querySelectorAll('.k-color-picker-slider--thumb');
+		expect(thumbs[1].style.backgroundColor).toBe('rgb(22, 119, 255)');
+		expect(thumbs[1].style.left).toBe('100%');
+
+		const clear = host.querySelector('.k-color-picker-clear');
+		await fireEvent.click(clear);
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+
+		expect(alphaInput.value).toBe('0');
+		expect(block.style.backgroundColor).toBe('rgba(22, 119, 255, 0)');
+		expect(blockMd.style.backgroundColor).toBe('rgba(22, 119, 255, 0)');
+		expect(thumbs[1].style.backgroundColor).toBe('rgba(22, 119, 255, 0)');
+		expect(thumbs[1].style.left).toBe('0%');
+		expect(mockFn).toBeCalled();
 	});
 });
