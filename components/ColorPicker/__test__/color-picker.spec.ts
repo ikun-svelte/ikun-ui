@@ -5,6 +5,7 @@ import { tick } from 'svelte';
 import KCPSlotText from './fixtrue/slot.text.svelte';
 import KCPSlotDefault from './fixtrue/slot.default.svelte';
 import KCPSlotTitle from './fixtrue/slot.title.svelte';
+import KCPSlotPreset from './fixtrue/slot.preset.svelte';
 let host;
 
 const initHost = () => {
@@ -336,6 +337,19 @@ describe('Test: KColorPicker', () => {
 	test('slot: title', async () => {
 		//@ts-ignore
 		const instance = new KCPSlotTitle({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		const btn = host.querySelector('[slot="triggerEl"]');
+		await fireEvent.click(btn);
+		await tick();
+		await vi.advanceTimersByTimeAsync(400);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slot: preset', async () => {
+		//@ts-ignore
+		const instance = new KCPSlotPreset({
 			target: host
 		});
 		expect(instance).toBeTruthy();

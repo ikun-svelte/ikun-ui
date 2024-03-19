@@ -177,7 +177,7 @@ export type KColorPickerFormatProps = {
 // TODO: 🚧 events clear 清除的回调 () => void
 // TODO: 🚧 事件参数、格式、交互
 
-// TODO: 🚧 slots presetLabel 预设的 label 插槽
+// TODO: ✅ slots preset 预设插槽
 // TODO: ✅ slots text 后置插槽
 // TODO: ✅ slots default 自定义触发插槽
 // TODO: ✅ slots title 标题插槽

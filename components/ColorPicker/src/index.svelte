@@ -234,7 +234,7 @@
 				on:formatChange={handleFormatChange}
 				format={formatValue}
 			></KColorPickerFormat>
-			<slot name="preset" {presetColor} {handlePresetChange}>
+			<slot name="preset" {presetColor} {handlePresetChange} {presets}>
 				{#if presets && presets.length}
 					<KColorPickerPreset value={presetColor} on:change={handlePresetChange} {presets}
 					></KColorPickerPreset>
