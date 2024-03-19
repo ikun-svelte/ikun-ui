@@ -3,9 +3,9 @@ export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker-header': 'fbc text-base',
 	'k-color-picker-title': 'mb-12px',
 	'k-color-picker-line':
-		"after:(content-[''] pa right-14px top-15px w-22px h-2px block bg-ikun-error origin-right -rotate-45)",
+		"after:(content-[''] pa -right-2px -top-2px w-50px h-2px block bg-ikun-error origin-right -rotate-45)",
 	'k-color-picker-clear':
-		'w-18px h-18px k-border border-ikun-bd-base rounded-4px cursor-pointer mb-12px',
+		'w-18px h-18px k-border border-ikun-bd-base rounded-4px cursor-pointer mb-12px overflow-hidden pr',
 	'k-color-picker-palette':
 		'pr overflow-hidden left-0 top-0 rounded-4px w-269px h-160px palette-bg',
 	'k-color-picker-pointer':
@@ -15,7 +15,7 @@ export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker--alpha': 'mt-12px',
 	'k-color-picker-block': 'w-28px h-28px color-block-bg k-transparent-bg rounded-4px',
 	'k-color-picker-block-clear':
-		"color-block-bg k-border border-ikun-bd-base rounded-4px pr w-28px h-28px k-transparent-bg after:(content-[''] pa right-2px top-0 w-32px h-2px block bg-ikun-error origin-right -rotate-45)",
+		"overflow-hidden color-block-bg k-border border-ikun-bd-base rounded-4px pr w-28px h-28px k-transparent-bg after:(content-[''] pa right-2px top-0 w-50px h-2px block bg-ikun-error origin-right -rotate-45)",
 	'k-color-picker-block--sm': 'w-16px h-16px',
 	'k-color-picker-block--md': 'w-24px h-24px',
 	'k-color-picker-block--lg': 'w-32px h-32px',

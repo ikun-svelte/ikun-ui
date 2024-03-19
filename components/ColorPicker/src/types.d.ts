@@ -156,46 +156,36 @@ export type KColorPickerFormatProps = {
 	attrs: Record<string, string>;
 };
 
-// TODO:
-//  🚧 slider
-//  🚧 顔色格式轉換
-//  🚧 多個 popover
-
-// TODO: 🚧 Title and Clear
-// TODO: 🚧 颜色选择区
-// TODO: 🚧 颜色选择条
-// TODO: 🚧 透明度选择条
-// TODO: 🚧 HEX 格式输入控件与值输出
-// TODO: 🚧 HSB 格式输入控件与值输出
-// TODO: 🚧 RGB 格式输入控件与值输出
-// TODO: 🚧 颜色预设区域
-// TODO: 受控模式
-
-// TODO: 🚧 props allowClear 允许清除选择的颜色 boolean @default false
-// TODO: 🚧 props value 颜色的值 string @default ''
-// TODO: 🚧 defaultValue value 初始化时决定线性范围 string @default ''
-// TODO: 🚧 props format 颜色格式值 rgb | hex | hsb @default rgb
+// TODO: ✅ props allowClear 允许清除选择的颜色 boolean @default false
+// TODO: ✅ props value 颜色的值 string @default ''
+// TODO: ✅ defaultValue value 初始化时决定线性范围 string @default ''
+// TODO: ✅ props format 颜色格式值 rgb | hex | hsb @default rgb
 // TODO: ✅ props disabled 禁用颜色选择器 boolean @default false
-// TODO: 🚧 props disabledAlpha 禁用透明度 boolean @default false
+// TODO: ✅ props disabledAlpha 禁用透明度 boolean @default false
 // TODO: ✅ props placement
-// TODO: 🚧 props presets 预设的颜色  { label: string, colors: Array<string | Color>, defaultOpen?: boolean }[] @default undefined
+// TODO: ✅ props presets 预设的颜色  { label: string, colors: Array<string | Color>, defaultOpen?: boolean }[] @default undefined
 // TODO: ✅ props size 触发器大小 IkunSize @default 'md'
 // TODO: ✅ props showText 触发器是否显示文本 boolean @default false
 // TODO: ✅ props trigger unit test
+// TODO: ✅ props title
 
-// TODO: 🚧 event change 颜色变化的回调 (color: string) => void
-// TODO: 🚧 event changeComplete 颜色选择完成的回调 (color: string) => void
+// TODO: 🚧 events change 颜色变化的回调 (color: string) => void
+// TODO: 🚧 events changeComplete 颜色选择完成的回调 (color: string) => void
 
-// TODO: 🚧 event formatChange 颜色格式变化的回调 (format: 'hex' | 'rgb' | 'hsb') => void
-// TODO: 🚧 event openChange 当 open 被改变时的回调 (open: boolean) => void
-// TODO: 🚧 event clear 清除的回调 () => void
+// TODO: 🚧 events formatChange 颜色格式变化的回调 (format: 'hex' | 'rgb' | 'hsb') => void
+// TODO: 🚧 events openChange 当 open 被改变时的回调 (open: boolean) => void
+// TODO: 🚧 events clear 清除的回调 () => void
+// TODO: 🚧 事件参数、格式、交互
 
-// TODO: 🚧 slot presetLabel 预设的 label 插槽
-// TODO: 🚧 slot text 后置插槽(参数颜色值)
-// TODO: 🚧 slot default 自定义触发插槽
-// TODO: 🚧 slot title 标题插槽
+// TODO: 🚧 slots presetLabel 预设的 label 插槽
+// TODO: ✅ slots text 后置插槽
+// TODO: ✅ slots default 自定义触发插槽
+// TODO: ✅ slots title 标题插槽
 
 // TODO: dark mode
+// TODO: 受控模式
+// TODO: 🚧 交互测试
+// TODO: title 样式
 export interface RgbaColor {
 	r: number;
 	g: number;
