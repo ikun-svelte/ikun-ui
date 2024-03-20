@@ -166,25 +166,21 @@ export type KColorPickerFormatProps = {
 // TODO: ✅ props presets 预设的颜色  { label: string, colors: Array<string | Color>, defaultOpen?: boolean }[] @default undefined
 // TODO: ✅ props size 触发器大小 IkunSize @default 'md'
 // TODO: ✅ props showText 触发器是否显示文本 boolean @default false
-// TODO: ✅ props trigger unit test
+// TODO: ✅ props trigger
 // TODO: ✅ props title
 
-// TODO: 🚧 events change 颜色变化的回调 (color: string) => void
-// TODO: 🚧 events changeComplete 颜色选择完成的回调 (color: string) => void
+// TODO: ✅ events change 颜色变化的回调 (color: string) => void
+// TODO: ✅ events changeComplete 颜色选择完成的回调 (color: string) => void
 
 // TODO: ✅ events formatChange 颜色格式变化的回调 (format: 'hex' | 'rgb' | 'hsb') => void
 // TODO: ✅ events openChange 当 open 被改变时的回调 (open: boolean) => void
 // TODO: ✅ events clear 清除的回调 () => void
-// TODO: 🚧 事件参数、格式、交互
 
 // TODO: ✅ slots preset 预设插槽
 // TODO: ✅ slots text 后置插槽
 // TODO: ✅ slots default 自定义触发插槽
 // TODO: ✅ slots title 标题插槽
 
-// TODO: dark mode
-// TODO: 受控模式
-// TODO: 🚧 交互测试
 export interface RgbaColor {
 	r: number;
 	g: number;

@@ -7,6 +7,7 @@ import KCPSlotDefault from './fixtrue/slot.default.svelte';
 import KCPSlotTitle from './fixtrue/slot.title.svelte';
 import KCPSlotPreset from './fixtrue/slot.preset.svelte';
 import KCPEventFormatChange from './fixtrue/event.formatChange.svelte';
+import KCPControl from './fixtrue/control.svelte';
 let host;
 
 const initHost = () => {
@@ -313,7 +314,7 @@ describe('Test: KColorPicker', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('slot: text', async () => {
+	test('slots: text', async () => {
 		//@ts-ignore
 		const instance = new KCPSlotText({
 			target: host
@@ -322,7 +323,7 @@ describe('Test: KColorPicker', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('slot: default', async () => {
+	test('slots: default', async () => {
 		//@ts-ignore
 		const instance = new KCPSlotDefault({
 			target: host
@@ -335,7 +336,7 @@ describe('Test: KColorPicker', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('slot: title', async () => {
+	test('slots: title', async () => {
 		//@ts-ignore
 		const instance = new KCPSlotTitle({
 			target: host
@@ -348,7 +349,7 @@ describe('Test: KColorPicker', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
-	test('slot: preset', async () => {
+	test('slots: preset', async () => {
 		//@ts-ignore
 		const instance = new KCPSlotPreset({
 			target: host
@@ -471,4 +472,28 @@ describe('Test: KColorPicker', () => {
 		expect(thumbs[1].style.left).toBe('0%');
 		expect(mockFn).toBeCalled();
 	});
+
+	test('apis: handleOpen & handleClose', async () => {
+		const mockFn = vi.fn();
+		//@ts-ignore
+		const instance = new KCPControl({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		//@ts-ignore
+		instance.$on('trigger', mockFn);
+		const btn = host.querySelector('#open');
+		await fireEvent.click(btn);
+		await tick();
+		await vi.advanceTimersByTimeAsync(400);
+		expect(mockFn).toBeCalledTimes(1);
+		expect(host.innerHTML).matchSnapshot();
+		const close = host.querySelector('#close');
+		await fireEvent.click(close);
+		await tick();
+		await vi.advanceTimersByTimeAsync(400);
+		expect(mockFn).toBeCalledTimes(2);
+	});
+	// TODO: events change unit test
+	// TODO: events changeComplete unit test
 });

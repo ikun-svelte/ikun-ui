@@ -124,7 +124,7 @@
 	}
 
 	const prefixCls = getPrefixCls('color-picker-format');
-	const valueCls = `${prefixCls}--val`;
+	const valueCls = clsx(`${prefixCls}--val`, `${prefixCls}--val__dark`);
 	const inputNumCls = `${prefixCls}--input-num`;
 	const inputCls = `${prefixCls}--input`;
 	$: cnames = clsx(prefixCls, cls);
