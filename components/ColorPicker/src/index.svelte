@@ -165,7 +165,7 @@
 		[`${prefixCls}-trigger--disabled`]: disabled
 	});
 
-	$: txtCls = clsx({
+	$: txtCls = clsx(`${prefixCls}-txt__dark`, {
 		[`${prefixCls}-txt`]: showText
 	});
 	$: titleCls = clsx({
@@ -174,9 +174,33 @@
 	const clearClsx = clsx(clearCls, lineCls);
 	const alphaCls = getPrefixCls('color-picker--alpha');
 	$: cnames = clsx(prefixCls, cls);
+
+	let popoverRef: any = null;
+	/**
+	 * @public
+	 * api handleOpen
+	 */
+	export function handleOpen() {
+		popoverRef.updateShow(true);
+	}
+
+	/**
+	 * @public
+	 * api handleClose
+	 */
+	export function handleClose() {
+		popoverRef.updateShow(false);
+	}
 </script>
 
-<KPopover {placement} {disabled} {trigger} on:change={onDisplayChange} arrow={false}>
+<KPopover
+	bind:this={popoverRef}
+	{placement}
+	{disabled}
+	{trigger}
+	on:change={onDisplayChange}
+	arrow={false}
+>
 	<div slot="triggerEl" class={triggerCls}>
 		{#if $$slots.default}
 			<slot {blockColor} />
@@ -234,7 +258,7 @@
 				on:formatChange={handleFormatChange}
 				format={formatValue}
 			></KColorPickerFormat>
-			<slot name="preset" {presetColor} {handlePresetChange}>
+			<slot name="preset" {presetColor} {handlePresetChange} {presets}>
 				{#if presets && presets.length}
 					<KColorPickerPreset value={presetColor} on:change={handlePresetChange} {presets}
 					></KColorPickerPreset>
