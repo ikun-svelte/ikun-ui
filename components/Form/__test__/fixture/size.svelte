@@ -10,7 +10,13 @@
 	import { KSelect } from '@ikun-ui/select';
 	import { KSlider } from '@ikun-ui/slider';
 	import { KInputNumber } from '@ikun-ui/input-number';
-	import { KAutoComplete } from '@ikun-ui/auto-complete';
+	import {
+		type AutoCompleteItems,
+		type FetchSuggestionType,
+		KAutoComplete
+	} from '@ikun-ui/auto-complete';
+	import { KColorPicker } from '@ikun-ui/color-picker';
+	import type { IKunSize } from '@ikun-ui/utils';
 	const initValue = {
 		KInput: 'KInput',
 		KSwitch: true,
@@ -21,6 +27,7 @@
 		KSelect: { label: '不知明镜里', value: '不知', id: '3' },
 		KSelectString: 'Huge',
 		slider: 43,
+		KColorPicker: '#00ffff',
 		KAutoComplete: '白雾三语'
 	};
 	let KFormInst: KForm | undefined = undefined;
@@ -31,7 +38,7 @@
 		{ label: '何处得秋霜', value: '何处', id: '4' }
 	];
 
-	let size = 'sm';
+	let size: IKunSize = 'sm';
 
 	const restaurants = [
 		{ value: 'vue', link: 'https://github.com/vuejs/vue' },
@@ -42,12 +49,15 @@
 		{ value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
 		{ value: 'babel', link: 'https://github.com/babel/babel' }
 	];
-	const createFilter = (queryString) => {
-		return (restaurant) => {
-			return restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
+	const createFilter = (queryString: string | number) => {
+		return (restaurant: any) => {
+			return restaurant.value.toLowerCase().indexOf(`${queryString}`.toLowerCase()) === 0;
 		};
 	};
-	const fetchFn = (queryString, cb) => {
+	const fetchFn: FetchSuggestionType = (
+		queryString: string | number,
+		cb: (res: AutoCompleteItems[]) => void
+	) => {
 		const results = queryString ? restaurants.filter(createFilter(queryString)) : restaurants;
 		cb(results);
 	};
@@ -94,6 +104,9 @@
 	</KFormItem>
 	<KFormItem field="KAutoComplete" label="KAutoComplete">
 		<KAutoComplete cls="w-300px" fetchSuggestions={fetchFn}></KAutoComplete>
+	</KFormItem>
+	<KFormItem field="KColorPicker" label="KColorPicker">
+		<KColorPicker format="hex" defaultValue="#00ffff" showText></KColorPicker>
 	</KFormItem>
 </KForm>
 

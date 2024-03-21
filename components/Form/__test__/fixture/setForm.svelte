@@ -10,7 +10,12 @@
 	import { KSelect } from '@ikun-ui/select';
 	import { createEventDispatcher } from 'svelte';
 	import { KInputNumber } from '@ikun-ui/input-number';
-	import { KAutoComplete } from '@ikun-ui/auto-complete';
+	import {
+		type AutoCompleteItems,
+		type FetchSuggestionType,
+		KAutoComplete
+	} from '@ikun-ui/auto-complete';
+	import { KColorPicker } from '@ikun-ui/color-picker';
 	export let isValidate = true;
 	export let initValue = {
 		KInput: 'KInput',
@@ -21,6 +26,7 @@
 		KCheckbox: [],
 		KSelect: null,
 		KSelectString: '',
+		KColorPicker: '#00ffff',
 		KAutoComplete: '白雾三语'
 	};
 	let KFormInst: KForm | undefined = undefined;
@@ -76,6 +82,12 @@
 				msg: 'KSelect error'
 			}
 		],
+		KColorPicker: [
+			{
+				required: true,
+				msg: 'KColorPicker error'
+			}
+		],
 		KSelectString: [
 			{
 				required: true,
@@ -108,6 +120,7 @@
 						id: '1'
 					},
 					KSelectString: 'Huge',
+					KColorPicker: '#64AEAE',
 					KAutoComplete: 'baiwusanyu'
 				},
 				isValidate
@@ -130,18 +143,21 @@
 		{ value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
 		{ value: 'babel', link: 'https://github.com/babel/babel' }
 	];
-	const createFilter = (queryString) => {
-		return (restaurant) => {
-			return restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
+	const createFilter = (queryString: string | number) => {
+		return (restaurant: any) => {
+			return restaurant.value.toLowerCase().indexOf(`${queryString}`.toLowerCase()) === 0;
 		};
 	};
-	const fetchFn = (queryString, cb) => {
+	const fetchFn: FetchSuggestionType = (
+		queryString: string | number,
+		cb: (res: AutoCompleteItems[]) => void
+	) => {
 		const results = queryString ? restaurants.filter(createFilter(queryString)) : restaurants;
 		cb(results);
 	};
 </script>
 
-<KForm {initValue} {rules} labelWidth="120" bind:this={KFormInst}>
+<KForm {initValue} {rules} labelWidth={120} bind:this={KFormInst}>
 	<KFormItem field="KInput" label="KInput">
 		<KInput placeholder="Please input value"></KInput>
 	</KFormItem>
@@ -179,6 +195,9 @@
 	</KFormItem>
 	<KFormItem field="KAutoComplete" label="KAutoComplete">
 		<KAutoComplete cls="w-300px" fetchSuggestions={fetchFn}></KAutoComplete>
+	</KFormItem>
+	<KFormItem field="KColorPicker" label="KColorPicker">
+		<KColorPicker format="rgb" defaultValue="#00ffff" showText></KColorPicker>
 	</KFormItem>
 </KForm>
 <button id="setForm" on:click={handleSetForm}>setForm</button>
