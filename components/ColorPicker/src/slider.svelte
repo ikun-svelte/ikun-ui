@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { HsvaColor, KColorPickerSliderProps } from './types';
-	import tinycolor from 'tinycolor2';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import { createEventDispatcher } from 'svelte';
+	import { toHex, toRgbString } from './utils';
 
 	export let isAlpha: KColorPickerSliderProps['isAlpha'] = false;
 	export let max: KColorPickerSliderProps['max'] = 0;
@@ -16,7 +16,7 @@
 	let slider: HTMLDivElement | undefined = undefined;
 	$: valueHsv = value as HsvaColor;
 	$: valueHsvH = valueHsv.h;
-	$: valueHsvA = !isAlpha ? 1 : valueHsv.a;
+	$: valueHsvA = !isAlpha ? 1 : valueHsv.a || 0;
 	let valueHex = '';
 	$: {
 		const v = {
@@ -26,12 +26,12 @@
 			a: valueHsvA
 		};
 		// console.log(valueHsvA)
-		valueHex = tinycolor(v).toRgbString();
+		valueHex = toRgbString(v);
 	}
 
 	let trackAlphaBg = '';
 	$: {
-		const v = tinycolor({ ...valueHsv, a: 1 }).toHex();
+		const v = toHex({ ...valueHsv, a: 1 });
 		trackAlphaBg = !isAlpha ? '' : `linear-gradient(to right, rgba(255, 0, 4, 0), #${v})`;
 	}
 	$: position = Number((((!isAlpha ? valueHsvH : valueHsvA) - min) / (max - min)).toFixed(4));

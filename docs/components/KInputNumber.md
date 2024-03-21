@@ -60,7 +60,7 @@ Example of limiting value through `min` and `max` attributes
 
 <demo src="input-number/limit.svelte"  github='InputNumber'></demo>
 
-## Size
+## Sizes
 
 Add size attribute to change the size of InputNumber. It supports `sm`, `md` and `lg`.
 

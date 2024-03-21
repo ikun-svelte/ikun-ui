@@ -63,17 +63,17 @@ Besides the `title` attribute, you can add a `description` attribute to help you
 
 ## Alert Props
 
-| Name        | Type                                     | Default          | Description                                                |
-| ----------- | ---------------------------------------- | ---------------- | ---------------------------------------------------------- |
-| type        | `success` / `error` / `warning` / `info` | `info`           | alert type.                                                |
-| title       | `string`                                 | `''`             | alert title.                                               |
-| description | `string`                                 | `''`             | descriptive text.                                          |
-| showIcon    | `boolean`                                | `false`          | whether a type icon is displayed.                          |
-| icon        | `string`                                 | `''`             | The class name of the icon, following the unocss standard. |
-| closable    | `boolean`                                | `true`           | whether alert can be dismissed.                            |
-| closeIcon   | `string`                                 | `i-carbon-close` | customized close icon.                                     |
-| cls         | `string`                                 | `''`             | Additional class for component                             |
-| attrs       | `any`                                    | `{}`             | Additional attributes                                      |
+| Name        | Type                                        | Default          | Description                                                |
+| ----------- | ------------------------------------------- | ---------------- | ---------------------------------------------------------- |
+| type        | `success` \| `error` \| `warning` \| `info` | `info`           | alert type.                                                |
+| title       | `string`                                    | `''`             | alert title.                                               |
+| description | `string`                                    | `''`             | descriptive text.                                          |
+| showIcon    | `boolean`                                   | `false`          | whether a type icon is displayed.                          |
+| icon        | `string`                                    | `''`             | The class name of the icon, following the unocss standard. |
+| closable    | `boolean`                                   | `true`           | whether alert can be dismissed.                            |
+| closeIcon   | `string`                                    | `i-carbon-close` | customized close icon.                                     |
+| cls         | `string`                                    | `''`             | Additional class for component                             |
+| attrs       | `any`                                       | `{}`             | Additional attributes                                      |
 
 ## Alert Events
 

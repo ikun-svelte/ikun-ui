@@ -49,7 +49,7 @@ Custom each Segmented Item by slot.
 
 <demo src="segmented/custom.svelte"  github='Segmented'></demo>
 
-## Size
+## Sizes
 
 There are three sizes of an Segmented
 

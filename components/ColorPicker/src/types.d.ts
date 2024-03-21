@@ -30,7 +30,7 @@ export type KColorPickerProps = {
 	/**
 	 * 颜色格式值
 	 * @type 'rgb' | 'hex' | 'hsv'
-	 * @default 'rgb'
+	 * @default 'hex'
 	 */
 	format?: 'rgb' | 'hex' | 'hsv';
 	/**
@@ -156,43 +156,20 @@ export type KColorPickerFormatProps = {
 	attrs: Record<string, string>;
 };
 
-// TODO: ✅ props allowClear 允许清除选择的颜色 boolean @default false
-// TODO: ✅ props value 颜色的值 string @default ''
-// TODO: ✅ defaultValue value 初始化时决定线性范围 string @default ''
-// TODO: ✅ props format 颜色格式值 rgb | hex | hsb @default rgb
-// TODO: ✅ props disabled 禁用颜色选择器 boolean @default false
-// TODO: ✅ props disabledAlpha 禁用透明度 boolean @default false
-// TODO: ✅ props placement
-// TODO: ✅ props presets 预设的颜色  { label: string, colors: Array<string | Color>, defaultOpen?: boolean }[] @default undefined
-// TODO: ✅ props size 触发器大小 IkunSize @default 'md'
-// TODO: ✅ props showText 触发器是否显示文本 boolean @default false
-// TODO: ✅ props trigger
-// TODO: ✅ props title
-
-// TODO: ✅ events change 颜色变化的回调 (color: string) => void
-// TODO: ✅ events changeComplete 颜色选择完成的回调 (color: string) => void
-
-// TODO: ✅ events formatChange 颜色格式变化的回调 (format: 'hex' | 'rgb' | 'hsb') => void
-// TODO: ✅ events openChange 当 open 被改变时的回调 (open: boolean) => void
-// TODO: ✅ events clear 清除的回调 () => void
-
-// TODO: ✅ slots preset 预设插槽
-// TODO: ✅ slots text 后置插槽
-// TODO: ✅ slots default 自定义触发插槽
-// TODO: ✅ slots title 标题插槽
+// TODO: form support
 
 export interface RgbaColor {
 	r: number;
 	g: number;
 	b: number;
-	a: number;
+	a?: number;
 }
 
 export interface HsvaColor {
 	h: number;
 	s: number;
 	v: number;
-	a: number;
+	a?: number;
 }
 
 export interface KColorPickerPreset {
