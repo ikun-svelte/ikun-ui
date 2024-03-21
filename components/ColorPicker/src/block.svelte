@@ -5,6 +5,7 @@
 	import { toRgbString } from './utils';
 
 	export let focus: KColorPickerBlockProps['focus'] = false;
+	export let error: KColorPickerBlockProps['error'] = false;
 	export let trigger: KColorPickerBlockProps['trigger'] = false;
 	export let disabled: KColorPickerBlockProps['disabled'] = false;
 	export let isClear: KColorPickerBlockProps['isClear'] = false;
@@ -26,7 +27,8 @@
 	$: wrapperCls = clsx(`${prefixCls}-w`, {
 		[`${prefixCls}-w--disabled`]: disabled,
 		[`${prefixCls}-w--${size}`]: trigger,
-		[`${prefixCls}-w--focus`]: focus
+		[`${prefixCls}-w--focus`]: focus && !error,
+		[`${prefixCls}-w--error`]: error
 	});
 	$: cnamesSize = clsx(
 		{

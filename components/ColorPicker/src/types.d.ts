@@ -115,6 +115,7 @@ export type KColorPickerSliderProps = {
 export type KColorPickerBlockProps = {
 	disabled: boolean;
 	focus: boolean;
+	error: boolean;
 	isClear: boolean;
 	trigger: boolean;
 	/**
@@ -157,6 +158,8 @@ export type KColorPickerFormatProps = {
 };
 
 // TODO: form support
+// TODO: form 文档更新
+// TODO: form 单测更新
 
 export interface RgbaColor {
 	r: number;

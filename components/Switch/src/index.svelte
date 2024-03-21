@@ -39,7 +39,7 @@
 		);
 		if (!init) {
 			await tick();
-			await changeClass(value);
+			await changeClass(value as boolean);
 		}
 	}
 	function formPropsChangeCb(props: Record<any, any>) {

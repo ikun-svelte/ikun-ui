@@ -106,12 +106,15 @@
 		}
 
 		if (formatValue === 'hex') {
-			const hsv = toHsv(`#${valueHex}`);
-			hsv.a = alpha;
-			dispatch('change', {
-				value: hsv,
-				format: formatValue
-			});
+			type === 'hex' && (valueHex = e.detail);
+			if (valueHex.length === 6) {
+				const hsv = toHsv(`#${valueHex}`);
+				hsv.a = alpha;
+				dispatch('change', {
+					value: hsv,
+					format: formatValue
+				});
+			}
 		}
 	}
 
@@ -143,12 +146,14 @@
 			max={hRMaxValue}
 			on:input={(e) => handleInput(e, 'hr')}
 			cls={inputNumCls}
+			ignoreForm
 			size="sm"
 		></KInputNumber>
 		<KInputNumber
 			value={sGValue}
 			min={0}
 			step={1}
+			ignoreForm
 			max={sGMaxValue}
 			stepStrictly
 			on:input={(e) => handleInput(e, 'sg')}
@@ -165,10 +170,17 @@
 			on:input={(e) => handleInput(e, 'vb')}
 			cls={inputNumCls}
 			size="sm"
+			ignoreForm
 		></KInputNumber>
 	{/if}
 	{#if formatValue === 'hex'}
-		<KInput value={valueHex} cls={inputCls} on:input={(e) => handleInput(e, 'hex')} size="sm">
+		<KInput
+			value={valueHex}
+			ignoreForm
+			cls={inputCls}
+			on:input={(e) => handleInput(e, 'hex')}
+			size="sm"
+		>
 			<span slot="prefix">#</span>
 		</KInput>
 	{/if}
@@ -179,6 +191,7 @@
 			max={100}
 			step={1}
 			stepStrictly
+			ignoreForm
 			on:input={(e) => handleInput(e, 'a')}
 			cls={inputNumCls}
 			size="sm"

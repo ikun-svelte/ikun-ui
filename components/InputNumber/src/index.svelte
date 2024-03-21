@@ -48,6 +48,11 @@
 	 * @internal
 	 */
 	export let center: KInputNumberProps['center'] = false;
+	/**
+	 * @internal
+	 */
+	export let ignoreForm: KInputNumberProps['ignoreForm'] = false;
+
 	let resolveValue: Decimal | null = value ? new Deci(value) : null;
 	let inputRef: null | HTMLInputElement | HTMLTextAreaElement = null;
 	/*********************** KForm logic start ************************/
@@ -80,7 +85,7 @@
 	}
 
 	// Register event, KForm can set KInput value
-	if (formContext && formInstance) {
+	if (formContext && formInstance && !ignoreForm) {
 		// init value
 		formUpdateField(true);
 		// init disabled、 size
