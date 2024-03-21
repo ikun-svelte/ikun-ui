@@ -81,18 +81,15 @@ describe('Test: KColorPicker', () => {
 
 		expect(host!.innerHTML.includes('k-color-picker-block-w--sm')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-color-picker-block--sm')).toBeTruthy();
-		expect(host!.innerHTML.includes('k-color-picker-block--sm')).toBeTruthy();
 		expect(host!.innerHTML.includes('k-color-picker-block-content--sm')).toBeTruthy();
 
-		expect(host!.innerHTML.includes('k-color-picker-block-w--sm')).toBeTruthy();
-		expect(host!.innerHTML.includes('k-color-picker-block--sm')).toBeTruthy();
-		expect(host!.innerHTML.includes('k-color-picker-block--sm')).toBeTruthy();
-		expect(host!.innerHTML.includes('k-color-picker-block-content--sm')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-color-picker-block-w--md')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-color-picker-block--md')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-color-picker-block-content--md')).toBeTruthy();
 
-		expect(host!.innerHTML.includes('k-color-picker-block-w--sm')).toBeTruthy();
-		expect(host!.innerHTML.includes('k-color-picker-block--sm')).toBeTruthy();
-		expect(host!.innerHTML.includes('k-color-picker-block--sm')).toBeTruthy();
-		expect(host!.innerHTML.includes('k-color-picker-block-content--sm')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-color-picker-block-w--lg')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-color-picker-block--lg')).toBeTruthy();
+		expect(host!.innerHTML.includes('k-color-picker-block-content--lg')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 

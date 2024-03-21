@@ -197,8 +197,8 @@
 	/*********************** KForm logic start ************************/
 	let disabledFrom = false;
 	$: disabledInner = disabledFrom || disabled;
-	let sizeFrom: IKunSize = 'md';
-	$: sizeInner = sizeFrom || size;
+	let sizeFrom: IKunSize | string = '';
+	$: sizeInner = (sizeFrom || size) as IKunSize;
 	let isErrorForm = false;
 	$: isErrorInner = isErrorForm;
 	const formContext = getContext(formItemKey) as string;

@@ -36,9 +36,6 @@
 			[`${prefixCls}-clear`]: isClear,
 			[`${prefixCls}--${size}`]: trigger
 		},
-		{
-			[`${prefixCls}--${size}`]: trigger
-		},
 		cls
 	);
 </script>
