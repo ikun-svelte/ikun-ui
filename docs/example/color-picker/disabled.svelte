@@ -9,6 +9,7 @@
 <KColorPicker
 	defaultValue="#f8a153"
 	{value}
+	disabled
 	format="hex"
 	showText
 	on:changeComplete={handleChangeComplete}

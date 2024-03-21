@@ -35,61 +35,61 @@ Basic Usage.
 
 Add size attribute to change the size of ColorPicker. It supports `sm`, `md` and `lg`.
 
-<demo src="color-picker/basic.svelte"  github='ColorPicker'></demo>
+<demo src="color-picker/size.svelte"  github='ColorPicker'></demo>
 
 ## External Control
 
 Control opening and closing through `handleOpen` and `handleOpen`
 
-<demo src="color-picker/basic.svelte"  github='ColorPicker'></demo>
+<demo src="color-picker/control.svelte"  github='ColorPicker'></demo>
 
 ## Rendering Trigger Text
 
 Renders the default text of the trigger, effective when `showText` is `true`. When customizing text, you can use `showText` as a function to return custom text.
 
-<demo src="color-picker/basic.svelte"  github='ColorPicker'></demo>
+<demo src="color-picker/text.svelte"  github='ColorPicker'></demo>
 
 ## Disabled
 
 Disabled ColorPicker
 
-<demo src="color-picker/basic.svelte"  github='ColorPicker'></demo>
+<demo src="color-picker/disabled.svelte"  github='ColorPicker'></demo>
 
 ## Disabled Alpha
 
 Disabled color alpha.
 
-<demo src="color-picker/basic.svelte"  github='ColorPicker'></demo>
+<demo src="color-picker/alpha.svelte"  github='ColorPicker'></demo>
 
 ## Clear
 
 Clear Color
 
-<demo src="color-picker/basic.svelte"  github='ColorPicker'></demo>
+<demo src="color-picker/clear.svelte"  github='ColorPicker'></demo>
 
 ## Custom Trigger
 
 Triggers for customizing color panels.
 
-<demo src="color-picker/basic.svelte"  github='ColorPicker'></demo>
+<demo src="color-picker/trigger.svelte"  github='ColorPicker'></demo>
 
 ## Color Format
 
 Encoding formats, support `HEX`, `HSV`, `RGB`.
 
-<demo src="color-picker/basic.svelte"  github='ColorPicker'></demo>
+<demo src="color-picker/format.svelte"  github='ColorPicker'></demo>
 
 ## Preset Colors
 
 Set the presets color of the color picker.
 
-<demo src="color-picker/basic.svelte"  github='ColorPicker'></demo>
+<demo src="color-picker/preset.svelte"  github='ColorPicker'></demo>
 
-## Customizing Preset Colors
+## Customizing Preset Panel
 
 Set the presets color of the color picker by preset slot.
 
-<demo src="color-picker/basic.svelte"  github='ColorPicker'></demo>
+<demo src="color-picker/preset-custom.svelte"  github='ColorPicker'></demo>
 
 ## ColorPicker Props
 

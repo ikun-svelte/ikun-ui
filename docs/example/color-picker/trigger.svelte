@@ -12,4 +12,8 @@
 	format="hex"
 	showText
 	on:changeComplete={handleChangeComplete}
-></KColorPicker>
+>
+	<span>
+		ikun ui 🐔 {value}
+	</span>
+</KColorPicker>

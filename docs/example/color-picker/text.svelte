@@ -12,4 +12,8 @@
 	format="hex"
 	showText
 	on:changeComplete={handleChangeComplete}
-></KColorPicker>
+>
+	<span slot="text">
+		ikun ui 🎤 🤟 🏀 {value}
+	</span>
+</KColorPicker>

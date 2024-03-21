@@ -23,6 +23,7 @@
 	export let showText: KColorPickerProps['showText'] = false;
 	export let trigger: KColorPickerProps['trigger'] = 'click';
 	export let cls: KColorPickerProps['cls'] = '';
+	export let triggerClass: KColorPickerProps['cls'] = '';
 	export let attrs: KColorPickerProps['attrs'] = {};
 
 	function formatColor(format: KColorPickerProps['format'], value: KColorPickerProps['value']) {
@@ -161,9 +162,12 @@
 	const headerCls = getPrefixCls('color-picker-header');
 	const clearCls = getPrefixCls('color-picker-clear');
 	const lineCls = getPrefixCls('color-picker-line');
-	$: triggerCls = clsx({
-		[`${prefixCls}-trigger--disabled`]: disabled
-	});
+	$: triggerCls = clsx(
+		{
+			[`${prefixCls}-trigger--disabled`]: disabled
+		},
+		triggerClass
+	);
 
 	$: txtCls = clsx(`${prefixCls}-txt__dark`, {
 		[`${prefixCls}-txt`]: showText
