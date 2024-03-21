@@ -69,6 +69,10 @@ const components = [
 				link: '/components/KCheckbox'
 			},
 			{
+				text: 'ColorPicker',
+				link: '/components/KColorPicker'
+			},
+			{
 				text: 'Form',
 				link: '/components/KForm'
 			},

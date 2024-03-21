@@ -3,7 +3,7 @@
 	import { fade } from 'svelte/transition';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import tinycolor from 'tinycolor2';
+	import { isLightColor, toHexString } from './utils';
 	import { KIcon } from '@ikun-ui/icon';
 	import { KCheckbox } from '@ikun-ui/checkbox';
 	import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
@@ -18,7 +18,7 @@
 		normalPresets = (presets || []).map((v) => {
 			return {
 				...v,
-				colors: v.colors.map((color) => tinycolor(color).toHexString())
+				colors: v.colors.map((color) => toHexString(color))
 			};
 		}) as KColorPickerPresetProps['presets'];
 	}
@@ -33,7 +33,7 @@
 	}
 
 	const dispatch = createEventDispatcher();
-	let checkValue = [tinycolor(value).toHexString()];
+	let checkValue = [toHexString(value)];
 	function handleCheck(e: CustomEvent) {
 		checkValue = e.detail.length ? [e.detail.pop()] : [];
 		dispatch('change', checkValue);
@@ -41,7 +41,7 @@
 
 	const getColor = (c: KColorPickerPresetProps['value']) => c as string;
 	const getCheckColor = (c: KColorPickerPresetProps['value']) =>
-		tinycolor(c).isLight() ? 'text-ikun-dark-300' : 'text-white';
+		isLightColor(c) ? 'text-ikun-dark-300' : 'text-white';
 	const prefixCls = getPrefixCls('color-picker-preset');
 	$: cnames = clsx(prefixCls, cls);
 	const containerCls = getPrefixCls('color-picker-preset--container');

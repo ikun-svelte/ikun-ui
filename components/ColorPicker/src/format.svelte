@@ -4,11 +4,10 @@
 	import { KDropdown, KDropdownItem } from '@ikun-ui/dropdown';
 	import { KIcon } from '@ikun-ui/icon';
 	import { clsx } from 'clsx';
-	import tinycolor from 'tinycolor2';
+	import { toHsv, toRgb, toHex } from './utils';
 	import { createEventDispatcher } from 'svelte';
 	import { KInput } from '@ikun-ui/input';
 	import { KInputNumber } from '@ikun-ui/input-number';
-	import { isString } from 'baiwusanyu-utils';
 	export let format: KColorPickerFormatProps['format'] = 'rgb';
 	export let disabledAlpha: KColorPickerFormatProps['disabledAlpha'] = false;
 	export let value: KColorPickerFormatProps['value'] = '';
@@ -28,7 +27,7 @@
 		value: KColorPickerFormatProps['value']
 	) {
 		if (formatValue === 'rgb') {
-			const rgbValue = tinycolor(value).toRgb();
+			const rgbValue = toRgb(value);
 			hRMaxValue = 255;
 			sGMaxValue = 255;
 			vBMaxValue = 255;
@@ -39,7 +38,7 @@
 		}
 
 		if (formatValue === 'hsv') {
-			const rgbValue = tinycolor(value).toHsv();
+			const rgbValue = toHsv(value);
 			hRMaxValue = 360;
 			sGMaxValue = 100;
 			vBMaxValue = 100;
@@ -50,16 +49,9 @@
 		}
 
 		if (formatValue === 'hex') {
-			const rgbValue = tinycolor(value).toRgb();
-			if (!isString(value) || (isString(value) && rgbValue.a !== 1)) {
-				alphaValue = rgbValue.a * 100;
-				valueHex = tinycolor({ ...rgbValue, a: 1 })
-					.toHex()
-					.replace('#', '')
-					.toLocaleUpperCase();
-			} else {
-				valueHex = (value as string).replace('#', '').toLocaleUpperCase();
-			}
+			const rgbValue = toHsv(value);
+			alphaValue = rgbValue.a * 100;
+			valueHex = toHex({ ...rgbValue, a: 1 }).toLocaleUpperCase();
 		}
 	}
 	$: {
@@ -91,12 +83,12 @@
 		const alpha = alphaValue / 100;
 		if (formatValue === 'rgb') {
 			dispatch('change', {
-				value: tinycolor({
+				value: toHsv({
 					r: hRValue,
 					g: sGValue,
 					b: vBValue,
 					a: alpha
-				}).toHsv(),
+				}),
 				format: formatValue
 			});
 		}
@@ -114,7 +106,7 @@
 		}
 
 		if (formatValue === 'hex') {
-			const hsv = tinycolor(`#${valueHex}`).toHsv();
+			const hsv = toHsv(`#${valueHex}`);
 			hsv.a = alpha;
 			dispatch('change', {
 				value: hsv,

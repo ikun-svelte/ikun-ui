@@ -3,7 +3,7 @@
 	import { clsx } from 'clsx';
 	import type { HsvaColor, KColorPickerProps } from './types';
 	import { KPopover } from '@ikun-ui/popover';
-	import tinycolor from 'tinycolor2';
+	import { toRgbString, toHsvString, toHex8String, toHsv } from './utils';
 	import KColorPickerPalette from './palette.svelte';
 	import KColorPickerSlider from './slider.svelte';
 	import KColorPickerBlock from './block.svelte';
@@ -14,7 +14,7 @@
 	export let title: KColorPickerProps['title'] = '';
 	export let value: KColorPickerProps['value'] = '';
 	export let defaultValue: KColorPickerProps['defaultValue'] = '';
-	export let format: KColorPickerProps['format'] = 'rgb';
+	export let format: KColorPickerProps['format'] = 'hex';
 	export let disabled: KColorPickerProps['disabled'] = false;
 	export let disabledAlpha: KColorPickerProps['disabledAlpha'] = false;
 	export let placement: KColorPickerProps['placement'] = 'top';
@@ -23,16 +23,17 @@
 	export let showText: KColorPickerProps['showText'] = false;
 	export let trigger: KColorPickerProps['trigger'] = 'click';
 	export let cls: KColorPickerProps['cls'] = '';
+	export let triggerClass: KColorPickerProps['cls'] = '';
 	export let attrs: KColorPickerProps['attrs'] = {};
 
 	function formatColor(format: KColorPickerProps['format'], value: KColorPickerProps['value']) {
 		if (format === 'rgb') {
-			return tinycolor(value).toRgbString();
+			return toRgbString(value);
 		}
 		if (format === 'hsv') {
-			return tinycolor(value).toHsvString();
+			return toHsvString(value);
 		}
-		return tinycolor(value).toHex8String();
+		return toHex8String(value);
 	}
 
 	const dispatch = createEventDispatcher();
@@ -99,7 +100,7 @@
 	let paletteRef: any = null;
 	$: formatValue = format;
 	function handleFormatInput(e: CustomEvent) {
-		const hsv = tinycolor(e.detail.value).toHsv() as HsvaColor;
+		const hsv = toHsv(e.detail.value) as HsvaColor;
 		formatValue = e.detail.format;
 
 		blockColor = hsv;
@@ -120,7 +121,7 @@
 	}
 
 	function handlePresetChange(e: CustomEvent) {
-		const v = tinycolor(e.detail[0]).toHsv() as HsvaColor;
+		const v = toHsv(e.detail[0]) as HsvaColor;
 		const res = { ...v, a: aColor.a };
 		defaultPaletteColor = { ...defaultPaletteColor, h: res.h, a: res.a };
 		blockColor = { ...res, a: res.a };
@@ -139,13 +140,13 @@
 	let hsvValue: HsvaColor = { h: 0, s: 0, v: 0, a: 1 };
 	$: {
 		if (!isDragging) {
-			hsvValue = tinycolor(value).toHsv() as HsvaColor;
+			hsvValue = toHsv(value) as HsvaColor;
 		}
 	}
 
 	let hsvDefaultValue: HsvaColor = { h: 0, s: 0, v: 0, a: 1 };
 	$: {
-		hsvDefaultValue = tinycolor(defaultValue).toHsv();
+		hsvDefaultValue = toHsv(defaultValue);
 	}
 	$: paletteColor = hsvValue;
 	$: defaultPaletteColor = hsvDefaultValue;
@@ -161,9 +162,12 @@
 	const headerCls = getPrefixCls('color-picker-header');
 	const clearCls = getPrefixCls('color-picker-clear');
 	const lineCls = getPrefixCls('color-picker-line');
-	$: triggerCls = clsx({
-		[`${prefixCls}-trigger--disabled`]: disabled
-	});
+	$: triggerCls = clsx(
+		{
+			[`${prefixCls}-trigger--disabled`]: disabled
+		},
+		triggerClass
+	);
 
 	$: txtCls = clsx(`${prefixCls}-txt__dark`, {
 		[`${prefixCls}-txt`]: showText

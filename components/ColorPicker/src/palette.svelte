@@ -2,7 +2,7 @@
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import tinycolor from 'tinycolor2';
+	import { toHsv, toHex } from './utils';
 	import type { KColorPickerPaletteProps, HsvaColor } from './types.js';
 	import { extend } from 'baiwusanyu-utils';
 	export let cls: KColorPickerPaletteProps['cls'] = '';
@@ -124,8 +124,8 @@
 		window.removeEventListener('mousemove', handleMouseMove);
 	});
 
-	$: valueHsvH = tinycolor(defaultValue).toHsv().h;
-	$: bgColorVal = tinycolor(defaultValue).toHex();
+	$: valueHsvH = toHsv(defaultValue).h;
+	$: bgColorVal = toHex(defaultValue);
 	const prefixCls = getPrefixCls('color-picker-palette');
 	$: cnames = clsx(
 		prefixCls,
