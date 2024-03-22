@@ -1,6 +1,6 @@
 {
 	"name": "@ikun-ui/page-header",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"type": "module",
 	"main": "src/index.ts",
 	"types": "src/index.d.ts",
