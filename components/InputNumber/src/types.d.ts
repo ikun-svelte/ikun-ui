@@ -16,6 +16,7 @@ export type KInputNumberProps = {
 	id: string;
 	name: string;
 	placeholder: string;
+	ignoreForm: boolean;
 	append: string;
 	prepend: string;
 	useCompositionInput: boolean;

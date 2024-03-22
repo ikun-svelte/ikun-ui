@@ -16,7 +16,7 @@
 	export let attrs: KSliderProps['attrs'] = {};
 	export let cls: KSliderProps['cls'] = undefined;
 	export let showTooltip: KSliderProps['showTooltip'] = true;
-	export let format: KSliderProps['format'];
+	export let format: KSliderProps['format'] = undefined;
 	export let showStops: KSliderProps['showStops'] = false;
 
 	/*********************** KForm logic start ************************/
@@ -68,7 +68,7 @@
 	}
 
 	// discrete showStops attr
-	let discreteNum = (max - min) / step - 1;
+	let discreteNum = (max! - min!) / step! - 1;
 	$: discreteDivsArray = showStops
 		? Array.from({ length: discreteNum }, (_, index) => index + 1)
 		: [];
@@ -80,15 +80,15 @@
 	let startPosition: number;
 	let newPosition: number;
 
-	$: if (value < min) {
+	$: if (value! < min!) {
 		value = min;
-	} else if (value > max) {
+	} else if (value! > max!) {
 		value = max;
 	}
-	$: percentage = `${((value - min) / (max - min)) * 100}%`;
+	$: percentage = `${((value! - min!) / (max! - min!)) * 100}%`;
 	$: barStyle = vertical ? `height: ${percentage}; bottom: 0%` : `width: ${percentage}; left: 0%`;
 	$: btnStyle = vertical ? `bottom: ${percentage}` : `left: ${percentage}`;
-	$: formatContent = String(handleFormat(value));
+	$: formatContent = String(handleFormat(value!));
 
 	// element
 	let runwayRef: null | HTMLElement = null;
@@ -136,9 +136,9 @@
 			newPosition = 100;
 		}
 
-		const lengthStep = 100 / ((max - min) / step);
+		const lengthStep = 100 / ((max! - min!) / step!);
 		const steps = Math.round(newPosition / lengthStep);
-		let newValue = steps * lengthStep * (max - min) * 0.01 + min;
+		let newValue = steps * lengthStep * (max! - min!) * 0.01 + min!;
 		if (newValue !== value) {
 			value = newValue;
 			dispatch('input', value);
@@ -212,6 +212,9 @@
 		},
 		`${prefixCls}--stop--${sizeInner}`
 	);
+	const getOffset = (discreteDiv: number) => {
+		return (discreteDiv * (max! - min!)) / step!;
+	};
 </script>
 
 <div class={baseCls} {...$$restProps} {...attrs}>
@@ -220,9 +223,7 @@
 			{#each discreteDivsArray as discreteDiv}
 				<div
 					class={discreteCls}
-					style={vertical
-						? `top: ${(discreteDiv * (max - min)) / step}%`
-						: `left: ${(discreteDiv * (max - min)) / step}%`}
+					style={vertical ? `top: ${getOffset(discreteDiv)}%` : `left: ${getOffset(discreteDiv)}%`}
 				></div>
 			{/each}
 		{/if}

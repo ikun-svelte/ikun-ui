@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { getPrefixCls } from '@ikun-ui/utils';
+	import { formKey, getPrefixCls } from '@ikun-ui/utils';
+	import type { IKunSize } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import type { HsvaColor, KColorPickerProps } from './types';
 	import { KPopover } from '@ikun-ui/popover';
@@ -9,7 +10,9 @@
 	import KColorPickerBlock from './block.svelte';
 	import KColorPickerFormat from './format.svelte';
 	import KColorPickerPreset from './preset.svelte';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, getContext } from 'svelte';
+	import type { IKunFormInstance } from '@ikun-ui/form';
+	import { formItemKey } from '@ikun-ui/utils';
 	export let allowClear: KColorPickerProps['allowClear'] = false;
 	export let title: KColorPickerProps['title'] = '';
 	export let value: KColorPickerProps['value'] = '';
@@ -44,7 +47,12 @@
 		blockColor = res;
 		formatterColor = res;
 		isClear = false;
-		dispatch('changeComplete', formatColor(formatValue, blockColor));
+		const resolveColor = formatColor(formatValue, blockColor);
+		dispatch('changeComplete', resolveColor);
+		if (formInstance) {
+			formInstance.updateField(field!, resolveColor, !formInstance.__manual_validate);
+			value = resolveColor;
+		}
 	}
 
 	let isDragging = false;
@@ -55,7 +63,13 @@
 		blockColor = res;
 		formatterColor = res;
 		isClear = false;
-		dispatch('change', formatColor(formatValue, blockColor));
+
+		const resolveColor = formatColor(formatValue, blockColor);
+		dispatch('change', resolveColor);
+		if (formInstance) {
+			formInstance.updateField(field!, resolveColor, !formInstance.__manual_validate);
+			value = resolveColor;
+		}
 	}
 
 	function handleHValueInput(e: CustomEvent) {
@@ -71,6 +85,10 @@
 		const resolveColor = formatColor(formatValue, blockColor);
 		dispatch('change', resolveColor);
 		dispatch('changeComplete', resolveColor);
+		if (formInstance) {
+			formInstance.updateField(field!, resolveColor, !formInstance.__manual_validate);
+			value = resolveColor;
+		}
 	}
 
 	function handleAValueInput(e: CustomEvent) {
@@ -78,7 +96,12 @@
 		blockColor = e.detail;
 		formatterColor = e.detail;
 		isClear = false;
-		dispatch('changeComplete', formatColor(formatValue, blockColor));
+		const resolveColor = formatColor(formatValue, blockColor);
+		dispatch('changeComplete', resolveColor);
+		if (formInstance) {
+			formInstance.updateField(field!, resolveColor, !formInstance.__manual_validate);
+			value = resolveColor;
+		}
 	}
 
 	let focus = false;
@@ -95,6 +118,10 @@
 		isClear = true;
 		dispatch('clear');
 		dispatch('change', null);
+
+		if (formInstance) {
+			formInstance.updateField(field!, null, !formInstance.__manual_validate);
+		}
 	}
 
 	let paletteRef: any = null;
@@ -102,17 +129,24 @@
 	function handleFormatInput(e: CustomEvent) {
 		const hsv = toHsv(e.detail.value) as HsvaColor;
 		formatValue = e.detail.format;
-
 		blockColor = hsv;
 		paletteColor = hsv;
 		aColor = hsv;
 		hColor = hsv;
 		defaultPaletteColor = { ...hColor, s: 1, v: 1, a: 1 };
 		formatterColor = hsv;
+		isClear = false;
 		if (paletteRef) {
 			paletteRef.setPickerPos(paletteColor);
 		}
-		dispatch('change', formatColor(formatValue, blockColor));
+
+		const resolveColor = formatColor(formatValue, blockColor);
+		console.log(resolveColor);
+		dispatch('change', resolveColor);
+		if (formInstance) {
+			formInstance.updateField(field!, resolveColor, !formInstance.__manual_validate);
+			value = resolveColor;
+		}
 	}
 
 	function handleFormatChange(e: CustomEvent) {
@@ -135,6 +169,10 @@
 		const resolveColor = formatColor(formatValue, blockColor);
 		dispatch('change', resolveColor);
 		dispatch('changeComplete', resolveColor);
+		if (formInstance) {
+			formInstance.updateField(field!, resolveColor, !formInstance.__manual_validate);
+			value = resolveColor;
+		}
 	}
 
 	let hsvValue: HsvaColor = { h: 0, s: 0, v: 0, a: 1 };
@@ -156,6 +194,51 @@
 	$: formatterColor = hsvValue;
 	$: presetColor = hsvValue;
 
+	/*********************** KForm logic start ************************/
+	let disabledFrom = false;
+	$: disabledInner = disabledFrom || disabled;
+	let sizeFrom: IKunSize | string = '';
+	$: sizeInner = (sizeFrom || size) as IKunSize;
+	let isErrorForm = false;
+	$: isErrorInner = isErrorForm;
+	const formContext = getContext(formItemKey) as string;
+	const formInstance = getContext(formKey) as IKunFormInstance;
+	let field: string | undefined = '';
+	// Initialize the KSwitch value based
+	// on the form value in the KFormItem context
+	async function formUpdateField(init = false) {
+		field = formContext.split('&').pop();
+		value = formInstance.getValueByPath(
+			field,
+			init ? formInstance.__default_value : formInstance.__value
+		);
+		hsvValue = toHsv(value);
+		if (!init) {
+			hsvDefaultValue = toHsv(defaultValue);
+			isClear = false;
+		}
+	}
+	function formPropsChangeCb(props: Record<any, any>) {
+		disabledFrom = props.disabled;
+		sizeFrom = props.size;
+	}
+
+	function fromFieldError(error: boolean) {
+		isErrorForm = error;
+	}
+	// Register event, KForm can set KColorPicker value
+	if (formContext && formInstance) {
+		formUpdateField(true);
+		formPropsChangeCb(formInstance.__dynamicProps);
+		formInstance.__itemCompMap[field] = {
+			update: formUpdateField,
+			type: 'color-picker'
+		};
+		formInstance.__errorCompEvtMap[field] = fromFieldError;
+		formInstance.__propHandleEvtMap.push(formPropsChangeCb);
+	}
+	/*********************** KForm logic end ************************/
+
 	const prefixCls = getPrefixCls('color-picker');
 	const hsbCls = getPrefixCls('color-picker--hsb');
 	const hsCls = getPrefixCls('color-picker--hs');
@@ -164,7 +247,7 @@
 	const lineCls = getPrefixCls('color-picker-line');
 	$: triggerCls = clsx(
 		{
-			[`${prefixCls}-trigger--disabled`]: disabled
+			[`${prefixCls}-trigger--disabled`]: disabledInner
 		},
 		triggerClass
 	);
@@ -200,7 +283,7 @@
 <KPopover
 	bind:this={popoverRef}
 	{placement}
-	{disabled}
+	disabled={disabledInner}
 	{trigger}
 	on:change={onDisplayChange}
 	arrow={false}
@@ -209,7 +292,15 @@
 		{#if $$slots.default}
 			<slot {blockColor} />
 		{:else}
-			<KColorPickerBlock {disabled} value={blockColor} trigger {size} {focus} {isClear}>
+			<KColorPickerBlock
+				disabled={disabledInner}
+				value={blockColor}
+				trigger
+				size={sizeInner}
+				{focus}
+				error={isErrorInner}
+				{isClear}
+			>
 				<div slot="text" class={txtCls} style:display={showText ? 'initial' : 'none'}>
 					{#if showText}
 						<slot name="text">

@@ -24,6 +24,7 @@ export const colorPickerShortcuts: Record<string, string> = {
 	'k-color-picker-block-w':
 		'p-4px box-border rounded-4px k-border border-ikun-bd-base cursor-pointer fcc hover:border-ikun-main',
 	'k-color-picker-block-w--focus': 'border-ikun-main k-color-picker-shadow',
+	'k-color-picker-block-w--error': 'border-ikun-error k-color-picker-shadow--error',
 	'k-color-picker-block-w--sm': 'min-w-24px h-24px',
 	'k-color-picker-block-w--md': 'min-w-32px h-32px',
 	'k-color-picker-trigger--disabled': 'k-bg-disabled k-cur-disabled',

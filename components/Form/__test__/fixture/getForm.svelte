@@ -10,7 +10,12 @@
 	import { KSelect } from '@ikun-ui/select';
 	import { createEventDispatcher } from 'svelte';
 	import { KInputNumber } from '@ikun-ui/input-number';
-	import { KAutoComplete } from '@ikun-ui/auto-complete';
+	import {
+		type AutoCompleteItems,
+		type FetchSuggestionType,
+		KAutoComplete
+	} from '@ikun-ui/auto-complete';
+	import { KColorPicker } from '@ikun-ui/color-picker';
 	export let initValue = {};
 	let KFormInst: KForm | undefined = undefined;
 	const dataList = [
@@ -63,7 +68,7 @@
 			{
 				required: true,
 				msg: 'KSelectString error',
-				validator: (value, callback) => {
+				validator: (value: string, callback: any) => {
 					if (!value) {
 						callback('KSelectString custom error');
 					}
@@ -88,18 +93,21 @@
 		{ value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
 		{ value: 'babel', link: 'https://github.com/babel/babel' }
 	];
-	const createFilter = (queryString) => {
-		return (restaurant) => {
-			return restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
+	const createFilter = (queryString: string | number) => {
+		return (restaurant: any) => {
+			return restaurant.value.toLowerCase().indexOf(`${queryString}`.toLowerCase()) === 0;
 		};
 	};
-	const fetchFn = (queryString, cb) => {
+	const fetchFn: FetchSuggestionType = (
+		queryString: string | number,
+		cb: (res: AutoCompleteItems[]) => void
+	) => {
 		const results = queryString ? restaurants.filter(createFilter(queryString)) : restaurants;
 		cb(results);
 	};
 </script>
 
-<KForm {initValue} {rules} labelWidth="120" bind:this={KFormInst}>
+<KForm {initValue} {rules} labelWidth={120} bind:this={KFormInst}>
 	<KFormItem field="KInput" label="KInput">
 		<KInput placeholder="Please input value"></KInput>
 	</KFormItem>
@@ -137,6 +145,9 @@
 	</KFormItem>
 	<KFormItem field="KAutoComplete" label="KAutoComplete">
 		<KAutoComplete cls="w-300px" fetchSuggestions={fetchFn}></KAutoComplete>
+	</KFormItem>
+	<KFormItem field="KColorPicker" label="KColorPicker">
+		<KColorPicker format="rgb" defaultValue="#00ffff" showText></KColorPicker>
 	</KFormItem>
 </KForm>
 <button id="getForm" on:click={handleGetForm}>getForm</button>

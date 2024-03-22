@@ -19,6 +19,7 @@
 	export let append: KInputProps['append'] = '';
 	export let prepend: KInputProps['prepend'] = '';
 	export let cls: KInputProps['cls'] = undefined;
+	export let ignoreForm: KInputProps['ignoreForm'] = false;
 	export let attrs: KInputProps['attrs'] = {};
 	export let useCompositionInput: KInputProps['useCompositionInput'] = false;
 	export let type: KInputProps['type'] = 'text';
@@ -63,7 +64,7 @@
 	}
 
 	// Register event, KForm can set KInput value
-	if (formContext && formInstance) {
+	if (formContext && formInstance && !ignoreForm) {
 		formUpdateField(true);
 		formPropsChangeCb(formInstance.__dynamicProps);
 		formInstance.__itemCompMap[field] = {
@@ -99,7 +100,7 @@
 	 * @internal
 	 * @param value
 	 */
-	export function doUpdateFormField(value) {
+	export function doUpdateFormField(value: string) {
 		formInstance && formInstance?.updateField(field!, value, !formInstance.__manual_validate);
 	}
 

@@ -10,6 +10,7 @@ export type KFormComponent =
 	| 'radio'
 	| 'checkbox'
 	| 'rate'
+	| 'color-picker'
 	| 'slider';
 export declare type ShowMsg = (msg: string) => void;
 export interface IKunFormDynamicProps {

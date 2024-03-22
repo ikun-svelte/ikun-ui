@@ -173,10 +173,11 @@ describe('Test: KForm', () => {
 		expect(instance).toBeTruthy();
 		await tick();
 
-		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(10);
+		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(11);
 		expect(host.querySelector('.k-input__disabled')).toBeTruthy();
 		expect(host.querySelectorAll('.k-input__disabled').length).toBe(6);
 		expect(host.querySelector('.k-switch__disabled')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-trigger--disabled')).toBeTruthy();
 		expect(host.querySelector('.k-rate--item__disabled')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--box__disabled').length).toBe(4);
@@ -190,6 +191,7 @@ describe('Test: KForm', () => {
 		expect(host.querySelector('.k-input__disabled')).not.toBeTruthy();
 		expect(host.querySelectorAll('.k-input__disabled').length).toBe(0);
 		expect(host.querySelector('.k-switch__disabled')).not.toBeTruthy();
+		expect(host.querySelector('.k-color-picker-trigger--disabled')).not.toBeTruthy();
 		expect(host.querySelector('.k-rate--item__disabled')).not.toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(1);
 		expect(host.querySelectorAll('.k-checkbox--box__disabled').length).toBe(1);
@@ -198,10 +200,11 @@ describe('Test: KForm', () => {
 
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(10);
+		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(11);
 		expect(host.querySelector('.k-input__disabled')).toBeTruthy();
 		expect(host.querySelectorAll('.k-input__disabled').length).toBe(6);
 		expect(host.querySelector('.k-switch__disabled')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-trigger--disabled')).toBeTruthy();
 		expect(host.querySelector('.k-rate--item__disabled')).toBeTruthy();
 		expect(host.querySelectorAll('.k-radio--box__disabled').length).toBe(4);
 		expect(host.querySelectorAll('.k-checkbox--box__disabled').length).toBe(4);
@@ -217,10 +220,13 @@ describe('Test: KForm', () => {
 		expect(instance).toBeTruthy();
 		await tick();
 
-		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(10);
+		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(11);
 		expect(host.querySelectorAll('.k-input__sm').length).toBe(2);
 		expect(host.querySelector('.k-input-number__sm')).toBeTruthy();
 		expect(host.querySelector('.k-switch--sm')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-block-w--sm')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-block--sm')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-block-content--sm')).toBeTruthy();
 		expect(host.querySelector('.k-rate--sm')).toBeTruthy();
 		expect(host.querySelector('.k-slider--sm')).toBeTruthy();
 		expect(host.querySelector('.k-slider--button--sm')).toBeTruthy();
@@ -232,10 +238,13 @@ describe('Test: KForm', () => {
 		let btnEl = host.querySelector('#size_lg');
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__lg').length).toBe(10);
+		expect(host.querySelectorAll('.k-form-item-label__lg').length).toBe(11);
 		expect(host.querySelectorAll('.k-input__lg').length).toBe(2);
 		expect(host.querySelector('.k-input-number__lg')).toBeTruthy();
 		expect(host.querySelector('.k-switch--lg')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-block-w--lg')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-block--lg')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-block-content--lg')).toBeTruthy();
 		expect(host.querySelector('.k-rate--lg')).toBeTruthy();
 		expect(host.querySelector('.k-slider--lg')).toBeTruthy();
 		expect(host.querySelector('.k-slider--button--lg')).toBeTruthy();
@@ -247,10 +256,13 @@ describe('Test: KForm', () => {
 		btnEl = host.querySelector('#size_md');
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__md').length).toBe(10);
+		expect(host.querySelectorAll('.k-form-item-label__md').length).toBe(11);
 		expect(host.querySelectorAll('.k-input__md').length).toBe(2);
 		expect(host.querySelector('.k-input-number__md')).toBeTruthy();
 		expect(host.querySelector('.k-switch--md')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-block-w--md')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-block--md')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-block-content--md')).toBeTruthy();
 		expect(host.querySelector('.k-rate--md')).toBeTruthy();
 		expect(host.querySelector('.k-slider--md')).toBeTruthy();
 		expect(host.querySelector('.k-slider--button--md')).toBeTruthy();
@@ -262,10 +274,13 @@ describe('Test: KForm', () => {
 		btnEl = host.querySelector('#size_sm');
 		btnEl?.click();
 		await tick();
-		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(10);
+		expect(host.querySelectorAll('.k-form-item-label__sm').length).toBe(11);
 		expect(host.querySelectorAll('.k-input__sm').length).toBe(2);
 		expect(host.querySelector('.k-input-number__sm')).toBeTruthy();
 		expect(host.querySelector('.k-switch--sm')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-block-w--sm')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-block--sm')).toBeTruthy();
+		expect(host.querySelector('.k-color-picker-block-content--sm')).toBeTruthy();
 		expect(host.querySelector('.k-rate--sm')).toBeTruthy();
 		expect(host.querySelector('.k-slider--sm')).toBeTruthy();
 		expect(host.querySelector('.k-slider--button--sm')).toBeTruthy();
@@ -504,6 +519,7 @@ describe('Test: KForm', () => {
 			KSelect: null,
 			KSelectString: '',
 			slider: 0,
+			KColorPicker: '#00ffff',
 			KAutoComplete: 'vue'
 		};
 		// @ts-ignore
@@ -562,6 +578,14 @@ describe('Test: KForm', () => {
 		const autoOption = host.querySelector('[data-kv-key="element"]')?.children[0];
 		autoOption?.click();
 
+		const triggerEl3 = host.querySelectorAll('[data-popover-trigger]')[4];
+		triggerEl3.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const colorPicker = host.querySelector('.k-color-picker');
+		const increase = colorPicker.querySelectorAll('.k-input-number--down')[3];
+		await fireEvent.click(increase);
+
 		btn?.click();
 		await tick();
 
@@ -579,6 +603,7 @@ describe('Test: KForm', () => {
 			},
 			KSelectString: 'Huge',
 			slider: 0,
+			KColorPicker: 'rgba(0, 255, 255, 0.99)',
 			KAutoComplete: 'element'
 		});
 
@@ -602,6 +627,7 @@ describe('Test: KForm', () => {
 			KCheckbox: [],
 			KSelect: null,
 			KSelectString: '',
+			KColorPicker: '#00ffff',
 			KAutoComplete: 'vue'
 		};
 		// @ts-ignore
@@ -660,6 +686,14 @@ describe('Test: KForm', () => {
 		const autoOption = host.querySelector('[data-kv-key="element"]')?.children[0];
 		autoOption?.click();
 
+		const triggerEl3 = host.querySelectorAll('[data-popover-trigger]')[3];
+		triggerEl3.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const colorPicker = host.querySelector('.k-color-picker');
+		const increase = colorPicker.querySelectorAll('.k-input-number--down')[3];
+		await fireEvent.click(increase);
+
 		btn?.click();
 		await tick();
 
@@ -676,6 +710,7 @@ describe('Test: KForm', () => {
 				id: '1'
 			},
 			KSelectString: 'Huge',
+			KColorPicker: 'rgba(0, 255, 255, 0.99)',
 			KAutoComplete: 'element'
 		});
 	});
@@ -691,6 +726,7 @@ describe('Test: KForm', () => {
 			KCheckbox: [],
 			KSelect: null,
 			KSelectString: '',
+			KColorPicker: '#00ffff',
 			KAutoComplete: '白雾三语'
 		};
 		// @ts-ignore
@@ -727,6 +763,7 @@ describe('Test: KForm', () => {
 		expect(host.querySelectorAll('.k-rate--active-icon').length === 1).toBeTruthy();
 
 		expect(host.querySelectorAll('.k-switch__unchecked').length === 1).toBeTruthy();
+		expect(host.innerHTML.includes('rgb(100, 174, 174)')).toBeTruthy();
 
 		expect(host.querySelectorAll('.k-radio__selected').length === 1).toBeTruthy();
 		expect(
@@ -759,6 +796,7 @@ describe('Test: KForm', () => {
 				id: '1'
 			},
 			KSelectString: 'Huge',
+			KColorPicker: '#64AEAE',
 			KAutoComplete: 'baiwusanyu'
 		});
 	});
@@ -772,6 +810,7 @@ describe('Test: KForm', () => {
 			KRadio: '',
 			KCheckbox: [],
 			KSelect: null,
+			KColorPicker: null,
 			KSelectString: ''
 		};
 		// @ts-ignore
@@ -806,6 +845,7 @@ describe('Test: KForm', () => {
 		expect(host.querySelectorAll('.k-rate--active-icon').length === 1).toBeTruthy();
 
 		expect(host.querySelectorAll('.k-switch__unchecked').length === 1).toBeTruthy();
+		expect(host.innerHTML.includes('rgb(100, 174, 174)')).toBeTruthy();
 
 		expect(host.querySelectorAll('.k-radio__selected').length === 1).toBeTruthy();
 		expect(
@@ -837,6 +877,7 @@ describe('Test: KForm', () => {
 				value: '白发',
 				id: '1'
 			},
+			KColorPicker: '#64AEAE',
 			KSelectString: 'Huge'
 		});
 	});

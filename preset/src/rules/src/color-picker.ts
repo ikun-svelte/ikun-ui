@@ -1,5 +1,6 @@
 export const colorPickerRules = {
 	'k-color-picker-shadow': { 'box-shadow': '0 0 0 2px #ff787542' },
+	'k-color-picker-shadow--error': { 'box-shadow': '0 0 0 2px rgba(251,113,133,0.5)' },
 	'palette-bg': {
 		'background-image':
 			'linear-gradient(0deg, rgb(0, 0, 0), transparent),\n' +
