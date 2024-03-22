@@ -32,26 +32,26 @@
 		"types": "dist/index.d.ts"
 	},
 	"dependencies": {
-		"@ikun-ui/icon": "workspace:*",
-		"@ikun-ui/popover": "workspace:*",
-		"@ikun-ui/input": "workspace:*",
-		"@ikun-ui/input-number": "workspace:*",
 		"@ikun-ui/checkbox": "workspace:*",
 		"@ikun-ui/checkbox-group": "workspace:*",
-		"@ikun-ui/form": "workspace:*",
 		"@ikun-ui/dropdown": "workspace:*",
+		"@ikun-ui/form": "workspace:*",
+		"@ikun-ui/icon": "workspace:*",
+		"@ikun-ui/input": "workspace:*",
+		"@ikun-ui/input-number": "workspace:*",
+		"@ikun-ui/popover": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"esm-env": "^1.0.0",
-		"tinycolor2": "^1.6.0",
 		"baiwusanyu-utils": "^1.0.18",
-		"clsx": "^2.0.0",
-		"svelte": "^4.2.7"
+		"clsx": "^2.1.0",
+		"esm-env": "^1.0.0",
+		"svelte": "^4.2.12",
+		"tinycolor2": "^1.6.0"
 	},
 	"devDependencies": {
-		"@sveltejs/package": "^2.2.5",
+		"@sveltejs/package": "^2.3.0",
 		"@tsconfig/svelte": "^5.0.2",
 		"@types/tinycolor2": "^1.4.6",
 		"tslib": "^2.6.2",
-		"typescript": "^5.3.3"
+		"typescript": "^5.4.3"
 	}
 }

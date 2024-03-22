@@ -36,15 +36,15 @@
 		"@ikun-ui/form": "workspace:*",
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"svelte": "^4.2.7",
 		"baiwusanyu-utils": "^1.0.18",
 		"clsx": "^2.1.0",
-		"decimal.js": "^10.4.3"
+		"decimal.js": "^10.4.3",
+		"svelte": "^4.2.12"
 	},
 	"devDependencies": {
+		"@sveltejs/package": "^2.3.0",
 		"@tsconfig/svelte": "^5.0.2",
-		"@sveltejs/package": "^2.0.0",
 		"tslib": "^2.6.2",
-		"typescript": "^5.3.3"
+		"typescript": "^5.4.3"
 	}
 }

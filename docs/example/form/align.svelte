@@ -12,6 +12,7 @@
 	import { KRate } from '@ikun-ui/rate';
 	import { KSlider } from '@ikun-ui/slider';
 	import { KInputNumber } from '@ikun-ui/input-number';
+	import { KColorPicker } from '@ikun-ui/color-picker';
 	const initValue = {
 		name: 'Ikun',
 		KInputs: {
@@ -23,6 +24,7 @@
 		KInputNumber: null,
 		KRadio: '',
 		KCheckbox: [],
+		KColorPicker: '#f8a153',
 		KSelect: null,
 		KSelectString: '',
 		textarea: '',
@@ -90,6 +92,9 @@
 	</KFormItem>
 	<KFormItem field="KSwitch" label="KSwitch">
 		<KSwitch />
+	</KFormItem>
+	<KFormItem field="KColorPicker" label="KColorPicker">
+		<KColorPicker defaultValue="#f8a153" allowClear format="hex" showText></KColorPicker>
 	</KFormItem>
 	<KFormItem field="KRate" label="KRate">
 		<KRate clearable />

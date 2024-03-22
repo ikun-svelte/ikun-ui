@@ -10,6 +10,7 @@
 	import { KCheckboxGroup } from '@ikun-ui/checkbox-group';
 	import { KRate } from '@ikun-ui/rate';
 	import { KInputNumber } from '@ikun-ui/input-number';
+	import { KColorPicker } from '@ikun-ui/color-picker';
 	const initValue = {
 		KInput: '',
 		KInputNumber: null,
@@ -18,6 +19,7 @@
 			KInputs2: 'KInputs2'
 		},
 		KSwitch: true,
+		KColorPicker: null,
 		KRate: null,
 		KRadio: '',
 		KCheckbox: [],
@@ -67,6 +69,12 @@
 			{
 				required: true,
 				msg: 'KSwitch error'
+			}
+		],
+		KColorPicker: [
+			{
+				required: true,
+				msg: 'KColorPicker required'
 			}
 		],
 		KRate: [
@@ -119,6 +127,9 @@
 	</KFormItem>
 	<KFormItem field="KSwitch" label="KSwitch">
 		<KSwitch />
+	</KFormItem>
+	<KFormItem field="KColorPicker" label="KColorPicker">
+		<KColorPicker defaultValue="#f8a153" allowClear format="hex" showText></KColorPicker>
 	</KFormItem>
 	<KFormItem field="KRate" label="KRate">
 		<KRate clearable />
