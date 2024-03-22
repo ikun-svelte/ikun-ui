@@ -141,7 +141,6 @@
 		}
 
 		const resolveColor = formatColor(formatValue, blockColor);
-		console.log(resolveColor);
 		dispatch('change', resolveColor);
 		if (formInstance) {
 			formInstance.updateField(field!, resolveColor, !formInstance.__manual_validate);
@@ -175,14 +174,15 @@
 		}
 	}
 
-	let hsvValue: HsvaColor = { h: 0, s: 0, v: 0, a: 1 };
+	const defaultColor = { h: 0, s: 0, v: 0, a: 0 };
+	let hsvValue: HsvaColor = defaultColor;
 	$: {
 		if (!isDragging) {
-			hsvValue = toHsv(value) as HsvaColor;
+			hsvValue = toHsv(value || defaultColor) as HsvaColor;
 		}
 	}
 
-	let hsvDefaultValue: HsvaColor = { h: 0, s: 0, v: 0, a: 1 };
+	let hsvDefaultValue: HsvaColor = defaultColor;
 	$: {
 		hsvDefaultValue = toHsv(defaultValue);
 	}
@@ -212,7 +212,7 @@
 			field,
 			init ? formInstance.__default_value : formInstance.__value
 		);
-		hsvValue = toHsv(value);
+		hsvValue = toHsv(value || defaultColor);
 		if (!init) {
 			hsvDefaultValue = toHsv(defaultValue);
 			isClear = false;

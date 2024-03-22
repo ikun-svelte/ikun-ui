@@ -36,12 +36,12 @@
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.18",
-		"svelte": "^4.2.7"
+		"svelte": "^4.2.12"
 	},
 	"devDependencies": {
+		"@sveltejs/package": "^2.3.0",
 		"@tsconfig/svelte": "^5.0.2",
 		"tslib": "^2.6.2",
-		"typescript": "^5.3.3",
-		"@sveltejs/package": "^2.0.0"
+		"typescript": "^5.4.3"
 	}
 }
