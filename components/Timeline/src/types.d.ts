@@ -1,10 +1,11 @@
 /// <reference types="svelte" />
 import type { ClassValue } from 'clsx';
 export type KTimelineProps = {
+	items: Array<unknown>;
 	/**
 	 * TODO: 通过设置 mode 可以改变时间轴和内容的相对位置,
 	 * TODO: 这里是指 label 的位置，没有label，
-	 * TODO: 也要变化对应的 children位置（children永远在label 对面）
+	 * TODO: 也要变化对应的 children 位置（children永远在label 对面）
 	 * @default -
 	 */
 	mode?: 'left' | 'alternate' | 'right';
@@ -14,12 +15,12 @@ export type KTimelineProps = {
 	 */
 	reverse?: boolean;
 	/**
-	 * TODO: 最后一个节点是否是幽灵节点或内容
+	 * TODO: 🤔 最后一个节点是否是幽灵节点或内容
 	 * @default false
 	 */
 	pending?: boolean;
 	/**
-	 * TODO: 最后一个节点是幽灵节点时的时间图点
+	 * TODO: 🤔 最后一个节点是幽灵节点时的时间图点
 	 * @default false
 	 */
 	pendingDot?: boolean;
