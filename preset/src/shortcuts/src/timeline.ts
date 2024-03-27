@@ -8,12 +8,12 @@ export const timelineShortcuts: Record<string, string> = {
 	'k-timeline-item-head--right': '-m-is-4px pos-inset-is-100%',
 
 	'k-timeline-item-tail':
-		'pa border-solid border-ikun-bd-base border-s-0px pos-inset-bs-10px pos-inset-is-4px',
+		'pa border-solid border-ikun-bd-base bdl-2 pos-inset-bs-10px pos-inset-is-4px',
 	'k-timeline-item-tail--center': 'pos-inset-is-50%',
 	'k-timeline-item-tail--right': '-m-is-1px pos-inset-is-100%',
 
-	'k-timeline-item-content--cl': 'k-timeline-tx-cl',
-	'k-timeline-item-content--cr': 'k-timeline-tx-cr',
+	'k-timeline-item-content--cl': 'k-timeline-tx-cl text-right m-is-0 me-26px',
+	'k-timeline-item-content--cr': 'k-timeline-tx-cr text-left',
 	'k-timeline-item-content--right': 'text-right mx-0 me-26px m-is-0',
 	'k-timeline-item-content':
 		'min-h-48px pr -pos-inset-bs-7px break-all m-is-26px me-0 m-bs-0 m-be-0'

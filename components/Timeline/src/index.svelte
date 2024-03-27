@@ -37,7 +37,7 @@
 	});
 	$: contentCls = (index: number) => {
 		const isCenter = hasLabel || (!hasLabel && mode === 'alternate');
-		const placement = index % 2 ? 'right' : 'left';
+		const placement = !(index % 2) ? 'right' : 'left';
 		return clsx(`${prefixCls}-item-content`, {
 			[`${prefixCls}-item-content--cl`]: isCenter && placement === 'left',
 			[`${prefixCls}-item-content--cr`]: isCenter && placement === 'right',

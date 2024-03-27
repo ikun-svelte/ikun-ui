@@ -46,6 +46,7 @@
 		"init": "pnpm i",
 		"dev": "pnpm run build",
 		"dev:docs": "pnpm run --filter @ikun-ui/docs docs:dev",
+		"dev:preset": "pnpm run --filter @ikun-ui/preset dev",
 		"play": "node scripts/play.js && pnpm run --filter @ikun-ui/play dev",
 		"build": "run-s build:* && run-s build-*",
 		"build-preset": "pnpm run --filter @ikun-ui/preset build",
