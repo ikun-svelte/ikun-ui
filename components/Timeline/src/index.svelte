@@ -1,13 +1,49 @@
 <script lang="ts">
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KTimelineProps } from './types';
+	import type { KTimelineItemInner, KTimelineProps } from './types';
 
-	export let cls: KTimelineProps['cls'] = undefined;
+	export let mode: KTimelineProps['mode'] = undefined;
 	export let items: KTimelineProps['items'] = [];
+	export let reverse: KTimelineProps['reverse'] = false;
+	export let pending: KTimelineProps['pending'] = false;
+	export let cls: KTimelineProps['cls'] = undefined;
 	export let attrs: KTimelineProps['attrs'] = {};
 
+	$: resolveItems = items.map((v, index) => {
+		if (!v.uid) {
+			v.uid = `${v.label}_${v.children}_${index}`;
+		}
+		if (index === items.length - 1 && pending) {
+			(v as KTimelineItemInner).pending = true;
+		}
+		return v;
+	}) as KTimelineItemInner[];
+	$: itemsValue = reverse ? resolveItems.reverse() : resolveItems;
+
+	// 有 label 时，无论mode 是啥，一直在中间，
+	// 无 label 时，只有 mode 是 alternate 才在中间
+	$: hasLabel = items.some((v) => !!v.label);
+
 	const prefixCls = getPrefixCls('timeline');
+	const itemCls = `${prefixCls}-item`;
+	$: tailCls = clsx(`${prefixCls}-item-tail`, {
+		[`${prefixCls}-item-tail--center`]: hasLabel || (!hasLabel && mode === 'alternate'),
+		[`${prefixCls}-item-tail--right`]: !hasLabel && mode === 'right'
+	});
+	$: headCls = clsx(`${prefixCls}-item-head text-blue border-blue`, {
+		[`${prefixCls}-item-head--center`]: hasLabel || (!hasLabel && mode === 'alternate'),
+		[`${prefixCls}-item-head--right`]: !hasLabel && mode === 'right'
+	});
+	$: contentCls = (index: number) => {
+		const isCenter = hasLabel || (!hasLabel && mode === 'alternate');
+		const placement = index % 2 ? 'right' : 'left';
+		return clsx(`${prefixCls}-item-content`, {
+			[`${prefixCls}-item-content--cl`]: isCenter && placement === 'left',
+			[`${prefixCls}-item-content--cr`]: isCenter && placement === 'right',
+			[`${prefixCls}-item-content--right`]: !hasLabel && mode === 'right'
+		});
+	};
 	$: cnames = clsx(
 		prefixCls,
 		{
@@ -17,10 +53,23 @@
 	);
 </script>
 
-<div class={cnames} {...$$restProps} {...attrs}>
-	{#each items as item, index (item.uid)}
-		<slot name="children" children={item.children} {index}>{item.children}</slot>
-		<slot name="label" label={item.label} {index}>{item.label}</slot>
-		<slot name="dot" {index} {item}>dot</slot>
+<ul class={cnames} {...$$restProps} {...attrs}>
+	{#each itemsValue as item, index (item.uid)}
+		<li class={itemCls}>
+			{#if index < itemsValue.length - 1}
+				<div class={tailCls} style:height="calc(100% - 10px)"></div>
+			{/if}
+			<slot name="dot" {index} {item}>
+				<div class={headCls}></div>
+			</slot>
+			{#if item.children}
+				<slot name="children" children={item.children} {index}>
+					<div class={contentCls(index)}>{item.children}</div>
+				</slot>
+			{/if}
+			{#if item.label}
+				<slot name="label" label={item.label} {index}>{item.label}</slot>
+			{/if}
+		</li>
 	{/each}
-</div>
+</ul>
