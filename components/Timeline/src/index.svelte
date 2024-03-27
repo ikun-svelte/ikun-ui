@@ -41,7 +41,7 @@
 		[`${prefixCls}-item-tail--center`]: hasLabel || (!hasLabel && mode === 'alternate'),
 		[`${prefixCls}-item-tail--right`]: !hasLabel && mode === 'right'
 	});
-	$: headCls = clsx(`${prefixCls}-item-head text-blue border-blue`, {
+	$: headCls = clsx(`${prefixCls}-item-head`, {
 		[`${prefixCls}-item-head--center`]: hasLabel || (!hasLabel && mode === 'alternate'),
 		[`${prefixCls}-item-head--right`]: !hasLabel && mode === 'right'
 	});
@@ -55,13 +55,7 @@
 			[`${prefixCls}-item-c__${position}`]: mode === 'alternate' && position
 		});
 	};
-	$: cnames = clsx(
-		prefixCls,
-		{
-			[`${prefixCls}--base`]: true
-		},
-		cls
-	);
+	$: cnames = clsx(prefixCls, cls);
 </script>
 
 <ul class={cnames} {...$$restProps} {...attrs}>
@@ -71,7 +65,7 @@
 				<div class={tailCls} style:height="calc(100% - 10px)"></div>
 			{/if}
 			<slot name="dot" {index} {item}>
-				<div class={headCls}></div>
+				<div class={headCls} style:color={item.color} style:border-color={item.color}></div>
 			</slot>
 			{#if item.children}
 				<slot name="children" children={item.children} {index}>

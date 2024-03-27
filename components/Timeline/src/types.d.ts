@@ -37,11 +37,11 @@ export type KTimelineItemsProps = {
 };
 
 export interface KTimelineItem<L = string, C = string> {
-	// TODO: 🎯 指定圆圈颜色
+	// TODO: ☑️ 指定圆圈颜色
 	color?: string;
-	// TODO: 🎯 自定义节点位置，它只有当 mode 为 'alternate' 时，影响 children 水平对齐
+	// TODO: ☑️ 自定义节点位置，它只有当 mode 为 'alternate' 时，影响 children 水平对齐
 	position?: 'left' | 'right';
-	// TODO: 🚧
+	// TODO: ⚠️
 	label?: L;
 	// TODO: 🚧
 	children: C;

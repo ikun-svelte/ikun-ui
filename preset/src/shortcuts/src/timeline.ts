@@ -3,7 +3,7 @@ export const timelineShortcuts: Record<string, string> = {
 	'k-timeline-item': 'm-0 pr text-14px list-none pb-20px',
 
 	'k-timeline-item-head':
-		'pa w-10px h-10px bg-white rounded-full border-solid border-transparent bd-3 box-border',
+		'border-ikun-main text-ikun-main pa w-10px h-10px bg-white rounded-full border-solid bd-3 box-border',
 	'k-timeline-item-head--center': '-m-is-4px pos-inset-is-50%',
 	'k-timeline-item-head--right': '-m-is-4px pos-inset-is-100%',
 
