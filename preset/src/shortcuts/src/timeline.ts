@@ -12,9 +12,11 @@ export const timelineShortcuts: Record<string, string> = {
 	'k-timeline-item-tail--center': 'pos-inset-is-50%',
 	'k-timeline-item-tail--right': '-m-is-1px pos-inset-is-100%',
 
-	'k-timeline-item-content--cl': 'k-timeline-tx-cl text-right m-is-0 me-26px',
-	'k-timeline-item-content--cr': 'k-timeline-tx-cr text-left',
-	'k-timeline-item-content--right': 'text-right mx-0 me-26px m-is-0',
+	'k-timeline-item-c__left': 'text-left',
+	'k-timeline-item-c__right': 'text-right',
+	'k-timeline-item-content--cl': 'k-timeline-tx-cl k-timeline-item-c__right m-is-0 me-26px',
+	'k-timeline-item-content--cr': 'k-timeline-tx-cr k-timeline-item-c__left',
+	'k-timeline-item-content--right': 'k-timeline-item-c__right mx-0 me-26px m-is-0',
 	'k-timeline-item-content':
 		'min-h-48px pr -pos-inset-bs-7px break-all m-is-26px me-0 m-bs-0 m-be-0'
 };

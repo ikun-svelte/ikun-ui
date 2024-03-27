@@ -10,7 +10,7 @@ export type KTimelineProps = {
 	 */
 	mode?: 'left' | 'alternate' | 'right';
 	/**
-	 * TODO: 🎯 节点倒序与否
+	 * TODO: ☑️ 节点倒序与否
 	 * @default false
 	 */
 	reverse?: boolean;

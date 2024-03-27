@@ -19,7 +19,17 @@
 		}
 		return v;
 	}) as KTimelineItemInner[];
-	$: itemsValue = reverse ? resolveItems.reverse() : resolveItems;
+
+	let reverseInner = reverse;
+	if (reverseInner) {
+		resolveItems = resolveItems.reverse();
+	}
+	$: {
+		if (reverseInner !== reverse) {
+			reverseInner = reverse;
+			resolveItems = resolveItems.reverse();
+		}
+	}
 
 	// 有 label 时，无论mode 是啥，一直在中间，
 	// 无 label 时，只有 mode 是 alternate 才在中间
@@ -35,13 +45,14 @@
 		[`${prefixCls}-item-head--center`]: hasLabel || (!hasLabel && mode === 'alternate'),
 		[`${prefixCls}-item-head--right`]: !hasLabel && mode === 'right'
 	});
-	$: contentCls = (index: number) => {
+	$: contentCls = (index: number, position: null | undefined | 'left' | 'right') => {
 		const isCenter = hasLabel || (!hasLabel && mode === 'alternate');
 		const placement = !(index % 2) ? 'right' : 'left';
 		return clsx(`${prefixCls}-item-content`, {
 			[`${prefixCls}-item-content--cl`]: isCenter && placement === 'left',
 			[`${prefixCls}-item-content--cr`]: isCenter && placement === 'right',
-			[`${prefixCls}-item-content--right`]: !hasLabel && mode === 'right'
+			[`${prefixCls}-item-content--right`]: !hasLabel && mode === 'right',
+			[`${prefixCls}-item-c__${position}`]: mode === 'alternate' && position
 		});
 	};
 	$: cnames = clsx(
@@ -54,9 +65,9 @@
 </script>
 
 <ul class={cnames} {...$$restProps} {...attrs}>
-	{#each itemsValue as item, index (item.uid)}
+	{#each resolveItems as item, index (item.uid)}
 		<li class={itemCls}>
-			{#if index < itemsValue.length - 1}
+			{#if index < resolveItems.length - 1}
 				<div class={tailCls} style:height="calc(100% - 10px)"></div>
 			{/if}
 			<slot name="dot" {index} {item}>
@@ -64,7 +75,7 @@
 			</slot>
 			{#if item.children}
 				<slot name="children" children={item.children} {index}>
-					<div class={contentCls(index)}>{item.children}</div>
+					<div class={contentCls(index, item.position)}>{item.children}</div>
 				</slot>
 			{/if}
 			{#if item.label}
