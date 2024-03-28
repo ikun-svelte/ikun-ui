@@ -3,7 +3,7 @@ export const timelineShortcuts: Record<string, string> = {
 	'k-timeline-item': 'm-0 pr text-14px list-none pb-20px',
 
 	'k-timeline-item-head':
-		'border-ikun-main text-ikun-main w-10px h-10px bg-white rounded-full border-solid bd-3 box-border',
+		'pa border-ikun-main text-ikun-main w-10px h-10px bg-white rounded-full border-solid bd-3 box-border',
 	'k-timeline-item-head--center': '-m-is-4px pos-inset-is-50% pa',
 	'k-timeline-item-head--right': '-m-is-4px pos-inset-is-100% pa',
 	'k-timeline-item-head--left': 'pa',
@@ -21,5 +21,9 @@ export const timelineShortcuts: Record<string, string> = {
 	'k-timeline-item-content--cr': 'k-timeline-tx-cr k-timeline-item-c__left',
 	'k-timeline-item-content--right': 'k-timeline-item-c__right mx-0 me-26px m-is-0',
 	'k-timeline-item-content':
-		'min-h-48px pr -pos-inset-bs-7px break-all m-is-26px me-0 m-bs-0 m-be-0'
+		'min-h-48px pr -pos-inset-bs-7px break-all m-is-26px me-0 m-bs-0 m-be-0',
+
+	'k-timeline-item-label': 'k-timeline-item-content pa',
+	'k-timeline-item-label--cl': 'k-timeline-item-content--cl',
+	'k-timeline-item-label--cr': 'k-timeline-item-content--cr'
 };

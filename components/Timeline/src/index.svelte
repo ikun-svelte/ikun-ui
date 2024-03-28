@@ -64,7 +64,10 @@
 
 	$: contentCls = (index: number, position: null | undefined | 'left' | 'right') => {
 		const isCenter = hasLabel || (!hasLabel && mode === 'alternate');
-		const placement = !(index % 2) ? 'right' : 'left';
+		let placement = !(index % 2) ? 'right' : 'left';
+		if (hasLabel && mode !== 'alternate') {
+			placement = mode || 'left';
+		}
 		return clsx(`${prefixCls}-item-content`, {
 			[`${prefixCls}-item-content--cl`]: isCenter && placement === 'left',
 			[`${prefixCls}-item-content--cr`]: isCenter && placement === 'right',
@@ -72,6 +75,18 @@
 			[`${prefixCls}-item-c__${position}`]: mode === 'alternate' && position
 		});
 	};
+	$: labelCls = (index: number) => {
+		const isCenter = hasLabel || (!hasLabel && mode === 'alternate');
+		let placement = !(index % 2) ? 'left' : 'right';
+		if (hasLabel && mode !== 'alternate') {
+			placement = !mode || mode === 'left' ? 'right' : 'left';
+		}
+		return clsx(`${prefixCls}-item-label`, {
+			[`${prefixCls}-item-label--cl`]: isCenter && placement === 'left',
+			[`${prefixCls}-item-label--cr`]: isCenter && placement === 'right'
+		});
+	};
+
 	$: cnames = clsx(prefixCls, cls);
 
 	$: pendingContent = (item: KTimelineItem) => {
@@ -140,8 +155,8 @@
 				</slot>
 			{/if}
 			{#if item.label}
-				<slot name="label" label={item.label} {index}>
-					{item.label}
+				<slot name="label" label={item.label} {index} cls={labelCls(index)}>
+					<div class={labelCls(index)}>{item.label}</div>
 				</slot>
 			{/if}
 		</li>
