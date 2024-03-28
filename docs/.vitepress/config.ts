@@ -155,10 +155,6 @@ const components = [
 				link: '/components/KInfinite'
 			},
 			{
-				text: 'Tag',
-				link: '/components/KTag'
-			},
-			{
 				text: 'Pagination',
 				link: '/components/KPagination'
 			},
@@ -173,6 +169,14 @@ const components = [
 			{
 				text: 'Statistics',
 				link: '/components/KStatistics'
+			},
+			{
+				text: 'Tag',
+				link: '/components/KTag'
+			},
+			{
+				text: 'Timeline',
+				link: '/components/KTimeline'
 			},
 			{
 				text: 'Tooltip',

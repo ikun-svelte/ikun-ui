@@ -2,17 +2,8 @@
 import type { ClassValue } from 'clsx';
 export type KTimelineProps = {
 	items: Array<KTimelineItem>;
-	/**
-	 * @default -
-	 */
 	mode?: 'left' | 'alternate' | 'right';
-	/**
-	 * @default false
-	 */
 	reverse?: boolean;
-	/**
-	 * @default false
-	 */
 	pending?: boolean | string;
 	cls?: ClassValue;
 	attrs?: Record<string, string>;

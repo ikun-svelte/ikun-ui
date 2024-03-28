@@ -20,8 +20,7 @@ export const timelineShortcuts: Record<string, string> = {
 	'k-timeline-item-content--cl': 'k-timeline-tx-cl k-timeline-item-c__right m-is-0 me-26px',
 	'k-timeline-item-content--cr': 'k-timeline-tx-cr k-timeline-item-c__left',
 	'k-timeline-item-content--right': 'k-timeline-item-c__right mx-0 me-26px m-is-0',
-	'k-timeline-item-content':
-		'min-h-48px pr -pos-inset-bs-7px break-all m-is-26px me-0 m-bs-0 m-be-0',
+	'k-timeline-item-content': 'pr -pos-inset-bs-7px break-all m-is-26px me-0 m-bs-0 m-be-0',
 
 	'k-timeline-item-label': 'k-timeline-item-content pa',
 	'k-timeline-item-label--cl': 'k-timeline-item-content--cl',
