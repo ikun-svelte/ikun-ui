@@ -37,6 +37,7 @@ export type KTimelineProps = {
 export type KTimelineItemsProps = {
 	/**
 	 * TODO: ☑️ 自定义时间轴点
+	 * TODO: ☑️ 插槽
 	 * @default -
 	 */
 	dot?: unknown;
@@ -47,9 +48,9 @@ export interface KTimelineItem<L = string, C = string> {
 	color?: string;
 	// TODO: ☑️ 自定义节点位置，它只有当 mode 为 'alternate' 时，影响 children 水平对齐
 	position?: 'left' | 'right';
-	// TODO: ⚠️
+	// TODO: ☑️ 插槽
 	label?: L;
-	// TODO: ☑️
+	// TODO: ☑️ 插槽
 	children: C;
 	uid: string | number;
 }
