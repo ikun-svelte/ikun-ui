@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KTimeline > props: cls 1`] = `"<ul class="k-timeline k-timeline--test"></ul>"`;
