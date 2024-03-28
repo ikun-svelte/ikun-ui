@@ -4,7 +4,7 @@
 	import type { KTimelineItem, KTimelineItemInner, KTimelineProps } from './types';
 	import { isBool, isString } from 'baiwusanyu-utils';
 
-	export let mode: KTimelineProps['mode'] = undefined;
+	export let mode: KTimelineProps['mode'] = 'left';
 	export let items: KTimelineProps['items'] = [];
 	export let reverse: KTimelineProps['reverse'] = false;
 	export let pending: KTimelineProps['pending'] = false;
@@ -37,8 +37,6 @@
 		resolveItems = preHandleItems(items, pending, reverse);
 	}
 
-	// 有 label 时，无论mode 是啥，一直在中间，
-	// 无 label 时，只有 mode 是 alternate 才在中间
 	$: hasLabel = items.some((v) => !!v.label);
 
 	const prefixCls = getPrefixCls('timeline');
@@ -48,7 +46,7 @@
 		[`${prefixCls}-item-tail--right`]: !hasLabel && mode === 'right'
 	});
 	$: tailPendingCls = clsx(tailCls, {
-		[`${prefixCls}-item-tail--pending`]: hasLabel || (!hasLabel && mode === 'alternate')
+		[`${prefixCls}-item-tail--pending`]: pending
 	});
 
 	$: headBaseCls = clsx({
@@ -59,14 +57,14 @@
 	$: headCls = clsx(`${prefixCls}-item-head`, headBaseCls);
 
 	$: headPendingCls = clsx(headCls, {
-		[`${prefixCls}-item-head--pending`]: hasLabel || (!hasLabel && mode === 'alternate')
+		[`${prefixCls}-item-head--pending`]: pending
 	});
 
 	$: contentCls = (index: number, position: null | undefined | 'left' | 'right') => {
 		const isCenter = hasLabel || (!hasLabel && mode === 'alternate');
 		let placement = !(index % 2) ? 'right' : 'left';
 		if (hasLabel && mode !== 'alternate') {
-			placement = mode || 'left';
+			placement = mode!;
 		}
 		return clsx(`${prefixCls}-item-content`, {
 			[`${prefixCls}-item-content--cl`]: isCenter && placement === 'left',
@@ -79,7 +77,7 @@
 		const isCenter = hasLabel || (!hasLabel && mode === 'alternate');
 		let placement = !(index % 2) ? 'left' : 'right';
 		if (hasLabel && mode !== 'alternate') {
-			placement = !mode || mode === 'left' ? 'right' : 'left';
+			placement = mode === 'left' ? 'right' : 'left';
 		}
 		return clsx(`${prefixCls}-item-label`, {
 			[`${prefixCls}-item-label--cl`]: isCenter && placement === 'left',
