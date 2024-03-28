@@ -51,10 +51,12 @@
 		[`${prefixCls}-item-tail--pending`]: hasLabel || (!hasLabel && mode === 'alternate')
 	});
 
-	$: headCls = clsx(`${prefixCls}-item-head`, {
+	$: headBaseCls = clsx({
 		[`${prefixCls}-item-head--center`]: hasLabel || (!hasLabel && mode === 'alternate'),
-		[`${prefixCls}-item-head--right`]: !hasLabel && mode === 'right'
+		[`${prefixCls}-item-head--right`]: !hasLabel && mode === 'right',
+		[`${prefixCls}-item-head--left`]: !hasLabel && mode === 'left'
 	});
+	$: headCls = clsx(`${prefixCls}-item-head`, headBaseCls);
 
 	$: headPendingCls = clsx(headCls, {
 		[`${prefixCls}-item-head--pending`]: hasLabel || (!hasLabel && mode === 'alternate')
@@ -102,13 +104,13 @@
 			{/if}
 
 			{#if !item.pending}
-				<slot name="dot" {index} {item}>
+				<slot name="dot" {index} {item} cls={headBaseCls}>
 					<div class={headCls} style:color={item.color} style:border-color={item.color}></div>
 				</slot>
 			{/if}
 
 			{#if item.pending}
-				<slot name="pendingDot" {index} {item}>
+				<slot name="pendingDot" {index} {item} cls={headBaseCls}>
 					<div
 						class={headPendingCls}
 						style:color={item.color}
@@ -118,17 +120,29 @@
 			{/if}
 
 			{#if item.children && !item.pending}
-				<slot name="children" children={item.children} {index}>
+				<slot
+					name="children"
+					children={item.children}
+					cls={contentCls(index, item.position)}
+					{index}
+				>
 					<div class={contentCls(index, item.position)}>{item.children}</div>
 				</slot>
 			{/if}
 			{#if item.children && item.pending}
-				<slot name="pending" children={item.children} {index}>
+				<slot
+					name="pending"
+					children={item.children}
+					{index}
+					cls={contentCls(index, item.position)}
+				>
 					<div class={contentCls(index, item.position)}>{pendingContent(item)}</div>
 				</slot>
 			{/if}
 			{#if item.label}
-				<slot name="label" label={item.label} {index}>{item.label}</slot>
+				<slot name="label" label={item.label} {index}>
+					{item.label}
+				</slot>
 			{/if}
 		</li>
 	{/each}

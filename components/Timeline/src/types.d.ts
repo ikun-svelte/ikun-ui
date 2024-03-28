@@ -18,7 +18,7 @@ export type KTimelineProps = {
 	 * TODO: ☑️ 最后一个节点是否是幽灵节点或内容
 	 * TODO: ☑️ string
 	 * TODO: ☑️ Boolean（只显示 dot）
-	 * TODO: 🚧 插槽
+	 * TODO: ☑️ 插槽
 	 * @default false
 	 */
 	pending?: boolean | string;
@@ -26,7 +26,7 @@ export type KTimelineProps = {
 	 * TODO: ☑️ 最后一个节点是幽灵节点时的时间图点（pending 为真时使用）
 	 * TODO: ☑️ dot
 	 * TODO: ☑️ tail
-	 * TODO: 🚧 插槽
+	 * TODO: ☑️ 插槽
 	 * @default false
 	 */
 	pendingDot?: boolean | string;
@@ -36,7 +36,7 @@ export type KTimelineProps = {
 
 export type KTimelineItemsProps = {
 	/**
-	 * TODO: 🚧 自定义时间轴点
+	 * TODO: ☑️ 自定义时间轴点
 	 * @default -
 	 */
 	dot?: unknown;
@@ -49,7 +49,7 @@ export interface KTimelineItem<L = string, C = string> {
 	position?: 'left' | 'right';
 	// TODO: ⚠️
 	label?: L;
-	// TODO: 🚧
+	// TODO: ☑️
 	children: C;
 	uid: string | number;
 }
