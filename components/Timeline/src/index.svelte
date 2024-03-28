@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KTimelineItemInner, KTimelineProps } from './types';
+	import type { KTimelineItem, KTimelineItemInner, KTimelineProps } from './types';
+	import { isBool, isString } from 'baiwusanyu-utils';
 
 	export let mode: KTimelineProps['mode'] = undefined;
 	export let items: KTimelineProps['items'] = [];
@@ -10,25 +11,30 @@
 	export let cls: KTimelineProps['cls'] = undefined;
 	export let attrs: KTimelineProps['attrs'] = {};
 
-	$: resolveItems = items.map((v, index) => {
-		if (!v.uid) {
-			v.uid = `${v.label}_${v.children}_${index}`;
-		}
-		if (index === items.length - 1 && pending) {
-			(v as KTimelineItemInner).pending = true;
-		}
-		return v;
-	}) as KTimelineItemInner[];
+	const preHandleItems = (
+		items: KTimelineProps['items'],
+		pending: KTimelineProps['pending'],
+		reverse: KTimelineProps['reverse']
+	) => {
+		let res = items.map((v, index) => {
+			if (!v.uid) {
+				v.uid = `${v.label}_${v.children}_${index}`;
+			}
+			if (index === items.length - 1) {
+				(v as KTimelineItemInner).pending = !!pending;
+			}
+			return v;
+		}) as KTimelineItemInner[];
 
-	let reverseInner = reverse;
-	if (reverseInner) {
-		resolveItems = resolveItems.reverse();
-	}
-	$: {
-		if (reverseInner !== reverse) {
-			reverseInner = reverse;
-			resolveItems = resolveItems.reverse();
+		if (reverse) {
+			res.reverse();
 		}
+		return res;
+	};
+
+	let resolveItems: KTimelineItemInner[] = [];
+	$: {
+		resolveItems = preHandleItems(items, pending, reverse);
 	}
 
 	// 有 label 时，无论mode 是啥，一直在中间，
@@ -41,10 +47,19 @@
 		[`${prefixCls}-item-tail--center`]: hasLabel || (!hasLabel && mode === 'alternate'),
 		[`${prefixCls}-item-tail--right`]: !hasLabel && mode === 'right'
 	});
+	$: tailPendingCls = clsx(tailCls, {
+		[`${prefixCls}-item-tail--pending`]: hasLabel || (!hasLabel && mode === 'alternate')
+	});
+
 	$: headCls = clsx(`${prefixCls}-item-head`, {
 		[`${prefixCls}-item-head--center`]: hasLabel || (!hasLabel && mode === 'alternate'),
 		[`${prefixCls}-item-head--right`]: !hasLabel && mode === 'right'
 	});
+
+	$: headPendingCls = clsx(headCls, {
+		[`${prefixCls}-item-head--pending`]: hasLabel || (!hasLabel && mode === 'alternate')
+	});
+
 	$: contentCls = (index: number, position: null | undefined | 'left' | 'right') => {
 		const isCenter = hasLabel || (!hasLabel && mode === 'alternate');
 		const placement = !(index % 2) ? 'right' : 'left';
@@ -56,20 +71,60 @@
 		});
 	};
 	$: cnames = clsx(prefixCls, cls);
+
+	$: pendingContent = (item: KTimelineItem) => {
+		if (isBool(pending)) {
+			return item.children;
+		}
+		if (isString(pending)) {
+			return pending;
+		}
+		return '';
+	};
+
+	const isPendingTail = (index: number) => {
+		if (!reverse && resolveItems[index + 1].pending) {
+			return true;
+		}
+		return !!(index === 0 && reverse && resolveItems[index].pending);
+	};
 </script>
 
 <ul class={cnames} {...$$restProps} {...attrs}>
 	{#each resolveItems as item, index (item.uid)}
 		<li class={itemCls}>
-			{#if index < resolveItems.length - 1}
+			{#if index < resolveItems.length - 1 && !isPendingTail(index)}
 				<div class={tailCls} style:height="calc(100% - 10px)"></div>
 			{/if}
-			<slot name="dot" {index} {item}>
-				<div class={headCls} style:color={item.color} style:border-color={item.color}></div>
-			</slot>
-			{#if item.children}
+
+			{#if index < resolveItems.length - 1 && isPendingTail(index)}
+				<div class={tailPendingCls} style:height="calc(100% - 10px)"></div>
+			{/if}
+
+			{#if !item.pending}
+				<slot name="dot" {index} {item}>
+					<div class={headCls} style:color={item.color} style:border-color={item.color}></div>
+				</slot>
+			{/if}
+
+			{#if item.pending}
+				<slot name="pendingDot" {index} {item}>
+					<div
+						class={headPendingCls}
+						style:color={item.color}
+						style:border-color={item.color}
+					></div>
+				</slot>
+			{/if}
+
+			{#if item.children && !item.pending}
 				<slot name="children" children={item.children} {index}>
 					<div class={contentCls(index, item.position)}>{item.children}</div>
+				</slot>
+			{/if}
+			{#if item.children && item.pending}
+				<slot name="pending" children={item.children} {index}>
+					<div class={contentCls(index, item.position)}>{pendingContent(item)}</div>
 				</slot>
 			{/if}
 			{#if item.label}

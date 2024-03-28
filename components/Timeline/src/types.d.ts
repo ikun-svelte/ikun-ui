@@ -15,12 +15,18 @@ export type KTimelineProps = {
 	 */
 	reverse?: boolean;
 	/**
-	 * TODO: 🚧 最后一个节点是否是幽灵节点或内容
+	 * TODO: ☑️ 最后一个节点是否是幽灵节点或内容
+	 * TODO: ☑️ string
+	 * TODO: ☑️ Boolean（只显示 dot）
+	 * TODO: 🚧 插槽
 	 * @default false
 	 */
 	pending?: boolean | string;
 	/**
-	 * TODO: 🚧 最后一个节点是幽灵节点时的时间图点
+	 * TODO: ☑️ 最后一个节点是幽灵节点时的时间图点（pending 为真时使用）
+	 * TODO: ☑️ dot
+	 * TODO: ☑️ tail
+	 * TODO: 🚧 插槽
 	 * @default false
 	 */
 	pendingDot?: boolean | string;

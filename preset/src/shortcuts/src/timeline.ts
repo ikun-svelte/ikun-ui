@@ -6,11 +6,13 @@ export const timelineShortcuts: Record<string, string> = {
 		'border-ikun-main text-ikun-main pa w-10px h-10px bg-white rounded-full border-solid bd-3 box-border',
 	'k-timeline-item-head--center': '-m-is-4px pos-inset-is-50%',
 	'k-timeline-item-head--right': '-m-is-4px pos-inset-is-100%',
+	'k-timeline-item-head--pending': 'border-dashed bdtr-2 animate-spin',
 
 	'k-timeline-item-tail':
 		'pa border-solid border-ikun-bd-base bdl-2 pos-inset-bs-10px pos-inset-is-4px',
 	'k-timeline-item-tail--center': 'pos-inset-is-50%',
 	'k-timeline-item-tail--right': '-m-is-1px pos-inset-is-100%',
+	'k-timeline-item-tail--pending': 'border-dashed',
 
 	'k-timeline-item-c__left': 'text-left',
 	'k-timeline-item-c__right': 'text-right',
