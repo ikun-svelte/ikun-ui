@@ -24,5 +24,9 @@ export const timelineShortcuts: Record<string, string> = {
 
 	'k-timeline-item-label': 'k-timeline-item-content pa',
 	'k-timeline-item-label--cl': 'k-timeline-item-content--cl',
-	'k-timeline-item-label--cr': 'k-timeline-item-content--cr'
+	'k-timeline-item-label--cr': 'k-timeline-item-content--cr',
+
+	// dark
+	'k-timeline-item-content--dark': 'dark:text-ikun-white',
+	'k-timeline-item-label--dark': 'dark:text-ikun-white'
 };
