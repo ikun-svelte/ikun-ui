@@ -66,12 +66,16 @@
 		if (hasLabel && mode !== 'alternate') {
 			placement = mode!;
 		}
-		return clsx(`${prefixCls}-item-content`, {
-			[`${prefixCls}-item-content--cl`]: isCenter && placement === 'left',
-			[`${prefixCls}-item-content--cr`]: isCenter && placement === 'right',
-			[`${prefixCls}-item-content--right`]: !hasLabel && mode === 'right',
-			[`${prefixCls}-item-c__${position}`]: mode === 'alternate' && position
-		});
+		return clsx(
+			`${prefixCls}-item-content`,
+			{
+				[`${prefixCls}-item-content--cl`]: isCenter && placement === 'left',
+				[`${prefixCls}-item-content--cr`]: isCenter && placement === 'right',
+				[`${prefixCls}-item-content--right`]: !hasLabel && mode === 'right',
+				[`${prefixCls}-item-c__${position}`]: mode === 'alternate' && position
+			},
+			`${prefixCls}-item-content--dark`
+		);
 	};
 	$: labelCls = (index: number) => {
 		const isCenter = hasLabel || (!hasLabel && mode === 'alternate');
@@ -79,10 +83,14 @@
 		if (hasLabel && mode !== 'alternate') {
 			placement = mode === 'left' ? 'right' : 'left';
 		}
-		return clsx(`${prefixCls}-item-label`, {
-			[`${prefixCls}-item-label--cl`]: isCenter && placement === 'left',
-			[`${prefixCls}-item-label--cr`]: isCenter && placement === 'right'
-		});
+		return clsx(
+			`${prefixCls}-item-label`,
+			{
+				[`${prefixCls}-item-label--cl`]: isCenter && placement === 'left',
+				[`${prefixCls}-item-label--cr`]: isCenter && placement === 'right'
+			},
+			`${prefixCls}-item-label--dark`
+		);
 	};
 
 	$: cnames = clsx(prefixCls, cls);
