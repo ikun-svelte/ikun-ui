@@ -122,4 +122,12 @@ const handleCopy = () => {
 .vp-doc ul.k-skeleton-paragraph{
  padding: 0;
 }
+
+.vp-doc li.k-timeline-item{
+  margin-top: 0;
+}
+
+.vp-doc ul.k-timeline{
+  padding-right: 1.25rem;
+}
 </style>
