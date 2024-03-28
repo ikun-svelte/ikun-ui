@@ -17,6 +17,7 @@ import { tabRules } from './src/tab';
 import { carouselRules } from './src/carousel';
 import { skeletonRules } from './src/skeleton';
 import { colorPickerRules } from './src/color-picker';
+import { timelineRules } from './src/timeline';
 import { baseRules } from './src/base';
 
 declare type dynamicRulesFunc = (...args: any[]) => Array<RegExp | ((...args: any[]) => any)>;
@@ -33,6 +34,7 @@ export const defaultRules = {
 	...carouselRules,
 	...skeletonRules,
 	...colorPickerRules,
+	...timelineRules,
 	...baseRules,
 	...getColCls(),
 	...getDescriptionsGridColCls(),
