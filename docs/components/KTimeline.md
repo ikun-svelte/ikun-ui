@@ -39,7 +39,7 @@ Set the color of circles.
 
 ## Last node and Reversing
 
-When the timeline is incomplete and ongoing, 
+When the timeline is incomplete and ongoing,
 put a ghost node at last. Set `pending` as truthy value to enable displaying pending item.
 `reverse={true}` is used for reversing nodes.
 
@@ -47,12 +47,13 @@ put a ghost node at last. Set `pending` as truthy value to enable displaying pen
 
 ## Custom render pending content
 
-You can customize the rendering of pending nodes through the pending slot and pendingDot slot. 
+You can customize the rendering of pending nodes through the pending slot and pendingDot slot.
 
 ::: tip
-* The `pendingDot` slot provides style class `cls`, rendering node item `item` and rendering index `index`  
-* The `pending` slot provides the style class `cls`, the content of the rendering node item `children` and the rendering index `index`  
-:::
+
+- The `pendingDot` slot provides style class `cls`, rendering node item `item` and rendering index `index`
+- The `pending` slot provides the style class `cls`, the content of the rendering node item `children` and the rendering index `index`  
+  :::
 
 <demo src="timeline/pending.svelte"  github='Timeline'></demo>
 
@@ -79,9 +80,10 @@ Use `label` show time alone.
 You can customize the rendering of pending nodes through the label slot 、dot slot and children slot.
 
 ::: tip
-* The `dot` slot provides style class `cls`, rendering node item `item` and rendering index `index`
-* The `children` slot provides the style class `cls`, the content of the rendering node item `children` and the rendering index `index`  
-* The `label` slot provides the style class `cls`, the content of the rendering node item `label` and the rendering index `index`  
+
+- The `dot` slot provides style class `cls`, rendering node item `item` and rendering index `index`
+- The `children` slot provides the style class `cls`, the content of the rendering node item `children` and the rendering index `index`
+- The `label` slot provides the style class `cls`, the content of the rendering node item `label` and the rendering index `index`  
   :::
 
 <demo src="timeline/custom.svelte"  github='Timeline'></demo>
