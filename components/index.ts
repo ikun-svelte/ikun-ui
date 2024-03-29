@@ -65,3 +65,4 @@ export * from '@ikun-ui/auto-complete';
 export * from '@ikun-ui/skeleton';
 export * from '@ikun-ui/color-picker';
 export * from '@ikun-ui/timeline';
+export * from '@ikun-ui/calendar';

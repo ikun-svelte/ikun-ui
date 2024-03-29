@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KCalendar > props: cls 1`] = `"<div class="k-calendar k-calendar--base k-calendar--test"></div>"`;
