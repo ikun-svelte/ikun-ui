@@ -16,56 +16,62 @@ export function generateYearRange(startDate: dayjs.Dayjs, endDate: dayjs.Dayjs, 
 	const years = [];
 	let currentYear = startDate.year();
 	while (currentYear <= endDate.year()) {
-		years.push({
-			label: `${currentYear}${prefix}`,
-			value: `${currentYear}`,
-			id: `${currentYear}_YY_${prefix}`
-		});
+		years.push(
+			genSelectOption(`${currentYear}${prefix}`, `${currentYear}`, `${currentYear}_YY_${prefix}`)
+		);
 		currentYear++;
 	}
 	return years;
 }
 
-export function generateMonthRangeFromDate(date: dayjs.Dayjs, prefix = '') {
+export function generateMonthRangeFromDate(date: dayjs.Dayjs, locale: Record<string, any>) {
 	const monthRange = [];
-	const startMonth = date.month() + 1; // month() 返回的是 0 到 11
-	for (let i = startMonth; i <= 12; i++) {
-		monthRange.push({
-			label: `${i}${prefix}`,
-			value: `${i}`,
-			id: `${i}_MM_${prefix}`
-		});
+	const startMonth = date.month();
+	for (let i = startMonth; i < 12; i++) {
+		monthRange.push(genMonthSelectOption(i, locale));
 	}
 	return monthRange;
 }
 
-export function generateMonthRangeToDate(date: dayjs.Dayjs, prefix = '') {
+export function generateMonthRangeToDate(date: dayjs.Dayjs, locale: Record<string, any>) {
 	const monthRange = [];
-	const endMonth = date.month() + 1; // month() 返回的是 0 到 11
-	for (let i = 1; i <= endMonth; i++) {
-		monthRange.push({
-			label: `${i}${prefix}`,
-			value: `${i}`,
-			id: `${i}_month_${prefix}`
-		});
+	const endMonth = date.month();
+	for (let i = 0; i <= endMonth; i++) {
+		monthRange.push(genMonthSelectOption(i, locale));
 	}
 	return monthRange;
 }
 
-export function generateMonthRange(hYear: string, range: [dayjs.Dayjs, dayjs.Dayjs], prefix = '') {
+export function generateMonthRange(
+	hYear: string,
+	range: [dayjs.Dayjs, dayjs.Dayjs],
+	locale: Record<string, any>
+) {
 	if (hYear === `${range![1].year()}`) {
-		return generateMonthRangeToDate(range![1], prefix);
+		return generateMonthRangeToDate(range![1], locale);
 	} else if (hYear === `${range![0].year()}`) {
-		return generateMonthRangeFromDate(range![0], prefix);
+		return generateMonthRangeFromDate(range![0], locale);
 	} else {
 		const res = [];
-		for (let i = 1; i <= 12; i++) {
-			res.push({
-				label: `${i}${prefix}`,
-				value: `${i}`,
-				id: `${i}_MM_${prefix}`
-			});
+		for (let i = 0; i < 12; i++) {
+			res.push(genMonthSelectOption(i, locale));
 		}
 		return res;
 	}
+}
+
+export function genSelectOption(label: string, value: string, id: string) {
+	return {
+		label,
+		value,
+		id
+	};
+}
+
+export function genMonthSelectOption(month: number, locale: Record<string, any>) {
+	const mVal = month + 1;
+	const shortMonth = locale.lang.locale.startsWith('zh')
+		? `${mVal}${locale.lang.month}`
+		: locale.lang.shortMonths[month];
+	return genSelectOption(shortMonth, `${month + 1}`, `${mVal}_MM_${shortMonth}`);
 }

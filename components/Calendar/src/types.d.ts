@@ -17,13 +17,13 @@ export type KCalendarProps = {
 	/**
 	 * TODO: 国际化配置
 	 */
-	locale: Record<string, string>;
+	locale: Record<string, any>;
 	/**
 	 * TODO: 初始模式
 	 */
 	mode: 'month' | 'year';
 	/**
-	 * TODO: 🤔 设置可以显示的日期
+	 * TODO: 设置可以显示的日期
 	 */
 	validRange?: [Dayjs, Dayjs];
 	cls?: ClassValue;
