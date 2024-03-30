@@ -32,7 +32,7 @@
 	}
 
 	const buttonGroupPropsInner = getContext<KButtonGroupPropsInner>(buttonGroupKey) || {};
-	const typeInner = type || buttonGroupPropsInner?.type || 'primary';
+	$: typeInner = type || buttonGroupPropsInner?.type || 'primary';
 	const sizeInner = buttonGroupPropsInner?.size || size || 'md';
 	const isBorderInner = isBorder || buttonGroupPropsInner?.isBorder || ghost || false;
 	$: disabledInner = disabled || buttonGroupPropsInner?.disabled || false;

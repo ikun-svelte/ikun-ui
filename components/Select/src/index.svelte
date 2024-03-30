@@ -14,6 +14,7 @@
 	export let iconSuffix: KSelectProps['iconSuffix'] = '';
 	export let value: KSelectProps['value'] = '';
 	export let cls: KSelectProps['cls'] = undefined;
+	export let clsSelect: KSelectProps['cls'] = undefined;
 	export let placeholder: KSelectProps['placeholder'] = 'Please select value';
 	export let disabled: KSelectProps['disabled'] = false;
 	export let attrs: KSelectProps['attrs'] = {};
@@ -253,7 +254,7 @@
 			[`${prefixCls}__hover`]: !isErrorInner,
 			[`${prefixCls}__focus`]: !isErrorInner
 		},
-		cls
+		clsSelect
 	);
 	$: selectCls = clsx(`${prefixCls}--inner`, `${prefixCls}--inner__${sizeInner || size}`, {
 		[`${prefixCls}--inner__dark`]: !disabledInner,
@@ -277,6 +278,7 @@
 	// ⭕TODO 选项筛选
 </script>
 
+<svelte:window on:resize={setPopoverW} />
 <KPopover
 	trigger="click"
 	bind:this={popoverRef}

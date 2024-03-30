@@ -1,13 +1,13 @@
 export const buttonShortcuts: Record<string, string> = {
 	// button
 	'k-button--disabled': 'opacity-50',
-	'k-button--base': 'rounded k-border cursor-pointer f-c px-2 py-1 w-fit line-height-none',
+	'k-button--base': 'h-32px rounded k-border cursor-pointer f-c px-2 py-1 w-fit line-height-none',
 	// button-size
-	'k-button--sm': 'px-1.5 py-0.8',
-	'k-button--lg': 'px-3 py-2',
-	'k-button--circle': '!rounded-full p-2',
-	'k-button--circle--sm': '!rounded-full !p-2',
-	'k-button--circle--lg': '!rounded-full !p-3',
+	'k-button--sm': 'px-1.5 py-0.8 h-24px',
+	'k-button--lg': 'px-3 py-2 h-40px',
+	'k-button--circle': '!rounded-full p-2 h-32px w-32px',
+	'k-button--circle--sm': '!rounded-full !p-0 h-24px w-24px',
+	'k-button--circle--lg': '!rounded-full !p-0 h-40px w-40px',
 
 	'k-button--primary': 'bg-ikun-primary-100 text-ikun-primary border-ikun-primary-100',
 	'k-button--primary__ghost': 'text-ikun-primary  bg-white',
@@ -61,7 +61,7 @@ export const buttonShortcuts: Record<string, string> = {
 	'k-button--warning__animate': 'animate-ikun-clicking--warning',
 
 	'k-button--info': 'bg-ikun-info-100 text-ikun-info border-ikun-info-100',
-	'k-button--info__ghost': 'text-ikun-info  bg-white',
+	'k-button--info__ghost': 'text-ikun-tx-base  bg-white border-ikun-bd-base',
 	'k-button--info__fill': 'bg-ikun-info text-ikun-info-100 border-ikun-info',
 	'k-button--info__active': 'active:border-ikun-info active:k-btn-shadow--info',
 	'k-button--info__focus': 'focus-visible:border-ikun-info focus-visible:k-btn-shadow--info',

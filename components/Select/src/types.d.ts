@@ -13,7 +13,7 @@ export type KSelectProps = {
 	valueKey: string;
 	key: string;
 	fitInputWidth: boolean;
-	dataList: Array<Record<string, any>> | string[] | number[];
+	dataList: Array<KSelectList>;
 	maxHeight: number;
 	clearable: boolean;
 	cls: ClassValue;
@@ -23,3 +23,5 @@ export type KSelectProps = {
 	isActive: boolean;
 	label: string;
 };
+
+export type KSelectList = Record<string, any> | string | number;

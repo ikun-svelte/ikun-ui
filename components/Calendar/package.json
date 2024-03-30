@@ -34,7 +34,11 @@
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
+		"@ikun-ui/button": "workspace:*",
+		"@ikun-ui/button-group": "workspace:*",
+		"@ikun-ui/select": "workspace:*",
 		"baiwusanyu-utils": "^1.0.18",
+		"dayjs": "^1.11.10",
 		"clsx": "^2.0.0",
 		"svelte": "^4.2.7"
 	},
