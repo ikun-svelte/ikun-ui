@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import type { ManipulateType } from 'dayjs';
+import type { KCalendarProps } from './types';
 
 export function genDateRange(
 	date: dayjs.Dayjs,
@@ -81,8 +82,12 @@ export interface CalendarCell {
 	current: boolean;
 	key: string;
 	label?: string;
+	disabled: boolean;
 }
-export function genCellDateRange(centerDate: dayjs.Dayjs): Array<Array<CalendarCell>> {
+export function genCellDateRange(
+	centerDate: dayjs.Dayjs,
+	disableCallback: KCalendarProps['disabledDate']
+): Array<Array<CalendarCell>> {
 	const startDate = dayjs(centerDate).startOf('month');
 	const endDate = dayjs(centerDate).endOf('month');
 	const daysInMonth = endDate.date();
@@ -100,7 +105,8 @@ export function genCellDateRange(centerDate: dayjs.Dayjs): Array<Array<CalendarC
 		prevMonthDates.unshift({
 			current: false,
 			instance: d,
-			key: d.format('YYYY-MM-DD')
+			key: d.format('YYYY-MM-DD'),
+			disabled: disableCallback ? disableCallback(d) : false
 		});
 	}
 
@@ -111,7 +117,8 @@ export function genCellDateRange(centerDate: dayjs.Dayjs): Array<Array<CalendarC
 		currentMonthDates.push({
 			current: true,
 			instance: d,
-			key: d.format('YYYY-MM-DD')
+			key: d.format('YYYY-MM-DD'),
+			disabled: disableCallback ? disableCallback(d) : false
 		});
 	}
 
@@ -123,13 +130,14 @@ export function genCellDateRange(centerDate: dayjs.Dayjs): Array<Array<CalendarC
 		nextMonthDates.push({
 			current: false,
 			instance: d,
-			key: d.format('YYYY-MM-DD')
+			key: d.format('YYYY-MM-DD'),
+			disabled: disableCallback ? disableCallback(d) : false
 		});
 	}
 
 	// Combine all date arrays and create the matrix
 	const dateMatrix = [];
-	dateMatrix.push(...prevMonthDates);
+	dateMatrix.push(...prevMonthDates.reverse());
 	dateMatrix.push(...currentMonthDates);
 	dateMatrix.push(...nextMonthDates);
 
@@ -145,13 +153,16 @@ export function genCellDateRange(centerDate: dayjs.Dayjs): Array<Array<CalendarC
 export function changeMonthYears(input: string, date: dayjs.Dayjs, type: 'YYYY' | 'MM') {
 	const yearVal = date.year();
 	const dateVal = date.date();
-	const monthVal = date.month();
+	const monthVal = date.month() + 1;
 	const newDateStr =
 		type === 'YYYY' ? `${input}-${monthVal}-${dateVal}` : `${yearVal}-${input}-${dateVal}`;
 	return dayjs(newDateStr);
 }
 
-export function genCellMonthRange(centerDate: dayjs.Dayjs): Array<Array<CalendarCell>> {
+export function genCellMonthRange(
+	centerDate: dayjs.Dayjs,
+	disableCallback: KCalendarProps['disabledDate']
+): Array<Array<CalendarCell>> {
 	const year = centerDate.year();
 	const months = [];
 	for (let i = 0; i < 12; i += 3) {
@@ -159,11 +170,11 @@ export function genCellMonthRange(centerDate: dayjs.Dayjs): Array<Array<Calendar
 		for (let j = 0; j < 3; j++) {
 			const month = i + j + 1; // 月份从 1 开始
 			const monthDate = dayjs(`${year}-${month.toString().padStart(2, '0')}-${centerDate.date()}`);
-			console.log(centerDate.month(), monthDate.month());
 			row.push({
 				current: centerDate.month() === monthDate.month(),
 				instance: monthDate,
-				key: monthDate.format('YYYY-MM')
+				key: monthDate.format('YYYY-MM'),
+				disabled: disableCallback ? disableCallback(monthDate) : false
 			});
 		}
 		months.push(row);

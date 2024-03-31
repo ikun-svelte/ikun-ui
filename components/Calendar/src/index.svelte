@@ -22,7 +22,8 @@
 	export let fullscreen: KCalendarProps['fullscreen'] = false;
 	export let locale: KCalendarProps['locale'] = localeConfig;
 	export let mode: KCalendarProps['mode'] = 'year';
-	export let value: KCalendarProps['value'] = dayjs().locale(locale.lang.locale);
+	export let disabledDate: KCalendarProps['disabledDate'] = undefined;
+	export let value: KCalendarProps['value'] = dayjs().locale(locale!.lang.locale);
 	export let validRange: KCalendarProps['validRange'] = undefined;
 	export let cls: KCalendarProps['cls'] = undefined;
 	export let attrs: KCalendarProps['attrs'] = {};
@@ -38,7 +39,7 @@
 	}
 
 	/* year select */
-	$: prefixHYY = locale.lang.locale.startsWith('zh') ? locale.lang.year : '';
+	$: prefixHYY = locale!.lang.locale.startsWith('zh') ? locale!.lang.year : '';
 	$: hYear = genSelectOption(
 		`${value.year()}${prefixHYY}`,
 		`${value.year()}`,
@@ -50,64 +51,54 @@
 	}
 	const handleHYearSelect = (e: CustomEvent) => {
 		hYear = e.detail;
-		hMonthList = generateMonthRange(hYear.value, range!, locale);
-		if (selectValue) {
-			selectValue = changeMonthYears(e.detail.value, selectValue, 'YYYY');
-			doUpdateCellList(isMY, selectValue);
-		} else {
-			let defaultDate = changeMonthYears(hMonth.value, dayjs(), 'MM');
-			defaultDate = changeMonthYears(e.detail.value, defaultDate, 'YYYY');
-			doUpdateCellList(isMY, defaultDate);
-		}
+		hMonthList = generateMonthRange(hYear.value, range!, locale!);
+		selectValue = changeMonthYears(e.detail.value, selectValue, 'YYYY');
+		doUpdateCellList(isMY, selectValue);
 	};
 
 	/* month select */
-	let hMonth = genMonthSelectOption(value.month(), locale);
+	let hMonth = genMonthSelectOption(value.month(), locale!);
 	let hMonthList: KSelectProps['dataList'] = [];
 	$: {
-		hMonthList = generateMonthRange(hYear.value, range!, locale);
+		hMonthList = generateMonthRange(hYear.value, range!, locale!);
 	}
 	const handleHMonthSelect = (e: CustomEvent) => {
 		hMonth = e.detail;
-		if (selectValue) {
-			selectValue = changeMonthYears(e.detail.value, selectValue, 'MM');
-			doUpdateCellList(isMY, selectValue);
-		} else {
-			let defaultDate = changeMonthYears(hYear.value, dayjs(), 'YYYY');
-			defaultDate = changeMonthYears(e.detail.value, defaultDate, 'MM');
-			doUpdateCellList(isMY, defaultDate);
-		}
+		selectValue = changeMonthYears(e.detail.value, selectValue, 'MM');
+		doUpdateCellList(isMY, selectValue);
 	};
 
 	/* year and month switch */
-	let isMY = mode;
+	let isMY = mode!;
 	const handleHMYClick = (v: 'year' | 'month') => {
 		isMY = v;
 		if (selectValue) {
 			doUpdateCellList(isMY, selectValue);
-		} else {
-			let defaultDate = changeMonthYears(hYear.value, dayjs(), 'YYYY');
-			defaultDate = changeMonthYears(hMonth.value, defaultDate, 'MM');
-			doUpdateCellList(isMY, defaultDate);
+		}
+
+		if (isMY === 'year') {
+			hMonth = genMonthSelectOption(selectValue.month(), locale!);
 		}
 	};
 
 	/*  generate cell list */
 	let cellList: Array<Array<CalendarCell>> = [];
 	$: {
-		doUpdateCellList(mode, value);
+		doUpdateCellList(mode!, value);
 	}
 	// select day
-	let selectValue: dayjs.Dayjs | null = null;
+	let selectValue: dayjs.Dayjs = value;
 	// current day
-	let curValue = dayjs();
-	function handleSelect(day: dayjs.Dayjs) {
+	let todayValue = dayjs();
+	function handleSelect(day: dayjs.Dayjs, isDisabled: boolean) {
+		if (isDisabled) return;
 		selectValue = day;
 		doUpdateCellList(isMY, selectValue);
 	}
 
 	function doUpdateCellList(type: 'year' | 'month', v: dayjs.Dayjs) {
-		cellList = type === 'year' ? genCellDateRange(v) : genCellMonthRange(v);
+		cellList =
+			type === 'year' ? genCellDateRange(v, disabledDate) : genCellMonthRange(v, disabledDate);
 	}
 	const prefixCls = getPrefixCls('calendar');
 	$: cnames = clsx(prefixCls, cls);
@@ -126,16 +117,16 @@
 	const contentCls = clsx(`${prefixCls}-content`);
 	const theadCls = clsx(`${prefixCls}-thead`);
 	const cellCls = clsx(`${prefixCls}-cell`);
-	$: cellInnerCls = (day: dayjs.Dayjs, curMonth: boolean) => {
+	$: cellInnerCls = (day: dayjs.Dayjs, curMonth: boolean, disabled: boolean) => {
 		const fm = isMY === 'year' ? 'YYYY-MM-DD' : 'YYYY-MM';
-		console.log(curMonth);
 		return clsx(`${prefixCls}-cell-inner`, `${prefixCls}-date`, {
 			[`${prefixCls}-date-hover`]:
 				!selectValue || !(selectValue && day.format(fm) === selectValue.format(fm)),
 			[`${prefixCls}-date-v`]: day.format(fm) === value.format(fm),
-			[`${prefixCls}-date-c`]: day.format(fm) === curValue.format(fm),
+			[`${prefixCls}-date-c`]: day.format(fm) === todayValue.format(fm),
 			[`${prefixCls}-date-s`]: selectValue && day.format(fm) === selectValue.format(fm),
-			[`${prefixCls}-date-not`]: !curMonth
+			[`${prefixCls}-date-not`]: !curMonth,
+			[`${prefixCls}-date-disabled`]: disabled
 		});
 	};
 	const cellDateValCls = clsx(`${prefixCls}-date-value`);
@@ -201,11 +192,14 @@
 									{#each row as date (date.key)}
 										<td
 											title={date.instance.format('YYYY-MM-DD')}
-											on:click={() => handleSelect(date.instance)}
+											on:click={() => handleSelect(date.instance, date.disabled)}
 											class={cellCls}
 										>
-											<div class={cellInnerCls(date.instance, date.current)}>
-												<div class={cellDateValCls}>{date.instance.date()}</div>
+											<div class={cellInnerCls(date.instance, date.current, date.disabled)}>
+												<div class={cellDateValCls}>
+													{date.instance.date()}
+													{date.disabled}
+												</div>
 												<div class={cellDateContentCls}></div>
 											</div>
 										</td>
@@ -224,9 +218,10 @@
 											on:click={() => handleSelect(date.instance)}
 											class={cellCls}
 										>
-											<div class={cellInnerCls(date.instance, date.current)}>
+											<div class={cellInnerCls(date.instance, date.current, date.disabled)}>
 												<div class={cellDateValCls}>
 													{locale.lang.shortMonths[date.instance.month()]}
+													{date.disabled}
 												</div>
 												<div class={cellDateContentCls}></div>
 											</div>
