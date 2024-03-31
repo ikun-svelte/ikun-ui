@@ -135,3 +135,12 @@ export function genCellDateRange(centerDate: dayjs.Dayjs) {
 
 	return resultMatrix;
 }
+
+export function changeMonthYears(input: string, date: dayjs.Dayjs, type: 'YYYY' | 'MM') {
+	const yearVal = date.year();
+	const dateVal = date.date();
+	const monthVal = date.month();
+	const newDateStr =
+		type === 'YYYY' ? `${input}-${monthVal}-${dateVal}` : `${yearVal}-${input}-${dateVal}`;
+	return dayjs(newDateStr);
+}

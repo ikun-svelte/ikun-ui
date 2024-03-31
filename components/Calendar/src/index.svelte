@@ -4,6 +4,7 @@
 	import { clsx } from 'clsx';
 	import dayjs from 'dayjs';
 	import {
+		changeMonthYears,
 		genCellDateRange,
 		genDateRange,
 		generateMonthRange,
@@ -47,6 +48,14 @@
 	const handleHYearSelect = (e: CustomEvent) => {
 		hYear = e.detail;
 		hMonthList = generateMonthRange(hYear.value, range!, locale);
+		if (selectValue) {
+			selectValue = changeMonthYears(e.detail.value, selectValue, 'YYYY');
+			cellList = genCellDateRange(selectValue);
+		} else {
+			let defaultDate = changeMonthYears(hMonth.value, dayjs(), 'MM');
+			defaultDate = changeMonthYears(e.detail.value, defaultDate, 'YYYY');
+			cellList = genCellDateRange(defaultDate);
+		}
 	};
 
 	/* month select */
@@ -57,6 +66,14 @@
 	}
 	const handleHMonthSelect = (e: CustomEvent) => {
 		hMonth = e.detail;
+		if (selectValue) {
+			selectValue = changeMonthYears(e.detail.value, selectValue, 'MM');
+			cellList = genCellDateRange(selectValue);
+		} else {
+			let defaultDate = changeMonthYears(hYear.value, dayjs(), 'YYYY');
+			defaultDate = changeMonthYears(e.detail.value, defaultDate, 'MM');
+			cellList = genCellDateRange(defaultDate);
+		}
 	};
 
 	/* year and month switch */

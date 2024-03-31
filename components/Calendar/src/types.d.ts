@@ -3,7 +3,7 @@ import type { ClassValue } from 'clsx';
 import type Dayjs from 'dayjs';
 export type KCalendarProps = {
 	/**
-	 * TODO: 默认展示的日期
+	 * TODO: ☑️ 展示的日期
 	 */
 	value: Dayjs;
 	/**
@@ -15,7 +15,7 @@ export type KCalendarProps = {
 	 */
 	fullscreen: boolean;
 	/**
-	 * TODO: 国际化配置
+	 * TODO: ☑️ 国际化配置
 	 */
 	locale: Record<string, any>;
 	/**
@@ -23,7 +23,7 @@ export type KCalendarProps = {
 	 */
 	mode: 'month' | 'year';
 	/**
-	 * TODO: 设置可以显示的日期
+	 * TODO: 设置可以显示的日期(实现了年月，日期要限制)
 	 */
 	validRange?: [Dayjs, Dayjs];
 	cls?: ClassValue;
