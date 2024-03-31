@@ -98,7 +98,9 @@
 
 	function doUpdateCellList(type: 'year' | 'month', v: dayjs.Dayjs) {
 		cellList =
-			type === 'year' ? genCellDateRange(v, disabledDate) : genCellMonthRange(v, disabledDate);
+			type === 'year'
+				? genCellDateRange(v, disabledDate, range!)
+				: genCellMonthRange(v, disabledDate, range!);
 	}
 	const prefixCls = getPrefixCls('calendar');
 	$: cnames = clsx(prefixCls, cls);
@@ -198,7 +200,6 @@
 											<div class={cellInnerCls(date.instance, date.current, date.disabled)}>
 												<div class={cellDateValCls}>
 													{date.instance.date()}
-													{date.disabled}
 												</div>
 												<div class={cellDateContentCls}></div>
 											</div>
@@ -215,13 +216,12 @@
 									{#each row as date (date.key)}
 										<td
 											title={date.instance.format('YYYY-MM')}
-											on:click={() => handleSelect(date.instance)}
+											on:click={() => handleSelect(date.instance, date.disabled)}
 											class={cellCls}
 										>
 											<div class={cellInnerCls(date.instance, date.current, date.disabled)}>
 												<div class={cellDateValCls}>
 													{locale.lang.shortMonths[date.instance.month()]}
-													{date.disabled}
 												</div>
 												<div class={cellDateContentCls}></div>
 											</div>

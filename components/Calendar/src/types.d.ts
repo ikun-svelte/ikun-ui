@@ -23,7 +23,7 @@ export type KCalendarProps = {
 	 */
 	mode?: 'month' | 'year';
 	/**
-	 * TODO: 设置可以显示的日期(实现了年月，日期要限制)
+	 * TODO: ☑️ 设置可以显示的日期(实现了年月，日期要限制)
 	 */
 	validRange?: [Dayjs, Dayjs];
 	cls?: ClassValue;

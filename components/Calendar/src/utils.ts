@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import type { ManipulateType } from 'dayjs';
 import type { KCalendarProps } from './types';
-
+import isBetween from 'dayjs/plugin/isBetween';
 export function genDateRange(
 	date: dayjs.Dayjs,
 	unit: ManipulateType = 'year',
@@ -86,7 +86,8 @@ export interface CalendarCell {
 }
 export function genCellDateRange(
 	centerDate: dayjs.Dayjs,
-	disableCallback: KCalendarProps['disabledDate']
+	disableCallback: KCalendarProps['disabledDate'],
+	range: [dayjs.Dayjs, dayjs.Dayjs]
 ): Array<Array<CalendarCell>> {
 	const startDate = dayjs(centerDate).startOf('month');
 	const endDate = dayjs(centerDate).endOf('month');
@@ -106,7 +107,7 @@ export function genCellDateRange(
 			current: false,
 			instance: d,
 			key: d.format('YYYY-MM-DD'),
-			disabled: disableCallback ? disableCallback(d) : false
+			disabled: getDisabledStatus(d, disableCallback, range)
 		});
 	}
 
@@ -118,7 +119,7 @@ export function genCellDateRange(
 			current: true,
 			instance: d,
 			key: d.format('YYYY-MM-DD'),
-			disabled: disableCallback ? disableCallback(d) : false
+			disabled: getDisabledStatus(d, disableCallback, range)
 		});
 	}
 
@@ -131,7 +132,7 @@ export function genCellDateRange(
 			current: false,
 			instance: d,
 			key: d.format('YYYY-MM-DD'),
-			disabled: disableCallback ? disableCallback(d) : false
+			disabled: getDisabledStatus(d, disableCallback, range)
 		});
 	}
 
@@ -159,9 +160,17 @@ export function changeMonthYears(input: string, date: dayjs.Dayjs, type: 'YYYY' 
 	return dayjs(newDateStr);
 }
 
+function isInDateRange(date: dayjs.Dayjs, range: [dayjs.Dayjs, dayjs.Dayjs]) {
+	dayjs.extend(isBetween);
+	const startDate = range[0].subtract(1, 'day');
+	const endDate = range[1].add(1, 'day');
+	return date.isBetween(startDate, endDate);
+}
+
 export function genCellMonthRange(
 	centerDate: dayjs.Dayjs,
-	disableCallback: KCalendarProps['disabledDate']
+	disableCallback: KCalendarProps['disabledDate'],
+	range: [dayjs.Dayjs, dayjs.Dayjs]
 ): Array<Array<CalendarCell>> {
 	const year = centerDate.year();
 	const months = [];
@@ -171,13 +180,25 @@ export function genCellMonthRange(
 			const month = i + j + 1; // 月份从 1 开始
 			const monthDate = dayjs(`${year}-${month.toString().padStart(2, '0')}-${centerDate.date()}`);
 			row.push({
-				current: centerDate.month() === monthDate.month(),
+				current: true,
 				instance: monthDate,
 				key: monthDate.format('YYYY-MM'),
-				disabled: disableCallback ? disableCallback(monthDate) : false
+				disabled: getDisabledStatus(monthDate, disableCallback, range)
 			});
 		}
 		months.push(row);
 	}
 	return months;
+}
+
+function getDisabledStatus(
+	date: dayjs.Dayjs,
+	disableCallback: KCalendarProps['disabledDate'],
+	range: [dayjs.Dayjs, dayjs.Dayjs]
+) {
+	if (!isInDateRange(date, range)) {
+		return true;
+	} else {
+		return disableCallback ? disableCallback(date) : false;
+	}
 }

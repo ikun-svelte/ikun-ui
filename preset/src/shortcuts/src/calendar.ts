@@ -27,5 +27,5 @@ export const calendarShortcuts: Record<string, string> = {
 		'before:(border-ikun-main bd-1 border-solid rounded pa top-0 bottom-0 content-[""] pos-inset-ie-none pos-inset-is-none)',
 	'k-calendar-date-s': 'text-ikun-main ikun:20:bg-ikun-main',
 	'k-calendar-date-not': 'text-ikun-tx-gr',
-	'k-calendar-date-disabled': 'k-cur-disabled bg-ikun-info-100'
+	'k-calendar-date-disabled': 'k-cur-disabled bg-ikun-info-100 text-ikun-tx-gr'
 };
