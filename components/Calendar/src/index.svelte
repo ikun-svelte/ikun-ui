@@ -75,6 +75,15 @@
 	const selectGroupCls = clsx(`${headerCls}-select-group`);
 	const btnGroupCls = clsx(`${prefixCls}-header-btn-group`);
 	const btnCls = clsx(`${prefixCls}-header-btn`);
+	const panelCls = clsx(`${prefixCls}-panel`);
+	const panelDateCls = clsx(`${prefixCls}-date-panel`);
+	const panelBodyCls = clsx(`${prefixCls}-body`);
+	const contentCls = clsx(`${prefixCls}-content`);
+	const theadCls = clsx(`${prefixCls}-thead`);
+	const cellCls = clsx(`${prefixCls}-cell`);
+	const cellInnerCls = clsx(`${prefixCls}-cell-inner`, `${prefixCls}-date`);
+	const cellDateValCls = clsx(`${prefixCls}-date-value`);
+	const cellDateContentCls = clsx(`${prefixCls}-date-content`);
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
@@ -116,4 +125,65 @@
 			</KButtonGroup>
 		</div>
 	</slot>
+	<div class={panelCls}>
+		<div class={panelDateCls}>
+			<div class={panelBodyCls}>
+				<table class={contentCls}>
+					<thead>
+						<tr>
+							{#each locale.lang.shortWeekDays as weekDays (weekDays)}
+								<th class={theadCls}>{weekDays}</th>
+							{/each}
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td title="2024-02-25" class={cellCls}>
+								<div class={cellInnerCls}>
+									<div class={cellDateValCls}>25</div>
+									<div class={cellDateContentCls}></div>
+								</div>
+							</td>
+							<td title="2024-02-25" class={cellCls}>
+								<div class={cellInnerCls}>
+									<div class={cellDateValCls}>25</div>
+									<div class={cellDateContentCls}></div>
+								</div>
+							</td>
+							<td title="2024-02-25" class={cellCls}>
+								<div class={cellInnerCls}>
+									<div class={cellDateValCls}>25</div>
+									<div class={cellDateContentCls}></div>
+								</div>
+							</td>
+							<td title="2024-02-25" class={cellCls}>
+								<div class={cellInnerCls}>
+									<div class={cellDateValCls}>25</div>
+									<div class={cellDateContentCls}></div>
+								</div>
+							</td>
+							<td title="2024-02-25" class={cellCls}>
+								<div class={cellInnerCls}>
+									<div class={cellDateValCls}>25</div>
+									<div class={cellDateContentCls}></div>
+								</div>
+							</td>
+							<td title="2024-02-25" class={cellCls}>
+								<div class={cellInnerCls}>
+									<div class={cellDateValCls}>25</div>
+									<div class={cellDateContentCls}></div>
+								</div>
+							</td>
+							<td title="2024-02-25" class={cellCls}>
+								<div class={cellInnerCls}>
+									<div class={cellDateValCls}>25</div>
+									<div class={cellDateContentCls}></div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
