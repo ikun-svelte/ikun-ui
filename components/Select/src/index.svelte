@@ -174,9 +174,10 @@
 	}
 
 	async function onOpen(e: CustomEvent) {
+		await tick();
 		handleExpend(e);
 		if (e.detail && dataListInner.length > 0) {
-			setVList();
+			setTimeout(setVList, 100);
 		} else if (!e.detail && remote) {
 			// reset remote popover disabled
 			isDisabledPopover = true;
@@ -193,17 +194,19 @@
 	let popoverModalRef: HTMLElement | null = null;
 	let vListRef: any = null;
 	let heightInner = 'initial';
+
 	async function setVList() {
-		await tick();
 		if (popoverModalRef) {
 			const container = popoverModalRef.childNodes[0];
 			if (container) {
+				//setTimeout(async () => {
 				const { height } = (container as HTMLElement).children[0].getBoundingClientRect();
 				if (height > maxHeight) {
 					heightInner = `${maxHeight}px`;
 					await tick();
 					vListRef && locateItem();
 				}
+				//},300);
 			}
 		}
 	}
@@ -336,7 +339,7 @@
 	<div
 		slot="contentEl"
 		bind:this={popoverModalRef}
-		style:overflow-y="auto"
+		style:overflow-y="hidden"
 		style:width={popoverWidth}
 		style:min-width={triggerWidth}
 		style:height={heightInner}
