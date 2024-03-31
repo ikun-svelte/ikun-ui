@@ -1,4 +1,5 @@
 /// <reference types="./types" />
+// @ts-ignore
 import ButtonGroup from './index.svelte';
 export default ButtonGroup;
 

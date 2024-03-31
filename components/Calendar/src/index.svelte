@@ -4,8 +4,10 @@
 	import { clsx } from 'clsx';
 	import dayjs from 'dayjs';
 	import {
+		type CalendarCell,
 		changeMonthYears,
 		genCellDateRange,
+		genCellMonthRange,
 		genDateRange,
 		generateMonthRange,
 		generateYearRange,
@@ -19,6 +21,7 @@
 
 	export let fullscreen: KCalendarProps['fullscreen'] = false;
 	export let locale: KCalendarProps['locale'] = localeConfig;
+	export let mode: KCalendarProps['mode'] = 'year';
 	export let value: KCalendarProps['value'] = dayjs().locale(locale.lang.locale);
 	export let validRange: KCalendarProps['validRange'] = undefined;
 	export let cls: KCalendarProps['cls'] = undefined;
@@ -50,11 +53,11 @@
 		hMonthList = generateMonthRange(hYear.value, range!, locale);
 		if (selectValue) {
 			selectValue = changeMonthYears(e.detail.value, selectValue, 'YYYY');
-			cellList = genCellDateRange(selectValue);
+			doUpdateCellList(isMY, selectValue);
 		} else {
 			let defaultDate = changeMonthYears(hMonth.value, dayjs(), 'MM');
 			defaultDate = changeMonthYears(e.detail.value, defaultDate, 'YYYY');
-			cellList = genCellDateRange(defaultDate);
+			doUpdateCellList(isMY, defaultDate);
 		}
 	};
 
@@ -68,31 +71,44 @@
 		hMonth = e.detail;
 		if (selectValue) {
 			selectValue = changeMonthYears(e.detail.value, selectValue, 'MM');
-			cellList = genCellDateRange(selectValue);
+			doUpdateCellList(isMY, selectValue);
 		} else {
 			let defaultDate = changeMonthYears(hYear.value, dayjs(), 'YYYY');
 			defaultDate = changeMonthYears(e.detail.value, defaultDate, 'MM');
-			cellList = genCellDateRange(defaultDate);
+			doUpdateCellList(isMY, defaultDate);
 		}
 	};
 
 	/* year and month switch */
-	let isMY = 'year';
+	let isMY = mode;
 	const handleHMYClick = (v: 'year' | 'month') => {
 		isMY = v;
+		if (selectValue) {
+			doUpdateCellList(isMY, selectValue);
+		} else {
+			let defaultDate = changeMonthYears(hYear.value, dayjs(), 'YYYY');
+			defaultDate = changeMonthYears(hMonth.value, defaultDate, 'MM');
+			doUpdateCellList(isMY, defaultDate);
+		}
 	};
 
 	/*  generate cell list */
-	let cellList = genCellDateRange(value);
+	let cellList: Array<Array<CalendarCell>> = [];
+	$: {
+		doUpdateCellList(mode, value);
+	}
 	// select day
 	let selectValue: dayjs.Dayjs | null = null;
 	// current day
 	let curValue = dayjs();
 	function handleSelect(day: dayjs.Dayjs) {
 		selectValue = day;
-		cellList = genCellDateRange(selectValue);
+		doUpdateCellList(isMY, selectValue);
 	}
 
+	function doUpdateCellList(type: 'year' | 'month', v: dayjs.Dayjs) {
+		cellList = type === 'year' ? genCellDateRange(v) : genCellMonthRange(v);
+	}
 	const prefixCls = getPrefixCls('calendar');
 	$: cnames = clsx(prefixCls, cls);
 	const headerCls = clsx(`${prefixCls}-header`);
@@ -111,14 +127,14 @@
 	const theadCls = clsx(`${prefixCls}-thead`);
 	const cellCls = clsx(`${prefixCls}-cell`);
 	$: cellInnerCls = (day: dayjs.Dayjs, curMonth: boolean) => {
+		const fm = isMY === 'year' ? 'YYYY-MM-DD' : 'YYYY-MM';
+		console.log(curMonth);
 		return clsx(`${prefixCls}-cell-inner`, `${prefixCls}-date`, {
 			[`${prefixCls}-date-hover`]:
-				!selectValue ||
-				!(selectValue && day.format('YYYY-MM-DD') === selectValue.format('YYYY-MM-DD')),
-			[`${prefixCls}-date-v`]: day.format('YYYY-MM-DD') === value.format('YYYY-MM-DD'),
-			[`${prefixCls}-date-c`]: day.format('YYYY-MM-DD') === curValue.format('YYYY-MM-DD'),
-			[`${prefixCls}-date-s`]:
-				selectValue && day.format('YYYY-MM-DD') === selectValue.format('YYYY-MM-DD'),
+				!selectValue || !(selectValue && day.format(fm) === selectValue.format(fm)),
+			[`${prefixCls}-date-v`]: day.format(fm) === value.format(fm),
+			[`${prefixCls}-date-c`]: day.format(fm) === curValue.format(fm),
+			[`${prefixCls}-date-s`]: selectValue && day.format(fm) === selectValue.format(fm),
 			[`${prefixCls}-date-not`]: !curMonth
 		});
 	};
@@ -169,31 +185,57 @@
 		<div class={panelDateCls}>
 			<div class={panelBodyCls}>
 				<table class={contentCls}>
-					<thead>
-						<tr>
-							{#each locale.lang.shortWeekDays as weekDays (weekDays)}
-								<th class={theadCls}>{weekDays}</th>
-							{/each}
-						</tr>
-					</thead>
-					<tbody>
-						{#each cellList as row}
+					{#if isMY === 'year'}
+						<thead>
 							<tr>
-								{#each row as date (date.key)}
-									<td
-										title={date.instance.toString()}
-										on:click={() => handleSelect(date.instance)}
-										class={cellCls}
-									>
-										<div class={cellInnerCls(date.instance, date.curMonth)}>
-											<div class={cellDateValCls}>{date.instance.date()}</div>
-											<div class={cellDateContentCls}></div>
-										</div>
-									</td>
+								{#each locale.lang.shortWeekDays as weekDays (weekDays)}
+									<th class={theadCls}>{weekDays}</th>
 								{/each}
 							</tr>
-						{/each}
-					</tbody>
+						</thead>
+					{/if}
+					{#if isMY === 'year'}
+						<tbody>
+							{#each cellList as row}
+								<tr>
+									{#each row as date (date.key)}
+										<td
+											title={date.instance.format('YYYY-MM-DD')}
+											on:click={() => handleSelect(date.instance)}
+											class={cellCls}
+										>
+											<div class={cellInnerCls(date.instance, date.current)}>
+												<div class={cellDateValCls}>{date.instance.date()}</div>
+												<div class={cellDateContentCls}></div>
+											</div>
+										</td>
+									{/each}
+								</tr>
+							{/each}
+						</tbody>
+					{/if}
+					{#if isMY === 'month'}
+						<tbody>
+							{#each cellList as row}
+								<tr>
+									{#each row as date (date.key)}
+										<td
+											title={date.instance.format('YYYY-MM')}
+											on:click={() => handleSelect(date.instance)}
+											class={cellCls}
+										>
+											<div class={cellInnerCls(date.instance, date.current)}>
+												<div class={cellDateValCls}>
+													{locale.lang.shortMonths[date.instance.month()]}
+												</div>
+												<div class={cellDateContentCls}></div>
+											</div>
+										</td>
+									{/each}
+								</tr>
+							{/each}
+						</tbody>
+					{/if}
 				</table>
 			</div>
 		</div>

@@ -76,7 +76,13 @@ export function genMonthSelectOption(month: number, locale: Record<string, any>)
 	return genSelectOption(shortMonth, `${month + 1}`, `${mVal}_MM_${shortMonth}`);
 }
 
-export function genCellDateRange(centerDate: dayjs.Dayjs) {
+export interface CalendarCell {
+	instance: dayjs.Dayjs;
+	current: boolean;
+	key: string;
+	label?: string;
+}
+export function genCellDateRange(centerDate: dayjs.Dayjs): Array<Array<CalendarCell>> {
 	const startDate = dayjs(centerDate).startOf('month');
 	const endDate = dayjs(centerDate).endOf('month');
 	const daysInMonth = endDate.date();
@@ -92,7 +98,7 @@ export function genCellDateRange(centerDate: dayjs.Dayjs) {
 	for (let i = daysBefore; i > 0; i--) {
 		const d = startOfPrevMonth.subtract(i - 1, 'day');
 		prevMonthDates.unshift({
-			curMonth: false,
+			current: false,
 			instance: d,
 			key: d.format('YYYY-MM-DD')
 		});
@@ -103,7 +109,7 @@ export function genCellDateRange(centerDate: dayjs.Dayjs) {
 	for (let i = 0; i < daysInMonth; i++) {
 		const d = startDate.add(i, 'day');
 		currentMonthDates.push({
-			curMonth: true,
+			current: true,
 			instance: d,
 			key: d.format('YYYY-MM-DD')
 		});
@@ -115,7 +121,7 @@ export function genCellDateRange(centerDate: dayjs.Dayjs) {
 	for (let i = 1; i <= daysAfter; i++) {
 		const d = startOfNextMonth.add(i - 1, 'day');
 		nextMonthDates.push({
-			curMonth: false,
+			current: false,
 			instance: d,
 			key: d.format('YYYY-MM-DD')
 		});
@@ -143,4 +149,24 @@ export function changeMonthYears(input: string, date: dayjs.Dayjs, type: 'YYYY' 
 	const newDateStr =
 		type === 'YYYY' ? `${input}-${monthVal}-${dateVal}` : `${yearVal}-${input}-${dateVal}`;
 	return dayjs(newDateStr);
+}
+
+export function genCellMonthRange(centerDate: dayjs.Dayjs): Array<Array<CalendarCell>> {
+	const year = centerDate.year();
+	const months = [];
+	for (let i = 0; i < 12; i += 3) {
+		const row = [];
+		for (let j = 0; j < 3; j++) {
+			const month = i + j + 1; // 月份从 1 开始
+			const monthDate = dayjs(`${year}-${month.toString().padStart(2, '0')}-${centerDate.date()}`);
+			console.log(centerDate.month(), monthDate.month());
+			row.push({
+				current: centerDate.month() === monthDate.month(),
+				instance: monthDate,
+				key: monthDate.format('YYYY-MM')
+			});
+		}
+		months.push(row);
+	}
+	return months;
 }
