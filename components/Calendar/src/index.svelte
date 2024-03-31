@@ -4,6 +4,7 @@
 	import { clsx } from 'clsx';
 	import dayjs from 'dayjs';
 	import {
+		genCellDateRange,
 		genDateRange,
 		generateMonthRange,
 		generateYearRange,
@@ -64,6 +65,17 @@
 		isMY = v;
 	};
 
+	/*  generate cell list */
+	let cellList = genCellDateRange(value);
+	// select day
+	let selectValue: dayjs.Dayjs | null = null;
+	// current day
+	let curValue = dayjs();
+	function handleSelect(day: dayjs.Dayjs) {
+		selectValue = day;
+		cellList = genCellDateRange(selectValue);
+	}
+
 	const prefixCls = getPrefixCls('calendar');
 	$: cnames = clsx(prefixCls, cls);
 	const headerCls = clsx(`${prefixCls}-header`);
@@ -81,7 +93,18 @@
 	const contentCls = clsx(`${prefixCls}-content`);
 	const theadCls = clsx(`${prefixCls}-thead`);
 	const cellCls = clsx(`${prefixCls}-cell`);
-	const cellInnerCls = clsx(`${prefixCls}-cell-inner`, `${prefixCls}-date`);
+	$: cellInnerCls = (day: dayjs.Dayjs, curMonth: boolean) => {
+		return clsx(`${prefixCls}-cell-inner`, `${prefixCls}-date`, {
+			[`${prefixCls}-date-hover`]:
+				!selectValue ||
+				!(selectValue && day.format('YYYY-MM-DD') === selectValue.format('YYYY-MM-DD')),
+			[`${prefixCls}-date-v`]: day.format('YYYY-MM-DD') === value.format('YYYY-MM-DD'),
+			[`${prefixCls}-date-c`]: day.format('YYYY-MM-DD') === curValue.format('YYYY-MM-DD'),
+			[`${prefixCls}-date-s`]:
+				selectValue && day.format('YYYY-MM-DD') === selectValue.format('YYYY-MM-DD'),
+			[`${prefixCls}-date-not`]: !curMonth
+		});
+	};
 	const cellDateValCls = clsx(`${prefixCls}-date-value`);
 	const cellDateContentCls = clsx(`${prefixCls}-date-content`);
 </script>
@@ -137,50 +160,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td title="2024-02-25" class={cellCls}>
-								<div class={cellInnerCls}>
-									<div class={cellDateValCls}>25</div>
-									<div class={cellDateContentCls}></div>
-								</div>
-							</td>
-							<td title="2024-02-25" class={cellCls}>
-								<div class={cellInnerCls}>
-									<div class={cellDateValCls}>25</div>
-									<div class={cellDateContentCls}></div>
-								</div>
-							</td>
-							<td title="2024-02-25" class={cellCls}>
-								<div class={cellInnerCls}>
-									<div class={cellDateValCls}>25</div>
-									<div class={cellDateContentCls}></div>
-								</div>
-							</td>
-							<td title="2024-02-25" class={cellCls}>
-								<div class={cellInnerCls}>
-									<div class={cellDateValCls}>25</div>
-									<div class={cellDateContentCls}></div>
-								</div>
-							</td>
-							<td title="2024-02-25" class={cellCls}>
-								<div class={cellInnerCls}>
-									<div class={cellDateValCls}>25</div>
-									<div class={cellDateContentCls}></div>
-								</div>
-							</td>
-							<td title="2024-02-25" class={cellCls}>
-								<div class={cellInnerCls}>
-									<div class={cellDateValCls}>25</div>
-									<div class={cellDateContentCls}></div>
-								</div>
-							</td>
-							<td title="2024-02-25" class={cellCls}>
-								<div class={cellInnerCls}>
-									<div class={cellDateValCls}>25</div>
-									<div class={cellDateContentCls}></div>
-								</div>
-							</td>
-						</tr>
+						{#each cellList as row}
+							<tr>
+								{#each row as date (date.key)}
+									<td
+										title={date.instance.toString()}
+										on:click={() => handleSelect(date.instance)}
+										class={cellCls}
+									>
+										<div class={cellInnerCls(date.instance, date.curMonth)}>
+											<div class={cellDateValCls}>{date.instance.date()}</div>
+											<div class={cellDateContentCls}></div>
+										</div>
+									</td>
+								{/each}
+							</tr>
+						{/each}
 					</tbody>
 				</table>
 			</div>

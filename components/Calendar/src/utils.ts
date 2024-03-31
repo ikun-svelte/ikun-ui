@@ -75,3 +75,63 @@ export function genMonthSelectOption(month: number, locale: Record<string, any>)
 		: locale.lang.shortMonths[month];
 	return genSelectOption(shortMonth, `${month + 1}`, `${mVal}_MM_${shortMonth}`);
 }
+
+export function genCellDateRange(centerDate: dayjs.Dayjs) {
+	const startDate = dayjs(centerDate).startOf('month');
+	const endDate = dayjs(centerDate).endOf('month');
+	const daysInMonth = endDate.date();
+	const totalDays = 42;
+
+	// Calculate the number of days before and after the current month
+	const daysBefore = startDate.day(); // Number of days from previous month
+	const daysAfter = totalDays - daysInMonth - daysBefore; // Number of days from next month
+
+	// Generate dates for the previous month
+	const prevMonthDates = [];
+	const startOfPrevMonth = startDate.subtract(1, 'month').endOf('month');
+	for (let i = daysBefore; i > 0; i--) {
+		const d = startOfPrevMonth.subtract(i - 1, 'day');
+		prevMonthDates.unshift({
+			curMonth: false,
+			instance: d,
+			key: d.format('YYYY-MM-DD')
+		});
+	}
+
+	// Generate dates for the current month
+	const currentMonthDates = [];
+	for (let i = 0; i < daysInMonth; i++) {
+		const d = startDate.add(i, 'day');
+		currentMonthDates.push({
+			curMonth: true,
+			instance: d,
+			key: d.format('YYYY-MM-DD')
+		});
+	}
+
+	// Generate dates for the next month
+	const nextMonthDates = [];
+	const startOfNextMonth = endDate.add(1, 'day').startOf('month');
+	for (let i = 1; i <= daysAfter; i++) {
+		const d = startOfNextMonth.add(i - 1, 'day');
+		nextMonthDates.push({
+			curMonth: false,
+			instance: d,
+			key: d.format('YYYY-MM-DD')
+		});
+	}
+
+	// Combine all date arrays and create the matrix
+	const dateMatrix = [];
+	dateMatrix.push(...prevMonthDates);
+	dateMatrix.push(...currentMonthDates);
+	dateMatrix.push(...nextMonthDates);
+
+	// Split the date matrix into a 6x7 grid
+	const resultMatrix = [];
+	for (let i = 0; i < totalDays / 7; i++) {
+		resultMatrix.push(dateMatrix.slice(i * 7, (i + 1) * 7));
+	}
+
+	return resultMatrix;
+}
