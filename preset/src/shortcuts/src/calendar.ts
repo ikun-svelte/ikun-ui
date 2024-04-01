@@ -16,7 +16,7 @@ export const calendarShortcuts: Record<string, string> = {
 	'k-calendar-thead':
 		'box-border pb-4px pr-12px rounded-18px pr min-w-24px align-middle font-normal',
 	'k-calendar-cell': 'p-0 box-border pr min-w-24px font-normal cursor-pointer',
-	'k-calendar-cell-inner': 'box-border pr z02 min-w-24px leading-24px',
+	'k-calendar-cell-inner': 'box-border pr z02 min-w-24px leading-24px k-transition-bg',
 	'k-calendar-date-hover': 'hover:bg-ikun-info-100',
 	'k-calendar-date':
 		'box-border pt-4px px-8px w-auto h-auto mx-4px my-0 block rounded-0 b-0 b-t-2 border-solid border-ikun-bd-base',

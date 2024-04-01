@@ -38,5 +38,5 @@ export type KCalendarProps = {
 
 // TODO: ☑️ event panelChange 日期面板变化回调
 // TODO: ☑️ event select 选择日期回调，包含来源信息
-// TODO: bg 动画
+
 // TODO: dark mode
