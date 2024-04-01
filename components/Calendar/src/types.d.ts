@@ -30,11 +30,11 @@ export type KCalendarProps = {
 	attrs?: Record<string, string>;
 };
 
-// TODO: slot dateCell 追加到日期单元格后的插槽
-// TODO: slot dateFullCell 替换整个日期单元格内容的插槽
-// TODO: slot header 头部插槽
-// TODO: slot monthCell 追加到月单元格后的插槽
-// TODO: slot monthFullCell 替换整个月单元格内容的插槽
+// TODO: ☑️ slot dateCell 追加到日期单元格后的插槽
+// TODO: ☑️ slot dateFullCell 替换整个日期单元格内容的插槽
+// TODO: ☑️ slot header 头部插槽
+// TODO: ☑️ slot monthCell 追加到月单元格后的插槽
+// TODO: ☑️ slot monthFullCell 替换整个月单元格内容的插槽
 
 // TODO: event panelChange 日期面板变化回调
 // TODO: event select 选择日期回调，包含来源信息

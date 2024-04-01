@@ -136,7 +136,15 @@
 </script>
 
 <div class={cnames} {...$$restProps} {...attrs}>
-	<slot name="header">
+	<slot
+		name="header"
+		mode={isMY}
+		handleYearSelect={handleHYearSelect}
+		yearList={hYearList}
+		handleMonthSelect={handleHMonthSelect}
+		monthList={hYearList}
+		handleMYClick={handleHMYClick}
+	>
 		<div class={headerCls}>
 			<div class={selectGroupCls}>
 				<KSelect
@@ -193,15 +201,19 @@
 								<tr>
 									{#each row as date (date.key)}
 										<td
-											title={date.instance.format('YYYY-MM-DD')}
 											on:click={() => handleSelect(date.instance, date.disabled)}
+											title={date.instance.format('YYYY-MM-DD')}
 											class={cellCls}
 										>
 											<div class={cellInnerCls(date.instance, date.current, date.disabled)}>
-												<div class={cellDateValCls}>
-													{date.instance.date()}
-												</div>
-												<div class={cellDateContentCls}></div>
+												<slot name="dateFullCell" {date}>
+													<div class={cellDateValCls}>
+														{date.instance.date()}
+													</div>
+													<div class={cellDateContentCls}>
+														<slot name="dateCell" {date} />
+													</div>
+												</slot>
 											</div>
 										</td>
 									{/each}
@@ -220,10 +232,14 @@
 											class={cellCls}
 										>
 											<div class={cellInnerCls(date.instance, date.current, date.disabled)}>
-												<div class={cellDateValCls}>
-													{locale.lang.shortMonths[date.instance.month()]}
-												</div>
-												<div class={cellDateContentCls}></div>
+												<slot name="monthFullCell" month={date}>
+													<div class={cellDateValCls}>
+														{locale.lang.shortMonths[date.instance.month()]}
+													</div>
+													<div class={cellDateContentCls}>
+														<slot name="monthCell" month={date} />
+													</div>
+												</slot>
 											</div>
 										</td>
 									{/each}
