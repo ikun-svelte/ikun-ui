@@ -107,7 +107,7 @@ export function genCellDateRange(
 			current: false,
 			instance: d,
 			key: d.format('YYYY-MM-DD'),
-			disabled: getDisabledStatus(d, disableCallback, range)
+			disabled: getDisabledStatus(d, disableCallback, range, 'day')
 		});
 	}
 
@@ -119,7 +119,7 @@ export function genCellDateRange(
 			current: true,
 			instance: d,
 			key: d.format('YYYY-MM-DD'),
-			disabled: getDisabledStatus(d, disableCallback, range)
+			disabled: getDisabledStatus(d, disableCallback, range, 'day')
 		});
 	}
 
@@ -132,7 +132,7 @@ export function genCellDateRange(
 			current: false,
 			instance: d,
 			key: d.format('YYYY-MM-DD'),
-			disabled: getDisabledStatus(d, disableCallback, range)
+			disabled: getDisabledStatus(d, disableCallback, range, 'day')
 		});
 	}
 
@@ -160,11 +160,22 @@ export function changeMonthYears(input: string, date: dayjs.Dayjs, type: 'YYYY' 
 	return dayjs(newDateStr);
 }
 
-function isInDateRange(date: dayjs.Dayjs, range: [dayjs.Dayjs, dayjs.Dayjs]) {
+function isInDateRange(
+	date: dayjs.Dayjs,
+	range: [dayjs.Dayjs, dayjs.Dayjs],
+	type: 'month' | 'day'
+) {
 	dayjs.extend(isBetween);
-	const startDate = range[0].subtract(1, 'day');
-	const endDate = range[1].add(1, 'day');
-	return date.isBetween(startDate, endDate);
+	if (type === 'day') {
+		const startDate = range[0].subtract(1, type);
+		const endDate = range[1].add(1, type);
+		return date.isBetween(startDate, endDate);
+	}
+	if (type === 'month') {
+		const startDate = range[0].subtract(1, type);
+		const endDate = range[1].add(1, type);
+		return date.isBetween(startDate, endDate);
+	}
 }
 
 export function genCellMonthRange(
@@ -183,7 +194,7 @@ export function genCellMonthRange(
 				current: true,
 				instance: monthDate,
 				key: monthDate.format('YYYY-MM'),
-				disabled: getDisabledStatus(monthDate, disableCallback, range)
+				disabled: getDisabledStatus(monthDate, disableCallback, range, 'month')
 			});
 		}
 		months.push(row);
@@ -194,9 +205,10 @@ export function genCellMonthRange(
 function getDisabledStatus(
 	date: dayjs.Dayjs,
 	disableCallback: KCalendarProps['disabledDate'],
-	range: [dayjs.Dayjs, dayjs.Dayjs]
+	range: [dayjs.Dayjs, dayjs.Dayjs],
+	type: 'month' | 'day'
 ) {
-	if (!isInDateRange(date, range)) {
+	if (!isInDateRange(date, range, type)) {
 		return true;
 	} else {
 		return disableCallback ? disableCallback(date) : false;

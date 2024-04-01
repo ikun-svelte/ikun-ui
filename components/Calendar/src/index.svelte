@@ -18,6 +18,7 @@
 	import { KButtonGroup } from '@ikun-ui/button-group';
 	import { KSelect, type KSelectProps } from '@ikun-ui/select';
 	import { localeConfig } from './locale';
+	import { createEventDispatcher } from 'svelte';
 
 	export let fullscreen: KCalendarProps['fullscreen'] = false;
 	export let locale: KCalendarProps['locale'] = localeConfig;
@@ -28,6 +29,7 @@
 	export let cls: KCalendarProps['cls'] = undefined;
 	export let attrs: KCalendarProps['attrs'] = {};
 
+	const dispatch = createEventDispatcher();
 	/* valid range */
 	let range = validRange;
 	$: {
@@ -54,6 +56,7 @@
 		hMonthList = generateMonthRange(hYear.value, range!, locale!);
 		selectValue = changeMonthYears(e.detail.value, selectValue, 'YYYY');
 		doUpdateCellList(isMY, selectValue);
+		dispatch('select', { date: selectValue, source: 'year' });
 	};
 
 	/* month select */
@@ -66,6 +69,7 @@
 		hMonth = e.detail;
 		selectValue = changeMonthYears(e.detail.value, selectValue, 'MM');
 		doUpdateCellList(isMY, selectValue);
+		dispatch('select', { date: selectValue, source: 'month' });
 	};
 
 	/* year and month switch */
@@ -79,6 +83,8 @@
 		if (isMY === 'year') {
 			hMonth = genMonthSelectOption(selectValue.month(), locale!);
 		}
+
+		dispatch('panelChange', { date: selectValue, mode: isMY });
 	};
 
 	/*  generate cell list */
@@ -94,6 +100,7 @@
 		if (isDisabled) return;
 		selectValue = day;
 		doUpdateCellList(isMY, selectValue);
+		dispatch('select', { date: selectValue, source: isMY });
 	}
 
 	function doUpdateCellList(type: 'year' | 'month', v: dayjs.Dayjs) {

@@ -36,7 +36,7 @@ export type KCalendarProps = {
 // TODO: ☑️ slot monthCell 追加到月单元格后的插槽
 // TODO: ☑️ slot monthFullCell 替换整个月单元格内容的插槽
 
-// TODO: event panelChange 日期面板变化回调
-// TODO: event select 选择日期回调，包含来源信息
+// TODO: ☑️ event panelChange 日期面板变化回调
+// TODO: ☑️ event select 选择日期回调，包含来源信息
 // TODO: bg 动画
 // TODO: dark mode
