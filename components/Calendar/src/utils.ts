@@ -43,12 +43,25 @@ export function generateMonthRangeToDate(date: dayjs.Dayjs, locale: Record<strin
 	return monthRange;
 }
 
+export function generateMonthRangeDate(
+	range: [dayjs.Dayjs, dayjs.Dayjs],
+	locale: Record<string, any>
+) {
+	const monthRange = [];
+	for (let i = range[0].month(); i <= range[1].month(); i++) {
+		monthRange.push(genMonthSelectOption(i, locale));
+	}
+	return monthRange;
+}
+
 export function generateMonthRange(
 	hYear: string,
 	range: [dayjs.Dayjs, dayjs.Dayjs],
 	locale: Record<string, any>
 ) {
-	if (hYear === `${range![1].year()}`) {
+	if (hYear === `${range![1].year()}` && hYear === `${range![0].year()}`) {
+		return generateMonthRangeDate(range, locale);
+	} else if (hYear === `${range![1].year()}`) {
 		return generateMonthRangeToDate(range![1], locale);
 	} else if (hYear === `${range![0].year()}`) {
 		return generateMonthRangeFromDate(range![0], locale);
@@ -172,8 +185,8 @@ function isInDateRange(
 		return date.isBetween(startDate, endDate);
 	}
 	if (type === 'month') {
-		const startDate = range[0].subtract(1, type);
-		const endDate = range[1].add(1, type);
+		const startDate = range[0];
+		const endDate = range[1];
 		return date.isBetween(startDate, endDate);
 	}
 }

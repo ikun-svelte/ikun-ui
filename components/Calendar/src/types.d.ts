@@ -3,11 +3,11 @@ import type { ClassValue } from 'clsx';
 import type Dayjs from 'dayjs';
 export type KCalendarProps = {
 	/**
-	 * TODO: ☑️ 展示的日期
+	 * TODO: ✅ 展示的日期
 	 */
 	value?: Dayjs;
 	/**
-	 * TODO: ☑️ 不可选择的日期，参数为当前
+	 * TODO: ✅ 不可选择的日期，参数为当前
 	 */
 	disabledDate?: (currentDate: Dayjs) => boolean;
 	/**
@@ -15,11 +15,11 @@ export type KCalendarProps = {
 	 */
 	fullscreen?: boolean;
 	/**
-	 * TODO: ☑️ 国际化配置
+	 * TODO: ✅ 国际化配置
 	 */
 	locale: Record<string, any>;
 	/**
-	 * TODO: ☑️ 初始模式
+	 * TODO: ✅ 初始模式
 	 */
 	mode?: 'month' | 'year';
 	/**

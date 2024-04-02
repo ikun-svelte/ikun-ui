@@ -90,7 +90,7 @@
 	/*  generate cell list */
 	let cellList: Array<Array<CalendarCell>> = [];
 	$: {
-		doUpdateCellList(mode!, value);
+		doUpdateCellList(isMY!, value);
 	}
 	// select day
 	let selectValue: dayjs.Dayjs = value;
