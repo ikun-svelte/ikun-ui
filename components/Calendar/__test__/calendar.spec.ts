@@ -64,6 +64,32 @@ describe('Test: KCalendar', () => {
 		expect(host.innerHTML).matchSnapshot();
 	});
 
+	test('props: fullscreen is false and mode is year', async () => {
+		//@ts-ignore
+		const instance = new KCalendar({
+			target: host,
+			props: {
+				fullscreen: false,
+				mode: 'year'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: fullscreen is false and mode is month', async () => {
+		//@ts-ignore
+		const instance = new KCalendar({
+			target: host,
+			props: {
+				fullscreen: false,
+				mode: 'month'
+			}
+		});
+		expect(instance).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
 	test('props: mode', async () => {
 		//@ts-ignore
 		const instance = new KCalendarMode({
