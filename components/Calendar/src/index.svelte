@@ -110,33 +110,61 @@
 				: genCellMonthRange(v, disabledDate, range!);
 	}
 	const prefixCls = getPrefixCls('calendar');
-	$: cnames = clsx(prefixCls, cls);
-	const headerCls = clsx(`${prefixCls}-header`);
-	$: selectCls = clsx(`${headerCls}-select-y`, {
-		[`${headerCls}-select-y-half`]: isMY === 'year',
-		[`${headerCls}-select-y-full`]: isMY === 'month'
+	$: cnames = clsx(
+		prefixCls,
+		{
+			[`${prefixCls}-card`]: !fullscreen
+		},
+		cls
+	);
+	const headerCls = clsx({
+		[`${prefixCls}-header`]: fullscreen,
+		[`${prefixCls}-header-card`]: !fullscreen
 	});
-	const selectMMCls = clsx(`${headerCls}-select-m`);
-	const selectGroupCls = clsx(`${headerCls}-select-group`);
+	$: selectCls = clsx(`${prefixCls}-header-select-y`, {
+		[`${prefixCls}-header-select-y-half`]: isMY === 'year',
+		[`${prefixCls}-header-select-y-full`]: isMY === 'month'
+	});
+	const selectMMCls = clsx(`${prefixCls}-header-select-m`);
+	const selectGroupCls = clsx(`${prefixCls}-header-select-group`);
 	const btnGroupCls = clsx(`${prefixCls}-header-btn-group`);
 	const btnCls = clsx(`${prefixCls}-header-btn`);
-	const panelCls = clsx(`${prefixCls}-panel`);
+	const panelCls = clsx({
+		[`${prefixCls}-panel`]: fullscreen,
+		[`${prefixCls}-panel-card`]: !fullscreen
+	});
 	const panelDateCls = clsx(`${prefixCls}-date-panel`);
 	const panelBodyCls = clsx(`${prefixCls}-body`);
 	const contentCls = clsx(`${prefixCls}-content`);
-	const theadCls = clsx(`${prefixCls}-thead`);
-	const cellCls = clsx(`${prefixCls}-cell`);
+	const theadCls = clsx({
+		[`${prefixCls}-thead`]: fullscreen,
+		[`${prefixCls}-thead-card`]: !fullscreen
+	});
+	const cellCls = clsx(`${prefixCls}-cell`, {
+		[`${prefixCls}-cell-card`]: !fullscreen
+	});
 	$: cellInnerCls = (day: dayjs.Dayjs, curMonth: boolean, disabled: boolean) => {
 		const fm = isMY === 'year' ? 'YYYY-MM-DD' : 'YYYY-MM';
-		return clsx(`${prefixCls}-cell-inner`, `${prefixCls}-date`, {
-			[`${prefixCls}-date-hover`]:
-				!selectValue || !(selectValue && day.format(fm) === selectValue.format(fm)),
-			[`${prefixCls}-date-v`]: day.format(fm) === value.format(fm),
-			[`${prefixCls}-date-c`]: day.format(fm) === todayValue.format(fm),
-			[`${prefixCls}-date-s`]: selectValue && day.format(fm) === selectValue.format(fm),
-			[`${prefixCls}-date-not`]: !curMonth,
-			[`${prefixCls}-date-disabled`]: disabled
-		});
+		return clsx(
+			`${prefixCls}-cell-inner`,
+			{
+				[`${prefixCls}-date`]: fullscreen,
+				[`${prefixCls}-date-card`]: !fullscreen && isMY === 'year',
+				[`${prefixCls}-date-card-m`]: !fullscreen && isMY === 'month'
+			},
+			{
+				[`${prefixCls}-date-hover`]:
+					!selectValue || !(selectValue && day.format(fm) === selectValue.format(fm)),
+				[`${prefixCls}-date-v`]: day.format(fm) === value.format(fm),
+				[`${prefixCls}-date-c`]: day.format(fm) === todayValue.format(fm),
+				[`${prefixCls}-date-s`]:
+					fullscreen && selectValue && day.format(fm) === selectValue.format(fm),
+				[`${prefixCls}-date-s-card`]:
+					!fullscreen && selectValue && day.format(fm) === selectValue.format(fm),
+				[`${prefixCls}-date-not`]: !curMonth,
+				[`${prefixCls}-date-disabled`]: disabled
+			}
+		);
 	};
 	const cellDateValCls = clsx(`${prefixCls}-date-value`);
 	const cellDateContentCls = clsx(`${prefixCls}-date-content`);
@@ -155,6 +183,7 @@
 		<div class={headerCls}>
 			<div class={selectGroupCls}>
 				<KSelect
+					size={fullscreen ? 'md' : 'sm'}
 					dataList={hYearList}
 					cls={selectCls}
 					on:updateValue={handleHYearSelect}
@@ -162,6 +191,7 @@
 				></KSelect>
 				{#if isMY === 'year'}
 					<KSelect
+						size={fullscreen ? 'md' : 'sm'}
 						dataList={hMonthList}
 						cls={selectMMCls}
 						on:updateValue={handleHMonthSelect}
@@ -169,7 +199,7 @@
 					></KSelect>
 				{/if}
 			</div>
-			<KButtonGroup cls={btnGroupCls}>
+			<KButtonGroup cls={btnGroupCls} size={fullscreen ? 'md' : 'sm'}>
 				<KButton
 					on:click={() => handleHMYClick('year')}
 					cls={btnCls}
