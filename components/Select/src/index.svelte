@@ -199,14 +199,15 @@
 		if (popoverModalRef) {
 			const container = popoverModalRef.childNodes[0];
 			if (container) {
-				//setTimeout(async () => {
-				const { height } = (container as HTMLElement).children[0].getBoundingClientRect();
-				if (height > maxHeight) {
-					heightInner = `${maxHeight}px`;
-					await tick();
-					vListRef && locateItem();
+				const el = (container as HTMLElement).children[0];
+				if (el) {
+					const { height } = (container as HTMLElement).children[0].getBoundingClientRect();
+					if (height > maxHeight) {
+						heightInner = `${maxHeight}px`;
+						await tick();
+						vListRef && locateItem();
+					}
 				}
-				//},300);
 			}
 		}
 	}
@@ -339,7 +340,7 @@
 	<div
 		slot="contentEl"
 		bind:this={popoverModalRef}
-		style:overflow-y="hidden"
+		style:overflow-y="auto"
 		style:width={popoverWidth}
 		style:min-width={triggerWidth}
 		style:height={heightInner}
