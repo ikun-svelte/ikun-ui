@@ -2,15 +2,15 @@
 
 exports[`Test: KCalendar > events: panelChange 1`] = `
 {
-  "date": "2024-04-03T01:27:44.948Z",
-  "mode": "month",
+  "date": "2024-04-03",
+  "source": undefined,
 }
 `;
 
 exports[`Test: KCalendar > events: panelChange 2`] = `
 {
-  "date": "2024-04-03T01:27:44.948Z",
-  "mode": "year",
+  "date": "2024-04-03",
+  "source": undefined,
 }
 `;
 
