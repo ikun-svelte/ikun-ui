@@ -9,5 +9,8 @@ export const baseRules = {
 	'k-transparent-bg-dark': {
 		'background-image':
 			'conic-gradient(rgba(255, 255, 255, 0.3) 0 25%, transparent 0 50%, rgba(255, 255, 255, 0.3) 0 75%, transparent 0);'
+	},
+	'k-transition-bg': {
+		transition: 'background 0.3s'
 	}
 };

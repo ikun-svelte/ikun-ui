@@ -11,7 +11,7 @@ export const selectShortcuts: Record<string, string> = {
 	'k-select--inner__sm': 'text-12px',
 	'k-select--inner__md': 'text-14px',
 	'k-select--inner__lg': 'text-16px',
-	'k-select__sm': 'h-22px',
+	'k-select__sm': 'h-24px',
 	'k-select__md': 'h-30px',
 	'k-select__lg': 'h-38px',
 

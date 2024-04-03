@@ -69,7 +69,7 @@
 		"clean:deps": "node scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "node scripts/new-component.js timeline"
+		"create:new:comp": "node scripts/new-component.js calendar"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.18",
@@ -148,7 +148,8 @@
 		"baiwusanyu-utils": "^1.0.18",
 		"clsx": "^2.1.0",
 		"dayjs": "^1.11.10",
-		"@ikun-ui/timeline": "workspace:*"
+		"@ikun-ui/timeline": "workspace:*",
+		"@ikun-ui/calendar": "workspace:*"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.1.1",

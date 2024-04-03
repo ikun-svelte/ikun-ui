@@ -9,6 +9,6 @@ export type KButtonGroupProps = {
 	iconSize: number | null;
 	isBorder: boolean;
 	disabled: boolean;
-	cls: ClassValue;
-	attrs: Record<string, string>;
+	cls?: ClassValue;
+	attrs?: Record<string, string>;
 };
