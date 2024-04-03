@@ -20,7 +20,7 @@
 	import { localeConfig } from './locale';
 	import { createEventDispatcher } from 'svelte';
 
-	export let fullscreen: KCalendarProps['fullscreen'] = false;
+	export let fullscreen: KCalendarProps['fullscreen'] = true;
 	export let locale: KCalendarProps['locale'] = localeConfig;
 	export let mode: KCalendarProps['mode'] = 'year';
 	export let disabledDate: KCalendarProps['disabledDate'] = undefined;
@@ -104,10 +104,13 @@
 	}
 
 	function doUpdateCellList(type: 'year' | 'month', v: dayjs.Dayjs) {
+		// TODO: 月份切换失败
 		cellList =
 			type === 'year'
 				? genCellDateRange(v, disabledDate, range!)
 				: genCellMonthRange(v, disabledDate, range!);
+
+		console.log(cellList);
 	}
 	const prefixCls = getPrefixCls('calendar');
 	$: cnames = clsx(
@@ -175,6 +178,8 @@
 		name="header"
 		mode={isMY}
 		handleYearSelect={handleHYearSelect}
+		year={hYear}
+		month={hMonth}
 		yearList={hYearList}
 		handleMonthSelect={handleHMonthSelect}
 		monthList={hYearList}
