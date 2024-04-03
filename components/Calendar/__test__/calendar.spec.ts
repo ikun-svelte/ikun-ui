@@ -231,7 +231,7 @@ describe('Test: KCalendar', () => {
 
 	test('events: select', async () => {
 		const mockFn = vi.fn();
-		let data = null;
+		let data: any = null;
 		//@ts-ignore
 		const instance = new KCalendar({
 			target: host,
@@ -242,7 +242,10 @@ describe('Test: KCalendar', () => {
 
 		//@ts-ignore
 		instance.$on('select', (e: CustomEvent) => {
-			data = e.detail;
+			data = {
+				date: e.detail.date.format('YYYY-MM-DD'),
+				source: e.detail.source
+			};
 			mockFn();
 		});
 		expect(instance).toBeTruthy();

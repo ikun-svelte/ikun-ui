@@ -2,35 +2,35 @@
 
 exports[`Test: KCalendar > events: panelChange 1`] = `
 {
-  "date": "2024-04-03T01:26:38.184Z",
+  "date": "2024-04-03T01:27:44.948Z",
   "mode": "month",
 }
 `;
 
 exports[`Test: KCalendar > events: panelChange 2`] = `
 {
-  "date": "2024-04-03T01:26:38.184Z",
+  "date": "2024-04-03T01:27:44.948Z",
   "mode": "year",
 }
 `;
 
 exports[`Test: KCalendar > events: select 1`] = `
 {
-  "date": "2024-03-31T16:00:00.000Z",
+  "date": "2024-04-01",
   "source": "year",
 }
 `;
 
 exports[`Test: KCalendar > events: select 2`] = `
 {
-  "date": "2021-03-31T16:00:00.000Z",
+  "date": "2021-04-01",
   "source": "year",
 }
 `;
 
 exports[`Test: KCalendar > events: select 3`] = `
 {
-  "date": "2020-12-31T16:00:00.000Z",
+  "date": "2021-01-01",
   "source": "month",
 }
 `;
