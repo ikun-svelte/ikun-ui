@@ -202,7 +202,7 @@ export function genCellMonthRange(
 		const row = [];
 		for (let j = 0; j < 3; j++) {
 			const month = i + j + 1; // 月份从 1 开始
-			const monthDate = dayjs(`${year}-${month.toString().padStart(2, '0')}-${centerDate.date()}`);
+			const monthDate = dayjs(`${year}-${month.toString().padStart(2, '0')}-01`);
 			row.push({
 				current: true,
 				instance: monthDate,

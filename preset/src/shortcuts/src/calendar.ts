@@ -39,5 +39,10 @@ export const calendarShortcuts: Record<string, string> = {
 	'k-calendar-cell-card': 'py-4px w-42px h-39px',
 	'k-calendar-panel-card':
 		'rounded-8px border-0 block text-end w-full bg-ikun-white outline-none box-border',
-	'k-calendar-date-s-card': 'bg-ikun-main text-ikun-white'
+	'k-calendar-date-s-card': 'bg-ikun-main text-ikun-white',
+	'k-calendar--dark': 'dark:(bg-transparent)',
+	'k-calendar-panel--dark': 'dark:(bg-transparent)',
+	'k-calendar-thead-card--dark': 'dark:(text-ikun-white)',
+	'k-calendar-thead--dark': 'dark:(text-ikun-white)',
+	'k-calendar-date-hover--dark': 'dark:(hover:bg-ikun-dark-300)'
 };

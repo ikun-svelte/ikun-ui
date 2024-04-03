@@ -100,21 +100,27 @@
 		if (isDisabled) return;
 		selectValue = day;
 		doUpdateCellList(isMY, selectValue);
+		const monthValue = `${day.month() + 1}`;
+		if (monthValue !== hMonth.value) {
+			hMonth = hMonthList.find((v: any) => v.value === monthValue) as {
+				label: string;
+				value: string;
+				id: string;
+			};
+		}
 		dispatch('select', { date: selectValue, source: isMY });
 	}
 
 	function doUpdateCellList(type: 'year' | 'month', v: dayjs.Dayjs) {
-		// TODO: 月份切换失败
 		cellList =
 			type === 'year'
 				? genCellDateRange(v, disabledDate, range!)
 				: genCellMonthRange(v, disabledDate, range!);
-
-		console.log(cellList);
 	}
 	const prefixCls = getPrefixCls('calendar');
 	$: cnames = clsx(
 		prefixCls,
+		`${prefixCls}--dark`,
 		{
 			[`${prefixCls}-card`]: !fullscreen
 		},
@@ -132,17 +138,24 @@
 	const selectGroupCls = clsx(`${prefixCls}-header-select-group`);
 	const btnGroupCls = clsx(`${prefixCls}-header-btn-group`);
 	const btnCls = clsx(`${prefixCls}-header-btn`);
-	const panelCls = clsx({
-		[`${prefixCls}-panel`]: fullscreen,
-		[`${prefixCls}-panel-card`]: !fullscreen
-	});
+	const panelCls = clsx(
+		{
+			[`${prefixCls}-panel`]: fullscreen,
+			[`${prefixCls}-panel-card`]: !fullscreen
+		},
+		`${prefixCls}-panel--dark`
+	);
 	const panelDateCls = clsx(`${prefixCls}-date-panel`);
 	const panelBodyCls = clsx(`${prefixCls}-body`);
 	const contentCls = clsx(`${prefixCls}-content`);
-	const theadCls = clsx({
-		[`${prefixCls}-thead`]: fullscreen,
-		[`${prefixCls}-thead-card`]: !fullscreen
-	});
+	const theadCls = clsx(
+		{
+			[`${prefixCls}-thead`]: fullscreen,
+			[`${prefixCls}-thead-card`]: !fullscreen
+		},
+		`${prefixCls}-thead--dark`,
+		`${prefixCls}-thead-card--dark`
+	);
 	const cellCls = clsx(`${prefixCls}-cell`, {
 		[`${prefixCls}-cell-card`]: !fullscreen
 	});
@@ -156,6 +169,8 @@
 				[`${prefixCls}-date-card-m`]: !fullscreen && isMY === 'month'
 			},
 			{
+				[`${prefixCls}-date-hover--dark`]:
+					!selectValue || !(selectValue && day.format(fm) === selectValue.format(fm)),
 				[`${prefixCls}-date-hover`]:
 					!selectValue || !(selectValue && day.format(fm) === selectValue.format(fm)),
 				[`${prefixCls}-date-v`]: day.format(fm) === value.format(fm),

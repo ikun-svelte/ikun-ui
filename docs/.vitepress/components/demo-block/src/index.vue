@@ -180,4 +180,9 @@ const handleCopy = () => {
   padding: 0;
   border: none;
 }
+
+.vp-doc th.k-calendar-thead-card--dark,
+.vp-doc th.k-calendar-thead--dark{
+  color: white;
+}
 </style>
