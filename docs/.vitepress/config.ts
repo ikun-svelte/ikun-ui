@@ -119,6 +119,10 @@ const components = [
 				link: '/components/KBadge'
 			},
 			{
+				text: 'Calendar',
+				link: '/components/KCalendar'
+			},
+			{
 				text: 'Card',
 				link: '/components/KCard'
 			},

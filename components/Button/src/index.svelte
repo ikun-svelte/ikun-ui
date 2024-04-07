@@ -84,6 +84,7 @@
 		`${prefixCls}--base`,
 		{
 			[`${typePrefixCls}__ghost`]: !plain && ghost,
+			[`${typePrefixCls}__ghost--dark`]: !plain && ghost,
 			[`${typePrefixCls}__fill`]: !plain && !ghost,
 			[`${typePrefixClsHover}__fill`]: !plain && !ghost,
 			[typePrefixCls]: plain && !ghost,

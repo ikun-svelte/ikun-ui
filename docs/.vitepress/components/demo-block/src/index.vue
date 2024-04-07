@@ -130,4 +130,59 @@ const handleCopy = () => {
 .vp-doc ul.k-timeline{
   padding-right: 1.25rem;
 }
+
+.vp-doc table.k-calendar-content{
+  box-sizing: border-box;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  display: table;
+  margin: 0;
+  overflow-x: visible;
+}
+
+.vp-doc table.k-calendar-content tr{
+  background-color: rgba(0,0,0,0);
+  border-top-color:rgb(128, 128, 128);
+  border-top-left-radius:0px;
+  border-top-right-radius:0px;
+  border-top-style:none;
+  border-top-width:0px;
+  transition-behavior:normal;
+  transition-delay:0s;
+  transition-duration:0s;
+  transition-property:all;
+  transition-timing-function:ease;
+  view-transition-name:none;
+}
+
+
+.vp-doc th.k-calendar-thead-card,
+.vp-doc th.k-calendar-thead{
+  position: relative;
+  box-sizing: border-box;
+  min-width: 24px;
+  border-radius: 18px;
+  padding-bottom: 4px;
+  padding-right: 12px;
+  vertical-align: middle;
+  font-weight: 400;
+  border: none;
+  padding-top: 0;
+  padding-left: 0;
+  background-color: transparent;
+  text-align: right;
+  font-size: 14px;
+  color: #0a0a0a;
+}
+
+.vp-doc td.k-calendar-cell{
+  padding: 0;
+  border: none;
+}
+
+.vp-doc th.k-calendar-thead-card--dark,
+.vp-doc th.k-calendar-thead--dark{
+  color: white;
+}
 </style>

@@ -62,6 +62,7 @@ export const buttonShortcuts: Record<string, string> = {
 
 	'k-button--info': 'bg-ikun-info-100 text-ikun-info border-ikun-info-100',
 	'k-button--info__ghost': 'text-ikun-tx-base  bg-white border-ikun-bd-base',
+	'k-button--info__ghost--dark': 'dark:(border-ikun-bd-base  bg-transparent text-ikun-bd-base)',
 	'k-button--info__fill': 'bg-ikun-info text-ikun-info-100 border-ikun-info',
 	'k-button--info__active': 'active:border-ikun-info active:k-btn-shadow--info',
 	'k-button--info__focus': 'focus-visible:border-ikun-info focus-visible:k-btn-shadow--info',
@@ -78,6 +79,7 @@ export const buttonShortcuts: Record<string, string> = {
 	'k-button--main': 'ikun:40:bg-ikun-main text-ikun-main ikun:40:border-ikun-main',
 
 	'k-button--main__ghost': 'text-ikun-main bg-white',
+	'k-button--main__ghost--dark': 'dark:(bg-transparent)',
 
 	'k-button--main__active': 'active:border-ikun-main active:k-btn-shadow--main',
 	'k-button--main__focus': 'focus-visible:border-ikun-main focus-visible:k-btn-shadow--main',

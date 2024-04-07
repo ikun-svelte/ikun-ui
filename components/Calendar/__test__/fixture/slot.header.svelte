@@ -5,5 +5,5 @@
 </script>
 
 <KCalendar fullscreen value={v}>
-	<div slot="header">header</div>
+	<div slot="header">{v.format('YYYY-MM-DD')}</div>
 </KCalendar>

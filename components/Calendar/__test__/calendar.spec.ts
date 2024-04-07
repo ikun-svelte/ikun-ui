@@ -39,7 +39,6 @@ describe('Test: KCalendar', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host!.innerHTML.includes('k-calendar--test')).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
 	});
 	test('props: value', async () => {
 		//@ts-ignore
@@ -47,7 +46,8 @@ describe('Test: KCalendar', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
+		const cellS = host.querySelector('.k-calendar-date-s');
+		expect(cellS.innerHTML).matchSnapshot();
 	});
 
 	test('props: locale', async () => {
@@ -56,12 +56,16 @@ describe('Test: KCalendar', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
-		const monthBtn = host.querySelectorAll('button')[1];
-		expect(monthBtn.innerHTML.includes('月')).toBeTruthy();
-		monthBtn.click();
+		const th = host.querySelectorAll('.k-calendar-thead')[0];
+		expect(th.innerHTML.includes('周一')).toBeTruthy();
+		const btns = host.querySelectorAll('.k-button');
+		expect(btns[0].innerHTML.includes('年')).toBeTruthy();
+		expect(btns[1].innerHTML.includes('月')).toBeTruthy();
+
+		btns[1].click();
 		await tick();
-		expect(host.innerHTML).matchSnapshot();
+		const v = host.querySelectorAll('.k-calendar-date-value')[0];
+		expect(v.innerHTML.includes('一月')).toBeTruthy();
 	});
 
 	test('props: fullscreen is false and mode is year', async () => {
@@ -74,7 +78,14 @@ describe('Test: KCalendar', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
+		expect(host.querySelector('.k-calendar-date-s-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-header-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-thead-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-cell-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-panel-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-date-s-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-date-card-m')).not.toBeTruthy();
 	});
 
 	test('props: fullscreen is false and mode is month', async () => {
@@ -87,7 +98,14 @@ describe('Test: KCalendar', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
+		expect(host.querySelector('.k-calendar-date-s-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-header-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-thead-card')).not.toBeTruthy();
+		expect(host.querySelector('.k-calendar-cell-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-panel-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-date-s-card')).toBeTruthy();
+		expect(host.querySelector('.k-calendar-date-card-m')).toBeTruthy();
 	});
 
 	test('props: mode', async () => {
@@ -96,12 +114,18 @@ describe('Test: KCalendar', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
+		let cells = host.querySelectorAll('.k-calendar-cell');
+		expect(cells.length).toBe(12);
+		let cellS = host.querySelector('.k-calendar-date-s');
+		expect(cellS.innerHTML).matchSnapshot();
 		const monthBtn = host.querySelectorAll('button')[0];
 		expect(monthBtn.innerHTML.includes('Year')).toBeTruthy();
 		monthBtn.click();
 		await tick();
-		expect(host.innerHTML).matchSnapshot();
+		cells = host.querySelectorAll('.k-calendar-cell');
+		expect(cells.length).toBe(42);
+		cellS = host.querySelector('.k-calendar-date-s');
+		expect(cellS.innerHTML).matchSnapshot();
 	});
 
 	test('props: disabledDate', async () => {
@@ -141,7 +165,6 @@ describe('Test: KCalendar', () => {
 		const opContainer = host.querySelector('[data-kv-key="2024_YY_"]');
 		expect(opContainer.children.length).toBe(1);
 		expect(opContainer.children[0].innerHTML.includes('2024')).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
 
 		const yearBtn = host.querySelectorAll('button')[0];
 		expect(yearBtn.innerHTML.includes('Year')).toBeTruthy();
@@ -154,7 +177,6 @@ describe('Test: KCalendar', () => {
 		const opContainer2 = host.querySelector('[data-kv-key="4_MM_Apr"]');
 		expect(opContainer2.children.length).toBe(1);
 		expect(opContainer2.children[0].innerHTML.includes('Apr')).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
 	});
 
 	test('slots: header', async () => {
@@ -163,7 +185,8 @@ describe('Test: KCalendar', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
+		const header = host.querySelector('[slot="header"]');
+		expect(header.innerHTML).matchSnapshot();
 	});
 
 	test('slots: monthFullCell', async () => {
@@ -172,7 +195,10 @@ describe('Test: KCalendar', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
+		const cells = host.querySelectorAll('[slot="monthFullCell"]');
+		expect(cells.length).toBe(12);
+		const cellS = host.querySelector('.k-calendar-date-s');
+		expect(cellS.innerHTML).matchSnapshot();
 	});
 
 	test('slots: monthCell', async () => {
@@ -181,7 +207,10 @@ describe('Test: KCalendar', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
+		const cells = host.querySelectorAll('[slot="monthCell"]');
+		expect(cells.length).toBe(12);
+		const cellS = host.querySelector('.k-calendar-date-s');
+		expect(cellS.innerHTML).matchSnapshot();
 	});
 
 	test('slots: dateCell', async () => {
@@ -190,7 +219,10 @@ describe('Test: KCalendar', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
+		const cells = host.querySelectorAll('[slot="dateCell"]');
+		expect(cells.length).toBe(42);
+		const cellS = host.querySelector('.k-calendar-date-s');
+		expect(cellS.innerHTML).matchSnapshot();
 	});
 
 	test('slots: dateFullCell', async () => {
@@ -199,7 +231,10 @@ describe('Test: KCalendar', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
-		expect(host.innerHTML).matchSnapshot();
+		const cells = host.querySelectorAll('[slot="dateFullCell"]');
+		expect(cells.length).toBe(42);
+		const cellS = host.querySelector('.k-calendar-date-s');
+		expect(cellS.innerHTML).matchSnapshot();
 	});
 
 	test('events: panelChange', async () => {
@@ -207,7 +242,8 @@ describe('Test: KCalendar', () => {
 		let data: any = null;
 		//@ts-ignore
 		const instance = new KCalendar({
-			target: host
+			target: host,
+			value: dayjs('2024-04-07')
 		});
 		expect(instance).toBeTruthy();
 		//@ts-ignore

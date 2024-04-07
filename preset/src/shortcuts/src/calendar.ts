@@ -1,7 +1,7 @@
 export const calendarShortcuts: Record<string, string> = {
 	'k-calendar': 'box-border m-0 p-0 text-14px leading-[1.5] bg-white list-none',
 	'k-calendar-header': 'my-12px mx-0 block items-center justify-end sm:flex',
-	'k-calendar-header-select-y': '!block mr-8px sm:!w-80px',
+	'k-calendar-header-select-y': '!block mr-8px sm:!w-90px',
 	'k-calendar-header-select-y-half': '!w-1/2',
 	'k-calendar-header-select-y-full': '!w-full',
 	'k-calendar-header-select-m': 'mx-0 sm:mr-8px !w-1/2 !block sm:!w-80px',
@@ -39,5 +39,10 @@ export const calendarShortcuts: Record<string, string> = {
 	'k-calendar-cell-card': 'py-4px w-42px h-39px',
 	'k-calendar-panel-card':
 		'rounded-8px border-0 block text-end w-full bg-ikun-white outline-none box-border',
-	'k-calendar-date-s-card': 'bg-ikun-main text-ikun-white'
+	'k-calendar-date-s-card': 'bg-ikun-main text-ikun-white',
+	'k-calendar--dark': 'dark:(bg-transparent)',
+	'k-calendar-panel--dark': 'dark:(bg-transparent)',
+	'k-calendar-thead-card--dark': 'dark:(text-ikun-white)',
+	'k-calendar-thead--dark': 'dark:(text-ikun-white)',
+	'k-calendar-date-hover--dark': 'dark:(hover:bg-ikun-dark-300)'
 };
