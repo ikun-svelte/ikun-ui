@@ -4,6 +4,6 @@
 	let v = dayjs('2024-04-25');
 </script>
 
-<KCalendar fullscreen value={v}>
+<KCalendar fullscreen value={v} mode="month">
 	<div slot="monthCell" let:month>{month.instance.month()}</div>
 </KCalendar>

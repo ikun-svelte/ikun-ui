@@ -1,7 +1,7 @@
 export const calendarShortcuts: Record<string, string> = {
 	'k-calendar': 'box-border m-0 p-0 text-14px leading-[1.5] bg-white list-none',
 	'k-calendar-header': 'my-12px mx-0 block items-center justify-end sm:flex',
-	'k-calendar-header-select-y': '!block mr-8px sm:!w-80px',
+	'k-calendar-header-select-y': '!block mr-8px sm:!w-90px',
 	'k-calendar-header-select-y-half': '!w-1/2',
 	'k-calendar-header-select-y-full': '!w-full',
 	'k-calendar-header-select-m': 'mx-0 sm:mr-8px !w-1/2 !block sm:!w-80px',
