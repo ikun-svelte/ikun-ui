@@ -243,14 +243,17 @@ describe('Test: KCalendar', () => {
 		//@ts-ignore
 		const instance = new KCalendar({
 			target: host,
-			value: dayjs('2024-04-07')
+			props: {
+				value: dayjs('2024-04-07')
+			}
 		});
 		expect(instance).toBeTruthy();
+		await tick();
 		//@ts-ignore
 		instance.$on('panelChange', (e: CustomEvent) => {
 			data = {
 				date: e.detail.date.format('YYYY-MM-DD'),
-				source: e.detail.source
+				mode: e.detail.mode
 			};
 			mockFn();
 		});
