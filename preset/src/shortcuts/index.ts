@@ -1,4 +1,5 @@
 import { indicatorsShortcuts } from './src/indicators';
+import { tourShortcuts } from './src/tour';
 import { calendarShortcuts } from './src/calendar';
 import { timelineShortcuts } from './src/timeline';
 import { colorPickerShortcuts } from './src/color-picker';
@@ -72,6 +73,8 @@ export const defaultShortcuts = [
 	// anchor defaultShortcuts
 	// indicators
 	indicatorsShortcuts,
+	// tour
+	tourShortcuts,
 	// calendar
 	calendarShortcuts,
 	// timeline
@@ -194,6 +197,7 @@ export function getSafeList() {
 	// don't remove
 	// anchor shortcuts
 	const indicatorsList = Object.keys(indicatorsShortcuts);
+	const tourList = Object.keys(tourShortcuts);
 	const calendarList = Object.keys(calendarShortcuts);
 	const timelineList = Object.keys(timelineShortcuts);
 	const colorPickerList = Object.keys(colorPickerShortcuts);
@@ -258,6 +262,7 @@ export function getSafeList() {
 		// don't remove
 		// anchor list
 		.concat(indicatorsList)
+		.concat(tourList)
 		.concat(calendarList)
 		.concat(timelineList)
 		.concat(colorPickerList)
@@ -394,3 +399,4 @@ export { colorPickerShortcuts } from './src/color-picker';
 export { timelineShortcuts } from './src/timeline';
 export { calendarShortcuts } from './src/calendar';
 export { indicatorsShortcuts } from './src/indicators';
+export { tourShortcuts } from './src/tour';

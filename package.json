@@ -69,7 +69,7 @@
 		"clean:deps": "node scripts/clean-deps.js && node scripts/clean-root-deps.js",
 		"prepare": "npx simple-git-hooks",
 		"update:deps": "npx taze -w -r major && pnpm run init",
-		"create:new:comp": "node scripts/new-component.js indicators"
+		"create:new:comp": "node scripts/new-component.js tour"
 	},
 	"peerDependencies": {
 		"baiwusanyu-utils": "^1.0.18",
@@ -150,6 +150,7 @@
 		"dayjs": "^1.11.10",
 		"@ikun-ui/timeline": "workspace:*",
 		"@ikun-ui/calendar": "workspace:*",
+		"@ikun-ui/tour": "workspace:*",
 		"@ikun-ui/indicators": "workspace:*"
 	},
 	"devDependencies": {
