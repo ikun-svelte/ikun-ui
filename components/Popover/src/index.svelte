@@ -21,7 +21,7 @@
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
 	const dispatch = createEventDispatcher();
-	const [popperRef, popperContent] = createPopperActions({
+	const [popperRef, popperContent, getInstance] = createPopperActions({
 		placement,
 		onFirstUpdate: updateArrow,
 		modifiers: [
@@ -156,6 +156,20 @@
 	 */
 	function onAnimationEnd() {
 		dispatch('animateEnd');
+	}
+
+	/**
+	 * @internal
+	 */
+	export function getPopoverContainerRef() {
+		return popoverContainerRef;
+	}
+
+	/**
+	 * @internal
+	 */
+	export function forceUpdated() {
+		getInstance().update();
 	}
 </script>
 
