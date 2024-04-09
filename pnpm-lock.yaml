@@ -2569,9 +2569,15 @@ importers:
 
   components/Tour:
     dependencies:
+      '@ikun-ui/button':
+        specifier: workspace:*
+        version: link:../Button
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon
+      '@ikun-ui/popover':
+        specifier: workspace:*
+        version: link:../Popover
       '@ikun-ui/utils':
         specifier: workspace:*
         version: link:../../utils
