@@ -5,6 +5,8 @@
 	import { KPopover } from '@ikun-ui/popover';
 	import { onMount, tick } from 'svelte';
 	import { createEventDispatcher } from "svelte";
+	import { KIcon } from "@ikun-ui/icon";
+	import { KButton } from "@ikun-ui/button";
 
 	export let steps: KTourProps['steps'] = [];
 	export let mask: KTourProps['mask'] = true;
@@ -15,6 +17,7 @@
 	export let zIndex: KTourProps['zIndex'] = 1001;
 	export let open: KTourProps['open'] = false;
 	export let cls: KTourProps['cls'] = undefined;
+	export let contentCls: KTourProps['contentCls'] = undefined;
 	export let attrs: KTourProps['attrs'] = {};
 	const dispatch = createEventDispatcher();
 	let index = current;
@@ -116,11 +119,14 @@
 	$: cnames = clsx(
 		prefixCls,
 		{
-			[`${prefixCls}-mask w-100vw h-100vh pf left-0 top-0 border-dark-400/30 border-solid`]:
-				mask && isShow
+			[`${prefixCls}-mask`]: mask && isShow
 		},
 		cls
 	);
+	$: contentClass = clsx(`${prefixCls}-content`, contentCls);
+	const headerCls = clsx(`${prefixCls}-header`);
+	const bodyCls = clsx(`${prefixCls}-body`);
+	const footerCls = clsx(`${prefixCls}-footer`);
 </script>
 
 {#if isShow}
@@ -133,7 +139,15 @@
 		 style:border-right-width={maskBorderRightWidth}
 		 style:z-index={zIndex}>
 		<KPopover bind:this={popoverRef} trigger="manual" {placement}>
-			<div slot="contentEl" class="flex flex-col">
+			<div slot="contentEl" class={contentClass}>
+				<div class={headerCls}>
+					<slot name="title" current={index}>
+						{#if steps[index].title}
+							<span>{steps[index].title}</span>
+						{/if}
+					</slot>
+					<KIcon icon={closeIcon}></KIcon>
+				</div>
 				<slot current={index}>high light</slot>
 				<button on:click={handleClick}>next</button>
 			</div>
