@@ -77,30 +77,30 @@ Custom rendering via slots.
 
 ```typescript
 interface SelectOption {
-    label: string
-    value: string
-    id: string
+	label: string;
+	value: string;
+	id: string;
 }
 ```
 
 ```typescript
 interface HeaderSlot {
-    // Current mode
-    mode: 'year' | 'month'
-    // Select callback of ‘year’
-    handleYearSelect: (v: { detail: SelectOption }) => void
-    // Select callback of ‘month’
-    handleMonthSelect: (v: { detail: SelectOption }) => void
-    // Switch mode callback
-    handleMYClick: (v: 'year' | 'month') => void
-    // Select rendering data of ‘year’
-    yearList: Array<SelectOption>
-    // Select rendering data of ‘month’
-    monthList: Array<SelectOption>
-    // The value of the year selector
-    year: SelectOption
-    // The value of the month selector
-    month: SelectOption
+	// Current mode
+	mode: 'year' | 'month';
+	// Select callback of ‘year’
+	handleYearSelect: (v: { detail: SelectOption }) => void;
+	// Select callback of ‘month’
+	handleMonthSelect: (v: { detail: SelectOption }) => void;
+	// Switch mode callback
+	handleMYClick: (v: 'year' | 'month') => void;
+	// Select rendering data of ‘year’
+	yearList: Array<SelectOption>;
+	// Select rendering data of ‘month’
+	monthList: Array<SelectOption>;
+	// The value of the year selector
+	year: SelectOption;
+	// The value of the month selector
+	month: SelectOption;
 }
 ```
 
@@ -108,8 +108,8 @@ interface HeaderSlot {
 
 ```typescript
 interface dateCellSlot {
-    // Data used for rendering
-    date: { instance: Dayjs; }
+	// Data used for rendering
+	date: { instance: Dayjs };
 }
 ```
 
@@ -117,8 +117,8 @@ interface dateCellSlot {
 
 ```typescript
 interface dateFullCellSlot {
-   // Data used for rendering
-   date: { instance: Dayjs; }
+	// Data used for rendering
+	date: { instance: Dayjs };
 }
 ```
 
@@ -126,8 +126,8 @@ interface dateFullCellSlot {
 
 ```typescript
 interface monthCellSlot {
-   // Data used for rendering
-    month: Dayjs
+	// Data used for rendering
+	month: Dayjs;
 }
 ```
 
@@ -135,7 +135,7 @@ interface monthCellSlot {
 
 ```typescript
 interface monthFullCellSlot {
-   // Data used for rendering
-    month: Dayjs
+	// Data used for rendering
+	month: Dayjs;
 }
 ```
