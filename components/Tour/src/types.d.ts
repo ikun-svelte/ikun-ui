@@ -42,7 +42,7 @@ export interface KTourStepsOption {
 	description?: string;
 }
 // TODO: ☑️KTour props mask 是否启用遮罩
-// TODO: KTour props closeIcon 自定义关闭按钮
+// TODO: ☑️KTour props closeIcon 自定义关闭按钮
 // TODO: ✅KTour props placement 引导卡片相对于目标元素的位置
 // TODO: ☑️KTour props open 打开引导
 // TODO: ☑️KTour props current 当前处于哪一步（number default）
