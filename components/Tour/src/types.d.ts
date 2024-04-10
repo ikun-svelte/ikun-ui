@@ -45,12 +45,12 @@ export interface KTourStepsOption {
 // TODO: ✅KTour props placement 引导卡片相对于目标元素的位置
 // TODO: ☑️KTour props open 打开引导
 // TODO: ☑️KTour props current 当前处于哪一步（number default）
-// TODO: KTour props scrollIntoViewOptions 是否支持当前元素(引导元素)滚动到视窗内，也可传入配置指定滚动视窗的相关参数
+// TODO: ☑️️KTour props scrollIntoViewOptions 是否支持当前元素(引导元素)滚动到视窗内，也可传入配置指定滚动视窗的相关参数
 // TODO: ☑️ KTour props zIndex Tour 的层级
 
 // TODO: KTour events onClose 关闭引导时的回调函数
-// TODO: KTour events onFinish 引导完成时的回调
-// TODO: KTour events onChange 步骤改变时的回调，current 为当前的步骤，(current: number) => void
+// TODO: ☑️KTour events onFinish 引导完成时的回调
+// TODO: ☑️KTour events onChange 步骤改变时的回调，current 为当前的步骤，(current: number) => void
 
 // TODO: KTour slots closeIcon 自定义关闭按钮插槽
 

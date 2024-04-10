@@ -32,20 +32,20 @@
 		"types": "dist/index.d.ts"
 	},
 	"dependencies": {
-		"@ikun-ui/icon": "workspace:*",
-		"@ikun-ui/utils": "workspace:*",
 		"@ikun-ui/button": "workspace:*",
 		"@ikun-ui/button-group": "workspace:*",
+		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/select": "workspace:*",
+		"@ikun-ui/utils": "workspace:*",
 		"baiwusanyu-utils": "^1.0.18",
+		"clsx": "^2.1.0",
 		"dayjs": "^1.11.10",
-		"clsx": "^2.0.0",
-		"svelte": "^4.2.7"
+		"svelte": "^4.2.12"
 	},
 	"devDependencies": {
-		"@sveltejs/package": "^2.3.0",
-		"@tsconfig/svelte": "^5.0.2",
+		"@sveltejs/package": "^2.3.1",
+		"@tsconfig/svelte": "^5.0.4",
 		"tslib": "^2.6.2",
-		"typescript": "^5.4.3"
+		"typescript": "^5.4.4"
 	}
 }

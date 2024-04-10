@@ -48,10 +48,10 @@
 		"tinycolor2": "^1.6.0"
 	},
 	"devDependencies": {
-		"@sveltejs/package": "^2.3.0",
-		"@tsconfig/svelte": "^5.0.2",
+		"@sveltejs/package": "^2.3.1",
+		"@tsconfig/svelte": "^5.0.4",
 		"@types/tinycolor2": "^1.4.6",
 		"tslib": "^2.6.2",
-		"typescript": "^5.4.3"
+		"typescript": "^5.4.4"
 	}
 }
