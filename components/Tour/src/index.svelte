@@ -78,11 +78,13 @@
 
 			maskBorderTopWidth = `${Math.max(top, 0)}px`;
 			maskBorderLeftWidth = `${Math.max(left, 0)}px`;
-			const { marginRight, marginLeft, marginBottom, marginTop } = globalThis.getComputedStyle(document.body)
+			const { marginRight, marginLeft, marginBottom, marginTop } = window.getComputedStyle(document.body)
 			const widthWithMargin = document.body.offsetWidth + parseInt(marginLeft) + parseInt(marginRight);
 			const heightWithMargin = document.body.offsetHeight + parseInt(marginBottom) + parseInt(marginTop);
 			maskBorderBottomWidth = `${Math.max(heightWithMargin - height - top, 0)}px`;
 			maskBorderRightWidth = `${Math.max(widthWithMargin - width - left, 0)}px`;
+			await tick()
+			setMaskCls = mask && isShow
 		}
 	}
 	async function doShow(show: boolean) {
@@ -116,15 +118,17 @@
 	});
 
 	const prefixCls = getPrefixCls('tour');
+	let setMaskCls = false
 	$: cnames = clsx(
 		prefixCls,
 		{
-			[`${prefixCls}-mask`]: mask && isShow
+			[`${prefixCls}-mask`]: setMaskCls
 		},
 		cls
 	);
 	$: contentClass = clsx(`${prefixCls}-content`, contentCls);
 	const headerCls = clsx(`${prefixCls}-header`);
+	const closeCls = clsx(`${prefixCls}-close`);
 	const bodyCls = clsx(`${prefixCls}-body`);
 	const footerCls = clsx(`${prefixCls}-footer`);
 </script>
@@ -146,9 +150,21 @@
 							<span>{steps[index].title}</span>
 						{/if}
 					</slot>
-					<KIcon icon={closeIcon}></KIcon>
+					<div class={closeCls}
+						 role="button"
+						 aria-hidden="true"
+						 on:click={() => doClose(true)}>
+						<KIcon icon={closeIcon} width="auto" height="auto"></KIcon>
+					</div>
 				</div>
-				<slot current={index}>high light</slot>
+				<div class={bodyCls}>
+					<slot current={index} name="description">
+						{#if steps[index].description}
+							<span>{steps[index].description}</span>
+						{/if}
+					</slot>
+				</div>
+
 				<button on:click={handleClick}>next</button>
 			</div>
 		</KPopover>
