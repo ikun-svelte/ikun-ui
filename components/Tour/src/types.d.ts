@@ -32,6 +32,7 @@ export type KTourProps = {
 	zIndex: number;
 	steps: KTourStepsOption[];
 	cls: ClassValue;
+	contentCls: ClassValue;
 	attrs: Record<string, string>;
 };
 
@@ -59,7 +60,7 @@ export interface KTourStepsOption {
 // TODO: KTour props step  step.description 标题 ❓❓❓
 
 // TODO: KTour slots indicatorsRender 自定义指示器 ❓❓❓
-// TODO: KTour slots title 标题 ❓❓❓
+// TODO: ☑️KTour slots title 标题
 // TODO: KTour slots description 主要描述部分 ❓❓❓
 // TODO: KTour slots cover 覆盖除上下一步按钮的内容区 ❓❓❓
 // TODO: KTour slots nextButton 自定义下一步按钮 ❓❓❓
