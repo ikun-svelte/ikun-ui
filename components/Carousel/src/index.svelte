@@ -2,7 +2,7 @@
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import type { KCarouselProps } from './types';
-	import KIndicators from './indicators.svelte';
+	import { KIndicators } from '@ikun-ui/indicators';
 	import KCarouselArrow from './arrow.svelte';
 	import { createEventDispatcher, onDestroy, onMount, tick } from 'svelte';
 	export let cls: KCarouselProps['cls'] = undefined;

@@ -1,5 +1,5 @@
 {
-	"name": "@ikun-ui/carousel",
+	"name": "@ikun-ui/indicators",
 	"version": "0.2.5",
 	"type": "module",
 	"main": "src/index.ts",
@@ -34,10 +34,9 @@
 	"dependencies": {
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
-		"@ikun-ui/indicators": "workspace:*",
 		"baiwusanyu-utils": "^1.0.18",
-		"clsx": "^2.1.0",
-		"svelte": "^4.2.12"
+		"clsx": "^2.0.0",
+		"svelte": "^4.2.7"
 	},
 	"devDependencies": {
 		"@sveltejs/package": "^2.3.0",

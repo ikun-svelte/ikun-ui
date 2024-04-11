@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test: KIndicators > props: cls 1`] = `"<div class="k-indicators k-indicators--test"></div>"`;
+
+exports[`Test: KIndicators > props: count 1`] = `"<div class="k-indicators"><div role="button" class="k-indicators-item k-indicators-item--active" aria-hidden="true"></div><div role="button" class="k-indicators-item" aria-hidden="true"></div><div role="button" class="k-indicators-item" aria-hidden="true"></div><div role="button" class="k-indicators-item" aria-hidden="true"></div><div role="button" class="k-indicators-item" aria-hidden="true"></div><div role="button" class="k-indicators-item" aria-hidden="true"></div></div>"`;
+
+exports[`Test: KIndicators > props: defaultPageIndex 1`] = `"<div class="k-indicators"><div role="button" class="k-indicators-item" aria-hidden="true"></div><div role="button" class="k-indicators-item" aria-hidden="true"></div><div role="button" class="k-indicators-item" aria-hidden="true"></div><div role="button" class="k-indicators-item" aria-hidden="true"></div><div role="button" class="k-indicators-item k-indicators-item--active" aria-hidden="true"></div><div role="button" class="k-indicators-item" aria-hidden="true"></div></div>"`;
+
+exports[`Test: KIndicators > slots: default 1`] = `"<div class="k-indicators"><div slot="item">0</div></div>"`;
