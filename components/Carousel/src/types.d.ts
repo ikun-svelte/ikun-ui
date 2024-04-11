@@ -23,12 +23,5 @@ export type KCarouselArrowProps = {
 	attrs: Record<string, string>;
 };
 
-export type KIndicatorsProps = {
-	defaultPageIndex: number;
-	trigger: 'click' | 'hover';
-	count: number;
-	cls: ClassValue;
-	attrs: Record<string, string>;
-};
 
 // TODO: KCarousel - props direction 展示的方向(next version enhancement)
