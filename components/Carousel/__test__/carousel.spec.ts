@@ -73,7 +73,7 @@ describe('Test: KCarousel', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host.querySelector('[data-active="1"]')).toBeTruthy();
-		const indicatorsElms = host.querySelectorAll('.k-carousel-indicators-item');
+		const indicatorsElms = host.querySelectorAll('.k-indicators-item');
 		indicatorsElms[2].click();
 		await tick();
 		expect(host.querySelector('[data-active="2"]')).toBeTruthy();
@@ -86,7 +86,7 @@ describe('Test: KCarousel', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host.querySelector('[data-active="1"]')).toBeTruthy();
-		const indicatorsElms = host.querySelectorAll('.k-carousel-indicators-item');
+		const indicatorsElms = host.querySelectorAll('.k-indicators-item');
 		indicatorsElms[2].dispatchEvent(new Event('mouseenter', { bubbles: true }));
 		await tick();
 		expect(host.querySelector('[data-active="2"]')).toBeTruthy();
@@ -227,7 +227,7 @@ describe('Test: KCarousel', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host.querySelector('[data-active="1"]')).toBeTruthy();
-		const indicatorsElms = host.querySelectorAll('.k-carousel-indicators-item');
+		const indicatorsElms = host.querySelectorAll('.k-indicators-item');
 		indicatorsElms[2].click();
 		await tick();
 		expect(host.innerHTML).toMatchSnapshot('{"index":2,"oldIndex":1}');

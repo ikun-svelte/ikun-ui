@@ -1,3 +1,4 @@
+import { indicatorsShortcuts } from './src/indicators';
 import { calendarShortcuts } from './src/calendar';
 import { timelineShortcuts } from './src/timeline';
 import { colorPickerShortcuts } from './src/color-picker';
@@ -69,6 +70,8 @@ export const defaultShortcuts = [
 	commonShortcuts,
 	// don't remove
 	// anchor defaultShortcuts
+	// indicators
+	indicatorsShortcuts,
 	// calendar
 	calendarShortcuts,
 	// timeline
@@ -190,6 +193,7 @@ export const defaultShortcuts = [
 export function getSafeList() {
 	// don't remove
 	// anchor shortcuts
+	const indicatorsList = Object.keys(indicatorsShortcuts);
 	const calendarList = Object.keys(calendarShortcuts);
 	const timelineList = Object.keys(timelineShortcuts);
 	const colorPickerList = Object.keys(colorPickerShortcuts);
@@ -253,6 +257,7 @@ export function getSafeList() {
 	let res = iconList
 		// don't remove
 		// anchor list
+		.concat(indicatorsList)
 		.concat(calendarList)
 		.concat(timelineList)
 		.concat(colorPickerList)
@@ -388,3 +393,4 @@ export { skeletonShortcuts } from './src/skeleton';
 export { colorPickerShortcuts } from './src/color-picker';
 export { timelineShortcuts } from './src/timeline';
 export { calendarShortcuts } from './src/calendar';
+export { indicatorsShortcuts } from './src/indicators';
