@@ -7,7 +7,9 @@
 	import { createEventDispatcher } from "svelte";
 	import { KIcon } from "@ikun-ui/icon";
 	import { KButton } from "@ikun-ui/button";
-
+	import { KIndicators } from '@ikun-ui/indicators'
+	// @ts-ignore
+	import { BROWSER } from 'esm-env';
 	export let steps: KTourProps['steps'] = [];
 	export let mask: KTourProps['mask'] = true;
 	export let closeIcon: KTourProps['closeIcon'] = 'i-carbon-close';
@@ -19,6 +21,8 @@
 	export let cls: KTourProps['cls'] = undefined;
 	export let contentCls: KTourProps['contentCls'] = undefined;
 	export let attrs: KTourProps['attrs'] = {};
+	export let prevBtnText: KTourProps['prevBtnText'] = 'prev';
+	export let nextBtnText: KTourProps['nextBtnText'] = 'next';
 	const dispatch = createEventDispatcher();
 	let index = current;
 	$: {
@@ -32,9 +36,18 @@
 			index = max
 		}
 	}
-
-	const handleClick = async () => {
+	const handleNext = () => {
 		index++;
+		initIndex(index, steps.length)
+		onIndexChange()
+	}
+
+	const handlePrev = () => {
+		index--;
+		initIndex(index, steps.length)
+		onIndexChange()
+	}
+	const onIndexChange = async () => {
 		if (index >= steps.length) {
 			await doClose(false)
 			dispatch('finish')
@@ -83,9 +96,14 @@
 			const heightWithMargin = document.body.offsetHeight + parseInt(marginBottom) + parseInt(marginTop);
 			maskBorderBottomWidth = `${Math.max(heightWithMargin - height - top, 0)}px`;
 			maskBorderRightWidth = `${Math.max(widthWithMargin - width - left, 0)}px`;
-			await tick()
-			setMaskCls = mask && isShow
+		} else if(el && !target) {
+			el.style.position = 'fixed';
+			el.style.left = el.style.top = `50%`
+			el.style.transform = `translate(-50%, -50%)`;
+			maskBorderBottomWidth = maskBorderRightWidth = maskBorderTopWidth = maskBorderLeftWidth = `99999px`;
 		}
+		await tick()
+		setMaskCls = mask && isShow
 	}
 	async function doShow(show: boolean) {
 		isShow = show
@@ -105,13 +123,23 @@
 		popoverRef.updateShow(false);
 		isShow = open = false
 		if(isDispatch){
-			dispatch('finish')
+			dispatch('close')
 		}
 	}
 
 	let isShow = open
 	$: {
 		doShow(open);
+	}
+
+	$: {
+		if(isShow){
+			BROWSER && window.addEventListener('scroll', setTriggerElStyle)
+			BROWSER && window.addEventListener('resize', setTriggerElStyle)
+		} else {
+			BROWSER && window.removeEventListener('scroll', setTriggerElStyle)
+			BROWSER && window.removeEventListener('resize', setTriggerElStyle)
+		}
 	}
 	onMount(() => {
 		isShow && doShow(isShow);
@@ -131,6 +159,8 @@
 	const closeCls = clsx(`${prefixCls}-close`);
 	const bodyCls = clsx(`${prefixCls}-body`);
 	const footerCls = clsx(`${prefixCls}-footer`);
+	const indicatorsCls = clsx(`${prefixCls}-indicators`);
+	const btnCls = clsx(`${prefixCls}-btn`);
 </script>
 
 {#if isShow}
@@ -142,7 +172,7 @@
 		 style:border-bottom-width={maskBorderBottomWidth}
 		 style:border-right-width={maskBorderRightWidth}
 		 style:z-index={zIndex}>
-		<KPopover bind:this={popoverRef} trigger="manual" {placement}>
+		<KPopover bind:this={popoverRef} trigger="manual" {placement} arrow={false}>
 			<div slot="contentEl" class={contentClass}>
 				<div class={headerCls}>
 					<slot name="title" current={index}>
@@ -150,13 +180,17 @@
 							<span>{steps[index].title}</span>
 						{/if}
 					</slot>
-					<div class={closeCls}
-						 role="button"
-						 aria-hidden="true"
-						 on:click={() => doClose(true)}>
-						<KIcon icon={closeIcon} width="auto" height="auto"></KIcon>
-					</div>
+
+					<slot name="closeIcon" handleClose={() => doClose(true)}>
+						<div class={closeCls}
+							 role="button"
+							 aria-hidden="true"
+							 on:click={() => doClose(true)}>
+							<KIcon icon={closeIcon} width="auto" height="auto"></KIcon>
+						</div>
+					</slot>
 				</div>
+
 				<div class={bodyCls}>
 					<slot current={index} name="description">
 						{#if steps[index].description}
@@ -165,10 +199,32 @@
 					</slot>
 				</div>
 
-				<button on:click={handleClick}>next</button>
+				<slot name="footer" {handleNext} {handlePrev} current={index}>
+					<div class={footerCls}>
+						<slot name="indicators" current={index}>
+							<KIndicators
+									defaultPageIndex={index}
+									count={steps.length}
+									cls={indicatorsCls}>
+							</KIndicators>
+						</slot>
+
+						<div class={btnCls}>
+							<slot name="prevButton" {handlePrev}>
+								<KButton on:click={handlePrev} type="info" ghost>
+									{prevBtnText}
+								</KButton>
+							</slot>
+							<slot name="nextButton" {handleNext}>
+								<KButton on:click={handleNext} type="primary">
+									{nextBtnText}
+								</KButton>
+							</slot>
+						</div>
+					</div>
+				</slot>
 			</div>
 		</KPopover>
 	</div>
 {/if}
-<svelte:window on:scroll={setTriggerElStyle} />
 

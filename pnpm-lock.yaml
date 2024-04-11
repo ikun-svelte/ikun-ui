@@ -256,7 +256,7 @@ importers:
         specifier: ^7.3.1
         version: 7.3.1(@typescript-eslint/parser@7.6.0)(eslint@8.57.0)(typescript@5.4.3)
       '@typescript-eslint/parser':
-        specifier: ^7.6.0
+        specifier: ^7.3.1
         version: 7.6.0(eslint@8.57.0)(typescript@5.4.3)
       '@unocss/preset-mini':
         specifier: ^0.59.0
@@ -1550,10 +1550,10 @@ importers:
     devDependencies:
       '@sveltejs/package':
         specifier: ^2.3.0
-        version: 2.3.0(svelte@4.2.12)(typescript@5.4.3)
+        version: 2.3.1(svelte@4.2.12)(typescript@5.4.3)
       '@tsconfig/svelte':
         specifier: ^5.0.2
-        version: 5.0.2
+        version: 5.0.4
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2575,6 +2575,9 @@ importers:
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon
+      '@ikun-ui/indicators':
+        specifier: workspace:*
+        version: link:../Indicators
       '@ikun-ui/popover':
         specifier: workspace:*
         version: link:../Popover
@@ -2587,6 +2590,9 @@ importers:
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
+      esm-env:
+        specifier: ^1.0.0
+        version: 1.0.0
       svelte:
         specifier: ^4.2.12
         version: 4.2.12
