@@ -4,10 +4,10 @@
 	import type { KTourProps } from './types';
 	import { KPopover } from '@ikun-ui/popover';
 	import { onMount, tick } from 'svelte';
-	import { createEventDispatcher } from "svelte";
-	import { KIcon } from "@ikun-ui/icon";
-	import { KButton } from "@ikun-ui/button";
-	import { KIndicators } from '@ikun-ui/indicators'
+	import { createEventDispatcher } from 'svelte';
+	import { KIcon } from '@ikun-ui/icon';
+	import { KButton } from '@ikun-ui/button';
+	import { KIndicators } from '@ikun-ui/indicators';
 	// @ts-ignore
 	import { BROWSER } from 'esm-env';
 	export let steps: KTourProps['steps'] = [];
@@ -26,37 +26,37 @@
 	const dispatch = createEventDispatcher();
 	let index = current;
 	$: {
-		initIndex(current, steps.length)
+		initIndex(current, steps.length);
 	}
-	function initIndex(cur: number, max: number){
+	function initIndex(cur: number, max: number) {
 		if (cur < 0) {
 			index = 0;
 		}
 		if (current > max) {
-			index = max
+			index = max;
 		}
 	}
 	const handleNext = () => {
 		index++;
-		initIndex(index, steps.length)
-		onIndexChange()
-	}
+		initIndex(index, steps.length);
+		onIndexChange();
+	};
 
 	const handlePrev = () => {
 		index--;
-		initIndex(index, steps.length)
-		onIndexChange()
-	}
+		initIndex(index, steps.length);
+		onIndexChange();
+	};
 	const onIndexChange = async () => {
 		if (index >= steps.length) {
-			await doClose(false)
-			dispatch('finish')
+			await doClose(false);
+			dispatch('finish');
 			return;
 		}
 		await setTriggerElStyle();
 		await handleAppend();
 		popoverRef.forceUpdated();
-		dispatch('change', index)
+		dispatch('change', index);
 	};
 
 	async function handleAppend() {
@@ -64,22 +64,41 @@
 		const el: null | HTMLElement = popoverRef.getPopoverContainerRef();
 		if (target && el) {
 			(target as HTMLElement).appendChild(el);
-			scrollIntoViewOptions && target.scrollIntoView(scrollIntoViewOptions)
+			scrollIntoViewOptions && target.scrollIntoView(scrollIntoViewOptions);
 		}
 	}
 
 	let popoverRef: any = null;
-	let maskWidth = ''
-	let maskHeight = ''
-	let maskBorderTopWidth = ''
-	let maskBorderLeftWidth = ''
-	let maskBorderRightWidth = ''
-	let maskBorderBottomWidth = ''
+	let maskWidth = '';
+	let maskHeight = '';
+	let maskBorderTopWidth = '';
+	let maskBorderLeftWidth = '';
+	let maskBorderRightWidth = '';
+	let maskBorderBottomWidth = '';
 	async function setTriggerElStyle() {
 		const { target } = steps[index];
 		const el: null | HTMLElement = popoverRef.getPopoverContainerRef();
+		function setFullScreen() {
+			if (el) {
+				el.style.position = 'fixed';
+				el.style.left = el.style.top = `50%`;
+				el.style.transform = `translate(-50%, -50%)`;
+				maskBorderBottomWidth =
+					maskBorderRightWidth =
+					maskBorderTopWidth =
+					maskBorderLeftWidth =
+						`99999px`;
+				maskWidth = `${0}px`;
+				maskHeight = `${0}px`;
+			}
+		}
 		if (el && target) {
-			const { left, top, width, height } = target.getBoundingClientRect();
+			const rect = target.getBoundingClientRect();
+			const { left, top, width, height } = rect;
+			if (!isElementInViewport(rect)) {
+				setFullScreen();
+				return;
+			}
 			el.style.width = `${width}px`;
 			el.style.height = `${height}px`;
 			el.style.position = 'fixed';
@@ -91,25 +110,35 @@
 
 			maskBorderTopWidth = `${Math.max(top, 0)}px`;
 			maskBorderLeftWidth = `${Math.max(left, 0)}px`;
-			const { marginRight, marginLeft, marginBottom, marginTop } = window.getComputedStyle(document.body)
-			const widthWithMargin = document.body.offsetWidth + parseInt(marginLeft) + parseInt(marginRight);
-			const heightWithMargin = document.body.offsetHeight + parseInt(marginBottom) + parseInt(marginTop);
+			const { marginRight, marginLeft, marginBottom, marginTop } = window.getComputedStyle(
+				document.body
+			);
+			const widthWithMargin =
+				document.body.offsetWidth + parseInt(marginLeft) + parseInt(marginRight);
+			const heightWithMargin =
+				document.body.offsetHeight + parseInt(marginBottom) + parseInt(marginTop);
 			maskBorderBottomWidth = `${Math.max(heightWithMargin - height - top, 0)}px`;
 			maskBorderRightWidth = `${Math.max(widthWithMargin - width - left, 0)}px`;
-		} else if(el && !target) {
-			el.style.position = 'fixed';
-			el.style.left = el.style.top = `50%`
-			el.style.transform = `translate(-50%, -50%)`;
-			maskBorderBottomWidth = maskBorderRightWidth = maskBorderTopWidth = maskBorderLeftWidth = `99999px`;
+		} else if (el && !target) {
+			setFullScreen();
 		}
-		await tick()
-		setMaskCls = mask && isShow
+		await tick();
+		setMaskCls = mask && isShow;
 	}
+	function isElementInViewport(rect: DOMRect) {
+		return (
+			rect.top >= 0 &&
+			rect.left >= 0 &&
+			rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+			rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+		);
+	}
+
 	async function doShow(show: boolean) {
-		isShow = show
+		isShow = show;
 		await tick();
 		if (popoverRef) {
-			if(isShow){
+			if (isShow) {
 				await setTriggerElStyle();
 				await handleAppend();
 				await tick();
@@ -118,27 +147,27 @@
 		}
 	}
 
-	async function doClose(isDispatch:boolean){
-		index = current
+	async function doClose(isDispatch: boolean) {
+		index = current;
 		popoverRef.updateShow(false);
-		isShow = open = false
-		if(isDispatch){
-			dispatch('close')
+		isShow = open = false;
+		if (isDispatch) {
+			dispatch('close');
 		}
 	}
 
-	let isShow = open
+	let isShow = open;
 	$: {
 		doShow(open);
 	}
 
 	$: {
-		if(isShow){
-			BROWSER && window.addEventListener('scroll', setTriggerElStyle)
-			BROWSER && window.addEventListener('resize', setTriggerElStyle)
+		if (isShow) {
+			BROWSER && window.addEventListener('scroll', setTriggerElStyle);
+			BROWSER && window.addEventListener('resize', setTriggerElStyle);
 		} else {
-			BROWSER && window.removeEventListener('scroll', setTriggerElStyle)
-			BROWSER && window.removeEventListener('resize', setTriggerElStyle)
+			BROWSER && window.removeEventListener('scroll', setTriggerElStyle);
+			BROWSER && window.removeEventListener('resize', setTriggerElStyle);
 		}
 	}
 	onMount(() => {
@@ -146,7 +175,7 @@
 	});
 
 	const prefixCls = getPrefixCls('tour');
-	let setMaskCls = false
+	let setMaskCls = false;
 	$: cnames = clsx(
 		prefixCls,
 		{
@@ -164,14 +193,18 @@
 </script>
 
 {#if isShow}
-	<div class={cnames} {...$$restProps} {...attrs}
-		 style:width={maskWidth}
-		 style:height={maskHeight}
-		 style:border-left-width={maskBorderLeftWidth}
-		 style:border-top-width={maskBorderTopWidth}
-		 style:border-bottom-width={maskBorderBottomWidth}
-		 style:border-right-width={maskBorderRightWidth}
-		 style:z-index={zIndex}>
+	<div
+		class={cnames}
+		{...$$restProps}
+		{...attrs}
+		style:width={maskWidth}
+		style:height={maskHeight}
+		style:border-left-width={maskBorderLeftWidth}
+		style:border-top-width={maskBorderTopWidth}
+		style:border-bottom-width={maskBorderBottomWidth}
+		style:border-right-width={maskBorderRightWidth}
+		style:z-index={zIndex}
+	>
 		<KPopover bind:this={popoverRef} trigger="manual" {placement} arrow={false}>
 			<div slot="contentEl" class={contentClass}>
 				<div class={headerCls}>
@@ -182,10 +215,7 @@
 					</slot>
 
 					<slot name="closeIcon" handleClose={() => doClose(true)}>
-						<div class={closeCls}
-							 role="button"
-							 aria-hidden="true"
-							 on:click={() => doClose(true)}>
+						<div class={closeCls} role="button" aria-hidden="true" on:click={() => doClose(true)}>
 							<KIcon icon={closeIcon} width="auto" height="auto"></KIcon>
 						</div>
 					</slot>
@@ -203,10 +233,10 @@
 					<div class={footerCls}>
 						<slot name="indicators" current={index}>
 							<KIndicators
-									defaultPageIndex={index}
-									count={steps.length}
-									cls={indicatorsCls}>
-							</KIndicators>
+								defaultPageIndex={index}
+								count={steps.length}
+								cls={indicatorsCls}
+							></KIndicators>
 						</slot>
 
 						<div class={btnCls}>
@@ -227,4 +257,3 @@
 		</KPopover>
 	</div>
 {/if}
-
