@@ -151,7 +151,7 @@
 		"baiwusanyu-utils": "^1.0.18",
 		"clsx": "^2.1.0",
 		"dayjs": "^1.11.10",
-        "@ikun-ui/indicators": "workspace:*"
+		"@ikun-ui/indicators": "workspace:*"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.0",
