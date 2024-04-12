@@ -33,7 +33,7 @@ export type KTourProps = {
 	/**
 	 * @default true
 	 */
-	scrollIntoViewOptions: boolean | ScrollIntoViewOptions;
+	scrollIntoViewOptions?: boolean | ScrollIntoViewOptions;
 	/**
 	 * @default 1001
 	 */
@@ -69,8 +69,6 @@ export interface KTourStepsOption {
 // TODO: ☑️ KTour props step  step.title 标题
 // TODO: ☑️ KTour props step  step.description 标题
 
-// TODO: 滚动条兼容
-// TODO: 动画
 // TODO: ☑️ KTour slots indicators 自定义指示器
 // TODO: ☑️ KTour slots title 标题
 // TODO: ☑️ KTour slots description 主要描述部分

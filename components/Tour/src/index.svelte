@@ -53,7 +53,7 @@
 			dispatch('finish');
 			return;
 		}
-		await setTriggerElStyle();
+		await setTriggerElStyle(true);
 		await handleAppend();
 		popoverRef.forceUpdated();
 		dispatch('change', index);
@@ -64,7 +64,11 @@
 		const el: null | HTMLElement = popoverRef.getPopoverContainerRef();
 		if (target && el) {
 			(target as HTMLElement).appendChild(el);
-			scrollIntoViewOptions && target.scrollIntoView(scrollIntoViewOptions);
+			const rect = target.getBoundingClientRect();
+			if (isElementNotInViewport(rect)) {
+				(scrollIntoViewOptions || scrollIntoViewOptions === false) &&
+					target.scrollIntoView(scrollIntoViewOptions);
+			}
 		}
 	}
 
@@ -75,7 +79,9 @@
 	let maskBorderLeftWidth = '';
 	let maskBorderRightWidth = '';
 	let maskBorderBottomWidth = '';
-	async function setTriggerElStyle() {
+	let maskRootBg = 'transparent';
+	let maskRootTransition = '';
+	async function setTriggerElStyle(transition = false) {
 		const { target } = steps[index];
 		const el: null | HTMLElement = popoverRef.getPopoverContainerRef();
 		function setFullScreen() {
@@ -83,19 +89,21 @@
 				el.style.position = 'fixed';
 				el.style.left = el.style.top = `50%`;
 				el.style.transform = `translate(-50%, -50%)`;
+				maskRootTransition = transition ? 'border-width .3s' : '';
 				maskBorderBottomWidth =
 					maskBorderRightWidth =
 					maskBorderTopWidth =
 					maskBorderLeftWidth =
-						`99999px`;
-				maskWidth = `${0}px`;
-				maskHeight = `${0}px`;
+						`0`;
+				maskHeight = maskWidth = `100%`;
+				maskHeight = `100%`;
+				maskRootBg = 'rgba(0,0,0,0.5)';
 			}
 		}
 		if (el && target) {
 			const rect = target.getBoundingClientRect();
 			const { left, top, width, height } = rect;
-			if (!isElementInViewport(rect)) {
+			if (isElementNotInViewport(rect)) {
 				setFullScreen();
 				return;
 			}
@@ -105,6 +113,7 @@
 			el.style.top = `${top}px`;
 			el.style.left = `${left}px`;
 
+			maskRootTransition = transition ? 'border-width .3s' : '';
 			maskWidth = `${width}px`;
 			maskHeight = `${height}px`;
 
@@ -119,18 +128,19 @@
 				document.body.offsetHeight + parseInt(marginBottom) + parseInt(marginTop);
 			maskBorderBottomWidth = `${Math.max(heightWithMargin - height - top, 0)}px`;
 			maskBorderRightWidth = `${Math.max(widthWithMargin - width - left, 0)}px`;
+			maskRootBg = 'transparent';
 		} else if (el && !target) {
 			setFullScreen();
 		}
 		await tick();
 		setMaskCls = mask && isShow;
 	}
-	function isElementInViewport(rect: DOMRect) {
+	function isElementNotInViewport(rect: DOMRect) {
 		return (
-			rect.top >= 0 &&
-			rect.left >= 0 &&
-			rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-			rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+			rect.bottom < 0 ||
+			rect.right < 0 ||
+			rect.left > window.innerWidth ||
+			rect.top > window.innerHeight
 		);
 	}
 
@@ -161,13 +171,16 @@
 		doShow(open);
 	}
 
+	function doSetTriggerElStyle() {
+		setTriggerElStyle();
+	}
 	$: {
 		if (isShow) {
-			BROWSER && window.addEventListener('scroll', setTriggerElStyle);
-			BROWSER && window.addEventListener('resize', setTriggerElStyle);
+			BROWSER && window.addEventListener('scroll', doSetTriggerElStyle);
+			BROWSER && window.addEventListener('resize', doSetTriggerElStyle);
 		} else {
-			BROWSER && window.removeEventListener('scroll', setTriggerElStyle);
-			BROWSER && window.removeEventListener('resize', setTriggerElStyle);
+			BROWSER && window.removeEventListener('scroll', doSetTriggerElStyle);
+			BROWSER && window.removeEventListener('resize', doSetTriggerElStyle);
 		}
 	}
 	onMount(() => {
@@ -198,11 +211,13 @@
 		{...$$restProps}
 		{...attrs}
 		style:width={maskWidth}
+		style:background-color={maskRootBg}
 		style:height={maskHeight}
 		style:border-left-width={maskBorderLeftWidth}
 		style:border-top-width={maskBorderTopWidth}
 		style:border-bottom-width={maskBorderBottomWidth}
 		style:border-right-width={maskBorderRightWidth}
+		style:transition={maskRootTransition}
 		style:z-index={zIndex}
 	>
 		<KPopover bind:this={popoverRef} trigger="manual" {placement} arrow={false}>
@@ -232,10 +247,7 @@
 				<slot name="footer" {handleNext} {handlePrev} current={index}>
 					<div class={footerCls}>
 						<slot name="indicators" current={index}>
-							<KIndicators
-								defaultPageIndex={index}
-								count={steps.length}
-								cls={indicatorsCls}
+							<KIndicators defaultPageIndex={index} count={steps.length} cls={indicatorsCls}
 							></KIndicators>
 						</slot>
 

@@ -23,5 +23,4 @@ export type KCarouselArrowProps = {
 	attrs: Record<string, string>;
 };
 
-
 // TODO: KCarousel - props direction 展示的方向(next version enhancement)
