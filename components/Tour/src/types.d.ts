@@ -18,6 +18,7 @@ export type KTourProps = {
 	 * @default next
 	 */
 	nextBtnText: string;
+	finishBtnText: string;
 	/**
 	 * @default 'top'
 	 */
@@ -45,7 +46,7 @@ export type KTourProps = {
 };
 
 export interface KTourStepsOption {
-	target: Element;
+	target?: Element | null;
 	title?: string;
 	description?: string;
 }

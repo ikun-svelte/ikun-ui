@@ -169,7 +169,17 @@
 	 * @internal
 	 */
 	export function forceUpdated() {
-		getInstance().update();
+		const inst = getInstance();
+		if (inst) {
+			inst.update();
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	export function updatedArrow() {
+		updateArrow();
 	}
 </script>
 

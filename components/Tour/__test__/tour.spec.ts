@@ -105,7 +105,7 @@ describe('Test: KTour', () => {
 				mask: false,
 				prevBtnText: '上一步',
 				nextBtnText: '下一步',
-				steps: [{ target }]
+				steps: [{ target }, { target }]
 			}
 		});
 		expect(instance).toBeTruthy();

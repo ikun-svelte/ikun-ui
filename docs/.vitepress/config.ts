@@ -227,6 +227,10 @@ const components = [
 			{
 				text: 'Tabs',
 				link: '/components/KTabs'
+			},
+			{
+				text: 'Tour',
+				link: '/components/KTour'
 			}
 		]
 	},
