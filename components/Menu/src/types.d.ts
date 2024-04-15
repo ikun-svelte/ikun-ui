@@ -2,7 +2,8 @@
 import type { ClassValue } from 'clsx';
 export type KMenuProps = {
 	/**
-	 * TODO: 展开图标
+	 * TODO: 🎯 展开图标
+	 * @default 'i-carbon-chevron-down'
 	 */
 	expandIcon?: string
 	/**
@@ -16,11 +17,11 @@ export type KMenuProps = {
 	 */
 	inlineCollapsed?: number
 	/**
-	 * TODO: 菜单内容
+	 * TODO: 🎯 菜单内容
 	 */
-	items?: KItemType[]
+	items: KItemType[]
 	/**
-	 * TODO: 菜单类型，现在支持垂直、水平、和内嵌模式三种
+	 * TODO: 🎯 菜单类型，现在支持垂直、水平、和内嵌模式三种
 	 * `vertical` 和 `inline` 的区别在于 `vertical` 子菜单以 popover 形式出现
 	 * @default `vertical`
 	 */
@@ -31,7 +32,7 @@ export type KMenuProps = {
 	 */
 	openUids?: string[]
 	/**
-	 * TODO: 用于自定义 Menu 水平空间不足时的省略收缩的图标
+	 * TODO: 🎯 用于自定义 Menu 水平空间不足时的省略收缩的图标
 	 */
 	overflowedIndicator?: string
 	/**
@@ -45,12 +46,12 @@ export type KMenuProps = {
 	 */
 	selectable?: boolean
 	/**
-	 * TODO: 用户鼠标离开子菜单后关闭延时，单位：毫秒
+	 * TODO: 🎯 用户鼠标离开子菜单后关闭延时，单位：毫秒
 	 * @default 100ms
 	 */
 	subMenuCloseDelay?: boolean
 	/**
-	 * TODO: 用户鼠标进入子菜单后开启延时，单位：毫秒
+	 * TODO: 🎯 用户鼠标进入子菜单后开启延时，单位：毫秒
 	 * @default 0
 	 */
 	subMenuOpenDelay?: number
@@ -60,7 +61,7 @@ export type KMenuProps = {
 	 */
 	theme?: 'light' | 'dark'
 	/**
-	 * TODO: SubMenu 展开/关闭的触发行为(非 inline 模式)
+	 * TODO: 🎯 SubMenu 展开/关闭的触发行为(非 inline 模式)
 	 * @default 'hover'
 	 */
 	triggerSubMenuAction?: 'hover' | 'click'
@@ -98,12 +99,12 @@ export type KMenuItemType = {
 	 * TODO: 是否禁用
 	 * @default false
 	 */
-	disabled: boolean
+	disabled?: boolean
 	/**
 	 * TODO: 展示错误状态样式
 	 * @default false
 	 */
-	danger: boolean
+	danger?: boolean
 }
 
 export type SubMenuType = {
@@ -123,7 +124,7 @@ export type SubMenuType = {
 	 * TODO: 是否禁用
 	 * @default false
 	 */
-	disabled: boolean
+	disabled?: boolean
 	/**
 	 * TODO: 设置子菜单的主题，默认从 Menu 上继承
 	 * @default 'light'
@@ -146,15 +147,23 @@ export type GroupItem = {
 	/**
 	 * TODO: 分组标题
 	 */
-	label: string
+	label?: string
+	/**
+	 * TODO: item 的唯一标志
+	 */
+	uid?: string
 	/**
 	 * TODO: 分组的菜单项
 	 */
-	children: KMenuItemType[],
+	children?: KItemType[],
 };
 
 export type DividerItem = {
 	type?: 'divider', // Must have
+	/**
+	 * TODO: item 的唯一标志
+	 */
+	uid?: string
 };
 
 // TODO: Items Slots slots label 分组标题
