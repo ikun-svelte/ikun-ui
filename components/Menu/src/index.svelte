@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { getPrefixCls } from '@ikun-ui/utils';
+    import { contextmenuKey, getPrefixCls}  from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import type { KMenuProps } from './types';
+    import {setContext} from "svelte";
     export let triggerSubMenuAction: KMenuProps['triggerSubMenuAction'] = 'hover';
     export let subMenuCloseDelay: KMenuProps['subMenuCloseDelay'] = 100;
     export let subMenuOpenDelay: KMenuProps['subMenuOpenDelay'] = 0;
@@ -12,6 +13,9 @@
 	export let cls: KMenuProps['cls'] = undefined;
 	export let attrs: KMenuProps['attrs'] = {};
 
+    setContext('k-menu', {
+        items: () => items
+    });
 	const prefixCls = getPrefixCls('menu');
 	$: cnames = clsx(
 		prefixCls,
@@ -21,10 +25,6 @@
 
 <div class={cnames} {...$$restProps} {...attrs}>
     {#if mode !== 'horizontal'}
-        {#each items as item, index (item.uid)}
-            <div>
-                {item.uid}
-            </div>
-        {/each}
+        <slot></slot>
     {/if}
 </div>

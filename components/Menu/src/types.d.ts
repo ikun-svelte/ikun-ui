@@ -76,38 +76,15 @@ export type KMenuProps = {
 // TODO: slots overflowedIndicator 用于自定义 Menu 水平空间不足时的省略收缩的图标
 // TODO: slots expandIcon 展开图标
 
-export type KItemType = KMenuItemType | DividerItem | SubMenuType | GroupItem
+export type KItemType = KMenuItemType
 
-export type KMenuItemType = {
-	/**
-	 * TODO: 菜单图标
-	 */
-	icon?: string
-	/**
-	 * TODO: 菜单项标题
-	 */
-	label?: string
-	/**
-	 * TODO: item 的唯一标志
-	 */
-	uid?: string
-	/**
-	 * TODO: 设置收缩时展示的悬浮标题(无子菜单情况下生效，不传时默认为 label)
-	 */
-	title?: string
-	/**
-	 * TODO: 是否禁用
-	 * @default false
-	 */
-	disabled?: boolean
+export type SubMenuType = {
 	/**
 	 * TODO: 展示错误状态样式
 	 * @default false
 	 */
-	danger?: boolean
-}
-
-export type SubMenuType = {
+	danger?: boolean,
+	type?: 'group' | 'divider',
 	/**
 	 * TODO: 菜单图标
 	 */
@@ -141,30 +118,6 @@ export type SubMenuType = {
 };
 
 // TODO: onTitleClick 点击子菜单标题
-
-export type GroupItem = {
-	type?: 'group', // Must have
-	/**
-	 * TODO: 分组标题
-	 */
-	label?: string
-	/**
-	 * TODO: item 的唯一标志
-	 */
-	uid?: string
-	/**
-	 * TODO: 分组的菜单项
-	 */
-	children?: KItemType[],
-};
-
-export type DividerItem = {
-	type?: 'divider', // Must have
-	/**
-	 * TODO: item 的唯一标志
-	 */
-	uid?: string
-};
 
 // TODO: Items Slots slots label 分组标题
 // TODO: Items Slots slots  icon  菜单图标
