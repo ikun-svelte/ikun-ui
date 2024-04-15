@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { KCarousel, KCarouselArrow, KIndicators } from '@ikun-ui/carousel';
-	import { clsx } from 'clsx';
-
+	import { KCarousel, KCarouselArrow } from '@ikun-ui/carousel';
+	import { KIndicators } from '@ikun-ui/indicators';
+	import clsx from 'clsx';
 	$: itemCls = (index: number, activeIndex: number) =>
 		clsx(`demo-carousel-item`, {
 			[`demo-carousel-item--active`]: activeIndex === index

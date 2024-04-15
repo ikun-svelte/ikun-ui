@@ -97,7 +97,9 @@
 						`0`;
 				maskHeight = maskWidth = `100%`;
 				maskHeight = `100%`;
-				maskRootBg = 'rgba(0,0,0,0.5)';
+				if (mask) {
+					maskRootBg = 'rgba(0,0,0,0.5)';
+				}
 			}
 		}
 		if (el && target) {
@@ -107,27 +109,31 @@
 				setFullScreen();
 				return;
 			}
+
 			el.style.width = `${width}px`;
 			el.style.height = `${height}px`;
 			el.style.position = 'fixed';
 			el.style.top = `${top}px`;
 			el.style.left = `${left}px`;
+			el.style.transform = `translate(0, 0)`;
 
 			maskRootTransition = transition ? 'border-width .3s' : '';
 			maskWidth = `${width}px`;
 			maskHeight = `${height}px`;
+			if (mask) {
+				maskBorderTopWidth = `${Math.max(top, 0)}px`;
+				maskBorderLeftWidth = `${Math.max(left, 0)}px`;
+				const { marginRight, marginLeft, marginBottom, marginTop } = window.getComputedStyle(
+					document.body
+				);
+				const widthWithMargin =
+					document.body.offsetWidth + parseInt(marginLeft) + parseInt(marginRight);
+				const heightWithMargin =
+					document.body.offsetHeight + parseInt(marginBottom) + parseInt(marginTop);
+				maskBorderBottomWidth = `${Math.max(heightWithMargin - height - top, 0)}px`;
+				maskBorderRightWidth = `${Math.max(widthWithMargin - width - left, 0)}px`;
+			}
 
-			maskBorderTopWidth = `${Math.max(top, 0)}px`;
-			maskBorderLeftWidth = `${Math.max(left, 0)}px`;
-			const { marginRight, marginLeft, marginBottom, marginTop } = window.getComputedStyle(
-				document.body
-			);
-			const widthWithMargin =
-				document.body.offsetWidth + parseInt(marginLeft) + parseInt(marginRight);
-			const heightWithMargin =
-				document.body.offsetHeight + parseInt(marginBottom) + parseInt(marginTop);
-			maskBorderBottomWidth = `${Math.max(heightWithMargin - height - top, 0)}px`;
-			maskBorderRightWidth = `${Math.max(widthWithMargin - width - left, 0)}px`;
 			maskRootBg = 'transparent';
 		} else if (el && !target) {
 			setFullScreen();
@@ -220,10 +226,10 @@
 		style:transition={maskRootTransition}
 		style:z-index={zIndex}
 	>
-		<KPopover bind:this={popoverRef} trigger="manual" {placement} arrow={false}>
+		<KPopover bind:this={popoverRef} trigger="manual" {placement}>
 			<div slot="contentEl" class={contentClass}>
 				<div class={headerCls}>
-					<slot name="title" current={index}>
+					<slot name="title" current={index} title={steps[index].title}>
 						{#if steps[index].title}
 							<span>{steps[index].title}</span>
 						{/if}
@@ -237,7 +243,7 @@
 				</div>
 
 				<div class={bodyCls}>
-					<slot current={index} name="description">
+					<slot current={index} name="description" description={steps[index].description}>
 						{#if steps[index].description}
 							<span>{steps[index].description}</span>
 						{/if}
