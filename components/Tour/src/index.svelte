@@ -23,6 +23,7 @@
 	export let attrs: KTourProps['attrs'] = {};
 	export let prevBtnText: KTourProps['prevBtnText'] = 'prev';
 	export let nextBtnText: KTourProps['nextBtnText'] = 'next';
+	export let finishBtnText: KTourProps['finishBtnText'] = 'finish';
 	const dispatch = createEventDispatcher();
 	let index = current;
 	$: {
@@ -49,13 +50,17 @@
 	};
 	const onIndexChange = async () => {
 		if (index >= steps.length) {
-			await doClose(false);
+			await doClose(false, index - 1);
 			dispatch('finish');
 			return;
 		}
-		await setTriggerElStyle(true);
+		await setTriggerElStyle();
 		await handleAppend();
 		popoverRef.forceUpdated();
+		await tick();
+		resolveShowArrow = showArrow;
+		await tick();
+		popoverRef.updatedArrow();
 		dispatch('change', index);
 	};
 
@@ -81,7 +86,10 @@
 	let maskBorderBottomWidth = '';
 	let maskRootBg = 'transparent';
 	let maskRootTransition = '';
-	async function setTriggerElStyle(transition = false) {
+	let showArrow = true;
+	let resolveShowArrow = showArrow;
+	async function setTriggerElStyle() {
+		// transition = false
 		const { target } = steps[index];
 		const el: null | HTMLElement = popoverRef.getPopoverContainerRef();
 		function setFullScreen() {
@@ -89,7 +97,7 @@
 				el.style.position = 'fixed';
 				el.style.left = el.style.top = `50%`;
 				el.style.transform = `translate(-50%, -50%)`;
-				maskRootTransition = transition ? 'border-width .3s' : '';
+				// maskRootTransition = transition ? 'border-width .3s' : '';
 				maskBorderBottomWidth =
 					maskBorderRightWidth =
 					maskBorderTopWidth =
@@ -100,6 +108,7 @@
 				if (mask) {
 					maskRootBg = 'rgba(0,0,0,0.5)';
 				}
+				showArrow = false;
 			}
 		}
 		if (el && target) {
@@ -116,13 +125,18 @@
 			el.style.top = `${top}px`;
 			el.style.left = `${left}px`;
 			el.style.transform = `translate(0, 0)`;
+			el.style.transform = `translate(0, 0)`;
+			if (!mask) {
+				el.style.zIndex = '-9999';
+			}
 
-			maskRootTransition = transition ? 'border-width .3s' : '';
-			maskWidth = `${width}px`;
-			maskHeight = `${height}px`;
+			// maskRootTransition = transition ? 'border-width .3s' : '';
+			const gap = 4;
+			maskWidth = `${width + 2 * gap}px`;
+			maskHeight = `${height + 2 * gap}px`;
 			if (mask) {
-				maskBorderTopWidth = `${Math.max(top, 0)}px`;
-				maskBorderLeftWidth = `${Math.max(left, 0)}px`;
+				maskBorderTopWidth = `${Math.max(top - gap, 0)}px`;
+				maskBorderLeftWidth = `${Math.max(left - gap, 0)}px`;
 				const { marginRight, marginLeft, marginBottom, marginTop } = window.getComputedStyle(
 					document.body
 				);
@@ -133,8 +147,8 @@
 				maskBorderBottomWidth = `${Math.max(heightWithMargin - height - top, 0)}px`;
 				maskBorderRightWidth = `${Math.max(widthWithMargin - width - left, 0)}px`;
 			}
-
 			maskRootBg = 'transparent';
+			showArrow = true;
 		} else if (el && !target) {
 			setFullScreen();
 		}
@@ -160,10 +174,19 @@
 				await tick();
 			}
 			popoverRef.updateShow(show);
+			resolveShowArrow = showArrow;
+			await tick();
+			popoverRef.updatedArrow();
 		}
 	}
 
-	async function doClose(isDispatch: boolean) {
+	async function doClose(isDispatch: boolean, i: number) {
+		const { target } = steps[i];
+		const el: null | HTMLElement = popoverRef.getPopoverContainerRef();
+		if (target && el) {
+			(target as HTMLElement).removeChild(el);
+		}
+
 		index = current;
 		popoverRef.updateShow(false);
 		isShow = open = false;
@@ -177,8 +200,11 @@
 		doShow(open);
 	}
 
-	function doSetTriggerElStyle() {
+	async function doSetTriggerElStyle() {
 		setTriggerElStyle();
+		resolveShowArrow = showArrow;
+		await tick();
+		popoverRef.updatedArrow();
 	}
 	$: {
 		if (isShow) {
@@ -226,7 +252,7 @@
 		style:transition={maskRootTransition}
 		style:z-index={zIndex}
 	>
-		<KPopover bind:this={popoverRef} trigger="manual" {placement}>
+		<KPopover bind:this={popoverRef} trigger="manual" {placement} arrow={resolveShowArrow}>
 			<div slot="contentEl" class={contentClass}>
 				<div class={headerCls}>
 					<slot name="title" current={index} title={steps[index].title}>
@@ -235,8 +261,13 @@
 						{/if}
 					</slot>
 
-					<slot name="closeIcon" handleClose={() => doClose(true)}>
-						<div class={closeCls} role="button" aria-hidden="true" on:click={() => doClose(true)}>
+					<slot name="closeIcon" handleClose={() => doClose(true, index)}>
+						<div
+							class={closeCls}
+							role="button"
+							aria-hidden="true"
+							on:click={() => doClose(true, index)}
+						>
 							<KIcon icon={closeIcon} width="auto" height="auto"></KIcon>
 						</div>
 					</slot>
@@ -259,13 +290,13 @@
 
 						<div class={btnCls}>
 							<slot name="prevButton" {handlePrev}>
-								<KButton on:click={handlePrev} type="info" ghost>
+								<KButton on:click={handlePrev} type="info" ghost size="sm">
 									{prevBtnText}
 								</KButton>
 							</slot>
 							<slot name="nextButton" {handleNext}>
-								<KButton on:click={handleNext} type="primary">
-									{nextBtnText}
+								<KButton on:click={handleNext} type="primary" size="sm">
+									{index === steps.length - 1 ? finishBtnText : nextBtnText}
 								</KButton>
 							</slot>
 						</div>

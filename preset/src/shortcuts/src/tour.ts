@@ -1,5 +1,5 @@
 export const tourShortcuts: Record<string, string> = {
-	'k-tour': 'pf left-0 top-0',
+	'k-tour': 'pf left-0 top-0 box-content',
 	'k-tour-mask': 'ikun:50:border-ikun-black border-solid',
 	'k-tour-content': 'w-520px',
 	'k-tour-header': 'fbc w-full',

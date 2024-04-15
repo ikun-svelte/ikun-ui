@@ -84,7 +84,7 @@ interface SelectOption {
 ```
 
 ```typescript
-interface HeaderSlot {
+interface HeaderSlotPa {
 	// Current mode
 	mode: 'year' | 'month';
 	// Select callback of ‘year’
@@ -107,7 +107,7 @@ interface HeaderSlot {
 #### dateCell slot params
 
 ```typescript
-interface dateCellSlot {
+interface dateCellSlotPa {
 	// Data used for rendering
 	date: { instance: Dayjs };
 }
@@ -116,7 +116,7 @@ interface dateCellSlot {
 #### dateFullCell slot params
 
 ```typescript
-interface dateFullCellSlot {
+interface dateFullCellSlotPa {
 	// Data used for rendering
 	date: { instance: Dayjs };
 }
@@ -125,7 +125,7 @@ interface dateFullCellSlot {
 #### MonthCell slot params
 
 ```typescript
-interface monthCellSlot {
+interface monthCellSlotPa {
 	// Data used for rendering
 	month: Dayjs;
 }
@@ -134,7 +134,7 @@ interface monthCellSlot {
 #### MonthFullCell slot params
 
 ```typescript
-interface monthFullCellSlot {
+interface monthFullCellSlotPa {
 	// Data used for rendering
 	month: Dayjs;
 }
