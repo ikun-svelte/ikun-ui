@@ -1,5 +1,12 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import KTour from '../src';
+import KTourSlotsTitle from './fixture/slots.title.svelte';
+import KTourSlotsDescr from './fixture/slots.descr.svelte';
+import KTourSlotsClose from './fixture/slots.close.svelte';
+import KTourSlotsIndicators from './fixture/slots.indicator.svelte';
+import KTourSlotsFooter from './fixture/slots.footer.svelte';
+import KTourSlotsBtn from './fixture/slots.btn.svelte';
+import KTourOpen from './fixture/open.svelte';
 import { tick } from 'svelte';
 
 let host;
@@ -52,6 +59,22 @@ describe('Test: KTour', () => {
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(host!.innerHTML.includes('k-tour--test')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: open', async () => {
+		// @ts-ignore
+		const instance = new KTourOpen({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+		const trigger = document.querySelector('#bwsy_trigger');
+		(trigger as HTMLButtonElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -209,6 +232,7 @@ describe('Test: KTour', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
+		// @ts-ignore
 		instance.$on('close', () => {
 			mockFn();
 		});
@@ -234,6 +258,7 @@ describe('Test: KTour', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
+		// @ts-ignore
 		instance.$on('finish', () => {
 			mockFn();
 		});
@@ -263,6 +288,7 @@ describe('Test: KTour', () => {
 			}
 		});
 		expect(instance).toBeTruthy();
+		// @ts-ignore
 		instance.$on('change', (e) => {
 			current = e.detail;
 			mockFn();
@@ -276,6 +302,97 @@ describe('Test: KTour', () => {
 		await vi.advanceTimersByTimeAsync(300);
 		expect(mockFn).toBeCalled();
 		expect(current).toBe(1);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slots: title', async () => {
+		// @ts-ignore
+		const instance = new KTourSlotsTitle({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slots: description', async () => {
+		// @ts-ignore
+		const instance = new KTourSlotsDescr({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slots: closeIcon', async () => {
+		// @ts-ignore
+		const instance = new KTourSlotsClose({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		const close = document.querySelector('#bwsy');
+		expect(host.innerHTML.includes('custom close')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+		(close as HTMLButtonElement)?.click();
+		await tick();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slots: indicators', async () => {
+		// @ts-ignore
+		const instance = new KTourSlotsIndicators({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slots: footer', async () => {
+		// @ts-ignore
+		const instance = new KTourSlotsFooter({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+		const prev = document.querySelector('#bwsy_prev');
+		(prev as HTMLButtonElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+		const next = document.querySelector('#bwsy_next');
+		(next as HTMLButtonElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slots: nextButton & prevButton', async () => {
+		// @ts-ignore
+		const instance = new KTourSlotsBtn({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+		const prev = document.querySelector('#bwsy_prev');
+		(prev as HTMLButtonElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+		const next = document.querySelector('#bwsy_next');
+		(next as HTMLButtonElement)?.click();
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
 		expect(host.innerHTML).matchSnapshot();
 	});
 });

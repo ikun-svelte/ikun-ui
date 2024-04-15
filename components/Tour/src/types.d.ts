@@ -49,16 +49,3 @@ export interface KTourStepsOption {
 	title?: string;
 	description?: string;
 }
-
-// TODO: 交互\上、下、
-
-// TODO: ☑️KTour props open 打开引导
-// TODO: ☑️️KTour props scrollIntoViewOptions 是否支持当前元素(引导元素)滚动到视窗内，也可传入配置指定滚动视窗的相关参数
-
-// TODO: ☑️KTour slots closeIcon 自定义关闭按钮插槽
-// TODO: ☑️ KTour slots indicators 自定义指示器
-// TODO: ☑️ KTour slots title 标题
-// TODO: ☑️ KTour slots description 主要描述部分
-// TODO: ☑️ KTour slots footer 主要描述部分
-// TODO: ☑️ KTour slots nextButton 自定义下一步按钮
-// TODO: ☑️ KTour slots prevButton 自定义上一步按钮

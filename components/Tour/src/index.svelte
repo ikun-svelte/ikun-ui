@@ -226,10 +226,10 @@
 		style:transition={maskRootTransition}
 		style:z-index={zIndex}
 	>
-		<KPopover bind:this={popoverRef} trigger="manual" {placement} arrow={false}>
+		<KPopover bind:this={popoverRef} trigger="manual" {placement}>
 			<div slot="contentEl" class={contentClass}>
 				<div class={headerCls}>
-					<slot name="title" current={index}>
+					<slot name="title" current={index} title={steps[index].title}>
 						{#if steps[index].title}
 							<span>{steps[index].title}</span>
 						{/if}
@@ -243,7 +243,7 @@
 				</div>
 
 				<div class={bodyCls}>
-					<slot current={index} name="description">
+					<slot current={index} name="description" description={steps[index].description}>
 						{#if steps[index].description}
 							<span>{steps[index].description}</span>
 						{/if}
