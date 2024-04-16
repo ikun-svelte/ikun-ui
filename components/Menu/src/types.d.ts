@@ -3,7 +3,7 @@ import type { ClassValue } from 'clsx';
 export type KMenuInstanceOption = {
 	expandIcon?: string;
 	inlineIndent?: number;
-	inlineCollapsed?: number;
+	inlineCollapsed?: boolean;
 	mode?: `vertical` | `horizontal` | `inline`;
 	openUids?: string[];
 	overflowedIndicator?: string;
@@ -13,6 +13,8 @@ export type KMenuInstanceOption = {
 	subMenuOpenDelay?: number;
 	theme?: 'light' | 'dark';
 	triggerSubMenuAction?: 'hover' | 'click';
+	cls?: ClassValue;
+	attrs?: Record<string, string>;
 }
 export type KMenuInstance = {
 	__propHandleEvtMap: Array<(props: Record<any, any>) => void>
@@ -32,13 +34,9 @@ export type KMenuProps = {
 	inlineIndent?: number;
 	/**
 	 * TODO: inline 时菜单是否收起状态 (指显示图标的mini模式和展开到常规模式)
-	 * @default 24
+	 * @default false
 	 */
-	inlineCollapsed?: number;
-	/**
-	 * TODO: 🎯 菜单内容
-	 */
-	// items: KItemType[]
+	inlineCollapsed?: boolean;
 	/**
 	 * TODO: 🎯 菜单类型，现在支持垂直、水平、和内嵌模式三种
 	 * `vertical` 和 `inline` 的区别在于 `vertical` 子菜单以 popover 形式出现
@@ -96,6 +94,10 @@ export type KMenuProps = {
 // TODO: slots expandIcon 展开图标
 
 export type KMenuItemProps = {
+	/**
+	 * @internal
+	 */
+	level: number
 	items: SubMenuType[]
 	cls: ClassValue;
 	attrs: Record<string, string>;
@@ -132,14 +134,20 @@ export type SubMenuType = {
 	/**
 	 * TODO: 子菜单的菜单项
 	 */
-	children?: KItemType[];
+	children?: SubMenuType[];
 	/**
 	 * TODO: 子菜单样式，mode="inline" 时无效
 	 */
 	popupClassName?: string;
+	[property: string]: any
 };
 
 // TODO: onTitleClick 点击子菜单标题
 
 // TODO: Items Slots slots label 分组标题
 // TODO: Items Slots slots  icon  菜单图标
+
+
+// TODO: 高度动画
+// TODO: 缩略文字
+// TODO: 背景色随着层级加深

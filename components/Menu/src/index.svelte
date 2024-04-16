@@ -7,7 +7,7 @@
 	export let triggerSubMenuAction: KMenuProps['triggerSubMenuAction'] = 'hover';
 	export let subMenuCloseDelay: KMenuProps['subMenuCloseDelay'] = 100;
 	export let subMenuOpenDelay: KMenuProps['subMenuOpenDelay'] = 0;
-	// export let items: KMenuProps['items'] = [];
+	export let inlineIndent: KMenuProps['inlineIndent'] = 24
 	export let expandIcon: KMenuProps['expandIcon'] = 'i-carbon-chevron-down';
 	export let overflowedIndicator: KMenuProps['overflowedIndicator'] =
 		'i-carbon-overflow-menu-horizontal';
@@ -22,6 +22,9 @@
 		expandIcon,
 		overflowedIndicator,
 		mode,
+		inlineIndent,
+		cls,
+		attrs,
 	})
 	setContext(menuKey, menuInst);
 	$: {
@@ -33,14 +36,21 @@
 				expandIcon,
 				overflowedIndicator,
 				mode,
+				inlineIndent,
+				cls,
+				attrs,
 			});
 		});
 	}
 
 	const prefixCls = getPrefixCls('menu');
-	$: cnames = clsx(prefixCls, cls);
+	$: cnames = clsx(
+		prefixCls,
+		`${prefixCls}-${mode}`,
+		cls
+	);
 </script>
 
-<div class={cnames} {...$$restProps} {...attrs}>
+<ul class={cnames} {...$$restProps} {...attrs}>
 	<slot/>
-</div>
+</ul>

@@ -29,6 +29,7 @@ export const commonShortcuts: UserShortcuts<Theme> = {
 	infcc: 'inline-flex justify-center items-center',
 	'bd-1': 'border-t-1 border-l-1 border-b-1 border-r-1',
 	'bdt-1': 'border-t-1 border-l-0 border-b-0 border-r-0',
+	'bdr-1': 'border-t-0 border-l-0 border-b-0 border-r-1',
 	'bdl-1': 'border-l-1 border-t-0 border-b-0 border-r-0',
 	'bdb-1': 'border-l-0 border-t-0 border-b-1 border-r-0',
 	'bdlb-1': 'border-l-1 border-t-0 border-b-1 border-r-0',
