@@ -151,6 +151,5 @@ export type SubMenuType = {
 // TODO: Items Slots slots label 分组标题
 // TODO: Items Slots slots  icon  菜单图标
 
-// TODO: 缩略文字
 // TODO: 背景色随着层级加深
 // TODO: 菜单样式

@@ -108,18 +108,19 @@
 			{...attrs}
 		>
 			<slot name="item" item={it}>
-				<div>
-					<slot name="icon" item={it}>
-						{#if it.icon}
-							<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
-						{/if}
-					</slot>
-					<span class={titleContentCls(!!it.icon)}>{it.label}</span>
-				</div>
+				<slot name="icon" item={it}>
+					{#if it.icon}
+						<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
+					{/if}
+				</slot>
+				<span class={titleContentCls(!!it.icon)}>{it.label}</span>
 
 				{#if hasSub(it) && !isGroup(it)}
 					<slot name="expandIcon" item={it}>
-						<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(it)}></KIcon>
+						<KIcon width="14px"
+							   cls={iconCls}
+							   height="14px"
+							   icon={expendIconCls(it)}></KIcon>
 					</slot>
 				{/if}
 			</slot>
@@ -129,18 +130,19 @@
 			<svelte:self items={it.children} level={getLevel(it, level) + 1}>
 				<svelte:fragment let:item slot="item">
 					<slot name="item" {item}>
-						<div>
-							<slot name="icon" {item}>
-								{#if item.icon}
-									<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
-								{/if}
-							</slot>
-							<span class={titleContentCls(!!item.icon)}>self {item.label}</span>
-						</div>
+						<slot name="icon" {item}>
+							{#if item.icon}
+								<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
+							{/if}
+						</slot>
+						<span class={titleContentCls(!!item.icon)}>self {item.label}</span>
 
 						{#if hasSub(item) && !isGroup(item)}
 							<slot name="expandIcon" {item}>
-								<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(item)}></KIcon>
+								<KIcon width="14px"
+									   cls={iconCls}
+									   height="14px"
+									   icon={expendIconCls(item)}></KIcon>
 							</slot>
 						{/if}
 					</slot>
