@@ -3,18 +3,21 @@
 	import { clsx } from 'clsx';
 	import type { KMenuProps } from './types';
 	import { setContext } from 'svelte';
-	import { createKMenu } from "./utils";
+	import { createKMenu, transitionIn, transitionOut } from './utils';
 	export let triggerSubMenuAction: KMenuProps['triggerSubMenuAction'] = 'hover';
 	export let subMenuCloseDelay: KMenuProps['subMenuCloseDelay'] = 100;
 	export let subMenuOpenDelay: KMenuProps['subMenuOpenDelay'] = 0;
-	export let inlineIndent: KMenuProps['inlineIndent'] = 24
+	export let inlineIndent: KMenuProps['inlineIndent'] = 24;
 	export let expandIcon: KMenuProps['expandIcon'] = 'i-carbon-chevron-down';
 	export let overflowedIndicator: KMenuProps['overflowedIndicator'] =
 		'i-carbon-overflow-menu-horizontal';
 	export let mode: KMenuProps['mode'] = 'vertical';
 	export let cls: KMenuProps['cls'] = undefined;
 	export let attrs: KMenuProps['attrs'] = {};
-
+	export let show: KMenuProps['show'] = true;
+	/**
+	 * @internal
+	 */
 	const menuInst = createKMenu({
 		triggerSubMenuAction,
 		subMenuCloseDelay,
@@ -24,8 +27,8 @@
 		mode,
 		inlineIndent,
 		cls,
-		attrs,
-	})
+		attrs
+	});
 	setContext(menuKey, menuInst);
 	$: {
 		menuInst.__propHandleEvtMap.forEach((cb) => {
@@ -38,19 +41,17 @@
 				mode,
 				inlineIndent,
 				cls,
-				attrs,
+				attrs
 			});
 		});
 	}
 
 	const prefixCls = getPrefixCls('menu');
-	$: cnames = clsx(
-		prefixCls,
-		`${prefixCls}-${mode}`,
-		cls
-	);
+	$: cnames = clsx(prefixCls, `${prefixCls}-${mode}`, cls);
 </script>
 
-<ul class={cnames} {...$$restProps} {...attrs}>
-	<slot/>
-</ul>
+{#if show}
+	<ul class={cnames} in:transitionIn out:transitionOut {...$$restProps} {...attrs}>
+		<slot />
+	</ul>
+{/if}

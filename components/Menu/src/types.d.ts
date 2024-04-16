@@ -15,11 +15,11 @@ export type KMenuInstanceOption = {
 	triggerSubMenuAction?: 'hover' | 'click';
 	cls?: ClassValue;
 	attrs?: Record<string, string>;
-}
+};
 export type KMenuInstance = {
-	__propHandleEvtMap: Array<(props: Record<any, any>) => void>
-	__dynamicProps: KMenuInstanceOption,
-}
+	__propHandleEvtMap: Array<(props: Record<any, any>) => void>;
+	__dynamicProps: KMenuInstanceOption;
+};
 
 export type KMenuProps = {
 	/**
@@ -82,6 +82,10 @@ export type KMenuProps = {
 	 * @default 'hover'
 	 */
 	triggerSubMenuAction?: 'hover' | 'click';
+	/**
+	 * @internal
+	 */
+	show: boolean;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
@@ -97,11 +101,11 @@ export type KMenuItemProps = {
 	/**
 	 * @internal
 	 */
-	level: number
-	items: SubMenuType[]
+	level: number;
+	items: SubMenuType[];
 	cls: ClassValue;
 	attrs: Record<string, string>;
-}
+};
 export type SubMenuType = {
 	/**
 	 * TODO: 展示错误状态样式
@@ -139,7 +143,7 @@ export type SubMenuType = {
 	 * TODO: 子菜单样式，mode="inline" 时无效
 	 */
 	popupClassName?: string;
-	[property: string]: any
+	[property: string]: any;
 };
 
 // TODO: onTitleClick 点击子菜单标题
@@ -147,7 +151,6 @@ export type SubMenuType = {
 // TODO: Items Slots slots label 分组标题
 // TODO: Items Slots slots  icon  菜单图标
 
-
-// TODO: 高度动画
 // TODO: 缩略文字
 // TODO: 背景色随着层级加深
+// TODO: 菜单样式
