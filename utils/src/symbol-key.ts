@@ -20,3 +20,4 @@ export const dropDownKey = KSymbolKey('dropDown');
 export const tabsKey = KSymbolKey('tabs');
 export const descriptionsKey = KSymbolKey('descriptions');
 export const segmentedKey = KSymbolKey('segmented');
+export const menuKey = KSymbolKey('menu');

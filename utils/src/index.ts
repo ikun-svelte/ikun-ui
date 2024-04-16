@@ -15,6 +15,7 @@ export {
 	tabsKey,
 	dropDownKey,
 	descriptionsKey,
-	segmentedKey
+	segmentedKey,
+	menuKey,
 } from './symbol-key';
 export * from './dom';

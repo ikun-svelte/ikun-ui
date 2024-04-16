@@ -1,70 +1,89 @@
 /// <reference types="svelte" />
 import type { ClassValue } from 'clsx';
+export type KMenuInstanceOption = {
+	expandIcon?: string;
+	inlineIndent?: number;
+	inlineCollapsed?: number;
+	mode?: `vertical` | `horizontal` | `inline`;
+	openUids?: string[];
+	overflowedIndicator?: string;
+	selectedUids?: string[];
+	selectable?: boolean;
+	subMenuCloseDelay?: number;
+	subMenuOpenDelay?: number;
+	theme?: 'light' | 'dark';
+	triggerSubMenuAction?: 'hover' | 'click';
+}
+export type KMenuInstance = {
+	__propHandleEvtMap: Array<(props: Record<any, any>) => void>
+	__dynamicProps: KMenuInstanceOption,
+}
+
 export type KMenuProps = {
 	/**
 	 * TODO: 🎯 展开图标
 	 * @default 'i-carbon-chevron-down'
 	 */
-	expandIcon?: string
+	expandIcon?: string;
 	/**
 	 * TODO: inline 模式的菜单缩进宽度
 	 * @default 24
 	 */
-	inlineIndent?: number
+	inlineIndent?: number;
 	/**
 	 * TODO: inline 时菜单是否收起状态 (指显示图标的mini模式和展开到常规模式)
 	 * @default 24
 	 */
-	inlineCollapsed?: number
+	inlineCollapsed?: number;
 	/**
 	 * TODO: 🎯 菜单内容
 	 */
-	items: KItemType[]
+	// items: KItemType[]
 	/**
 	 * TODO: 🎯 菜单类型，现在支持垂直、水平、和内嵌模式三种
 	 * `vertical` 和 `inline` 的区别在于 `vertical` 子菜单以 popover 形式出现
 	 * @default `vertical`
 	 */
-	mode?: `vertical` | `horizontal` | `inline`
+	mode?: `vertical` | `horizontal` | `inline`;
 	/**
 	 * TODO: 当前展开的 SubMenu 菜单项 key 数组
 	 * @default `[]`
 	 */
-	openUids?: string[]
+	openUids?: string[];
 	/**
 	 * TODO: 🎯 用于自定义 Menu 水平空间不足时的省略收缩的图标
 	 */
-	overflowedIndicator?: string
+	overflowedIndicator?: string;
 	/**
 	 * TODO: 当前选中的菜单项 key 数组
 	 * @default `[]`
 	 */
-	selectedUids?: string[]
+	selectedUids?: string[];
 	/**
 	 * TODO: 是否允许选中(为 false， 仅不触发 select事件)
 	 * @default false
 	 */
-	selectable?: boolean
+	selectable?: boolean;
 	/**
 	 * TODO: 🎯 用户鼠标离开子菜单后关闭延时，单位：毫秒
 	 * @default 100ms
 	 */
-	subMenuCloseDelay?: boolean
+	subMenuCloseDelay?: number;
 	/**
 	 * TODO: 🎯 用户鼠标进入子菜单后开启延时，单位：毫秒
 	 * @default 0
 	 */
-	subMenuOpenDelay?: number
+	subMenuOpenDelay?: number;
 	/**
 	 * TODO: 主题
 	 * @default 'light'
 	 */
-	theme?: 'light' | 'dark'
+	theme?: 'light' | 'dark';
 	/**
 	 * TODO: 🎯 SubMenu 展开/关闭的触发行为(非 inline 模式)
 	 * @default 'hover'
 	 */
-	triggerSubMenuAction?: 'hover' | 'click'
+	triggerSubMenuAction?: 'hover' | 'click';
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };
@@ -76,45 +95,48 @@ export type KMenuProps = {
 // TODO: slots overflowedIndicator 用于自定义 Menu 水平空间不足时的省略收缩的图标
 // TODO: slots expandIcon 展开图标
 
-export type KItemType = KMenuItemType
-
+export type KMenuItemProps = {
+	items: SubMenuType[]
+	cls: ClassValue;
+	attrs: Record<string, string>;
+}
 export type SubMenuType = {
 	/**
 	 * TODO: 展示错误状态样式
 	 * @default false
 	 */
-	danger?: boolean,
-	type?: 'group' | 'divider',
+	danger?: boolean;
+	type?: 'group' | 'divider';
 	/**
 	 * TODO: 菜单图标
 	 */
-	icon?: string
+	icon?: string;
 	/**
 	 * TODO: 菜单项标题
 	 */
-	label?: string
+	label?: string;
 	/**
 	 * TODO: item 的唯一标志
 	 */
-	uid?: string
+	uid?: string;
 	/**
 	 * TODO: 是否禁用
 	 * @default false
 	 */
-	disabled?: boolean
+	disabled?: boolean;
 	/**
 	 * TODO: 设置子菜单的主题，默认从 Menu 上继承
 	 * @default 'light'
 	 */
-	theme?: 'light' | 'dark'
+	theme?: 'light' | 'dark';
 	/**
 	 * TODO: 子菜单的菜单项
 	 */
-	children?: KItemType[]
+	children?: KItemType[];
 	/**
 	 * TODO: 子菜单样式，mode="inline" 时无效
 	 */
-	popupClassName?: string
+	popupClassName?: string;
 };
 
 // TODO: onTitleClick 点击子菜单标题

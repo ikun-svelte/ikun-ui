@@ -6,9 +6,9 @@ export { MenuItem as KMenuItem };
 export default Menu;
 
 export type {
-    KMenuProps,
-    DividerItem,
-    GroupItem,
-    SubMenuType,
-    KMenuItemType
-} from './types'
+  KMenuInstanceOption,
+  KMenuItemProps,
+  KMenuInstance,
+  KMenuProps,
+  SubMenuType
+} from './types';
