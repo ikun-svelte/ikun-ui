@@ -130,7 +130,14 @@
 		});
 	};
 	const dividerCls = clsx(`${prefixCls}-divider`);
-	$: subMenuCls = clsx(`${menuPrefixCls}-sub`, ctxProps.cls);
+	const subMenuCls = (isGroup: boolean) => {
+		return clsx(
+			`${menuPrefixCls}-sub`,
+			{
+				[`${menuPrefixCls}-sub-bg`]: !isGroup
+			}
+		);
+	}
 </script>
 
 {#each itemsList as it, index (it.uid)}
@@ -162,7 +169,7 @@
 			</slot>
 		</li>
 		<!--render submenu-->
-		<KMenu {...ctxProps} show={(hasSub(it) && it.open) || isGroup(it)} cls={subMenuCls}>
+		<KMenu {...ctxProps} show={(hasSub(it) && it.open) || isGroup(it)} cls={subMenuCls(isGroup(it))}>
 			<svelte:self
 				on:selectedRecursion={(e) => handleSelectedRecursion(e, index)}
 				items={it.children}

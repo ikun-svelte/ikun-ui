@@ -12,7 +12,6 @@ export type KMenuInstanceOption = {
 	subMenuOpenDelay?: number;
 	theme?: 'light' | 'dark';
 	triggerSubMenuAction?: 'hover' | 'click';
-	cls?: ClassValue;
 	attrs?: Record<string, string>;
 };
 export type KMenuInstance = {
@@ -155,7 +154,7 @@ export type SubMenuType = {
 	/**
 	 * @internal
 	 */
-	selectedDeps: Set<string>
+	selectedDeps?: Set<string>
 	[property: string]: any;
 };
 
@@ -164,5 +163,4 @@ export type SubMenuType = {
 // TODO: Items Slots slots label 分组标题
 // TODO: Items Slots slots  icon  菜单图标
 
-// TODO: 背景色随着层级加深
 

@@ -1,13 +1,16 @@
 export const menuShortcuts: Record<string, string> = {
 	'k-menu':
 		'bg-white text-ikun-tx-base p-0 m-0 box-border text-14px leading-0 list-none outline-none focus:outline-none k-menu-transition-w',
+
+
 	'k-menu-item': 'box-border select-none',
 	'k-menu-item-icon': 'inline-flex text-inherit items-center leading-0 min-w-14px',
 	'k-menu-title-content': 'truncate box-border k-menu-transition-c select-none',
 	'k-menu-title-content-i': 'm-is-6px m-ie-6px k-menu-transition-o opacity-[1] truncate',
 	'k-menu-item-divider': 'my-0',
 
-	'k-menu-sub': 'border-none',
+	'k-menu-sub': 'border-none bg-transparent',
+	'k-menu-sub-bg': 'ikun:2:bg-black',
 
 	'k-menu-horizontal': '',
 	'k-menu-item-horizontal': '',

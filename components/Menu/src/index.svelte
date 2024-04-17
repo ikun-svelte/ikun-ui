@@ -23,7 +23,6 @@
 		expandIcon,
 		mode,
 		inlineIndent,
-		cls,
 		attrs
 	});
 	setContext(menuKey, menuInst);
@@ -36,7 +35,6 @@
 				expandIcon,
 				mode,
 				inlineIndent,
-				cls,
 				attrs
 			});
 		});
