@@ -9,8 +9,6 @@
 	export let subMenuOpenDelay: KMenuProps['subMenuOpenDelay'] = 0;
 	export let inlineIndent: KMenuProps['inlineIndent'] = 24;
 	export let expandIcon: KMenuProps['expandIcon'] = 'i-carbon-chevron-down';
-	export let overflowedIndicator: KMenuProps['overflowedIndicator'] =
-		'i-carbon-overflow-menu-horizontal';
 	export let mode: KMenuProps['mode'] = 'vertical';
 	export let cls: KMenuProps['cls'] = undefined;
 	export let attrs: KMenuProps['attrs'] = {};
@@ -23,7 +21,6 @@
 		subMenuCloseDelay,
 		subMenuOpenDelay,
 		expandIcon,
-		overflowedIndicator,
 		mode,
 		inlineIndent,
 		cls,
@@ -37,7 +34,6 @@
 				subMenuCloseDelay,
 				subMenuOpenDelay,
 				expandIcon,
-				overflowedIndicator,
 				mode,
 				inlineIndent,
 				cls,

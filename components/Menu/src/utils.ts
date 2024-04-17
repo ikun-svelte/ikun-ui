@@ -20,7 +20,7 @@ export function transitionIn(node: HTMLElement) {
 				node.style.overflow = 'hidden';
 				node.style.transition = 'height 0.3s';
 				node.style.height = '0';
-			} else if (t === 100) {
+			} else if (t === 1) {
 				node.style.removeProperty('height');
 			} else {
 				node.style.height = node.scrollHeight + 'px';
@@ -30,14 +30,13 @@ export function transitionIn(node: HTMLElement) {
 }
 
 export function transitionOut(node: HTMLElement) {
+	const orgHeight = node.scrollHeight
 	return {
 		duration: 300,
 		tick: (t: number) => {
-			if (t === 0) {
-				node.style.overflow = 'hidden';
-				node.style.transition = 'height 0.3s';
-				node.style.height = node.scrollHeight + 'px';
-			} else if (t === 100) {
+			if (t <= 1 && t >= 0.9) {
+				node.style.height = orgHeight + 'px';
+			} else if (t === 0) {
 				node.style.removeProperty('height');
 			} else {
 				node.style.height = '0';

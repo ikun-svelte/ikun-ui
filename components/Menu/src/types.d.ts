@@ -6,7 +6,6 @@ export type KMenuInstanceOption = {
 	inlineCollapsed?: boolean;
 	mode?: `vertical` | `horizontal` | `inline`;
 	openUids?: string[];
-	overflowedIndicator?: string;
 	selectedUids?: string[];
 	selectable?: boolean;
 	subMenuCloseDelay?: number;
@@ -23,12 +22,12 @@ export type KMenuInstance = {
 
 export type KMenuProps = {
 	/**
-	 * TODO: 🎯 展开图标
+	 * TODO: 👀 展开图标
 	 * @default 'i-carbon-chevron-down'
 	 */
 	expandIcon?: string;
 	/**
-	 * TODO: inline 模式的菜单缩进宽度
+	 * TODO: 👀 inline 模式的菜单缩进宽度
 	 * @default 24
 	 */
 	inlineIndent?: number;
@@ -48,10 +47,6 @@ export type KMenuProps = {
 	 * @default `[]`
 	 */
 	openUids?: string[];
-	/**
-	 * TODO: 🎯 用于自定义 Menu 水平空间不足时的省略收缩的图标
-	 */
-	overflowedIndicator?: string;
 	/**
 	 * TODO: 当前选中的菜单项 key 数组
 	 * @default `[]`
@@ -94,7 +89,6 @@ export type KMenuProps = {
 // TODO: onOpenChange SubMenu 展开/关闭的回调
 // TODO: onSelect 被选中时调用(点击子菜单标题不触发）
 
-// TODO: slots overflowedIndicator 用于自定义 Menu 水平空间不足时的省略收缩的图标
 // TODO: slots expandIcon 展开图标
 
 export type KMenuItemProps = {
