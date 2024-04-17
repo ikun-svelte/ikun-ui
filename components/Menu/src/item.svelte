@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getContext } from 'svelte';
+	import { createEventDispatcher, getContext } from "svelte";
 	import { KIcon } from '@ikun-ui/icon';
 	import type { KMenuInstance, KMenuInstanceOption, KMenuItemProps, SubMenuType } from './types';
 	import { getPrefixCls, menuKey } from '@ikun-ui/utils';
@@ -36,6 +36,31 @@
 		itemsList = items;
 	}
 
+	function handleSelectedRecursion(e: CustomEvent, index: number){
+		const { selected, uid } = e.detail
+		const it = itemsList[index]
+		if(!isGroup(it)){
+			!it.selectedDeps && (it.selectedDeps = new Set())
+			if(selected){
+				it.selectedDeps.add(uid)
+			} else if(it.selectedDeps.has(uid)) {
+				it.selectedDeps.delete(uid)
+			}
+
+			it.selected = !!it.selectedDeps.size;
+
+			itemsList[index] = it
+			dispatch('selectedRecursion', {
+				selected: it.selected,
+				uid: it.uid
+			})
+		} else {
+			dispatch('selectedRecursion', e.detail)
+		}
+
+	}
+
+	const dispatch = createEventDispatcher();
 	function setOpenAndSelectStatus(it: SubMenuType, list = itemsList) {
 		return list.map((value) => {
 			if (value.uid === it.uid && !isGroup(it)) {
@@ -45,8 +70,16 @@
 				// set open
 				if (hasSub(it)) {
 					value.open = !value.open;
+					value.selected = false
 					value.open = ctxProps.openUids?.includes(value.uid || '') || value.open;
 				}
+				/**
+				 * @internal
+				 */
+				dispatch('selectedRecursion', {
+					selected: value.selected,
+					uid: value.uid
+				})
 			}
 			if (hasSub(value)) {
 				value.children = setOpenAndSelectStatus(it, value.children);
@@ -67,8 +100,11 @@
 				[`${prefixCls}-${ctxProps.mode}-group`]: isGroup(it),
 				[`${prefixCls}-${ctxProps.mode}`]: !isGroup(it),
 				[`${prefixCls}-selected`]:
-					(!isGroup(it) && isNotHorizontal() && ctxProps.selectedUids?.includes(it.uid || '')) ||
-					it.selected,
+				!isGroup(it) && !hasSub(it) && isNotHorizontal() && (ctxProps.selectedUids?.includes(it.uid || '') ||
+				it.selected),
+				[`${prefixCls}-selected-ih`]:
+				!isGroup(it) && hasSub(it) && isNotHorizontal() && (ctxProps.selectedUids?.includes(it.uid || '') ||
+					it.selected),
 				[`${prefixCls}-hover-ih`]:
 					!isGroup(it) &&
 					isNotHorizontal() &&
@@ -97,7 +133,7 @@
 	$: subMenuCls = clsx(`${menuPrefixCls}-sub`, ctxProps.cls);
 </script>
 
-{#each itemsList as it (it.uid)}
+{#each itemsList as it, index (it.uid)}
 	{#if it.type !== 'divider'}
 		<li
 			on:click={() => handleSelect(it)}
@@ -127,7 +163,10 @@
 		</li>
 		<!--render submenu-->
 		<KMenu {...ctxProps} show={(hasSub(it) && it.open) || isGroup(it)} cls={subMenuCls}>
-			<svelte:self items={it.children} level={getLevel(it, level) + 1}>
+			<svelte:self
+				on:selectedRecursion={(e) => handleSelectedRecursion(e, index)}
+				items={it.children}
+				level={getLevel(it, level) + 1}>
 				<svelte:fragment let:item slot="item">
 					<slot name="item" {item}>
 						<slot name="icon" {item}>

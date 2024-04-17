@@ -106,17 +106,20 @@ export type SubMenuType = {
 	 * @default false
 	 */
 	danger?: boolean;
+	/**
+	 * TODO: 👀 展示為分組或分割綫
+	 */
 	type?: 'group' | 'divider';
 	/**
-	 * TODO: 菜单图标
+	 * TODO:  👀 菜单图标
 	 */
 	icon?: string;
 	/**
-	 * TODO: 菜单项标题
+	 * TODO:  👀 菜单项标题
 	 */
 	label?: string;
 	/**
-	 * TODO: item 的唯一标志
+	 * TODO:  👀 item 的唯一标志
 	 */
 	uid?: string;
 	/**
@@ -130,13 +133,29 @@ export type SubMenuType = {
 	 */
 	theme?: 'light' | 'dark';
 	/**
-	 * TODO: 子菜单的菜单项
+	 * TODO: 设置收缩时展示的悬浮标题(无子菜单情况下生效，不传时默认为 label)
+	 */
+	title?: string
+	/**
+	 * TODO:  👀 子菜单的菜单项
 	 */
 	children?: SubMenuType[];
 	/**
 	 * TODO: 子菜单样式，mode="inline" 时无效
 	 */
 	popupClassName?: string;
+	/**
+	 * @internal
+	 */
+	selected?: boolean
+	/**
+	 * @internal
+	 */
+	open?: boolean
+	/**
+	 * @internal
+	 */
+	selectedDeps: Set<string>
 	[property: string]: any;
 };
 
@@ -146,4 +165,4 @@ export type SubMenuType = {
 // TODO: Items Slots slots  icon  菜单图标
 
 // TODO: 背景色随着层级加深
-// TODO: 菜单样式
+
