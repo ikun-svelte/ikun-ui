@@ -1,6 +1,11 @@
 import type { KMenuInstance, KMenuInstanceOption } from './types';
 
-export const createKMenu = (options: KMenuInstanceOption): KMenuInstance => {
+export const createKMenu = (
+	options: KMenuInstanceOption,
+	onOpenChange: KMenuInstance['onOpenChange'],
+	onSelect: KMenuInstance['onSelect'],
+	onClick: KMenuInstance['onClick'],
+): KMenuInstance => {
 	return {
 		/**
 		 * @internal
@@ -9,7 +14,10 @@ export const createKMenu = (options: KMenuInstanceOption): KMenuInstance => {
 		__dynamicProps: {
 			...options
 		},
-		__renderRecord: {}
+		__renderRecord: {},
+		onOpenChange,
+		onSelect,
+		onClick,
 	};
 };
 
@@ -43,3 +51,4 @@ export function transitionOut(node: HTMLElement) {
 		}
 	};
 }
+

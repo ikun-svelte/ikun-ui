@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { menuKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { KMenuProps } from "./types";
-	import { getContext, setContext } from "svelte";
+	import type { ClickEvtPa, KMenuProps } from "./types";
+	import { createEventDispatcher, getContext, setContext } from "svelte";
 	import { createKMenu, transitionIn, transitionOut } from './utils';
 	export let triggerSubMenuAction: KMenuProps['triggerSubMenuAction'] = 'hover';
 	export let subMenuCloseDelay: KMenuProps['subMenuCloseDelay'] = 100;
@@ -16,6 +16,18 @@
 	export let openUids: KMenuProps['openUids'] = [];
 	export let show: KMenuProps['show'] = true;
 
+	const dispatch = createEventDispatcher();
+	function onOpenChange(){
+		dispatch('openChange')
+	}
+
+	function onSelect(){
+		dispatch('select')
+	}
+
+	function onClick(data: ClickEvtPa){
+		dispatch('click', data)
+	}
 	/**
 	 * @internal
 	 */
@@ -29,7 +41,11 @@
 		openUids,
 		selectedUids,
 		attrs
-	});
+	},
+		onOpenChange,
+		onSelect,
+		onClick,
+	);
 	if(!getContext(menuKey)){
 		setContext(menuKey, menuInst);
 	}

@@ -12,7 +12,7 @@
 	export let level: KMenuItemProps['level'] = 1;
 	export let uid: KMenuItemProps['uid'] = '';
 	const dispatch = createEventDispatcher();
-	const hasSub = (it: SubMenuType) => it.children && it.children.length;
+	const hasSub = (it: SubMenuType) => !!(it.children && it.children.length);
 	const isNotHorizontal = () => ctxProps.mode !== 'horizontal';
 	const isGroup = (it: SubMenuType) => it.type === 'group';
 	const getLevel = (it: SubMenuType, lv: number) => {
@@ -22,11 +22,18 @@
 		return lv;
 	};
 
-	let itemsList = items;
+	let itemsList = items
 	$: {
-		itemsList = items;
-		// itemsList = initOpenSelectedStatus()
+    itemsList = items
 	}
+
+	function setRenderRecord(){
+		if(!menuCtx.__renderRecord[uid]){
+			itemsList = initOpenSelectedStatus().children
+			menuCtx.__renderRecord[uid] = true
+		}
+	}
+
 	function initOpenSelectedStatus(list = itemsList) {
 		 const res:SubMenuType[] = [];
 		 let deps: string[] = []
@@ -68,15 +75,13 @@
 	let ctxProps: KMenuInstanceOption = {};
 	function updatedCtxProps(props: Record<any, any>) {
 		ctxProps = { ...props };
-		// itemsList = initOpenSelectedStatus().children
+		menuCtx.__renderRecord[uid] = false
+		setRenderRecord()
 	}
 	if (menuCtx) {
 		ctxProps = { ...menuCtx.__dynamicProps };
 		// just run on first render
-		if(!menuCtx.__renderRecord[uid]){
-			itemsList = initOpenSelectedStatus().children
-			menuCtx.__renderRecord[uid] = true
-		}
+		setRenderRecord()
 		menuCtx.__propHandleEvtMap.push(updatedCtxProps);
 	}
 
@@ -133,8 +138,16 @@
 			return value;
 		});
 	}
-	async function handleSelect(it: SubMenuType) {
+	async function handleSelect(it: SubMenuType, e: MouseEvent) {
 		itemsList = setOpenAndSelectStatus(it);
+		if(menuCtx){
+			menuCtx.onClick({
+				item: it,
+				uid: it.uid!,
+				uidPath: [],
+				e,
+			})
+		}
 	}
 
 	const menuPrefixCls = getPrefixCls('menu');
@@ -188,7 +201,7 @@
 {#each itemsList as it, index (it.uid)}
 	{#if it.type !== 'divider'}
 		<li
-			on:click={() => handleSelect(it)}
+			on:click={(e) => handleSelect(it, e)}
 			aria-hidden="true"
 			style:padding-left={`${(ctxProps.inlineIndent || 24) * getLevel(it, level)}px`}
 			class={cnames(it)}
@@ -204,7 +217,6 @@
 					</slot>
 					<span class={titleContentCls(!!it.icon)}>{it.label}</span>
 				</span>
-
 
 				{#if hasSub(it) && !isGroup(it)}
 					<slot name="expandIcon" item={it} cls={iconCls}>
