@@ -17,6 +17,7 @@ export type KMenuInstanceOption = {
 export type KMenuInstance = {
 	__propHandleEvtMap: Array<(props: Record<any, any>) => void>;
 	__dynamicProps: KMenuInstanceOption;
+	__renderRecord: Record<string, boolean>
 };
 
 export type KMenuProps = {
@@ -54,7 +55,7 @@ export type KMenuProps = {
 	 */
 	selectedUids?: string[];
 	/**
-	 * TODO: 🎯 是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
+	 * TODO: 👀 是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
 	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) vertical
 	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) horizontal
 	 * @default false
@@ -107,6 +108,10 @@ export type KMenuItemProps = {
 	 * @internal
 	 */
 	level: number;
+	/**
+	 * @internal
+	 */
+	uid: string;
 	items: SubMenuType[];
 	cls: ClassValue;
 	attrs: Record<string, string>;

@@ -10,7 +10,8 @@
 	export let cls: KMenuItemProps['cls'] = undefined;
 	export let attrs: KMenuItemProps['attrs'] = {};
 	export let level: KMenuItemProps['level'] = 1;
-
+	export let uid: KMenuItemProps['uid'] = '';
+	const dispatch = createEventDispatcher();
 	const hasSub = (it: SubMenuType) => it.children && it.children.length;
 	const isNotHorizontal = () => ctxProps.mode !== 'horizontal';
 	const isGroup = (it: SubMenuType) => it.type === 'group';
@@ -27,32 +28,63 @@
 		// itemsList = initOpenSelectedStatus()
 	}
 	function initOpenSelectedStatus(list = itemsList) {
-		return list.map((value) => {
+		 const res:SubMenuType[] = [];
+		 let deps: string[] = []
+		 list.forEach((value) => {
 			const defaultSelected = ctxProps.selectedUids?.includes(value.uid || '')
 			const defaultOpen = ctxProps.openUids?.includes(value.uid || '')
 			value.selected = defaultSelected
 			value.open = defaultOpen
-			if (hasSub(value)) {
-				value.children = initOpenSelectedStatus(value.children!);
+			if(defaultSelected){
+				deps.push(value.uid!)
 			}
-			return value;
+
+			if (hasSub(value)) {
+				const recRes = initOpenSelectedStatus(value.children!);
+				value.children = recRes.children
+				if(!isGroup(value)){
+					!value.selectedDeps && (value.selectedDeps = new Set())
+					recRes.deps.forEach(d => {
+						value.selectedDeps!.add(d)
+					})
+					value.selected = !!value.selectedDeps.size;
+					if(value.selected){
+						deps.push(value.uid!)
+					}
+
+				} else {
+					deps = recRes.deps
+				}
+
+			}
+			 res.push({...value})
 		});
+		 return {
+			 children: res,
+			 deps
+		 }
 	}
 	const menuCtx = getContext(menuKey) as KMenuInstance;
 	let ctxProps: KMenuInstanceOption = {};
 	function updatedCtxProps(props: Record<any, any>) {
 		ctxProps = { ...props };
-		itemsList = initOpenSelectedStatus()
+		// itemsList = initOpenSelectedStatus().children
 	}
 	if (menuCtx) {
 		ctxProps = { ...menuCtx.__dynamicProps };
-		itemsList = initOpenSelectedStatus()
-		console.log(itemsList)
+		// just run on first render
+		if(!menuCtx.__renderRecord[uid]){
+			itemsList = initOpenSelectedStatus().children
+			menuCtx.__renderRecord[uid] = true
+		}
 		menuCtx.__propHandleEvtMap.push(updatedCtxProps);
 	}
 
 
-	function handleSelectedRecursion(e: CustomEvent, index: number){
+	function handleSelectedRecursion(
+		e: CustomEvent<{selected: boolean, uid: string}> | { detail: {selected: boolean, uid: string}},
+		index: number
+	){
 		const { selected, uid } = e.detail
 		const it = itemsList[index]
 		if(!isGroup(it)){
@@ -73,10 +105,8 @@
 		} else {
 			dispatch('selectedRecursion', e.detail)
 		}
-
 	}
 
-	const dispatch = createEventDispatcher();
 	function setOpenAndSelectStatus(it: SubMenuType, list = itemsList) {
 		return list.map((value) => {
 			if (value.uid === it.uid && !isGroup(it)) {
@@ -85,7 +115,9 @@
 				// set open
 				if (hasSub(it)) {
 					value.open = !value.open;
-					value.selected = false
+					if(value.selectedDeps){
+						value.selected = !!value.selectedDeps!.size;
+					}
 				}
 				/**
 				 * @internal
@@ -183,6 +215,7 @@
 		<!--render submenu-->
 		<KMenu {...ctxProps} show={(hasSub(it) && it.open) || isGroup(it)} cls={subMenuCls(isGroup(it))}>
 			<svelte:self
+				uid={it.uid}
 				on:selectedRecursion={(e) => handleSelectedRecursion(e, index)}
 				items={it.children}
 				level={getLevel(it, level) + 1}>

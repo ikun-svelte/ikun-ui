@@ -8,7 +8,8 @@ export const createKMenu = (options: KMenuInstanceOption): KMenuInstance => {
 		__propHandleEvtMap: [],
 		__dynamicProps: {
 			...options
-		}
+		},
+		__renderRecord: {}
 	};
 };
 
