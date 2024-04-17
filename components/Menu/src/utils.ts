@@ -17,8 +17,6 @@ export function transitionIn(node: HTMLElement) {
 		duration: 300,
 		tick: (t: number) => {
 			if (t === 0) {
-				node.style.overflow = 'hidden';
-				node.style.transition = 'height 0.3s';
 				node.style.height = '0';
 			} else if (t === 1) {
 				node.style.removeProperty('height');

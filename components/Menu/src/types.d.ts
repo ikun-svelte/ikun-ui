@@ -42,27 +42,31 @@ export type KMenuProps = {
 	 */
 	mode?: `vertical` | `horizontal` | `inline`;
 	/**
-	 * TODO: 当前展开的 SubMenu 菜单项 key 数组
+	 * TODO: 👀 当前展开的 SubMenu 菜单项 key 数组 inline
+	 * TODO: 当前展开的 SubMenu 菜单项 key 数组 vertical
+	 * TODO: 当前展开的 SubMenu 菜单项 key 数组 horizontal
 	 * @default `[]`
 	 */
 	openUids?: string[];
 	/**
-	 * TODO: 当前选中的菜单项 key 数组
+	 * TODO: 🎯 当前选中的菜单项 key 数组(子菜单只高亮，不展开)
 	 * @default `[]`
 	 */
 	selectedUids?: string[];
 	/**
-	 * TODO: 是否允许选中(为 false， 仅不触发 select事件)
+	 * TODO: 🎯 是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
+	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) vertical
+	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) horizontal
 	 * @default false
 	 */
 	selectable?: boolean;
 	/**
-	 * TODO: 🎯 用户鼠标离开子菜单后关闭延时，单位：毫秒
+	 * TODO: 用户鼠标离开子菜单后关闭延时，单位：毫秒(非 inline 模式, hover触发)
 	 * @default 100ms
 	 */
 	subMenuCloseDelay?: number;
 	/**
-	 * TODO: 🎯 用户鼠标进入子菜单后开启延时，单位：毫秒
+	 * TODO: 用户鼠标进入子菜单后开启延时，单位：毫秒(非 inline 模式, hover触发)
 	 * @default 0
 	 */
 	subMenuOpenDelay?: number;
@@ -72,23 +76,31 @@ export type KMenuProps = {
 	 */
 	theme?: 'light' | 'dark';
 	/**
-	 * TODO: 🎯 SubMenu 展开/关闭的触发行为(非 inline 模式)
+	 * TODO: SubMenu 展开/关闭的触发行为(非 inline 模式)
 	 * @default 'hover'
 	 */
 	triggerSubMenuAction?: 'hover' | 'click';
+	cls: ClassValue;
+	attrs: Record<string, string>;
 	/**
 	 * @internal
 	 */
 	show: boolean;
-	cls: ClassValue;
-	attrs: Record<string, string>;
 };
 
-// TODO: onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发）
-// TODO: onOpenChange SubMenu 展开/关闭的回调
-// TODO: onSelect 被选中时调用(点击子菜单标题不触发）
+// TODO: 🎯 onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） inline
+// TODO: 🎯 onOpenChange SubMenu 展开/关闭的回调 inline
+// TODO: 🎯 onSelect 被选中时调用(点击子菜单标题不触发） inline
+// TODO: onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） vertical
+// TODO: onOpenChange SubMenu 展开/关闭的回调 vertical
+// TODO: onSelect 被选中时调用(点击子菜单标题不触发） vertical
+// TODO: onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） horizontal
+// TODO: onOpenChange SubMenu 展开/关闭的回调 horizontal
+// TODO: onSelect 被选中时调用(点击子菜单标题不触发） horizontal
 
-// TODO: slots expandIcon 展开图标
+// TODO: slots expandIcon 展开图标 vertical
+// TODO: slots expandIcon 展开图标 horizontal
+// TODO: 🎯slots expandIcon 展开图标 inline
 
 export type KMenuItemProps = {
 	/**
@@ -114,7 +126,7 @@ export type SubMenuType = {
 	 */
 	icon?: string;
 	/**
-	 * TODO:  👀 菜单项标题
+	 * TODO: 菜单项标题
 	 */
 	label?: string;
 	/**
@@ -160,7 +172,9 @@ export type SubMenuType = {
 
 // TODO: onTitleClick 点击子菜单标题
 
-// TODO: Items Slots slots label 分组标题
-// TODO: Items Slots slots  icon  菜单图标
-
-
+// TODO: Items Slots slots label 分组标题 vertical
+// TODO: Items Slots slots label 分组标题 horizontal
+// TODO: 🎯Items Slots slots label 分组标题 inline
+// TODO: Items Slots slots  icon  菜单图标 vertical
+// TODO: Items Slots slots  icon  菜单图标 horizontal
+// TODO: 🎯Items Slots slots  icon  菜单图标 inline

@@ -21,20 +21,36 @@
 		return lv;
 	};
 
+	let itemsList = items;
+	$: {
+		itemsList = items;
+		// itemsList = initOpenSelectedStatus()
+	}
+	function initOpenSelectedStatus(list = itemsList) {
+		return list.map((value) => {
+			const defaultSelected = ctxProps.selectedUids?.includes(value.uid || '')
+			const defaultOpen = ctxProps.openUids?.includes(value.uid || '')
+			value.selected = defaultSelected
+			value.open = defaultOpen
+			if (hasSub(value)) {
+				value.children = initOpenSelectedStatus(value.children!);
+			}
+			return value;
+		});
+	}
 	const menuCtx = getContext(menuKey) as KMenuInstance;
 	let ctxProps: KMenuInstanceOption = {};
 	function updatedCtxProps(props: Record<any, any>) {
 		ctxProps = { ...props };
+		itemsList = initOpenSelectedStatus()
 	}
 	if (menuCtx) {
 		ctxProps = { ...menuCtx.__dynamicProps };
+		itemsList = initOpenSelectedStatus()
+		console.log(itemsList)
 		menuCtx.__propHandleEvtMap.push(updatedCtxProps);
 	}
 
-	let itemsList = items;
-	$: {
-		itemsList = items;
-	}
 
 	function handleSelectedRecursion(e: CustomEvent, index: number){
 		const { selected, uid } = e.detail
@@ -66,12 +82,10 @@
 			if (value.uid === it.uid && !isGroup(it)) {
 				// set selected
 				value.selected = !value.selected;
-				value.selected = ctxProps.selectedUids?.includes(value.uid || '') || value.selected;
 				// set open
 				if (hasSub(it)) {
 					value.open = !value.open;
 					value.selected = false
-					value.open = ctxProps.openUids?.includes(value.uid || '') || value.open;
 				}
 				/**
 				 * @internal
@@ -100,15 +114,13 @@
 				[`${prefixCls}-${ctxProps.mode}-group`]: isGroup(it),
 				[`${prefixCls}-${ctxProps.mode}`]: !isGroup(it),
 				[`${prefixCls}-selected`]:
-				!isGroup(it) && !hasSub(it) && isNotHorizontal() && (ctxProps.selectedUids?.includes(it.uid || '') ||
-				it.selected),
+				!isGroup(it) && !hasSub(it) && isNotHorizontal() && (it.selected),
 				[`${prefixCls}-selected-ih`]:
-				!isGroup(it) && hasSub(it) && isNotHorizontal() && (ctxProps.selectedUids?.includes(it.uid || '') ||
-					it.selected),
+				!isGroup(it) && hasSub(it) && isNotHorizontal() && (it.selected),
 				[`${prefixCls}-hover-ih`]:
 					!isGroup(it) &&
 					isNotHorizontal() &&
-					!(ctxProps.selectedUids?.includes(it.uid || '') || it.selected),
+					!(it.selected),
 				[`${prefixCls}-vh-child`]: !isGroup(it) && isNotHorizontal() && hasSub(it)
 			},
 			cls

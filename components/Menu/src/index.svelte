@@ -12,6 +12,8 @@
 	export let mode: KMenuProps['mode'] = 'vertical';
 	export let cls: KMenuProps['cls'] = undefined;
 	export let attrs: KMenuProps['attrs'] = {};
+	export let selectedUids: KMenuProps['selectedUids'] = [];
+	export let openUids: KMenuProps['openUids'] = [];
 	export let show: KMenuProps['show'] = true;
 	/**
 	 * @internal
@@ -23,6 +25,8 @@
 		expandIcon,
 		mode,
 		inlineIndent,
+		openUids,
+		selectedUids,
 		attrs
 	});
 	setContext(menuKey, menuInst);
@@ -35,6 +39,8 @@
 				expandIcon,
 				mode,
 				inlineIndent,
+				openUids,
+				selectedUids,
 				attrs
 			});
 		});
@@ -45,7 +51,10 @@
 </script>
 
 {#if show}
-	<ul class={cnames} in:transitionIn out:transitionOut {...$$restProps} {...attrs}>
+	<ul class={cnames}
+			style:transition="height 0.3s"
+			style:overflow="hidden"
+			in:transitionIn out:transitionOut {...$$restProps} {...attrs}>
 		<slot />
 	</ul>
 {/if}
