@@ -24,7 +24,7 @@ export type ClickEvtPa = {
 export type KMenuInstance = {
 	__propHandleEvtMap: Array<(props: Record<any, any>) => void>;
 	__dynamicProps: KMenuInstanceOption;
-	__renderRecord: Record<string, boolean>
+	__org_items?: SubMenuType[]
 	onOpenChange: () => void
 	onSelect: () => void
 	onClick: (param: ClickEvtPa) => void
@@ -101,7 +101,7 @@ export type KMenuProps = {
 	show: boolean;
 };
 
-// TODO: 🎯🎯🎯🎯 onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） inline
+// TODO: 👀 onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） inline
 // TODO: 🎯 onOpenChange SubMenu 展开/关闭的回调 inline
 // TODO: 🎯 onSelect 被选中时调用(点击子菜单标题不触发） inline
 // TODO: onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） vertical
@@ -195,4 +195,3 @@ export type SubMenuType = {
 // TODO: Items Slots slots  icon  菜单图标 vertical
 // TODO: Items Slots slots  icon  菜单图标 horizontal
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
-// TODO: 🎯🎯🎯🎯  修改items传参方式

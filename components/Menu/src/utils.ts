@@ -1,4 +1,4 @@
-import type { KMenuInstance, KMenuInstanceOption } from './types';
+import type {KMenuInstance, KMenuInstanceOption, SubMenuType} from './types';
 
 export const createKMenu = (
 	options: KMenuInstanceOption,
@@ -14,7 +14,6 @@ export const createKMenu = (
 		__dynamicProps: {
 			...options
 		},
-		__renderRecord: {},
 		onOpenChange,
 		onSelect,
 		onClick,
@@ -52,3 +51,27 @@ export function transitionOut(node: HTMLElement) {
 	};
 }
 
+export function getUidPath(uid: string, list: SubMenuType[], path: string[] = []){
+	// 遍历树结构数组中的每个节点
+	for (const node of list) {
+		// 如果当前节点的 uid 与给定的 uid 匹配，返回当前路径
+		if (node.uid === uid) {
+			return path.concat(uid);
+		}
+
+		// 如果当前节点包含子节点，则递归搜索子节点
+		if (node.children && node.children.length > 0) {
+			// 在路径中添加当前节点的 uid
+			const newPath = path.concat(node.uid!);
+			// 递归搜索子节点
+			const result = getUidPath(uid, node.children!, newPath) as null | string[];
+			// 如果找到了目标节点，则返回结果
+			if (result) {
+				return result;
+			}
+		}
+	}
+
+	// 如果在当前节点及其子节点中未找到目标节点，则返回空
+	return null;
+}

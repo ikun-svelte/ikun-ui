@@ -6,6 +6,7 @@
 	import { clsx } from 'clsx';
 	import { KDivider } from '@ikun-ui/divider';
 	import { KMenu } from '@ikun-ui/menu';
+	import {getUidPath} from "./utils";
 	export let items: KMenuItemProps['items'] = [];
 	export let cls: KMenuItemProps['cls'] = undefined;
 	export let attrs: KMenuItemProps['attrs'] = {};
@@ -24,14 +25,14 @@
 
 	let itemsList = items
 	$: {
-    itemsList = items
+    	itemsList = items
+		if(level === 1){
+			setRenderRecord()
+		}
 	}
 
 	function setRenderRecord(){
-		if(!menuCtx.__renderRecord[uid]){
-			itemsList = initOpenSelectedStatus().children
-			menuCtx.__renderRecord[uid] = true
-		}
+		itemsList = initOpenSelectedStatus().children
 	}
 
 	function initOpenSelectedStatus(list = itemsList) {
@@ -75,14 +76,14 @@
 	let ctxProps: KMenuInstanceOption = {};
 	function updatedCtxProps(props: Record<any, any>) {
 		ctxProps = { ...props };
-		menuCtx.__renderRecord[uid] = false
 		setRenderRecord()
 	}
 	if (menuCtx) {
 		ctxProps = { ...menuCtx.__dynamicProps };
-		// just run on first render
-		setRenderRecord()
 		menuCtx.__propHandleEvtMap.push(updatedCtxProps);
+		if(level === 1){
+			menuCtx.__org_items = items
+		}
 	}
 
 
@@ -144,7 +145,7 @@
 			menuCtx.onClick({
 				item: it,
 				uid: it.uid!,
-				uidPath: [],
+				uidPath: getUidPath(it.uid!, menuCtx.__org_items!) || [],
 				e,
 			})
 		}
