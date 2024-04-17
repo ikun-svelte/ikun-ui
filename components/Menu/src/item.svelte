@@ -160,6 +160,7 @@
 	};
 
 	const iconCls = clsx(`${prefixCls}-icon`);
+	const iconRootCls = clsx(`${prefixCls}-icon-root`);
 
 	const expendIconCls = (it: SubMenuType) => {
 		return it.open
@@ -195,15 +196,18 @@
 			{...attrs}
 		>
 			<slot name="item" item={it}>
-				<slot name="icon" item={it}>
-					{#if it.icon}
-						<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
-					{/if}
-				</slot>
-				<span class={titleContentCls(!!it.icon)}>{it.label}</span>
+				<span class={iconRootCls}>
+					<slot name="icon" item={it} cls={iconCls}>
+						{#if it.icon}
+							<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
+						{/if}
+					</slot>
+					<span class={titleContentCls(!!it.icon)}>{it.label}</span>
+				</span>
+
 
 				{#if hasSub(it) && !isGroup(it)}
-					<slot name="expandIcon" item={it}>
+					<slot name="expandIcon" item={it} cls={iconCls}>
 						<KIcon width="14px"
 							   cls={iconCls}
 							   height="14px"
@@ -221,15 +225,18 @@
 				level={getLevel(it, level) + 1}>
 				<svelte:fragment let:item slot="item">
 					<slot name="item" {item}>
-						<slot name="icon" {item}>
-							{#if item.icon}
-								<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
-							{/if}
-						</slot>
-						<span class={titleContentCls(!!item.icon)}>self {item.label}</span>
+							<span class={iconRootCls}>
+							<slot name="icon" {item}>
+								{#if item.icon}
+									<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
+								{/if}
+							</slot>
+							<span class={titleContentCls(!!item.icon)}>{item.label}</span>
+						</span>
+
 
 						{#if hasSub(item) && !isGroup(item)}
-							<slot name="expandIcon" {item}>
+							<slot name="expandIcon" {item} cls={iconCls}>
 								<KIcon width="14px"
 									   cls={iconCls}
 									   height="14px"

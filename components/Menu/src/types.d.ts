@@ -50,12 +50,14 @@ export type KMenuProps = {
 	 */
 	openUids?: string[];
 	/**
-	 * TODO: 🎯 当前选中的菜单项 key 数组(子菜单只高亮，不展开)
+	 * TODO: 👀 当前选中的菜单项 key 数组(子菜单只高亮，不展开) inline
+	 * TODO: 当前选中的菜单项 key 数组(子菜单只高亮，不展开) vertical
+	 * TODO: 当前选中的菜单项 key 数组(子菜单只高亮，不展开) horizontal
 	 * @default `[]`
 	 */
 	selectedUids?: string[];
 	/**
-	 * TODO: 👀 是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
+	 * TODO: 是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
 	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) vertical
 	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) horizontal
 	 * @default false
@@ -101,7 +103,7 @@ export type KMenuProps = {
 
 // TODO: slots expandIcon 展开图标 vertical
 // TODO: slots expandIcon 展开图标 horizontal
-// TODO: 🎯slots expandIcon 展开图标 inline
+// TODO: 👀 slots expandIcon 展开图标 inline
 
 export type KMenuItemProps = {
 	/**
@@ -182,4 +184,4 @@ export type SubMenuType = {
 // TODO: 🎯Items Slots slots label 分组标题 inline
 // TODO: Items Slots slots  icon  菜单图标 vertical
 // TODO: Items Slots slots  icon  菜单图标 horizontal
-// TODO: 🎯Items Slots slots  icon  菜单图标 inline
+// TODO: 👀 Items Slots slots  icon  菜单图标 inline
