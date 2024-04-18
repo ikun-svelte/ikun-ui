@@ -15,17 +15,33 @@ export const createKMenu = (
 			...options
 		},
 		__openUids: new Set(options.openUids),
-		syncOpenUids(
+		__selectedUids: new Set(options.selectedUids),
+		__selectedItems: new Map(),
+		syncUids(
 			uid: string | string[],
-			type: 'add' | 'delete' = 'add'){
+			type: 'open' | 'selected',
+			opType: 'add' | 'delete' = 'add'){
 			let uids = uid
 			if(isString(uid)){
 				uids = [uid as string]
 			}
 			if(isArray(uids)){
 				(uids as string[]).forEach(id => {
-					this.__openUids![type](id)
+					type === 'open' ? this.__openUids![opType](id) :  this.__selectedUids![opType](id)
 				});
+			}
+		},
+		syncSelectedItems(
+			item: SubMenuType,
+			opType: 'set' | 'delete' = 'set'
+		){
+			const { uid } = item
+			if(opType === 'set'){
+				this.__selectedItems?.set(uid!, item)
+			}
+
+			if(opType === 'delete'){
+				this.__selectedItems?.delete(uid!)
 			}
 		},
 		onOpenChange,

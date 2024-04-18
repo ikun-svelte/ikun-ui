@@ -10,6 +10,7 @@ export type KMenuInstanceOption = {
 	selectable?: boolean;
 	subMenuCloseDelay?: number;
 	subMenuOpenDelay?: number;
+	multiple?: boolean
 	theme?: 'light' | 'dark';
 	triggerSubMenuAction?: 'hover' | 'click';
 	attrs?: Record<string, string>;
@@ -21,16 +22,33 @@ export type ClickEvtPa = {
 	uidPath: string[]
 	e: MouseEvent
 }
+
+export type SelectEvtPa = {
+	item: SubMenuType
+	uid: string
+	uidPath: string[]
+	selectedUids: string[]
+	selectedItems: SubMenuType[]
+	selectedUidPaths: string[][]
+	e: MouseEvent
+}
+
 export type KMenuInstance = {
 	__propHandleEvtMap: Array<(props: Record<any, any>) => void>;
 	__dynamicProps: KMenuInstanceOption;
 	__org_items?: SubMenuType[]
+	__selectedUids? : Set<string>,
 	__openUids? : Set<string>
-	syncOpenUids: (
+	__selectedItems? : Map<string, SubMenuType>
+	syncSelectedItems: (
+		item: SubMenuType,
+		opType: 'set' | 'delete' = 'set') =>void
+	syncUids: (
 		uid: string | string[],
-		type: 'add' | 'delete' = 'add') =>void
+		type: 'open' | 'selected',
+		opType: 'add' | 'delete' = 'add') =>void
 	onOpenChange: (openUids: string[]) => void
-	onSelect: () => void
+	onSelect: (param: SelectEvtPa) => void
 	onClick: (param: ClickEvtPa) => void
 };
 
@@ -93,6 +111,11 @@ export type KMenuProps = {
 	 */
 	theme?: 'light' | 'dark';
 	/**
+	 * TODO: 是否允许多选
+	 * @default 'true'
+	 */
+	multiple?: boolean
+	/**
 	 * TODO: SubMenu 展开/关闭的触发行为(非 inline 模式)
 	 * @default 'hover'
 	 */
@@ -107,7 +130,7 @@ export type KMenuProps = {
 
 // TODO: 👀 onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） inline
 // TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 inline
-// TODO: 🎯 onSelect 被选中时调用(点击子菜单标题不触发） inline
+// TODO: 👀 onSelect 被选中时调用(点击子菜单标题不触发） inline
 // TODO: onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） vertical
 // TODO: onOpenChange SubMenu 展开/关闭的回调 vertical
 // TODO: onSelect 被选中时调用(点击子菜单标题不触发） vertical

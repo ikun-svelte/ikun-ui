@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { menuKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type { ClickEvtPa, KMenuProps } from "./types";
+	import type {ClickEvtPa, KMenuProps, SelectEvtPa} from "./types";
 	import { createEventDispatcher, getContext, setContext } from "svelte";
 	import { createKMenu, transitionIn, transitionOut } from './utils';
 	export let triggerSubMenuAction: KMenuProps['triggerSubMenuAction'] = 'hover';
@@ -15,14 +15,15 @@
 	export let selectedUids: KMenuProps['selectedUids'] = [];
 	export let openUids: KMenuProps['openUids'] = [];
 	export let show: KMenuProps['show'] = true;
+	export let multiple: KMenuProps['multiple'] = true;
 
 	const dispatch = createEventDispatcher();
 	function onOpenChange(openUids: string[]){
 		dispatch('openChange', openUids)
 	}
 
-	function onSelect(){
-		dispatch('select')
+	function onSelect(data: SelectEvtPa){
+		dispatch('select', data)
 	}
 
 	function onClick(data: ClickEvtPa){
@@ -40,6 +41,7 @@
 		inlineIndent,
 		openUids,
 		selectedUids,
+		multiple,
 		attrs
 	},
 		onOpenChange,
@@ -59,6 +61,7 @@
 				mode,
 				inlineIndent,
 				openUids,
+				multiple,
 				selectedUids,
 				attrs
 			});

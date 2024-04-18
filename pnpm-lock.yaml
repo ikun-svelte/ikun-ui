@@ -1764,6 +1764,9 @@ importers:
 
   components/Menu:
     dependencies:
+      '@ikun-ui/divider':
+        specifier: workspace:*
+        version: link:../Divider
       '@ikun-ui/icon':
         specifier: workspace:*
         version: link:../Icon

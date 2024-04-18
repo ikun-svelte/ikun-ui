@@ -35,9 +35,10 @@
 		 const res:SubMenuType[] = [];
 		 let deps: string[] = []
 		 list.forEach((value) => {
-			const defaultSelected = ctxProps.selectedUids?.includes(value.uid || '')
+			const defaultSelected = menuCtx.__selectedUids?.has(value.uid || '')
 			const defaultOpen = menuCtx.__openUids?.has(value.uid || '')
 			value.selected = defaultSelected
+			menuCtx.syncSelectedItems(value, value.selected ? 'set' : 'delete')
 			value.open = defaultOpen
 			if(defaultSelected){
 				deps.push(value.uid!)
@@ -73,8 +74,11 @@
 	let ctxProps: KMenuInstanceOption = {};
 	function updatedCtxProps(props: Record<any, any>) {
 		ctxProps = { ...props };
-		menuCtx.syncOpenUids(ctxProps.openUids || [])
+		menuCtx.syncUids(ctxProps.openUids || [], 'open')
+		menuCtx.syncUids(ctxProps.selectedUids || [], 'selected')
 		itemsList = initOpenSelectedStatus().children
+		// TODO: 更新 __selectedItems
+		// TODO: 初始化 __selectedItems
 	}
 	if (menuCtx) {
 		ctxProps = { ...menuCtx.__dynamicProps };
@@ -124,7 +128,7 @@
 					}
 
 					if(menuCtx){
-						menuCtx.syncOpenUids(value.uid!, value.open ? 'add' : 'delete')
+						menuCtx.syncUids(value.uid!, 'open', value.open ? 'add' : 'delete')
 						menuCtx.onOpenChange([...menuCtx.__openUids!])
 					}
 
@@ -146,12 +150,27 @@
 	async function handleSelect(it: SubMenuType, e: MouseEvent) {
 		itemsList = setOpenAndSelectStatus(it);
 		if(menuCtx){
+			const uidPath = getUidPath(it.uid!, menuCtx.__org_items!) || []
 			menuCtx.onClick({
 				item: it,
 				uid: it.uid!,
-				uidPath: getUidPath(it.uid!, menuCtx.__org_items!) || [],
+				uidPath,
 				e,
 			})
+			if(!hasSub(it) && !isGroup(it)){
+				menuCtx.syncUids(it.uid!, 'selected', it.selected ? 'add' : 'delete')
+				menuCtx.syncSelectedItems(it, it.selected ? 'set' : 'delete')
+				menuCtx.onSelect({
+					item: it,
+					uid: it.uid!,
+					uidPath,
+					selectedUids: [...menuCtx.__selectedUids!],
+					selectedItems: Array.from(menuCtx.__selectedItems!.values()),
+					selectedUidPaths: Array.from(menuCtx.__selectedItems!.keys())
+							.map(uid => getUidPath(uid, menuCtx.__org_items!) || []),
+					e,
+				})
+			}
 		}
 	}
 
