@@ -1,5 +1,5 @@
 import type {KMenuInstance, KMenuInstanceOption, SubMenuType} from './types';
-
+import { isArray, isString } from "baiwusanyu-utils";
 export const createKMenu = (
 	options: KMenuInstanceOption,
 	onOpenChange: KMenuInstance['onOpenChange'],
@@ -13,6 +13,20 @@ export const createKMenu = (
 		__propHandleEvtMap: [],
 		__dynamicProps: {
 			...options
+		},
+		__openUids: new Set(options.openUids),
+		syncOpenUids(
+			uid: string | string[],
+			type: 'add' | 'delete' = 'add'){
+			let uids = uid
+			if(isString(uid)){
+				uids = [uid as string]
+			}
+			if(isArray(uids)){
+				(uids as string[]).forEach(id => {
+					this.__openUids![type](id)
+				});
+			}
 		},
 		onOpenChange,
 		onSelect,

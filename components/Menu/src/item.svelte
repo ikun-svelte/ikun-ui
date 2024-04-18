@@ -11,7 +11,6 @@
 	export let cls: KMenuItemProps['cls'] = undefined;
 	export let attrs: KMenuItemProps['attrs'] = {};
 	export let level: KMenuItemProps['level'] = 1;
-	export let uid: KMenuItemProps['uid'] = '';
 	const dispatch = createEventDispatcher();
 	const hasSub = (it: SubMenuType) => !!(it.children && it.children.length);
 	const isNotHorizontal = () => ctxProps.mode !== 'horizontal';
@@ -27,20 +26,17 @@
 	$: {
     	itemsList = items
 		if(level === 1){
-			setRenderRecord()
+			itemsList = initOpenSelectedStatus().children
 		}
 	}
 
-	function setRenderRecord(){
-		itemsList = initOpenSelectedStatus().children
-	}
 
 	function initOpenSelectedStatus(list = itemsList) {
 		 const res:SubMenuType[] = [];
 		 let deps: string[] = []
 		 list.forEach((value) => {
 			const defaultSelected = ctxProps.selectedUids?.includes(value.uid || '')
-			const defaultOpen = ctxProps.openUids?.includes(value.uid || '')
+			const defaultOpen = menuCtx.__openUids?.has(value.uid || '')
 			value.selected = defaultSelected
 			value.open = defaultOpen
 			if(defaultSelected){
@@ -72,11 +68,13 @@
 			 deps
 		 }
 	}
+
 	const menuCtx = getContext(menuKey) as KMenuInstance;
 	let ctxProps: KMenuInstanceOption = {};
 	function updatedCtxProps(props: Record<any, any>) {
 		ctxProps = { ...props };
-		setRenderRecord()
+		menuCtx.syncOpenUids(ctxProps.openUids || [])
+		itemsList = initOpenSelectedStatus().children
 	}
 	if (menuCtx) {
 		ctxProps = { ...menuCtx.__dynamicProps };
@@ -124,6 +122,12 @@
 					if(value.selectedDeps){
 						value.selected = !!value.selectedDeps!.size;
 					}
+
+					if(menuCtx){
+						menuCtx.syncOpenUids(value.uid!, value.open ? 'add' : 'delete')
+						menuCtx.onOpenChange([...menuCtx.__openUids!])
+					}
+
 				}
 				/**
 				 * @internal

@@ -25,7 +25,11 @@ export type KMenuInstance = {
 	__propHandleEvtMap: Array<(props: Record<any, any>) => void>;
 	__dynamicProps: KMenuInstanceOption;
 	__org_items?: SubMenuType[]
-	onOpenChange: () => void
+	__openUids? : Set<string>
+	syncOpenUids: (
+		uid: string | string[],
+		type: 'add' | 'delete' = 'add') =>void
+	onOpenChange: (openUids: string[]) => void
 	onSelect: () => void
 	onClick: (param: ClickEvtPa) => void
 };
@@ -102,7 +106,7 @@ export type KMenuProps = {
 };
 
 // TODO: 👀 onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） inline
-// TODO: 🎯 onOpenChange SubMenu 展开/关闭的回调 inline
+// TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 inline
 // TODO: 🎯 onSelect 被选中时调用(点击子菜单标题不触发） inline
 // TODO: onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） vertical
 // TODO: onOpenChange SubMenu 展开/关闭的回调 vertical
@@ -120,10 +124,6 @@ export type KMenuItemProps = {
 	 * @internal
 	 */
 	level: number;
-	/**
-	 * @internal
-	 */
-	uid: string;
 	items: SubMenuType[];
 	cls: ClassValue;
 	attrs: Record<string, string>;

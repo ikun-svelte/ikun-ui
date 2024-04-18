@@ -17,8 +17,8 @@
 	export let show: KMenuProps['show'] = true;
 
 	const dispatch = createEventDispatcher();
-	function onOpenChange(){
-		dispatch('openChange')
+	function onOpenChange(openUids: string[]){
+		dispatch('openChange', openUids)
 	}
 
 	function onSelect(){
