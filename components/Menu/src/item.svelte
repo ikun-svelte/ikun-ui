@@ -77,8 +77,6 @@
 		menuCtx.syncUids(ctxProps.openUids || [], 'open')
 		menuCtx.syncUids(ctxProps.selectedUids || [], 'selected')
 		itemsList = initOpenSelectedStatus().children
-		// TODO: 更新 __selectedItems
-		// TODO: 初始化 __selectedItems
 	}
 	if (menuCtx) {
 		ctxProps = { ...menuCtx.__dynamicProps };

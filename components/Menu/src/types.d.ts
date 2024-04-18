@@ -89,7 +89,7 @@ export type KMenuProps = {
 	 */
 	selectedUids?: string[];
 	/**
-	 * TODO: 是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
+	 * TODO: 🎯是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
 	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) vertical
 	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) horizontal
 	 * @default false
