@@ -69,7 +69,9 @@ export type KMenuProps = {
 	 */
 	inlineCollapsed?: boolean;
 	/**
-	 * TODO: 🎯 菜单类型，现在支持垂直、水平、和内嵌模式三种
+	 * TODO: 👀 菜单类型，现在支持垂直、水平、和内嵌模式三种 inline
+	 * TODO: 🎯 菜单类型，现在支持垂直、水平、和内嵌模式三种 vertical
+	 * TODO:  菜单类型，现在支持垂直、水平、和内嵌模式三种 horizontal
 	 * `vertical` 和 `inline` 的区别在于 `vertical` 子菜单以 popover 形式出现
 	 * @default `vertical`
 	 */
@@ -89,7 +91,7 @@ export type KMenuProps = {
 	 */
 	selectedUids?: string[];
 	/**
-	 * TODO: 🎯是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
+	 * TODO: 👀是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
 	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) vertical
 	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) horizontal
 	 * @default false

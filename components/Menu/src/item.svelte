@@ -117,11 +117,14 @@
 		return list.map((value) => {
 			if (value.uid === it.uid && !isGroup(it)) {
 				// set selected
-				value.selected = !value.selected;
+				if(ctxProps.selectable){
+					value.selected = !value.selected;
+				}
+
 				// set open
 				if (hasSub(it)) {
 					value.open = !value.open;
-					if(value.selectedDeps){
+					if(value.selectedDeps && ctxProps.selectable){
 						value.selected = !!value.selectedDeps!.size;
 					}
 
@@ -131,13 +134,17 @@
 					}
 
 				}
-				/**
-				 * @internal
-				 */
-				dispatch('selectedRecursion', {
-					selected: value.selected,
-					uid: value.uid
-				})
+
+				if(ctxProps.selectable){
+					/**
+					 * @internal
+					 */
+					dispatch('selectedRecursion', {
+						selected: value.selected,
+						uid: value.uid
+					})
+				}
+
 			}
 			if (hasSub(value)) {
 				value.children = setOpenAndSelectStatus(it, value.children);
@@ -155,7 +162,7 @@
 				uidPath,
 				e,
 			})
-			if(!hasSub(it) && !isGroup(it)){
+			if(!hasSub(it) && !isGroup(it) && ctxProps.selectable){
 				menuCtx.syncUids(it.uid!, 'selected', it.selected ? 'add' : 'delete')
 				menuCtx.syncSelectedItems(it, it.selected ? 'set' : 'delete')
 				menuCtx.onSelect({

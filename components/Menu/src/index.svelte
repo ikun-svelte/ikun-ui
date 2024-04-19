@@ -16,7 +16,7 @@
 	export let openUids: KMenuProps['openUids'] = [];
 	export let show: KMenuProps['show'] = true;
 	export let multiple: KMenuProps['multiple'] = true;
-
+	export let selectable: KMenuProps['selectable'] = true;
 	const dispatch = createEventDispatcher();
 	function onOpenChange(openUids: string[]){
 		dispatch('openChange', openUids)
@@ -42,6 +42,7 @@
 		openUids,
 		selectedUids,
 		multiple,
+		selectable,
 		attrs
 	},
 		onOpenChange,
@@ -63,6 +64,7 @@
 				openUids,
 				multiple,
 				selectedUids,
+				selectable,
 				attrs
 			});
 		});
