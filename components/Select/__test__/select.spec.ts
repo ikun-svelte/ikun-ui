@@ -147,16 +147,16 @@ describe('Test: KSelect', () => {
 		inputEl.value = 'ikun';
 		inputEl.dispatchEvent(new Event('input', { cancelable: true }));
 		await tick();
-		await vi.advanceTimersByTimeAsync(400);
+		await vi.advanceTimersByTimeAsync(500);
 		expect(host.innerHTML.includes('no data')).toBeTruthy();
 		inputEl.value = 'Alabama';
 		inputEl.dispatchEvent(new Event('input', { cancelable: true }));
 		await tick();
-		await vi.advanceTimersByTimeAsync(400);
+		await vi.advanceTimersByTimeAsync(500);
 		const optionEl = host?.querySelectorAll('.k-virtual-list--item')[0].children[0];
 		(optionEl as HTMLElement)?.click();
 		await tick();
-		await vi.advanceTimersByTimeAsync(400);
+		await vi.advanceTimersByTimeAsync(500);
 		expect(valueEl?.innerHTML).toBe('{"label":"Alabama","value":"Alabama","id":"Alabama"}');
 	});
 

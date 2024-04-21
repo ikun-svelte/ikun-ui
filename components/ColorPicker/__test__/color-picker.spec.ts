@@ -46,7 +46,7 @@ describe('Test: KColorPicker', () => {
 		const btn = host.querySelector('[slot="triggerEl"]');
 		await fireEvent.click(btn);
 		await tick();
-		await vi.advanceTimersByTimeAsync(300);
+		await vi.advanceTimersByTimeAsync(500);
 		expect(host!.innerHTML.includes('k-color-picker--test')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
@@ -153,7 +153,7 @@ describe('Test: KColorPicker', () => {
 		const btn = host.querySelector('[slot="triggerEl"]');
 		await fireEvent.click(btn);
 		await tick();
-		await vi.advanceTimersByTimeAsync(400);
+		await vi.advanceTimersByTimeAsync(500);
 
 		const inputs = host.querySelectorAll('.k-input--inner');
 		expect(inputs[0].value).toBe('0');
@@ -195,7 +195,7 @@ describe('Test: KColorPicker', () => {
 		const btn = host.querySelector('[slot="triggerEl"]');
 		await fireEvent.click(btn);
 		await tick();
-		await vi.advanceTimersByTimeAsync(400);
+		await vi.advanceTimersByTimeAsync(500);
 
 		expect(host!.innerHTML.includes('k-color-picker-clear')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
@@ -262,7 +262,7 @@ describe('Test: KColorPicker', () => {
 		const btn = host.querySelector('[slot="triggerEl"]');
 		await fireEvent.click(btn);
 		await tick();
-		await vi.advanceTimersByTimeAsync(400);
+		await vi.advanceTimersByTimeAsync(500);
 
 		expect(host.querySelectorAll('.k-input--inner').length).toBe(3);
 		expect(host!.innerHTML.includes('k-color-picker--alpha')).not.toBeTruthy();
@@ -303,7 +303,7 @@ describe('Test: KColorPicker', () => {
 		const btn = host.querySelector('[slot="triggerEl"]');
 		await fireEvent.click(btn);
 		await tick();
-		await vi.advanceTimersByTimeAsync(400);
+		await vi.advanceTimersByTimeAsync(500);
 		const labelEl = host.querySelector('.k-color-picker-preset--label');
 		const checkBoxs = host.querySelectorAll('.k-checkbox--box');
 		expect(labelEl!.innerHTML.includes('primary')).toBeTruthy();
@@ -329,7 +329,7 @@ describe('Test: KColorPicker', () => {
 		const btn = host.querySelector('[slot="triggerEl"]');
 		await fireEvent.click(btn);
 		await tick();
-		await vi.advanceTimersByTimeAsync(400);
+		await vi.advanceTimersByTimeAsync(500);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -342,7 +342,7 @@ describe('Test: KColorPicker', () => {
 		const btn = host.querySelector('[slot="triggerEl"]');
 		await fireEvent.click(btn);
 		await tick();
-		await vi.advanceTimersByTimeAsync(400);
+		await vi.advanceTimersByTimeAsync(500);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -355,7 +355,7 @@ describe('Test: KColorPicker', () => {
 		const btn = host.querySelector('[slot="triggerEl"]');
 		await fireEvent.click(btn);
 		await tick();
-		await vi.advanceTimersByTimeAsync(400);
+		await vi.advanceTimersByTimeAsync(500);
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -368,7 +368,7 @@ describe('Test: KColorPicker', () => {
 		const btn = host.querySelector('[slot="triggerEl"]');
 		await fireEvent.click(btn);
 		await tick();
-		await vi.advanceTimersByTimeAsync(300);
+		await vi.advanceTimersByTimeAsync(500);
 		const resDom = host.querySelector('#format_test');
 		expect(resDom.innerHTML).toBe('hsv');
 		expect(host.innerHTML.includes('hsv(211, 59%, 100%)')).toBeTruthy();
@@ -482,13 +482,13 @@ describe('Test: KColorPicker', () => {
 		const btn = host.querySelector('#open');
 		await fireEvent.click(btn);
 		await tick();
-		await vi.advanceTimersByTimeAsync(400);
+		await vi.advanceTimersByTimeAsync(500);
 		expect(mockFn).toBeCalledTimes(1);
 		expect(host.innerHTML).matchSnapshot();
 		const close = host.querySelector('#close');
 		await fireEvent.click(close);
 		await tick();
-		await vi.advanceTimersByTimeAsync(400);
+		await vi.advanceTimersByTimeAsync(500);
 		expect(mockFn).toBeCalledTimes(2);
 	});
 	// TODO: events change unit test

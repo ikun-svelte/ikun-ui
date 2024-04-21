@@ -9,6 +9,8 @@ export type KPopoverProps = {
 	arrow: boolean;
 	cls: ClassValue;
 	clsTrigger: ClassValue;
+	mouseEnterDelay: number;
+	mouseLeaveDelay: number;
 	width: string | null | undefined;
 	attrs: Record<string, string>;
 };
