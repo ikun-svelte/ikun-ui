@@ -7,6 +7,8 @@ export type KTooltipProps = {
 	trigger: IKunTrigger;
 	content: string;
 	disabled: boolean;
+	mouseEnterDelay: number;
+	mouseLeaveDelay: number;
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };

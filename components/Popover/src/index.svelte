@@ -12,6 +12,8 @@
 	export let attrs: KPopoverProps['attrs'] = {};
 	export let disabled: KPopoverProps['disabled'] = false;
 	export let arrow: KPopoverProps['arrow'] = true;
+	export let mouseEnterDelay: KPopoverProps['mouseEnterDelay'] = 200;
+	export let mouseLeaveDelay: KPopoverProps['mouseLeaveDelay'] = 200;
 	export let cls: KPopoverProps['cls'] = undefined;
 	export let clsTrigger: KPopoverProps['clsTrigger'] = undefined;
 	/**
@@ -91,21 +93,19 @@
 	}
 	export function doUpdateShow(show: boolean) {
 		if (disabled && show) return;
-		setTimeout(
-			async () => {
-				if (isEnter) {
-					if (isShow) return;
-					isShow = true;
-					dispatch('change', isShow);
-					return;
-				}
-				if (show !== isShow) {
-					isShow = show;
-					dispatch('change', isShow);
-				}
-			},
-			trigger === 'hover' ? 200 : 0
-		);
+		const delay = show ? mouseEnterDelay : mouseLeaveDelay;
+		setTimeout(async () => {
+			if (isEnter) {
+				if (isShow) return;
+				isShow = true;
+				dispatch('change', isShow);
+				return;
+			}
+			if (show !== isShow) {
+				isShow = show;
+				dispatch('change', isShow);
+			}
+		}, delay);
 	}
 
 	function updateArrow() {

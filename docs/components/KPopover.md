@@ -43,14 +43,16 @@ Specify different trigger methods through the `trigger` attribute
 
 ## Popover Props
 
-| Name      | Type                                  | Default | Description                 |
-| --------- | ------------------------------------- | ------- | --------------------------- |
-| placement | `'top' / 'left' / 'right' / 'bottom'` | `top`   | Where the `popover` appears |
-| trigger   | `'manual' / 'click' / 'hover'`        | `hover` | How popovers are triggered  |
-| disabled  | `boolean`                             | `false` | Disabled the popover        |
-| arrow     | `boolean`                             | `true`  | Display the arrow           |
-| cls       | `string`                              | `-`     | Additional class            |
-| attrs     | `Record<string, string>`              | `{}`    | Additional attributes       |
+| Name            | Type                                  | Default | Description                                                           |
+| --------------- | ------------------------------------- | ------- | --------------------------------------------------------------------- |
+| placement       | `'top' / 'left' / 'right' / 'bottom'` | `top`   | Where the `popover` appears                                           |
+| trigger         | `'manual' / 'click' / 'hover'`        | `hover` | How popovers are triggered                                            |
+| disabled        | `boolean`                             | `false` | Disabled the popover                                                  |
+| mouseEnterDelay | `number`                              | `200`   | Delay in seconds, before `popover` is shown on mouse enter, unit `ms` |
+| mouseLeaveDelay | `number`                              | `200`   | Delay in seconds, before `popover` is shown on mouse enter, unit `ms` |
+| arrow           | `boolean`                             | `true`  | Display the arrow                                                     |
+| cls             | `string`                              | `-`     | Additional class                                                      |
+| attrs           | `Record<string, string>`              | `{}`    | Additional attributes                                                 |
 
 ## Popover Events
 
