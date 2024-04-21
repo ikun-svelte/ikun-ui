@@ -95,7 +95,7 @@ export type KMenuProps = {
 	 */
 	selectedUids?: string[];
 	/**
-	 * TODO: 👀是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
+	 * TODO: 👀 是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
 	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) vertical
 	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) horizontal
 	 * @default false
@@ -122,7 +122,7 @@ export type KMenuProps = {
 	 */
 	multiple?: boolean;
 	/**
-	 * TODO: SubMenu 展开/关闭的触发行为(非 inline 模式)
+	 * TODO: 👀 SubMenu 展开/关闭的触发行为(非 inline 模式)
 	 * @default 'hover'
 	 */
 	triggerSubMenuAction?: 'hover' | 'click';
@@ -194,7 +194,7 @@ export type SubMenuType = {
 	 */
 	theme?: 'light' | 'dark';
 	/**
-	 * TODO: 设置收缩时展示的悬浮标题(无子菜单情况下生效，不传时默认为 label)
+	 * TODO: 🎯设置收缩时展示的悬浮标题(无子菜单情况下生效，不传时默认为 label)
 	 */
 	title?: string;
 	/**
@@ -234,4 +234,4 @@ export type SubMenuType = {
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
 
 // TODO: onSelect 选择子菜单时，再次选择被错误的取消
-// TODO: 非 inline 模式只允許一個子菜單
+// TODO: 🎯 测试非inline 模式下 ‘👀’ 的功能

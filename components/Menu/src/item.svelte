@@ -9,6 +9,7 @@
 	import { getUidPath } from './utils';
 	import { KPopover } from '@ikun-ui/popover';
 	import type { OffsetsFunction, OffsetsFnPa  } from '@ikun-ui/popover';
+	import {jsonClone} from "baiwusanyu-utils";
 	export let items: KMenuItemProps['items'] = [];
 	export let cls: KMenuItemProps['cls'] = undefined;
 	export let attrs: KMenuItemProps['attrs'] = {};
@@ -20,14 +21,14 @@
 	const isGroup = (it: SubMenuType) => it.type === 'group';
 	const getLevel = (it: SubMenuType, lv: number) => {
 		if (isGroup(it)) {
-			return lv - 1;
+			return Math.max(lv - 1, 1);
 		}
 		return lv;
 	};
 
-	let itemsList = items;
+	let itemsList = level === 1 ? jsonClone(items) : items;
 	$: {
-		itemsList = items;
+		itemsList = level === 1 ? jsonClone(items) : items;
 		if (level === 1) {
 			itemsList = initOpenSelectedStatus().children;
 		}
@@ -94,7 +95,7 @@
 		};
 	}
 
-	const menuCtx = getContext(menuKey) as KMenuInstance;
+	const menuCtx = getContext(ctxKey || menuKey) as KMenuInstance;
 	let ctxProps: KMenuInstanceOption = {};
 
 	function updatedCtxProps(props: Record<any, any>) {
@@ -301,6 +302,7 @@
 			>
 				<svelte:self
 					uid={it.uid}
+					{ctxKey}
 					on:selectedRecursion={(e) => handleSelectedRecursion(e, index)}
 					items={it.children}
 					level={getLevel(it, level) + 1}
@@ -382,6 +384,7 @@
 				>
 					<svelte:self
 						uid={it.uid}
+						{ctxKey}
 						on:selectedRecursion={(e) => handleSelectedRecursion(e, index)}
 						items={it.children}
 						level={getLevel(it, level) + 1}
