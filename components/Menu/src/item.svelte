@@ -8,10 +8,12 @@
 	import { KMenu } from '@ikun-ui/menu';
 	import { getUidPath } from './utils';
 	import { KPopover } from '@ikun-ui/popover';
+	import type { OffsetsFunction, OffsetsFnPa  } from '@ikun-ui/popover';
 	export let items: KMenuItemProps['items'] = [];
 	export let cls: KMenuItemProps['cls'] = undefined;
 	export let attrs: KMenuItemProps['attrs'] = {};
 	export let level: KMenuItemProps['level'] = 1;
+	export let ctxKey: KMenuItemProps['ctxKey'] = '';
 	const dispatch = createEventDispatcher();
 	const hasSub = (it: SubMenuType) => !!(it.children && it.children.length);
 	const isNotHorizontal = () => ctxProps.mode !== 'horizontal';
@@ -31,13 +33,14 @@
 		}
 	}
 
-	function initOpenSelectedStatus(list = itemsList) {
+	function initOpenSelectedStatus(list = itemsList, inGroup: boolean = false) {
 		let res: SubMenuType[] = [];
 		let deps: string[] = [];
 		list.forEach((value) => {
 			const defaultSelected = menuCtx.__selectedUids?.has(value.uid || '');
 			const defaultOpen = menuCtx.__openUids?.has(value.uid || '');
 			value.selected = defaultSelected;
+			value.inGroup = inGroup
 			menuCtx.syncSelectedItems(value, value.selected ? 'set' : 'delete');
 			value.open = defaultOpen;
 			if (defaultSelected) {
@@ -62,7 +65,7 @@
 			}
 
 			if(hasSub(value) && ctxProps.mode === 'vertical'){
-				const recRes = initOpenSelectedStatus(value.children!);
+				const recRes = initOpenSelectedStatus(value.children!, isGroup(value));
 				if (!isGroup(value)) {
 					value.children = recRes.children;
 					!value.selectedDeps && (value.selectedDeps = new Set());
@@ -121,7 +124,6 @@
 		index: number
 	) {
 
-		debugger
 		const { selected, uid } = e.detail;
 		const it = itemsList[index];
 		if (!isGroup(it)) {
@@ -145,7 +147,6 @@
 	}
 
 	function setOpenAndSelectStatus(it: SubMenuType, list = itemsList) {
-		debugger
 		return list.map((value) => {
 			if (value.uid === it.uid && !isGroup(it)) {
 				// set selected
@@ -231,7 +232,7 @@
 	const iconCls = clsx(`${prefixCls}-icon`);
 	const iconRootCls = clsx(`${prefixCls}-icon-root`);
 
-	const expendIconCls = (it: SubMenuType) => {
+	$: expendIconCls = (it: SubMenuType) => {
 		if (ctxProps.mode === 'vertical') {
 			return resolvedExpandIcon;
 		}
@@ -254,12 +255,16 @@
 	};
 
 	const popoverContentCls = clsx(`${prefixCls}-popover-content p-0 box-border`);
-	const popoverTriggerCls = clsx(`${prefixCls}-popover-trigger`);
+	const popoverTriggerCls = clsx(`${prefixCls}-popover-trigger-v`);
 	$:getIndent = (it: SubMenuType) => {
 		if(ctxProps.mode !== 'inline') {
-			return `${ctxProps.inlineIndent}px`
+			return `${it.inGroup ? (ctxProps.inlineIndent || 24) * 2 : ctxProps.inlineIndent}px`
 		}
 		return `${(ctxProps.inlineIndent || 24) * getLevel(it, level)}px`
+	}
+
+	const setPopoverOffset: OffsetsFunction  = ({popper, placement, reference}: OffsetsFnPa) => {
+		return [popper.height / 2 - reference.height / 2, 4]
 	}
 
 </script>
@@ -295,6 +300,7 @@
 			<!--render submenu-->
 			<KMenu
 				{...ctxProps}
+				{ctxKey}
 				show={(hasSub(it) && it.open) || isGroup(it)}
 				cls={subMenuCls(isGroup(it))}
 			>
@@ -333,8 +339,9 @@
 	{#if ctxProps.mode === 'vertical'}
 		<KPopover
 			arrow={false}
-			width="auto"
+			width="100%"
 			placement="right"
+			offset={setPopoverOffset}
 			trigger={ctxProps.triggerSubMenuAction}
 			cls={popoverContentCls}
 			clsTrigger={popoverTriggerCls}
@@ -374,6 +381,7 @@
 			<div slot="contentEl">
 				<KMenu
 					{...ctxProps}
+					{ctxKey}
 					show={(hasSub(it)) && !isGroup(it)}
 					cls={subMenuCls(false)}
 				>
@@ -391,7 +399,7 @@
 											<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
 										{/if}
 									</slot>
-									<span class={titleContentCls(!!item.icon)}>{item.label} self</span>
+									<span class={titleContentCls(!!item.icon)}>{item.label}</span>
 								</span>
 								{#if hasSub(item)}
 									<slot name="expandIcon" {item} cls={iconCls}>

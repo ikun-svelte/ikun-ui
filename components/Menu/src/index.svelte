@@ -8,7 +8,7 @@
 	export let subMenuCloseDelay: KMenuProps['subMenuCloseDelay'] = 100;
 	export let subMenuOpenDelay: KMenuProps['subMenuOpenDelay'] = 0;
 	export let inlineIndent: KMenuProps['inlineIndent'] = 24;
-	export let expandIcon: KMenuProps['expandIcon'] = 'i-carbon-chevron-down';
+	export let expandIcon: KMenuProps['expandIcon'] = '';
 	export let mode: KMenuProps['mode'] = 'vertical';
 	export let cls: KMenuProps['cls'] = undefined;
 	export let attrs: KMenuProps['attrs'] = {};
@@ -17,6 +17,7 @@
 	export let show: KMenuProps['show'] = true;
 	export let multiple: KMenuProps['multiple'] = true;
 	export let selectable: KMenuProps['selectable'] = true;
+	export let ctxKey: KMenuProps['ctxKey'] = '';
 	const dispatch = createEventDispatcher();
 	function onOpenChange(openUids: string[]) {
 		dispatch('openChange', openUids);
@@ -44,14 +45,15 @@
 			selectedUids,
 			multiple,
 			selectable,
-			attrs
+			attrs,
+			ctxKey,
 		},
 		onOpenChange,
 		onSelect,
 		onClick
 	);
-	if (!getContext(menuKey)) {
-		setContext(menuKey, menuInst);
+	if (!getContext(ctxKey || menuKey)) {
+		setContext(ctxKey || menuKey, menuInst);
 	}
 	$: {
 		menuInst.__propHandleEvtMap.forEach((cb) => {
@@ -66,7 +68,8 @@
 				multiple,
 				selectedUids,
 				selectable,
-				attrs
+				attrs,
+				ctxKey,
 			});
 		});
 	}

@@ -21,6 +21,7 @@
 	 * @internal
 	 */
 	export let width: KPopoverProps['width'] = 'fit-content';
+	export let offset: KPopoverProps['offset'] = [0, 8];
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
 	const dispatch = createEventDispatcher();
@@ -31,7 +32,8 @@
 			{
 				name: 'offset',
 				options: {
-					offset: [0, 8]
+					// TODO: feature props
+					offset,
 				}
 			},
 			{

@@ -14,6 +14,7 @@ export type KMenuInstanceOption = {
 	theme?: 'light' | 'dark';
 	triggerSubMenuAction?: 'hover' | 'click';
 	attrs?: Record<string, string>;
+	ctxKey?: string
 };
 
 export type ClickEvtPa = {
@@ -52,6 +53,10 @@ export type KMenuInstance = {
 };
 
 export type KMenuProps = {
+	/**
+	 * TODO: 👀 上下文 key
+	 */
+	ctxKey?: string
 	/**
 	 * TODO: 👀 展开图标
 	 * @default 'i-carbon-chevron-down'
@@ -148,6 +153,10 @@ export type KMenuItemProps = {
 	 * @internal
 	 */
 	level: number;
+	/**
+	 * TODO: 👀 上下文 key
+	 */
+	ctxKey?: string
 	items: SubMenuType[];
 	cls: ClassValue;
 	attrs: Record<string, string>;
@@ -196,7 +205,10 @@ export type SubMenuType = {
 	 * TODO: 子菜单样式，mode="inline" 时无效
 	 */
 	popupClassName?: string;
-
+	/**
+	 * @internal
+	 */
+	inGroup?: boolean;
 	/**
 	 * @internal
 	 */
@@ -224,4 +236,3 @@ export type SubMenuType = {
 // TODO: onSelect 选择子菜单时，再次选择被错误的取消
 // TODO: 非 inline 模式只允許一個子菜單
 // TODO: popover 对齐
-// TODO: 处理group 样式
