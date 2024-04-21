@@ -32,7 +32,7 @@
 	}
 
 	function initOpenSelectedStatus(list = itemsList) {
-		const res: SubMenuType[] = [];
+		let res: SubMenuType[] = [];
 		let deps: string[] = [];
 		list.forEach((value) => {
 			const defaultSelected = menuCtx.__selectedUids?.has(value.uid || '');
@@ -44,7 +44,7 @@
 				deps.push(value.uid!);
 			}
 
-			if (hasSub(value)) {
+			if (hasSub(value) && ctxProps.mode === 'inline') {
 				const recRes = initOpenSelectedStatus(value.children!);
 				value.children = recRes.children;
 				if (!isGroup(value)) {
@@ -60,8 +60,31 @@
 					deps = recRes.deps;
 				}
 			}
+
+			if(hasSub(value) && ctxProps.mode === 'vertical'){
+				const recRes = initOpenSelectedStatus(value.children!);
+				if (!isGroup(value)) {
+					value.children = recRes.children;
+					!value.selectedDeps && (value.selectedDeps = new Set());
+					recRes.deps.forEach((d) => {
+						value.selectedDeps!.add(d);
+					});
+					value.selected = !!value.selectedDeps.size;
+					if (value.selected) {
+						deps.push(value.uid!);
+					}
+				} else {
+					const { children } = value
+					value.children = []
+					res.push({ ...value });
+					res = res.concat(children!)
+					deps = recRes.deps;
+					return
+				}
+			}
 			res.push({ ...value });
 		});
+
 		return {
 			children: res,
 			deps
@@ -97,6 +120,8 @@
 			| { detail: { selected: boolean; uid: string } },
 		index: number
 	) {
+
+		debugger
 		const { selected, uid } = e.detail;
 		const it = itemsList[index];
 		if (!isGroup(it)) {
@@ -120,6 +145,7 @@
 	}
 
 	function setOpenAndSelectStatus(it: SubMenuType, list = itemsList) {
+		debugger
 		return list.map((value) => {
 			if (value.uid === it.uid && !isGroup(it)) {
 				// set selected
@@ -228,7 +254,7 @@
 	};
 
 	const popoverContentCls = clsx(`${prefixCls}-popover-content p-0 box-border`);
-	const popoverTriggerCls = clsx(`${prefixCls}-popover-trigger !block`);
+	const popoverTriggerCls = clsx(`${prefixCls}-popover-trigger`);
 	$:getIndent = (it: SubMenuType) => {
 		if(ctxProps.mode !== 'inline') {
 			return `${ctxProps.inlineIndent}px`
@@ -236,7 +262,6 @@
 		return `${(ctxProps.inlineIndent || 24) * getLevel(it, level)}px`
 	}
 
-	let groupChildIndex = 0
 </script>
 
 {#each itemsList as it, index (it.uid)}
@@ -342,17 +367,6 @@
 							{/if}
 						</slot>
 					</li>
-					{#if isGroup(it)}
-						{#each (it.children || []) as child, childIndex (child.uid)}
-							<svelte:self
-								uid={child.uid}
-								on:selectedRecursion={(e) => handleSelectedRecursion(e, childIndex)}
-								items={[child]}
-								level={getLevel(child, level) + 1}
-							></svelte:self>
-						{/each}
-
-					{/if}
 				{:else}
 					<KDivider cls={dividerCls}></KDivider>
 				{/if}
@@ -361,7 +375,7 @@
 				<KMenu
 					{...ctxProps}
 					show={(hasSub(it)) && !isGroup(it)}
-					cls={subMenuCls(isGroup(it))}
+					cls={subMenuCls(false)}
 				>
 					<svelte:self
 						uid={it.uid}
@@ -379,7 +393,7 @@
 									</slot>
 									<span class={titleContentCls(!!item.icon)}>{item.label} self</span>
 								</span>
-								{#if hasSub(item) && !isGroup(item)}
+								{#if hasSub(item)}
 									<slot name="expandIcon" {item} cls={iconCls}>
 										<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(item)}
 										></KIcon>
