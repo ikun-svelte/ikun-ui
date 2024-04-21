@@ -35,6 +35,7 @@
 		"@ikun-ui/icon": "workspace:*",
 		"@ikun-ui/utils": "workspace:*",
 		"@ikun-ui/divider": "workspace:*",
+		"@ikun-ui/popover": "workspace:*",
 		"baiwusanyu-utils": "^1.0.18",
 		"clsx": "^2.0.0",
 		"svelte": "^4.2.7"

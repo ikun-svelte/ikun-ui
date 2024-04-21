@@ -2,7 +2,6 @@ export const menuShortcuts: Record<string, string> = {
 	'k-menu':
 		'bg-white text-ikun-tx-base p-0 m-0 box-border text-14px leading-0 list-none outline-none focus:outline-none k-menu-transition-w',
 
-
 	'k-menu-item': 'box-border select-none',
 	'k-menu-item-icon-root': 'truncate fsc',
 	'k-menu-item-icon': 'inline-flex text-inherit items-center leading-0 min-w-14px',
@@ -23,13 +22,19 @@ export const menuShortcuts: Record<string, string> = {
 
 	'k-menu-inline': 'bdr-1 b-e-solid border-ikun-bd-base',
 	'k-menu-vertical': 'bdr-1 b-e-solid border-ikun-bd-base',
-	'k-menu-item-vertical': '',
+
+	'k-menu-item-vertical': 'k-menu-item-inline',
+	'k-menu-item-vertical-group':
+		'k-menu-w k-menu-transition ' +
+		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px m-bs-4px m-be-4px ' +
+		'rounded-8px ikun:50:text-black',
+
 	'k-menu-item-inline':
 		'cursor-pointer k-menu-w k-menu-transition ' +
-		'flex items-center pr h-40px leading-40px list-style-position ps-16px p-ie-16px m-is-4px m-ie-4px m-bs-4px m-be-4px ' +
+		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px m-bs-4px m-be-4px ' +
 		'rounded-8px active:(ikun:20:bg-ikun-main)',
 	'k-menu-item-inline-group':
 		'k-menu-w k-menu-transition ' +
-		'flex items-center pr h-40px leading-40px list-style-position ps-16px p-ie-16px m-is-4px m-ie-4px m-bs-4px m-be-4px ' +
+		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px m-bs-4px m-be-4px ' +
 		'rounded-8px ikun:50:text-black'
 };

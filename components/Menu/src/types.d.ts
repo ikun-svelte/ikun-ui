@@ -10,46 +10,45 @@ export type KMenuInstanceOption = {
 	selectable?: boolean;
 	subMenuCloseDelay?: number;
 	subMenuOpenDelay?: number;
-	multiple?: boolean
+	multiple?: boolean;
 	theme?: 'light' | 'dark';
 	triggerSubMenuAction?: 'hover' | 'click';
 	attrs?: Record<string, string>;
 };
 
 export type ClickEvtPa = {
-	item: SubMenuType
-	uid: string,
-	uidPath: string[]
-	e: MouseEvent
-}
+	item: SubMenuType;
+	uid: string;
+	uidPath: string[];
+	e: MouseEvent;
+};
 
 export type SelectEvtPa = {
-	item: SubMenuType
-	uid: string
-	uidPath: string[]
-	selectedUids: string[]
-	selectedItems: SubMenuType[]
-	selectedUidPaths: string[][]
-	e: MouseEvent
-}
+	item: SubMenuType;
+	uid: string;
+	uidPath: string[];
+	selectedUids: string[];
+	selectedItems: SubMenuType[];
+	selectedUidPaths: string[][];
+	e: MouseEvent;
+};
 
 export type KMenuInstance = {
 	__propHandleEvtMap: Array<(props: Record<any, any>) => void>;
 	__dynamicProps: KMenuInstanceOption;
-	__org_items?: SubMenuType[]
-	__selectedUids? : Set<string>,
-	__openUids? : Set<string>
-	__selectedItems? : Map<string, SubMenuType>
-	syncSelectedItems: (
-		item: SubMenuType,
-		opType: 'set' | 'delete' = 'set') =>void
+	__org_items?: SubMenuType[];
+	__selectedUids?: Set<string>;
+	__openUids?: Set<string>;
+	__selectedItems?: Map<string, SubMenuType>;
+	syncSelectedItems: (item: SubMenuType, opType: 'set' | 'delete' = 'set') => void;
 	syncUids: (
 		uid: string | string[],
 		type: 'open' | 'selected',
-		opType: 'add' | 'delete' = 'add') =>void
-	onOpenChange: (openUids: string[]) => void
-	onSelect: (param: SelectEvtPa) => void
-	onClick: (param: ClickEvtPa) => void
+		opType: 'add' | 'delete' = 'add'
+	) => void;
+	onOpenChange: (openUids: string[]) => void;
+	onSelect: (param: SelectEvtPa) => void;
+	onClick: (param: ClickEvtPa) => void;
 };
 
 export type KMenuProps = {
@@ -116,7 +115,7 @@ export type KMenuProps = {
 	 * TODO: 是否允许多选
 	 * @default 'true'
 	 */
-	multiple?: boolean
+	multiple?: boolean;
 	/**
 	 * TODO: SubMenu 展开/关闭的触发行为(非 inline 模式)
 	 * @default 'hover'
@@ -188,7 +187,7 @@ export type SubMenuType = {
 	/**
 	 * TODO: 设置收缩时展示的悬浮标题(无子菜单情况下生效，不传时默认为 label)
 	 */
-	title?: string
+	title?: string;
 	/**
 	 * TODO:  👀 子菜单的菜单项
 	 */
@@ -197,18 +196,19 @@ export type SubMenuType = {
 	 * TODO: 子菜单样式，mode="inline" 时无效
 	 */
 	popupClassName?: string;
+
 	/**
 	 * @internal
 	 */
-	selected?: boolean
+	selected?: boolean;
 	/**
 	 * @internal
 	 */
-	open?: boolean
+	open?: boolean;
 	/**
 	 * @internal
 	 */
-	selectedDeps?: Set<string>
+	selectedDeps?: Set<string>;
 	[property: string]: any;
 };
 
@@ -220,3 +220,8 @@ export type SubMenuType = {
 // TODO: Items Slots slots  icon  菜单图标 vertical
 // TODO: Items Slots slots  icon  菜单图标 horizontal
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
+
+// TODO: onSelect 选择子菜单时，再次选择被错误的取消
+// TODO: 非 inline 模式只允許一個子菜單
+// TODO: popover 对齐
+// TODO: 处理group

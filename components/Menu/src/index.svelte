@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { menuKey, getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
-	import type {ClickEvtPa, KMenuProps, SelectEvtPa} from "./types";
-	import { createEventDispatcher, getContext, setContext } from "svelte";
+	import type { ClickEvtPa, KMenuProps, SelectEvtPa } from './types';
+	import { createEventDispatcher, getContext, setContext } from 'svelte';
 	import { createKMenu, transitionIn, transitionOut } from './utils';
 	export let triggerSubMenuAction: KMenuProps['triggerSubMenuAction'] = 'hover';
 	export let subMenuCloseDelay: KMenuProps['subMenuCloseDelay'] = 100;
@@ -18,38 +18,39 @@
 	export let multiple: KMenuProps['multiple'] = true;
 	export let selectable: KMenuProps['selectable'] = true;
 	const dispatch = createEventDispatcher();
-	function onOpenChange(openUids: string[]){
-		dispatch('openChange', openUids)
+	function onOpenChange(openUids: string[]) {
+		dispatch('openChange', openUids);
 	}
 
-	function onSelect(data: SelectEvtPa){
-		dispatch('select', data)
+	function onSelect(data: SelectEvtPa) {
+		dispatch('select', data);
 	}
 
-	function onClick(data: ClickEvtPa){
-		dispatch('click', data)
+	function onClick(data: ClickEvtPa) {
+		dispatch('click', data);
 	}
 	/**
 	 * @internal
 	 */
-	const menuInst = createKMenu({
-		triggerSubMenuAction,
-		subMenuCloseDelay,
-		subMenuOpenDelay,
-		expandIcon,
-		mode,
-		inlineIndent,
-		openUids,
-		selectedUids,
-		multiple,
-		selectable,
-		attrs
-	},
+	const menuInst = createKMenu(
+		{
+			triggerSubMenuAction,
+			subMenuCloseDelay,
+			subMenuOpenDelay,
+			expandIcon,
+			mode,
+			inlineIndent,
+			openUids,
+			selectedUids,
+			multiple,
+			selectable,
+			attrs
+		},
 		onOpenChange,
 		onSelect,
-		onClick,
+		onClick
 	);
-	if(!getContext(menuKey)){
+	if (!getContext(menuKey)) {
 		setContext(menuKey, menuInst);
 	}
 	$: {
@@ -75,10 +76,15 @@
 </script>
 
 {#if show}
-	<ul class={cnames}
-			style:transition="height 0.3s"
-			style:overflow="hidden"
-			in:transitionIn out:transitionOut {...$$restProps} {...attrs}>
+	<ul
+		class={cnames}
+		style:transition="height 0.3s"
+		style:overflow="hidden"
+		in:transitionIn
+		out:transitionOut
+		{...$$restProps}
+		{...attrs}
+	>
 		<slot />
 	</ul>
 {/if}

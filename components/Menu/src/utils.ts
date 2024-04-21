@@ -1,10 +1,10 @@
-import type {KMenuInstance, KMenuInstanceOption, SubMenuType} from './types';
-import { isArray, isString } from "baiwusanyu-utils";
+import type { KMenuInstance, KMenuInstanceOption, SubMenuType } from './types';
+import { isArray, isString } from 'baiwusanyu-utils';
 export const createKMenu = (
 	options: KMenuInstanceOption,
 	onOpenChange: KMenuInstance['onOpenChange'],
 	onSelect: KMenuInstance['onSelect'],
-	onClick: KMenuInstance['onClick'],
+	onClick: KMenuInstance['onClick']
 ): KMenuInstance => {
 	return {
 		/**
@@ -17,36 +17,30 @@ export const createKMenu = (
 		__openUids: new Set(options.openUids),
 		__selectedUids: new Set(options.selectedUids),
 		__selectedItems: new Map(),
-		syncUids(
-			uid: string | string[],
-			type: 'open' | 'selected',
-			opType: 'add' | 'delete' = 'add'){
-			let uids = uid
-			if(isString(uid)){
-				uids = [uid as string]
+		syncUids(uid: string | string[], type: 'open' | 'selected', opType: 'add' | 'delete' = 'add') {
+			let uids = uid;
+			if (isString(uid)) {
+				uids = [uid as string];
 			}
-			if(isArray(uids)){
-				(uids as string[]).forEach(id => {
-					type === 'open' ? this.__openUids![opType](id) :  this.__selectedUids![opType](id)
+			if (isArray(uids)) {
+				(uids as string[]).forEach((id) => {
+					type === 'open' ? this.__openUids![opType](id) : this.__selectedUids![opType](id);
 				});
 			}
 		},
-		syncSelectedItems(
-			item: SubMenuType,
-			opType: 'set' | 'delete' = 'set'
-		){
-			const { uid } = item
-			if(opType === 'set'){
-				this.__selectedItems?.set(uid!, item)
+		syncSelectedItems(item: SubMenuType, opType: 'set' | 'delete' = 'set') {
+			const { uid } = item;
+			if (opType === 'set') {
+				this.__selectedItems?.set(uid!, item);
 			}
 
-			if(opType === 'delete'){
-				this.__selectedItems?.delete(uid!)
+			if (opType === 'delete') {
+				this.__selectedItems?.delete(uid!);
 			}
 		},
 		onOpenChange,
 		onSelect,
-		onClick,
+		onClick
 	};
 };
 
@@ -66,7 +60,7 @@ export function transitionIn(node: HTMLElement) {
 }
 
 export function transitionOut(node: HTMLElement) {
-	const orgHeight = node.scrollHeight
+	const orgHeight = node.scrollHeight;
 	return {
 		duration: 300,
 		tick: (t: number) => {
@@ -81,7 +75,7 @@ export function transitionOut(node: HTMLElement) {
 	};
 }
 
-export function getUidPath(uid: string, list: SubMenuType[], path: string[] = []){
+export function getUidPath(uid: string, list: SubMenuType[], path: string[] = []) {
 	// 遍历树结构数组中的每个节点
 	for (const node of list) {
 		// 如果当前节点的 uid 与给定的 uid 匹配，返回当前路径
