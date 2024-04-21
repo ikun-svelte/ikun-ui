@@ -5,7 +5,7 @@
 	import { getPrefixCls, menuKey } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import { KDivider } from '@ikun-ui/divider';
-	import { KMenu } from '@ikun-ui/menu';
+	import KMenu from './index';
 	import { getUidPath } from './utils';
 	import { KPopover } from '@ikun-ui/popover';
 	import type { OffsetsFunction, OffsetsFnPa  } from '@ikun-ui/popover';
@@ -96,21 +96,15 @@
 
 	const menuCtx = getContext(menuKey) as KMenuInstance;
 	let ctxProps: KMenuInstanceOption = {};
-	let resolvedExpandIcon = 'i-carbon-chevron-down';
-	function setExpandIcon() {
-		resolvedExpandIcon =
-			ctxProps.mode === 'vertical' ? `${ctxProps.expandIcon} -rotate-90` : ctxProps.expandIcon!;
-	}
+
 	function updatedCtxProps(props: Record<any, any>) {
 		ctxProps = { ...props };
 		menuCtx.syncUids(ctxProps.openUids || [], 'open');
 		menuCtx.syncUids(ctxProps.selectedUids || [], 'selected');
 		itemsList = initOpenSelectedStatus().children;
-		setExpandIcon();
 	}
 	if (menuCtx) {
 		ctxProps = { ...menuCtx.__dynamicProps };
-		setExpandIcon();
 		menuCtx.__propHandleEvtMap.push(updatedCtxProps);
 		if (level === 1) {
 			menuCtx.__org_items = items;
@@ -233,12 +227,13 @@
 	const iconRootCls = clsx(`${prefixCls}-icon-root`);
 
 	$: expendIconCls = (it: SubMenuType) => {
+		const icon = (ctxProps.expandIcon || 'i-carbon-chevron-down ');
 		if (ctxProps.mode === 'vertical') {
-			return resolvedExpandIcon;
+			return `${icon} -rotate-90`
 		}
 		return it.open
-			? `${resolvedExpandIcon} rotate-180 k-icon-transition`
-			: `${resolvedExpandIcon} k-icon-transition`;
+			? `${icon} rotate-180 k-icon-transition`
+			: `${icon} k-icon-transition`;
 	};
 
 	const titleContentCls = (hasIcon: boolean) => {
@@ -263,7 +258,7 @@
 		return `${(ctxProps.inlineIndent || 24) * getLevel(it, level)}px`
 	}
 
-	const setPopoverOffset: OffsetsFunction  = ({popper, placement, reference}: OffsetsFnPa) => {
+	const setPopoverOffset: OffsetsFunction  = ({popper, reference}: OffsetsFnPa) => {
 		return [popper.height / 2 - reference.height / 2, 4]
 	}
 
