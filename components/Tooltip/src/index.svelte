@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { KPopover } from '@ikun-ui/popover';
+	import { KPopover, type KPopoverProps } from '@ikun-ui/popover';
 	import { clsx } from 'clsx';
 	import type { KTooltipProps } from './types';
 
@@ -12,11 +12,20 @@
 	export let disabled: KTooltipProps['disabled'] = false;
 	export let mouseEnterDelay: KTooltipProps['mouseEnterDelay'] = 200;
 	export let mouseLeaveDelay: KTooltipProps['mouseLeaveDelay'] = 200;
-
+	export let defaultOpen: KPopoverProps['defaultOpen'] = undefined;
 	$: cnames = clsx(cls);
 </script>
 
-<KPopover cls={cnames} {disabled} {trigger} {mouseEnterDelay} {mouseLeaveDelay} {placement} {attrs}>
+<KPopover
+	cls={cnames}
+	{disabled}
+	{trigger}
+	{mouseEnterDelay}
+	{mouseLeaveDelay}
+	{placement}
+	{attrs}
+	{defaultOpen}
+>
 	<span slot="contentEl">{content}</span>
 	<slot name="triggerEl" slot="triggerEl" />
 </KPopover>

@@ -3,6 +3,7 @@ import type { ClassValue } from 'clsx';
 import { IKunPlacement, IKunTrigger } from '@ikun-ui/utils';
 
 export type KPopoverProps = {
+	defaultOpen?: boolean;
 	placement: IKunPlacement;
 	trigger: IKunTrigger;
 	disabled: boolean;

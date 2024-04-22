@@ -4,7 +4,7 @@
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import type { KPopoverProps } from './types';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 
 	export let placement: KPopoverProps['placement'] = 'top';
 	// hover click manual
@@ -16,6 +16,7 @@
 	export let mouseLeaveDelay: KPopoverProps['mouseLeaveDelay'] = 200;
 	export let cls: KPopoverProps['cls'] = undefined;
 	export let clsTrigger: KPopoverProps['clsTrigger'] = undefined;
+	export let defaultOpen: KPopoverProps['defaultOpen'] = undefined;
 	/**
 	 * @internal
 	 */
@@ -61,6 +62,11 @@
 	} as PopperOptions<any>);
 
 	let isShow = false;
+	onMount(() => {
+		if (defaultOpen !== undefined) {
+			doUpdateShow(!!defaultOpen);
+		}
+	});
 	const handleClick = () => {
 		if (trigger === 'manual') {
 			doUpdateShow(!isShow);

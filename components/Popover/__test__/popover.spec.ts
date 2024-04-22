@@ -7,6 +7,7 @@ import KPopoverDisabled from './fixture/popover.disabled.svelte';
 import KPopoverChange from './fixture/popover.change.svelte';
 import KPopoverArrow from './fixture/popover.arrow.svelte';
 import KPopoverDelay from './fixture/popover.delay.svelte';
+import KPopoverOpen from './fixture/popover.open.svelte';
 let host: HTMLElement;
 
 const initHost = () => {
@@ -24,6 +25,15 @@ afterEach(() => {
 });
 // TODO E2E test
 describe('Test: KPopover', () => {
+	vi.mock('svelte', async () => {
+		const actual = (await vi.importActual('svelte')) as object;
+		return {
+			...actual,
+			// @ts-ignore
+			onMount: (await import('svelte/internal')).onMount
+		};
+	});
+
 	test('props: placement', async () => {
 		//@ts-ignore
 		const instance = new KPopoverPlacement({
@@ -82,6 +92,17 @@ describe('Test: KPopover', () => {
 		expect(host.innerHTML.includes('有美一人，清扬婉兮')).toBeTruthy();
 		expect(host.innerHTML.includes('data-popper-arrow-bottom')).not.toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: defaultOpen', async () => {
+		//@ts-ignore
+		const instance = new KPopoverOpen({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		await vi.advanceTimersByTimeAsync(500);
+		expect(host.innerHTML.includes('有美一人，清扬婉兮')).toBeTruthy();
 	});
 
 	test('props: trigger', async () => {
