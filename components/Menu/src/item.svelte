@@ -339,6 +339,8 @@
 			width="100%"
 			placement="right"
 			offset={setPopoverOffset}
+			mouseEnterDelay={ctxProps.subMenuOpenDelay}
+			mouseLeaveDelay={ctxProps.subMenuCloseDelay}
 			trigger={ctxProps.triggerSubMenuAction}
 			cls={popoverContentCls}
 			clsTrigger={popoverTriggerCls}
