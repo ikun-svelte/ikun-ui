@@ -44,11 +44,12 @@ Specify different trigger methods through the `trigger` attribute
 ## Tooltip Props
 
 | Name            | Type                                  | Default | Description                                                           |
-| --------------- | ------------------------------------- | ------- | --------------------------------------------------------------------- |
+|-----------------|---------------------------------------|---------| --------------------------------------------------------------------- |
 | placement       | `'top' / 'left' / 'right' / 'bottom'` | `top`   | Where the `tooltip` appears                                           |
 | trigger         | `'manual' / 'click' / 'hover'`        | `hover` | How `tooltip` are triggered                                           |
 | mouseEnterDelay | `number`                              | `200`   | Delay in seconds, before `tooltip` is shown on mouse enter, unit `ms` |
 | mouseLeaveDelay | `number`                              | `200`   | Delay in seconds, before `tooltip` is shown on mouse enter, unit `ms` |
+| defaultOpen     | `boolean`                             | `-`     | Open `tooltip` by default |
 | cls             | `string`                              | `-`     | Additional class                                                      |
 | attrs           | `Record<string, string>`              | `{}`    | Additional attributes                                                 |
 | content         | `string`                              | `-`     | `tooltip`'s content                                                   |
