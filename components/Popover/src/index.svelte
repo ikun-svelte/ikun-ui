@@ -93,12 +93,6 @@
 		}
 	};
 
-	export function updateShow(show: boolean) {
-		if (trigger === 'hover') {
-			isEnter = false;
-		}
-		doUpdateShow(show);
-	}
 	export function doUpdateShow(show: boolean) {
 		if (disabled && show) return;
 		const delay = show ? mouseEnterDelay : mouseLeaveDelay;
@@ -159,11 +153,25 @@
 
 	$: triggerCls = clsx('flex', clsTrigger);
 
+	export function updateShow(show: boolean) {
+		if (trigger === 'hover') {
+			isEnter = false;
+		}
+		doUpdateShow(show);
+	}
+
 	/**
 	 * @internal
 	 */
 	function onAnimationEnd() {
 		dispatch('animateEnd');
+	}
+
+	/**
+	 * @internal
+	 */
+	function onAnimationStart() {
+		dispatch('animateStart');
 	}
 
 	/**
@@ -211,6 +219,7 @@
 		out:scale={{ duration: 200, start: 0.3, opacity: 0 }}
 		in:scale={{ duration: 200, start: 0.3, opacity: 0 }}
 		on:animationend={onAnimationEnd}
+		on:animationstart={onAnimationStart}
 		data-popper-placement
 		aria-hidden="true"
 		{...attrs}

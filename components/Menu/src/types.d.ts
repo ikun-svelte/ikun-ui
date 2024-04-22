@@ -238,3 +238,7 @@ export type SubMenuType = {
 // TODO: 👀 Items Slots slots  icon  菜单图标 vertical
 // TODO: Items Slots slots  icon  菜单图标 horizontal
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
+
+// TODO: 🎯 popover 方向适配
+// TODO: 🎯 popover 显示根据 defaultOpen
+// TODO: 🎯 popover 重复调用显示

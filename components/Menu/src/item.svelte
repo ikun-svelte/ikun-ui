@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher, getContext } from 'svelte';
+	import { createEventDispatcher, getContext, onMount } from "svelte";
 	import { KIcon } from '@ikun-ui/icon';
 	import type { KMenuInstance, KMenuInstanceOption, KMenuItemProps, SubMenuType } from './types';
 	import { getPrefixCls, menuKey } from '@ikun-ui/utils';
@@ -210,6 +210,42 @@
 		}
 	}
 
+	let popoverRef: any = []
+  let subMenuRef: any = []
+	// 第一层的 popover 渲染动画结束后，
+	// 执行下一层的 popover 渲染
+	async function showSubMenuPopover(){
+		subMenuRef.forEach(ref => {
+			ref.showPopoverManual()
+		})
+	}
+
+	// 第一层的调用来自于 onMount
+	// 此外的调用来自于上层的 showSubMenuPopover
+  export function showPopoverManual(){
+		if(level === 1){
+			// 渲染第一层的 popover
+			popoverRef.forEach((ref, index) => {
+				ref.updateShow(itemsList[index].open)
+			})
+		} else {
+			// 延时显示，确保上一层动画已经执行完成
+			setTimeout(() => {
+				popoverRef.forEach((ref, index) => {
+					ref.updateShow(itemsList[index].open)
+				})
+			}, 200)
+		}
+	}
+
+	onMount(() => {
+		if(level === 1){
+			// 渲染第一层的 popover
+			showPopoverManual()
+		}
+	})
+
+
 	const menuPrefixCls = getPrefixCls('menu');
 	const prefixCls = getPrefixCls('menu-item');
 	$: cnames = (it: SubMenuType) => {
@@ -336,9 +372,11 @@
 
 	{#if ctxProps.mode === 'vertical'}
 		<KPopover
+			bind:this={popoverRef[index]}
 			arrow={false}
 			width="100%"
 			placement="right"
+			on:animateStart={showSubMenuPopover}
 			offset={setPopoverOffset}
 			mouseEnterDelay={ctxProps.subMenuOpenDelay}
 			mouseLeaveDelay={ctxProps.subMenuCloseDelay}
@@ -383,6 +421,7 @@
 					<svelte:self
 						uid={it.uid}
 						{ctxKey}
+						bind:this={subMenuRef[index]}
 						on:selectedRecursion={(e) => handleSelectedRecursion(e, index)}
 						items={it.children}
 						level={getLevel(it, level) + 1}
