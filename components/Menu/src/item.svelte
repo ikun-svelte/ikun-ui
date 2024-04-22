@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher, getContext, onMount } from "svelte";
+	import { createEventDispatcher, getContext, onMount } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import type { KMenuInstance, KMenuInstanceOption, KMenuItemProps, SubMenuType } from './types';
 	import { getPrefixCls, menuKey } from '@ikun-ui/utils';
@@ -140,7 +140,7 @@
 		}
 	}
 
-	function setOpenAndSelectStatus(it: SubMenuType, list = itemsList) {
+	function setOpenAndSelectStatus(it: SubMenuType, list = itemsList, parentOpen?: boolean) {
 		return list.map((value) => {
 			if (value.uid === it.uid && !isGroup(it)) {
 				// set selected
@@ -171,8 +171,16 @@
 					});
 				}
 			}
+
+			if (ctxProps.mode !== 'inline' && parentOpen !== undefined && hasSub(it) && !isGroup(it)) {
+				value.open = false;
+				if (menuCtx) {
+					menuCtx.syncUids(value.uid!, 'open', 'delete');
+				}
+			}
+
 			if (hasSub(value)) {
-				value.children = setOpenAndSelectStatus(it, value.children);
+				value.children = setOpenAndSelectStatus(it, value.children, value.open);
 			}
 			return value;
 		});
@@ -210,41 +218,44 @@
 		}
 	}
 
-	let popoverRef: any = []
-  let subMenuRef: any = []
+	let popoverRef: any = [];
+	let subMenuRef: any = [];
+	let isDirty = true;
 	// 第一层的 popover 渲染动画结束后，
 	// 执行下一层的 popover 渲染
-	async function showSubMenuPopover(){
-		subMenuRef.forEach(ref => {
-			ref.showPopoverManual()
-		})
+	async function showSubMenuPopover() {
+		ctxProps.mode !== 'inline' &&
+			isDirty &&
+			subMenuRef.forEach((ref: any) => {
+				ref && ref.showPopoverManual && ref.showPopoverManual();
+			});
+		isDirty = false;
 	}
 
 	// 第一层的调用来自于 onMount
 	// 此外的调用来自于上层的 showSubMenuPopover
-  export function showPopoverManual(){
-		if(level === 1){
+	export function showPopoverManual() {
+		if (level === 1) {
 			// 渲染第一层的 popover
-			popoverRef.forEach((ref, index) => {
-				ref.updateShow(itemsList[index].open)
-			})
+			popoverRef.forEach((ref: any, index: number) => {
+				ref && ref.updateShow && ref.updateShow(itemsList[index].open);
+			});
 		} else {
 			// 延时显示，确保上一层动画已经执行完成
 			setTimeout(() => {
-				popoverRef.forEach((ref, index) => {
-					ref.updateShow(itemsList[index].open)
-				})
-			}, 200)
+				popoverRef.forEach((ref: any, index: number) => {
+					ref && ref.updateShow && ref.updateShow(itemsList[index].open);
+				});
+			}, 300);
 		}
 	}
 
 	onMount(() => {
-		if(level === 1){
+		if (level === 1 && ctxProps.mode !== 'inline') {
 			// 渲染第一层的 popover
-			showPopoverManual()
+			showPopoverManual();
 		}
-	})
-
+	});
 
 	const menuPrefixCls = getPrefixCls('menu');
 	const prefixCls = getPrefixCls('menu-item');
@@ -378,6 +389,7 @@
 			placement="right"
 			on:animateStart={showSubMenuPopover}
 			offset={setPopoverOffset}
+			fallbackPlacements={['right', 'left']}
 			mouseEnterDelay={ctxProps.subMenuOpenDelay}
 			mouseLeaveDelay={ctxProps.subMenuCloseDelay}
 			trigger={ctxProps.triggerSubMenuAction}

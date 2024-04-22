@@ -22,6 +22,12 @@
 	 */
 	export let width: KPopoverProps['width'] = 'fit-content';
 	export let offset: KPopoverProps['offset'] = [0, 8];
+	export let fallbackPlacements: KPopoverProps['fallbackPlacements'] = [
+		'top',
+		'right',
+		'bottom',
+		'left'
+	];
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
 	const dispatch = createEventDispatcher();
@@ -33,13 +39,13 @@
 				name: 'offset',
 				options: {
 					// TODO: feature props
-					offset,
+					offset
 				}
 			},
 			{
 				name: 'flip',
 				options: {
-					fallbackPlacements: ['top', 'right', 'bottom', 'left']
+					fallbackPlacements
 				}
 			},
 			{

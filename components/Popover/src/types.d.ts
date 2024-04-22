@@ -13,10 +13,11 @@ export type KPopoverProps = {
 	clsTrigger: ClassValue;
 	mouseEnterDelay: number;
 	mouseLeaveDelay: number;
+	fallbackPlacements: string[];
 	width: string | null | undefined;
 	attrs: Record<string, string>;
 };
 
 export type OffsetsFunction = (data: OffsetsFnPa) => [?number, ?number];
 
-export type OffsetsFnPa = { popper: DOMRect, reference: DOMRect, placement: IKunPlacement }
+export type OffsetsFnPa = { popper: DOMRect; reference: DOMRect; placement: IKunPlacement };

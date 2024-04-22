@@ -83,7 +83,7 @@ export type KMenuProps = {
 	mode?: `vertical` | `horizontal` | `inline`;
 	/**
 	 * TODO: 👀 当前展开的 SubMenu 菜单项 key 数组 inline
-	 * TODO: 🎯 当前展开的 SubMenu 菜单项 key 数组 vertical
+	 * TODO: 👀 当前展开的 SubMenu 菜单项 key 数组 vertical
 	 * TODO: 当前展开的 SubMenu 菜单项 key 数组 horizontal
 	 * @default `[]`
 	 */
@@ -238,7 +238,3 @@ export type SubMenuType = {
 // TODO: 👀 Items Slots slots  icon  菜单图标 vertical
 // TODO: Items Slots slots  icon  菜单图标 horizontal
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
-
-// TODO: 🎯 popover 方向适配
-// TODO: 🎯 popover 显示根据 defaultOpen
-// TODO: 🎯 popover 重复调用显示
