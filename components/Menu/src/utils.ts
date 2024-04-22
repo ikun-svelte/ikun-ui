@@ -4,7 +4,8 @@ export const createKMenu = (
 	options: KMenuInstanceOption,
 	onOpenChange: KMenuInstance['onOpenChange'],
 	onSelect: KMenuInstance['onSelect'],
-	onClick: KMenuInstance['onClick']
+	onClick: KMenuInstance['onClick'],
+	onDeSelect: KMenuInstance['onDeSelect']
 ): KMenuInstance => {
 	return {
 		/**
@@ -40,7 +41,8 @@ export const createKMenu = (
 		},
 		onOpenChange,
 		onSelect,
-		onClick
+		onClick,
+		onDeSelect
 	};
 };
 

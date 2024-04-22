@@ -30,6 +30,10 @@
 	function onClick(data: ClickEvtPa) {
 		dispatch('click', data);
 	}
+
+	function onDeSelect(data: SelectEvtPa) {
+		dispatch('deSelect', data);
+	}
 	/**
 	 * @internal
 	 */
@@ -46,11 +50,12 @@
 			multiple,
 			selectable,
 			attrs,
-			ctxKey,
+			ctxKey
 		},
 		onOpenChange,
 		onSelect,
-		onClick
+		onClick,
+		onDeSelect
 	);
 	if (!getContext(ctxKey || menuKey)) {
 		setContext(ctxKey || menuKey, menuInst);
@@ -69,7 +74,7 @@
 				selectedUids,
 				selectable,
 				attrs,
-				ctxKey,
+				ctxKey
 			});
 		});
 	}

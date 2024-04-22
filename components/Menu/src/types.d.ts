@@ -14,7 +14,7 @@ export type KMenuInstanceOption = {
 	theme?: 'light' | 'dark';
 	triggerSubMenuAction?: 'hover' | 'click';
 	attrs?: Record<string, string>;
-	ctxKey?: string
+	ctxKey?: string;
 };
 
 export type ClickEvtPa = {
@@ -49,6 +49,7 @@ export type KMenuInstance = {
 	) => void;
 	onOpenChange: (openUids: string[]) => void;
 	onSelect: (param: SelectEvtPa) => void;
+	onDeSelect: (param: SelectEvtPa) => void;
 	onClick: (param: ClickEvtPa) => void;
 };
 
@@ -56,7 +57,7 @@ export type KMenuProps = {
 	/**
 	 * TODO: 👀 上下文 key
 	 */
-	ctxKey?: string
+	ctxKey?: string;
 	/**
 	 * TODO: 👀 展开图标
 	 * @default 'i-carbon-chevron-down'
@@ -137,14 +138,17 @@ export type KMenuProps = {
 // TODO: 👀 onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） inline
 // TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 inline
 // TODO: 👀 onSelect 被选中时调用(点击子菜单标题不触发） inline
+// TODO: 👀 onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
 // TODO: 👀 onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） vertical
 // TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 vertical
 // TODO: 👀 onSelect 被选中时调用(点击子菜单标题不触发） vertical
+// TODO: 👀 onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
 // TODO: onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） horizontal
 // TODO: onOpenChange SubMenu 展开/关闭的回调 horizontal
 // TODO: onSelect 被选中时调用(点击子菜单标题不触发） horizontal
+// TODO: onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
 // TODO: 👀 slots expandIcon 展开图标 vertical
 // TODO: slots expandIcon 展开图标 horizontal
@@ -158,7 +162,7 @@ export type KMenuItemProps = {
 	/**
 	 * TODO: 👀 上下文 key
 	 */
-	ctxKey?: string
+	ctxKey?: string;
 	items: SubMenuType[];
 	cls: ClassValue;
 	attrs: Record<string, string>;
@@ -234,6 +238,3 @@ export type SubMenuType = {
 // TODO: 👀 Items Slots slots  icon  菜单图标 vertical
 // TODO: Items Slots slots  icon  菜单图标 horizontal
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
-
-// TODO: 🎯 onSelect 选择子菜单时，选择和取消的预期行为是什么
-// TODO: 🎯 onOpenChange 选择和取消的预期行为是什么

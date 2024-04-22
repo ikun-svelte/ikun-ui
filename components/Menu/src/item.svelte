@@ -8,8 +8,8 @@
 	import KMenu from './index';
 	import { getUidPath } from './utils';
 	import { KPopover } from '@ikun-ui/popover';
-	import type { OffsetsFunction, OffsetsFnPa  } from '@ikun-ui/popover';
-	import {jsonClone} from "baiwusanyu-utils";
+	import type { OffsetsFunction, OffsetsFnPa } from '@ikun-ui/popover';
+	import { jsonClone } from 'baiwusanyu-utils';
 	export let items: KMenuItemProps['items'] = [];
 	export let cls: KMenuItemProps['cls'] = undefined;
 	export let attrs: KMenuItemProps['attrs'] = {};
@@ -41,7 +41,7 @@
 			const defaultSelected = menuCtx.__selectedUids?.has(value.uid || '');
 			const defaultOpen = menuCtx.__openUids?.has(value.uid || '');
 			value.selected = defaultSelected;
-			value.inGroup = inGroup
+			value.inGroup = inGroup;
 			menuCtx.syncSelectedItems(value, value.selected ? 'set' : 'delete');
 			value.open = defaultOpen;
 			if (defaultSelected) {
@@ -65,7 +65,7 @@
 				}
 			}
 
-			if(hasSub(value) && ctxProps.mode === 'vertical'){
+			if (hasSub(value) && ctxProps.mode === 'vertical') {
 				const recRes = initOpenSelectedStatus(value.children!, isGroup(value));
 				if (!isGroup(value)) {
 					value.children = recRes.children;
@@ -78,12 +78,12 @@
 						deps.push(value.uid!);
 					}
 				} else {
-					const { children } = value
-					value.children = []
+					const { children } = value;
+					value.children = [];
 					res.push({ ...value });
-					res = res.concat(children!)
+					res = res.concat(children!);
 					deps = recRes.deps;
-					return
+					return;
 				}
 			}
 			res.push({ ...value });
@@ -118,7 +118,6 @@
 			| { detail: { selected: boolean; uid: string } },
 		index: number
 	) {
-
 		const { selected, uid } = e.detail;
 		const it = itemsList[index];
 		if (!isGroup(it)) {
@@ -191,7 +190,7 @@
 			if (!hasSub(it) && !isGroup(it) && ctxProps.selectable) {
 				menuCtx.syncUids(it.uid!, 'selected', it.selected ? 'add' : 'delete');
 				menuCtx.syncSelectedItems(it, it.selected ? 'set' : 'delete');
-				menuCtx.onSelect({
+				const params = {
 					item: it,
 					uid: it.uid!,
 					uidPath,
@@ -201,7 +200,12 @@
 						(uid) => getUidPath(uid, menuCtx.__org_items!) || []
 					),
 					e
-				});
+				};
+				if (it.selected) {
+					menuCtx.onSelect(params);
+				} else {
+					menuCtx.onDeSelect(params);
+				}
 			}
 		}
 	}
@@ -228,13 +232,11 @@
 	const iconRootCls = clsx(`${prefixCls}-icon-root`);
 
 	$: expendIconCls = (it: SubMenuType) => {
-		const icon = (ctxProps.expandIcon || 'i-carbon-chevron-down ');
+		const icon = ctxProps.expandIcon || 'i-carbon-chevron-down ';
 		if (ctxProps.mode === 'vertical') {
-			return `${icon} -rotate-90`
+			return `${icon} -rotate-90`;
 		}
-		return it.open
-			? `${icon} rotate-180 k-icon-transition`
-			: `${icon} k-icon-transition`;
+		return it.open ? `${icon} rotate-180 k-icon-transition` : `${icon} k-icon-transition`;
 	};
 
 	const titleContentCls = (hasIcon: boolean) => {
@@ -252,17 +254,16 @@
 
 	const popoverContentCls = clsx(`${prefixCls}-popover-content p-0 box-border`);
 	const popoverTriggerCls = clsx(`${prefixCls}-popover-trigger-v`);
-	$:getIndent = (it: SubMenuType) => {
-		if(ctxProps.mode !== 'inline') {
-			return `${it.inGroup ? (ctxProps.inlineIndent || 24) * 2 : ctxProps.inlineIndent}px`
+	$: getIndent = (it: SubMenuType) => {
+		if (ctxProps.mode !== 'inline') {
+			return `${it.inGroup ? (ctxProps.inlineIndent || 24) * 2 : ctxProps.inlineIndent}px`;
 		}
-		return `${(ctxProps.inlineIndent || 24) * getLevel(it, level)}px`
-	}
+		return `${(ctxProps.inlineIndent || 24) * getLevel(it, level)}px`;
+	};
 
-	const setPopoverOffset: OffsetsFunction  = ({popper, reference}: OffsetsFnPa) => {
-		return [popper.height / 2 - reference.height / 2, 4]
-	}
-
+	const setPopoverOffset: OffsetsFunction = ({ popper, reference }: OffsetsFnPa) => {
+		return [popper.height / 2 - reference.height / 2, 4];
+	};
 </script>
 
 {#each itemsList as it, index (it.uid)}
@@ -344,7 +345,7 @@
 			trigger={ctxProps.triggerSubMenuAction}
 			cls={popoverContentCls}
 			clsTrigger={popoverTriggerCls}
-			disabled={!((hasSub(it)) || isGroup(it))}
+			disabled={!(hasSub(it) || isGroup(it))}
 		>
 			<svelte:fragment slot="triggerEl">
 				{#if it.type !== 'divider'}
@@ -378,12 +379,7 @@
 				{/if}
 			</svelte:fragment>
 			<div slot="contentEl">
-				<KMenu
-					{...ctxProps}
-					{ctxKey}
-					show={(hasSub(it)) && !isGroup(it)}
-					cls={subMenuCls(false)}
-				>
+				<KMenu {...ctxProps} {ctxKey} show={hasSub(it) && !isGroup(it)} cls={subMenuCls(false)}>
 					<svelte:self
 						uid={it.uid}
 						{ctxKey}
