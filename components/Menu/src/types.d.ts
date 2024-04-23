@@ -85,21 +85,21 @@ export type KMenuProps = {
 	/**
 	 * TODO: 👀 当前展开的 SubMenu 菜单项 key 数组 inline
 	 * TODO: 👀 当前展开的 SubMenu 菜单项 key 数组 vertical
-	 * TODO: 当前展开的 SubMenu 菜单项 key 数组 horizontal
+	 * TODO: 👀 当前展开的 SubMenu 菜单项 key 数组 horizontal
 	 * @default `[]`
 	 */
 	openUids?: string[];
 	/**
 	 * TODO: 👀 当前选中的菜单项 key 数组(子菜单只高亮，不展开) inline
 	 * TODO: 👀 当前选中的菜单项 key 数组(子菜单只高亮，不展开) vertical
-	 * TODO: 当前选中的菜单项 key 数组(子菜单只高亮，不展开) horizontal
+	 * TODO: 👀 当前选中的菜单项 key 数组(子菜单只高亮，不展开) horizontal
 	 * @default `[]`
 	 */
 	selectedUids?: string[];
 	/**
 	 * TODO: 👀 是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
 	 * TODO: 👀 是否允许选中(为 false，  点击不高亮，不触发 select事件) vertical
-	 * TODO: 是否允许选中(为 false，  点击不高亮，不触发 select事件) horizontal
+	 * TODO: 👀 是否允许选中(为 false，  点击不高亮，不触发 select事件) horizontal
 	 * @default false
 	 */
 	selectable?: boolean;
@@ -146,13 +146,13 @@ export type KMenuProps = {
 // TODO: 👀 onSelect 被选中时调用(点击子菜单标题不触发） vertical
 // TODO: 👀 onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
-// TODO: onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） horizontal
-// TODO: onOpenChange SubMenu 展开/关闭的回调 horizontal
-// TODO: onSelect 被选中时调用(点击子菜单标题不触发） horizontal
-// TODO: onDeSelect 被选中时调用(点击子菜单标题不触发） inline
+// TODO: 👀 onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） horizontal
+// TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 horizontal
+// TODO: 👀 onSelect 被选中时调用(点击子菜单标题不触发） horizontal
+// TODO: 👀 onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
 // TODO: 👀 slots expandIcon 展开图标 vertical
-// TODO: slots expandIcon 展开图标 horizontal
+// TODO: 👀 slots expandIcon 展开图标 horizontal
 // TODO: 👀 slots expandIcon 展开图标 inline
 
 export type KMenuItemProps = {
@@ -241,4 +241,3 @@ export type SubMenuType = {
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
 
 // 🎯 TODO horizontal 缩略适配
-// 🎯 TODO 所有 👀 功能 分(exclude Items Slots slots  icon  菜单图标 inline)

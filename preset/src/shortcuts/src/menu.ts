@@ -37,9 +37,9 @@ export const menuShortcuts: Record<string, string> = {
 	'k-menu-item-popover-content': 'p-0 box-border',
 	'k-menu-item-horizontal':
 		'cursor-pointer k-menu-w k-menu-transition ' +
-		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +
+		'fcc pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +
 		'rounded-8px my-0',
-	'k-menu-item-horizontal-not-top': 'k-menu-item-horizontal active:(ikun:20:bg-ikun-main)',
+	'k-menu-item-horizontal-not-top': 'k-menu-item-horizontal fbc active:(ikun:20:bg-ikun-main)',
 	'k-menu-item-horizontal-group':
 		'k-menu-w k-menu-transition ' +
 		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px ' +

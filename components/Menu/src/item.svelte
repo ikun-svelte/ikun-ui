@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher, getContext, onMount } from 'svelte';
+	import {createEventDispatcher, getContext, onDestroy, onMount} from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import type { KMenuInstance, KMenuInstanceOption, KMenuItemProps, SubMenuType } from './types';
 	import { getPrefixCls, menuKey } from '@ikun-ui/utils';
@@ -10,6 +10,7 @@
 	import { KPopover } from '@ikun-ui/popover';
 	import type { OffsetsFunction, OffsetsFnPa } from '@ikun-ui/popover';
 	import { jsonClone } from 'baiwusanyu-utils';
+	import { BROWSER } from "esm-env";
 	export let items: KMenuItemProps['items'] = [];
 	export let cls: KMenuItemProps['cls'] = undefined;
 	export let attrs: KMenuItemProps['attrs'] = {};
@@ -226,8 +227,6 @@
 	let popoverRef: any = [];
 	let subMenuRef: any = [];
 	let isDirty = true;
-	// 第一层的 popover 渲染动画结束后，
-	// 执行下一层的 popover 渲染
 	async function showSubMenuPopover() {
 		ctxProps.mode !== 'inline' &&
 			isDirty &&
@@ -237,16 +236,12 @@
 		isDirty = false;
 	}
 
-	// 第一层的调用来自于 onMount
-	// 此外的调用来自于上层的 showSubMenuPopover
 	export function showPopoverManual() {
 		if (level === 1) {
-			// 渲染第一层的 popover
 			popoverRef.forEach((ref: any, index: number) => {
 				ref && ref.updateShow && ref.updateShow(itemsList[index].open);
 			});
 		} else {
-			// 延时显示，确保上一层动画已经执行完成
 			setTimeout(() => {
 				popoverRef.forEach((ref: any, index: number) => {
 					ref && ref.updateShow && ref.updateShow(itemsList[index].open);
@@ -255,12 +250,54 @@
 		}
 	}
 
+	let parentDom: HTMLElement | null = null
+	let moreItems: SubMenuType[] = []
+	function adjustLayout() {
+		if(parentDom && level === 1){
+			const parentWidth = parentDom.offsetWidth;
+			let totalWidth = 0;
+			let childrenToMove: SubMenuType[] = [];
+			console.log(parentWidth)
+			parentDom.childNodes.forEach((child: any, index: number) => {
+				totalWidth += (child as HTMLElement).offsetWidth;
+				if (totalWidth > parentWidth) {
+					childrenToMove.push(itemsList[index]);
+				}
+			});
+			if (childrenToMove.length > 0) {
+				// 将超出宽度的子节点从 Arr1 移到 Arr2
+				moreItems = moreItems.concat(childrenToMove);
+				itemsList = itemsList.slice(0,  -childrenToMove.length);
+			} else {
+				// TODO: 如果有足够的空间，将 Arr2 中的子节点移回 Arr1
+				// let spaceAvailable = parentWidth - totalWidth;
+				// while (moreItems.length > 0 && spaceAvailable >= 40) {
+				// 	itemsList.push(moreItems.pop()!);
+				// 	spaceAvailable -= 40; // 假设每个子节点的宽度为 40px
+				// }
+			}
+		}
+
+	}
 	onMount(() => {
+
+		if(BROWSER){
+			parentDom = document.querySelector('#bwsy')
+		}
+
 		if (level === 1 && ctxProps.mode !== 'inline') {
-			// 渲染第一层的 popover
 			showPopoverManual();
 		}
+		if (BROWSER && level === 1 && ctxProps.mode == 'horizontal') {
+			window.addEventListener('resize', adjustLayout);
+		}
 	});
+
+	onDestroy(() => {
+		if (BROWSER && level === 1 && ctxProps.mode == 'horizontal') {
+			window.removeEventListener('resize', adjustLayout);
+		}
+	})
 
 	const menuPrefixCls = getPrefixCls('menu');
 	const prefixCls = getPrefixCls('menu-item');
