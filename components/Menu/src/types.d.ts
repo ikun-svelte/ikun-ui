@@ -76,8 +76,8 @@ export type KMenuProps = {
 	inlineCollapsed?: boolean;
 	/**
 	 * TODO: 👀 菜单类型，现在支持垂直、水平、和内嵌模式三种 inline
-	 * TODO: 🎯 菜单类型，现在支持垂直、水平、和内嵌模式三种 vertical
-	 * TODO:  菜单类型，现在支持垂直、水平、和内嵌模式三种 horizontal
+	 * TODO: 👀 菜单类型，现在支持垂直、水平、和内嵌模式三种 vertical
+	 * TODO: 🎯 菜单类型，现在支持垂直、水平、和内嵌模式三种 horizontal
 	 * `vertical` 和 `inline` 的区别在于 `vertical` 子菜单以 popover 形式出现
 	 * @default `vertical`
 	 */
@@ -237,8 +237,8 @@ export type SubMenuType = {
 // TODO: 🎯Items Slots slots label 分组标题 horizontal
 // TODO: 🎯Items Slots slots label 分组标题 inline
 // TODO: 👀 Items Slots slots  icon  菜单图标 vertical
-// TODO: Items Slots slots  icon  菜单图标 horizontal
+// TODO: 👀 Items Slots slots  icon  菜单图标 horizontal
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
 
 // 🎯 TODO horizontal 缩略适配
-// 🎯 TODO 所有 👀 功能
+// 🎯 TODO 所有 👀 功能 分(exclude Items Slots slots  icon  菜单图标 inline)

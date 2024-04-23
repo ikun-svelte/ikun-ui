@@ -87,7 +87,6 @@
 	<ul
 		class={cnames}
 		style:transition="height 0.3s"
-		style:overflow="hidden"
 		in:transitionIn
 		out:transitionOut
 		{...$$restProps}

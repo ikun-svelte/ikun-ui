@@ -308,7 +308,10 @@
 			[`${menuPrefixCls}-title-content-i`]: hasIcon
 		});
 	};
-	const dividerCls = clsx(`${prefixCls}-divider`);
+	const dividerCls = clsx({
+		[`${prefixCls}-divider`]: isNotHorizontalTop(),
+		[`${prefixCls}-divider-horizontal`]: !isNotHorizontalTop()
+	});
 	const subMenuCls = (isGroup: boolean) => {
 		return clsx(`${menuPrefixCls}-sub`, `${menuPrefixCls}-sub-${ctxProps.mode}`, {
 			[`${menuPrefixCls}-sub-bg`]: !isGroup
@@ -316,7 +319,12 @@
 	};
 
 	const popoverContentCls = clsx(`${prefixCls}-popover-content`);
-	const popoverTriggerCls = clsx(`${prefixCls}-popover-trigger-${ctxProps.mode}`);
+	const popoverTriggerCls = (isDivider: boolean = false) => {
+		return clsx({
+			[`${prefixCls}-popover-trigger-${ctxProps.mode}`]: !isDivider && isNotHorizontalTop(),
+			[`${prefixCls}-popover-trigger-${ctxProps.mode}-divider`]: isDivider && !isNotHorizontalTop()
+		});
+	};
 	$: getIndent = (it: SubMenuType) => {
 		if (ctxProps.mode === 'horizontal' && level === 1) return '16px';
 		if (ctxProps.mode !== 'inline') {
@@ -422,7 +430,7 @@
 			mouseLeaveDelay={ctxProps.subMenuCloseDelay}
 			trigger={ctxProps.triggerSubMenuAction}
 			cls={popoverContentCls}
-			clsTrigger={popoverTriggerCls}
+			clsTrigger={popoverTriggerCls(false)}
 			disabled={!(hasSub(it) || isGroup(it))}
 		>
 			<svelte:fragment slot="triggerEl">
@@ -503,7 +511,7 @@
 			mouseLeaveDelay={ctxProps.subMenuCloseDelay}
 			trigger={ctxProps.triggerSubMenuAction}
 			cls={popoverContentCls}
-			clsTrigger={popoverTriggerCls}
+			clsTrigger={popoverTriggerCls(it.type === 'divider')}
 			disabled={!(hasSub(it) || isGroup(it))}
 		>
 			<svelte:fragment slot="triggerEl">
@@ -534,7 +542,7 @@
 						</slot>
 					</li>
 				{:else}
-					<KDivider cls={dividerCls}></KDivider>
+					<KDivider cls={dividerCls} direction={level === 1 ? 'vertical' : 'horizontal'}></KDivider>
 				{/if}
 			</svelte:fragment>
 			<div slot="contentEl" style:width={popoverContentWidth(index)}>
