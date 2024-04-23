@@ -17,7 +17,12 @@
 	export let ctxKey: KMenuItemProps['ctxKey'] = '';
 	const dispatch = createEventDispatcher();
 	const hasSub = (it: SubMenuType) => !!(it.children && it.children.length);
-	const isNotHorizontal = () => ctxProps.mode !== 'horizontal';
+	const isNotHorizontalTop = () => {
+		if (ctxProps.mode === 'horizontal') {
+			return level > 1;
+		}
+		return true;
+	};
 	const isGroup = (it: SubMenuType) => it.type === 'group';
 	const getLevel = (it: SubMenuType, lv: number) => {
 		if (isGroup(it)) {
@@ -65,7 +70,7 @@
 				}
 			}
 
-			if (hasSub(value) && ctxProps.mode === 'vertical') {
+			if (hasSub(value) && ctxProps.mode !== 'inline') {
 				const recRes = initOpenSelectedStatus(value.children!, isGroup(value));
 				if (!isGroup(value)) {
 					value.children = recRes.children;
@@ -264,12 +269,23 @@
 			prefixCls,
 			{
 				[`${prefixCls}-${ctxProps.mode}-group`]: isGroup(it),
-				[`${prefixCls}-${ctxProps.mode}`]: !isGroup(it),
-				[`${prefixCls}-selected`]: !isGroup(it) && !hasSub(it) && isNotHorizontal() && it.selected,
-				[`${prefixCls}-selected-ih`]:
-					!isGroup(it) && hasSub(it) && isNotHorizontal() && it.selected,
-				[`${prefixCls}-hover-ih`]: !isGroup(it) && isNotHorizontal() && !it.selected,
-				[`${prefixCls}-vh-child`]: !isGroup(it) && isNotHorizontal() && hasSub(it)
+				[`${prefixCls}-${ctxProps.mode}`]:
+					!isGroup(it) || (ctxProps.mode === 'horizontal' && level === 1),
+				[`${prefixCls}-${ctxProps.mode}-not-top`]: !isGroup(it) && isNotHorizontalTop(),
+
+				[`${prefixCls}-selected`]:
+					!isGroup(it) && !hasSub(it) && isNotHorizontalTop() && it.selected,
+				[`${prefixCls}-selected-group`]:
+					!isGroup(it) && hasSub(it) && isNotHorizontalTop() && it.selected,
+				[`${prefixCls}-hover`]: !isGroup(it) && isNotHorizontalTop() && !it.selected,
+
+				[`${prefixCls}-selected-h`]:
+					!isGroup(it) && !hasSub(it) && !isNotHorizontalTop() && it.selected,
+				[`${prefixCls}-selected-group-h`]:
+					!isGroup(it) && hasSub(it) && !isNotHorizontalTop() && it.selected,
+				[`${prefixCls}-hover-h`]: !isGroup(it) && !isNotHorizontalTop() && !it.selected,
+
+				[`${prefixCls}-child`]: !isGroup(it) && hasSub(it)
 			},
 			cls
 		);
@@ -280,7 +296,7 @@
 
 	$: expendIconCls = (it: SubMenuType) => {
 		const icon = ctxProps.expandIcon || 'i-carbon-chevron-down ';
-		if (ctxProps.mode === 'vertical') {
+		if (ctxProps.mode !== 'inline') {
 			return `${icon} -rotate-90`;
 		}
 		return it.open ? `${icon} rotate-180 k-icon-transition` : `${icon} k-icon-transition`;
@@ -294,22 +310,34 @@
 	};
 	const dividerCls = clsx(`${prefixCls}-divider`);
 	const subMenuCls = (isGroup: boolean) => {
-		return clsx(`${menuPrefixCls}-sub`, {
+		return clsx(`${menuPrefixCls}-sub`, `${menuPrefixCls}-sub-${ctxProps.mode}`, {
 			[`${menuPrefixCls}-sub-bg`]: !isGroup
 		});
 	};
 
-	const popoverContentCls = clsx(`${prefixCls}-popover-content p-0 box-border`);
-	const popoverTriggerCls = clsx(`${prefixCls}-popover-trigger-v`);
+	const popoverContentCls = clsx(`${prefixCls}-popover-content`);
+	const popoverTriggerCls = clsx(`${prefixCls}-popover-trigger-${ctxProps.mode}`);
 	$: getIndent = (it: SubMenuType) => {
+		if (ctxProps.mode === 'horizontal' && level === 1) return '16px';
 		if (ctxProps.mode !== 'inline') {
 			return `${it.inGroup ? (ctxProps.inlineIndent || 24) * 2 : ctxProps.inlineIndent}px`;
 		}
 		return `${(ctxProps.inlineIndent || 24) * getLevel(it, level)}px`;
 	};
-
 	const setPopoverOffset: OffsetsFunction = ({ popper, reference }: OffsetsFnPa) => {
+		if (ctxProps.mode === 'horizontal' && level === 1) {
+			return [0, 4];
+		}
 		return [popper.height / 2 - reference.height / 2, 4];
+	};
+	const popoverContentWidth = (index: number) => {
+		const ref = popoverRef[index];
+		if (ref) {
+			const triggerEl = ref.getPopoverContainerRef();
+			const { width } = triggerEl.getBoundingClientRect();
+			return `${width}px`;
+		}
+		return '100%';
 	};
 </script>
 
@@ -429,6 +457,87 @@
 				{/if}
 			</svelte:fragment>
 			<div slot="contentEl">
+				<KMenu {...ctxProps} {ctxKey} show={hasSub(it) && !isGroup(it)} cls={subMenuCls(false)}>
+					<svelte:self
+						uid={it.uid}
+						{ctxKey}
+						bind:this={subMenuRef[index]}
+						on:selectedRecursion={(e) => handleSelectedRecursion(e, index)}
+						items={it.children}
+						level={getLevel(it, level) + 1}
+					>
+						<svelte:fragment let:item slot="item">
+							<slot name="item" {item}>
+								<span class={iconRootCls}>
+									<slot name="icon" {item}>
+										{#if item.icon}
+											<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
+										{/if}
+									</slot>
+									<span class={titleContentCls(!!item.icon)}>{item.label}</span>
+								</span>
+								{#if hasSub(item)}
+									<slot name="expandIcon" {item} cls={iconCls}>
+										<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(item)}
+										></KIcon>
+									</slot>
+								{/if}
+							</slot>
+						</svelte:fragment>
+					</svelte:self>
+				</KMenu>
+			</div>
+		</KPopover>
+	{/if}
+
+	{#if ctxProps.mode === 'horizontal'}
+		<KPopover
+			bind:this={popoverRef[index]}
+			width="100%"
+			arrow={false}
+			placement={level === 1 ? 'bottom' : 'right'}
+			on:animateStart={showSubMenuPopover}
+			offset={setPopoverOffset}
+			fallbackPlacements={level === 1 ? ['bottom', 'top'] : ['right', 'left']}
+			mouseEnterDelay={ctxProps.subMenuOpenDelay}
+			mouseLeaveDelay={ctxProps.subMenuCloseDelay}
+			trigger={ctxProps.triggerSubMenuAction}
+			cls={popoverContentCls}
+			clsTrigger={popoverTriggerCls}
+			disabled={!(hasSub(it) || isGroup(it))}
+		>
+			<svelte:fragment slot="triggerEl">
+				{#if it.type !== 'divider'}
+					<li
+						on:click={(e) => handleSelect(it, e)}
+						aria-hidden="true"
+						style:padding-left={`${getIndent(it)}`}
+						class={cnames(it)}
+						{...$$restProps}
+						{...attrs}
+					>
+						<slot name="item" item={it}>
+							<span class={iconRootCls}>
+								<slot name="icon" item={it} cls={iconCls}>
+									{#if it.icon}
+										<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
+									{/if}
+								</slot>
+								<span class={titleContentCls(!!it.icon)}>{it.label}</span>
+							</span>
+
+							{#if hasSub(it) && !isGroup(it) && level !== 1}
+								<slot name="expandIcon" item={it} cls={iconCls}>
+									<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(it)}></KIcon>
+								</slot>
+							{/if}
+						</slot>
+					</li>
+				{:else}
+					<KDivider cls={dividerCls}></KDivider>
+				{/if}
+			</svelte:fragment>
+			<div slot="contentEl" style:width={popoverContentWidth(index)}>
 				<KMenu {...ctxProps} {ctxKey} show={hasSub(it) && !isGroup(it)} cls={subMenuCls(false)}>
 					<svelte:self
 						uid={it.uid}

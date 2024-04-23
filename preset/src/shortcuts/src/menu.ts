@@ -12,24 +12,40 @@ export const menuShortcuts: Record<string, string> = {
 	'k-menu-sub': 'border-none bg-transparent',
 	'k-menu-sub-bg': 'ikun:2:bg-black',
 
-	'k-menu-horizontal': '',
-	'k-menu-item-horizontal': '',
-
 	'k-menu-item-selected': 'ikun:20:bg-ikun-main text-ikun-main hover:(ikun:20:bg-ikun-main)',
-	'k-menu-item-selected-ih': 'text-ikun-main',
-	'k-menu-item-hover-ih': 'hover:(ikun:6:bg-ikun-black)',
-	'k-menu-item-vh-child': 'justify-between',
+	'k-menu-item-selected-group': 'text-ikun-main',
+	'k-menu-item-hover': 'hover:(ikun:6:bg-ikun-black)',
 
-	'k-menu-inline': 'bdr-1 b-e-solid border-ikun-bd-base',
+	'k-menu-item-selected-after':
+		'after:(content-empty pa bottom-0 bdb-2 border-solid b-b-ikun-main w-full left-0 animate-ikun-scale)',
+	'k-menu-item-selected-h': 'text-ikun-main k-menu-item-selected-after',
+	'k-menu-item-selected-group-h': 'text-ikun-main k-menu-item-selected-after',
+	'k-menu-item-hover-h': 'hover:(k-menu-item-selected-after)',
+
+	'k-menu-item-child': 'justify-between',
+
 	'k-menu-vertical': 'bdr-1 b-e-solid border-ikun-bd-base',
-
-	'k-menu-item-popover-trigger-v': 'box-border my-4px',
+	'k-menu-item-popover-trigger-vertical': 'box-border my-4px',
 	'k-menu-item-vertical': 'k-menu-item-inline my-0',
 	'k-menu-item-vertical-group':
 		'k-menu-w k-menu-transition ' +
 		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px ' +
 		'rounded-8px ikun:50:text-black',
 
+	'k-menu-horizontal': 'bdb-1 b-e-solid border-ikun-bd-base flex [&.k-menu-sub-horizontal]:block',
+	'k-menu-item-popover-trigger-horizontal': 'box-border my-4px',
+	'k-menu-item-popover-content': 'p-0 box-border',
+	'k-menu-item-horizontal':
+		'cursor-pointer k-menu-w k-menu-transition ' +
+		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +
+		'rounded-8px my-0',
+	'k-menu-item-horizontal-not-top': 'k-menu-item-horizontal active:(ikun:20:bg-ikun-main)',
+	'k-menu-item-horizontal-group':
+		'k-menu-w k-menu-transition ' +
+		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px ' +
+		'rounded-8px ikun:50:text-black',
+
+	'k-menu-inline': 'bdr-1 b-e-solid border-ikun-bd-base',
 	'k-menu-item-inline':
 		'cursor-pointer k-menu-w k-menu-transition ' +
 		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +

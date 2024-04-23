@@ -60,6 +60,7 @@ export type KMenuProps = {
 	ctxKey?: string;
 	/**
 	 * TODO: 👀 展开图标
+	 * TODO:  展开图标 horizontal(more menu 展示)
 	 * @default 'i-carbon-chevron-down'
 	 */
 	expandIcon?: string;
@@ -233,8 +234,11 @@ export type SubMenuType = {
 // TODO: onTitleClick 点击子菜单标题
 
 // TODO: 🎯Items Slots slots label 分组标题 vertical
-// TODO: Items Slots slots label 分组标题 horizontal
+// TODO: 🎯Items Slots slots label 分组标题 horizontal
 // TODO: 🎯Items Slots slots label 分组标题 inline
 // TODO: 👀 Items Slots slots  icon  菜单图标 vertical
 // TODO: Items Slots slots  icon  菜单图标 horizontal
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
+
+// 🎯 TODO horizontal 缩略适配
+// 🎯 TODO 所有 👀 功能
