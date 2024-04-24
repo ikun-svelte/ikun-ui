@@ -224,6 +224,9 @@
 		}
 	}
 
+
+
+
 	let popoverRef: any = [];
 	let subMenuRef: any = [];
 	let isDirty = true;
@@ -254,10 +257,12 @@
 
 	let parentDom: HTMLElement | null = null
 	let itemEls: HTMLElement[] | null = null
+	let prevParentDomWidth = -1
+	let ops = Array(items.length).fill(level === 1 ? '0' : '1');
 	if(BROWSER){
 		parentDom = document.querySelector('#bwsy');
 		if(parentDom){
-			itemEls = (parentDom.querySelectorAll('[data-popover-trigger=""]'))
+			itemEls = Array.from((parentDom.querySelectorAll('[data-popover-trigger=""]')))
 		}
 	}
 	let moreItems: Array<{
@@ -268,53 +273,66 @@
 	function adjustLayout() {
 		if(parentDom && level === 1){
 			const parentWidth = parentDom.offsetWidth;
+			let toS = false
+			let init = false
+			if(prevParentDomWidth === -1){
+				init = true
+				prevParentDomWidth = parentWidth
+			}
+
+			if(prevParentDomWidth < parentWidth){
+				toS = false
+			}
+
+			if(prevParentDomWidth > parentWidth){
+				toS = true
+			}
+			prevParentDomWidth = parentWidth
+
 			let totalWidth = 0;
-			let childrenToMove:  Array<{
-				item: SubMenuType,
-				width: number,
-				index: number
-			}> = [];
 			itemEls!.forEach((child: any, index: number) => {
 				const offsetWidth = (child as HTMLElement).offsetWidth;
 				totalWidth += offsetWidth
-				if (totalWidth > parentWidth) {
+				if (totalWidth > parentWidth && (toS || init)) {
 					(child as HTMLElement).style.opacity = '0';
 					(child as HTMLElement).style.height = '0';
 					(child as HTMLElement).style.overflowY = 'hidden';
 					(child as HTMLElement).style.position = 'absolute';
 					(child as HTMLElement).style.pointerEvents = 'none';
-					(child as HTMLElement).style.width = 'auto';
-					childrenToMove.push({
+					(child as HTMLElement).style.width = '0';
+					const has = moreItems.some(it => it.index === index)
+					!has && moreItems.push({
 						index,
 						item: itemsList[index],
 						width:offsetWidth
 					});
+					init && (moreItems = moreItems.sort((a, b) => {return b.index - a.index}))
+				} else {
+					ops[index] = '1'
 				}
 			});
-			if (childrenToMove.length > 0) {
-				// 将超出宽度的子节点从 Arr1 移到 Arr2
-				moreItems = moreItems.concat(childrenToMove);
-			} else {
-				 let spaceAvailable = parentWidth - totalWidth;
-				 const moreItemsLen = moreItems.length
-				 const lastItem = moreItems[moreItemsLen - 1]
-				 if(lastItem){
-					 const lastItemWidth = lastItem.width
-					 console.log(spaceAvailable, lastItemWidth)
-					 if (moreItems.length > 0 && spaceAvailable >= lastItemWidth) {
-						 const index = (moreItems.pop()!).index
-						 const dom = itemEls![index]
-						 if(dom){
-							 (dom as HTMLElement).style.opacity = '1';
-							 (dom as HTMLElement).style.width = '100';
-							 (dom as HTMLElement).style.removeProperty('height');
-							 (dom as HTMLElement).style.removeProperty('overflow-y');
-							 (dom as HTMLElement).style.removeProperty('position');
-							 (dom as HTMLElement).style.removeProperty('pointer-events');
-						 }
-					 }
-				 }
 
+			if(toS === false && !init){
+				let spaceAvailable = Math.abs(totalWidth - parentWidth);
+				const moreItemsLen = moreItems.length
+				const lastItem = moreItems[moreItemsLen - 1]
+				if(lastItem){
+					const lastItemWidth = lastItem.width
+					if (moreItems.length > 0 && spaceAvailable >= lastItemWidth) {
+						const index = (moreItems.pop()!).index
+						console.log(index)
+						const dom = itemEls![index]
+						if(dom){
+							(dom as HTMLElement).style.opacity = '1';
+							(dom as HTMLElement).style.width = '100';
+							(dom as HTMLElement).style.removeProperty('height');
+							(dom as HTMLElement).style.removeProperty('overflow-y');
+							(dom as HTMLElement).style.removeProperty('position');
+							(dom as HTMLElement).style.removeProperty('pointer-events');
+							(dom as HTMLElement).style.removeProperty('width');
+						}
+					}
+				}
 			}
 		}
 
@@ -327,11 +345,12 @@
 			showPopoverManual();
 		}
 		if (BROWSER && level === 1 && ctxProps.mode == 'horizontal') {
-			window.addEventListener('resize', adjustLayout);
-			await tick()
 			adjustLayout();
+			await tick()
+			window.addEventListener('resize', adjustLayout);
 			// showPopoverManual();
 		}
+		menuCtx.removeBorderStyleBg()
 
 	});
 
@@ -340,6 +359,9 @@
 			window.removeEventListener('resize', adjustLayout);
 		}
 	})
+
+
+
 
 	const menuPrefixCls = getPrefixCls('menu');
 	const prefixCls = getPrefixCls('menu-item');
@@ -583,6 +605,7 @@
 			width="100%"
 			order={index}
 			arrow={false}
+			opacity={ops[index]}
 			placement={level === 1 ? 'bottom' : 'right'}
 			on:animateStart={showSubMenuPopover}
 			offset={setPopoverOffset}

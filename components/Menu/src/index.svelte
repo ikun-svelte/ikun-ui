@@ -34,6 +34,11 @@
 	function onDeSelect(data: SelectEvtPa) {
 		dispatch('deSelect', data);
 	}
+
+	let bdBg = 'transparent'
+	function removeBorderStyleBg(){
+		bdBg = ''
+	}
 	/**
 	 * @internal
 	 */
@@ -55,7 +60,8 @@
 		onOpenChange,
 		onSelect,
 		onClick,
-		onDeSelect
+		onDeSelect,
+		removeBorderStyleBg
 	);
 	if (!getContext(ctxKey || menuKey)) {
 		setContext(ctxKey || menuKey, menuInst);
@@ -84,14 +90,17 @@
 </script>
 
 {#if show}
-	<ul
-		class={cnames}
-		style:transition="height 0.3s"
-		in:transitionIn
-		out:transitionOut
-		{...$$restProps}
-		{...attrs}
-	>
-		<slot />
-	</ul>
+	<div class="overflow-hidden">
+		<ul
+				class={cnames}
+				style:border-color={bdBg}
+				style:transition="height 0.3s"
+				in:transitionIn
+				out:transitionOut
+				{...$$restProps}
+				{...attrs}
+		>
+			<slot />
+		</ul>
+	</div>
 {/if}

@@ -5,7 +5,8 @@ export const createKMenu = (
 	onOpenChange: KMenuInstance['onOpenChange'],
 	onSelect: KMenuInstance['onSelect'],
 	onClick: KMenuInstance['onClick'],
-	onDeSelect: KMenuInstance['onDeSelect']
+	onDeSelect: KMenuInstance['onDeSelect'],
+	removeBorderStyleBg: KMenuInstance['removeBorderStyleBg'],
 ): KMenuInstance => {
 	return {
 		/**
@@ -42,7 +43,8 @@ export const createKMenu = (
 		onOpenChange,
 		onSelect,
 		onClick,
-		onDeSelect
+		onDeSelect,
+		removeBorderStyleBg
 	};
 };
 
