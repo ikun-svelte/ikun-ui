@@ -21,6 +21,7 @@
 	 * @internal
 	 */
 	export let width: KPopoverProps['width'] = 'fit-content';
+	export let order: undefined | number = undefined;
 	export let offset: KPopoverProps['offset'] = [0, 8];
 	export let fallbackPlacements: KPopoverProps['fallbackPlacements'] = [
 		'top',
@@ -212,6 +213,7 @@
 	on:click={handleClick}
 	class={triggerCls}
 	style:width
+	style:order={order}
 	data-popover-trigger
 	on:mouseenter={handleMouseenter}
 	on:mouseleave={handleMouseleave}

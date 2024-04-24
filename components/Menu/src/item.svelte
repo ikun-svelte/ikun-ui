@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {createEventDispatcher, getContext, onDestroy, onMount} from 'svelte';
+	import { createEventDispatcher, getContext, onDestroy, onMount, tick } from "svelte";
 	import { KIcon } from '@ikun-ui/icon';
 	import type { KMenuInstance, KMenuInstanceOption, KMenuItemProps, SubMenuType } from './types';
 	import { getPrefixCls, menuKey } from '@ikun-ui/utils';
@@ -250,51 +250,93 @@
 		}
 	}
 
+
+
 	let parentDom: HTMLElement | null = null
-	let moreItems: SubMenuType[] = []
+	let itemEls: HTMLElement[] | null = null
+	if(BROWSER){
+		parentDom = document.querySelector('#bwsy');
+		if(parentDom){
+			itemEls = (parentDom.querySelectorAll('[data-popover-trigger=""]'))
+		}
+	}
+	let moreItems: Array<{
+		item: SubMenuType,
+		width: number,
+		index: number
+	}>= []
 	function adjustLayout() {
 		if(parentDom && level === 1){
 			const parentWidth = parentDom.offsetWidth;
 			let totalWidth = 0;
-			let childrenToMove: SubMenuType[] = [];
-			console.log(parentWidth)
-			parentDom.childNodes.forEach((child: any, index: number) => {
-				totalWidth += (child as HTMLElement).offsetWidth;
+			let childrenToMove:  Array<{
+				item: SubMenuType,
+				width: number,
+				index: number
+			}> = [];
+			itemEls!.forEach((child: any, index: number) => {
+				const offsetWidth = (child as HTMLElement).offsetWidth;
+				totalWidth += offsetWidth
 				if (totalWidth > parentWidth) {
-					childrenToMove.push(itemsList[index]);
+					(child as HTMLElement).style.opacity = '0';
+					(child as HTMLElement).style.height = '0';
+					(child as HTMLElement).style.overflowY = 'hidden';
+					(child as HTMLElement).style.position = 'absolute';
+					(child as HTMLElement).style.pointerEvents = 'none';
+					(child as HTMLElement).style.width = 'auto';
+					childrenToMove.push({
+						index,
+						item: itemsList[index],
+						width:offsetWidth
+					});
 				}
 			});
 			if (childrenToMove.length > 0) {
 				// 将超出宽度的子节点从 Arr1 移到 Arr2
 				moreItems = moreItems.concat(childrenToMove);
-				itemsList = itemsList.slice(0,  -childrenToMove.length);
 			} else {
-				// TODO: 如果有足够的空间，将 Arr2 中的子节点移回 Arr1
-				// let spaceAvailable = parentWidth - totalWidth;
-				// while (moreItems.length > 0 && spaceAvailable >= 40) {
-				// 	itemsList.push(moreItems.pop()!);
-				// 	spaceAvailable -= 40; // 假设每个子节点的宽度为 40px
-				// }
+				 let spaceAvailable = parentWidth - totalWidth;
+				 const moreItemsLen = moreItems.length
+				 const lastItem = moreItems[moreItemsLen - 1]
+				 if(lastItem){
+					 const lastItemWidth = lastItem.width
+					 console.log(spaceAvailable, lastItemWidth)
+					 if (moreItems.length > 0 && spaceAvailable >= lastItemWidth) {
+						 const index = (moreItems.pop()!).index
+						 const dom = itemEls![index]
+						 if(dom){
+							 (dom as HTMLElement).style.opacity = '1';
+							 (dom as HTMLElement).style.width = '100';
+							 (dom as HTMLElement).style.removeProperty('height');
+							 (dom as HTMLElement).style.removeProperty('overflow-y');
+							 (dom as HTMLElement).style.removeProperty('position');
+							 (dom as HTMLElement).style.removeProperty('pointer-events');
+						 }
+					 }
+				 }
+
 			}
 		}
 
 	}
-	onMount(() => {
 
-		if(BROWSER){
-			parentDom = document.querySelector('#bwsy')
-		}
 
-		if (level === 1 && ctxProps.mode !== 'inline') {
+	onMount(async () => {
+
+		if (level === 1 && ctxProps.mode === 'vertical') {
 			showPopoverManual();
 		}
 		if (BROWSER && level === 1 && ctxProps.mode == 'horizontal') {
 			window.addEventListener('resize', adjustLayout);
+			await tick()
+			adjustLayout();
+			// showPopoverManual();
 		}
+
 	});
 
 	onDestroy(() => {
-		if (BROWSER && level === 1 && ctxProps.mode == 'horizontal') {
+		if (BROWSER) {
 			window.removeEventListener('resize', adjustLayout);
 		}
 	})
@@ -458,7 +500,7 @@
 		<KPopover
 			bind:this={popoverRef[index]}
 			arrow={false}
-			width="100%"
+			width={level === 1 ? 'auto' : '100%'}
 			placement="right"
 			on:animateStart={showSubMenuPopover}
 			offset={setPopoverOffset}
@@ -539,6 +581,7 @@
 		<KPopover
 			bind:this={popoverRef[index]}
 			width="100%"
+			order={index}
 			arrow={false}
 			placement={level === 1 ? 'bottom' : 'right'}
 			on:animateStart={showSubMenuPopover}
