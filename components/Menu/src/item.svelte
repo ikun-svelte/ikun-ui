@@ -255,6 +255,7 @@
 	let itemEls: HTMLElement[] | null = null;
 	let prevParentDomWidth = -1;
 	let ops = Array(items.length).fill(level === 1 ? '0' : '1');
+	let widths = Array(items.length).fill(level === 1 ? 'auto' : '100%');
 	let moreItems: Array<{
 		item: SubMenuType;
 		width: number;
@@ -289,7 +290,7 @@
 					(child as HTMLElement).style.overflowY = 'hidden';
 					(child as HTMLElement).style.position = 'absolute';
 					(child as HTMLElement).style.pointerEvents = 'none';
-					(child as HTMLElement).style.width = '0';
+					widths[index] = '0';
 					if (popoverRef[index] && itemsList[index].open) {
 						popoverRef[index] &&
 							popoverRef[index].updateShow &&
@@ -323,12 +324,11 @@
 						const dom = itemEls![index];
 						if (dom) {
 							(dom as HTMLElement).style.opacity = '1';
-							(dom as HTMLElement).style.width = '100';
 							(dom as HTMLElement).style.removeProperty('height');
 							(dom as HTMLElement).style.removeProperty('overflow-y');
 							(dom as HTMLElement).style.removeProperty('position');
 							(dom as HTMLElement).style.removeProperty('pointer-events');
-							(dom as HTMLElement).style.removeProperty('width');
+							widths[index] = 'auto';
 							hiddenIndex.delete(index);
 							if (popoverRef[index] && itemsList[index].open) {
 								isDirty = true;
@@ -606,7 +606,7 @@
 		<KPopover
 			bind:this={popoverRef[index]}
 			attrsTrigger={{ 'data-k-menu-h': `${level}` }}
-			width="100%"
+			width={widths[index]}
 			order={index}
 			arrow={false}
 			opacity={ops[index]}
