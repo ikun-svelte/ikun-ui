@@ -7,6 +7,7 @@ export const createKMenu = (
 	onClick: KMenuInstance['onClick'],
 	onDeSelect: KMenuInstance['onDeSelect'],
 	removeBorderStyleBg: KMenuInstance['removeBorderStyleBg'],
+	getParentDom: KMenuInstance['getParentDom']
 ): KMenuInstance => {
 	return {
 		/**
@@ -44,7 +45,8 @@ export const createKMenu = (
 		onSelect,
 		onClick,
 		onDeSelect,
-		removeBorderStyleBg
+		removeBorderStyleBg,
+		getParentDom
 	};
 };
 

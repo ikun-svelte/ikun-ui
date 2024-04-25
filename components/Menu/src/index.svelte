@@ -35,9 +35,16 @@
 		dispatch('deSelect', data);
 	}
 
-	let bdBg = 'transparent'
-	function removeBorderStyleBg(){
-		bdBg = ''
+	let bdBg = 'transparent';
+	function removeBorderStyleBg() {
+		bdBg = '';
+	}
+
+	let menuRef: null | HTMLElement = null;
+	function getParentDom() {
+		if (menuRef) {
+			return menuRef.parentElement;
+		}
 	}
 	/**
 	 * @internal
@@ -61,7 +68,8 @@
 		onSelect,
 		onClick,
 		onDeSelect,
-		removeBorderStyleBg
+		removeBorderStyleBg,
+		getParentDom
 	);
 	if (!getContext(ctxKey || menuKey)) {
 		setContext(ctxKey || menuKey, menuInst);
@@ -90,15 +98,15 @@
 </script>
 
 {#if show}
-	<div class="overflow-hidden">
+	<div class="overflow-hidden" bind:this={menuRef}>
 		<ul
-				class={cnames}
-				style:border-color={bdBg}
-				style:transition="height 0.3s"
-				in:transitionIn
-				out:transitionOut
-				{...$$restProps}
-				{...attrs}
+			class={cnames}
+			style:border-color={bdBg}
+			style:transition="height 0.3s"
+			in:transitionIn
+			out:transitionOut
+			{...$$restProps}
+			{...attrs}
 		>
 			<slot />
 		</ul>

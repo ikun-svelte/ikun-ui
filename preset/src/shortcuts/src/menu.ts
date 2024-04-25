@@ -17,7 +17,7 @@ export const menuShortcuts: Record<string, string> = {
 	'k-menu-item-hover': 'hover:(ikun:6:bg-ikun-black)',
 
 	'k-menu-item-selected-after':
-		'after:(content-empty pa -bottom-1px bdb-2 border-solid b-b-ikun-main w-full left-0 animate-ikun-scale)',
+		'after:(content-empty pa -bottom-1px bdb-3 border-solid b-b-ikun-main w-full left-0 animate-ikun-scale)',
 	'k-menu-item-selected-h': 'text-ikun-main k-menu-item-selected-after',
 	'k-menu-item-selected-group-h': 'text-ikun-main k-menu-item-selected-after',
 	'k-menu-item-hover-h': 'hover:(k-menu-item-selected-after)',

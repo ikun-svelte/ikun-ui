@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher, getContext, onDestroy, onMount, tick } from "svelte";
+	import { createEventDispatcher, getContext, onDestroy, onMount, tick } from 'svelte';
 	import { KIcon } from '@ikun-ui/icon';
 	import type { KMenuInstance, KMenuInstanceOption, KMenuItemProps, SubMenuType } from './types';
 	import { getPrefixCls, menuKey } from '@ikun-ui/utils';
@@ -10,7 +10,7 @@
 	import { KPopover } from '@ikun-ui/popover';
 	import type { OffsetsFunction, OffsetsFnPa } from '@ikun-ui/popover';
 	import { jsonClone } from 'baiwusanyu-utils';
-	import { BROWSER } from "esm-env";
+	import { BROWSER } from 'esm-env';
 	export let items: KMenuItemProps['items'] = [];
 	export let cls: KMenuItemProps['cls'] = undefined;
 	export let attrs: KMenuItemProps['attrs'] = {};
@@ -224,9 +224,6 @@
 		}
 	}
 
-
-
-
 	let popoverRef: any = [];
 	let subMenuRef: any = [];
 	let isDirty = true;
@@ -238,10 +235,11 @@
 			});
 		isDirty = false;
 	}
-
+	let hiddenIndex: Set<number> = new Set();
 	export function showPopoverManual() {
 		if (level === 1) {
 			popoverRef.forEach((ref: any, index: number) => {
+				if (hiddenIndex.has(index)) return;
 				ref && ref.updateShow && ref.updateShow(itemsList[index].open);
 			});
 		} else {
@@ -253,46 +251,38 @@
 		}
 	}
 
-
-
-	let parentDom: HTMLElement | null = null
-	let itemEls: HTMLElement[] | null = null
-	let prevParentDomWidth = -1
+	let parentDom: HTMLElement | null = null;
+	let itemEls: HTMLElement[] | null = null;
+	let prevParentDomWidth = -1;
 	let ops = Array(items.length).fill(level === 1 ? '0' : '1');
-	if(BROWSER){
-		parentDom = document.querySelector('#bwsy');
-		if(parentDom){
-			itemEls = Array.from((parentDom.querySelectorAll('[data-popover-trigger=""]')))
-		}
-	}
 	let moreItems: Array<{
-		item: SubMenuType,
-		width: number,
-		index: number
-	}>= []
+		item: SubMenuType;
+		width: number;
+		index: number;
+	}> = [];
 	function adjustLayout() {
-		if(parentDom && level === 1){
+		if (parentDom && level === 1) {
 			const parentWidth = parentDom.offsetWidth;
-			let toS = false
-			let init = false
-			if(prevParentDomWidth === -1){
-				init = true
-				prevParentDomWidth = parentWidth
+			let toS = false;
+			let init = false;
+			if (prevParentDomWidth === -1) {
+				init = true;
+				prevParentDomWidth = parentWidth;
 			}
 
-			if(prevParentDomWidth < parentWidth){
-				toS = false
+			if (prevParentDomWidth < parentWidth) {
+				toS = false;
 			}
 
-			if(prevParentDomWidth > parentWidth){
-				toS = true
+			if (prevParentDomWidth > parentWidth) {
+				toS = true;
 			}
-			prevParentDomWidth = parentWidth
+			prevParentDomWidth = parentWidth;
 
 			let totalWidth = 0;
 			itemEls!.forEach((child: any, index: number) => {
 				const offsetWidth = (child as HTMLElement).offsetWidth;
-				totalWidth += offsetWidth
+				totalWidth += offsetWidth;
 				if (totalWidth > parentWidth && (toS || init)) {
 					(child as HTMLElement).style.opacity = '0';
 					(child as HTMLElement).style.height = '0';
@@ -300,29 +290,38 @@
 					(child as HTMLElement).style.position = 'absolute';
 					(child as HTMLElement).style.pointerEvents = 'none';
 					(child as HTMLElement).style.width = '0';
-					const has = moreItems.some(it => it.index === index)
-					!has && moreItems.push({
-						index,
-						item: itemsList[index],
-						width:offsetWidth
-					});
-					init && (moreItems = moreItems.sort((a, b) => {return b.index - a.index}))
+					if (popoverRef[index] && itemsList[index].open) {
+						popoverRef[index] &&
+							popoverRef[index].updateShow &&
+							popoverRef[index].updateShow(false);
+					}
+					const has = moreItems.some((it) => it.index === index);
+					!has &&
+						moreItems.push({
+							index,
+							item: itemsList[index],
+							width: offsetWidth
+						});
+					hiddenIndex.add(index);
+					init &&
+						(moreItems = moreItems.sort((a, b) => {
+							return b.index - a.index;
+						}));
 				} else {
-					ops[index] = '1'
+					ops[index] = '1';
 				}
 			});
 
-			if(toS === false && !init){
+			if (toS === false && !init) {
 				let spaceAvailable = Math.abs(totalWidth - parentWidth);
-				const moreItemsLen = moreItems.length
-				const lastItem = moreItems[moreItemsLen - 1]
-				if(lastItem){
-					const lastItemWidth = lastItem.width
+				const moreItemsLen = moreItems.length;
+				const lastItem = moreItems[moreItemsLen - 1];
+				if (lastItem) {
+					const lastItemWidth = lastItem.width;
 					if (moreItems.length > 0 && spaceAvailable >= lastItemWidth) {
-						const index = (moreItems.pop()!).index
-						console.log(index)
-						const dom = itemEls![index]
-						if(dom){
+						const index = moreItems.pop()!.index;
+						const dom = itemEls![index];
+						if (dom) {
 							(dom as HTMLElement).style.opacity = '1';
 							(dom as HTMLElement).style.width = '100';
 							(dom as HTMLElement).style.removeProperty('height');
@@ -330,38 +329,42 @@
 							(dom as HTMLElement).style.removeProperty('position');
 							(dom as HTMLElement).style.removeProperty('pointer-events');
 							(dom as HTMLElement).style.removeProperty('width');
+							hiddenIndex.delete(index);
+							if (popoverRef[index] && itemsList[index].open) {
+								isDirty = true;
+								popoverRef[index] &&
+									popoverRef[index].updateShow &&
+									popoverRef[index].updateShow(true);
+							}
 						}
 					}
 				}
 			}
 		}
-
 	}
 
-
 	onMount(async () => {
-
 		if (level === 1 && ctxProps.mode === 'vertical') {
 			showPopoverManual();
 		}
 		if (BROWSER && level === 1 && ctxProps.mode == 'horizontal') {
+			parentDom = menuCtx.getParentDom()!;
+			if (parentDom) {
+				itemEls = Array.from(parentDom.querySelectorAll('[data-k-menu-h="1"]'));
+			}
 			adjustLayout();
-			await tick()
+			await tick();
 			window.addEventListener('resize', adjustLayout);
-			// showPopoverManual();
+			showPopoverManual();
 		}
-		menuCtx.removeBorderStyleBg()
-
+		menuCtx.removeBorderStyleBg();
 	});
 
 	onDestroy(() => {
 		if (BROWSER) {
 			window.removeEventListener('resize', adjustLayout);
 		}
-	})
-
-
-
+	});
 
 	const menuPrefixCls = getPrefixCls('menu');
 	const prefixCls = getPrefixCls('menu-item');
@@ -602,6 +605,7 @@
 	{#if ctxProps.mode === 'horizontal'}
 		<KPopover
 			bind:this={popoverRef[index]}
+			attrsTrigger={{ 'data-k-menu-h': `${level}` }}
 			width="100%"
 			order={index}
 			arrow={false}
