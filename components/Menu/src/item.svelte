@@ -261,8 +261,16 @@
 		width: number;
 		index: number;
 	}> = [];
+	$: showMoreItems = moreItems.length
+	$: moreItem = {
+		children: moreItems.map(it => it.item),
+		selected: false,
+		uid: 'more-item',
+		open: false
+	}
 	function adjustLayout() {
 		if (parentDom && level === 1) {
+			let resolvedMoreItems = moreItems
 			const parentWidth = parentDom.offsetWidth;
 			let toS = false;
 			let init = false;
@@ -296,18 +304,20 @@
 							popoverRef[index].updateShow &&
 							popoverRef[index].updateShow(false);
 					}
-					const has = moreItems.some((it) => it.index === index);
-					!has &&
-						moreItems.push({
+					const has = resolvedMoreItems.some((it) => it.index === index);
+					if(!has){
+						resolvedMoreItems.push({
 							index,
 							item: itemsList[index],
 							width: offsetWidth
 						});
+						moreItems = [...resolvedMoreItems]
+					}
 					hiddenIndex.add(index);
 					init &&
-						(moreItems = moreItems.sort((a, b) => {
+						(moreItems = [...resolvedMoreItems.sort((a, b) => {
 							return b.index - a.index;
-						}));
+						})]);
 				} else {
 					ops[index] = '1';
 				}
@@ -315,12 +325,13 @@
 
 			if (toS === false && !init) {
 				let spaceAvailable = Math.abs(totalWidth - parentWidth);
-				const moreItemsLen = moreItems.length;
-				const lastItem = moreItems[moreItemsLen - 1];
+				const moreItemsLen = resolvedMoreItems.length;
+				const lastItem = resolvedMoreItems[moreItemsLen - 1];
 				if (lastItem) {
 					const lastItemWidth = lastItem.width;
-					if (moreItems.length > 0 && spaceAvailable >= lastItemWidth) {
-						const index = moreItems.pop()!.index;
+					if (resolvedMoreItems.length > 0 && spaceAvailable >= lastItemWidth) {
+						const index = resolvedMoreItems.pop()!.index;
+						moreItems = [...resolvedMoreItems]
 						const dom = itemEls![index];
 						if (dom) {
 							(dom as HTMLElement).style.opacity = '1';
@@ -604,12 +615,16 @@
 
 	{#if ctxProps.mode === 'horizontal'}
 		<KPopover
+
 			bind:this={popoverRef[index]}
-			attrsTrigger={{ 'data-k-menu-h': `${level}` }}
 			width={widths[index]}
 			order={index}
-			arrow={false}
 			opacity={ops[index]}
+
+
+
+			attrsTrigger={{ 'data-k-menu-h': `${level}` }}
+			arrow={false}
 			placement={level === 1 ? 'bottom' : 'right'}
 			on:animateStart={showSubMenuPopover}
 			offset={setPopoverOffset}
@@ -686,3 +701,26 @@
 		</KPopover>
 	{/if}
 {/each}
+{#if ctxProps.mode === 'horizontal' && showMoreItems && level === 1}
+	<KPopover
+		arrow={false}
+		placement={level === 1 ? 'bottom' : 'right'}
+		fallbackPlacements={['bottom', 'top']}
+		mouseEnterDelay={ctxProps.subMenuOpenDelay}
+		mouseLeaveDelay={ctxProps.subMenuCloseDelay}
+		trigger={ctxProps.triggerSubMenuAction}
+		cls={popoverContentCls}
+		order="{itemsList.length + 1}">
+		<li
+			slot="triggerEl"
+			aria-hidden="true"
+			class={cnames(moreItem)}
+			{...$$restProps}
+			{...attrs}>
+			...
+		</li>
+		<div slot="contentEl">
+			<p class="!my-2">亲手点燃黑暗森林的火星</p>
+		</div>
+	</KPopover>
+{/if}
