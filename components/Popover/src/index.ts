@@ -5,4 +5,4 @@ export default Popover;
 
 export { Popover as KPopover };
 
-export type { KPopoverProps } from './types';
+export type { KPopoverProps, OffsetsFunction, OffsetsFnPa } from './types';
