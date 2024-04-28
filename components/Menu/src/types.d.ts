@@ -242,6 +242,5 @@ export type SubMenuType = {
 // TODO: 👀 Items Slots slots  icon  菜单图标 horizontal
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
 
-// 🎯 TODO horizontal 缩略适配
-// 🎯 TODO 缩略重构
 // 🎯 TODO horizontal 缩略与默认打开冲突
+

@@ -124,8 +124,9 @@
 			| { detail: { selected: boolean; uid: string } },
 		index: number
 	) {
+
 		const { selected, uid } = e.detail;
-		const it = itemsList[index];
+		const it = itemsList[index] || moreItem
 		if (!isGroup(it)) {
 			!it.selectedDeps && (it.selectedDeps = new Set());
 			if (selected) {
@@ -136,7 +137,11 @@
 
 			it.selected = !!it.selectedDeps.size;
 
-			itemsList[index] = it;
+			if(itemsList[index]) {
+				itemsList[index] = it
+			} else {
+				moreItem = it
+			}
 			dispatch('selectedRecursion', {
 				selected: it.selected,
 				uid: it.uid
@@ -224,6 +229,24 @@
 		}
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	let popoverRef: any = [];
 	let subMenuRef: any = [];
 	let isDirty = true;
@@ -240,12 +263,14 @@
 		if (level === 1) {
 			popoverRef.forEach((ref: any, index: number) => {
 				if (hiddenIndex.has(index)) return;
-				ref && ref.updateShow && ref.updateShow(itemsList[index].open);
+				const it = itemsList[index] ||  moreItem
+				ref && ref.updateShow && ref.updateShow(it.open);
 			});
 		} else {
 			setTimeout(() => {
 				popoverRef.forEach((ref: any, index: number) => {
-					ref && ref.updateShow && ref.updateShow(itemsList[index].open);
+					const it = itemsList[index] ||  moreItem
+					ref && ref.updateShow && ref.updateShow(it.open);
 				});
 			}, 300);
 		}
@@ -262,11 +287,33 @@
 		index: number;
 	}> = [];
 	$: showMoreItems = moreItems.length
-	$: moreItem = {
-		children: moreItems.map(it => it.item),
-		selected: false,
-		uid: 'more-item',
-		open: false
+	let moreItem:SubMenuType = {}
+	function genMoreItem(mIt: Array<{
+		item: SubMenuType;
+		width: number;
+		index: number;
+	}>){
+		const open = mIt.some(it => {
+			return it.item.open
+		})
+		const selected = mIt.some(it => {
+			return it.item.selected
+		})
+
+		moreItem = {
+			children: mIt.map(it => it.item),
+			selected,
+			uid: 'more-item',
+			open
+		} as SubMenuType
+
+		if(popoverRef[itemsList.length]){
+			isDirty = true
+			showPopoverManual();
+		}
+	}
+	$: {
+		genMoreItem(moreItems)
 	}
 	function adjustLayout() {
 		if (parentDom && level === 1) {
@@ -364,7 +411,7 @@
 				itemEls = Array.from(parentDom.querySelectorAll('[data-k-menu-h="1"]'));
 			}
 			adjustLayout();
-			await tick();
+			await tick()
 			window.addEventListener('resize', adjustLayout);
 			showPopoverManual();
 		}
@@ -376,6 +423,19 @@
 			window.removeEventListener('resize', adjustLayout);
 		}
 	});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	const menuPrefixCls = getPrefixCls('menu');
 	const prefixCls = getPrefixCls('menu-item');
@@ -615,14 +675,10 @@
 
 	{#if ctxProps.mode === 'horizontal'}
 		<KPopover
-
 			bind:this={popoverRef[index]}
 			width={widths[index]}
 			order={index}
 			opacity={ops[index]}
-
-
-
 			attrsTrigger={{ 'data-k-menu-h': `${level}` }}
 			arrow={false}
 			placement={level === 1 ? 'bottom' : 'right'}
@@ -706,11 +762,15 @@
 		arrow={false}
 		placement={level === 1 ? 'bottom' : 'right'}
 		fallbackPlacements={['bottom', 'top']}
+		on:animateStart={showSubMenuPopover}
 		mouseEnterDelay={ctxProps.subMenuOpenDelay}
 		mouseLeaveDelay={ctxProps.subMenuCloseDelay}
 		trigger={ctxProps.triggerSubMenuAction}
 		cls={popoverContentCls}
-		order="{itemsList.length + 1}">
+		bind:this={popoverRef[itemsList.length]}
+		width={widths[itemsList.length ]}
+		opacity={ops[itemsList.length ]}
+		order="{itemsList.length}">
 		<li
 			slot="triggerEl"
 			aria-hidden="true"
@@ -720,7 +780,35 @@
 			...
 		</li>
 		<div slot="contentEl">
-			<p class="!my-2">亲手点燃黑暗森林的火星</p>
+			<KMenu {...ctxProps} {ctxKey} show={hasSub(moreItem)} cls={subMenuCls(false)}>
+				<svelte:self
+					uid={moreItem.uid}
+					{ctxKey}
+					bind:this={subMenuRef[itemsList.length]}
+					on:selectedRecursion={(e) => handleSelectedRecursion(e, itemsList.length)}
+					items={moreItem.children}
+					level={getLevel(moreItem, level) + 1}
+				>
+					<svelte:fragment let:item slot="item">
+						<slot name="item" {item}>
+								<span class={iconRootCls}>
+									<slot name="icon" {item}>
+										{#if item.icon}
+											<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
+										{/if}
+									</slot>
+									<span class={titleContentCls(!!item.icon)}>{item.label}</span>
+								</span>
+							{#if hasSub(item)}
+								<slot name="expandIcon" {item} cls={iconCls}>
+									<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(item)}
+									></KIcon>
+								</slot>
+							{/if}
+						</slot>
+					</svelte:fragment>
+				</svelte:self>
+			</KMenu>
 		</div>
 	</KPopover>
 {/if}
