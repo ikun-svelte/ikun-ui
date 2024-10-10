@@ -203,7 +203,13 @@ export type SubMenuType = {
 	 */
 	theme?: 'light' | 'dark';
 	/**
-	 * TODO: 🎯设置收缩时展示的悬浮标题(无子菜单情况下生效，不传时默认为 label)
+	 * TODO: 🎯悬浮标题(
+	 *   1.无子菜单情况下生效
+	 *   2.收起时，inline 和 vertical 模式下，默认值是 label，使用 tooltip显示
+	 *   3.展开时，inline 和 vertical 模式下，无默认值，使用 title 属性显示
+	 *   4.horizontal 模式下，无默认值，使用 title 属性显示
+	 *   5.group 上也生效
+	 * )
 	 */
 	title?: string;
 	/**
@@ -235,12 +241,11 @@ export type SubMenuType = {
 
 // TODO: onTitleClick 点击子菜单标题
 
-// TODO: 🎯Items Slots slots label 分组标题 vertical
-// TODO: 🎯Items Slots slots label 分组标题 horizontal
-// TODO: 🎯Items Slots slots label 分组标题 inline
+// TODO: 👀 Items Slots slots label 分组标题 vertical
+// TODO: 👀 Items Slots slots label 分组标题 horizontal
+// TODO: 👀 Items Slots slots label 分组标题 inline
 // TODO: 👀 Items Slots slots  icon  菜单图标 vertical
 // TODO: 👀 Items Slots slots  icon  菜单图标 horizontal
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
 
-// 🎯 TODO horizontal 缩略与默认打开冲突
 

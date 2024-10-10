@@ -542,7 +542,11 @@
 								<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
 							{/if}
 						</slot>
-						<span class={titleContentCls(!!it.icon)}>{it.label}</span>
+						<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
+										<span class={titleContentCls(!!it.icon)}>
+											{it.label}
+										</span>
+						</slot>
 					</span>
 
 					{#if hasSub(it) && !isGroup(it)}
@@ -574,7 +578,11 @@
 										<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
 									{/if}
 								</slot>
-								<span class={titleContentCls(!!item.icon)}>{item.label}</span>
+								<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
+										<span class={titleContentCls(!!it.icon)}>
+											{it.label}
+										</span>
+								</slot>
 							</span>
 
 							{#if hasSub(item) && !isGroup(item)}
@@ -625,7 +633,11 @@
 										<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
 									{/if}
 								</slot>
-								<span class={titleContentCls(!!it.icon)}>{it.label}</span>
+								<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
+										<span class={titleContentCls(!!it.icon)}>
+											{it.label}
+										</span>
+									</slot>
 							</span>
 
 							{#if hasSub(it) && !isGroup(it)}
@@ -657,7 +669,11 @@
 											<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
 										{/if}
 									</slot>
-									<span class={titleContentCls(!!item.icon)}>{item.label}</span>
+									<slot name="label" item={item} cls={titleContentCls(!!item.icon)}>
+										<span class={titleContentCls(!!item.icon)}>
+											{item.label}
+										</span>
+								</slot>
 								</span>
 								{#if hasSub(item)}
 									<slot name="expandIcon" {item} cls={iconCls}>
@@ -709,7 +725,11 @@
 										<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
 									{/if}
 								</slot>
-								<span class={titleContentCls(!!it.icon)}>{it.label}</span>
+								<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
+									<span class={titleContentCls(!!it.icon)}>
+										{it.label}
+									</span>
+								</slot>
 							</span>
 
 							{#if hasSub(it) && !isGroup(it) && level !== 1}
@@ -723,7 +743,7 @@
 					<KDivider cls={dividerCls} direction={level === 1 ? 'vertical' : 'horizontal'}></KDivider>
 				{/if}
 			</svelte:fragment>
-			<div slot="contentEl" style:width={popoverContentWidth(index)}>
+			<div slot="contentEl" style:min-width={popoverContentWidth(index)}>
 				<KMenu {...ctxProps} {ctxKey} show={hasSub(it) && !isGroup(it)} cls={subMenuCls(false)}>
 					<svelte:self
 						uid={it.uid}
@@ -741,7 +761,11 @@
 											<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
 										{/if}
 									</slot>
-									<span class={titleContentCls(!!item.icon)}>{item.label}</span>
+									<slot name="label" item={item} cls={titleContentCls(!!item.icon)}>
+										<span class={titleContentCls(!!item.icon)}>
+											{item.label}
+										</span>
+									</slot>
 								</span>
 								{#if hasSub(item)}
 									<slot name="expandIcon" {item} cls={iconCls}>
@@ -757,6 +781,7 @@
 		</KPopover>
 	{/if}
 {/each}
+<!--Omit display in horizontal mode -->
 {#if ctxProps.mode === 'horizontal' && showMoreItems && level === 1}
 	<KPopover
 		arrow={false}
@@ -797,7 +822,11 @@
 											<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
 										{/if}
 									</slot>
-									<span class={titleContentCls(!!item.icon)}>{item.label}</span>
+									<slot name="label" item={item} cls={titleContentCls(!!item.icon)}>
+										<span class={titleContentCls(!!item.icon)}>
+											{item.label}
+										</span>
+									</slot>
 								</span>
 							{#if hasSub(item)}
 								<slot name="expandIcon" {item} cls={iconCls}>
