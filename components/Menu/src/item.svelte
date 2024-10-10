@@ -124,9 +124,8 @@
 			| { detail: { selected: boolean; uid: string } },
 		index: number
 	) {
-
 		const { selected, uid } = e.detail;
-		const it = itemsList[index] || moreItem
+		const it = itemsList[index] || moreItem;
 		if (!isGroup(it)) {
 			!it.selectedDeps && (it.selectedDeps = new Set());
 			if (selected) {
@@ -137,10 +136,10 @@
 
 			it.selected = !!it.selectedDeps.size;
 
-			if(itemsList[index]) {
-				itemsList[index] = it
+			if (itemsList[index]) {
+				itemsList[index] = it;
 			} else {
-				moreItem = it
+				moreItem = it;
 			}
 			dispatch('selectedRecursion', {
 				selected: it.selected,
@@ -229,24 +228,6 @@
 		}
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	let popoverRef: any = [];
 	let subMenuRef: any = [];
 	let isDirty = true;
@@ -263,13 +244,13 @@
 		if (level === 1) {
 			popoverRef.forEach((ref: any, index: number) => {
 				if (hiddenIndex.has(index)) return;
-				const it = itemsList[index] ||  moreItem
+				const it = itemsList[index] || moreItem;
 				ref && ref.updateShow && ref.updateShow(it.open);
 			});
 		} else {
 			setTimeout(() => {
 				popoverRef.forEach((ref: any, index: number) => {
-					const it = itemsList[index] ||  moreItem
+					const it = itemsList[index] || moreItem;
 					ref && ref.updateShow && ref.updateShow(it.open);
 				});
 			}, 300);
@@ -286,38 +267,40 @@
 		width: number;
 		index: number;
 	}> = [];
-	$: showMoreItems = moreItems.length
-	let moreItem:SubMenuType = {}
-	function genMoreItem(mIt: Array<{
-		item: SubMenuType;
-		width: number;
-		index: number;
-	}>){
-		const open = mIt.some(it => {
-			return it.item.open
-		})
-		const selected = mIt.some(it => {
-			return it.item.selected
-		})
+	$: showMoreItems = moreItems.length;
+	let moreItem: SubMenuType = {};
+	function genMoreItem(
+		mIt: Array<{
+			item: SubMenuType;
+			width: number;
+			index: number;
+		}>
+	) {
+		const open = mIt.some((it) => {
+			return it.item.open;
+		});
+		const selected = mIt.some((it) => {
+			return it.item.selected;
+		});
 
 		moreItem = {
-			children: mIt.map(it => it.item),
+			children: mIt.map((it) => it.item),
 			selected,
 			uid: 'more-item',
 			open
-		} as SubMenuType
+		} as SubMenuType;
 
-		if(popoverRef[itemsList.length]){
-			isDirty = true
+		if (popoverRef[itemsList.length]) {
+			isDirty = true;
 			showPopoverManual();
 		}
 	}
 	$: {
-		genMoreItem(moreItems)
+		genMoreItem(moreItems);
 	}
 	function adjustLayout() {
 		if (parentDom && level === 1) {
-			let resolvedMoreItems = moreItems
+			let resolvedMoreItems = moreItems;
 			const parentWidth = parentDom.offsetWidth;
 			let toS = false;
 			let init = false;
@@ -352,19 +335,21 @@
 							popoverRef[index].updateShow(false);
 					}
 					const has = resolvedMoreItems.some((it) => it.index === index);
-					if(!has){
+					if (!has) {
 						resolvedMoreItems.push({
 							index,
 							item: itemsList[index],
 							width: offsetWidth
 						});
-						moreItems = [...resolvedMoreItems]
+						moreItems = [...resolvedMoreItems];
 					}
 					hiddenIndex.add(index);
 					init &&
-						(moreItems = [...resolvedMoreItems.sort((a, b) => {
-							return b.index - a.index;
-						})]);
+						(moreItems = [
+							...resolvedMoreItems.sort((a, b) => {
+								return b.index - a.index;
+							})
+						]);
 				} else {
 					ops[index] = '1';
 				}
@@ -378,7 +363,7 @@
 					const lastItemWidth = lastItem.width;
 					if (resolvedMoreItems.length > 0 && spaceAvailable >= lastItemWidth) {
 						const index = resolvedMoreItems.pop()!.index;
-						moreItems = [...resolvedMoreItems]
+						moreItems = [...resolvedMoreItems];
 						const dom = itemEls![index];
 						if (dom) {
 							(dom as HTMLElement).style.opacity = '1';
@@ -411,7 +396,7 @@
 				itemEls = Array.from(parentDom.querySelectorAll('[data-k-menu-h="1"]'));
 			}
 			adjustLayout();
-			await tick()
+			await tick();
 			window.addEventListener('resize', adjustLayout);
 			showPopoverManual();
 		}
@@ -423,19 +408,6 @@
 			window.removeEventListener('resize', adjustLayout);
 		}
 	});
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	const menuPrefixCls = getPrefixCls('menu');
 	const prefixCls = getPrefixCls('menu-item');
@@ -467,7 +439,12 @@
 	};
 
 	const iconCls = clsx(`${prefixCls}-icon`);
-	const iconRootCls = clsx(`${prefixCls}-icon-root`);
+	const iconRootCls = (isInlineCollapsed?: boolean) => {
+		return clsx({
+			[`${prefixCls}-icon-root`]: !isInlineCollapsed,
+			[`${prefixCls}-icon-root--collapsed`]: isInlineCollapsed
+		});
+	};
 
 	$: expendIconCls = (it: SubMenuType) => {
 		const icon = ctxProps.expandIcon || 'i-carbon-chevron-down ';
@@ -500,8 +477,12 @@
 			[`${prefixCls}-popover-trigger-${ctxProps.mode}-divider`]: isDivider && !isNotHorizontalTop()
 		});
 	};
-	$: getIndent = (it: SubMenuType) => {
+	$: getIndent = (it: SubMenuType, isInlineCollapsed?: boolean) => {
+		// horizontal mode
 		if (ctxProps.mode === 'horizontal' && level === 1) return '16px';
+		// inline mode
+		if (isInlineCollapsed) return '';
+		// vertical mode
 		if (ctxProps.mode !== 'inline') {
 			return `${it.inGroup ? (ctxProps.inlineIndent || 24) * 2 : ctxProps.inlineIndent}px`;
 		}
@@ -522,6 +503,12 @@
 		}
 		return '100%';
 	};
+
+	const resolveLabel = (it: SubMenuType, isInlineCollapsed?: boolean) => {
+		if (!it.label) return '';
+		if (!isInlineCollapsed) return it.label;
+		return isInlineCollapsed && !it.icon ? it.label[0] : it.label;
+	};
 </script>
 
 {#each itemsList as it, index (it.uid)}
@@ -536,16 +523,16 @@
 				{...attrs}
 			>
 				<slot name="item" item={it}>
-					<span class={iconRootCls}>
+					<span class={iconRootCls()}>
 						<slot name="icon" item={it} cls={iconCls}>
 							{#if it.icon}
 								<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
 							{/if}
 						</slot>
 						<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
-										<span class={titleContentCls(!!it.icon)}>
-											{it.label}
-										</span>
+							<span class={titleContentCls(!!it.icon)}>
+								{it.label}
+							</span>
 						</slot>
 					</span>
 
@@ -572,16 +559,16 @@
 				>
 					<svelte:fragment let:item slot="item">
 						<slot name="item" {item}>
-							<span class={iconRootCls}>
+							<span class={iconRootCls()}>
 								<slot name="icon" {item}>
 									{#if item.icon}
 										<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
 									{/if}
 								</slot>
-								<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
-										<span class={titleContentCls(!!it.icon)}>
-											{it.label}
-										</span>
+								<slot name="label" {item} cls={titleContentCls(!!item.icon)}>
+									<span class={titleContentCls(!!item.icon)}>
+										{item.label}
+									</span>
 								</slot>
 							</span>
 
@@ -621,26 +608,28 @@
 					<li
 						on:click={(e) => handleSelect(it, e)}
 						aria-hidden="true"
-						style:padding-left={`${getIndent(it)}`}
+						style:padding-left={`${getIndent(it, ctxProps.inlineCollapsed)}`}
 						class={cnames(it)}
 						{...$$restProps}
 						{...attrs}
 					>
 						<slot name="item" item={it}>
-							<span class={iconRootCls}>
+							<span class={iconRootCls(ctxProps.inlineCollapsed)}>
 								<slot name="icon" item={it} cls={iconCls}>
 									{#if it.icon}
 										<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
 									{/if}
 								</slot>
 								<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
+									{#if !ctxProps.inlineCollapsed || (ctxProps.inlineCollapsed && it.label && !it.icon)}
 										<span class={titleContentCls(!!it.icon)}>
-											{it.label}
+											{resolveLabel(it, ctxProps.inlineCollapsed)}
 										</span>
-									</slot>
+									{/if}
+								</slot>
 							</span>
 
-							{#if hasSub(it) && !isGroup(it)}
+							{#if hasSub(it) && !isGroup(it) && !ctxProps.inlineCollapsed}
 								<slot name="expandIcon" item={it} cls={iconCls}>
 									<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(it)}></KIcon>
 								</slot>
@@ -663,17 +652,17 @@
 					>
 						<svelte:fragment let:item slot="item">
 							<slot name="item" {item}>
-								<span class={iconRootCls}>
+								<span class={iconRootCls()}>
 									<slot name="icon" {item}>
 										{#if item.icon}
 											<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
 										{/if}
 									</slot>
-									<slot name="label" item={item} cls={titleContentCls(!!item.icon)}>
+									<slot name="label" {item} cls={titleContentCls(!!item.icon)}>
 										<span class={titleContentCls(!!item.icon)}>
 											{item.label}
 										</span>
-								</slot>
+									</slot>
 								</span>
 								{#if hasSub(item)}
 									<slot name="expandIcon" {item} cls={iconCls}>
@@ -713,13 +702,13 @@
 					<li
 						on:click={(e) => handleSelect(it, e)}
 						aria-hidden="true"
-						style:padding-left={`${getIndent(it)}`}
+						style:padding-left={`${getIndent(it, ctxProps.inlineCollapsed)}`}
 						class={cnames(it)}
 						{...$$restProps}
 						{...attrs}
 					>
 						<slot name="item" item={it}>
-							<span class={iconRootCls}>
+							<span class={iconRootCls()}>
 								<slot name="icon" item={it} cls={iconCls}>
 									{#if it.icon}
 										<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
@@ -755,13 +744,13 @@
 					>
 						<svelte:fragment let:item slot="item">
 							<slot name="item" {item}>
-								<span class={iconRootCls}>
+								<span class={iconRootCls()}>
 									<slot name="icon" {item}>
 										{#if item.icon}
 											<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
 										{/if}
 									</slot>
-									<slot name="label" item={item} cls={titleContentCls(!!item.icon)}>
+									<slot name="label" {item} cls={titleContentCls(!!item.icon)}>
 										<span class={titleContentCls(!!item.icon)}>
 											{item.label}
 										</span>
@@ -793,15 +782,11 @@
 		trigger={ctxProps.triggerSubMenuAction}
 		cls={popoverContentCls}
 		bind:this={popoverRef[itemsList.length]}
-		width={widths[itemsList.length ]}
-		opacity={ops[itemsList.length ]}
-		order="{itemsList.length}">
-		<li
-			slot="triggerEl"
-			aria-hidden="true"
-			class={cnames(moreItem)}
-			{...$$restProps}
-			{...attrs}>
+		width={widths[itemsList.length]}
+		opacity={ops[itemsList.length]}
+		order={itemsList.length}
+	>
+		<li slot="triggerEl" aria-hidden="true" class={cnames(moreItem)} {...$$restProps} {...attrs}>
 			...
 		</li>
 		<div slot="contentEl">
@@ -816,18 +801,18 @@
 				>
 					<svelte:fragment let:item slot="item">
 						<slot name="item" {item}>
-								<span class={iconRootCls}>
-									<slot name="icon" {item}>
-										{#if item.icon}
-											<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
-										{/if}
-									</slot>
-									<slot name="label" item={item} cls={titleContentCls(!!item.icon)}>
-										<span class={titleContentCls(!!item.icon)}>
-											{item.label}
-										</span>
-									</slot>
-								</span>
+							<span class={iconRootCls()}>
+								<slot name="icon" {item}>
+									{#if item.icon}
+										<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
+									{/if}
+								</slot>
+								<slot name="label" {item} cls={titleContentCls(!!item.icon)}>
+									<span class={titleContentCls(!!item.icon)}>
+										{item.label}
+									</span>
+								</slot>
+							</span>
 							{#if hasSub(item)}
 								<slot name="expandIcon" {item} cls={iconCls}>
 									<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(item)}

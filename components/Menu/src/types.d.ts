@@ -72,7 +72,7 @@ export type KMenuProps = {
 	 */
 	inlineIndent?: number;
 	/**
-	 * TODO: inline 时菜单是否收起状态 (指显示图标的mini模式和展开到常规模式)
+	 * TODO: 👀 inline 或 vertical 时菜单是否收起状态 (指显示图标的mini模式和展开到常规模式)
 	 * @default false
 	 */
 	inlineCollapsed?: boolean;
@@ -185,7 +185,7 @@ export type SubMenuType = {
 	 */
 	icon?: string;
 	/**
-	 * TODO: 菜单项标题
+	 * TODO: 🎯 菜单项标题
 	 */
 	label?: string;
 	/**
@@ -247,5 +247,3 @@ export type SubMenuType = {
 // TODO: 👀 Items Slots slots  icon  菜单图标 vertical
 // TODO: 👀 Items Slots slots  icon  菜单图标 horizontal
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
-
-

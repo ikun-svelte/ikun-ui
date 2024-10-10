@@ -17,6 +17,7 @@
 	export let show: KMenuProps['show'] = true;
 	export let multiple: KMenuProps['multiple'] = true;
 	export let selectable: KMenuProps['selectable'] = true;
+	export let inlineCollapsed: KMenuProps['inlineCollapsed'] = false;
 	export let ctxKey: KMenuProps['ctxKey'] = '';
 	const dispatch = createEventDispatcher();
 	function onOpenChange(openUids: string[]) {
@@ -46,16 +47,22 @@
 			return menuRef.parentElement;
 		}
 	}
+
+	let resolveMode = mode;
+	$: {
+		resolveMode = inlineCollapsed ? 'vertical' : mode;
+	}
 	/**
 	 * @internal
 	 */
 	const menuInst = createKMenu(
 		{
+			inlineCollapsed,
 			triggerSubMenuAction,
 			subMenuCloseDelay,
 			subMenuOpenDelay,
 			expandIcon,
-			mode,
+			mode: inlineCollapsed ? 'vertical' : mode,
 			inlineIndent,
 			openUids,
 			selectedUids,
@@ -71,17 +78,21 @@
 		removeBorderStyleBg,
 		getParentDom
 	);
-	if (!getContext(ctxKey || menuKey)) {
-		setContext(ctxKey || menuKey, menuInst);
-	}
+	const setContextFn = () => {
+		if (!getContext(ctxKey || menuKey)) {
+			setContext(ctxKey || menuKey, menuInst);
+		}
+	};
+	setContextFn();
 	$: {
 		menuInst.__propHandleEvtMap.forEach((cb) => {
-			cb({
+			const props = {
+				inlineCollapsed,
 				triggerSubMenuAction,
 				subMenuCloseDelay,
 				subMenuOpenDelay,
 				expandIcon,
-				mode,
+				mode: resolveMode,
 				inlineIndent,
 				openUids,
 				multiple,
@@ -89,7 +100,10 @@
 				selectable,
 				attrs,
 				ctxKey
-			});
+			};
+			menuInst.__dynamicProps = props;
+			setContextFn();
+			cb(props);
 		});
 	}
 
