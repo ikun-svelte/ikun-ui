@@ -1,3 +1,4 @@
+import { menuShortcuts } from './src/menu';
 import { indicatorsShortcuts } from './src/indicators';
 import { tourShortcuts } from './src/tour';
 import { calendarShortcuts } from './src/calendar';
@@ -71,6 +72,8 @@ export const defaultShortcuts = [
 	commonShortcuts,
 	// don't remove
 	// anchor defaultShortcuts
+	// menu
+	menuShortcuts,
 	// indicators
 	indicatorsShortcuts,
 	// tour
@@ -196,6 +199,7 @@ export const defaultShortcuts = [
 export function getSafeList() {
 	// don't remove
 	// anchor shortcuts
+	const menuList = Object.keys(menuShortcuts);
 	const indicatorsList = Object.keys(indicatorsShortcuts);
 	const tourList = Object.keys(tourShortcuts);
 	const calendarList = Object.keys(calendarShortcuts);
@@ -261,6 +265,7 @@ export function getSafeList() {
 	let res = iconList
 		// don't remove
 		// anchor list
+		.concat(menuList)
 		.concat(indicatorsList)
 		.concat(tourList)
 		.concat(calendarList)
@@ -400,3 +405,4 @@ export { timelineShortcuts } from './src/timeline';
 export { calendarShortcuts } from './src/calendar';
 export { indicatorsShortcuts } from './src/indicators';
 export { tourShortcuts } from './src/tour';
+export { menuShortcuts } from './src/menu';

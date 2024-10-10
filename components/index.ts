@@ -68,3 +68,4 @@ export * from '@ikun-ui/timeline';
 export * from '@ikun-ui/calendar';
 export * from '@ikun-ui/indicators';
 export * from '@ikun-ui/tour';
+export * from '@ikun-ui/menu';
