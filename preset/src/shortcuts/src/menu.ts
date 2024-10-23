@@ -1,6 +1,6 @@
 export const menuShortcuts: Record<string, string> = {
 	'k-menu':
-		'bg-white text-ikun-tx-base p-0 m-0 box-border text-14px leading-0 list-none outline-none focus:outline-none k-menu-transition-w',
+		'bg-white text-ikun-tx-base p-0 m-0 box-border text-14px list-none outline-none focus:outline-none k-menu-transition-w',
 
 	'k-menu-item': 'box-border select-none',
 	'k-menu-item-icon-root': 'truncate fsc',

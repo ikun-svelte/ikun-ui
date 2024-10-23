@@ -185,7 +185,7 @@ export type SubMenuType = {
 	 */
 	icon?: string;
 	/**
-	 * TODO: 🎯 菜单项标题
+	 * TODO: 👀 菜单项标题
 	 */
 	label?: string;
 	/**
@@ -203,12 +203,12 @@ export type SubMenuType = {
 	 */
 	theme?: 'light' | 'dark';
 	/**
-	 * TODO: 🎯悬浮标题(
-	 *   1.无子菜单情况下生效
-	 *   2.收起时，inline 和 vertical 模式下，默认值是 label，使用 tooltip显示
-	 *   3.展开时，inline 和 vertical 模式下，无默认值，使用 title 属性显示
-	 *   4.horizontal 模式下，无默认值，使用 title 属性显示
-	 *   5.group 上也生效
+	 * TODO: 👀悬浮标题(
+	 *   1.👀无子菜单情况下生效
+	 *   2.👀收起时，inline 和 vertical 模式下，默认值是 label，使用 tooltip 显示
+	 *   3.👀 展开时，inline 和 vertical 模式下，无默认值，使用 title 属性显示
+	 *   4.👀 horizontal 模式下，无默认值，使用 title 属性显示
+	 *   5.👀 group 上也生效
 	 * )
 	 */
 	title?: string;

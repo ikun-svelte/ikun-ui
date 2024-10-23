@@ -36,6 +36,7 @@
 		"@ikun-ui/utils": "workspace:*",
 		"@ikun-ui/divider": "workspace:*",
 		"@ikun-ui/popover": "workspace:*",
+		"@ikun-ui/tooltip": "workspace:*",
 		"baiwusanyu-utils": "^1.0.18",
 		"esm-env": "^1.0.0",
 		"clsx": "^2.0.0",

@@ -50,7 +50,7 @@
 
 	let resolveMode = mode;
 	$: {
-		resolveMode = inlineCollapsed ? 'vertical' : mode;
+		resolveMode = inlineCollapsed && mode !== 'horizontal' ? 'vertical' : mode;
 	}
 	/**
 	 * @internal
@@ -62,7 +62,7 @@
 			subMenuCloseDelay,
 			subMenuOpenDelay,
 			expandIcon,
-			mode: inlineCollapsed ? 'vertical' : mode,
+			mode: inlineCollapsed && mode !== 'horizontal' ? 'vertical' : mode,
 			inlineIndent,
 			openUids,
 			selectedUids,

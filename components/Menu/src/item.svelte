@@ -8,6 +8,7 @@
 	import KMenu from './index';
 	import { getUidPath } from './utils';
 	import { KPopover } from '@ikun-ui/popover';
+	import { KTooltip } from '@ikun-ui/tooltip';
 	import type { OffsetsFunction, OffsetsFnPa } from '@ikun-ui/popover';
 	import { jsonClone } from 'baiwusanyu-utils';
 	import { BROWSER } from 'esm-env';
@@ -509,40 +510,78 @@
 		if (!isInlineCollapsed) return it.label;
 		return isInlineCollapsed && !it.icon ? it.label[0] : it.label;
 	};
+
+	const resolveDisabledTooltip = (it: SubMenuType, isInlineCollapsed?: boolean) => {
+		// 有子节点的不显示
+		if ((it.children && it.children.length > 0 && it.type !== 'group') || !isInlineCollapsed) {
+			return true;
+			// 收起时且非水平模式
+		} else {
+			return false;
+		}
+	};
+
+	const resolveTitle = (it: SubMenuType, isInlineCollapsed?: boolean, isTooltip?: boolean) => {
+		let res = '';
+		// 有子节点的不显示
+		if (it.children && it.children.length > 0 && it.type !== 'group') {
+			res = '';
+			// 收起时且非水平模式
+		} else if (isInlineCollapsed && ctxProps.mode !== 'horizontal') {
+			res = it.title || it.label || '';
+			if (!isTooltip) {
+				res = '';
+			}
+			// 收起时或水平模式无默认值，只展示 title
+		} else if (!isInlineCollapsed || ctxProps.mode === 'horizontal') {
+			res = it.title || '';
+		}
+		return res;
+	};
 </script>
 
 {#each itemsList as it, index (it.uid)}
 	{#if ctxProps.mode === 'inline'}
 		{#if it.type !== 'divider'}
-			<li
-				on:click={(e) => handleSelect(it, e)}
-				aria-hidden="true"
-				style:padding-left={`${getIndent(it)}`}
-				class={cnames(it)}
-				{...$$restProps}
-				{...attrs}
+			<KTooltip
+				placement="right"
+				trigger="hover"
+				content={resolveTitle(it, ctxProps.inlineCollapsed, true)}
+				disabled={resolveDisabledTooltip(it, ctxProps.inlineCollapsed)}
 			>
-				<slot name="item" item={it}>
-					<span class={iconRootCls()}>
-						<slot name="icon" item={it} cls={iconCls}>
-							{#if it.icon}
-								<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
-							{/if}
-						</slot>
-						<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
-							<span class={titleContentCls(!!it.icon)}>
-								{it.label}
-							</span>
-						</slot>
-					</span>
+				<li
+					slot="triggerEl"
+					on:click={(e) => handleSelect(it, e)}
+					aria-hidden="true"
+					style:padding-left={`${getIndent(it)}`}
+					class={cnames(it)}
+					title={resolveTitle(it, ctxProps.inlineCollapsed, false)}
+					{...$$restProps}
+					{...attrs}
+				>
+					<slot name="item" item={it}>
+						<span class={iconRootCls()}>
+							<slot name="icon" item={it} cls={iconCls}>
+								{#if it.icon}
+									<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
+								{/if}
+							</slot>
+							<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
+								<span class={titleContentCls(!!it.icon)}>
+									{it.label}
+								</span>
+							</slot>
+						</span>
 
-					{#if hasSub(it) && !isGroup(it)}
-						<slot name="expandIcon" item={it} cls={iconCls}>
-							<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(it)}></KIcon>
-						</slot>
-					{/if}
-				</slot>
-			</li>
+						{#if hasSub(it) && !isGroup(it)}
+							<slot name="expandIcon" item={it} cls={iconCls}>
+								<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(it)}></KIcon>
+							</slot>
+						{/if}
+					</slot>
+				</li>
+			</KTooltip>
+
 			<!--render submenu-->
 			<KMenu
 				{...ctxProps}
@@ -605,37 +644,47 @@
 		>
 			<svelte:fragment slot="triggerEl">
 				{#if it.type !== 'divider'}
-					<li
-						on:click={(e) => handleSelect(it, e)}
-						aria-hidden="true"
-						style:padding-left={`${getIndent(it, ctxProps.inlineCollapsed)}`}
-						class={cnames(it)}
-						{...$$restProps}
-						{...attrs}
+					<KTooltip
+						placement="right"
+						trigger="hover"
+						disabled={resolveDisabledTooltip(it, ctxProps.inlineCollapsed)}
+						content={resolveTitle(it, ctxProps.inlineCollapsed, true)}
 					>
-						<slot name="item" item={it}>
-							<span class={iconRootCls(ctxProps.inlineCollapsed)}>
-								<slot name="icon" item={it} cls={iconCls}>
-									{#if it.icon}
-										<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
-									{/if}
-								</slot>
-								<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
-									{#if !ctxProps.inlineCollapsed || (ctxProps.inlineCollapsed && it.label && !it.icon)}
-										<span class={titleContentCls(!!it.icon)}>
-											{resolveLabel(it, ctxProps.inlineCollapsed)}
-										</span>
-									{/if}
-								</slot>
-							</span>
+						<li
+							slot="triggerEl"
+							on:click={(e) => handleSelect(it, e)}
+							aria-hidden="true"
+							style:padding-left={`${getIndent(it, ctxProps.inlineCollapsed)}`}
+							class={cnames(it)}
+							title={resolveTitle(it, ctxProps.inlineCollapsed, false)}
+							{...$$restProps}
+							{...attrs}
+						>
+							<slot name="item" item={it}>
+								<span class={iconRootCls(ctxProps.inlineCollapsed)}>
+									<slot name="icon" item={it} cls={iconCls}>
+										{#if it.icon}
+											<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
+										{/if}
+									</slot>
+									<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
+										{#if !ctxProps.inlineCollapsed || (ctxProps.inlineCollapsed && it.label && !it.icon)}
+											<span class={titleContentCls(!!it.icon)}>
+												{resolveLabel(it, ctxProps.inlineCollapsed)}
+											</span>
+										{/if}
+									</slot>
+								</span>
 
-							{#if hasSub(it) && !isGroup(it) && !ctxProps.inlineCollapsed}
-								<slot name="expandIcon" item={it} cls={iconCls}>
-									<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(it)}></KIcon>
-								</slot>
-							{/if}
-						</slot>
-					</li>
+								{#if hasSub(it) && !isGroup(it) && !ctxProps.inlineCollapsed}
+									<slot name="expandIcon" item={it} cls={iconCls}>
+										<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(it)}
+										></KIcon>
+									</slot>
+								{/if}
+							</slot>
+						</li>
+					</KTooltip>
 				{:else}
 					<KDivider cls={dividerCls}></KDivider>
 				{/if}
@@ -704,6 +753,7 @@
 						aria-hidden="true"
 						style:padding-left={`${getIndent(it, ctxProps.inlineCollapsed)}`}
 						class={cnames(it)}
+						title={resolveTitle(it, ctxProps.inlineCollapsed, false)}
 						{...$$restProps}
 						{...attrs}
 					>
