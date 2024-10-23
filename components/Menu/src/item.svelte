@@ -546,6 +546,7 @@
 			<KTooltip
 				placement="right"
 				trigger="hover"
+				width="100%"
 				content={resolveTitle(it, ctxProps.inlineCollapsed, true)}
 				disabled={resolveDisabledTooltip(it, ctxProps.inlineCollapsed)}
 			>
@@ -647,6 +648,7 @@
 					<KTooltip
 						placement="right"
 						trigger="hover"
+						width="100%"
 						disabled={resolveDisabledTooltip(it, ctxProps.inlineCollapsed)}
 						content={resolveTitle(it, ctxProps.inlineCollapsed, true)}
 					>

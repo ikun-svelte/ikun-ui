@@ -13,6 +13,10 @@
 	export let mouseEnterDelay: KTooltipProps['mouseEnterDelay'] = 200;
 	export let mouseLeaveDelay: KTooltipProps['mouseLeaveDelay'] = 200;
 	export let defaultOpen: KPopoverProps['defaultOpen'] = undefined;
+	export let width: KPopoverProps['width'] = 'fit-content';
+	/**
+	 * @internal
+	 */
 	$: cnames = clsx(cls);
 </script>
 
@@ -23,9 +27,10 @@
 	{mouseEnterDelay}
 	{mouseLeaveDelay}
 	{placement}
+	{width}
 	{attrs}
 	{defaultOpen}
 >
-	<span slot="contentEl">{content}</span>
+	<span slot="contentEl">{content} {width}</span>
 	<slot name="triggerEl" slot="triggerEl" />
 </KPopover>
