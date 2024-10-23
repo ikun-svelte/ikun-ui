@@ -9,7 +9,9 @@ function parseColor<T>(content: string, op: string, color: T) {
 		const cssColor = parseCssColor(content);
 		if (cssColor) return `rgba(${cssColor.components.join(',')},${Number(op) / 100})`;
 	} else {
-		const cssColor = parseCssColor(color[matchRes[1]]);
+		const colorVal =
+			color[matchRes[1]] || color[matchRes[1].split('-')[0]][matchRes[1].split('-')[1]];
+		const cssColor = parseCssColor(colorVal);
 		if (cssColor) return `rgba(${cssColor.components.join(',')},${Number(op) / 100})`;
 	}
 }

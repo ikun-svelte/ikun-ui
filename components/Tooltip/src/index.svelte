@@ -31,6 +31,6 @@
 	{attrs}
 	{defaultOpen}
 >
-	<span slot="contentEl">{content} {width}</span>
+	<span slot="contentEl">{content}</span>
 	<slot name="triggerEl" slot="triggerEl" />
 </KPopover>

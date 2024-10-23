@@ -421,8 +421,13 @@
 					!isGroup(it) || (ctxProps.mode === 'horizontal' && level === 1),
 				[`${prefixCls}-${ctxProps.mode}-not-top`]: !isGroup(it) && isNotHorizontalTop(),
 
+				[`${prefixCls}-selected-danger`]:
+					!isGroup(it) && !hasSub(it) && isNotHorizontalTop() && it.selected && it.danger,
+				[`${prefixCls}-danger`]: it.danger,
+
 				[`${prefixCls}-selected`]:
-					!isGroup(it) && !hasSub(it) && isNotHorizontalTop() && it.selected,
+					!isGroup(it) && !hasSub(it) && isNotHorizontalTop() && it.selected && !it.danger,
+
 				[`${prefixCls}-selected-group`]:
 					!isGroup(it) && hasSub(it) && isNotHorizontalTop() && it.selected,
 				[`${prefixCls}-hover`]: !isGroup(it) && isNotHorizontalTop() && !it.selected,
@@ -471,7 +476,9 @@
 		});
 	};
 
-	const popoverContentCls = clsx(`${prefixCls}-popover-content`);
+	$: popoverContentCls = (it?: SubMenuType) => {
+		return clsx(`${prefixCls}-popover-content`, it?.popupClassName);
+	};
 	const popoverTriggerCls = (isDivider: boolean = false) => {
 		return clsx({
 			[`${prefixCls}-popover-trigger-${ctxProps.mode}`]: !isDivider && isNotHorizontalTop(),
@@ -639,7 +646,7 @@
 			mouseEnterDelay={ctxProps.subMenuOpenDelay}
 			mouseLeaveDelay={ctxProps.subMenuCloseDelay}
 			trigger={ctxProps.triggerSubMenuAction}
-			cls={popoverContentCls}
+			cls={popoverContentCls(it)}
 			clsTrigger={popoverTriggerCls(false)}
 			disabled={!(hasSub(it) || isGroup(it))}
 		>
@@ -744,7 +751,7 @@
 			mouseEnterDelay={ctxProps.subMenuOpenDelay}
 			mouseLeaveDelay={ctxProps.subMenuCloseDelay}
 			trigger={ctxProps.triggerSubMenuAction}
-			cls={popoverContentCls}
+			cls={popoverContentCls(it)}
 			clsTrigger={popoverTriggerCls(it.type === 'divider')}
 			disabled={!(hasSub(it) || isGroup(it))}
 		>
@@ -832,7 +839,7 @@
 		mouseEnterDelay={ctxProps.subMenuOpenDelay}
 		mouseLeaveDelay={ctxProps.subMenuCloseDelay}
 		trigger={ctxProps.triggerSubMenuAction}
-		cls={popoverContentCls}
+		cls={popoverContentCls()}
 		bind:this={popoverRef[itemsList.length]}
 		width={widths[itemsList.length]}
 		opacity={ops[itemsList.length]}

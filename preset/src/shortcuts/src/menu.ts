@@ -3,6 +3,8 @@ export const menuShortcuts: Record<string, string> = {
 		'bg-white text-ikun-tx-base p-0 m-0 box-border text-14px list-none outline-none focus:outline-none k-menu-transition-w',
 
 	'k-menu-item': 'box-border select-none',
+	'k-menu-item-danger': 'text-ikun-error',
+
 	'k-menu-item-icon-root': 'truncate fsc',
 	'k-menu-item-icon-root--collapsed': 'truncate w-full fcc',
 	'k-menu-item-icon': 'inline-flex text-inherit items-center leading-0 min-w-14px',
@@ -14,6 +16,9 @@ export const menuShortcuts: Record<string, string> = {
 	'k-menu-sub-bg': 'ikun:2:bg-black',
 
 	'k-menu-item-selected': 'ikun:20:bg-ikun-main text-ikun-main hover:(ikun:20:bg-ikun-main)',
+
+	'k-menu-item-selected-danger':
+		'ikun:20:bg-ikun-error opacity text-ikun-error hover:(ikun:20:bg-ikun-error)',
 	'k-menu-item-selected-group': 'text-ikun-main',
 	'k-menu-item-hover': 'hover:(ikun:6:bg-ikun-black)',
 

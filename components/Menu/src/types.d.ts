@@ -62,7 +62,7 @@ export type KMenuProps = {
 	ctxKey?: string;
 	/**
 	 * TODO: 👀 展开图标
-	 * TODO:  展开图标 horizontal(more menu 展示)
+	 * TODO: 👀 展开图标 horizontal(more menu 展示)
 	 * @default 'i-carbon-chevron-down'
 	 */
 	expandIcon?: string;
@@ -79,7 +79,7 @@ export type KMenuProps = {
 	/**
 	 * TODO: 👀 菜单类型，现在支持垂直、水平、和内嵌模式三种 inline
 	 * TODO: 👀 菜单类型，现在支持垂直、水平、和内嵌模式三种 vertical
-	 * TODO: 🎯 菜单类型，现在支持垂直、水平、和内嵌模式三种 horizontal
+	 * TODO: 👀 菜单类型，现在支持垂直、水平、和内嵌模式三种 horizontal
 	 * `vertical` 和 `inline` 的区别在于 `vertical` 子菜单以 popover 形式出现
 	 * @default `vertical`
 	 */
@@ -121,7 +121,7 @@ export type KMenuProps = {
 	 */
 	theme?: 'light' | 'dark';
 	/**
-	 * TODO: 是否允许多选
+	 * TODO: 👀 是否允许多选
 	 * @default 'true'
 	 */
 	multiple?: boolean;
@@ -172,7 +172,8 @@ export type KMenuItemProps = {
 };
 export type SubMenuType = {
 	/**
-	 * TODO: 展示错误状态样式
+	 * TODO: 👀 展示错误状态样式
+	 *   只在最后一个节点生效，inline 或 vertical 生效
 	 * @default false
 	 */
 	danger?: boolean;
@@ -193,7 +194,8 @@ export type SubMenuType = {
 	 */
 	uid?: string;
 	/**
-	 * TODO: 是否禁用
+	 * TODO: 🎯 是否禁用
+	 *   优先级高于 danger
 	 * @default false
 	 */
 	disabled?: boolean;
@@ -217,7 +219,7 @@ export type SubMenuType = {
 	 */
 	children?: SubMenuType[];
 	/**
-	 * TODO: 子菜单样式，mode="inline" 时无效
+	 * TODO: 👀 子菜单样式
 	 */
 	popupClassName?: string;
 	/**
@@ -239,7 +241,7 @@ export type SubMenuType = {
 	[property: string]: any;
 };
 
-// TODO: onTitleClick 点击子菜单标题
+// TODO: 🎯 onTitleClick 点击子菜单标题
 
 // TODO: 👀 Items Slots slots label 分组标题 vertical
 // TODO: 👀 Items Slots slots label 分组标题 horizontal
