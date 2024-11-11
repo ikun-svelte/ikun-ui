@@ -19,6 +19,7 @@ import { skeletonRules } from './src/skeleton';
 import { colorPickerRules } from './src/color-picker';
 import { timelineRules } from './src/timeline';
 import { baseRules } from './src/base';
+import { indicatorsRules } from './src/indicators';
 
 declare type dynamicRulesFunc = (...args: any[]) => Array<RegExp | ((...args: any[]) => any)>;
 export const defaultRules = {
@@ -35,6 +36,7 @@ export const defaultRules = {
 	...skeletonRules,
 	...colorPickerRules,
 	...timelineRules,
+	...indicatorsRules,
 	...baseRules,
 	...getColCls(),
 	...getDescriptionsGridColCls(),

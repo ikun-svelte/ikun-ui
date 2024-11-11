@@ -12,6 +12,7 @@ export type KCarouselProps = {
 	count: number;
 	cls: ClassValue;
 	attrs: Record<string, string>;
+	direction: 'horizontal' | 'vertical';
 };
 
 export type KCarouselArrowProps = {
