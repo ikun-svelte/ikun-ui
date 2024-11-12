@@ -65,7 +65,7 @@ The carousel component supports vertical layout.
 
 | Name         | Type                             | Default      | Description                                                                                  |
 | ------------ | -------------------------------- | ------------ | -------------------------------------------------------------------------------------------- |
-| height       | `number`                         | `-`         | Height of the carousel.                                                                      |
+| height       | `number`                         | `-`          | Height of the carousel.                                                                      |
 | initialIndex | `number`                         | `0`          | The default display index of carousel (starting from 0).                                     |
 | count        | `number`                         | `0`          | Specifies the number of carousels to display, it is required.                                |
 | arrow        | `'always' \| 'hover' \| 'never'` | `hover`      | How the arrow paginator is displayed.                                                        |
