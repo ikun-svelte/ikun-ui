@@ -9,11 +9,11 @@ pnpm add @ikun-ui/core && pnpm add -D unocss && pnpm add -D @ikun-ui/preset
 ```
 
 ```bash [yarn]
-yarn add @ikun-ui/core && yarn add -D unocss && pnpm add -D @ikun-ui/preset
+yarn add @ikun-ui/core && yarn add -D unocss && yarn add -D @ikun-ui/preset
 ```
 
 ```bash [npm]
-npm install @ikun-ui/core && npm install unocss -D && pnpm add -D @ikun-ui/preset
+npm install @ikun-ui/core && npm install -D unocss && npm install -D @ikun-ui/preset
 ```
 
 :::
