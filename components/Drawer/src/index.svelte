@@ -12,6 +12,7 @@
 	export let cls: KDrawerProps['cls'] = undefined;
 	export let attrs: KDrawerProps['attrs'] = {};
 	export let header: KDrawerProps['header'] = true;
+	export let closeOnClickMask: KDrawerProps['closeOnClickMask'] = true;
 
 	$: cnames = clsx(cls);
 	$: maskCls = clsx('k-drawer--base k-drawer--base__dark', isRight ? 'right-0' : 'left-0', cnames);
@@ -23,14 +24,22 @@
 		dispatch('close');
 	};
 
+	const onClickMask = () => {
+		if (closeOnClickMask) toggleClose();
+	};
+
 	$: isRight = placement === 'right';
 </script>
 
 <KClientOnly>
-	<KMask target={document.body} {value}>
+	<KMask {onClickMask} target={document.body} {value}>
+		<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 		<div
 			class={maskCls}
 			{...attrs}
+			on:click|stopPropagation
+			role="dialog"
+			aria-modal="true"
 			out:fly={{ duration: 250, x: isRight ? 200 : -200 }}
 			in:fly={{ duration: 250, x: isRight ? 200 : -200 }}
 		>

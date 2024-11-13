@@ -10,6 +10,8 @@
 	export let value: KMaskProps['value'] = false;
 	export let target: KMaskProps['target'] = null;
 
+	export let onClickMask: (event: MouseEvent) => void;
+
 	let maskRef: null | HTMLElement = null;
 	let maskWidth = '100%';
 	let maskHeight = '100%';
@@ -79,6 +81,8 @@
 	<div
 		bind:this={maskRef}
 		{...attrs}
+		on:click={onClickMask}
+		role="presentation"
 		out:fade={{ duration: 300 }}
 		in:fade={{ duration: 300 }}
 		style:top="{maskTop}px"
