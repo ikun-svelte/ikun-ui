@@ -12,7 +12,7 @@
 	export let cls: KDrawerProps['cls'] = undefined;
 	export let attrs: KDrawerProps['attrs'] = {};
 	export let header: KDrawerProps['header'] = true;
-	export let closeOnClickMask: KDrawerProps['closeOnClickMask'] = true;
+	export let closeOnClickMask: KDrawerProps['closeOnClickMask'] = false;
 
 	$: cnames = clsx(cls);
 	$: maskCls = clsx('k-drawer--base k-drawer--base__dark', isRight ? 'right-0' : 'left-0', cnames);
