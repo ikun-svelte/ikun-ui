@@ -55,20 +55,27 @@ Sometimes you may want to customize indicator and arrow.
 
 <demo src="carousel/custom.svelte" github='Carousel'></demo>
 
+## Vertical Layout
+
+The carousel component supports vertical layout.
+
+<demo src="carousel/vertical.svelte" github='Carousel'></demo>
+
 ## Carousel Props
 
-| Name         | Type                             | Default | Description                                                                                  |
-| ------------ | -------------------------------- | ------- | -------------------------------------------------------------------------------------------- |
-| height       | `number`                         | `'-`    | Height of the carousel.                                                                      |
-| initialIndex | `number`                         | `0`     | The default display index of carousel (starting from 0).                                     |
-| count        | `number`                         | `0`     | Specifies the number of carousels to display, it is required.                                |
-| arrow        | `'always' \| 'hover' \| 'never'` | `hover` | How the arrow paginator is displayed.                                                        |
-| loop         | `boolean`                        | `true`  | Whether to loop play.                                                                        |
-| autoplay     | `boolean`                        | `true`  | Whether to play through automatic page turning.                                              |
-| pauseOnHover | `boolean`                        | `true`  | When the mouse moves over the carousel, the automatic page turning playback will be paused.. |
-| interval     | `number`                         | `3000`  | Automatic page turning playback interval (unit ms).                                          |
-| cls          | `string`                         | `''`    | Additional class for component                                                               |
-| attrs        | `Record<string, string>`         | `{}`    | Additional attributes                                                                        |
+| Name         | Type                             | Default      | Description                                                                                  |
+| ------------ | -------------------------------- | ------------ | -------------------------------------------------------------------------------------------- |
+| height       | `number`                         | `-`          | Height of the carousel.                                                                      |
+| initialIndex | `number`                         | `0`          | The default display index of carousel (starting from 0).                                     |
+| count        | `number`                         | `0`          | Specifies the number of carousels to display, it is required.                                |
+| arrow        | `'always' \| 'hover' \| 'never'` | `hover`      | How the arrow paginator is displayed.                                                        |
+| loop         | `boolean`                        | `true`       | Whether to loop play.                                                                        |
+| direction    | `'horizontal' \| 'vertical'`     | `horizontal` | The direction of the carousel.                                                               |
+| autoplay     | `boolean`                        | `true`       | Whether to play through automatic page turning.                                              |
+| pauseOnHover | `boolean`                        | `true`       | When the mouse moves over the carousel, the automatic page turning playback will be paused.. |
+| interval     | `number`                         | `3000`       | Automatic page turning playback interval (unit ms).                                          |
+| cls          | `string`                         | `''`         | Additional class for component                                                               |
+| attrs        | `Record<string, string>`         | `{}`         | Additional attributes                                                                        |
 
 ## Carousel Events
 
