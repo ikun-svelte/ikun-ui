@@ -31,6 +31,12 @@ Open the `drawer` by setting the `value` attribute
 
 <demo src="drawer/basic.svelte" github="Drawer"></demo>
 
+## Click mask to close
+
+Set `closeOnClickMask` to `true` to close the `drawer` when clicking outside
+
+<demo src="drawer/close-outside.svelte" github="Drawer"></demo>
+
 ## Custom header
 
 Implement custom header through slots
@@ -45,12 +51,13 @@ You can choose to open from the `right` or `left`
 
 ## Drawer Props
 
-| Name      | Type                     | Default | Description                             |
-| --------- | ------------------------ | ------- | --------------------------------------- |
-| placement | `'right' / 'left'`       | `right` | The placement in which the drawer opens |
-| value     | `boolean`                | `false` | open the Drawer                         |
-| cls       | `string`                 | `-`     | Additional class                        |
-| attrs     | `Record<string, string>` | `{}`    | Additional attributes                   |
+| Name             | Type                     | Default | Description                                        |
+| ---------------- | ------------------------ | ------- | -------------------------------------------------- |
+| placement        | `'right' / 'left'`       | `right` | The placement in which the drawer opens            |
+| value            | `boolean`                | `false` | open the Drawer                                    |
+| cls              | `string`                 | `-`     | Additional class                                   |
+| closeOnClickMask | `boolean`                | `false` | Whether to close the Drawer when clicking the mask |
+| attrs            | `Record<string, string>` | `{}`    | Additional attributes                              |
 
 ## Drawer Events
 

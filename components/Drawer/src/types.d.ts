@@ -7,4 +7,5 @@ export type KDrawerProps = {
 	header: boolean;
 	cls: ClassValue;
 	attrs: Record<string, string>;
+	closeOnClickMask: boolean;
 };
