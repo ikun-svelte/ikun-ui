@@ -20,7 +20,17 @@
 	/**
 	 * @internal
 	 */
+	export let attrsTrigger: KPopoverProps['attrs'] = {};
 	export let width: KPopoverProps['width'] = 'fit-content';
+	export let order: undefined | number = undefined;
+	export let offset: KPopoverProps['offset'] = [0, 8];
+	export let opacity: string = '';
+	export let fallbackPlacements: KPopoverProps['fallbackPlacements'] = [
+		'top',
+		'right',
+		'bottom',
+		'left'
+	];
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
 	const dispatch = createEventDispatcher();
@@ -31,13 +41,14 @@
 			{
 				name: 'offset',
 				options: {
-					offset: [0, 8]
+					// TODO: feature props
+					offset
 				}
 			},
 			{
 				name: 'flip',
 				options: {
-					fallbackPlacements: ['top', 'right', 'bottom', 'left']
+					fallbackPlacements
 				}
 			},
 			{
@@ -91,12 +102,6 @@
 		}
 	};
 
-	export function updateShow(show: boolean) {
-		if (trigger === 'hover') {
-			isEnter = false;
-		}
-		doUpdateShow(show);
-	}
 	export function doUpdateShow(show: boolean) {
 		if (disabled && show) return;
 		const delay = show ? mouseEnterDelay : mouseLeaveDelay;
@@ -157,11 +162,25 @@
 
 	$: triggerCls = clsx('flex', clsTrigger);
 
+	export function updateShow(show: boolean) {
+		if (trigger === 'hover') {
+			isEnter = false;
+		}
+		doUpdateShow(show);
+	}
+
 	/**
 	 * @internal
 	 */
 	function onAnimationEnd() {
 		dispatch('animateEnd');
+	}
+
+	/**
+	 * @internal
+	 */
+	function onAnimationStart() {
+		dispatch('animateStart');
 	}
 
 	/**
@@ -194,8 +213,11 @@
 	use:popperRef
 	bind:this={popoverContainerRef}
 	on:click={handleClick}
+	{...attrsTrigger}
 	class={triggerCls}
 	style:width
+	style:order
+	style:opacity
 	data-popover-trigger
 	on:mouseenter={handleMouseenter}
 	on:mouseleave={handleMouseleave}
@@ -209,6 +231,7 @@
 		out:scale={{ duration: 200, start: 0.3, opacity: 0 }}
 		in:scale={{ duration: 200, start: 0.3, opacity: 0 }}
 		on:animationend={onAnimationEnd}
+		on:animationstart={onAnimationStart}
 		data-popper-placement
 		aria-hidden="true"
 		{...attrs}
