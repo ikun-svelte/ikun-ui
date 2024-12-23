@@ -169,6 +169,7 @@ export type KMenuItemProps = {
 	items: SubMenuType[];
 	cls: ClassValue;
 	attrs: Record<string, string>;
+	titleClick?: (item: SubMenuType, e: MouseEvent, uidPath: string[]) => void;
 };
 export type SubMenuType = {
 	/**
@@ -241,7 +242,7 @@ export type SubMenuType = {
 	[property: string]: any;
 };
 
-// TODO: 🎯 onTitleClick 点击子菜单标题
+// TODO: 👀 onTitleClick 点击子菜单标题
 
 // TODO: 👀 Items Slots slots label 分组标题 vertical
 // TODO: 👀 Items Slots slots label 分组标题 horizontal

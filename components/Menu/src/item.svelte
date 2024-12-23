@@ -14,6 +14,7 @@
 	import { BROWSER } from 'esm-env';
 	export let items: KMenuItemProps['items'] = [];
 	export let cls: KMenuItemProps['cls'] = undefined;
+	export let titleClick: KMenuItemProps['titleClick'] = undefined;
 	export let attrs: KMenuItemProps['attrs'] = {};
 	export let level: KMenuItemProps['level'] = 1;
 	export let ctxKey: KMenuItemProps['ctxKey'] = '';
@@ -226,8 +227,18 @@
 				} else {
 					menuCtx.onDeSelect(params);
 				}
+			} else if (hasSub(it) || isGroup(it)) {
+				dispatchTitleClick(it, e, uidPath);
 			}
 		}
+	}
+
+	function dispatchTitleClick(it: SubMenuType, e: MouseEvent, uidPath: string[]) {
+		dispatch('titleClick', {
+			it,
+			e,
+			uidPath
+		});
 	}
 
 	let popoverRef: any = [];
@@ -438,7 +449,7 @@
 			basicCls = {
 				[`${prefixCls}-disabled`]: true
 			};
-			if (it.children && it.children.length) {
+			if (hasSub(it)) {
 				it.children = it.children.map((item) => {
 					return {
 						...item,
@@ -619,6 +630,9 @@
 					{ctxKey}
 					on:selectedRecursion={(e) => handleSelectedRecursion(e, index)}
 					items={it.children}
+					on:titleClick={(e) => {
+						dispatchTitleClick(e.detail.it, e.detail.e, e.detail.uidPath);
+					}}
 					level={getLevel(it, level) + 1}
 				>
 					<svelte:fragment let:item slot="item">
@@ -723,6 +737,9 @@
 						bind:this={subMenuRef[index]}
 						on:selectedRecursion={(e) => handleSelectedRecursion(e, index)}
 						items={it.children}
+						on:titleClick={(e) => {
+							dispatchTitleClick(e.detail.it, e.detail.e, e.detail.uidPath);
+						}}
 						level={getLevel(it, level) + 1}
 					>
 						<svelte:fragment let:item slot="item">
@@ -816,6 +833,9 @@
 						bind:this={subMenuRef[index]}
 						on:selectedRecursion={(e) => handleSelectedRecursion(e, index)}
 						items={it.children}
+						on:titleClick={(e) => {
+							dispatchTitleClick(e.detail.it, e.detail.e, e.detail.uidPath);
+						}}
 						level={getLevel(it, level) + 1}
 					>
 						<svelte:fragment let:item slot="item">
@@ -873,6 +893,9 @@
 					bind:this={subMenuRef[itemsList.length]}
 					on:selectedRecursion={(e) => handleSelectedRecursion(e, itemsList.length)}
 					items={moreItem.children}
+					on:titleClick={(e) => {
+						dispatchTitleClick(e.detail.it, e.detail.e, e.detail.uidPath);
+					}}
 					level={getLevel(moreItem, level) + 1}
 				>
 					<svelte:fragment let:item slot="item">
