@@ -194,8 +194,8 @@ export type SubMenuType = {
 	 */
 	uid?: string;
 	/**
-	 * TODO: 🎯 是否禁用
-	 *   优先级高于 danger
+	 * TODO: 👀 是否禁用
+	 *   优先级高于 danger, 子节点也禁用
 	 * @default false
 	 */
 	disabled?: boolean;
@@ -249,3 +249,5 @@ export type SubMenuType = {
 // TODO: 👀 Items Slots slots  icon  菜单图标 vertical
 // TODO: 👀 Items Slots slots  icon  菜单图标 horizontal
 // TODO: 👀 Items Slots slots  icon  菜单图标 inline
+
+// TODO: 🎯 dark mode

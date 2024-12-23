@@ -197,6 +197,7 @@
 		});
 	}
 	async function handleSelect(it: SubMenuType, e: MouseEvent) {
+		if (it.disabled || it.disabledParent) return;
 		itemsList = setOpenAndSelectStatus(it);
 		if (menuCtx) {
 			const uidPath = getUidPath(it.uid!, menuCtx.__org_items!) || [];
@@ -413,6 +414,39 @@
 	const menuPrefixCls = getPrefixCls('menu');
 	const prefixCls = getPrefixCls('menu-item');
 	$: cnames = (it: SubMenuType) => {
+		let basicCls = {
+			[`${prefixCls}-active`]: (!isGroup(it) && isNotHorizontalTop()) || ctxProps.mode === 'inline',
+
+			[`${prefixCls}-selected-danger`]:
+				!isGroup(it) && !hasSub(it) && isNotHorizontalTop() && it.selected && it.danger,
+			[`${prefixCls}-danger`]: it.danger,
+
+			[`${prefixCls}-selected`]:
+				!isGroup(it) && !hasSub(it) && isNotHorizontalTop() && it.selected && !it.danger,
+
+			[`${prefixCls}-selected-group`]:
+				!isGroup(it) && hasSub(it) && isNotHorizontalTop() && it.selected,
+			[`${prefixCls}-hover`]: !isGroup(it) && isNotHorizontalTop() && !it.selected,
+
+			[`${prefixCls}-selected-h`]:
+				!isGroup(it) && !hasSub(it) && !isNotHorizontalTop() && it.selected,
+			[`${prefixCls}-selected-group-h`]:
+				!isGroup(it) && hasSub(it) && !isNotHorizontalTop() && it.selected,
+			[`${prefixCls}-hover-h`]: !isGroup(it) && !isNotHorizontalTop() && !it.selected
+		};
+		if (it.disabled || it.disabledParent) {
+			basicCls = {
+				[`${prefixCls}-disabled`]: true
+			};
+			if (it.children && it.children.length) {
+				it.children = it.children.map((item) => {
+					return {
+						...item,
+						disabledParent: true
+					};
+				});
+			}
+		}
 		return clsx(
 			prefixCls,
 			{
@@ -420,24 +454,7 @@
 				[`${prefixCls}-${ctxProps.mode}`]:
 					!isGroup(it) || (ctxProps.mode === 'horizontal' && level === 1),
 				[`${prefixCls}-${ctxProps.mode}-not-top`]: !isGroup(it) && isNotHorizontalTop(),
-
-				[`${prefixCls}-selected-danger`]:
-					!isGroup(it) && !hasSub(it) && isNotHorizontalTop() && it.selected && it.danger,
-				[`${prefixCls}-danger`]: it.danger,
-
-				[`${prefixCls}-selected`]:
-					!isGroup(it) && !hasSub(it) && isNotHorizontalTop() && it.selected && !it.danger,
-
-				[`${prefixCls}-selected-group`]:
-					!isGroup(it) && hasSub(it) && isNotHorizontalTop() && it.selected,
-				[`${prefixCls}-hover`]: !isGroup(it) && isNotHorizontalTop() && !it.selected,
-
-				[`${prefixCls}-selected-h`]:
-					!isGroup(it) && !hasSub(it) && !isNotHorizontalTop() && it.selected,
-				[`${prefixCls}-selected-group-h`]:
-					!isGroup(it) && hasSub(it) && !isNotHorizontalTop() && it.selected,
-				[`${prefixCls}-hover-h`]: !isGroup(it) && !isNotHorizontalTop() && !it.selected,
-
+				...basicCls,
 				[`${prefixCls}-child`]: !isGroup(it) && hasSub(it)
 			},
 			cls

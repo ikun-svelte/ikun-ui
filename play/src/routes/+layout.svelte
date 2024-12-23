@@ -15,7 +15,3 @@
 <main class="p4">
 	<slot />
 </main>
-
-<style>
-	@import '../app.css';
-</style>

@@ -45,7 +45,9 @@ export const menuShortcuts: Record<string, string> = {
 		'cursor-pointer k-menu-w k-menu-transition ' +
 		'fcc pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +
 		'rounded-8px my-0',
-	'k-menu-item-horizontal-not-top': 'k-menu-item-horizontal fbc active:(ikun:20:bg-ikun-main)',
+	'k-menu-item-active': 'active:(ikun:20:bg-ikun-main)',
+	'k-menu-item-disabled': 'k-bg-disabled k-cur-disabled',
+	'k-menu-item-horizontal-not-top': 'k-menu-item-horizontal fbc',
 	'k-menu-item-horizontal-group':
 		'k-menu-w k-menu-transition ' +
 		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px ' +
@@ -57,7 +59,7 @@ export const menuShortcuts: Record<string, string> = {
 	'k-menu-item-inline':
 		'cursor-pointer k-menu-w k-menu-transition ' +
 		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +
-		'rounded-8px active:(ikun:20:bg-ikun-main)',
+		'rounded-8px',
 	'k-menu-item-inline-group':
 		'k-menu-w k-menu-transition ' +
 		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +
