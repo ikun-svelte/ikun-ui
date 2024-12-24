@@ -57,7 +57,8 @@ export type KMenuInstance = {
 
 export type KMenuProps = {
 	/**
-	 * TODO: 👀 上下文 key
+	 *  上下文 key,
+	 *  用于组件内部逻辑，应该是一个全局唯一值 KMenuItem 与 KMenu 公用一个相同值
 	 */
 	ctxKey?: string;
 	/**
@@ -67,12 +68,12 @@ export type KMenuProps = {
 	 */
 	expandIcon?: string;
 	/**
-	 * TODO: 👀 inline 模式的菜单缩进宽度
+	 * inline 模式的菜单缩进宽度
 	 * @default 24
 	 */
 	inlineIndent?: number;
 	/**
-	 * TODO: 👀 inline 或 vertical 时菜单是否收起状态 (指显示图标的mini模式和展开到常规模式)
+	 * inline 或 vertical 时菜单是否收起状态 (指显示图标的mini模式和展开到常规模式)
 	 * @default false
 	 */
 	inlineCollapsed?: boolean;
@@ -85,16 +86,16 @@ export type KMenuProps = {
 	 */
 	mode?: `vertical` | `horizontal` | `inline`;
 	/**
-	 * TODO: 👀 当前展开的 SubMenu 菜单项 key 数组 inline
-	 * TODO: 👀 当前展开的 SubMenu 菜单项 key 数组 vertical
-	 * TODO: 👀 当前展开的 SubMenu 菜单项 key 数组 horizontal
+	 * 当前展开的 SubMenu 菜单项 key 数组 inline
+	 * 当前展开的 SubMenu 菜单项 key 数组 vertical
+	 * 当前展开的 SubMenu 菜单项 key 数组 horizontal
 	 * @default `[]`
 	 */
 	openUids?: string[];
 	/**
-	 * TODO: 👀 当前选中的菜单项 key 数组(子菜单只高亮，不展开) inline
-	 * TODO: 👀 当前选中的菜单项 key 数组(子菜单只高亮，不展开) vertical
-	 * TODO: 👀 当前选中的菜单项 key 数组(子菜单只高亮，不展开) horizontal
+	 * 当前选中的菜单项 key 数组(子菜单只高亮，不展开) inline
+	 * 当前选中的菜单项 key 数组(子菜单只高亮，不展开) vertical
+	 * 当前选中的菜单项 key 数组(子菜单只高亮，不展开) horizontal
 	 * @default `[]`
 	 */
 	selectedUids?: string[];
@@ -106,12 +107,12 @@ export type KMenuProps = {
 	 */
 	selectable?: boolean;
 	/**
-	 * TODO: 👀 用户鼠标离开子菜单后关闭延时，单位：毫秒(非 inline 模式, hover触发)
+	 * 用户鼠标离开子菜单后关闭延时，单位：毫秒(非 inline 模式, hover触发)
 	 * @default 100ms
 	 */
 	subMenuCloseDelay?: number;
 	/**
-	 * TODO: 👀 用户鼠标进入子菜单后开启延时，单位：毫秒(非 inline 模式, hover触发)
+	 * 用户鼠标进入子菜单后开启延时，单位：毫秒(非 inline 模式, hover触发)
 	 * @default 0
 	 */
 	subMenuOpenDelay?: number;
@@ -126,7 +127,7 @@ export type KMenuProps = {
 	 */
 	multiple?: boolean;
 	/**
-	 * TODO: 👀 SubMenu 展开/关闭的触发行为(非 inline 模式)
+	 * SubMenu 展开/关闭的触发行为(非 inline 模式)
 	 * @default 'hover'
 	 */
 	triggerSubMenuAction?: 'hover' | 'click';
@@ -138,20 +139,23 @@ export type KMenuProps = {
 	show: boolean;
 };
 
-// TODO: 👀 onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） inline
+// TODO: 👀 onClick 点击 MenuItem 调用此函数 inline
 // TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 inline
 // TODO: 👀 onSelect 被选中时调用(点击子菜单标题不触发） inline
 // TODO: 👀 onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
-// TODO: 👀 onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） vertical
+// TODO: 👀 onClick 点击 MenuItem 调用此函数 vertical
 // TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 vertical
 // TODO: 👀 onSelect 被选中时调用(点击子菜单标题不触发） vertical
 // TODO: 👀 onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
-// TODO: 👀 onClick 点击 MenuItem 调用此函数(点击子菜单标题不触发） horizontal
+// TODO: 👀 onClick 点击 MenuItem 调用此函数 horizontal
 // TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 horizontal
 // TODO: 👀 onSelect 被选中时调用(点击子菜单标题不触发） horizontal
 // TODO: 👀 onDeSelect 被选中时调用(点击子菜单标题不触发） inline
+
+// TODO: 👀 onTitleClick 点击子菜单标题
+// 	titleClick?: (item: SubMenuType, e: MouseEvent, uidPath: string[]) => void;
 
 // TODO: 👀 slots expandIcon 展开图标 vertical
 // TODO: 👀 slots expandIcon 展开图标 horizontal
@@ -162,14 +166,10 @@ export type KMenuItemProps = {
 	 * @internal
 	 */
 	level: number;
-	/**
-	 * TODO: 👀 上下文 key
-	 */
 	ctxKey?: string;
 	items: SubMenuType[];
 	cls: ClassValue;
 	attrs: Record<string, string>;
-	titleClick?: (item: SubMenuType, e: MouseEvent, uidPath: string[]) => void;
 };
 export type SubMenuType = {
 	/**
@@ -207,8 +207,8 @@ export type SubMenuType = {
 	theme?: 'light' | 'dark';
 	/**
 	 * TODO: 👀悬浮标题(
-	 *   1.👀无子菜单情况下生效
-	 *   2.👀收起时，inline 和 vertical 模式下，默认值是 label，使用 tooltip 显示
+	 *   1.👀 无子菜单情况下生效
+	 *   2.👀 收起时，inline 和 vertical 模式下，默认值是 label，使用 tooltip 显示
 	 *   3.👀 展开时，inline 和 vertical 模式下，无默认值，使用 title 属性显示
 	 *   4.👀 horizontal 模式下，无默认值，使用 title 属性显示
 	 *   5.👀 group 上也生效
@@ -220,7 +220,7 @@ export type SubMenuType = {
 	 */
 	children?: SubMenuType[];
 	/**
-	 * TODO: 👀 子菜单样式
+	 * 子菜单样式
 	 */
 	popupClassName?: string;
 	/**
@@ -241,8 +241,6 @@ export type SubMenuType = {
 	selectedDeps?: Set<string>;
 	[property: string]: any;
 };
-
-// TODO: 👀 onTitleClick 点击子菜单标题
 
 // TODO: 👀 Items Slots slots label 分组标题 vertical
 // TODO: 👀 Items Slots slots label 分组标题 horizontal

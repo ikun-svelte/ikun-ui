@@ -14,7 +14,6 @@
 	import { BROWSER } from 'esm-env';
 	export let items: KMenuItemProps['items'] = [];
 	export let cls: KMenuItemProps['cls'] = undefined;
-	export let titleClick: KMenuItemProps['titleClick'] = undefined;
 	export let attrs: KMenuItemProps['attrs'] = {};
 	export let level: KMenuItemProps['level'] = 1;
 	export let ctxKey: KMenuItemProps['ctxKey'] = '';
