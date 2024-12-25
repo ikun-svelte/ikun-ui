@@ -18,6 +18,7 @@ import { carouselRules } from './src/carousel';
 import { skeletonRules } from './src/skeleton';
 import { colorPickerRules } from './src/color-picker';
 import { timelineRules } from './src/timeline';
+import { menuRules } from './src/menu';
 import { baseRules } from './src/base';
 import { indicatorsRules } from './src/indicators';
 
@@ -35,6 +36,7 @@ export const defaultRules = {
 	...carouselRules,
 	...skeletonRules,
 	...colorPickerRules,
+	...menuRules,
 	...timelineRules,
 	...indicatorsRules,
 	...baseRules,

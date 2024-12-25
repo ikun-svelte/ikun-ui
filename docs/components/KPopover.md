@@ -50,7 +50,7 @@ Specify different trigger methods through the `trigger` attribute
 | disabled        | `boolean`                             | `false` | Disabled the popover                                                  |
 | mouseEnterDelay | `number`                              | `200`   | Delay in seconds, before `popover` is shown on mouse enter, unit `ms` |
 | mouseLeaveDelay | `number`                              | `200`   | Delay in seconds, before `popover` is shown on mouse enter, unit `ms` |
-| defaultOpen     | `boolean`                             | `-`     | Open `popover` by default |
+| defaultOpen     | `boolean`                             | `-`     | Open `popover` by default                                             |
 | arrow           | `boolean`                             | `true`  | Display the arrow                                                     |
 | cls             | `string`                              | `-`     | Additional class                                                      |
 | attrs           | `Record<string, string>`              | `{}`    | Additional attributes                                                 |
