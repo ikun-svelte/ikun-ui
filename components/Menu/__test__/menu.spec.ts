@@ -12,6 +12,7 @@ import KMenuSelectedUids from './fixture/selected-uids.svelte';
 import KMenuDelay from './fixture/delay.svelte';
 import KMenuAction from './fixture/action.svelte';
 import KMenuClick from './fixture/click.svelte';
+import KMenuSelect from './fixture/select.svelte';
 import { tick } from 'svelte';
 let host;
 
@@ -344,6 +345,185 @@ describe('Test: KMenu', () => {
 		await vi.advanceTimersByTimeAsync(300);
 		expect(resEl.innerHTML).toBe('4');
 		iTrigger[4].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('4');
+	});
+
+	test('events: onClick & horizontal', async () => {
+		const instance = new KMenuClick({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const vEl = host.querySelector('#click_test_horizontal');
+		const resEl = host.querySelector('#trigger_time');
+		const vTrigger = vEl.querySelector('[data-k-menu-h="1"]');
+		expect(resEl.innerHTML).toBe('0');
+		vTrigger
+			.querySelector('.k-menu-title-content-i')
+			.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('1');
+		const vContent = vEl.querySelector('[slot="contentEl"]');
+		const vTriggerTitle = vContent.querySelector('.k-menu-title-content');
+		vTriggerTitle.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('2');
+
+		const vTriggerSub = vContent.querySelectorAll('[data-k-menu-h="2"]');
+		vTriggerSub[1]
+			.querySelector('.k-menu-item')
+			.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('3');
+
+		vTriggerSub[3]
+			.querySelector('.k-menu-item')
+			.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('4');
+
+		vTriggerSub[4]
+			.querySelector('.k-menu-item')
+			.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('4');
+	});
+
+	test('events: onSelect & onDeSelect & vertical', async () => {
+		const instance = new KMenuSelect({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const vEl = host.querySelector('#select_test_vertical');
+		const resEl = host.querySelector('#trigger_time');
+		const vTrigger = vEl.querySelector('[slot="triggerEl"]');
+		expect(resEl.innerHTML).toBe('0');
+		vTrigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('0');
+
+		let vContent = vEl.querySelectorAll('[slot="contentEl"]');
+		const vTriggerSub = vContent[0].querySelectorAll('[slot="triggerEl"]');
+		vTriggerSub[1].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('0');
+		vContent = vEl.querySelectorAll('[slot="contentEl"]');
+		const trigger = vContent[1].querySelector('.k-menu-title-content-i');
+		trigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('1');
+		expect(host.innerHTML).matchSnapshot();
+		trigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('2');
+		vTriggerSub[2].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('3');
+		expect(host.innerHTML).matchSnapshot();
+		vTriggerSub[2].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('4');
+	});
+
+	test('events: onSelect & onDeSelect & inline', async () => {
+		const instance = new KMenuSelect({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const vEl = host.querySelector('#select_test_inline');
+		const resEl = host.querySelector('#trigger_time');
+		let vTrigger = vEl.querySelectorAll('[slot="triggerEl"]');
+		expect(resEl.innerHTML).toBe('0');
+		vTrigger[0].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('0');
+		vTrigger = vEl.querySelectorAll('[slot="triggerEl"]');
+
+		vTrigger[2].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('0');
+		vTrigger = vEl.querySelectorAll('[slot="triggerEl"]');
+
+		vTrigger[3].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('1');
+		expect(host.innerHTML).matchSnapshot();
+		vTrigger[3].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('2');
+
+		vTrigger[4].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('3');
+		expect(host.innerHTML).matchSnapshot();
+		vTrigger[4].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('4');
+	});
+
+	test('events: onSelect & onDeSelect & horizontal', async () => {
+		const instance = new KMenuSelect({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const vEl = host.querySelector('#select_test_horizontal');
+		const resEl = host.querySelector('#trigger_time');
+		const vTrigger = vEl.querySelector('[data-k-menu-h="1"]');
+		expect(resEl.innerHTML).toBe('0');
+		vTrigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('0');
+
+		let vContent = vEl.querySelectorAll('[slot="contentEl"]');
+		const vTriggerSub = vContent[0].querySelectorAll('[data-k-menu-h="2"]');
+		vTriggerSub[1].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('0');
+		vContent = vEl.querySelectorAll('[slot="contentEl"]');
+		const trigger = vContent[1].querySelector('.k-menu-title-content-i');
+		trigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('1');
+		expect(host.innerHTML).matchSnapshot();
+		trigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('2');
+		vTriggerSub[3]
+			.querySelector('.k-menu-title-content')
+			.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(resEl.innerHTML).toBe('3');
+		expect(host.innerHTML).matchSnapshot();
+		vTriggerSub[3]
+			.querySelector('.k-menu-title-content')
+			.dispatchEvent(new Event('click', { bubbles: true }));
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(resEl.innerHTML).toBe('4');

@@ -139,20 +139,20 @@ export type KMenuProps = {
 	show: boolean;
 };
 
-// TODO: 👀 onClick 点击 MenuItem 调用此函数 inline
+// onClick 点击 MenuItem 调用此函数 inline
 // TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 inline
-// TODO: 👀 onSelect 被选中时调用(点击子菜单标题不触发） inline
-// TODO: 👀 onDeSelect 被选中时调用(点击子菜单标题不触发） inline
+// onSelect 被选中时调用(点击子菜单标题不触发） inline
+// onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
-// TODO: 👀 onClick 点击 MenuItem 调用此函数 vertical
+// onClick 点击 MenuItem 调用此函数 vertical
 // TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 vertical
-// TODO: 👀 onSelect 被选中时调用(点击子菜单标题不触发） vertical
-// TODO: 👀 onDeSelect 被选中时调用(点击子菜单标题不触发） inline
+// onSelect 被选中时调用(点击子菜单标题不触发） vertical
+// onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
-// TODO: 👀 onClick 点击 MenuItem 调用此函数 horizontal
+// onClick 点击 MenuItem 调用此函数 horizontal
 // TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 horizontal
-// TODO: 👀 onSelect 被选中时调用(点击子菜单标题不触发） horizontal
-// TODO: 👀 onDeSelect 被选中时调用(点击子菜单标题不触发） inline
+// onSelect 被选中时调用(点击子菜单标题不触发） horizontal
+// onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
 // TODO: 👀 onTitleClick 点击子菜单标题
 // 	titleClick?: (item: SubMenuType, e: MouseEvent, uidPath: string[]) => void;
