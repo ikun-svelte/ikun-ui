@@ -103,7 +103,7 @@
 	};
 
 	export function doUpdateShow(show: boolean) {
-		if (disabled && show) return;
+		if (disabled) return;
 		const delay = show ? mouseEnterDelay : mouseLeaveDelay;
 		setTimeout(async () => {
 			if (isEnter) {

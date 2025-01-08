@@ -161,14 +161,17 @@
 
 				// set open
 				if (hasSub(it)) {
-					value.open = !value.open;
+					const orgOpen = value.open;
 					if (value.selectedDeps && ctxProps.selectable) {
 						value.selected = !!value.selectedDeps!.size;
 					}
 
 					if (menuCtx) {
-						menuCtx.syncUids(value.uid!, 'open', value.open ? 'add' : 'delete');
-						menuCtx.onOpenChange([...menuCtx.__openUids!]);
+						if ((ctxProps.mode === 'vertical' && !orgOpen) || ctxProps.mode !== 'vertical') {
+							value.open = !value.open;
+							menuCtx.syncUids(value.uid!, 'open', value.open ? 'add' : 'delete');
+							menuCtx.onOpenChange([...menuCtx.__openUids!]);
+						}
 					}
 				}
 
@@ -257,13 +260,17 @@
 			popoverRef.forEach((ref: any, index: number) => {
 				if (hiddenIndex.has(index)) return;
 				const it = itemsList[index] || moreItem;
-				ref && ref.updateShow && ref.updateShow(it.open);
+				if (it.open) {
+					ref && ref.updateShow && ref.updateShow(it.open);
+				}
 			});
 		} else {
 			setTimeout(() => {
 				popoverRef.forEach((ref: any, index: number) => {
 					const it = itemsList[index] || moreItem;
-					ref && ref.updateShow && ref.updateShow(it.open);
+					if (it.open) {
+						ref && ref.updateShow && ref.updateShow(it.open);
+					}
 				});
 			}, 300);
 		}
@@ -449,7 +456,7 @@
 				[`${prefixCls}-disabled`]: true
 			};
 			if (hasSub(it)) {
-				it.children = it.children.map((item) => {
+				it.children = it.children!.map((item) => {
 					return {
 						...item,
 						disabledParent: true
@@ -572,6 +579,30 @@
 		}
 		return res;
 	};
+
+	function clearVerticalOpenStatus(it: SubMenuType, list = itemsList) {
+		return list.map((value) => {
+			if (value.uid === it.uid && !isGroup(it)) {
+				// set open
+				if (hasSub(it)) {
+					value.open = false;
+					if (menuCtx) {
+						menuCtx.syncUids(value.uid!, 'open', 'delete');
+						menuCtx.onOpenChange([...menuCtx.__openUids!]);
+					}
+				}
+			}
+
+			if (hasSub(value)) {
+				value.children = clearVerticalOpenStatus(it, value.children);
+			}
+			return value;
+		});
+	}
+	function onVerticalPopoverChange(it: SubMenuType, e: CustomEvent) {
+		if (it.disabled || it.disabledParent || e.detail) return;
+		itemsList = clearVerticalOpenStatus(it);
+	}
 </script>
 
 {#each itemsList as it, index (it.uid)}
@@ -670,6 +701,9 @@
 			arrow={false}
 			width={level === 1 ? 'auto' : '100%'}
 			placement="right"
+			on:change={(e) => {
+				onVerticalPopoverChange(it, e);
+			}}
 			on:animateStart={showSubMenuPopover}
 			offset={setPopoverOffset}
 			fallbackPlacements={['right', 'left']}
@@ -774,6 +808,9 @@
 			bind:this={popoverRef[index]}
 			width={widths[index]}
 			order={index}
+			on:change={(e) => {
+				onVerticalPopoverChange(it, e);
+			}}
 			opacity={ops[index]}
 			attrsTrigger={{ 'data-k-menu-h': `${level}` }}
 			arrow={false}

@@ -140,17 +140,17 @@ export type KMenuProps = {
 };
 
 // onClick 点击 MenuItem 调用此函数 inline
-// TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 inline
+// onOpenChange SubMenu 展开/关闭的回调 inline
 // onSelect 被选中时调用(点击子菜单标题不触发） inline
 // onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
 // onClick 点击 MenuItem 调用此函数 vertical
-// TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 vertical
+// onOpenChange SubMenu 展开/关闭的回调 vertical
 // onSelect 被选中时调用(点击子菜单标题不触发） vertical
 // onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
 // onClick 点击 MenuItem 调用此函数 horizontal
-// TODO: 👀 onOpenChange SubMenu 展开/关闭的回调 horizontal
+// onOpenChange SubMenu 展开/关闭的回调 horizontal
 // onSelect 被选中时调用(点击子菜单标题不触发） horizontal
 // onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 

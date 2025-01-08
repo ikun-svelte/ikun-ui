@@ -18,7 +18,7 @@ export const menuShortcuts: Record<string, string> = {
 	'k-menu-item-selected': 'ikun:20:bg-ikun-main text-ikun-main hover:(ikun:20:bg-ikun-main)',
 
 	'k-menu-item-selected-danger':
-		'ikun:20:bg-ikun-error opacity text-ikun-error hover:(ikun:20:bg-ikun-error)',
+		'ikun:20:bg-ikun-error opacity-50 text-ikun-error hover:(ikun:20:bg-ikun-error)',
 	'k-menu-item-selected-group': 'text-ikun-main',
 	'k-menu-item-hover': 'hover:(ikun:6:bg-ikun-black)',
 
