@@ -238,9 +238,9 @@ export type SubMenuType = {
 	[property: string]: any;
 };
 
-// TODO: 👀👀 Items Slots slots label 分组标题 vertical
-// TODO: 👀👀 Items Slots slots label 分组标题 horizontal
-// TODO: 👀👀 Items Slots slots label 分组标题 inline
+// Items Slots slots label 分组标题 vertical
+// Items Slots slots label 分组标题 horizontal
+// Items Slots slots label 分组标题 inline
 // Items Slots slots  icon  菜单图标 vertical
 // Items Slots slots  icon  菜单图标 horizontal
 // Items Slots slots  icon  菜单图标 inline
