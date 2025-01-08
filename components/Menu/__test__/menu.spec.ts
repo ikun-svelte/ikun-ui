@@ -15,6 +15,7 @@ import KMenuClick from './fixture/click.svelte';
 import KMenuSelect from './fixture/select.svelte';
 import KMenuSelectable from './fixture/selectable.svelte';
 import KMenuExpandIcon from './fixture/expand-icon.svelte';
+import KMenuExpandIconSlot from './fixture/expand-icon-slot.svelte';
 import KMenuOpenChange from './fixture/open-change.svelte';
 import { tick } from 'svelte';
 let host;
@@ -419,7 +420,7 @@ describe('Test: KMenu', () => {
 		});
 		expect(instance).toBeTruthy();
 		await tick();
-		const vEl = host.querySelector('#selectable_test_vertical');
+		const vEl = host.querySelector('#expand_icon_test_vertical');
 		const vTrigger = vEl.querySelector('[slot="triggerEl"]');
 		vTrigger.dispatchEvent(new Event('click', { bubbles: true }));
 		await tick();
@@ -838,6 +839,51 @@ describe('Test: KMenu', () => {
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(resEl.innerHTML).toBe('4');
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slots: expandIcon & vertical', async () => {
+		const instance = new KMenuExpandIconSlot({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const vEl = host.querySelector('#expand_icon_test_vertical');
+		const vTrigger = vEl.querySelector('[slot="triggerEl"]');
+		vTrigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(vEl.innerHTML.includes('🎯')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slots: expandIcon & inline', async () => {
+		const instance = new KMenuExpandIconSlot({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const vEl = host.querySelector('#expand_icon_test_inline');
+		const vTrigger = vEl.querySelectorAll('[slot="triggerEl"]');
+		vTrigger[0].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(vEl.innerHTML.includes('🎯')).toBeTruthy();
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('slots: expandIcon & horizontal', async () => {
+		const instance = new KMenuExpandIconSlot({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const vEl = host.querySelector('#expand_icon_test_horizontal');
+		const vTrigger = vEl.querySelector('[data-k-menu-h="1"]');
+		vTrigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(vEl.innerHTML.includes('🎯')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
 	});
 });
