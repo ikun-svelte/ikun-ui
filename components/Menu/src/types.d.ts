@@ -62,8 +62,8 @@ export type KMenuProps = {
 	 */
 	ctxKey?: string;
 	/**
-	 * TODO: 👀 展开图标
-	 * TODO: 👀 展开图标 horizontal(more menu 展示)
+	 * 展开图标
+	 * 展开图标 horizontal(more menu 展示)
 	 * @default 'i-carbon-chevron-down'
 	 */
 	expandIcon?: string;
@@ -157,10 +157,6 @@ export type KMenuProps = {
 // TODO: 👀 onTitleClick 点击子菜单标题
 // 	titleClick?: (item: SubMenuType, e: MouseEvent, uidPath: string[]) => void;
 
-// TODO: 👀👀 slots expandIcon 展开图标 vertical
-// TODO: 👀👀 slots expandIcon 展开图标 horizontal
-// TODO: 👀👀 slots expandIcon 展开图标 inline
-
 export type KMenuItemProps = {
 	/**
 	 * @internal
@@ -248,5 +244,8 @@ export type SubMenuType = {
 // TODO: 👀👀 Items Slots slots  icon  菜单图标 vertical
 // TODO: 👀👀 Items Slots slots  icon  菜单图标 horizontal
 // TODO: 👀👀 Items Slots slots  icon  菜单图标 inline
+// TODO: 👀👀 Items Slots slots  expandIcon  菜单图标 vertical
+// TODO: 👀👀 Items Slots slots  expandIcon  菜单图标 horizontal
+// TODO: 👀👀 Items Slots slots  expandIcon  菜单图标 inline
 
 // TODO: 🎯 dark mode
