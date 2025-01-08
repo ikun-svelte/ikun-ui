@@ -100,9 +100,9 @@ export type KMenuProps = {
 	 */
 	selectedUids?: string[];
 	/**
-	 * TODO: 👀 是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
-	 * TODO: 👀 是否允许选中(为 false，  点击不高亮，不触发 select事件) vertical
-	 * TODO: 👀 是否允许选中(为 false，  点击不高亮，不触发 select事件) horizontal
+	 * 是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
+	 * 是否允许选中(为 false，  点击不高亮，不触发 select事件) vertical
+	 * 是否允许选中(为 false，  点击不高亮，不触发 select事件) horizontal
 	 * @default false
 	 */
 	selectable?: boolean;
@@ -157,9 +157,9 @@ export type KMenuProps = {
 // TODO: 👀 onTitleClick 点击子菜单标题
 // 	titleClick?: (item: SubMenuType, e: MouseEvent, uidPath: string[]) => void;
 
-// TODO: 👀 slots expandIcon 展开图标 vertical
-// TODO: 👀 slots expandIcon 展开图标 horizontal
-// TODO: 👀 slots expandIcon 展开图标 inline
+// TODO: 👀👀 slots expandIcon 展开图标 vertical
+// TODO: 👀👀 slots expandIcon 展开图标 horizontal
+// TODO: 👀👀 slots expandIcon 展开图标 inline
 
 export type KMenuItemProps = {
 	/**
@@ -242,11 +242,11 @@ export type SubMenuType = {
 	[property: string]: any;
 };
 
-// TODO: 👀 Items Slots slots label 分组标题 vertical
-// TODO: 👀 Items Slots slots label 分组标题 horizontal
-// TODO: 👀 Items Slots slots label 分组标题 inline
-// TODO: 👀 Items Slots slots  icon  菜单图标 vertical
-// TODO: 👀 Items Slots slots  icon  菜单图标 horizontal
-// TODO: 👀 Items Slots slots  icon  菜单图标 inline
+// TODO: 👀👀 Items Slots slots label 分组标题 vertical
+// TODO: 👀👀 Items Slots slots label 分组标题 horizontal
+// TODO: 👀👀 Items Slots slots label 分组标题 inline
+// TODO: 👀👀 Items Slots slots  icon  菜单图标 vertical
+// TODO: 👀👀 Items Slots slots  icon  菜单图标 horizontal
+// TODO: 👀👀 Items Slots slots  icon  菜单图标 inline
 
 // TODO: 🎯 dark mode
