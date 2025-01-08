@@ -241,9 +241,9 @@ export type SubMenuType = {
 // TODO: 👀👀 Items Slots slots label 分组标题 vertical
 // TODO: 👀👀 Items Slots slots label 分组标题 horizontal
 // TODO: 👀👀 Items Slots slots label 分组标题 inline
-// TODO: 👀👀 Items Slots slots  icon  菜单图标 vertical
-// TODO: 👀👀 Items Slots slots  icon  菜单图标 horizontal
-// TODO: 👀👀 Items Slots slots  icon  菜单图标 inline
+// Items Slots slots  icon  菜单图标 vertical
+// Items Slots slots  icon  菜单图标 horizontal
+// Items Slots slots  icon  菜单图标 inline
 // Items Slots slots  expandIcon  菜单图标 vertical
 // Items Slots slots  expandIcon  菜单图标 horizontal
 // Items Slots slots  expandIcon  菜单图标 inline
