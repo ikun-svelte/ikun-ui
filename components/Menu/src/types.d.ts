@@ -122,7 +122,7 @@ export type KMenuProps = {
 	 */
 	theme?: 'light' | 'dark';
 	/**
-	 * TODO: 👀 是否允许多选
+	 * 是否允许多选
 	 * @default 'true'
 	 */
 	multiple?: boolean;
@@ -169,8 +169,7 @@ export type KMenuItemProps = {
 };
 export type SubMenuType = {
 	/**
-	 * TODO: 👀 展示错误状态样式
-	 *   只在最后一个节点生效，inline 或 vertical 生效
+	 * 展示错误状态样式
 	 * @default false
 	 */
 	danger?: boolean;
@@ -202,13 +201,7 @@ export type SubMenuType = {
 	 */
 	theme?: 'light' | 'dark';
 	/**
-	 * TODO: 👀悬浮标题(
-	 *   1.👀 无子菜单情况下生效
-	 *   2.👀 收起时，inline 和 vertical 模式下，默认值是 label，使用 tooltip 显示
-	 *   3.👀 展开时，inline 和 vertical 模式下，无默认值，使用 title 属性显示
-	 *   4.👀 horizontal 模式下，无默认值，使用 title 属性显示
-	 *   5.👀 group 上也生效
-	 * )
+	 * 浮标题
 	 */
 	title?: string;
 	/**
