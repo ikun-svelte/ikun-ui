@@ -19,6 +19,7 @@
 	export let selectable: KMenuProps['selectable'] = true;
 	export let inlineCollapsed: KMenuProps['inlineCollapsed'] = false;
 	export let ctxKey: KMenuProps['ctxKey'] = '';
+	export let theme: KMenuProps['theme'] = undefined;
 	const dispatch = createEventDispatcher();
 	function onOpenChange(openUids: string[]) {
 		dispatch('openChange', openUids);
@@ -67,6 +68,7 @@
 			openUids,
 			selectedUids,
 			multiple,
+			theme,
 			selectable,
 			attrs,
 			ctxKey
@@ -95,6 +97,7 @@
 				mode: resolveMode,
 				inlineIndent,
 				openUids,
+				theme,
 				multiple,
 				selectedUids,
 				selectable,
@@ -110,15 +113,18 @@
 	const prefixCls = getPrefixCls('menu');
 	$: cnames = clsx(
 		prefixCls,
-		`${prefixCls}__dark`,
 		`${prefixCls}-${mode}`,
-		`${prefixCls}-${mode}__dark`,
+		{
+			[`${prefixCls}__dark`]: theme === 'dark' || theme === undefined,
+			[`${prefixCls}-${mode}__dark`]: theme === 'dark' || theme === undefined
+		},
 		cls
 	);
+	$: darkCls = clsx('overflow-hidden', { dark: theme === 'dark' });
 </script>
 
 {#if show}
-	<div class="overflow-hidden" bind:this={menuRef}>
+	<div class={darkCls} bind:this={menuRef}>
 		<ul
 			class={cnames}
 			style:border-color={bdBg}

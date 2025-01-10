@@ -25,6 +25,7 @@
 	export let order: undefined | number = undefined;
 	export let offset: KPopoverProps['offset'] = [0, 8];
 	export let opacity: string = '';
+	export let theme: KPopoverProps['theme'] = undefined;
 	export let fallbackPlacements: KPopoverProps['fallbackPlacements'] = [
 		'top',
 		'right',
@@ -151,12 +152,15 @@
 		};
 	}
 
+	$: isDark = (theme && theme === 'dark') || theme === undefined;
 	$: prefixCls = getPrefixCls('popover');
 	$: cnames = clsx(
 		`${prefixCls}--base`,
 		`${prefixCls}--base__${placement}`,
-		`${prefixCls}--base__${placement}__dark`,
-		`${prefixCls}--base__dark`,
+		{
+			[`${prefixCls}--base__${placement}__dark`]: isDark,
+			[`${prefixCls}--base__dark`]: isDark
+		},
 		cls
 	);
 

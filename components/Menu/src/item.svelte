@@ -17,6 +17,7 @@
 	export let attrs: KMenuItemProps['attrs'] = {};
 	export let level: KMenuItemProps['level'] = 1;
 	export let ctxKey: KMenuItemProps['ctxKey'] = '';
+
 	const dispatch = createEventDispatcher();
 	const hasSub = (it: SubMenuType) => !!(it.children && it.children.length);
 	const isNotHorizontalTop = () => {
@@ -430,17 +431,36 @@
 
 	const menuPrefixCls = getPrefixCls('menu');
 	const prefixCls = getPrefixCls('menu-item');
+	$: isDark = (it: SubMenuType) =>
+		(it.theme || ctxProps.theme) === 'dark' || (it.theme || ctxProps.theme) === undefined;
+	$: themeValue = (it: SubMenuType) => it.theme || ctxProps.theme;
 	$: cnames = (it: SubMenuType) => {
 		let basicCls = {
 			[`${prefixCls}-active`]: (!isGroup(it) && isNotHorizontalTop()) || ctxProps.mode === 'inline',
-			[`${prefixCls}__dark`]: isGroup(it),
+			[`${prefixCls}__dark`]: isGroup(it) && isDark(it),
 
-			[`${prefixCls}-selected-danger ${prefixCls}-selected-danger__dark`]:
+			[`${prefixCls}-selected-danger`]:
 				!isGroup(it) && !hasSub(it) && isNotHorizontalTop() && it.selected && it.danger,
+
+			[`${prefixCls}-selected-danger__dark`]:
+				!isGroup(it) &&
+				!hasSub(it) &&
+				isNotHorizontalTop() &&
+				it.selected &&
+				it.danger &&
+				isDark(it),
+
 			[`${prefixCls}-danger`]: it.danger,
 
-			[`${prefixCls}-selected ${prefixCls}-selected__dark`]:
+			[`${prefixCls}-selected`]:
 				!isGroup(it) && !hasSub(it) && isNotHorizontalTop() && it.selected && !it.danger,
+			[` ${prefixCls}-selected__dark`]:
+				!isGroup(it) &&
+				!hasSub(it) &&
+				isNotHorizontalTop() &&
+				it.selected &&
+				!it.danger &&
+				isDark(it),
 
 			[`${prefixCls}-selected-group`]:
 				!isGroup(it) && hasSub(it) && isNotHorizontalTop() && it.selected,
@@ -455,7 +475,7 @@
 		if (it.disabled || it.disabledParent) {
 			basicCls = {
 				[`${prefixCls}-disabled`]: true,
-				[`${prefixCls}-disabled__dark`]: true
+				[`${prefixCls}-disabled__dark`]: isDark(it)
 			};
 			if (hasSub(it)) {
 				it.children = it.children!.map((item) => {
@@ -480,7 +500,11 @@
 		);
 	};
 
-	const iconCls = clsx(`${prefixCls}-icon`, `${prefixCls}-icon__dark`);
+	$: iconCls = (it: SubMenuType) => {
+		return clsx(`${prefixCls}-icon`, {
+			[`${prefixCls}-icon__dark`]: isDark(it)
+		});
+	};
 	const iconRootCls = (isInlineCollapsed?: boolean) => {
 		return clsx({
 			[`${prefixCls}-icon-root`]: !isInlineCollapsed,
@@ -614,6 +638,7 @@
 				placement="right"
 				trigger="hover"
 				width="100%"
+				theme={themeValue(it)}
 				content={resolveTitle(it, ctxProps.inlineCollapsed, true)}
 				disabled={resolveDisabledTooltip(it, ctxProps.inlineCollapsed)}
 			>
@@ -629,9 +654,15 @@
 				>
 					<slot name="item" item={it}>
 						<span class={iconRootCls()}>
-							<slot name="icon" item={it} cls={iconCls}>
+							<slot name="icon" item={it} cls={iconCls(it)}>
 								{#if it.icon}
-									<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
+									<KIcon
+										theme={themeValue(it)}
+										width="14px"
+										cls={iconCls(it)}
+										height="14px"
+										icon={it.icon}
+									></KIcon>
 								{/if}
 							</slot>
 							<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
@@ -642,8 +673,14 @@
 						</span>
 
 						{#if hasSub(it) && !isGroup(it)}
-							<slot name="expandIcon" item={it} cls={iconCls}>
-								<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(it)}></KIcon>
+							<slot name="expandIcon" item={it} cls={iconCls(it)}>
+								<KIcon
+									theme={themeValue(it)}
+									width="14px"
+									cls={iconCls(it)}
+									height="14px"
+									icon={expendIconCls(it)}
+								></KIcon>
 							</slot>
 						{/if}
 					</slot>
@@ -672,7 +709,13 @@
 							<span class={iconRootCls()}>
 								<slot name="icon" {item}>
 									{#if item.icon}
-										<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
+										<KIcon
+											theme={themeValue(item)}
+											width="14px"
+											cls={iconCls(item)}
+											height="14px"
+											icon={item.icon}
+										></KIcon>
 									{/if}
 								</slot>
 								<slot name="label" {item} cls={titleContentCls(!!item.icon)}>
@@ -683,8 +726,13 @@
 							</span>
 
 							{#if hasSub(item) && !isGroup(item)}
-								<slot name="expandIcon" {item} cls={iconCls}>
-									<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(item)}
+								<slot name="expandIcon" {item} cls={iconCls(item)}>
+									<KIcon
+										theme={themeValue(item)}
+										width="14px"
+										cls={iconCls(item)}
+										height="14px"
+										icon={expendIconCls(item)}
 									></KIcon>
 								</slot>
 							{/if}
@@ -701,6 +749,7 @@
 		<KPopover
 			bind:this={popoverRef[index]}
 			arrow={false}
+			theme={themeValue(it)}
 			width={level === 1 ? 'auto' : '100%'}
 			placement="right"
 			on:change={(e) => {
@@ -722,6 +771,7 @@
 						placement="right"
 						trigger="hover"
 						width="100%"
+						theme={themeValue(it)}
 						disabled={resolveDisabledTooltip(it, ctxProps.inlineCollapsed)}
 						content={resolveTitle(it, ctxProps.inlineCollapsed, true)}
 					>
@@ -737,9 +787,15 @@
 						>
 							<slot name="item" item={it}>
 								<span class={iconRootCls(ctxProps.inlineCollapsed)}>
-									<slot name="icon" item={it} cls={iconCls}>
+									<slot name="icon" item={it} cls={iconCls(it)}>
 										{#if it.icon}
-											<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
+											<KIcon
+												theme={themeValue(it)}
+												width="14px"
+												cls={iconCls(it)}
+												height="14px"
+												icon={it.icon}
+											></KIcon>
 										{/if}
 									</slot>
 									<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
@@ -752,8 +808,13 @@
 								</span>
 
 								{#if hasSub(it) && !isGroup(it) && !ctxProps.inlineCollapsed}
-									<slot name="expandIcon" item={it} cls={iconCls}>
-										<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(it)}
+									<slot name="expandIcon" item={it} cls={iconCls(it)}>
+										<KIcon
+											theme={themeValue(it)}
+											width="14px"
+											cls={iconCls(it)}
+											height="14px"
+											icon={expendIconCls(it)}
 										></KIcon>
 									</slot>
 								{/if}
@@ -782,7 +843,13 @@
 								<span class={iconRootCls()}>
 									<slot name="icon" {item}>
 										{#if item.icon}
-											<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
+											<KIcon
+												theme={themeValue(item)}
+												width="14px"
+												cls={iconCls(item)}
+												height="14px"
+												icon={item.icon}
+											></KIcon>
 										{/if}
 									</slot>
 									<slot name="label" {item} cls={titleContentCls(!!item.icon)}>
@@ -792,8 +859,13 @@
 									</slot>
 								</span>
 								{#if hasSub(item)}
-									<slot name="expandIcon" {item} cls={iconCls}>
-										<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(item)}
+									<slot name="expandIcon" {item} cls={iconCls(item)}>
+										<KIcon
+											theme={themeValue(item)}
+											width="14px"
+											cls={iconCls(item)}
+											height="14px"
+											icon={expendIconCls(item)}
 										></KIcon>
 									</slot>
 								{/if}
@@ -810,6 +882,7 @@
 			bind:this={popoverRef[index]}
 			width={widths[index]}
 			order={index}
+			theme={themeValue(it)}
 			on:change={(e) => {
 				onVerticalPopoverChange(it, e);
 			}}
@@ -840,9 +913,15 @@
 					>
 						<slot name="item" item={it}>
 							<span class={iconRootCls()}>
-								<slot name="icon" item={it} cls={iconCls}>
+								<slot name="icon" item={it} cls={iconCls(it)}>
 									{#if it.icon}
-										<KIcon width="14px" cls={iconCls} height="14px" icon={it.icon}></KIcon>
+										<KIcon
+											theme={themeValue(it)}
+											width="14px"
+											cls={iconCls(it)}
+											height="14px"
+											icon={it.icon}
+										></KIcon>
 									{/if}
 								</slot>
 								<slot name="label" item={it} cls={titleContentCls(!!it.icon)}>
@@ -853,8 +932,14 @@
 							</span>
 
 							{#if hasSub(it) && !isGroup(it) && level !== 1}
-								<slot name="expandIcon" item={it} cls={iconCls}>
-									<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(it)}></KIcon>
+								<slot name="expandIcon" item={it} cls={iconCls(it)}>
+									<KIcon
+										theme={themeValue(it)}
+										width="14px"
+										cls={iconCls(it)}
+										height="14px"
+										icon={expendIconCls(it)}
+									></KIcon>
 								</slot>
 							{/if}
 						</slot>
@@ -881,7 +966,13 @@
 								<span class={iconRootCls()}>
 									<slot name="icon" {item}>
 										{#if item.icon}
-											<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
+											<KIcon
+												theme={themeValue(item)}
+												width="14px"
+												cls={iconCls(item)}
+												height="14px"
+												icon={item.icon}
+											></KIcon>
 										{/if}
 									</slot>
 									<slot name="label" {item} cls={titleContentCls(!!item.icon)}>
@@ -891,8 +982,13 @@
 									</slot>
 								</span>
 								{#if hasSub(item)}
-									<slot name="expandIcon" {item} cls={iconCls}>
-										<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(item)}
+									<slot name="expandIcon" {item} cls={iconCls(item)}>
+										<KIcon
+											theme={themeValue(item)}
+											width="14px"
+											cls={iconCls(item)}
+											height="14px"
+											icon={expendIconCls(item)}
 										></KIcon>
 									</slot>
 								{/if}
@@ -914,6 +1010,7 @@
 		mouseEnterDelay={ctxProps.subMenuOpenDelay}
 		mouseLeaveDelay={ctxProps.subMenuCloseDelay}
 		trigger={ctxProps.triggerSubMenuAction}
+		theme={themeValue(moreItem)}
 		cls={popoverContentCls()}
 		bind:this={popoverRef[itemsList.length]}
 		width={widths[itemsList.length]}
@@ -941,7 +1038,13 @@
 							<span class={iconRootCls()}>
 								<slot name="icon" {item}>
 									{#if item.icon}
-										<KIcon width="14px" cls={iconCls} height="14px" icon={item.icon}></KIcon>
+										<KIcon
+											theme={themeValue(item)}
+											width="14px"
+											cls={iconCls(item)}
+											height="14px"
+											icon={item.icon}
+										></KIcon>
 									{/if}
 								</slot>
 								<slot name="label" {item} cls={titleContentCls(!!item.icon)}>
@@ -951,8 +1054,13 @@
 								</slot>
 							</span>
 							{#if hasSub(item)}
-								<slot name="expandIcon" {item} cls={iconCls}>
-									<KIcon width="14px" cls={iconCls} height="14px" icon={expendIconCls(item)}
+								<slot name="expandIcon" {item} cls={iconCls(item)}>
+									<KIcon
+										theme={themeValue(item)}
+										width="14px"
+										cls={iconCls(item)}
+										height="14px"
+										icon={expendIconCls(item)}
 									></KIcon>
 								</slot>
 							{/if}

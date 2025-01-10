@@ -15,6 +15,10 @@ export type KPopoverProps = {
 	mouseLeaveDelay: number;
 	fallbackPlacements: string[];
 	width: string | null | undefined;
+	/**
+	 * @internal
+	 */
+	theme?: 'dark' | 'light';
 	attrs: Record<string, string>;
 };
 

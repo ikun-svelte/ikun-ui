@@ -7,6 +7,10 @@ export type KIconProps = {
 	width: string;
 	height: string;
 	color: string;
+	/**
+	 * @internal
+	 */
+	theme?: 'dark' | 'light';
 	cls: ClassValue;
 	attrs: Record<string, string>;
 };

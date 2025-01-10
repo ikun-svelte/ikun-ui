@@ -14,6 +14,7 @@
 	export let mouseLeaveDelay: KTooltipProps['mouseLeaveDelay'] = 200;
 	export let defaultOpen: KPopoverProps['defaultOpen'] = undefined;
 	export let width: KPopoverProps['width'] = 'fit-content';
+	export let theme: KPopoverProps['theme'] = undefined;
 	/**
 	 * @internal
 	 */
@@ -24,6 +25,7 @@
 	cls={cnames}
 	{disabled}
 	{trigger}
+	{theme}
 	{mouseEnterDelay}
 	{mouseLeaveDelay}
 	{placement}
