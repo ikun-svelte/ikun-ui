@@ -179,7 +179,7 @@ export type SubMenuType = {
 	 */
 	type?: 'group' | 'divider';
 	/**
-	 * TODO:  👀 菜单图标
+	 * 菜单图标
 	 */
 	icon?: string;
 	/**

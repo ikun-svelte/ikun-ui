@@ -21,6 +21,7 @@ import KMenuLabelSlot from './fixture/label-slot.svelte';
 import KMenuOpenChange from './fixture/open-change.svelte';
 import KMenuTitleClick from './fixture/title-click.svelte';
 import KMenuDivider from './fixture/divider.svelte';
+import KMenuIcon from './fixture/icon.svelte';
 import { tick } from 'svelte';
 let host;
 
@@ -1076,6 +1077,54 @@ describe('Test: KMenuItems', () => {
 		expect(instance).toBeTruthy();
 		await tick();
 		const vEl = host.querySelector('#divider_test_horizontal');
+		const vTrigger = vEl.querySelector('[data-k-menu-h="1"]');
+		vTrigger
+			.querySelector('.k-menu-title-content-i')
+			.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: items - icon & vertical', async () => {
+		// @ts-ignore
+		const instance = new KMenuIcon({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const vEl = host.querySelector('#icon_test_vertical');
+		const vTrigger = vEl.querySelector('[slot="triggerEl"]');
+		vTrigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: items - icon & inline', async () => {
+		// @ts-ignore
+		const instance = new KMenuIcon({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const iEl = host.querySelector('#icon_test_inline');
+		let iTrigger = iEl.querySelectorAll('[slot="triggerEl"]');
+		iTrigger[0].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		iTrigger = iEl.querySelectorAll('[slot="triggerEl"]');
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: items - icon & horizontal', async () => {
+		// @ts-ignore
+		const instance = new KMenuIcon({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const vEl = host.querySelector('#icon_test_horizontal');
 		const vTrigger = vEl.querySelector('[data-k-menu-h="1"]');
 		vTrigger
 			.querySelector('.k-menu-title-content-i')
