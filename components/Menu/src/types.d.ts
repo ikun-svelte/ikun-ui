@@ -183,7 +183,7 @@ export type SubMenuType = {
 	 */
 	icon?: string;
 	/**
-	 * TODO: 👀 菜单项标题
+	 * 菜单项标题
 	 */
 	label?: string;
 	/**
