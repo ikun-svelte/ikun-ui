@@ -9,6 +9,7 @@
 	export let trigger: KIndicatorsProps['trigger'] = 'click';
 	export let cls: KIndicatorsProps['cls'] = undefined;
 	export let attrs: KIndicatorsProps['attrs'] = {};
+	export let direction: KIndicatorsProps['direction'] = 'horizontal';
 
 	const dispatch = createEventDispatcher();
 
@@ -25,10 +26,10 @@
 	};
 
 	const prefixCls = getPrefixCls('indicators');
-	$: cnames = clsx(prefixCls, cls);
+	$: cnames = clsx(prefixCls, `${prefixCls}--${direction}`, cls);
 	$: itemCls = (index: number) =>
-		clsx(`${prefixCls}-item`, {
-			[`${prefixCls}-item--active`]: pageIndex === index
+		clsx(`${prefixCls}-item ${prefixCls}-item--${direction}`, {
+			[`${prefixCls}-item--active__${direction}`]: pageIndex === index
 		});
 </script>
 

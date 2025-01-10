@@ -6,4 +6,5 @@ export type KIndicatorsProps = {
 	count: number;
 	cls: ClassValue;
 	attrs: Record<string, string>;
+	direction: 'horizontal' | 'vertical';
 };

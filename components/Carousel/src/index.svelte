@@ -16,34 +16,41 @@
 	export let interval: KCarouselProps['interval'] = 3000;
 	export let height: KCarouselProps['count'] = 0;
 	export let initialIndex: KCarouselProps['initialIndex'] = 0;
+	export let direction: KCarouselProps['direction'] = 'horizontal';
 	$: wrapWidth = `${count * 100}%`;
+	$: wrapHeight = `${height * count}px`;
 
+	$: isVertical = direction === 'vertical';
 	let pageIndex = initialIndex;
-	let resolveHeight = height ? `${height}px` : '';
-	let transition = 'left .5s ease 0s';
+	let resolveHeight = height ?? 0;
+	let transition = isVertical ? 'top .5s ease 0s' : 'left .5s ease 0s';
 	const dispatch = createEventDispatcher();
 	let oldIndex = pageIndex;
 	let carouselRef: any = null;
 	const handlePageChange = async (e: CustomEvent) => {
 		const { index, type: actionType } = e.detail;
+
 		const children = carouselRef.querySelector('.k-carousel-item-wrap')?.children;
 		oldIndex = pageIndex;
 		if (!loop) {
 			pageIndex = index;
 			wrapLeft = `-${pageIndex * 100}%`;
+			wrapTop = `-${pageIndex * resolveHeight}px`;
 			if (children) {
-				!height && (resolveHeight = `${children[pageIndex].clientHeight}px`);
+				!height && (resolveHeight = children[pageIndex].clientHeight);
 			}
 			dispatch('change', { index: pageIndex, oldIndex });
 			return;
 		} else {
 			if (children) {
-				transition = 'left .5s ease 0s';
-				children[index] && !height && (resolveHeight = `${children[index].clientHeight}px`);
+				transition = isVertical ? 'top .5s ease 0s' : 'left .5s ease 0s';
+				children[index] && !height && (resolveHeight = children[index].clientHeight);
 
 				if (actionType === 'etf' && loop) {
 					pageIndex = count;
 					wrapLeft = `-${pageIndex * 100}%`;
+					wrapTop = `-${pageIndex * height}px`;
+
 					const firstElm = children[0];
 					if (firstElm) {
 						(firstElm as HTMLElement).style.transform = `translateX(${wrapWidth})`;
@@ -52,15 +59,20 @@
 				} else if (actionType === 'fte' && loop) {
 					pageIndex = count;
 					wrapLeft = `100%`;
+					wrapTop = `${height}px`;
+
 					await tick();
 					const lastElm = children[count - 1];
 					if (lastElm) {
-						(lastElm as HTMLElement).style.transform = `translateX(-${count * 100}%)`;
+						(lastElm as HTMLElement).style.transform = isVertical
+							? `translateY(-${count * resolveHeight}px)`
+							: `translateX(-${count * 100}%)`;
 						resetChild(lastElm as HTMLElement, index);
 					}
 				} else {
 					pageIndex = index;
 					wrapLeft = `-${pageIndex * 100}%`;
+					wrapTop = `-${pageIndex * children[pageIndex]?.clientHeight}px`;
 					dispatch('change', { index: pageIndex, oldIndex });
 				}
 			}
@@ -74,6 +86,7 @@
 			el.style.transform = '';
 			transition = '';
 			wrapLeft = `-${pageIndex * 100}%`;
+			wrapTop = `-${pageIndex * resolveHeight}px`;
 			dispatch('change', { index, oldIndex });
 		}, 500);
 	}
@@ -107,7 +120,8 @@
 	onMount(() => {
 		const children = carouselRef.querySelector('.k-carousel-item-wrap')?.children;
 		if (children && children[pageIndex]) {
-			resolveHeight = height ? `${height}px` : `${children[pageIndex].clientHeight}px`;
+			resolveHeight = height ? height : children[pageIndex].clientHeight;
+			wrapHeight = isVertical ? `${resolveHeight * count}px` : '';
 		}
 		doAutoplay();
 	});
@@ -147,10 +161,11 @@
 	$: {
 		wrapLeft = `-${initialIndex * 100}%`;
 	}
+	$: wrapTop = `-${initialIndex * height}px`;
 	const prefixCls = getPrefixCls('carousel');
 	$: cnames = clsx(prefixCls, cls);
 	$: wrapCls = clsx(`${prefixCls}-wrap`);
-	$: wrapItemCls = clsx(`${prefixCls}-item-wrap`);
+	$: wrapItemCls = clsx(`${prefixCls}-item-wrap ${prefixCls}-item-wrap--${direction}`);
 </script>
 
 <div
@@ -162,35 +177,40 @@
 	{...$$restProps}
 	{...attrs}
 >
-	<div class={wrapCls} style:height={resolveHeight}>
+	<div class={wrapCls} style:height={`${resolveHeight}px`}>
 		<div
 			class={wrapItemCls}
-			style:width={wrapWidth}
-			style:left={wrapLeft}
+			style:width={isVertical ? '100%' : wrapWidth}
+			style:height={isVertical ? wrapHeight : ''}
+			style:left={isVertical ? '0' : wrapLeft}
+			style:top={isVertical ? wrapTop : '0'}
 			style:transition
 			data-active={pageIndex}
 			data-carousel-container
+			data-direction={direction}
 		>
 			<slot />
 		</div>
 	</div>
-	<slot
-		name="arrow"
-		onChange={handlePageChange}
-		defaultPageIndex={pageIndex}
-		show={isShowArrow}
-		{count}
-		{loop}
-	>
-		<KCarouselArrow
-			bind:this={arrowRef}
-			show={isShowArrow}
-			{loop}
+	{#if !isVertical}
+		<slot
+			name="arrow"
+			onChange={handlePageChange}
 			defaultPageIndex={pageIndex}
-			on:change={handlePageChange}
+			show={isShowArrow}
 			{count}
-		/>
-	</slot>
+			{loop}
+		>
+			<KCarouselArrow
+				bind:this={arrowRef}
+				show={isShowArrow}
+				{loop}
+				defaultPageIndex={pageIndex}
+				on:change={handlePageChange}
+				{count}
+			/>
+		</slot>
+	{/if}
 	<slot
 		name="indicators"
 		onChange={handlePageChange}
@@ -198,6 +218,12 @@
 		{count}
 		{trigger}
 	>
-		<KIndicators {count} {trigger} on:change={handlePageChange} defaultPageIndex={pageIndex} />
+		<KIndicators
+			{count}
+			{trigger}
+			{direction}
+			on:change={handlePageChange}
+			defaultPageIndex={pageIndex}
+		/>
 	</slot>
 </div>
