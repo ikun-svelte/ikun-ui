@@ -76,7 +76,6 @@
 	const handleClick = (item: CustomEvent) => {
 		res = item.detail;
 		triggerTime = triggerTime + 1;
-		console.log(res);
 	};
 </script>
 

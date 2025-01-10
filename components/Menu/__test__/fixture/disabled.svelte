@@ -87,7 +87,7 @@
 <div class="w-full fsc">
 	<KMenu
 		mode="vertical"
-		id="danger_test_vertical"
+		id="disabled_test_vertical"
 		triggerSubMenuAction="click"
 		on:select={handleClick}
 		on:deSelect={handleClick}
@@ -100,7 +100,7 @@
 		mode="inline"
 		on:select={handleClick}
 		on:deSelect={handleClick}
-		id="danger_test_inline"
+		id="disabled_test_inline"
 		triggerSubMenuAction="click"
 		ctxKey="22"
 	>
@@ -110,7 +110,7 @@
 		mode="horizontal"
 		on:select={handleClick}
 		on:deSelect={handleClick}
-		id="danger_test_horizontal"
+		id="disabled_test_horizontal"
 		triggerSubMenuAction="click"
 		ctxKey="22"
 	>

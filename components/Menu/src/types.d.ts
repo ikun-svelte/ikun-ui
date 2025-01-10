@@ -190,7 +190,7 @@ export type SubMenuType = {
 	 */
 	uid?: string;
 	/**
-	 * TODO: 👀 是否禁用
+	 * 是否禁用
 	 *   优先级高于 danger, 子节点也禁用
 	 * @default false
 	 */
