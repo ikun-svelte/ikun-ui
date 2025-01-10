@@ -154,8 +154,8 @@ export type KMenuProps = {
 // onSelect 被选中时调用(点击子菜单标题不触发） horizontal
 // onDeSelect 被选中时调用(点击子菜单标题不触发） inline
 
-// TODO: 👀 onTitleClick 点击子菜单标题
-// 	titleClick?: (item: SubMenuType, e: MouseEvent, uidPath: string[]) => void;
+// onTitleClick 点击子菜单标题
+// titleClick?: (item: SubMenuType, e: MouseEvent, uidPath: string[]) => void;
 
 export type KMenuItemProps = {
 	/**
