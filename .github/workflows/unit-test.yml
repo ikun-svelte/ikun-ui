@@ -38,13 +38,13 @@ jobs:
           cache: pnpm
 
       - name: Setup
-        run: npm i -g @antfu/ni
+        run: npm i -g pnpm
 
       - name: Setup dependencies
-        run: nci
+        run: pnpm install
 
       - name: Build
-        run: nr build
+        run: pnpm build
 
       - name: Unit Test
-        run: nr test:unit
+        run: pnpm test:unit
