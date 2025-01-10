@@ -108,7 +108,13 @@
 	}
 
 	const prefixCls = getPrefixCls('menu');
-	$: cnames = clsx(prefixCls, `${prefixCls}-${mode}`, cls);
+	$: cnames = clsx(
+		prefixCls,
+		`${prefixCls}__dark`,
+		`${prefixCls}-${mode}`,
+		`${prefixCls}-${mode}__dark`,
+		cls
+	);
 </script>
 
 {#if show}

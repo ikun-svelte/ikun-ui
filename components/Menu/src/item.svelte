@@ -433,12 +433,13 @@
 	$: cnames = (it: SubMenuType) => {
 		let basicCls = {
 			[`${prefixCls}-active`]: (!isGroup(it) && isNotHorizontalTop()) || ctxProps.mode === 'inline',
+			[`${prefixCls}__dark`]: isGroup(it),
 
-			[`${prefixCls}-selected-danger`]:
+			[`${prefixCls}-selected-danger ${prefixCls}-selected-danger__dark`]:
 				!isGroup(it) && !hasSub(it) && isNotHorizontalTop() && it.selected && it.danger,
 			[`${prefixCls}-danger`]: it.danger,
 
-			[`${prefixCls}-selected`]:
+			[`${prefixCls}-selected ${prefixCls}-selected__dark`]:
 				!isGroup(it) && !hasSub(it) && isNotHorizontalTop() && it.selected && !it.danger,
 
 			[`${prefixCls}-selected-group`]:
@@ -453,7 +454,8 @@
 		};
 		if (it.disabled || it.disabledParent) {
 			basicCls = {
-				[`${prefixCls}-disabled`]: true
+				[`${prefixCls}-disabled`]: true,
+				[`${prefixCls}-disabled__dark`]: true
 			};
 			if (hasSub(it)) {
 				it.children = it.children!.map((item) => {
@@ -478,7 +480,7 @@
 		);
 	};
 
-	const iconCls = clsx(`${prefixCls}-icon`);
+	const iconCls = clsx(`${prefixCls}-icon`, `${prefixCls}-icon__dark`);
 	const iconRootCls = (isInlineCollapsed?: boolean) => {
 		return clsx({
 			[`${prefixCls}-icon-root`]: !isInlineCollapsed,

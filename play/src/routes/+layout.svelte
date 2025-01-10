@@ -1,8 +1,20 @@
 <script>
 	import { KIcon } from '@ikun-ui/icon';
+	import { BROWSER } from 'esm-env';
 	const toggle = () => {
-		window.document.documentElement.classList.toggle('dark');
+		const res = window.document.documentElement.classList.toggle('dark');
+		localStorage.setItem('isDark', res)
 	};
+
+	function initDark(){
+		if(BROWSER){
+			const isDark = localStorage.getItem('isDark')
+			if (isDark === 'true') {
+				window.document.documentElement.classList.toggle('dark');
+			}
+		}
+	}
+	initDark()
 </script>
 
 <header>

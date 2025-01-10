@@ -62,7 +62,8 @@ export const defaultTheme = {
 		'ikun-bg-grs3': 'var(--ikun-neutral-100)',
 		'ikun-bg-grs1': 'var(--ikun-neutral-300)',
 		'ikun-bg-tab': 'var(--ikun-slate-50)',
-		'ikun-icon-white': 'var(--ikun-neutral-300)'
+		'ikun-icon-white': 'var(--ikun-neutral-300)',
+		'ikun-tx-white': 'var(--ikun-neutral-300)'
 	},
 	fontFamily: {
 		sans: 'Avenir, Helvetica, Arial, sans-serif'

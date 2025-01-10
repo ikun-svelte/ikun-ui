@@ -63,5 +63,17 @@ export const menuShortcuts: Record<string, string> = {
 	'k-menu-item-inline-group':
 		'k-menu-w k-menu-transition ' +
 		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +
-		'rounded-8px ikun:50:text-black'
+		'rounded-8px ikun:50:text-black',
+
+	// dark
+	'k-menu__dark': 'dark:(bg-ikun-dark-300 text-ikun-tx-white)',
+	'k-menu-item-disabled__dark': 'dark:(ikun:20:bg-ikun-white text-ikun-tx-white) ',
+	'k-menu-item-selected__dark':
+		'dark:(ikun:30:bg-ikun-main text-ikun-main hover:(ikun:30:bg-ikun-main))',
+	'k-menu-item-selected-danger__dark':
+		'dark:(ikun:30:bg-ikun-error opacity-[1] text-ikun-error hover:(ikun:30:bg-ikun-error))',
+	'k-menu-item-icon__dark': 'dark:(text-[inherit])',
+	'k-menu-item__dark': 'dark:text-ikun-tx-gr',
+	'k-menu-inline__dark': 'dark:(border-ikun-tx-white)',
+	'k-menu-vertical__dark': 'dark(border-ikun-tx-white)'
 };
