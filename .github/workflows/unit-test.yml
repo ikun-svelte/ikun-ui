@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [18.x]
+        node: [20.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
       fail-fast: false
 
