@@ -175,7 +175,7 @@ export type SubMenuType = {
 	 */
 	danger?: boolean;
 	/**
-	 * TODO: 👀 展示為分組或分割綫
+	 * 展示為分組或分割綫
 	 */
 	type?: 'group' | 'divider';
 	/**
@@ -187,7 +187,7 @@ export type SubMenuType = {
 	 */
 	label?: string;
 	/**
-	 * TODO:  👀 item 的唯一标志
+	 * item 的唯一标志
 	 */
 	uid?: string;
 	/**
