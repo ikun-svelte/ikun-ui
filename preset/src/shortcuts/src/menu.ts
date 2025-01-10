@@ -23,7 +23,7 @@ export const menuShortcuts: Record<string, string> = {
 	'k-menu-item-hover': 'hover:(ikun:6:bg-ikun-black)',
 
 	'k-menu-item-selected-after':
-		'after:(content-empty pa -bottom-1px bdb-3 border-solid b-b-ikun-main w-full left-0 animate-ikun-scale)',
+		'after:(content-empty pa -bottom-4px bdb-3 border-solid b-b-ikun-main w-full left-0 animate-ikun-scale)',
 	'k-menu-item-selected-h': 'text-ikun-main k-menu-item-selected-after',
 	'k-menu-item-selected-group-h': 'text-ikun-main k-menu-item-selected-after',
 	'k-menu-item-hover-h': 'hover:(k-menu-item-selected-after)',
@@ -44,7 +44,7 @@ export const menuShortcuts: Record<string, string> = {
 	'k-menu-item-horizontal':
 		'cursor-pointer k-menu-w k-menu-transition ' +
 		'fcc pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +
-		'rounded-8px my-0',
+		'rounded-8px',
 	'k-menu-item-active': 'active:(ikun:20:bg-ikun-main)',
 	'k-menu-item-disabled': 'k-bg-disabled k-cur-disabled',
 	'k-menu-item-horizontal-not-top': 'k-menu-item-horizontal fbc',
