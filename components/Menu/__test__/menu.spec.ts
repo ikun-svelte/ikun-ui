@@ -24,6 +24,7 @@ import KMenuDivider from './fixture/divider.svelte';
 import KMenuIcon from './fixture/icon.svelte';
 import KMenuLabel from './fixture/label.svelte';
 import KMenuChildren from './fixture/children.svelte';
+import KMenuMuiltiple from './fixture/muiltiple.svelte';
 import { tick } from 'svelte';
 let host;
 
@@ -419,6 +420,118 @@ describe('Test: KMenu', () => {
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);
 		expect(resEl.innerHTML).toBe('0');
+	});
+
+	test('props: multiple & vertical', async () => {
+		const instance = new KMenuMuiltiple({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const vEl = host.querySelector('#multiple_test_vertical');
+		const vTrigger = vEl.querySelector('[slot="triggerEl"]');
+
+		vTrigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+
+		let vContent = vEl.querySelectorAll('[slot="contentEl"]');
+		const vTriggerSub = vContent[0].querySelectorAll('[slot="triggerEl"]');
+		vTriggerSub[1].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+
+		vContent = vEl.querySelectorAll('[slot="contentEl"]');
+		const trigger = vContent[1].querySelector('.k-menu-title-content-i');
+		trigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+
+		vTriggerSub[2].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+
+		vTriggerSub[2].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: multiple & inline', async () => {
+		const instance = new KMenuMuiltiple({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const vEl = host.querySelector('#multiple_test_inline');
+		let vTrigger = vEl.querySelectorAll('[slot="triggerEl"]');
+
+		vTrigger[0].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+
+		vTrigger = vEl.querySelectorAll('[slot="triggerEl"]');
+		vTrigger[2].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+
+		vTrigger = vEl.querySelectorAll('[slot="triggerEl"]');
+		vTrigger[3].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+
+		vTrigger[4].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+
+		vTrigger[4].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+	});
+
+	test('props: multiple & horizontal', async () => {
+		const instance = new KMenuMuiltiple({
+			target: host
+		});
+		expect(instance).toBeTruthy();
+		await tick();
+		const vEl = host.querySelector('#multiple_test_horizontal');
+		const vTrigger = vEl.querySelector('[data-k-menu-h="1"]');
+		vTrigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+
+		let vContent = vEl.querySelectorAll('[slot="contentEl"]');
+		const vTriggerSub = vContent[0].querySelectorAll('[data-k-menu-h="2"]');
+		vTriggerSub[1].dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+
+		vContent = vEl.querySelectorAll('[slot="contentEl"]');
+		const trigger = vContent[1].querySelector('.k-menu-title-content-i');
+		trigger.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+
+		vTriggerSub[3]
+			.querySelector('.k-menu-title-content')
+			.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
+
+		vTriggerSub[3]
+			.querySelector('.k-menu-title-content')
+			.dispatchEvent(new Event('click', { bubbles: true }));
+		await tick();
+		await vi.advanceTimersByTimeAsync(300);
+		expect(host.innerHTML).matchSnapshot();
 	});
 
 	test('props: expandIcon & vertical', async () => {
