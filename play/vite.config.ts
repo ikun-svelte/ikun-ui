@@ -10,5 +10,8 @@ export default defineConfig({
 	},
 	server: {
 		port: 8001
+	},
+	optimizeDeps: {
+		// exclude: ['svelte']
 	}
 });

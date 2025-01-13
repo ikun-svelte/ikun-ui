@@ -13,6 +13,11 @@
 	export let mouseEnterDelay: KTooltipProps['mouseEnterDelay'] = 200;
 	export let mouseLeaveDelay: KTooltipProps['mouseLeaveDelay'] = 200;
 	export let defaultOpen: KPopoverProps['defaultOpen'] = undefined;
+	export let width: KPopoverProps['width'] = 'fit-content';
+	export let theme: KPopoverProps['theme'] = undefined;
+	/**
+	 * @internal
+	 */
 	$: cnames = clsx(cls);
 </script>
 
@@ -20,9 +25,11 @@
 	cls={cnames}
 	{disabled}
 	{trigger}
+	{theme}
 	{mouseEnterDelay}
 	{mouseLeaveDelay}
 	{placement}
+	{width}
 	{attrs}
 	{defaultOpen}
 >

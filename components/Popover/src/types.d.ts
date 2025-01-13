@@ -8,10 +8,20 @@ export type KPopoverProps = {
 	trigger: IKunTrigger;
 	disabled: boolean;
 	arrow: boolean;
+	offset: OffsetsFunction | [?number, ?number];
 	cls: ClassValue;
 	clsTrigger: ClassValue;
 	mouseEnterDelay: number;
 	mouseLeaveDelay: number;
+	fallbackPlacements: string[];
 	width: string | null | undefined;
+	/**
+	 * @internal
+	 */
+	theme?: 'dark' | 'light';
 	attrs: Record<string, string>;
 };
+
+export type OffsetsFunction = (data: OffsetsFnPa) => [?number, ?number];
+
+export type OffsetsFnPa = { popper: DOMRect; reference: DOMRect; placement: IKunPlacement };

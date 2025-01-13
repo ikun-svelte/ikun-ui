@@ -27,7 +27,8 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^4.0.0"
+		"svelte": "^4.0.0",
+		"esm-env": "^1.0.0"
 	},
 	"devDependencies": {
 		"@iconify-json/carbon": "^1.1.31",

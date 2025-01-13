@@ -10,5 +10,9 @@ export type KTooltipProps = {
 	mouseEnterDelay: number;
 	mouseLeaveDelay: number;
 	cls: ClassValue;
+	/**
+	 * @internal
+	 */
+	theme?: 'dark' | 'light';
 	attrs: Record<string, string>;
 };

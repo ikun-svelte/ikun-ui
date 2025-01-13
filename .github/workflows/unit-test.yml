@@ -2,7 +2,7 @@ name: 🌈 Unit Test
 env:
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 # Skip downloading during yarn install
   PLAYWRIGHT_BROWSERS_PATH: 0 # Places binaries to node_modules/@playwright/test
-
+  NPM_CONFIG_REGISTRY: https://registry.npmjs.org/
 on:
   push:
     branches:
@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [18.x]
+        node: [20.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
       fail-fast: false
 
@@ -34,17 +34,20 @@ jobs:
       - name: Set node
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
           cache: pnpm
 
       - name: Setup
-        run: npm i -g @antfu/ni
+        run: npm i -g pnpm
+
+      - name: Reset pnpm registry
+        run: pnpm config set registry https://registry.npmjs.org/
 
       - name: Setup dependencies
-        run: nci
+        run: pnpm install --no-frozen-lockfile --registry=https://registry.npmjs.org/
 
       - name: Build
-        run: nr build
+        run: pnpm build
 
       - name: Unit Test
-        run: nr test:unit
+        run: pnpm test:unit

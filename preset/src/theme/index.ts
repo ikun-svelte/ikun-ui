@@ -62,7 +62,8 @@ export const defaultTheme = {
 		'ikun-bg-grs3': 'var(--ikun-neutral-100)',
 		'ikun-bg-grs1': 'var(--ikun-neutral-300)',
 		'ikun-bg-tab': 'var(--ikun-slate-50)',
-		'ikun-icon-white': 'var(--ikun-neutral-300)'
+		'ikun-icon-white': 'var(--ikun-neutral-300)',
+		'ikun-tx-white': 'var(--ikun-neutral-300)'
 	},
 	fontFamily: {
 		sans: 'Avenir, Helvetica, Arial, sans-serif'
@@ -123,6 +124,16 @@ const getAnimation = (themeColor: string) => {
 			'ikun-skeleton-loading': `{
 			 	  0% { background-position: 100% 50%;}
 			 	  100% { background-position: 0 50%; }
+			}`,
+			'ikun-scale': `{
+			 	  from {
+            transform: scale(0);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
 			}`
 		},
 		durations: {
@@ -134,7 +145,8 @@ const getAnimation = (themeColor: string) => {
 			'ikun-checking-main': '.3s',
 			'ikun-checking': '.3s',
 			'ikun-switching': '.3s',
-			'ikun-skeleton-loading': '1.4s'
+			'ikun-skeleton-loading': '1.4s',
+			'ikun-scale': '.3s'
 		},
 		timingFns: {
 			'ikun-clicking--success': 'linear',
@@ -146,7 +158,8 @@ const getAnimation = (themeColor: string) => {
 			'ikun-clicking': 'linear',
 			'ikun-checking': 'linear',
 			'ikun-switching': 'linear',
-			'ikun-skeleton-loading': 'ease'
+			'ikun-skeleton-loading': 'ease',
+			'ikun-scale': 'forwards'
 		},
 		counts: {
 			'ikun-skeleton-loading': 'infinite'

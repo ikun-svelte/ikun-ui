@@ -11,6 +11,7 @@
 	export let color: KIconProps['color'] = '';
 	export let cls: KIconProps['cls'] = '';
 	export let attrs: KIconProps['attrs'] = {};
+	export let theme: KIconProps['theme'] = undefined;
 
 	$: tag = btn ? 'button' : '';
 
@@ -30,7 +31,7 @@
 	$: cnames = clsx(
 		`${prefixCls}--base`,
 		{
-			[`${prefixCls}--base__dark`]: !color,
+			[`${prefixCls}--base__dark`]: !color && ((theme && theme === 'dark') || theme === undefined),
 			[`${prefixCls}--role-button`]: !!btn
 		},
 		`${prefixCls}-transition`,
