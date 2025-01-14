@@ -123,6 +123,11 @@ const handleCopy = () => {
  padding: 0;
 }
 
+.vp-doc ul.k-menu{
+  padding: 0;
+  margin: 0;
+}
+
 .vp-doc li.k-timeline-item{
   margin-top: 0;
 }
