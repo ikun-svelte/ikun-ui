@@ -474,8 +474,9 @@
 		};
 		if (it.disabled || it.disabledParent) {
 			basicCls = {
-				[`${prefixCls}-disabled`]: true,
-				[`${prefixCls}-disabled__dark`]: isDark(it)
+				[`${prefixCls}-disabled`]: level !== 1,
+				[`${prefixCls}-disabled__dark`]: isDark(it),
+				[`${prefixCls}-disabled-l1`]: level === 1
 			};
 			if (hasSub(it)) {
 				it.children = it.children!.map((item) => {

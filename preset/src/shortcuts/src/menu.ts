@@ -46,7 +46,8 @@ export const menuShortcuts: Record<string, string> = {
 		'fcc pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +
 		'rounded-8px',
 	'k-menu-item-active': 'active:(ikun:20:bg-ikun-main)',
-	'k-menu-item-disabled': 'k-bg-disabled k-cur-disabled',
+	'k-menu-item-disabled': 'k-bg-disabled k-cur-disabled text-ikun-info',
+	'k-menu-item-disabled-l1': 'k-cur-disabled text-ikun-info',
 	'k-menu-item-horizontal-not-top': 'k-menu-item-horizontal fbc',
 	'k-menu-item-horizontal-group':
 		'k-menu-w k-menu-transition ' +
