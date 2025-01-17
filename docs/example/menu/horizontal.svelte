@@ -20,8 +20,16 @@
 					uid: 'SubMenu Item 1',
 					label: 'Item 1',
 					children: [
-						{ label: 'Option 1', uid: 'setting:1', disabled: true },
-						{ label: 'Option 2', uid: 'setting:2' }
+						{ label: 'Option 1', uid: 'setting:1-g', disabled: true },
+						{ label: 'Option 3', uid: 'setting:3-g' },
+						{
+							label: 'Option 2',
+							uid: 'setting:2-g',
+							children: [
+								{ label: 'Option 2 - c1', uid: 'etting:2c1' },
+								{ label: 'Option 2 - c2', uid: 'etting:2c2' }
+							]
+						}
 					]
 				},
 				{

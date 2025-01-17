@@ -121,9 +121,7 @@
 	}
 
 	function handleSelectedRecursion(
-		e:
-			| CustomEvent<{ selected: boolean; uid: string }>
-			| { detail: { selected: boolean; uid: string } },
+		e: CustomEvent<{ selected: boolean; uid: string; isLeaf: boolean; item: SubMenuType }>,
 		index: number
 	) {
 		const { selected, uid } = e.detail;
@@ -138,6 +136,19 @@
 
 			it.selected = !!it.selectedDeps.size;
 
+			// 重置当前点击层所在树的其他项选择状态
+			if (!ctxProps.multiple && it.selected && itemsList[index]) {
+				itemsList = cancelSelected(itemsList, it);
+			}
+
+			// 到第一层时如果是单选，则遍历取消其他项的选择状态
+			if (!ctxProps.multiple && level === 1 && e.detail.isLeaf && itemsList[index]) {
+				itemsList = cancelSelected(itemsList, it);
+			}
+			if (!ctxProps.multiple && level === 1 && e.detail.isLeaf && !itemsList[index]) {
+				itemsList = cancelSelected(itemsList, e.detail.item);
+			}
+
 			if (itemsList[index]) {
 				itemsList[index] = it;
 			} else {
@@ -145,19 +156,47 @@
 			}
 			dispatch('selectedRecursion', {
 				selected: it.selected,
-				uid: it.uid
+				uid: it.uid,
+				isLeaf: e.detail.isLeaf,
+				item: it
 			});
 		} else {
 			dispatch('selectedRecursion', e.detail);
 		}
 	}
 
+	function cancelSelected(list: SubMenuType[], it: SubMenuType) {
+		return list.map((value) => {
+			if (!ctxProps.multiple && value.uid !== it.uid && !isGroup(it)) {
+				value.selected = false;
+				value.selectedDeps && value.selectedDeps.clear();
+				menuCtx.syncUids(value.uid!, 'selected', 'delete');
+				menuCtx.syncSelectedItems(value, 'delete');
+				if (hasSub(value)) {
+					value.children = cancelSelected(value.children!, it);
+				}
+			}
+			return value;
+		});
+	}
+
 	function setOpenAndSelectStatus(it: SubMenuType, list = itemsList, parentOpen?: boolean) {
 		return list.map((value) => {
 			if (value.uid === it.uid && !isGroup(it)) {
 				// set selected
-				if (ctxProps.selectable) {
-					value.selected = !value.selected;
+				const resolveSelected = !value.selected;
+				if (ctxProps.selectable && !hasSub(it)) {
+					// 重置当前点击层其他项选择状态
+					if (!ctxProps.multiple && resolveSelected && !hasSub(it)) {
+						list = cancelSelected(list, it);
+
+						if (moreItem.children && moreItem.children.length > 0) {
+							moreItem.children = cancelSelected(moreItem.children, it);
+							moreItem.selected = false;
+							moreItem.selectedDeps && moreItem.selectedDeps.clear();
+						}
+					}
+					value.selected = resolveSelected;
 				}
 
 				// set open
@@ -182,7 +221,9 @@
 					 */
 					dispatch('selectedRecursion', {
 						selected: value.selected,
-						uid: value.uid
+						uid: value.uid,
+						isLeaf: !hasSub(value),
+						item: value
 					});
 				}
 			}
@@ -1072,3 +1113,6 @@
 		</div>
 	</KPopover>
 {/if}
+<!--TODO: select close-->
+<!--TODO: item margin style-->
+<!--TODO: popover y margin-->
