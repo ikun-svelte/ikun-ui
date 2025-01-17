@@ -137,16 +137,21 @@
 			it.selected = !!it.selectedDeps.size;
 
 			// 重置当前点击层所在树的其他项选择状态
-			if (!ctxProps.multiple && it.selected && itemsList[index]) {
-				itemsList = cancelSelected(itemsList, it);
-			}
-
-			// 到第一层时如果是单选，则遍历取消其他项的选择状态
-			if (!ctxProps.multiple && level === 1 && e.detail.isLeaf && itemsList[index]) {
-				itemsList = cancelSelected(itemsList, it);
-			}
-			if (!ctxProps.multiple && level === 1 && e.detail.isLeaf && !itemsList[index]) {
-				itemsList = cancelSelected(itemsList, e.detail.item);
+			if (!ctxProps.multiple && e.detail.isLeaf) {
+				if (it.selected && itemsList[index]) {
+					itemsList = cancelSelected(itemsList, it);
+					if (hasSub(it)) {
+						it.children = cancelSelected(it.children!, e.detail.item);
+					}
+				}
+				if (level === 1) {
+					// 到第一层时如果是单选，则遍历取消其他项的选择状态
+					if (itemsList[index]) {
+						itemsList = cancelSelected(itemsList, it);
+					} else {
+						itemsList = cancelSelected(itemsList, e.detail.item);
+					}
+				}
 			}
 
 			if (itemsList[index]) {
@@ -187,7 +192,7 @@
 				const resolveSelected = !value.selected;
 				if (ctxProps.selectable && !hasSub(it)) {
 					// 重置当前点击层其他项选择状态
-					if (!ctxProps.multiple && resolveSelected && !hasSub(it)) {
+					if (!ctxProps.multiple && resolveSelected) {
 						list = cancelSelected(list, it);
 
 						if (moreItem.children && moreItem.children.length > 0) {

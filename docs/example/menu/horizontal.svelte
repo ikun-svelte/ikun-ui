@@ -37,8 +37,8 @@
 					label: 'Item 2',
 					uid: 'SubMenu Item 2',
 					children: [
-						{ label: 'Option 3', uid: 'setting:3' },
-						{ label: 'Option 4', uid: 'setting:4' }
+						{ label: 'Option 3 Item 2', uid: 'setting:3' },
+						{ label: 'Option 4 Item 2', uid: 'setting:4' }
 					]
 				}
 			]
@@ -53,12 +53,6 @@
 	};
 </script>
 
-<KMenu
-	mode="horizontal"
-	triggerSubMenuAction="click"
-	multiple={false}
-	on:select={handleClick}
-	ctxKey="horizontal"
->
+<KMenu mode="horizontal" multiple={false} on:select={handleClick} ctxKey="horizontal">
 	<KMenuItem {items} ctxKey="horizontal" />
 </KMenu>
