@@ -246,7 +246,7 @@
 			return value;
 		});
 	}
-	async function handleSelect(it: SubMenuType, e: MouseEvent) {
+	async function handleSelect(it: SubMenuType, e: MouseEvent, index: number) {
 		if (it.disabled || it.disabledParent) return;
 		itemsList = setOpenAndSelectStatus(it);
 		if (menuCtx) {
@@ -276,6 +276,7 @@
 				} else {
 					menuCtx.onDeSelect(params);
 				}
+				popoverRef[index] && popoverRef[index].updateShow && popoverRef[index].updateShow(false);
 			} else if (hasSub(it) || isGroup(it)) {
 				dispatchTitleClick(it, e, uidPath);
 			}
@@ -950,7 +951,7 @@
 			<svelte:fragment slot="triggerEl">
 				{#if it.type !== 'divider'}
 					<li
-						on:click={(e) => handleSelect(it, e)}
+						on:click={(e) => handleSelect(it, e, index)}
 						aria-hidden="true"
 						style:padding-left={`${getIndent(it, ctxProps.inlineCollapsed)}`}
 						class={cnames(it)}
@@ -1119,5 +1120,3 @@
 	</KPopover>
 {/if}
 <!--TODO: select close-->
-<!--TODO: item margin style-->
-<!--TODO: popover y margin-->

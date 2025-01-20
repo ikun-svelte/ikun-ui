@@ -30,20 +30,22 @@ export const menuShortcuts: Record<string, string> = {
 
 	'k-menu-item-child': 'justify-between',
 
-	'k-menu-vertical': 'bdr-1 b-e-solid border-ikun-bd-base overflow-hidden',
-	'k-menu-item-popover-trigger-vertical': 'box-border my-4px',
-	'k-menu-item-vertical': 'k-menu-item-inline my-0',
+	'k-menu-vertical':
+		'bdr-1 b-e-solid border-ikun-bd-base overflow-hidden [&.k-menu-sub-vertical]:py-[2px]',
+	'k-menu-item-popover-trigger-vertical': 'box-border',
+	'k-menu-item-vertical': 'k-menu-item-inline my-[2px]',
 	'k-menu-item-vertical-group':
 		'k-menu-w k-menu-transition ' +
 		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px ' +
 		'rounded-8px ikun:50:text-black',
 
-	'k-menu-horizontal': 'bdb-1 b-solid border-ikun-bd-base flex [&.k-menu-sub-horizontal]:block',
-	'k-menu-item-popover-trigger-horizontal': 'box-border my-4px',
+	'k-menu-horizontal':
+		'bdb-1 b-solid border-ikun-bd-base flex [&.k-menu-sub-horizontal]:block [&.k-menu-sub-horizontal]:py-[2px]',
+	'k-menu-item-popover-trigger-horizontal': 'box-border',
 	'k-menu-item-popover-content': 'p-0 box-border',
 	'k-menu-item-horizontal':
 		'cursor-pointer k-menu-w k-menu-transition ' +
-		'fcc pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +
+		'fcc pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-2px ' +
 		'rounded-8px',
 	'k-menu-item-active': 'active:(ikun:20:bg-ikun-main)',
 	'k-menu-item-disabled': 'k-bg-disabled k-cur-disabled text-ikun-info',
@@ -59,11 +61,11 @@ export const menuShortcuts: Record<string, string> = {
 	'k-menu-inline': 'bdr-1 b-e-solid border-ikun-bd-base overflow-hidden',
 	'k-menu-item-inline':
 		'cursor-pointer k-menu-w k-menu-transition ' +
-		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +
+		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-2px ' +
 		'rounded-8px',
 	'k-menu-item-inline-group':
 		'k-menu-w k-menu-transition ' +
-		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-4px ' +
+		'flex items-center pr h-40px leading-40px list-inside ps-16px p-ie-16px m-is-4px m-ie-4px my-2px ' +
 		'rounded-8px ikun:50:text-black',
 
 	// dark

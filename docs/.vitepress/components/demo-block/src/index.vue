@@ -128,6 +128,12 @@ const handleCopy = () => {
   margin: 0;
 }
 
+.vp-doc ul.k-menu-horizontal.k-menu-sub-horizontal,
+.vp-doc ul.k-menu-vertical.k-menu-sub-vertical{
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
 .vp-doc li.k-timeline-item{
   margin-top: 0;
 }
