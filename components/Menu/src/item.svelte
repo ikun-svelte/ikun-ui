@@ -168,6 +168,7 @@
 		} else {
 			dispatch('selectedRecursion', e.detail);
 		}
+		onSubItemSelect(index);
 	}
 
 	function cancelSelected(list: SubMenuType[], it: SubMenuType) {
@@ -246,7 +247,7 @@
 			return value;
 		});
 	}
-	async function handleSelect(it: SubMenuType, e: MouseEvent, index: number) {
+	async function handleSelect(it: SubMenuType, e: MouseEvent) {
 		if (it.disabled || it.disabledParent) return;
 		itemsList = setOpenAndSelectStatus(it);
 		if (menuCtx) {
@@ -276,7 +277,6 @@
 				} else {
 					menuCtx.onDeSelect(params);
 				}
-				popoverRef[index] && popoverRef[index].updateShow && popoverRef[index].updateShow(false);
 			} else if (hasSub(it) || isGroup(it)) {
 				dispatchTitleClick(it, e, uidPath);
 			}
@@ -676,6 +676,12 @@
 	function onVerticalPopoverChange(it: SubMenuType, e: CustomEvent) {
 		if (it.disabled || it.disabledParent || e.detail) return;
 		itemsList = clearVerticalOpenStatus(it);
+	}
+
+	function onSubItemSelect(index: number) {
+		if (level == 1 && !ctxProps.multiple) {
+			popoverRef[index] && popoverRef[index].updateShow && popoverRef[index].updateShow(false);
+		}
 	}
 </script>
 

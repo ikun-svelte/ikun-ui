@@ -15,7 +15,7 @@
 	export let selectedUids: KMenuProps['selectedUids'] = [];
 	export let openUids: KMenuProps['openUids'] = [];
 	export let show: KMenuProps['show'] = true;
-	export let multiple: KMenuProps['multiple'] = true;
+	export let multiple: KMenuProps['multiple'] = false;
 	export let selectable: KMenuProps['selectable'] = true;
 	export let inlineCollapsed: KMenuProps['inlineCollapsed'] = false;
 	export let ctxKey: KMenuProps['ctxKey'] = '';

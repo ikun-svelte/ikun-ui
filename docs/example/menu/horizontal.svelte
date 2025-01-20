@@ -21,13 +21,13 @@
 					label: 'Item 1',
 					children: [
 						{ label: 'Option 1', uid: 'setting:1-g', disabled: true },
-						{ label: 'Option 3', uid: 'setting:3-g' },
+						{ label: 'Option 2', uid: 'setting:2-g' },
 						{
-							label: 'Option 2',
-							uid: 'setting:2-g',
+							label: 'Option 3',
+							uid: 'setting:3-g',
 							children: [
-								{ label: 'Option 2 - c1', uid: 'etting:2c1' },
-								{ label: 'Option 2 - c2', uid: 'etting:2c2' }
+								{ label: 'Option 3 - c1', uid: 'etting:3c1' },
+								{ label: 'Option 3 - c2', uid: 'etting:3c2' }
 							]
 						}
 					]
@@ -37,8 +37,15 @@
 					label: 'Item 2',
 					uid: 'SubMenu Item 2',
 					children: [
-						{ label: 'Option 3 Item 2', uid: 'setting:3' },
-						{ label: 'Option 4 Item 2', uid: 'setting:4' }
+						{
+							label: 'Option 4',
+							uid: 'setting:3',
+							children: [
+								{ label: 'Option 4 - c1', uid: 'etting:4c1' },
+								{ label: 'Option 4 - c2', uid: 'etting:4c2' }
+							]
+						},
+						{ label: 'Option 5 Item 2', uid: 'setting:5' }
 					]
 				}
 			]
