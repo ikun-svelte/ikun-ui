@@ -63,6 +63,17 @@
 	};
 </script>
 
-<KMenu mode="horizontal" multiple={false} on:select={handleClick} ctxKey="horizontal">
-	<KMenuItem {items} ctxKey="horizontal" />
-</KMenu>
+<div style:width={'300px'}>
+	<KMenu mode="inline" on:select={handleClick} ctxKey="inline">
+		<KMenuItem {items} ctxKey="inline">
+			<div slot="item" let:item let:cls class={cls}>
+				<span>
+					🤟🏼 {item.label}
+				</span>
+				{#if item.children && item.children.length > 0 && item.type !== 'group'}
+					🏀
+				{/if}
+			</div>
+		</KMenuItem>
+	</KMenu>
+</div>

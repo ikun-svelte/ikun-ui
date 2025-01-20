@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { KMenu, KMenuItem } from '@ikun-ui/menu';
 	import type { SubMenuType } from '@ikun-ui/menu';
+	import { KButton } from '@ikun-ui/button';
 	const items: SubMenuType[] = [
 		{
 			label: 'Navigation One',
@@ -58,11 +59,21 @@
 			label: 'Navigation Four'
 		}
 	];
-	const handleClick = (item: CustomEvent) => {
-		console.log(item.detail);
+
+	let isCollapsed: boolean = false;
+	let icn = 'i-carbon-side-panel-close-filled';
+	let w = '300px';
+	const handleClick = () => {
+		isCollapsed = !isCollapsed;
+		w = isCollapsed ? '60px' : '300px';
+		icn = !isCollapsed ? 'i-carbon-side-panel-close-filled' : 'i-carbon-side-panel-open-filled';
 	};
 </script>
 
-<KMenu mode="horizontal" multiple={false} on:select={handleClick} ctxKey="horizontal">
-	<KMenuItem {items} ctxKey="horizontal" />
-</KMenu>
+<KButton icon={icn} size="lg" on:click={handleClick} type="primary" cls="my-2" />
+
+<div style:width={w} style:transition="width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1)">
+	<KMenu mode="vertical" inlineCollapsed={isCollapsed} ctxKey="vertical">
+		<KMenuItem {items} ctxKey="vertical" />
+	</KMenu>
+</div>

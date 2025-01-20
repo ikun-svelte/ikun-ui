@@ -63,6 +63,8 @@
 	};
 </script>
 
-<KMenu mode="horizontal" multiple={false} on:select={handleClick} ctxKey="horizontal">
-	<KMenuItem {items} ctxKey="horizontal" />
-</KMenu>
+<div style:width={'300px'}>
+	<KMenu mode="inline" on:select={handleClick} ctxKey="inline">
+		<KMenuItem {items} ctxKey="inline" />
+	</KMenu>
+</div>

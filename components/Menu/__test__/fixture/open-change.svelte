@@ -84,6 +84,7 @@
 		mode="vertical"
 		id="open_change_test_vertical"
 		on:openChange={handleClick}
+		multiple={true}
 		triggerSubMenuAction="click"
 		ctxKey="11"
 	>
@@ -92,6 +93,7 @@
 	<KMenu
 		mode="inline"
 		id="open_change_test_inline"
+		multiple={true}
 		triggerSubMenuAction="click"
 		on:openChange={handleClick}
 		ctxKey="22"
@@ -102,6 +104,7 @@
 		mode="horizontal"
 		id="open_change_test_horizontal"
 		triggerSubMenuAction="click"
+		multiple={true}
 		on:openChange={handleClick}
 		ctxKey="33"
 	>

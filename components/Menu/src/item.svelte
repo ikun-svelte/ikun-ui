@@ -137,6 +137,7 @@
 			it.selected = !!it.selectedDeps.size;
 
 			// 重置当前点击层所在树的其他项选择状态
+			// Reset the selection status of other items in the tree where the current clicked layer is located
 			if (!ctxProps.multiple && e.detail.isLeaf) {
 				if (it.selected && itemsList[index]) {
 					itemsList = cancelSelected(itemsList, it);
@@ -146,6 +147,8 @@
 				}
 				if (level === 1) {
 					// 到第一层时如果是单选，则遍历取消其他项的选择状态
+					// If it is a single selection at the first level,
+					// traverse and cancel the selection status of other items
 					if (itemsList[index]) {
 						itemsList = cancelSelected(itemsList, it);
 					} else {
@@ -168,7 +171,7 @@
 		} else {
 			dispatch('selectedRecursion', e.detail);
 		}
-		onSubItemSelect(index);
+		e.detail.isLeaf && onSubItemSelect(index);
 	}
 
 	function cancelSelected(list: SubMenuType[], it: SubMenuType) {
@@ -193,6 +196,7 @@
 				const resolveSelected = !value.selected;
 				if (ctxProps.selectable && !hasSub(it)) {
 					// 重置当前点击层其他项选择状态
+					// Reset the selection status of other items in the current click layer
 					if (!ctxProps.multiple && resolveSelected) {
 						list = cancelSelected(list, it);
 
@@ -628,9 +632,11 @@
 
 	const resolveDisabledTooltip = (it: SubMenuType, isInlineCollapsed?: boolean) => {
 		// 有子节点的不显示
+		// Nodes with child nodes are not displayed
 		if ((it.children && it.children.length > 0 && it.type !== 'group') || !isInlineCollapsed) {
 			return true;
 			// 收起时且非水平模式
+			// When folded and not in horizontal mode
 		} else {
 			return false;
 		}
@@ -639,15 +645,19 @@
 	const resolveTitle = (it: SubMenuType, isInlineCollapsed?: boolean, isTooltip?: boolean) => {
 		let res = '';
 		// 有子节点的不显示
+		// Nodes with child nodes are not displayed
 		if (it.children && it.children.length > 0 && it.type !== 'group') {
 			res = '';
 			// 收起时且非水平模式
+			// Nodes with child nodes are not displayed
 		} else if (isInlineCollapsed && ctxProps.mode !== 'horizontal') {
 			res = it.title || it.label || '';
 			if (!isTooltip) {
 				res = '';
 			}
 			// 收起时或水平模式无默认值，只展示 title
+			// When collapsed or in horizontal mode,
+			// there is no default value and only the title is displayed.
 		} else if (!isInlineCollapsed || ctxProps.mode === 'horizontal') {
 			res = it.title || '';
 		}
@@ -1125,4 +1135,3 @@
 		</div>
 	</KPopover>
 {/if}
-<!--TODO: select close-->

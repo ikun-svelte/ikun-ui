@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { KMenu, KMenuItem } from '@ikun-ui/menu';
+	import { KSwitch } from '@ikun-ui/switch';
 	import type { SubMenuType } from '@ikun-ui/menu';
 	const items: SubMenuType[] = [
 		{
@@ -58,11 +59,18 @@
 			label: 'Navigation Four'
 		}
 	];
+	let theme = 'dark';
 	const handleClick = (item: CustomEvent) => {
-		console.log(item.detail);
+		theme = item.detail;
 	};
 </script>
 
-<KMenu mode="horizontal" multiple={false} on:select={handleClick} ctxKey="horizontal">
-	<KMenuItem {items} ctxKey="horizontal" />
-</KMenu>
+<KSwitch value={theme} checkedValue="dark" unCheckedValue="light" on:updateValue={handleClick}>
+	<span slot="unCheckedRender" class="mr-3px">{theme}</span>
+	<span slot="checkedRender" class="mr-22px">{theme}</span>
+</KSwitch>
+<div style:width={'300px'} class="my-2">
+	<KMenu mode="inline" ctxKey="inline" {theme}>
+		<KMenuItem {items} ctxKey="inline" />
+	</KMenu>
+</div>

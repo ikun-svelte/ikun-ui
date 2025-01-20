@@ -31,101 +31,223 @@ Horizontal top navigation menu.
 
 <demo src="menu/horizontal.svelte" github="Menu"></demo>
 
-## Prefix icon and suffix icon input
+## Vertical mode
 
-Set the prefix through the `icon` attribute
+Vertical menu
 
-<demo src="input/prefix.svelte" github="Input"></demo>
+<demo src="menu/vertical.svelte" github="Menu"></demo>
 
-## Disabled input
+## Inline mode
 
-Disable the input through the `disabled` attribute
+Vertical menu with inline submenus.
 
-<demo src="input/disabled.svelte" github="Input"></demo>
+<demo src="menu/inline.svelte" github="Menu"></demo>
 
-## Clearable
+## Collapsed inline menu
 
-Make the Input clearable with the `clearable` attribute.
+Inline menu could be collapsed.
 
-<demo src="input/clearable.svelte" github="Input"></demo>
+<demo src="menu/collapsed.svelte" github="Menu"></demo>
 
-## Password input
+## Theme
 
-Enable the password input box and pass the `type` as `password`.
+There are two built-in themes: `light` and `dark`. The default value is `light`.
+When `theme` is specified, it takes precedence over unocss's dark theme.
 
-<demo src="input/password.svelte" github="Input"></demo>
+<demo src="menu/theme.svelte" github="Menu"></demo>
 
-## Prepend and append input
+## Switch the menu type
 
-Use the `append` or `prepend` attribute to enable a button
+Show the dynamic switching mode (between `inline` and `vertical`).
 
-<demo src="input/append.svelte" github="Input"></demo>
+<demo src="menu/type.svelte" github="Menu"></demo>
 
-## Search input
+## Custom Render
 
-Quickly implement a search box
+Implement custom rendering through various slots
 
-::: tip
-When search is `true` and you press `enter` or click the `prepend` button or click the `append` button, the event will be triggered.
-In this case, the `triggerPrepend` event, `triggerPrepend` event and `enter` event will not be triggered.
-:::
+<demo src="menu/custom.svelte" github="Menu"></demo>
 
-<demo src="input/search.svelte" github="Input"></demo>
+Implement custom rendering through various slots
 
-## Sizes
+<demo src="menu/item-slot.svelte" github="Menu"></demo>
 
-Add `size` attribute to change the size of Input. It supports `sm`, `md` and `lg`.
+## Menu Props
 
-<demo src="input/sizes.svelte" github="Input"></demo>
+| Name                 | Type                                | Default                 | Description                                                                                                                      |
+| -------------------- | ----------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| ctxKey               | `string`                            | `-`                     | Context key, used for component internal logic, should be a globally unique value, `KMenuItem` and `KMenu` share the same value. |
+| expandIcon           | `string`                            | `i-carbon-chevron-down` | Expand Icon,following the unocss standard                                                                                        |
+| inlineIndent         | `number`                            | `24`                    | Menu indent width in inline mode                                                                                                 |
+| inlineCollapsed      | `boolean`                           | `false`                 | Whether the menu is collapsed in inline or vertical mode                                                                         |
+| mode                 | `vertical \| horizontal  \| inline` | `vertical`              | Menu rendering mode                                                                                                              |
+| openUids             | `string[]`                          | `[]`                    | Default open menu uid array                                                                                                      |
+| selectedUids         | `string[]`                          | `[]`                    | Default select menu uid array                                                                                                    |
+| selectable           | `boolean`                           | `true`                  | Whether the menu can be selected. Setting it to false will not trigger `select` related events                                   |
+| subMenuCloseDelay    | `number`                            | `100`                   | The closing delay after the user leaves the submenu, unit: milliseconds                                                          |
+| subMenuOpenDelay     | `number`                            | `0`                     | The delay after the user mouse enters the submenu, unit: milliseconds                                                            |
+| theme                | `light \| dark`                     | `-`                     | Theme style                                                                                                                      |
+| multiple             | `boolean`                           | `false`                 | Whether to allow multiple selections                                                                                             |
+| triggerSubMenuAction | `hover \| click`                    | `hover`                 | Sub menu expand/close trigger behavior                                                                                           |
+| cls                  | `string`                            | `-`                     | Additional class                                                                                                                 |
+| attrs                | `Record<string, string>`            | `{}`                    | Additional attributes                                                                                                            |
 
-## Textarea
+## Menu Events
 
-Setting the `autosize` prop for a textarea type of Input makes the height to automatically adjust based on the content.
-An options object can be provided to `autosize` to specify the minimum and maximum number of lines the textarea can automatically adjust.
+| Name       | Description                                                                     | Type                                   |
+| ---------- | ------------------------------------------------------------------------------- | -------------------------------------- |
+| click      | Triggered when the menu item is clicked                                         | `(e: CustomEvent<ClickEvtPa>)=> void`  |
+| openChange | Sub menu expand/close callback, the parameter is the currently opened uid array | `(e: CustomEvent<string[]>)=> void`    |
+| select     | Triggered when the menu item is seleced                                         | `(e: CustomEvent<SelectEvtPa>)=> void` |
+| deSelect   | Fired when the menu item is deselected                                          | `(e: CustomEvent<SelectEvtPa>)=> void` |
 
-<demo src="input/textarea.svelte" github="Input"></demo>
+#### ClickEvtPa
 
-## Input Props
+```typescript
+export type ClickEvtPa = {
+	// The clicked item object
+	item: SubMenuType;
+	// The uid of the item object clicked
+	uid: string;
+	// An array of uid paths starting from the root menu object to the clicked item
+	uidPath: string[];
+	e: MouseEvent;
+};
+```
 
-| Name                | Type                                             | Default | Description                                                                    |
-| ------------------- | ------------------------------------------------ | ------- | ------------------------------------------------------------------------------ |
-| size                | `sm \| md \|lg`                                  | `md`    | size of Input.                                                                 |
-| type                | `text \| password`                               | `text`  | Determine whether it is a password input                                       |
-| value               | `string`                                         | `-`     | Binding value                                                                  |
-| iconPrefix          | `string`                                         | `-`     | The class name of the prefix icon, following the unocss standard               |
-| iconSuffix          | `string`                                         | `-`     | The class name of the suffix icon, following the unocss standard               |
-| append              | `string`                                         | `-`     | The class name of the append button icon, following the unocss standard        |
-| prepend             | `string`                                         | `-`     | The class name of the prepend button icon, following the unocss standard       |
-| placeholder         | `string`                                         | `false` | Input's placeholder                                                            |
-| disabled            | `boolean`                                        | `false` | Disable the Input                                                              |
-| clearable           | `boolean`                                        | `false` | whether to show clear button, only works when type is not 'textarea'           |
-| search              | `boolean`                                        | `false` | Enable `search` callback                                                       |
-| useCompositionInput | `boolean`                                        | `false` | Bind value will be updated after the composition input ends                    |
-| rows                | `number`                                         | `3`     | number of rows of `textarea`, only works when type is 'textarea'               |
-| autosize            | `boolean \| { minRows: number: maxRows:number }` | `false` | whether `textarea` has an adaptive height, only works when type is 'textarea'. |
-| cls                 | `string`                                         | `-`     | Additional class                                                               |
-| attrs               | `Record<string, string>`                         | `{}`    | Additional attributes                                                          |
+#### SelectEvtPa
 
-## Input Events
+```typescript
+export type SelectEvtPa = {
+	// The selected/deSelected item object
+	item: SubMenuType;
+	// The uid of the item object selected/deSelected
+	uid: string;
+	// An array of uid paths starting from the root menu object to the selected/deSelected item
+	uidPath: string[];
+	// An array of uids selected in multi-select mode
+	selectedUids: string[];
+	// An array of items selected in multi-select mode
+	selectedItems: SubMenuType[];
+	// An array of uid paths selected in multi-select mode
+	selectedUidPaths: string[][];
+	e: MouseEvent;
+};
+```
 
-| Name             | Description                                                                                                                        | Type                                     |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| input            | Event fired on input                                                                                                               | `(value: string)=> void`                 |
-| enter            | Event fired when `enter` is pressed                                                                                                | `(e: Event)=> void`                      |
-| keydown          | Event fired when `keyboard` is pressed                                                                                             | `(e: Event)=> void`                      |
-| change           | Event fired when the `value` is changes                                                                                            | `(e: Event)=> void`                      |
-| compositionstart | The compositionstart event is fired when a text composition system                                                                 | `(e: CompositionEvent)=> void`           |
-| compositionend   | The compositionend event is fired when a text composition system                                                                   | `(e: CompositionEvent)=> void`           |
-| compositionInput | Event fired when enable `useCompositionInput`                                                                                      | `(e: CompositionEvent)=> void`           |
-| triggerPrepend   | Event fired on prepend button                                                                                                      | `(value: HTMLInputElement.value)=> void` |
-| triggerAppend    | Event fired on append button                                                                                                       | `(value: HTMLInputElement.value)=> void` |
-| search           | When search is true and you press `enter` or click the `prepend` button or click the `append` button, the event will be triggered. | `(value: HTMLInputElement.value)=> void` |
+## MenuItem Props
 
-## Input Slots
+| Name   | Type                     | Default | Description                                                                                                                      |
+| ------ | ------------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| ctxKey | `string`                 | `-`     | Context key, used for component internal logic, should be a globally unique value, `KMenuItem` and `KMenu` share the same value. |
+| items  | `SubMenuType[]`          | `-`     | Menu configuration object                                                                                                        |
+| cls    | `string`                 | `-`     | Additional class                                                                                                                 |
+| attrs  | `Record<string, string>` | `{}`    | Additional attributes                                                                                                            |
 
-| Name    | Description                     |
-| ------- | ------------------------------- |
-| prefix  | Customize input prefix content  |
-| suffix  | Customize input suffix content  |
-| append  | Customize input append content  |
-| prepend | Customize input prepend content |
+#### SubMenuType
+
+```typescript
+export type SubMenuType = {
+	/**
+	 * @en Display error state style
+	 * @default false
+	 */
+	danger?: boolean;
+	/**
+	 * @en Render as groups or dividers
+	 */
+	type?: 'group' | 'divider';
+	/**
+	 * @en Menu Icon
+	 */
+	icon?: string;
+	/**
+	 * @en Menu Label
+	 */
+	label?: string;
+	/**
+	 * @en The unique value of the menu item.
+	 * It should be a unique value in the entire menu tree.
+	 */
+	uid?: string;
+	/**
+	 * @en Indicates whether it is disabled. Its priority is higher than danger,
+	 * and its child nodes are also disabled.
+	 * @default false
+	 */
+	disabled?: boolean;
+	/**
+	 * @en title
+	 */
+	title?: string;
+	/**
+	 * @en Menu items in submenus
+	 */
+	children?: SubMenuType[];
+	/**
+	 * @en Submenu popover style
+	 */
+	popupClassName?: string;
+};
+```
+
+## MenuItem Events
+
+| Name       | Description                                 | Type                                       |
+| ---------- | ------------------------------------------- | ------------------------------------------ |
+| titleClick | Triggered when the submenu title is clicked | `(e: CustomEvent<TitleClickEvtPa>)=> void` |
+
+#### TitleClickEvtPa
+
+```typescript
+type TitleClickEvtPa = {
+	// The clicked item object
+	item: SubMenuType;
+	e: MouseEvent;
+};
+```
+
+## MenuItem Slots
+
+| Name       | Description                                                                                         |
+| ---------- | --------------------------------------------------------------------------------------------------- |
+| label      | Customize menu item's `label` content                                                               |
+| icon       | Customize menu item's `icon` content                                                                |
+| expandIcon | Customize menu item's `expandIcon` content                                                          |
+| item       | Customize menu item content, When setting the item slot, the other three slots will not take effect |
+
+#### label slot params
+
+```typescript
+//  render item object
+type item = SubMenuType;
+//  render item class
+type cls = string;
+```
+
+#### icon slot params
+
+```typescript
+//  render item object
+type item = SubMenuType;
+//  render item class
+type cls = string;
+```
+
+#### expandIcon slot params
+
+```typescript
+//  render item object
+type item = SubMenuType;
+//  render item class
+type cls = string;
+```
+
+#### item slot params
+
+```typescript
+//  render item object
+type item = SubMenuType;
+//  render item class
+type cls = string;
+```

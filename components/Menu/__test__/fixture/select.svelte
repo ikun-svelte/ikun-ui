@@ -84,6 +84,7 @@
 		mode="vertical"
 		id="select_test_vertical"
 		on:deSelect={handleClick}
+		multiple={true}
 		on:select={handleClick}
 		triggerSubMenuAction="click"
 		ctxKey="11"
@@ -95,6 +96,7 @@
 		id="select_test_inline"
 		triggerSubMenuAction="click"
 		on:deSelect={handleClick}
+		multiple={true}
 		on:select={handleClick}
 		ctxKey="22"
 	>
@@ -105,6 +107,7 @@
 		id="select_test_horizontal"
 		triggerSubMenuAction="click"
 		on:deSelect={handleClick}
+		multiple={true}
 		on:select={handleClick}
 		ctxKey="22"
 	>
