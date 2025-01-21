@@ -213,6 +213,10 @@ const components = [
 				link: '/components/KDropdown'
 			},
 			{
+				text: 'Menu',
+				link: '/components/KMenu'
+			},
+			{
 				text: 'Segmented',
 				link: '/components/KSegmented'
 			},

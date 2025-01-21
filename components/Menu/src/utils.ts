@@ -83,19 +83,25 @@ export function transitionOut(node: HTMLElement) {
 
 export function getUidPath(uid: string, list: SubMenuType[], path: string[] = []) {
 	// 遍历树结构数组中的每个节点
+	// Traverse each node in the tree structure array
 	for (const node of list) {
 		// 如果当前节点的 uid 与给定的 uid 匹配，返回当前路径
+		// If the current node's uid matches the given uid, return the current path
 		if (node.uid === uid) {
 			return path.concat(uid);
 		}
 
 		// 如果当前节点包含子节点，则递归搜索子节点
+		// If the current node has child nodes, recursively search for the child nodes
 		if (node.children && node.children.length > 0) {
 			// 在路径中添加当前节点的 uid
+			// Add the current node's uid to the path
 			const newPath = path.concat(node.uid!);
 			// 递归搜索子节点
+			// Recursive search for child nodes
 			const result = getUidPath(uid, node.children!, newPath) as null | string[];
 			// 如果找到了目标节点，则返回结果
+			// If the target node is found, the result is returned
 			if (result) {
 				return result;
 			}
@@ -103,5 +109,7 @@ export function getUidPath(uid: string, list: SubMenuType[], path: string[] = []
 	}
 
 	// 如果在当前节点及其子节点中未找到目标节点，则返回空
+	// If the target node is not found in the current node and its child nodes,
+	// it returns null.
 	return null;
 }

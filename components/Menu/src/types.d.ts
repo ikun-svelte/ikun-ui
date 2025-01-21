@@ -57,77 +57,81 @@ export type KMenuInstance = {
 
 export type KMenuProps = {
 	/**
-	 *  上下文 key,
-	 *  用于组件内部逻辑，应该是一个全局唯一值 KMenuItem 与 KMenu 公用一个相同值
+	 *  @zh 上下文 key, 用于组件内部逻辑，应该是一个全局唯一值,KMenuItem 与 KMenu 公用一个相同值
+	 *  @en Context key, used for component internal logic,
+	 *  should be a globally unique value, KMenuItem and KMenu share the same value
 	 */
 	ctxKey?: string;
 	/**
-	 * 展开图标
-	 * 展开图标 horizontal(more menu 展示)
+	 * @zh 展开图标
+	 * @en expand icon
 	 * @default 'i-carbon-chevron-down'
 	 */
 	expandIcon?: string;
 	/**
-	 * inline 模式的菜单缩进宽度
+	 * @zh inline 模式的菜单缩进宽度
+	 * @en Menu indent width in inline mode
 	 * @default 24
 	 */
 	inlineIndent?: number;
 	/**
-	 * inline 或 vertical 时菜单是否收起状态 (指显示图标的mini模式和展开到常规模式)
+	 * @zh inline 或 vertical 时菜单是否收起状态 (指显示图标的mini模式和展开到常规模式)
+	 * @en Whether the menu is collapsed in inline or vertical mode
 	 * @default false
 	 */
 	inlineCollapsed?: boolean;
 	/**
-	 * 菜单类型，现在支持垂直、水平、和内嵌模式三种 inline
-	 * 菜单类型，现在支持垂直、水平、和内嵌模式三种 vertical
-	 * 菜单类型，现在支持垂直、水平、和内嵌模式三种 horizontal
-	 * `vertical` 和 `inline` 的区别在于 `vertical` 子菜单以 popover 形式出现
+	 * @zh 菜单渲染模式
+	 * @en Menu rendering mode
 	 * @default `vertical`
 	 */
 	mode?: `vertical` | `horizontal` | `inline`;
 	/**
-	 * 当前展开的 SubMenu 菜单项 key 数组 inline
-	 * 当前展开的 SubMenu 菜单项 key 数组 vertical
-	 * 当前展开的 SubMenu 菜单项 key 数组 horizontal
+	 * @zh 默认打开的菜单 uid 数组
+	 * @en Default open menu uid array
 	 * @default `[]`
 	 */
 	openUids?: string[];
 	/**
-	 * 当前选中的菜单项 key 数组(子菜单只高亮，不展开) inline
-	 * 当前选中的菜单项 key 数组(子菜单只高亮，不展开) vertical
-	 * 当前选中的菜单项 key 数组(子菜单只高亮，不展开) horizontal
+	 * @zh 默认选中的的菜单 uid 数组
+	 * @en Default select menu uid array
 	 * @default `[]`
 	 */
 	selectedUids?: string[];
 	/**
-	 * 是否允许选中(为 false， 点击不高亮，不触发 select事件) inline
-	 * 是否允许选中(为 false，  点击不高亮，不触发 select事件) vertical
-	 * 是否允许选中(为 false，  点击不高亮，不触发 select事件) horizontal
-	 * @default false
+	 * @zh 菜单可否被选中，设置为false将不会触发 Select 相关事件
+	 * @en Whether the menu can be selected.
+	 * Setting it to false will not trigger `select` related events
+	 * @default true
 	 */
 	selectable?: boolean;
 	/**
-	 * 用户鼠标离开子菜单后关闭延时，单位：毫秒(非 inline 模式, hover触发)
+	 * @zh 用户鼠标离开子菜单后关闭延时，单位：毫秒(非 inline 模式, hover触发)
+	 * @en The closing delay after the user leaves the submenu, unit: milliseconds
 	 * @default 100ms
 	 */
 	subMenuCloseDelay?: number;
 	/**
-	 * 用户鼠标进入子菜单后开启延时，单位：毫秒(非 inline 模式, hover触发)
+	 * @zh 用户鼠标进入子菜单后开启延时，单位：毫秒(非 inline 模式, hover触发)
+	 * @en The delay after the user mouse enters the submenu, unit: milliseconds
 	 * @default 0
 	 */
 	subMenuOpenDelay?: number;
 	/**
-	 * TODO: 主题
+	 * @zh 主题
+	 * @en Theme style
 	 * @default 'light'
 	 */
 	theme?: 'light' | 'dark';
 	/**
-	 * 是否允许多选
-	 * @default 'true'
+	 * @zh 是否允许多选
+	 * @en Whether to allow multiple selections
+	 * @default 'false'
 	 */
 	multiple?: boolean;
 	/**
-	 * SubMenu 展开/关闭的触发行为(非 inline 模式)
+	 * @zh Sub Menu 展开/关闭的触发行为(非 inline 模式)
+	 * @en Sub menu expand/close trigger behavior
 	 * @default 'hover'
 	 */
 	triggerSubMenuAction?: 'hover' | 'click';
@@ -138,24 +142,6 @@ export type KMenuProps = {
 	 */
 	show: boolean;
 };
-
-// onClick 点击 MenuItem 调用此函数 inline
-// onOpenChange SubMenu 展开/关闭的回调 inline
-// onSelect 被选中时调用(点击子菜单标题不触发） inline
-// onDeSelect 被选中时调用(点击子菜单标题不触发） inline
-
-// onClick 点击 MenuItem 调用此函数 vertical
-// onOpenChange SubMenu 展开/关闭的回调 vertical
-// onSelect 被选中时调用(点击子菜单标题不触发） vertical
-// onDeSelect 被选中时调用(点击子菜单标题不触发） inline
-
-// onClick 点击 MenuItem 调用此函数 horizontal
-// onOpenChange SubMenu 展开/关闭的回调 horizontal
-// onSelect 被选中时调用(点击子菜单标题不触发） horizontal
-// onDeSelect 被选中时调用(点击子菜单标题不触发） inline
-
-// onTitleClick 点击子菜单标题
-// titleClick?: (item: SubMenuType, e: MouseEvent, uidPath: string[]) => void;
 
 export type KMenuItemProps = {
 	/**
@@ -169,29 +155,36 @@ export type KMenuItemProps = {
 };
 export type SubMenuType = {
 	/**
-	 * 展示错误状态样式
+	 * @zh 展示错误状态样式
+	 * @en Display error state style
 	 * @default false
 	 */
 	danger?: boolean;
 	/**
-	 * 展示為分組或分割綫
+	 * @zh 展示為分組或分割綫
+	 * @en Render as groups or dividers
 	 */
 	type?: 'group' | 'divider';
 	/**
-	 * 菜单图标
+	 * @zh 菜单图标
+	 * @en Menu Icon
 	 */
 	icon?: string;
 	/**
-	 * 菜单项标题
+	 * @zh 菜单标题
+	 * @en Menu Label
 	 */
 	label?: string;
 	/**
-	 * item 的唯一标志
+	 * @zh item 的唯一标志， 在整个菜单树种应该是个唯一值
+	 * @en The unique value of the menu item.
+	 * It should be a unique value in the entire menu tree.
 	 */
 	uid?: string;
 	/**
-	 * 是否禁用
-	 *   优先级高于 danger, 子节点也禁用
+	 * @zh 是否禁用 优先级高于 danger, 子节点也禁用
+	 * @en Indicates whether it is disabled. Its priority is higher than danger,
+	 * and its child nodes are also disabled.
 	 * @default false
 	 */
 	disabled?: boolean;
@@ -201,15 +194,18 @@ export type SubMenuType = {
 	 */
 	theme?: 'light' | 'dark';
 	/**
-	 * 浮标题
+	 * @zh 悬浮标题
+	 * @en title
 	 */
 	title?: string;
 	/**
-	 * 子菜单的菜单项
+	 * @zh 子菜单的菜单项
+	 * @en Menu items in submenus
 	 */
 	children?: SubMenuType[];
 	/**
-	 * 子菜单样式
+	 * @zh 子菜单 popover 的样式
+	 * @en Submenu popover style
 	 */
 	popupClassName?: string;
 	/**
@@ -230,15 +226,3 @@ export type SubMenuType = {
 	selectedDeps?: Set<string>;
 	[property: string]: any;
 };
-
-// Items Slots slots label 分组标题 vertical
-// Items Slots slots label 分组标题 horizontal
-// Items Slots slots label 分组标题 inline
-// Items Slots slots  icon  菜单图标 vertical
-// Items Slots slots  icon  菜单图标 horizontal
-// Items Slots slots  icon  菜单图标 inline
-// Items Slots slots  expandIcon  菜单图标 vertical
-// Items Slots slots  expandIcon  菜单图标 horizontal
-// Items Slots slots  expandIcon  菜单图标 inline
-
-// TODO: 🎯 dark mode

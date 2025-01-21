@@ -121,9 +121,7 @@
 	}
 
 	function handleSelectedRecursion(
-		e:
-			| CustomEvent<{ selected: boolean; uid: string }>
-			| { detail: { selected: boolean; uid: string } },
+		e: CustomEvent<{ selected: boolean; uid: string; isLeaf: boolean; item: SubMenuType }>,
 		index: number
 	) {
 		const { selected, uid } = e.detail;
@@ -138,6 +136,27 @@
 
 			it.selected = !!it.selectedDeps.size;
 
+			// 重置当前点击层所在树的其他项选择状态
+			// Reset the selection status of other items in the tree where the current clicked layer is located
+			if (!ctxProps.multiple && e.detail.isLeaf) {
+				if (it.selected && itemsList[index]) {
+					itemsList = cancelSelected(itemsList, it);
+					if (hasSub(it)) {
+						it.children = cancelSelected(it.children!, e.detail.item);
+					}
+				}
+				if (level === 1) {
+					// 到第一层时如果是单选，则遍历取消其他项的选择状态
+					// If it is a single selection at the first level,
+					// traverse and cancel the selection status of other items
+					if (itemsList[index]) {
+						itemsList = cancelSelected(itemsList, it);
+					} else {
+						itemsList = cancelSelected(itemsList, e.detail.item);
+					}
+				}
+			}
+
 			if (itemsList[index]) {
 				itemsList[index] = it;
 			} else {
@@ -145,19 +164,49 @@
 			}
 			dispatch('selectedRecursion', {
 				selected: it.selected,
-				uid: it.uid
+				uid: it.uid,
+				isLeaf: e.detail.isLeaf,
+				item: it
 			});
 		} else {
 			dispatch('selectedRecursion', e.detail);
 		}
+		e.detail.isLeaf && onSubItemSelect(index);
+	}
+
+	function cancelSelected(list: SubMenuType[], it: SubMenuType) {
+		return list.map((value) => {
+			if (!ctxProps.multiple && value.uid !== it.uid && !isGroup(it)) {
+				value.selected = false;
+				value.selectedDeps && value.selectedDeps.clear();
+				menuCtx.syncUids(value.uid!, 'selected', 'delete');
+				menuCtx.syncSelectedItems(value, 'delete');
+				if (hasSub(value)) {
+					value.children = cancelSelected(value.children!, it);
+				}
+			}
+			return value;
+		});
 	}
 
 	function setOpenAndSelectStatus(it: SubMenuType, list = itemsList, parentOpen?: boolean) {
 		return list.map((value) => {
 			if (value.uid === it.uid && !isGroup(it)) {
 				// set selected
-				if (ctxProps.selectable) {
-					value.selected = !value.selected;
+				const resolveSelected = !value.selected;
+				if (ctxProps.selectable && !hasSub(it)) {
+					// 重置当前点击层其他项选择状态
+					// Reset the selection status of other items in the current click layer
+					if (!ctxProps.multiple && resolveSelected) {
+						list = cancelSelected(list, it);
+
+						if (moreItem.children && moreItem.children.length > 0) {
+							moreItem.children = cancelSelected(moreItem.children, it);
+							moreItem.selected = false;
+							moreItem.selectedDeps && moreItem.selectedDeps.clear();
+						}
+					}
+					value.selected = resolveSelected;
 				}
 
 				// set open
@@ -182,7 +231,9 @@
 					 */
 					dispatch('selectedRecursion', {
 						selected: value.selected,
-						uid: value.uid
+						uid: value.uid,
+						isLeaf: !hasSub(value),
+						item: value
 					});
 				}
 			}
@@ -474,8 +525,9 @@
 		};
 		if (it.disabled || it.disabledParent) {
 			basicCls = {
-				[`${prefixCls}-disabled`]: true,
-				[`${prefixCls}-disabled__dark`]: isDark(it)
+				[`${prefixCls}-disabled`]: level !== 1,
+				[`${prefixCls}-disabled__dark`]: isDark(it),
+				[`${prefixCls}-disabled-l1`]: level === 1
 			};
 			if (hasSub(it)) {
 				it.children = it.children!.map((item) => {
@@ -580,9 +632,11 @@
 
 	const resolveDisabledTooltip = (it: SubMenuType, isInlineCollapsed?: boolean) => {
 		// 有子节点的不显示
+		// Nodes with child nodes are not displayed
 		if ((it.children && it.children.length > 0 && it.type !== 'group') || !isInlineCollapsed) {
 			return true;
 			// 收起时且非水平模式
+			// When folded and not in horizontal mode
 		} else {
 			return false;
 		}
@@ -591,15 +645,19 @@
 	const resolveTitle = (it: SubMenuType, isInlineCollapsed?: boolean, isTooltip?: boolean) => {
 		let res = '';
 		// 有子节点的不显示
+		// Nodes with child nodes are not displayed
 		if (it.children && it.children.length > 0 && it.type !== 'group') {
 			res = '';
 			// 收起时且非水平模式
+			// Nodes with child nodes are not displayed
 		} else if (isInlineCollapsed && ctxProps.mode !== 'horizontal') {
 			res = it.title || it.label || '';
 			if (!isTooltip) {
 				res = '';
 			}
 			// 收起时或水平模式无默认值，只展示 title
+			// When collapsed or in horizontal mode,
+			// there is no default value and only the title is displayed.
 		} else if (!isInlineCollapsed || ctxProps.mode === 'horizontal') {
 			res = it.title || '';
 		}
@@ -628,6 +686,12 @@
 	function onVerticalPopoverChange(it: SubMenuType, e: CustomEvent) {
 		if (it.disabled || it.disabledParent || e.detail) return;
 		itemsList = clearVerticalOpenStatus(it);
+	}
+
+	function onSubItemSelect(index: number) {
+		if (level == 1 && !ctxProps.multiple) {
+			popoverRef[index] && popoverRef[index].updateShow && popoverRef[index].updateShow(false);
+		}
 	}
 </script>
 
@@ -903,7 +967,7 @@
 			<svelte:fragment slot="triggerEl">
 				{#if it.type !== 'divider'}
 					<li
-						on:click={(e) => handleSelect(it, e)}
+						on:click={(e) => handleSelect(it, e, index)}
 						aria-hidden="true"
 						style:padding-left={`${getIndent(it, ctxProps.inlineCollapsed)}`}
 						class={cnames(it)}
