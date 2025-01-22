@@ -78,6 +78,7 @@
 	}
 
 	let popoverRef: any = null;
+	let popoverWidth: string = '';
 	let maskWidth = '';
 	let maskHeight = '';
 	let maskBorderTopWidth = '';
@@ -120,11 +121,11 @@
 			}
 
 			el.style.width = `${width}px`;
+			popoverWidth = `${width}px`;
 			el.style.height = `${height}px`;
 			el.style.position = 'fixed';
 			el.style.top = `${top}px`;
 			el.style.left = `${left}px`;
-			el.style.transform = `translate(0, 0)`;
 			el.style.transform = `translate(0, 0)`;
 			if (!mask) {
 				el.style.zIndex = '-9999';
@@ -252,7 +253,13 @@
 		style:transition={maskRootTransition}
 		style:z-index={zIndex}
 	>
-		<KPopover bind:this={popoverRef} trigger="manual" {placement} arrow={resolveShowArrow}>
+		<KPopover
+			bind:this={popoverRef}
+			trigger="manual"
+			width={popoverWidth}
+			{placement}
+			arrow={resolveShowArrow}
+		>
 			<div slot="contentEl" class={contentClass}>
 				<div class={headerCls}>
 					<slot name="title" current={index} title={steps[index].title}>
