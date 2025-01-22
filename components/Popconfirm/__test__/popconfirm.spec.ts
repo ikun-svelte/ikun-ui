@@ -39,7 +39,7 @@ describe('Test: KPopconfirm', () => {
 		await tick();
 		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('有美一人')).toBeTruthy();
 		expect(
@@ -56,7 +56,7 @@ describe('Test: KPopconfirm', () => {
 		await tick();
 		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('i-carbon-settings')).toBeTruthy();
 		expect(host.innerHTML.includes('k-popconfirm--error')).not.toBeTruthy();
@@ -77,7 +77,7 @@ describe('Test: KPopconfirm', () => {
 		elmSuccess.click();
 		const elmError = host.querySelector('#test_trigger_success') as HTMLElement;
 		elmError.click();
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('k-popconfirm--error')).toBeTruthy();
 		expect(host.innerHTML.includes('k-popconfirm--info')).toBeTruthy();
@@ -93,7 +93,7 @@ describe('Test: KPopconfirm', () => {
 		await tick();
 		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('有美一人')).not.toBeTruthy();
 		expect(
@@ -110,7 +110,7 @@ describe('Test: KPopconfirm', () => {
 		await tick();
 		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('有美一人')).toBeTruthy();
 		expect(
@@ -128,7 +128,7 @@ describe('Test: KPopconfirm', () => {
 		await tick();
 		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('有美一人')).toBeTruthy();
 		expect(
@@ -159,7 +159,7 @@ describe('Test: KPopconfirm', () => {
 		await tick();
 		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('有美一人')).toBeTruthy();
 		expect(
@@ -288,7 +288,7 @@ describe('Test: KPopconfirm', () => {
 		await tick();
 		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('test title')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
@@ -302,7 +302,7 @@ describe('Test: KPopconfirm', () => {
 		await tick();
 		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('test content')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
@@ -316,7 +316,7 @@ describe('Test: KPopconfirm', () => {
 		await tick();
 		const elm = host.querySelector('#test_trigger') as HTMLElement;
 		elm.click();
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('test footer')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
