@@ -1,6 +1,7 @@
 export const popoverShortcuts: Record<string, string> = {
 	// popover
-	'k-popover--base': 'rounded p-8px bg-ikun-white  z-999 box-border text-ikun-tx-base',
+	'k-popover--base':
+		'absolute w-max left-0 top-0 rounded p-8px bg-ikun-white  z-999 box-border text-ikun-tx-base',
 	'k-popover--base__left': 'k-popover-shadow__left',
 	'k-popover--base__top': 'k-popover-shadow__top',
 	'k-popover--base__right': 'k-popover-shadow__right',

@@ -77,6 +77,6 @@ export const menuShortcuts: Record<string, string> = {
 		'dark:(ikun:30:bg-ikun-error opacity-[1] text-ikun-error hover:(ikun:30:bg-ikun-error))',
 	'k-menu-item-icon__dark': 'dark:(text-[inherit])',
 	'k-menu-item__dark': 'dark:text-ikun-tx-gr',
-	'k-menu-inline__dark': 'dark:(border-ikun-tx-white)',
-	'k-menu-vertical__dark': 'dark(border-ikun-tx-white)'
+	'k-menu-inline__dark': 'dark:(border-ikun-tx-white)'
+	// 'k-menu-vertical__dark': 'dark(border-ikun-tx-white)'
 };

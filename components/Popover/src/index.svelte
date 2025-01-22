@@ -1,10 +1,12 @@
 <script lang="ts">
-	import { createPopperActions, type PopperOptions } from 'svelte-popperjs';
 	import { scale } from 'svelte/transition';
 	import { getPrefixCls } from '@ikun-ui/utils';
 	import { clsx } from 'clsx';
 	import type { KPopoverProps } from './types';
 	import { createEventDispatcher, onMount } from 'svelte';
+	import { arrow as arrowMd, offset as offsetMd, flip, shift } from 'svelte-floating-ui/dom';
+	import { createFloatingActions } from 'svelte-floating-ui';
+	import type { Placement } from '@floating-ui/dom';
 
 	export let placement: KPopoverProps['placement'] = 'top';
 	// hover click manual
@@ -12,8 +14,8 @@
 	export let attrs: KPopoverProps['attrs'] = {};
 	export let disabled: KPopoverProps['disabled'] = false;
 	export let arrow: KPopoverProps['arrow'] = true;
-	export let mouseEnterDelay: KPopoverProps['mouseEnterDelay'] = 200;
-	export let mouseLeaveDelay: KPopoverProps['mouseLeaveDelay'] = 200;
+	export let mouseEnterDelay: KPopoverProps['mouseEnterDelay'] = 100;
+	export let mouseLeaveDelay: KPopoverProps['mouseLeaveDelay'] = 300;
 	export let cls: KPopoverProps['cls'] = undefined;
 	export let clsTrigger: KPopoverProps['clsTrigger'] = undefined;
 	export let defaultOpen: KPopoverProps['defaultOpen'] = undefined;
@@ -23,7 +25,11 @@
 	export let attrsTrigger: KPopoverProps['attrs'] = {};
 	export let width: KPopoverProps['width'] = 'fit-content';
 	export let order: undefined | number = undefined;
-	export let offset: KPopoverProps['offset'] = [0, 8];
+	export let offset: KPopoverProps['offset'] = { mainAxis: 8, crossAxis: 0 };
+	/**
+	 * @internal
+	 */
+	export let offsetComputed: KPopoverProps['offsetComputed'] = undefined; // { mainAxis: 8, crossAxis: 0 }
 	export let opacity: string = '';
 	export let theme: KPopoverProps['theme'] = undefined;
 	export let fallbackPlacements: KPopoverProps['fallbackPlacements'] = [
@@ -35,43 +41,25 @@
 	$: curPlacement = placement;
 	let arrowRef: null | HTMLElement = null;
 	const dispatch = createEventDispatcher();
-	const [popperRef, popperContent, getInstance] = createPopperActions({
+
+	const [popperRef, popperContent, updateFloating] = createFloatingActions({
+		strategy: 'fixed',
 		placement,
-		onFirstUpdate: updateArrow,
-		modifiers: [
-			{
-				name: 'offset',
-				options: {
-					// TODO: feature props
-					offset
-				}
-			},
-			{
-				name: 'flip',
-				options: {
-					fallbackPlacements
-				}
-			},
-			{
-				name: 'computeStyles',
-				options: {
-					gpuAcceleration: false // true by default
-				}
-			},
-			{
-				name: 'updated',
-				enabled: true,
-				phase: 'afterWrite',
-				fn(arg: any) {
-					if (arg.state.placement !== curPlacement) {
-						curPlacement = arg.state.placement;
-						updateArrow();
-					}
-				}
-			}
+		middleware: [
+			offsetMd(offset),
+			flip({
+				fallbackPlacements: fallbackPlacements as Placement[]
+			}),
+			shift(),
+			arrowMd({ element: arrowRef! })
 		],
-		strategy: 'fixed'
-	} as PopperOptions<any>);
+		onComputed({ placement }) {
+			if (placement !== curPlacement) {
+				curPlacement = placement as KPopoverProps['placement'];
+				updateArrow();
+			}
+		}
+	});
 
 	let isShow = false;
 	onMount(() => {
@@ -180,10 +168,12 @@
 		dispatch('animateEnd');
 	}
 
+	let contentRef: HTMLDivElement | null = null;
 	/**
 	 * @internal
 	 */
 	function onAnimationStart() {
+		updateArrow();
 		dispatch('animateStart');
 	}
 
@@ -198,10 +188,7 @@
 	 * @internal
 	 */
 	export function forceUpdated() {
-		const inst = getInstance();
-		if (inst) {
-			inst.update();
-		}
+		updateFloating();
 	}
 
 	/**
@@ -209,6 +196,21 @@
 	 */
 	export function updatedArrow() {
 		updateArrow();
+	}
+
+	function cubeInOut(t: number) {
+		if (offsetComputed && isShow) {
+			const offset = offsetComputed({
+				popper: popoverContainerRef!,
+				reference: contentRef!,
+				placement
+			});
+
+			updateFloating({
+				middleware: [offsetMd(offset)]
+			});
+		}
+		return t < 0.5 ? 4 * t * t * t : 0.5 * Math.pow(2 * t - 2, 3) + 1;
 	}
 </script>
 
@@ -231,9 +233,10 @@
 
 {#if isShow}
 	<div
+		bind:this={contentRef}
 		class={cnames}
-		out:scale={{ duration: 200, start: 0.3, opacity: 0 }}
-		in:scale={{ duration: 200, start: 0.3, opacity: 0 }}
+		out:scale={{ duration: 300, start: 0.3, opacity: 0, easing: cubeInOut }}
+		in:scale={{ duration: 300, start: 0.3, opacity: 0, easing: cubeInOut }}
 		on:animationend={onAnimationEnd}
 		on:animationstart={onAnimationStart}
 		data-popper-placement

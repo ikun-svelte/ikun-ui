@@ -610,9 +610,11 @@
 	};
 	const setPopoverOffset: OffsetsFunction = ({ popper, reference }: OffsetsFnPa) => {
 		if (ctxProps.mode === 'horizontal' && level === 1) {
-			return [0, 4];
+			return { mainAxis: 4, crossAxis: 0 };
 		}
-		return [popper.height / 2 - reference.height / 2, 4];
+		const { height: pHeight } = popper.getBoundingClientRect();
+		const { height: rHeight } = reference.getBoundingClientRect();
+		return { mainAxis: 4, crossAxis: rHeight / 2 - pHeight / 2 };
 	};
 	const popoverContentWidth = (index: number) => {
 		const ref = popoverRef[index];
@@ -820,7 +822,7 @@
 				onVerticalPopoverChange(it, e);
 			}}
 			on:animateStart={showSubMenuPopover}
-			offset={setPopoverOffset}
+			offsetComputed={setPopoverOffset}
 			fallbackPlacements={['right', 'left']}
 			mouseEnterDelay={ctxProps.subMenuOpenDelay}
 			mouseLeaveDelay={ctxProps.subMenuCloseDelay}
@@ -955,7 +957,7 @@
 			arrow={false}
 			placement={level === 1 ? 'bottom' : 'right'}
 			on:animateStart={showSubMenuPopover}
-			offset={setPopoverOffset}
+			offsetComputed={setPopoverOffset}
 			fallbackPlacements={level === 1 ? ['bottom', 'top'] : ['right', 'left']}
 			mouseEnterDelay={ctxProps.subMenuOpenDelay}
 			mouseLeaveDelay={ctxProps.subMenuCloseDelay}
@@ -967,7 +969,7 @@
 			<svelte:fragment slot="triggerEl">
 				{#if it.type !== 'divider'}
 					<li
-						on:click={(e) => handleSelect(it, e, index)}
+						on:click={(e) => handleSelect(it, e)}
 						aria-hidden="true"
 						style:padding-left={`${getIndent(it, ctxProps.inlineCollapsed)}`}
 						class={cnames(it)}
