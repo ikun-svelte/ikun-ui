@@ -5,6 +5,13 @@ on:
     tags:
       - 'v*'
 
+  workflow_dispatch:  # 允许手动触发，并可以指定分支
+    inputs:
+      branch:
+        description: 'Branch to release from'
+        required: true
+        default: 'main'  # 默认使用 main 分支
+        type: string
 jobs:
   release:
     runs-on: ubuntu-latest
