@@ -47,7 +47,7 @@ describe('Test: KPopover', () => {
 				cancelable: true
 			})
 		);
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('有美一人，清扬婉兮')).toBeTruthy();
 		expect(host.innerHTML.includes('data-popper-arrow-bottom')).toBeTruthy();
@@ -67,7 +67,7 @@ describe('Test: KPopover', () => {
 				cancelable: true
 			})
 		);
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('有美一人，清扬婉兮')).not.toBeTruthy();
 		expect(host.innerHTML.includes('data-popper-arrow-bottom')).not.toBeTruthy();
@@ -87,7 +87,7 @@ describe('Test: KPopover', () => {
 				cancelable: true
 			})
 		);
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('有美一人，清扬婉兮')).toBeTruthy();
 		expect(host.innerHTML.includes('data-popper-arrow-bottom')).not.toBeTruthy();
@@ -114,7 +114,7 @@ describe('Test: KPopover', () => {
 		await tick();
 		const Elm = host.children[0] as HTMLElement;
 		Elm.click();
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('有美一人，清扬婉兮')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
@@ -179,7 +179,7 @@ describe('Test: KPopover', () => {
 				cancelable: true
 			})
 		);
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(
 			host.innerHTML.includes('triggerEl') && host.innerHTML.includes('contentEl')
@@ -201,13 +201,14 @@ describe('Test: KPopover', () => {
 			mockFn();
 		});
 		await tick();
+		await vi.advanceTimersByTimeAsync(300);
 		const Elm = host.children[0];
 		Elm.dispatchEvent(
 			new MouseEvent('mouseenter', {
 				cancelable: true
 			})
 		);
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('有美一人，清扬婉兮')).toBeTruthy();
 		expect(host.innerHTML.includes('data-popper-arrow-bottom')).toBeTruthy();
@@ -218,7 +219,7 @@ describe('Test: KPopover', () => {
 				cancelable: true
 			})
 		);
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(mockFn).toBeCalledTimes(2);
 		expect(show).not.toBeTruthy();

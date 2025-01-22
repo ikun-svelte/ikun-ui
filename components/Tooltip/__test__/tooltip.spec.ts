@@ -33,7 +33,7 @@ describe('Test: KTooltip', () => {
 				cancelable: true
 			})
 		);
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('有美一人，清扬婉兮')).toBeTruthy();
 		expect(host.innerHTML.includes('data-popper-arrow-bottom')).toBeTruthy();
@@ -48,7 +48,7 @@ describe('Test: KTooltip', () => {
 		await tick();
 		const Elm = host.children[0].getElementsByTagName('div')[0];
 		Elm.click();
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('有美一人，清扬婉兮')).toBeTruthy();
 		expect(host.innerHTML).matchSnapshot();
@@ -66,7 +66,7 @@ describe('Test: KTooltip', () => {
 				cancelable: true
 			})
 		);
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(
 			host.innerHTML.includes('triggerEl') && host.innerHTML.includes('contentEl')

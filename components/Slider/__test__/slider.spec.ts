@@ -37,7 +37,7 @@ describe('Test: KSlider', () => {
 				cancelable: true
 			})
 		);
-		vi.runAllTimers();
+		await vi.advanceTimersByTimeAsync(300);
 		await tick();
 		expect(host.innerHTML.includes('10')).toBeTruthy();
 		expect(host.innerHTML.includes('data-popper-arrow-bottom')).toBeTruthy();

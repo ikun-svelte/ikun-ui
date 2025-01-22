@@ -43,7 +43,7 @@
 	const dispatch = createEventDispatcher();
 
 	const [popperRef, popperContent, updateFloating] = createFloatingActions({
-		strategy: 'fixed',
+		strategy: 'absolute',
 		placement,
 		middleware: [
 			offsetMd(offset),
@@ -53,9 +53,9 @@
 			shift(),
 			arrowMd({ element: arrowRef! })
 		],
-		onComputed({ placement }) {
-			if (placement !== curPlacement) {
-				curPlacement = placement as KPopoverProps['placement'];
+		onComputed({ placement: resolvePlacement }) {
+			if (resolvePlacement !== curPlacement) {
+				curPlacement = resolvePlacement as KPopoverProps['placement'];
 				updateArrow();
 			}
 		}
@@ -207,7 +207,14 @@
 			});
 
 			updateFloating({
-				middleware: [offsetMd(offset)]
+				middleware: [
+					offsetMd(offset),
+					flip({
+						fallbackPlacements: fallbackPlacements as Placement[]
+					}),
+					shift(),
+					arrowMd({ element: arrowRef! })
+				]
 			});
 		}
 		return t < 0.5 ? 4 * t * t * t : 0.5 * Math.pow(2 * t - 2, 3) + 1;
