@@ -91,7 +91,7 @@
 		class={cnames}
 		style:right={backTopStyle.right}
 		style:bottom={backTopStyle.bottom}
-		aria-hidden="true"
+
 		on:click|stopPropagation={handleClick}
 		{...$$restProps}
 		{...attrs}

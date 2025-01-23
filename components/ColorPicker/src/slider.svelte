@@ -90,7 +90,9 @@
 
 <svelte:window on:mousemove={drag} on:mouseup={endDrag} />
 <div
-	aria-hidden="true"
+	role="slider"
+	tabindex="-1"
+	aria-valuenow={position * 100}
 	class={cnames}
 	{...$$restProps}
 	{...attrs}

@@ -56,7 +56,7 @@
 	<KCheckboxGroup value={checkValue} on:updateValue={handleCheck}>
 		{#each normalPresets as preset, index (preset.label + index)}
 			<div class={containerCls}>
-				<div class={headCls} on:click={() => handleExpend(index)} aria-hidden="true">
+				<button class={headCls} on:click={() => handleExpend(index)} >
 					<KIcon
 						cls={iconCls}
 						icon={handleExpendIcon(preset.defaultOpen)}
@@ -64,7 +64,7 @@
 						height="14px"
 					/>
 					<span class={labelCls}>{preset.label}</span>
-				</div>
+				</button>
 				{#if preset.defaultOpen}
 					<div class={colorCls} transition:fade>
 						{#each preset.colors as color (color)}

@@ -158,7 +158,13 @@
 	$: checkedTxCls = clsx(`${prefixCls}-tx__checked`, `${prefixCls}-tx__checked--${sizeInner}`);
 </script>
 
-<div class={switchCls} aria-hidden="true" {...$$restProps} {...attrs} on:click={handleClick}>
+<div tabindex="0"
+		 role="switch"
+		 aria-checked={innerState}
+		 class={switchCls}
+		 {...$$restProps}
+		 {...attrs}
+		 on:click={handleClick}>
 	{#if !innerState}
 		<span class={unCheckedTxCls}>
 			<slot name="unCheckedRender" state={innerState} />

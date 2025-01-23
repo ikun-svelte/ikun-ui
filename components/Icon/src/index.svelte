@@ -46,7 +46,6 @@
 <span
 	class={cnames}
 	role={tag}
-	aria-hidden="true"
 	{...$$restProps}
 	{...attrs}
 	style:width={widthInner}

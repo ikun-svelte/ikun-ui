@@ -22,7 +22,7 @@
 					<div
 						class={itemCls(item, activeIndex)}
 						role="button"
-						aria-hidden="true"
+
 						on:mouseenter={() => hoverJump(item)}
 						on:click={() => clickJump(item)}
 					></div>
@@ -33,7 +33,7 @@
 	<div slot="arrow" class="flex" let:show let:loop let:onChange let:defaultPageIndex let:count>
 		<KCarouselArrow {show} {loop} {defaultPageIndex} on:change={onChange} {count}>
 			<div
-				aria-hidden="true"
+
 				class="ml-10px cursor-pointer"
 				slot="prev"
 				let:gotoPrev
@@ -42,7 +42,7 @@
 				🏀
 			</div>
 			<div
-				aria-hidden="true"
+
 				class="mr-10px cursor-pointer"
 				slot="next"
 				let:gotoNext

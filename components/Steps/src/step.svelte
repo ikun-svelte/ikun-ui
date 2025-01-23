@@ -136,13 +136,21 @@
 	});
 </script>
 
-<div class={containerCls} aria-hidden="true" data-k-step on:click={() => handleChange(item)}>
+<div class={containerCls}
+		 aria-label="steps"
+		 role="button"
+		 tabindex="-1"
+		 data-k-step
+		 on:keydown={() => handleChange(item)}
+		 on:click={() => handleChange(item)}>
 	<div
 		class={cnames}
 		{...$$restProps}
 		{...attrs}
 		data-k-step
-		aria-hidden="true"
+		aria-label="steps node"
+		role="button"
+		tabindex="0"
 		on:mouseenter={handleEnter}
 		on:mouseleave={handleLeave}
 	>

@@ -124,7 +124,7 @@
 </script>
 
 {#if show}
-	<div class={darkCls} bind:this={menuRef}>
+	<div class={darkCls} bind:this={menuRef} role="menu">
 		<ul
 			class={cnames}
 			style:border-color={bdBg}

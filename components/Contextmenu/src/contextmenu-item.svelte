@@ -29,8 +29,10 @@
 	);
 </script>
 
-<li class={cnames} on:click={handleClick} aria-hidden="true" {...$$restProps} {...attrs}>
-	{#if !divider}
-		<slot />
-	{/if}
+<li class={cnames} {...$$restProps} {...attrs}>
+	<button on:click={handleClick} >
+		{#if !divider}
+			<slot />
+		{/if}
+	</button>
 </li>

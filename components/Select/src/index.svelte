@@ -294,11 +294,10 @@
 	width={triggerWidth}
 	placement="bottom"
 >
-	<div
+	<button
 		{...attrs}
 		class={cnames}
 		slot="triggerEl"
-		aria-hidden="true"
 		on:mouseenter={() => showClearIcon(true)}
 		on:mouseleave={() => showClearIcon(false)}
 		bind:this={inputSelectRef}
@@ -328,15 +327,15 @@
 			{/if}
 		</slot>
 		{#if clearable && isShowClear}
-			<i data-k-select-clear aria-hidden="true" on:click={handleClear}>
+			<button data-k-select-clear  on:click={handleClear}>
 				<KIcon icon="i-carbon-close-outline" cls={selectIconCls} width="auto" height="auto" />
-			</i>
+			</button>
 		{:else}
 			<i>
 				<KIcon icon={expendIcon} cls={selectIconCls} width="auto" height="auto" />
 			</i>
 		{/if}
-	</div>
+	</button>
 	<div
 		slot="contentEl"
 		bind:this={popoverModalRef}

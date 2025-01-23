@@ -54,24 +54,23 @@
 	// class
 	const prefixCls = getPrefixCls('ellipsis');
 	$: cnames = clsx(
-		prefixCls,
 		{
-			[`${prefixCls}--base`]: true
+			[`${prefixCls}--line-clamp`]: !!lineClamp,
+			[`${prefixCls}`]: !(lineClamp),
 		},
 		cls
 	);
 </script>
 
 <KTooltip {content} placement="top">
-	<div
+	<button
 		class={cnames}
 		slot="triggerEl"
 		{...$$restProps}
 		{...attrs}
-		aria-hidden="true"
 		style={styleContent}
 		on:click={handleExpand}
 	>
 		{textInner}
-	</div>
+	</button>
 </KTooltip>

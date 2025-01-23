@@ -101,7 +101,7 @@
 			{/if}
 		</div>
 		{#if closable}
-			<div bind:this={closeRef} class={closeCls} aria-hidden="true" on:click={onClose}>
+			<div bind:this={closeRef} class={closeCls}  on:click={onClose}>
 				<slot name="close">
 					<KIcon cls="inline-flex" icon={closeIcon} width="16px" height="16px"></KIcon>
 				</slot>

@@ -170,7 +170,7 @@
 	width={triggerWidth}
 	placement="bottom"
 >
-	<div class={cname} {...attrs} slot="triggerEl" bind:this={inputSelectRef} aria-hidden="true">
+	<div class={cname} {...attrs} slot="triggerEl" bind:this={inputSelectRef} >
 		<KInput
 			bind:this={inputRef}
 			on:input={handleInput}

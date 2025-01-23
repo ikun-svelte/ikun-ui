@@ -55,7 +55,12 @@
 	const iconCls = `${prefixCls}--icon`;
 </script>
 
-<div class={cnames} {...$$restProps} {...attrs} on:click={onClick} aria-hidden="true">
+<div class={cnames}
+		 {...$$restProps}
+		 {...attrs}
+		 on:click={onClick}
+		 role="tab"
+		 tabindex="-1">
 	<slot>
 		<div title={label} class={labelCls}>
 			<span>

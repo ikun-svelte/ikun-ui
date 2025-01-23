@@ -207,6 +207,7 @@
 	{#each maxNumbers as item (item)}
 		<span
 			class={itemCls}
+			role="img"
 			aria-hidden="true"
 			on:mousemove={(event) => setCurrentValue(item, event)}
 			on:mouseleave={resetCurrentValue}

@@ -141,19 +141,19 @@
 		</slot>
 	{:else}
 		{#if imageSrc !== undefined}
-			<img
-				alt={alt || imageSrc}
-				aria-hidden="true"
-				{...$$restProps}
-				{...attrs}
-				src={imageSrc}
-				{loading}
-				style:object-fit={fit}
-				class={imageKls}
-				on:click={clickHandler}
-				on:load={handleLoad}
-				on:error={handleError}
-			/>
+			<button on:click={clickHandler}>
+				<img
+					alt={alt || imageSrc}
+					{...$$restProps}
+					{...attrs}
+					src={imageSrc}
+					{loading}
+					style:object-fit={fit}
+					class={imageKls}
+					on:load={handleLoad}
+					on:error={handleError}
+				/>
+			</button>
 		{/if}
 		{#if isLoading}
 			<div class={wrapperCls}>

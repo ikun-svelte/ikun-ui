@@ -36,13 +36,11 @@
 <div class={cnames} {...$$restProps} {...attrs}>
 	<slot {hoverJump} {clickJump} activeIndex={pageIndex} name="item">
 		{#each arr as item}
-			<div
-				role="button"
+			<button
 				class={itemCls(item)}
-				aria-hidden="true"
 				on:mouseenter={() => hoverJump(item)}
 				on:click={() => clickJump(item)}
-			></div>
+			></button>
 		{/each}
 	</slot>
 </div>
