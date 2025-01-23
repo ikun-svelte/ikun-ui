@@ -1,7 +1,7 @@
 <script>
 	import { KAvatar } from '@ikun-ui/avatar';
 
-	const src = 'https://www.svelte.cn/svelte-logo-horizontal.svg';
+	const src = 'https://ikun-ui.netlify.app/logo.svg';
 	const fits = ['fill', 'contain', 'cover', 'none', 'scale-down'];
 </script>
 

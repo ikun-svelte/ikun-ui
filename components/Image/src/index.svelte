@@ -123,6 +123,7 @@
 	}
 
 	const prefixCls = getPrefixCls('image');
+	const btnCls = `${prefixCls}--btn`;
 	$: cnames = clsx(prefixCls, cls);
 	$: errorCls = clsx(`${prefixCls}__error`);
 	$: wrapperCls = clsx(`${prefixCls}__wrapper`);
@@ -141,7 +142,7 @@
 		</slot>
 	{:else}
 		{#if imageSrc !== undefined}
-			<button on:click={clickHandler}>
+			<button on:click={clickHandler} class={btnCls}>
 				<img
 					alt={alt || imageSrc}
 					{...$$restProps}

@@ -90,7 +90,7 @@
 		return isShowClose(tab, hoverTab) ? 8 : 16;
 	};
 
-	function handleRemove(e: MouseEvent, tab: KTabsNav, index: number) {
+	function handleRemove(e: MouseEvent | KeyboardEvent, tab: KTabsNav, index: number) {
 		if (tab.disabled) return;
 		e.stopPropagation();
 		dispatch('remove', { tab: delPropertyData(tab), index });
@@ -238,16 +238,19 @@
 							on:click={() => handleClick(tab)}
 						>
 							{tab.label}
-							<button
+							<div
+								role="button"
+								tabindex="0"
 								class={closeCls}
 								style:width={`${closeIconWidth(tab)}px`}
+								on:keydown={(e) => handleRemove(e, tab, index)}
 								style:height={`${closeIconWidth(tab)}px`}
 								on:click={(e) => handleRemove(e, tab, index)}
 							>
 								{#if closeIconWidth(tab)}
 									<KIcon width="16px" height="16px" icon="i-carbon-close"></KIcon>
 								{/if}
-							</button>
+							</div>
 							{#if isActive(tab.uid) && type !== 'card' && type !== 'border'}
 								<div
 									class={barCls}
@@ -260,7 +263,7 @@
 				</div>
 			</div>
 			{#if showArrow}
-				<button class={nextCls} on:click={handleNext} >
+				<button class={nextCls} on:click={handleNext}>
 					<KIcon width="16px" height="16px" icon="i-carbon-chevron-right"></KIcon>
 				</button>
 			{/if}
@@ -268,7 +271,7 @@
 
 		<div class={addWrapCls}>
 			{#if editable}
-				<button class={addCls} on:click={handleAdd} >
+				<button class={addCls} on:click={handleAdd}>
 					<slot name="addIcon">
 						<KIcon width="16px" height="16px" icon="i-carbon-add"></KIcon>
 					</slot>

@@ -1,7 +1,7 @@
 export const tagShortcuts: Record<string, string> = {
 	// tag
 	'k-tag--base':
-		'infcc mx-0.5 select-none whitespace-nowrap rounded px-1.5 py-0.5 text-xs text-ikun-tx-base w-fit',
+		'k-reset-btn infcc mx-0.5 select-none whitespace-nowrap rounded px-1.5 py-0.5 text-xs text-ikun-tx-base w-fit',
 
 	'k-tag--icon': 'inline-flex',
 	'k-tag--icon__has-slot': 'mr-2',

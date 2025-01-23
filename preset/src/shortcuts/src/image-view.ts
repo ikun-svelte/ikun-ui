@@ -2,7 +2,7 @@ export const imageViewShortcuts: Record<string, string> = {
 	// image-view
 	'k-image-view': '',
 	'k-image-view--close':
-		'ikun:20:bg-ikun-black fcc pa rounded-full h-42px w-42px cursor-pointer right-32px top-32px z-2 text-ikun-icon-white hover:text-white',
+		'k-reset-btn ikun:20:bg-ikun-black fcc pa rounded-full h-42px w-42px cursor-pointer right-32px top-32px z-2 text-ikun-icon-white hover:text-white',
 	'k-image-view--body': 'pa w-full fcc inset-0',
 	'k-image-view--body__img': 'k-user-drag-none pa max-w-4/10 select-none cursor-grab',
 	'k-image-view--footer__wrapper': 'pa right-0 bottom-32px w-full fcc z-2',

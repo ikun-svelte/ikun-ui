@@ -1,5 +1,5 @@
 export const ellipsisShortcuts: Record<string, string> = {
 	// ellipsis
-	'k-ellipsis': '!cursor-text',
-	'k-ellipsis--line-clamp': 'cursor-pointer',
+	'k-ellipsis': 'k-reset-btn !cursor-text',
+	'k-ellipsis--line-clamp': 'k-reset-btn cursor-pointer'
 };

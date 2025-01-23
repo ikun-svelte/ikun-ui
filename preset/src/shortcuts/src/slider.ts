@@ -34,9 +34,9 @@ export const sliderShortcuts: Record<string, string> = {
 
 	// button
 	'k-slider--button-wrapper':
-		'fcc pa top-0 bottom-0 my-a translate-x--50% cursor-pointer select-none',
+		'fcc pa top-0 bottom-0 my-a translate-x--50% k-reset-btn cursor-pointer select-none',
 	'k-slider--button-wrapper__vertical':
-		'fcc pa left-50% mx-a -translate-x-1/2 translate-y-1/2 cursor-pointer select-none',
+		'fcc pa left-50% mx-a -translate-x-1/2 translate-y-1/2 k-reset-btn cursor-pointer select-none',
 
 	// button wrapper size
 	'k-slider--button--sm': 'w-12px h-12px',

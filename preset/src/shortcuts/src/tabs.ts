@@ -19,7 +19,7 @@ export const tabsShortcuts: Record<string, string> = {
 	'k-tabs__add--border': 'mr-10px',
 	'k-tabs__bar': 'pa left-0 bottom-0px h-2px bg-ikun-main z-1 w-full',
 	'k-tabs__nav-item':
-		'k-tab__nav-transition whitespace-nowrap pr box-border py-0 px-16px h-40px fcc text-base text-ikun-tx-base cursor-pointer select-none',
+		'k-reset-btn  k-tab__nav-transition whitespace-nowrap pr box-border py-0 px-16px h-40px fcc text-base text-ikun-tx-base cursor-pointer select-none',
 	'k-tabs__nav-item--active': 'text-ikun-main bg-white',
 	'k-tabs__nav-item--hover': 'hover:(text-ikun-main)',
 	'k-tabs__nav-item--disabled': 'opacity-50 k-cur-disabled',
@@ -27,7 +27,7 @@ export const tabsShortcuts: Record<string, string> = {
 
 	'k-tabs__content': 'p-10px box-border',
 	'k-tabs__content--border': 'border-solid border-ikun-bd-base n-bdt-1 rounded-b',
-	'k-tabs__close': 'ml-4px k-tab-transition-all fcc',
+	'k-tabs__close': 'k-reset-btn cursor-pointer ml-4px k-tab-transition-all fcc',
 	'k-tabs__close--hover': 'hover:(text-white bg-ikun-main rounded-full)',
 
 	// dark

@@ -1,6 +1,7 @@
 export const imageShortcuts: Record<string, string> = {
 	// image
 	'k-image': 'pr inline-block overflow-hidden',
+	'k-image--btn': 'k-reset-btn',
 	'k-image__inner': 'align-top opacity-100 w-full h-full',
 	'k-image__loading': 'opacity-0',
 	'k-image__wrapper': 'pa top-0 left-0 w-full h-full',

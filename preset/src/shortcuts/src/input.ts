@@ -3,6 +3,7 @@ export const inputShortcuts: Record<string, string> = {
 	'k-input': 'relative fi',
 	'k-input--base': 'w-full relative fi k-border border-ikun-bd-base box-border overflow-hidden',
 	'k-input--inner': 'outline-none w-full flex-auto border-none text-size-inherit bg-transparent',
+	'k-input--btn': 'k-reset-btn cursor-pointer',
 	'k-input--inner__textarea': 'p-2 rounded bg-transparent',
 	'k-input--icon': 'op50',
 	'k-input--prefix-icon': 'mr-1.5',
@@ -36,7 +37,7 @@ export const inputShortcuts: Record<string, string> = {
 		'focus-within:border-ikun-main focus-within:k-input-shadow [&:focus-within>.k-input--clear-icon]:block',
 
 	// clear
-	'k-input--clear-icon': 'hidden',
+	'k-input--clear-icon': 'hidden k-reset-btn',
 
 	// error
 	'k-input__error': 'border-ikun-error k-input-shadow--error',

@@ -152,7 +152,7 @@
 		cls
 	);
 
-	$: triggerCls = clsx('flex', clsTrigger);
+	$: triggerCls = clsx(`${prefixCls}--trigger`, clsTrigger);
 
 	export function updateShow(show: boolean) {
 		if (trigger === 'hover') {
