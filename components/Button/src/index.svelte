@@ -122,7 +122,7 @@
 	bind:this={btnRef}
 	style="border-radius: {round ? `${round}` : '4'}px; font-size: {iconSizeInner}px"
 	class={cnames}
-	aria-hidden="true"
+
 	on:click={handleClick}
 	{...attrsInner}
 	{...$$restProps}

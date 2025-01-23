@@ -317,7 +317,7 @@
 				<span class={titleCls}>{title}</span>
 			</slot>
 			{#if allowClear}
-				<div class={clearClsx} aria-hidden="true" on:click={handleClear}></div>
+				<div class={clearClsx}  on:click={handleClear}></div>
 			{/if}
 		</div>
 		<div>

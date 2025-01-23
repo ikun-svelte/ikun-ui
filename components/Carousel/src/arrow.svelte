@@ -62,7 +62,7 @@
 				out:fly={{ duration: 500, x: -10 }}
 				in:fly={{ duration: 500, x: -10 }}
 				class={prevCls}
-				aria-hidden="true"
+
 				on:click={gotoPrev}
 			>
 				<KIcon icon="i-carbon-chevron-left" width="16px" height="16px" />
@@ -76,7 +76,7 @@
 				out:fly={{ duration: 500, x: 10 }}
 				in:fly={{ duration: 500, x: 10 }}
 				class={nextCls}
-				aria-hidden="true"
+
 				on:click={gotoNext}
 			>
 				<KIcon icon="i-carbon-chevron-right" width="16px" height="16px" />

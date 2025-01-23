@@ -218,7 +218,9 @@
 </script>
 
 <div class={baseCls} {...$$restProps} {...attrs}>
-	<div bind:this={runwayRef} class={runwayCls} aria-hidden="true" on:mousedown={handleRunwayClick}>
+	<button bind:this={runwayRef}
+			 class={runwayCls}
+			 on:mousedown={handleRunwayClick}>
 		{#if discreteDivsArray.length > 0}
 			{#each discreteDivsArray as discreteDiv}
 				<div
@@ -228,9 +230,8 @@
 			{/each}
 		{/if}
 
-		<div
+		<button
 			class={buttonWrapperCls}
-			aria-hidden="true"
 			on:mousedown={handleMouseDown}
 			style={btnStyle}
 		>
@@ -245,7 +246,7 @@
 					<div slot="triggerEl" class={buttonCls}></div>
 				</KTooltip>
 			{/if}
-		</div>
+		</button>
 		<div class={barCls} style={barStyle}></div>
-	</div>
+	</button>
 </div>

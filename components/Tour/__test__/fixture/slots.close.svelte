@@ -19,7 +19,7 @@
 </script>
 
 <KTour {open} {steps} mask={false} current={1}>
-	<div slot="closeIcon" id="bwsy" let:handleClose on:click={handleClose} aria-hidden="true">
+	<div slot="closeIcon" id="bwsy" let:handleClose on:click={handleClose} >
 		custom close
 	</div>
 </KTour>

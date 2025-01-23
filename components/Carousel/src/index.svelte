@@ -169,7 +169,7 @@
 </script>
 
 <div
-	aria-hidden="true"
+
 	on:mouseenter={handleMouseenter}
 	on:mouseleave={handleMouseleave}
 	class={cnames}

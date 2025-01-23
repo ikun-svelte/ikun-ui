@@ -272,32 +272,28 @@
 			/>
 
 			{#if clearable && !disabledInner && value}
-				<div class={clearCls} role="button" aria-hidden="true" on:click={onClear}>
+				<button class={clearCls} on:click={onClear}>
 					<KIcon btn icon="i-carbon:close-outline" cls="{iconCls} ml-1" />
-				</div>
+				</button>
 			{/if}
 
 			{#if isPassword === 'password' && type === 'password'}
-				<div
-					role="button"
-					aria-hidden="true"
+				<button
 					on:click={() => {
 						isPassword = 'text';
 					}}
 				>
 					<KIcon btn icon="i-carbon-view-off" cls="{iconCls} ml-1" />
-				</div>
+				</button>
 			{/if}
 			{#if isPassword === 'text' && type === 'password'}
-				<div
-					role="button"
-					aria-hidden="true"
+				<button
 					on:click={() => {
 						isPassword = 'password';
 					}}
 				>
 					<KIcon btn icon="i-carbon-view" cls="{iconCls} ml-1" />
-				</div>
+				</button>
 			{/if}
 
 			<slot name="suffix">

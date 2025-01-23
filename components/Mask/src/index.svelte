@@ -10,7 +10,7 @@
 	export let value: KMaskProps['value'] = false;
 	export let target: KMaskProps['target'] = null;
 
-	export let onClickMask: (event: MouseEvent) => void;
+	export let onClickMask: ((event: MouseEvent) => void) | undefined = undefined;
 
 	let maskRef: null | HTMLElement = null;
 	let maskWidth = '100%';

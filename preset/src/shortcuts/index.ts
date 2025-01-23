@@ -67,6 +67,7 @@ import { pageHeadersShortcuts } from './src/page-header';
 import { scrollbarShortcuts } from './src/scrollbar';
 import { imageShortcuts } from './src/image';
 import { imageViewShortcuts } from './src/image-view';
+import { ellipsisShortcuts } from './src/ellipsis';
 export const defaultShortcuts = [
 	baseShortcuts,
 	commonShortcuts,
@@ -193,7 +194,9 @@ export const defaultShortcuts = [
 	// image
 	imageShortcuts,
 	// image-view
-	imageViewShortcuts
+	imageViewShortcuts,
+	// ellipsis
+	ellipsisShortcuts
 ] as UserShortcuts<Theme>;
 
 export function getSafeList() {
@@ -262,9 +265,11 @@ export function getSafeList() {
 	const scrollList = Object.keys(scrollbarShortcuts);
 	const imageList = Object.keys(imageShortcuts);
 	const imageViewList = Object.keys(imageViewShortcuts);
+	const ellipsisList= 	Object.keys(ellipsisShortcuts);
 	let res = iconList
 		// don't remove
 		// anchor list
+		.concat(ellipsisList)
 		.concat(menuList)
 		.concat(indicatorsList)
 		.concat(tourList)
@@ -406,3 +411,4 @@ export { calendarShortcuts } from './src/calendar';
 export { indicatorsShortcuts } from './src/indicators';
 export { tourShortcuts } from './src/tour';
 export { menuShortcuts } from './src/menu';
+export { ellipsisShortcuts } from './src/ellipsis';

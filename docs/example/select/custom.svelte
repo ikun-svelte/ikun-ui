@@ -29,7 +29,7 @@
 		class={`${
 			isActive ? 'text-ikun-main' : ''
 		} cursor-pointer flex px-2 py-1 h-32px hover:(bg-ikun-main text-white)`}
-		aria-hidden="true"
+
 	>
 		🎯{label}🤡
 	</div>

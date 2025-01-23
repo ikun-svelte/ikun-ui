@@ -36,11 +36,10 @@
 	);
 </script>
 
-<span
+<button
 	class={cnames}
 	{...$$restProps}
 	{...attrs}
-	aria-hidden="true"
 	style="background-color: {bgColor}; color: {textColor}"
 	on:click={onClick}
 >
@@ -64,4 +63,4 @@
 			on:click={onClose}
 		/>
 	{/if}
-</span>
+</button>

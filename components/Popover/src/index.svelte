@@ -116,7 +116,7 @@
 		arrowRef && arrowRef.setAttribute(`data-popper-arrow-${curPlacement}`, '');
 	}
 
-	let popoverContainerRef: HTMLDivElement | null = null;
+	let popoverContainerRef: HTMLElement | null = null;
 	function clickOutside(node: HTMLElement) {
 		function handleClickOutside(e: MouseEvent) {
 			const target = e.target as HTMLElement;
@@ -221,8 +221,7 @@
 	}
 </script>
 
-<div
-	aria-hidden="true"
+<button
 	use:popperRef
 	bind:this={popoverContainerRef}
 	on:click={handleClick}
@@ -236,10 +235,11 @@
 	on:mouseleave={handleMouseleave}
 >
 	<slot name="triggerEl" />
-</div>
+</button>
 
 {#if isShow}
 	<div
+		role="tooltip"
 		bind:this={contentRef}
 		class={cnames}
 		out:scale={{ duration: 300, start: 0.3, opacity: 0, easing: cubeInOut }}
@@ -247,7 +247,6 @@
 		on:animationend={onAnimationEnd}
 		on:animationstart={onAnimationStart}
 		data-popper-placement
-		aria-hidden="true"
 		{...attrs}
 		on:mouseenter={handleMouseenter}
 		on:mouseleave={handleMouseleave}

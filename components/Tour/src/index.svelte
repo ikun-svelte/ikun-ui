@@ -269,14 +269,11 @@
 					</slot>
 
 					<slot name="closeIcon" handleClose={() => doClose(true, index)}>
-						<div
+						<button
 							class={closeCls}
-							role="button"
-							aria-hidden="true"
-							on:click={() => doClose(true, index)}
-						>
+							on:click={() => doClose(true, index)}>
 							<KIcon icon={closeIcon} width="auto" height="auto"></KIcon>
-						</div>
+						</button>
 					</slot>
 				</div>
 

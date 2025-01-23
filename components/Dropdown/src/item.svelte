@@ -31,9 +31,8 @@
 	);
 </script>
 
-<div
+<button
 	class={cnames}
-	aria-hidden="true"
 	data-testid="k_dropdown__item"
 	on:click={handleClick}
 	{...$$restProps}
@@ -42,4 +41,4 @@
 	{#if !divider}
 		<slot />
 	{/if}
-</div>
+</button>

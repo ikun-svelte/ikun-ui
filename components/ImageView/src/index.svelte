@@ -148,9 +148,9 @@
 <KClientOnly>
 	<KMask target={document.body} value={show}>
 		<div class={cnames} {...$$restProps} {...attrs}>
-			<div class={closeCls} on:click={handleClose} aria-hidden="true">
+			<button class={closeCls} on:click={handleClose} >
 				<KIcon width="26px" height="26px" icon="i-carbon-close" />
-			</div>
+			</button>
 
 			<div class={bodyCls} on:wheel={handleWheel}>
 				<img

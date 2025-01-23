@@ -138,8 +138,9 @@
 </script>
 
 <div
+	role="toolbar"
+	tabindex="-1"
 	class={cnames}
-	aria-hidden="true"
 	on:mousedown|preventDefault={handleMousedown}
 	on:mouseup|preventDefault={handleMouseup}
 	bind:this={containerElement}
@@ -151,7 +152,6 @@
 		class={pointerCls}
 		style:left={dragLeft}
 		style:top={dragTop}
-		aria-hidden="true"
 		bind:this={dragElement}
 	></div>
 </div>

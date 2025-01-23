@@ -40,7 +40,6 @@
 	class={cnames}
 	{...$$restProps}
 	{...attrs}
-	aria-hidden="true"
 	href={hrefInner}
 	on:click={handleClick}
 >

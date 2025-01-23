@@ -345,7 +345,8 @@
 				<div
 					class={upCls}
 					on:click={handleUp}
-					aria-hidden="true"
+					on:keydown={handleUp}
+					tabindex="-1"
 					role="button"
 					aria-label="decrease number"
 				>
@@ -354,7 +355,8 @@
 				<div
 					class={downCls}
 					on:click={handleDown}
-					aria-hidden="true"
+					on:keydown={handleDown}
+					tabindex="-1"
 					role="button"
 					aria-label="increase number"
 				>

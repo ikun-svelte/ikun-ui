@@ -114,7 +114,7 @@
 </script>
 
 <div class={clsInner} {...attrs}>
-	<div class={cnames} on:click={showContent} aria-hidden="true">
+	<div class={cnames} on:click={showContent} >
 		<slot name="title">
 			{title}
 		</slot>

@@ -47,18 +47,18 @@
 	{/if}
 	<div class={headCls}>
 		<div class={leftCls}>
-			<div class={backCls} role="button" tabindex="0" aria-hidden="true" on:click={handleClick}>
+			<button class={backCls} tabindex="0"  on:click={handleClick}>
 				{#if icon || $$slots.icon}
 					<div aria-label={title || 'Back'} class={iconCls}>
 						<slot name="icon">
-							<KIcon width="16px" height="16px" {icon}></KIcon>
+							<KIcon width="16px" height="16px" icon={icon || ''}></KIcon>
 						</slot>
 					</div>
 				{/if}
 				<div class={titleCls}>
 					<slot name="title">{title || 'Back'}</slot>
 				</div>
-			</div>
+			</button>
 			<KDivider direction="vertical" />
 			<div class={contentCls}>
 				<slot name="content">{content}</slot>

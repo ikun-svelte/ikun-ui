@@ -711,7 +711,7 @@
 				<li
 					slot="triggerEl"
 					on:click={(e) => handleSelect(it, e)}
-					aria-hidden="true"
+					role="menuitem"
 					style:padding-left={`${getIndent(it)}`}
 					class={cnames(it)}
 					title={resolveTitle(it, ctxProps.inlineCollapsed, false)}
@@ -844,7 +844,7 @@
 						<li
 							slot="triggerEl"
 							on:click={(e) => handleSelect(it, e)}
-							aria-hidden="true"
+							role="menuitem"
 							style:padding-left={`${getIndent(it, ctxProps.inlineCollapsed)}`}
 							class={cnames(it)}
 							title={resolveTitle(it, ctxProps.inlineCollapsed, false)}
@@ -970,7 +970,7 @@
 				{#if it.type !== 'divider'}
 					<li
 						on:click={(e) => handleSelect(it, e)}
-						aria-hidden="true"
+						role="menuitem"
 						style:padding-left={`${getIndent(it, ctxProps.inlineCollapsed)}`}
 						class={cnames(it)}
 						title={resolveTitle(it, ctxProps.inlineCollapsed, false)}
@@ -1083,7 +1083,7 @@
 		opacity={ops[itemsList.length]}
 		order={itemsList.length}
 	>
-		<li slot="triggerEl" aria-hidden="true" class={cnames(moreItem)} {...$$restProps} {...attrs}>
+		<li slot="triggerEl"  class={cnames(moreItem)} {...$$restProps} {...attrs}>
 			...
 		</li>
 		<div slot="contentEl">

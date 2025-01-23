@@ -219,19 +219,18 @@
 	<div class={headerCls}>
 		<div class={tabContainerCls}>
 			{#if showArrow}
-				<div class={prevCls} on:click={handlePrev} aria-hidden="true">
+				<button class={prevCls} on:click={handlePrev}>
 					<KIcon width="16px" height="16px" icon="i-carbon-chevron-left"></KIcon>
-				</div>
+				</button>
 			{/if}
 			<div class={tabScrollCls} bind:this={navRef}>
 				<div bind:this={navsRef} role="tablist" style={navStyle} class={tabCls}>
 					{#each tabNavList as tab, index (tab.uid)}
-						<div
+						<button
 							class={tabItemCls(tab)}
 							style:padding-left={`${closePaddingX(tab)}px`}
 							style:padding-right={`${closePaddingX(tab)}px`}
 							aria-selected="false"
-							aria-hidden="true"
 							role="tab"
 							tabindex="-1"
 							on:mouseenter={() => onHover(tab, true)}
@@ -239,9 +238,8 @@
 							on:click={() => handleClick(tab)}
 						>
 							{tab.label}
-							<div
+							<button
 								class={closeCls}
-								aria-hidden="true"
 								style:width={`${closeIconWidth(tab)}px`}
 								style:height={`${closeIconWidth(tab)}px`}
 								on:click={(e) => handleRemove(e, tab, index)}
@@ -249,7 +247,7 @@
 								{#if closeIconWidth(tab)}
 									<KIcon width="16px" height="16px" icon="i-carbon-close"></KIcon>
 								{/if}
-							</div>
+							</button>
 							{#if isActive(tab.uid) && type !== 'card' && type !== 'border'}
 								<div
 									class={barCls}
@@ -257,24 +255,24 @@
 									in:scale={{ duration: 500, start: 0.1, opacity: 0 }}
 								></div>
 							{/if}
-						</div>
+						</button>
 					{/each}
 				</div>
 			</div>
 			{#if showArrow}
-				<div class={nextCls} on:click={handleNext} aria-hidden="true">
+				<button class={nextCls} on:click={handleNext} >
 					<KIcon width="16px" height="16px" icon="i-carbon-chevron-right"></KIcon>
-				</div>
+				</button>
 			{/if}
 		</div>
 
 		<div class={addWrapCls}>
 			{#if editable}
-				<div class={addCls} on:click={handleAdd} aria-hidden="true">
+				<button class={addCls} on:click={handleAdd} >
 					<slot name="addIcon">
 						<KIcon width="16px" height="16px" icon="i-carbon-add"></KIcon>
 					</slot>
-				</div>
+				</button>
 			{/if}
 		</div>
 	</div>
