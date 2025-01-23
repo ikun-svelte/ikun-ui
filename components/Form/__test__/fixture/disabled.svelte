@@ -106,4 +106,4 @@
 	</KFormItem>
 </KForm>
 
-<button on:click={() => (disabled = !disabled)}></button>
+<button id="disabled_btn" on:click={() => (disabled = !disabled)}></button>

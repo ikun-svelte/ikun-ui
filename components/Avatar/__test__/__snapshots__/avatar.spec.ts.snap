@@ -12,7 +12,7 @@ exports[`Test: KAvatar > props: fit 4`] = `"<div class="k-avatar" style="width: 
 
 exports[`Test: KAvatar > props: fit 5`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 4px;"><img src="https://ikun-ui.netlify.app/logo.svg" alt="" style="object-fit: scale-down;"></div>"`;
 
-exports[`Test: KAvatar > props: icon 1`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 4px;"><span class="k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings" role="" aria-hidden="true" style="width: 24px; height: 24px;"></span></div>"`;
+exports[`Test: KAvatar > props: icon 1`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 4px;"><span class="k-icon--base k-icon--base__dark k-icon-transition i-carbon-settings" role="" style="width: 24px; height: 24px;"></span></div>"`;
 
 exports[`Test: KAvatar > props: radius is number 1`] = `"<div class="k-avatar" style="width: 50px; height: 50px; border-radius: 10px;"></div>"`;
 

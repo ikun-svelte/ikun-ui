@@ -184,7 +184,7 @@ describe('Test: KForm', () => {
 		expect(host.querySelectorAll('.k-select--base__disabled').length).toBe(4);
 		expect(host.querySelector('.k-slider--runway__disabled')).toBeTruthy();
 
-		const btnEl = host.querySelector('button');
+		const btnEl = host.querySelector('#disabled_btn');
 		btnEl?.click();
 		await tick();
 		expect(host.querySelectorAll('.k-form-item-label__disabled').length).toBe(0);

@@ -118,7 +118,7 @@ describe('Test: KCalendar', () => {
 		expect(cells.length).toBe(12);
 		let cellS = host.querySelector('.k-calendar-date-s');
 		expect(cellS.innerHTML).matchSnapshot();
-		const monthBtn = host.querySelectorAll('button')[0];
+		const monthBtn = host.querySelectorAll('button')[2];
 		expect(monthBtn.innerHTML.includes('Year')).toBeTruthy();
 		monthBtn.click();
 		await tick();
@@ -141,7 +141,7 @@ describe('Test: KCalendar', () => {
 		trigger.click();
 		await tick();
 		expect(test.innerHTML).toBe('2024-04-25');
-		const monthBtn = host.querySelectorAll('button')[1];
+		const monthBtn = host.querySelectorAll('button')[5];
 		monthBtn.click();
 		await tick();
 		const trMonth = host.querySelector('[title="2024-06"]');
@@ -166,7 +166,7 @@ describe('Test: KCalendar', () => {
 		expect(opContainer.children.length).toBe(1);
 		expect(opContainer.children[0].innerHTML.includes('2024')).toBeTruthy();
 
-		const yearBtn = host.querySelectorAll('button')[0];
+		const yearBtn = host.querySelectorAll('button')[2];
 		expect(yearBtn.innerHTML.includes('Year')).toBeTruthy();
 		yearBtn.click();
 		await tick();
@@ -258,13 +258,13 @@ describe('Test: KCalendar', () => {
 			mockFn();
 		});
 
-		const btn1 = host.querySelectorAll('button')[1];
+		const btn1 = host.querySelectorAll('button')[4];
 		btn1.click();
 		await tick();
 		expect(mockFn).toBeCalledTimes(1);
 		expect(data).matchSnapshot();
 
-		const btn2 = host.querySelectorAll('button')[0];
+		const btn2 = host.querySelectorAll('button')[5];
 		btn2.click();
 		await tick();
 		expect(mockFn).toBeCalledTimes(2);

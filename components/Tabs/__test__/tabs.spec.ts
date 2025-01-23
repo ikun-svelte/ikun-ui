@@ -251,10 +251,11 @@ describe('Test: KTabs', () => {
 			target: host
 		});
 		expect(instance).toBeTruthy();
+		await tick();
 		let res = host.querySelector('[data-test-id="result"]');
 		expect(res.innerHTML).toBe('2');
 
-		const add = host.querySelector('button');
+		const add = host.querySelector('#add_btn');
 		add.click();
 		await tick();
 		await vi.advanceTimersByTimeAsync(300);

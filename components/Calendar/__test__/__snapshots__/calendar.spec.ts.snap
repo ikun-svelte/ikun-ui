@@ -3,14 +3,14 @@
 exports[`Test: KCalendar > events: panelChange 1`] = `
 {
   "date": "2024-04-07",
-  "mode": "month",
+  "mode": "year",
 }
 `;
 
 exports[`Test: KCalendar > events: panelChange 2`] = `
 {
   "date": "2024-04-07",
-  "mode": "year",
+  "mode": "month",
 }
 `;
 
