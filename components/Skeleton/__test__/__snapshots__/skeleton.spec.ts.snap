@@ -42,9 +42,9 @@ exports[`Test: KSkeletonButton > props: shape is square 1`] = `"<button class="k
 
 exports[`Test: KSkeletonButton > props: size 1`] = `"<button class="k-skeleton-button k-skeleton-button--lg k-skeleton-button--round k-skeleton-button-un--active k-skeleton-button-un--active__dark"></button>"`;
 
-exports[`Test: KSkeletonImage > props: active 1`] = `"<div class="k-skeleton-image k-skeleton--active k-skeleton-image-un--active__dark"><span class="k-icon--base k-icon--base__dark k-icon-transition i-carbon-image k-skeleton-image--icon k-skeleton-image--icon__dark" role="" aria-hidden="true" style="width: 50px; height: 50px;"></span></div>"`;
+exports[`Test: KSkeletonImage > props: active 1`] = `"<div class="k-skeleton-image k-skeleton--active k-skeleton-image-un--active__dark"><span class="k-icon--base k-icon--base__dark k-icon-transition i-carbon-image k-skeleton-image--icon k-skeleton-image--icon__dark" role="" style="width: 50px; height: 50px;"></span></div>"`;
 
-exports[`Test: KSkeletonImage > props: cls 1`] = `"<div class="k-skeleton-image k-skeleton-image-un--active k-skeleton-image-un--active__dark k-skeleton--test"><span class="k-icon--base k-icon--base__dark k-icon-transition i-carbon-image k-skeleton-image--icon k-skeleton-image--icon__dark" role="" aria-hidden="true" style="width: 50px; height: 50px;"></span></div>"`;
+exports[`Test: KSkeletonImage > props: cls 1`] = `"<div class="k-skeleton-image k-skeleton-image-un--active k-skeleton-image-un--active__dark k-skeleton--test"><span class="k-icon--base k-icon--base__dark k-icon-transition i-carbon-image k-skeleton-image--icon k-skeleton-image--icon__dark" role="" style="width: 50px; height: 50px;"></span></div>"`;
 
 exports[`Test: KSkeletonImage > slot: default 1`] = `"<div class="k-skeleton-image k-skeleton-image-un--active k-skeleton-image-un--active__dark"><div>hello</div></div>"`;
 

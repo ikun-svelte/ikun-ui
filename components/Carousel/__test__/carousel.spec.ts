@@ -189,7 +189,7 @@ describe('Test: KCarousel', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host.querySelector('[data-active="1"]')).toBeTruthy();
-		const btn = host.querySelector('button');
+		const btn = host.querySelector('#goto_btn');
 		btn.click();
 		await tick();
 		expect(host.querySelector('[data-active="2"]')).toBeTruthy();
@@ -215,7 +215,7 @@ describe('Test: KCarousel', () => {
 		});
 		expect(instance).toBeTruthy();
 		expect(host.querySelector('[data-active="1"]')).toBeTruthy();
-		const btn = host.querySelector('button');
+		const btn = host.querySelector('#next_btn');
 		btn.click();
 		await tick();
 		expect(host.querySelector('[data-active="2"]')).toBeTruthy();

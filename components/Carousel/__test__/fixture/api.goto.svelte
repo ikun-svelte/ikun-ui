@@ -11,4 +11,4 @@
 	<div style:height="280px" class="bg-red-500/15"></div>
 	<div style:height="280px" class="bg-blue-600/15"></div>
 </KCarousel>
-<button on:click={handleClick}>goto</button>
+<button id="goto_btn" on:click={handleClick}>goto</button>

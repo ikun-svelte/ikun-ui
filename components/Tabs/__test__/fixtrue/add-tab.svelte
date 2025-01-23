@@ -40,5 +40,5 @@
 		</KTabsPane>
 	{/each}
 </KTabs>
-<button on:click={doAdd}>add</button>
+<button id="add_btn" on:click={doAdd}>add</button>
 <p data-test-id="result">{value}</p>
