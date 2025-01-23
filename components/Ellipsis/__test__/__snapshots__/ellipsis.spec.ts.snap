@@ -1,11 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test: KEllipsis > props: cls 1`] = `"<button class="flex svelte-13arsd0" data-popover-trigger=""><button class="k-ellipsis k-ellipsis--test" slot="triggerEl" style="">...</button></button> "`;
+exports[`Test: KEllipsis > props: cls 1`] = `"<button class="k-popover--trigger svelte-13arsd0" data-popover-trigger=""><button class="k-ellipsis k-ellipsis--test" slot="triggerEl" style="">...</button></button> "`;
 
-exports[`Test: KEllipsis > props: content 1`] = `"<button class="flex svelte-13arsd0" data-popover-trigger=""><button class="k-ellipsis" slot="triggerEl" style="">我言秋日胜春朝</button></button> <div role="tooltip" class="k-popover--base k-popover--base__top k-popover--base__top__dark k-popover--base__dark svelte-13arsd0" data-popper-placement="" style="animation: __svelte_767937530_0 300ms linear 0ms 1 both; position: absolute; left: 0px; top: -8px;"><span slot="contentEl">自古逢秋悲寂寥</span> <div k-popover-arrow="true" data-popper-arrow-bottom="" data-popper-arrow-top="" data-popper-arrow-right="" data-popper-arrow-left="" class="svelte-13arsd0"></div></div>"`;
+exports[`Test: KEllipsis > props: content 1`] = `"<button class="k-popover--trigger svelte-13arsd0" data-popover-trigger=""><button class="k-ellipsis" slot="triggerEl" style="">我言秋日胜春朝</button></button> <div role="tooltip" class="k-popover--base k-popover--base__top k-popover--base__top__dark k-popover--base__dark svelte-13arsd0" data-popper-placement="" style="animation: __svelte_767937530_0 300ms linear 0ms 1 both; position: absolute; left: 0px; top: -8px;"><span slot="contentEl">自古逢秋悲寂寥</span> <div k-popover-arrow="true" data-popper-arrow-bottom="" data-popper-arrow-top="" data-popper-arrow-right="" data-popper-arrow-left="" class="svelte-13arsd0"></div></div>"`;
 
-exports[`Test: KEllipsis > props: expand 1`] = `"<button class="flex svelte-13arsd0" data-popover-trigger=""><button class="k-ellipsis--line-clamp" slot="triggerEl" style="-webkit-line-clamp: 3; display: -webkit-inline-box; overflow: hidden;">我言秋日...</button></button> "`;
+exports[`Test: KEllipsis > props: expand 1`] = `"<button class="k-popover--trigger svelte-13arsd0" data-popover-trigger=""><button class="k-ellipsis--line-clamp" slot="triggerEl" style="-webkit-line-clamp: 3; display: -webkit-inline-box; overflow: hidden;">我言秋日...</button></button> "`;
 
-exports[`Test: KEllipsis > props: num 1`] = `"<button class="flex svelte-13arsd0" data-popover-trigger=""><button class="k-ellipsis" slot="triggerEl" style="">我言秋日...</button></button> "`;
+exports[`Test: KEllipsis > props: num 1`] = `"<button class="k-popover--trigger svelte-13arsd0" data-popover-trigger=""><button class="k-ellipsis" slot="triggerEl" style="">我言秋日...</button></button> "`;
 
-exports[`Test: KEllipsis > props: text 1`] = `"<button class="flex svelte-13arsd0" data-popover-trigger=""><button class="k-ellipsis" slot="triggerEl" style="">我言秋日胜春朝</button></button> "`;
+exports[`Test: KEllipsis > props: text 1`] = `"<button class="k-popover--trigger svelte-13arsd0" data-popover-trigger=""><button class="k-ellipsis" slot="triggerEl" style="">我言秋日胜春朝</button></button> "`;

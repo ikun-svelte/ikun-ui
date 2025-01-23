@@ -1,6 +1,7 @@
 export const selectShortcuts: Record<string, string> = {
 	// select
-	'k-select--base': 'fi k-border border-ikun-bd-base rounded px-2 py-1 box-border cursor-pointer',
+	'k-select--base':
+		'k-reset-btn fi k-border border-ikun-bd-base rounded px-2 py-1 box-border cursor-pointer',
 	'k-select--base__disabled': 'k-bg-disabled k-cur-disabled',
 	'k-select__hover': 'hover:border-ikun-main',
 	'k-select__focus': 'focus-within:border-ikun-main focus-within:k-input-shadow',

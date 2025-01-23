@@ -1,5 +1,6 @@
 export const autoCompleteShortcuts: Record<string, string> = {
 	// auto-complete-
+	'k-auto-complete': 'k-reset-btn',
 	'k-auto-complete--option':
 		'rounded mx-2 pl-2 py-1 box-border cursor-pointer text-ikun-tx-base text-left',
 	'k-auto-complete--option__hover': 'hover:ikun:80:bg-ikun-main hover:text-white',

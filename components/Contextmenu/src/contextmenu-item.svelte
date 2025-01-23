@@ -16,6 +16,7 @@
 	};
 
 	const prefixCls = getPrefixCls('contextmenu-item');
+	const btnCls = `${prefixCls}-btn`;
 	$: cnames = clsx(
 		prefixCls,
 		{
@@ -30,7 +31,7 @@
 </script>
 
 <li class={cnames} {...$$restProps} {...attrs}>
-	<button on:click={handleClick} >
+	<button on:click={handleClick} class={btnCls}>
 		{#if !divider}
 			<slot />
 		{/if}

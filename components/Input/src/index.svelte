@@ -231,6 +231,7 @@
 	$: prependCls = clsx(`${prefixCls}--prepend`, `${prefixCls}--prepend__${sizeInner}`);
 	$: appendgCls = clsx(`${prefixCls}--append`, `${prefixCls}--append__${sizeInner}`);
 	$: clearCls = clsx(`${prefixCls}--clear-icon`);
+	$: btnCls = clsx(`${prefixCls}--btn`);
 </script>
 
 {#if type !== 'textarea'}
@@ -279,6 +280,7 @@
 
 			{#if isPassword === 'password' && type === 'password'}
 				<button
+					class={btnCls}
 					on:click={() => {
 						isPassword = 'text';
 					}}
@@ -288,6 +290,7 @@
 			{/if}
 			{#if isPassword === 'text' && type === 'password'}
 				<button
+					class={btnCls}
 					on:click={() => {
 						isPassword = 'password';
 					}}
