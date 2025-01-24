@@ -20,6 +20,7 @@ export const selectShortcuts: Record<string, string> = {
 	'k-select--icon__md': '!w-16px !h-16px',
 	'k-select--icon__lg': '!w-20px !h-20px',
 
+	'k-select--clear': 'k-reset-btn cursor-pointer',
 	'k-select--clear__animate': 'animate-ikun-checking-main',
 	'k-select--tx__empty': 'w-full text-center text-ikun-tx-gr',
 	// option ikun:50:bg-ikun-main

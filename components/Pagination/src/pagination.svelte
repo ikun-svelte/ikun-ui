@@ -162,7 +162,7 @@
 	$: cnames = clsx(prefixCls, {}, cls);
 </script>
 
-<ul class={cnames} {...$$restProps} {...attrs}>
+<div class={cnames} {...$$restProps} {...attrs}>
 	<KPagerComp
 		index={'<'}
 		text={prevText}
@@ -240,4 +240,4 @@
 		{disabled}
 		on:click={() => handleNext(1)}
 	></KPagerComp>
-</ul>
+</div>

@@ -266,6 +266,7 @@
 		[`${prefixCls}--base__disabled__dark`]: disabledInner,
 		[`${prefixCls}--inner__disabled__dark`]: disabledInner
 	});
+	const clearIconCls = clsx(`${prefixCls}--clear`);
 	const prefixIconCls = clsx(`${prefixCls}--prefix`, `${prefixCls}--icon__${sizeInner || size}`);
 	const suffixIconCls = clsx(`${prefixCls}--suffix`, `${prefixCls}--icon__${sizeInner || size}`);
 	const selectIconCls = clsx(`${prefixCls}--icon`, `${prefixCls}--icon__${sizeInner || size}`);
@@ -329,7 +330,7 @@
 			{/if}
 		</slot>
 		{#if clearable && isShowClear}
-			<button data-k-select-clear on:click={handleClear}>
+			<button data-k-select-clear on:click={handleClear} class={clearIconCls}>
 				<KIcon icon="i-carbon-close-outline" cls={selectIconCls} width="auto" height="auto" />
 			</button>
 		{:else}

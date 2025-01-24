@@ -45,13 +45,9 @@ describe('Test: KPagination', () => {
 		await tick();
 		expect(instance).toBeTruthy();
 		expect(document.querySelector('[data-k-page-first]')).toBeTruthy();
-		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">21</button>'
-		);
+		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe('21');
 		expect(document.querySelectorAll('[data-k-page-center]').length).toBe(7);
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">8</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('8');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -72,12 +68,8 @@ describe('Test: KPagination', () => {
 		});
 		await tick();
 		expect(instance).toBeTruthy();
-		expect(document.querySelector('[data-k-page-next]')?.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">nextText</button>'
-		);
-		expect(document.querySelector('[data-k-page-prev]')?.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">prevText</button>'
-		);
+		expect(document.querySelector('[data-k-page-next]')?.innerHTML).toBe('nextText');
+		expect(document.querySelector('[data-k-page-prev]')?.innerHTML).toBe('prevText');
 		expect(host.innerHTML).matchSnapshot();
 	});
 
@@ -229,9 +221,7 @@ describe('Test: KPagination', () => {
 		inputEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 		await tick();
 		await vi.advanceTimersByTimeAsync(400);
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">5</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('5');
 		expect(value).toBe(5);
 	});
 
@@ -316,75 +306,55 @@ describe('Test: KPagination', () => {
 		expect(document.querySelector('[data-k-page-first]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
-		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe('7');
 		expect(document.querySelectorAll('[data-k-page-center]').length).toBe(1);
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">1</button>'
-		);
-		const nextElm = document
-			.querySelector('[data-k-page-next]')
-			?.querySelector('button') as HTMLElement;
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('1');
+		const nextElm = document.querySelector('[data-k-page-next]') as HTMLElement;
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">2</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('2');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(2);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">3</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('3');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(3);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">4</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('4');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(4);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">5</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('5');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(5);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">6</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('6');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(6);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('7');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(7);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('7');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(7);
@@ -412,75 +382,55 @@ describe('Test: KPagination', () => {
 		expect(document.querySelector('[data-k-page-first]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
-		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe('7');
 		expect(document.querySelectorAll('[data-k-page-center]').length).toBe(1);
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
-		const nextElm = document
-			.querySelector('[data-k-page-prev]')
-			?.querySelector('button') as HTMLElement;
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('7');
+		const nextElm = document.querySelector('[data-k-page-prev]') as HTMLElement;
 		nextElm!.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">6</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('6');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(6);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">5</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('5');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(5);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">4</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('4');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(4);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">3</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('3');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(3);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">2</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('2');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(2);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">1</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('1');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(1);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">1</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('1');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(1);
@@ -508,75 +458,55 @@ describe('Test: KPagination', () => {
 		expect(document.querySelector('[data-k-page-first]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
-		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe('7');
 		expect(document.querySelectorAll('[data-k-page-center]').length).toBe(2);
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">1</button>'
-		);
-		const nextElm = document
-			.querySelector('[data-k-page-next]')
-			?.querySelector('button') as HTMLElement;
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('1');
+		const nextElm = document.querySelector('[data-k-page-next]') as HTMLElement;
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">2</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('2');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(2);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">3</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('3');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(3);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">4</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('4');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(4);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">5</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('5');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(5);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">6</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('6');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(6);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('7');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(7);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('7');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(7);
@@ -604,75 +534,55 @@ describe('Test: KPagination', () => {
 		expect(document.querySelector('[data-k-page-first]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
-		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe('7');
 		expect(document.querySelectorAll('[data-k-page-center]').length).toBe(2);
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
-		const nextElm = document
-			.querySelector('[data-k-page-prev]')
-			?.querySelector('button') as HTMLElement;
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('7');
+		const nextElm = document.querySelector('[data-k-page-prev]') as HTMLElement;
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">6</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('6');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(6);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">5</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('5');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(5);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">4</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('4');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(4);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">3</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('3');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(3);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">2</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('2');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(2);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">1</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('1');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(1);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">1</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('1');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(1);
@@ -700,75 +610,55 @@ describe('Test: KPagination', () => {
 		expect(document.querySelector('[data-k-page-first]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
-		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe('7');
 		expect(document.querySelectorAll('[data-k-page-center]').length).toBe(5);
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">1</button>'
-		);
-		const nextElm = document
-			.querySelector('[data-k-page-next]')
-			?.querySelector('button') as HTMLElement;
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('1');
+		const nextElm = document.querySelector('[data-k-page-next]') as HTMLElement;
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">2</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('2');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(2);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">3</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('3');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(3);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">4</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('4');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(4);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">5</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('5');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(5);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">6</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('6');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(6);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('7');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(7);
 
 		nextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('7');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(7);
@@ -796,30 +686,20 @@ describe('Test: KPagination', () => {
 		expect(document.querySelector('[data-k-page-first]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
-		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe('7');
 		expect(document.querySelectorAll('[data-k-page-center]').length).toBe(1);
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">1</button>'
-		);
-		const quickNextElm = document
-			.querySelector('[data-k-page-next-exp]')
-			?.querySelector('button') as HTMLElement;
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('1');
+		const quickNextElm = document.querySelector('[data-k-page-next-exp]') as HTMLElement;
 		quickNextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">4</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('4');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(4);
 
 		quickNextElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('7');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
 		expect(value).toBe(7);
@@ -845,30 +725,20 @@ describe('Test: KPagination', () => {
 		expect(document.querySelector('[data-k-page-first]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).not.toBeTruthy();
-		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
+		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe('7');
 		expect(document.querySelectorAll('[data-k-page-center]').length).toBe(1);
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
-		const quickPrevElm = document
-			.querySelector('[data-k-page-prev-exp]')
-			?.querySelector('button') as HTMLElement;
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('7');
+		const quickPrevElm = document.querySelector('[data-k-page-prev-exp]') as HTMLElement;
 		quickPrevElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">4</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('4');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(4);
 
 		quickPrevElm.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">1</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('1');
 		expect(document.querySelector('[data-k-page-prev-exp]')).not.toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(1);
@@ -893,33 +763,21 @@ describe('Test: KPagination', () => {
 		expect(document.querySelector('[data-k-page-first]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
-		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">67</button>'
-		);
+		expect(document.querySelector('[data-k-page-last]')!.innerHTML).toBe('67');
 		expect(document.querySelectorAll('[data-k-page-center]').length).toBe(5);
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">7</button>'
-		);
-		const trigger8 = document
-			.querySelector('[data-k-page-center="8"]')
-			?.querySelector('button') as HTMLElement;
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('7');
+		const trigger8 = document.querySelector('[data-k-page-center="8"]') as HTMLElement;
 		trigger8.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">8</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('8');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(8);
 
-		const trigger6 = document
-			.querySelector('[data-k-page-center="6"]')
-			?.querySelector('button') as HTMLElement;
+		const trigger6 = document.querySelector('[data-k-page-center="6"]') as HTMLElement;
 		trigger6.click();
 		await tick();
-		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe(
-			'<button class="k-pagination-pager-btn">6</button>'
-		);
+		expect(document.querySelector('.k-pagination-pager__active')!.innerHTML).toBe('6');
 		expect(document.querySelector('[data-k-page-prev-exp]')).toBeTruthy();
 		expect(document.querySelector('[data-k-page-next-exp]')).toBeTruthy();
 		expect(value).toBe(6);
