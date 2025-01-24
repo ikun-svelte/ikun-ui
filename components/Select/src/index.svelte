@@ -177,7 +177,7 @@
 		await tick();
 		handleExpend(e);
 		if (e.detail && dataListInner.length > 0) {
-			setTimeout(setVList, 100);
+			setTimeout(setVList, 200);
 		} else if (!e.detail && remote) {
 			// reset remote popover disabled
 			isDisabledPopover = true;
@@ -294,10 +294,12 @@
 	width={triggerWidth}
 	placement="bottom"
 >
-	<button
+	<div
 		{...attrs}
 		class={cnames}
 		slot="triggerEl"
+		role="button"
+		tabindex="-1"
 		on:mouseenter={() => showClearIcon(true)}
 		on:mouseleave={() => showClearIcon(false)}
 		bind:this={inputSelectRef}
@@ -327,7 +329,7 @@
 			{/if}
 		</slot>
 		{#if clearable && isShowClear}
-			<button data-k-select-clear  on:click={handleClear}>
+			<button data-k-select-clear on:click={handleClear}>
 				<KIcon icon="i-carbon-close-outline" cls={selectIconCls} width="auto" height="auto" />
 			</button>
 		{:else}
@@ -335,7 +337,7 @@
 				<KIcon icon={expendIcon} cls={selectIconCls} width="auto" height="auto" />
 			</i>
 		{/if}
-	</button>
+	</div>
 	<div
 		slot="contentEl"
 		bind:this={popoverModalRef}

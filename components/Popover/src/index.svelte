@@ -15,7 +15,7 @@
 	export let disabled: KPopoverProps['disabled'] = false;
 	export let arrow: KPopoverProps['arrow'] = true;
 	export let mouseEnterDelay: KPopoverProps['mouseEnterDelay'] = 100;
-	export let mouseLeaveDelay: KPopoverProps['mouseLeaveDelay'] = 300;
+	export let mouseLeaveDelay: KPopoverProps['mouseLeaveDelay'] = 100;
 	export let cls: KPopoverProps['cls'] = undefined;
 	export let clsTrigger: KPopoverProps['clsTrigger'] = undefined;
 	export let defaultOpen: KPopoverProps['defaultOpen'] = undefined;
