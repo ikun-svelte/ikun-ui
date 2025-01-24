@@ -218,9 +218,15 @@
 </script>
 
 <div class={baseCls} {...$$restProps} {...attrs}>
-	<button bind:this={runwayRef}
-			 class={runwayCls}
-			 on:mousedown={handleRunwayClick}>
+	<div
+		bind:this={runwayRef}
+		class={runwayCls}
+		aria-controls="slider runway"
+		role="scrollbar"
+		aria-valuenow={value}
+		tabindex="-1"
+		on:mousedown={handleRunwayClick}
+	>
 		{#if discreteDivsArray.length > 0}
 			{#each discreteDivsArray as discreteDiv}
 				<div
@@ -230,8 +236,10 @@
 			{/each}
 		{/if}
 
-		<button
+		<div
 			class={buttonWrapperCls}
+			role="button"
+			tabindex="0"
 			on:mousedown={handleMouseDown}
 			style={btnStyle}
 		>
@@ -246,7 +254,7 @@
 					<div slot="triggerEl" class={buttonCls}></div>
 				</KTooltip>
 			{/if}
-		</button>
+		</div>
 		<div class={barCls} style={barStyle}></div>
-	</button>
+	</div>
 </div>
