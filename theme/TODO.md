@@ -1,6 +1,6 @@
 * 使用 token 分层定义变量: seed， map，component
-* 主题算法
-* 颜色梯度算法
+* 主题算法 
+* 颜色梯度算法 --> magic-color
 * token 生成算法
 
 * 提供 Provider 组件实现上下文，并支持 unstyled

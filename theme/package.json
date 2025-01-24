@@ -1,0 +1,29 @@
+{
+	"name": "@ikun-ui/theme",
+	"version": "0.2.8",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"require": "./dist/index.js",
+			"import": "./dist/index.mjs"
+		}
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsup --config tsup.config.ts",
+		"dev": "tsup --watch --config tsup.config.ts",
+		"publish:npm": "pnpm publish --no-git-checks --access public"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"devDependencies": {
+		"csstype": "^3.1.3"
+	}
+}
