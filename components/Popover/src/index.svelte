@@ -221,7 +221,7 @@
 	}
 </script>
 
-<button
+<div
 	use:popperRef
 	bind:this={popoverContainerRef}
 	on:click={handleClick}
@@ -230,12 +230,14 @@
 	style:width
 	style:order
 	style:opacity
+	role="button"
+	tabindex="-1"
 	data-popover-trigger
 	on:mouseenter={handleMouseenter}
 	on:mouseleave={handleMouseleave}
 >
 	<slot name="triggerEl" />
-</button>
+</div>
 
 {#if isShow}
 	<div

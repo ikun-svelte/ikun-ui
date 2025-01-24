@@ -27,7 +27,6 @@
 	};
 
 	const prefixCls = getPrefixCls('pagination-pager');
-	const btnCls = `${prefixCls}-btn`
 	$: cnames = clsx(prefixCls, `${prefixCls}__${size}`, {
 		[`${prefixCls}__active`]: isActive && !isBg,
 		[`${prefixCls}__dark`]: !isActive && !isBg && !disabled,
@@ -59,31 +58,30 @@
 	};
 </script>
 
-<li
+<div
 	class={cnames}
+	role="button"
+	tabindex="-1"
+	on:mouseenter={handleEnter}
+	on:mouseleave={handleLeave}
+	on:click={(e) => handleClick(e, index)}
 	{...$$restProps}
 >
-	<button
-		class={btnCls}
-		on:mouseenter={handleEnter}
-		on:mouseleave={handleLeave}
-		on:click={(e) => handleClick(e, index)}>
-		{#if !type}
-			{index}
-		{:else if type === 'next' || type === 'prev'}
-			{#if text}
-				{text}
-			{:else if icon}
-				<KIcon {icon} width="auto" height="auto"></KIcon>
-			{:else if type === 'next'}
-				<KIcon icon="i-carbon-chevron-right" width="auto" height="auto"></KIcon>
-			{:else if type === 'prev'}
-				<KIcon icon="i-carbon-chevron-left" width="auto" height="auto"></KIcon>
-			{/if}
-		{:else if type === 'prevPoint'}
-			<KIcon icon={prevPointIcon} width="auto" height="auto"></KIcon>
-		{:else if type === 'nextPoint'}
-			<KIcon icon={nextPointIcon} width="auto" height="auto"></KIcon>
+	{#if !type}
+		{index}
+	{:else if type === 'next' || type === 'prev'}
+		{#if text}
+			{text}
+		{:else if icon}
+			<KIcon {icon} width="auto" height="auto"></KIcon>
+		{:else if type === 'next'}
+			<KIcon icon="i-carbon-chevron-right" width="auto" height="auto"></KIcon>
+		{:else if type === 'prev'}
+			<KIcon icon="i-carbon-chevron-left" width="auto" height="auto"></KIcon>
 		{/if}
-	</button>
-</li>
+	{:else if type === 'prevPoint'}
+		<KIcon icon={prevPointIcon} width="auto" height="auto"></KIcon>
+	{:else if type === 'nextPoint'}
+		<KIcon icon={nextPointIcon} width="auto" height="auto"></KIcon>
+	{/if}
+</div>
