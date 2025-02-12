@@ -44,16 +44,16 @@ export interface SeedToken {
   /**
    * @nameZH 基础文本色
    * @nameEN Seed Text Color
-   * @desc 用于派生文本色梯度的基础变量，v5 中我们添加了一层文本色的派生算法可以产出梯度明确的文本色的梯度变量。但请不要在代码中直接使用该 Seed Token ！
-   * @descEN Used to derive the base variable of the text color gradient. In v5, we added a layer of text color derivation algorithm to produce gradient variables of text color gradient. But please do not use this Seed Token directly in the code!
+   * @desc 用于派生文本色梯度的基础变量，但请不要在代码中直接使用该 Seed Token ！
+   * @descEN Used to derive the base variable of the text color gradient. But please do not use this Seed Token directly in the code!
    */
   colorTextBase: string;
 
   /**
    * @nameZH 基础背景色
    * @nameEN Seed Background Color
-   * @desc 用于派生背景色梯度的基础变量，v5 中我们添加了一层背景色的派生算法可以产出梯度明确的背景色的梯度变量。但请不要在代码中直接使用该 Seed Token ！
-   * @descEN Used to derive the base variable of the background color gradient. In v5, we added a layer of background color derivation algorithm to produce map token of background color. But PLEASE DO NOT USE this Seed Token directly in the code!
+   * @desc 用于派生背景色梯度的基础变量，但请不要在代码中直接使用该 Seed Token ！
+   * @descEN Used to derive the base variable of the background color gradient.  But PLEASE DO NOT USE this Seed Token directly in the code!
    */
   colorBgBase: string;
 
@@ -70,8 +70,8 @@ export interface SeedToken {
   /**
    * @nameZH 字体
    * @nameEN Font family for default text
-   * @desc Ant Design 的字体家族中优先使用系统默认的界面字体，同时提供了一套利于屏显的备用字体库，来维护在不同平台以及浏览器的显示下，字体始终保持良好的易读性和可读性，体现了友好、稳定和专业的特性。
-   * @descEN The font family of Ant Design prioritizes the default interface font of the system, and provides a set of alternative font libraries that are suitable for screen display to maintain the readability and readability of the font under different platforms and browsers, reflecting the friendly, stable and professional characteristics.
+   * @desc 优先使用系统默认的界面字体，同时提供了一套利于屏显的备用字体库，来维护在不同平台以及浏览器的显示下，字体始终保持良好的易读性和可读性，体现了友好、稳定和专业的特性。
+   * @descEN  default interface font of the system, and provides a set of alternative font libraries that are suitable for screen display to maintain the readability and readability of the font under different platforms and browsers, reflecting the friendly, stable and professional characteristics.
    */
   fontFamily: string;
 
@@ -125,8 +125,8 @@ export interface SeedToken {
   /**
    * @nameZH 尺寸变化单位
    * @nameEN Size Change Unit
-   * @desc 用于控制组件尺寸的变化单位，在 Ant Design 中我们的基础单位为 4 ，便于更加细致地控制尺寸梯度
-   * @descEN The unit of size change, in Ant Design, our base unit is 4, which is more fine-grained control of the size step
+   * @desc 用于控制组件尺寸的变化单位，基础单位为 4 ，便于更加细致地控制尺寸梯度
+   * @descEN The unit of size change, base unit is 4, which is more fine-grained control of the size step
    * @default 4
    */
   sizeUnit: number;
@@ -134,8 +134,8 @@ export interface SeedToken {
   /**
    * @nameZH 尺寸步长
    * @nameEN Size Base Step
-   * @desc 用于控制组件尺寸的基础步长，尺寸步长结合尺寸变化单位，就可以派生各种尺寸梯度。通过调整步长即可得到不同的布局模式，例如 V5 紧凑模式下的尺寸步长为 2
-   * @descEN The base step of size change, the size step combined with the size change unit, can derive various size steps. By adjusting the step, you can get different layout modes, such as the size step of the compact mode of V5 is 2
+   * @desc 用于控制组件尺寸的基础步长，尺寸步长结合尺寸变化单位，就可以派生各种尺寸梯度。通过调整步长即可得到不同的布局模式，例如 紧凑模式下的尺寸步长为 2
+   * @descEN The base step of size change, the size step combined with the size change unit, can derive various size steps. By adjusting the step, you can get different layout modes, such as the size step of the compact mode is 2
    * @default 4
    */
   sizeStep: number;
@@ -150,8 +150,8 @@ export interface SeedToken {
   /**
    * @nameZH 基础高度
    * @nameEN Base Control Height
-   * @desc Ant Design 中按钮和输入框等基础控件的高度
-   * @descEN The height of the basic controls such as buttons and input boxes in Ant Design
+   * @desc 按钮和输入框等基础控件的高度
+   * @descEN The height of the basic controls such as buttons and input boxes
    * @default 32
    */
   controlHeight: number;
