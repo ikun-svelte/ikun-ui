@@ -3,6 +3,7 @@ packages:
   - docs
   - play
   - preset
+  - theme
   - utils
   - e2e
   - components/*

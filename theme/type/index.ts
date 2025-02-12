@@ -8,3 +8,4 @@ export * from './token/map-style-token-types'
 export * from './token/map-token-types'
 
 export * from './theme'
+export * from './colors'

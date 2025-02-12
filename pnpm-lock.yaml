@@ -2997,6 +2997,16 @@ importers:
 
   preset: {}
 
+  theme:
+    dependencies:
+      magic-color:
+        specifier: latest
+        version: 2.0.0
+    devDependencies:
+      csstype:
+        specifier: ^3.1.3
+        version: 3.1.3
+
   utils:
     dependencies:
       esm-env:
@@ -3661,6 +3671,18 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@magic-color/core@2.0.0':
+    resolution: {integrity: sha512-5oNAcAhaOSdSSZOo2xikPsxnAFpt+n/bqegN8dM07b/iqgBeFcuHfGogE2DZEBq0dTVF0jM4jp/3KhSaxpqK2Q==}
+
+  '@magic-color/shared@2.0.0':
+    resolution: {integrity: sha512-+RaecwOewQ+7xIHPohYcIa/Fd3fT9U01FhyywJX8KP8dzN0gQcXj7ec2ZdyvmDEQs1SgRSooApyxT7hq5zwBsQ==}
+
+  '@magic-color/theme@2.0.0':
+    resolution: {integrity: sha512-3XuMmyM7A4pI8CRhzVykK9Zoqd9KSEj7Kl16LdwXyYaw3V2XM0VLmJe3sRVgk8TqV+zCTQ5l2gLveDF4LdxBYQ==}
+
+  '@magic-color/transformer@2.0.0':
+    resolution: {integrity: sha512-Vm9KpmEZCe+95+PYlmEDltBDFq2SHQ2d0vcyYlE3mAMppzFXNFof7hQaF7S41poRQMLG0kEB1x+dul+jZElekg==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -5351,6 +5373,9 @@ packages:
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
     hasBin: true
+
+  magic-color@2.0.0:
+    resolution: {integrity: sha512-mRjScUYd0gfMGwFdAWSJ9HCHoKpe0iNAGN3s+hM4Ql2JI/7ZgCwA5UAEi0yMDkUwMBzogAORlzveQnzV/1riwg==}
 
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
@@ -7349,6 +7374,21 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  '@magic-color/core@2.0.0':
+    dependencies:
+      '@magic-color/shared': 2.0.0
+      '@magic-color/transformer': 2.0.0
+
+  '@magic-color/shared@2.0.0': {}
+
+  '@magic-color/theme@2.0.0':
+    dependencies:
+      '@magic-color/core': 2.0.0
+
+  '@magic-color/transformer@2.0.0':
+    dependencies:
+      '@magic-color/shared': 2.0.0
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -9330,6 +9370,11 @@ snapshots:
       yallist: 3.1.1
 
   lz-string@1.5.0: {}
+
+  magic-color@2.0.0:
+    dependencies:
+      '@magic-color/core': 2.0.0
+      '@magic-color/theme': 2.0.0
 
   magic-string@0.30.17:
     dependencies:
